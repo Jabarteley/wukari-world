@@ -1,0 +1,86 @@
+{
+  "updatedAt": "2026-10-17T23:58:26Z",
+  "status": "verification-in-progress",
+  "phase": 1,
+  "checkout": "/Users/anthonyakpan/work/joinallworld-story",
+  "baseSha": "c42aeee66e0fbc60e85cb808d8d2ec263a7ac4d4",
+  "mainIntegrated": "4c5a9e70eb5a3b12d42eda5b2ef6c71c1bb55114",
+  "sourceFilesSha256": {
+    "src/game/progression-slices.ts": "c623e9ac4b19392c259b0d318b22287d99e68d7ab15ae6dec3bf199562daa5e0",
+    "src/game/snapshot-fields.ts": "d7c4e3ab990930ba3de1485dae2045462648577a15460b67dd5bd7716a99e25e",
+    "src/game/teaching-gate.ts": "deeaf056f197dfe5a46c3666fe286f8a9df2659be85fd13616cb2caeb367c8ea",
+    "src/game/homeward-gate.ts": "1e7223818998e6f6e8d4cfae68bb9d5f1ec01d81d05083469e32529ee28d66e2",
+    "src/types/view.ts": "8c70ac11e42aa9636e32ef853a9e85f32b26374f40318e28bb45b073025d4b58",
+    "src/types/engine.test.ts": "b925ddc8a1802724ca5ea2460d180f5218fee6307c3ea4f1d127e209b85c221e"
+  },
+  "checks": {
+    "citiesScenes": {
+      "passed": 15,
+      "failed": 0,
+      "durationMs": 1106461.257083,
+      "sourceSha": "f3af60c4df1c713da39ad65da241b23d32126435",
+      "log": "phase1-cities-scenes-final.log"
+    },
+    "hostedChunk": {
+      "passed": 1,
+      "failed": 0,
+      "artifactSha": "f3af60c4df1c713da39ad65da241b23d32126435",
+      "rawBytes": 188923,
+      "gzipBytes": 70910,
+      "log": "phase1-current-hosted-chunk.log"
+    },
+    "browserParityBeforeReaderConsolidation": {
+      "passed": 1,
+      "failed": 0,
+      "log": "phase1-browser-parity.log"
+    },
+    "localTypecheck": {
+      "projects": 5,
+      "errors": 0,
+      "baselinedErrors": 0,
+      "log": "phase1-typecheck-repaired.log"
+    },
+    "snapshotGates": {
+      "passed": 63,
+      "failed": 0,
+      "durationMs": 4366.534959,
+      "log": "phase1-gates-repaired-final.log"
+    }
+  },
+  "latestCI": {
+    "url": "https://github.com/kromate/joinallworld/actions/runs/39079984013",
+    "sha": "f3af60c4df1c713da39ad65da241b23d32126435",
+    "conclusion": "failure",
+    "startup": {
+      "raw": 614443,
+      "gzip": 222817,
+      "brotli": 195796
+    },
+    "unchangedCaps": {
+      "raw": 615000,
+      "gzip": 223000,
+      "brotli": 195600
+    }
+  },
+  "browser": {
+    "checkpoint": "phone/checkpoint.json",
+    "modeSwitchMs": [
+      227,
+      275,
+      286,
+      274
+    ],
+    "pending": [
+      "Post-Kaduna Story to Free to Story",
+      "Replacement genuine390pixel screenshots"
+    ],
+    "blocker": "Mac locked; human unlock requested"
+  },
+  "release": {
+    "pullRequest": null,
+    "mergeSha": null,
+    "releaseRun": null,
+    "liveStoryBuild": null
+  },
+  "factorySpendUsd": 0
+}

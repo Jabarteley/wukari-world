@@ -5,7 +5,7 @@
 - **Work ID:** `story-mode-20261017`
 - **Owner:** Story programme integration
 - **Thread:** `01a14bf1-fd6d-7de1-9770-a0c22f5d554a`
-- **UTC updated:** `2026-10-17T23:16:11Z`
+- **UTC updated:** `2026-10-17T23:57:50Z`
 - **Status:** `active`
 - **Work state:** `implementation`
 
@@ -24,16 +24,16 @@ Deliver four independently reviewed and released phases of Story Mode for `kroma
 
 ## Repository state
 
-- **Base:** `c42aeee66e0fbc60e85cb808d8d2ec263a7ac4d4`; first pushed candidate `5e65bafdb13411beae3fc0ccb41a4df93b259b20`. New upstream `5080567b` discovered; integrate before next push.
+- **Base:** `c42aeee66e0fbc60e85cb808d8d2ec263a7ac4d4`; current pushed candidate `f3af60c4df1c713da39ad65da241b23d32126435`, including upstream `5080567b` and `dc66c1b0`. Re-fetch main before the next ordinary push.
 - **Branch:** `story/phase1-core`
 - **Initial dirty status:** clean.
-- **Resources:** task-owned QA Vite5351/API5352 using `/tmp/story-qa-server-20261017.mts`, `.data-story-qa/` (local Git exclusion), current exec45755. Existing open-dev clock persists through restart. Protected listeners untouched. Detached read-only baseline worktree `/Users/anthonyakpan/work/joinallworld-story-baseline` at the base, for comparison only.
+- **Resources:** task-owned QA Vite5351/API5352 using `/tmp/story-qa-server-20261017.mts`, `.data-story-qa/` (local Git exclusion), current exec35050. Existing open-dev clock persists through restart. Protected listeners untouched. Detached read-only baseline worktree `/Users/anthonyakpan/work/joinallworld-story-baseline` at the base, for comparison only. Heavy-slot full city/scene run exec56386; browser parity exec43973 and final typecheck exec52295 queued behind it.
 
 ## Acceptance tracker
 
 | Phase | Required outcome and proof | Implementation | CI / merge / release | Next action |
 |---|---|---|---|---|
-| 1 Core | Reversible per-character free/story switch; permanent receipt-derived ladder and city tally in both modes; all four city doors and venue gate; map locks; city signatures; friends-only verified co-op with isolated helper pass, quotas, expiry, keepsake and solo path; erasure; 320/390px actual journeys | Core, map and phone UI implemented; integration checks active | Pending | Finish co-op/runtime/budget/browser gates |
+| 1 Core | Reversible per-character free/story switch; permanent receipt-derived ladder and city tally in both modes; all four city doors and venue gate; map locks; city signatures; friends-only verified co-op with isolated helper pass, quotas, expiry, keepsake and solo path; erasure; 320/390px actual journeys | Implemented; actual tales, collection, co-op, keepsakes and Kaduna travel passed | CI39079984013 fails startup Brotli/type metadata; no PR | Fix demonstrated CI failures, finish full suites and post-travel browser flips |
 | 2 Scenes | Validated distinct recipes for every non-authored venue; Blender regional kits and sourced heroes; lazy packs; regeneration/check/contact sheets; Accra/Nairobi/Tokyo/Paris phone journeys and cold-load measurements | Queued | Pending | Start after phase1 merge; reuse owner's asset pipeline |
 | 3 Talk | Filtered per-city/per-NPC banks and sourced beta phrasebooks; deterministic greet/hours/directions; capped safe live path; cost/zero-call ledger and three-city browser evidence | Queued | Pending | Build adapters outside owned house/model paths |
 | 4 Realism | Recipe sky/material/lighting pass and mapped-street chapter3 entry; phone budgets and full return journey | Queued | Pending | Coordinate allowed seam after phase2 |
@@ -59,13 +59,13 @@ No phase is accepted from a worker report, passing build or release receipt alon
 
 ## Immediate resume steps
 
-1. Inspect source/worker design reports and finalize the StoryState and gate contracts.
-2. Register the new lazy system and a narrow authoritative server flag; implement pure ladder/slots/signatures with tests.
-3. Assign disjoint core and UI ownership, integrate server co-op, then run the named local/CI/browser gates.
+1. Repair CI39079984013's unchanged startup Brotli overage and disabled-view type assertion, then push and run CI again.
+2. Finish the active full city/scene run, queued browser engine parity and local typecheck. Resume post-Kaduna Free/Story flips and correct full-width390 captures after the Mac is unlocked.
+3. Create and attach phase1 PR only after every gate passes; merge, release and verify the active live build before branching phase2.
 
 ## Release state
 
-- **Local implementation:** Story core, reversible switch, authoritative capability, map locks and lazy co-op UI implemented; focused integration tests active. First candidate pushed; no PR, merge or release yet.
+- **Local implementation:** Story core, reversible switch, authoritative capability, map locks and lazy co-op UI implemented. Focused checks116/116 before the disabled-view refinement; its focused checks28/28. Actual co-op and travel passed. Current candidate pushed; no PR, merge or release yet.
 - **Deployment:** authorized, not started.
 - **Gate:** all four tracker rows remain open.
 
@@ -117,3 +117,15 @@ No phase is accepted from a worker report, passing build or release receipt alon
 - Browser evidence is preserved underphone/. The Mac locked and supported inputs stopped working after the actual Kaduna arrival. Remaining browser gate: post-Kaduna Free/Story flip and replacement full-width390captures. Several filenames labelled390 are365px native crops; checkpoint.json explicitly identifies these and the invalid transient frame. Earlier realCSS320/390 journeys and227–286ms flips remain observed; no post-travel flip is claimed. A human unlock request is pending while source/CI work continues.
 - Future-phase factual inventory covers284uniqueIDs/14proposedregions with1365candidate records across279cities. Unknown dates/licences remain blank; restricted-country review remains required. This is input preparation, not hero approval or asset generation. Factory spendUS$0.
 - No PR, merge to main or deployment. Next executable steps: finish complete suites and exact byte check, resume final browser steps after unlock, then create/attach the phase1PR and release only when all gates pass.
+
+## Verification checkpoint 2026-10-17T23:57:50Z
+
+- Full `allCities.test.ts` and `city-scenes.test.ts` run passed15/15 in1106461ms: all284 shared contracts and Story ladders, no terminal cities, unchanged native rendering budgets, full settle/work/eat/rest/travel/return/reload journeys and per-city lazy scene loading. Source at run start wasf3af60c4; its hosted-chunk assertion used the earlier180bf408 artifact. A separate check against the actualf3af60c4 CI artifact also passes1/1 at188923raw/70910gzip for the shared host.
+- Browser/full-engine rebuild parity passed1/1. The later snapshot-reader consolidation is receiving a fresh broader gate run and local typecheck; these are not yet accepted. Focused worker checks passed19/19. Active and disabled Story projections each have exact compile/runtime field lists, with the existing active metadata alias preserved for consumers.
+- Integrated new main4c5a9e70 through merge407c37b9. Its only source change is the existing character runtime material recolouring optimisation; no geometry/layout or Story rules changed. No other owner files were edited.
+- CI39079984013 built successfully but failed the unchanged startup Brotli cap195600 with195796bytes; raw614443 andgzip222817 pass. Its type failure was the disabled-view metadata assertion. The next candidate consolidates fresh-shape reads and loading hints while preserving malformed-liability rejection, own-data-field safety, callable validation, lazy retry and named error identity. Exact whole-bundle savings remain unverified until CI.
+- The Mac remains locked; a human unlock request is pending. No post-Kaduna mode flip or replacement full-width390 screenshot is claimed. No PR, main merge of Story, release or actual Blender generation has occurred. All four delivery phases remain open.
+- Future-phase preparation now includes six validated pilot hero inputs and14region proposals, fourteen copied native-phrase literals with exact source pointers and explicit review gaps, and primary-source candidates for missing hero inputs. These are preparation only. Exact Terong Kangri identity remains unresolved; regional terrain evidence is not a surveyed named-peak model. SpendUS$0.
+- Next executable step: finish the fresh typecheck/gate run, commit/push the candidate and run CI; resume browser acceptance only after the Mac is unlocked.
+
+- Repaired local typecheck is clean:5projects,0errors,0baseline additions. Expanded progression/teaching/homeward/browser-profile/client checks pass63/63 in4367ms. Existing expected error identity/text contracts are preserved; no assertions were loosened. The candidate is ready for an exact hosted build/size measurement.

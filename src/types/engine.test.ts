@@ -86,8 +86,9 @@ import type {
 } from './life.ts'
 import { CONTENT_EVENT_NAMES, EVENT_NAMES, MODIFIER_KEYS, UNEMITTED_LISTENED_EVENTS } from './registry.ts'
 import type { EngineEvent, ModifierKey } from './registry.ts'
-import { TRAVEL_DESTINATION_KEYS, VIEW_FIELD_KEYS, VIEW_KEYS } from './view.ts'
+import { STORY_VIEW_FIELD_KEYS, TRAVEL_DESTINATION_KEYS, VIEW_FIELD_KEYS, VIEW_KEYS } from './view.ts'
 import type { LifeView, TravelDestination } from './view.ts'
+import type { StoryProgressView, StoryView } from './story.ts'
 
 /** dispatch() with a body the types would refuse: these tests send every action type, and unknown operations, on purpose. */
 const dispatchLoose = dispatch as unknown as (state: LifeState, body: { type: string; payload?: Record<string, unknown> }, ctx?: LifeContextInit) => unknown
@@ -101,6 +102,7 @@ type Assert<T extends true> = T
 type Members<L> = L extends readonly (infer U)[] ? U : never
 /** `true` for every key of `Lists` whose list names exactly the keys of `Shapes[key]`. */
 type ListsEveryKey<Lists, Shapes> = { [K in keyof Lists]: K extends keyof Shapes ? Equal<Members<Lists[K]>, keyof Shapes[K]> : false }
+type InvariantViewFieldKeys = Omit<typeof VIEW_FIELD_KEYS, 'story'>
 
 /**
  * A type with its closed sets widened: TypeScript infers `string` for an id written in a plain
@@ -131,7 +133,9 @@ export type ListChecks = [
   Assert<Equal<Members<typeof SKILL_IDS>, SkillId>>,
   Assert<Equal<Members<typeof ACTIVE_KINDS>, ActiveKind>>,
   Assert<Equal<Members<typeof VIEW_KEYS>, keyof LifeView>>,
-  Assert<ListsEveryKey<typeof VIEW_FIELD_KEYS, LifeView> extends Record<keyof typeof VIEW_FIELD_KEYS, true> ? true : false>,
+  Assert<ListsEveryKey<InvariantViewFieldKeys, LifeView> extends Record<keyof InvariantViewFieldKeys, true> ? true : false>,
+  Assert<Equal<Members<typeof STORY_VIEW_FIELD_KEYS.disabled>, keyof Extract<StoryView, { enabled: false }>>>,
+  Assert<Equal<Members<typeof STORY_VIEW_FIELD_KEYS.active>, keyof StoryProgressView>>,
   Assert<Equal<Members<typeof TRAVEL_DESTINATION_KEYS>, keyof TravelDestination>>,
   Assert<Equal<Members<typeof ACTION_TYPES>, ActionType>>,
   Assert<Equal<Members<typeof SERVER_ONLY_ACTIONS>, ServerOnlyActionType>>,
@@ -442,7 +446,8 @@ function checkView(state: LifeState, ctx: LifeContext, what: string): LifeView {
   const shown = view(state, ctx)
   assert.deepEqual(Object.keys(shown), [...VIEW_KEYS], `${what}: view keys, in registration order`)
   // `career.dilemma` exists only while a dilemma is waiting (src/game/features.ts), so it is listed but need not be present.
-  for (const [id, list] of Object.entries(VIEW_FIELD_KEYS)) assert.deepEqual(keys(shown[id as keyof typeof VIEW_FIELD_KEYS]).filter((key) => key !== 'dilemma'), id === 'story' && !shown.story.enabled ? ['enabled'] : sorted(list).filter((key) => key !== 'dilemma'), `${what}: keys of view.${id}`)
+  for (const [id, list] of Object.entries(VIEW_FIELD_KEYS)) if (id !== 'story') assert.deepEqual(keys(shown[id as keyof typeof VIEW_FIELD_KEYS]).filter((key) => key !== 'dilemma'), sorted(list).filter((key) => key !== 'dilemma'), `${what}: keys of view.${id}`)
+  assert.deepEqual(keys(shown.story), sorted(shown.story.enabled ? STORY_VIEW_FIELD_KEYS.active : STORY_VIEW_FIELD_KEYS.disabled), `${what}: keys of view.story`)
   assert.deepEqual(keys(shown.skills), sorted(SKILL_IDS), `${what}: view.skills`)
   for (const skill of Object.values(shown.skills)) assert.deepEqual(keys(skill), ['level', 'next', 'progress', 'xp'], `${what}: skill progress`)
   for (const destination of shown.travel.destinations) assert.deepEqual(keys(destination), sorted(TRAVEL_DESTINATION_KEYS), `${what}: destination ${destination.id}`)

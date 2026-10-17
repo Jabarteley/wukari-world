@@ -1231,9 +1231,20 @@ export const VIEW_KEYS = [
   'onboarding', 'goals', 'social', 'civic', 'missions', 'events', 'growth', 'business', 'achievements', 'episodes', 'projects', 'story', 'unilagStudent', 'unilagCommunity', 'unilagShuttle',
 ] as const satisfies readonly (keyof LifeView)[]
 
-/** The keys of each system's view, sorted. (`skills` is keyed by SkillId.) */
-type UnionKeys<T> = T extends unknown ? keyof T : never
+type DisabledStoryView = Extract<import('./story.ts').StoryView, { enabled: false }>
 
+/** Story is discriminated: disabled snapshots expose only the capability bit. */
+export const STORY_VIEW_FIELD_KEYS = {
+  disabled: ['enabled'],
+  active: ['chapter', 'chapterLabel', 'cities', 'cityId', 'enabled', 'helped', 'mode', 'nextStep', 'progress', 'signature', 'start', 'venues'],
+} as const satisfies {
+  disabled: readonly (keyof DisabledStoryView)[]
+  active: readonly (keyof import('./story.ts').StoryProgressView)[]
+}
+
+type ViewFieldKey<K extends keyof LifeView> = K extends 'story' ? keyof import('./story.ts').StoryProgressView : keyof LifeView[K]
+
+/** The keys of each system view in its active shape, sorted. (`skills` is keyed by SkillId.) */
 export const VIEW_FIELD_KEYS = {
   wallet: ['cash', 'ledger'],
   inventory: ['items'],
@@ -1276,14 +1287,14 @@ export const VIEW_FIELD_KEYS = {
   projects: ['mementos', 'trackingSince'],
   episodes: ['mementos', 'rows', 'trackingSince'],
   achievements: ['displayed', 'earnedCount', 'pinned', 'rows', 'trackingSince'],
-  story: ['chapter', 'chapterLabel', 'cities', 'cityId', 'enabled', 'helped', 'mode', 'nextStep', 'progress', 'signature', 'start', 'venues'],
+  story: STORY_VIEW_FIELD_KEYS.active,
   unilagStudent: [
     'admittedDay', 'applicationCount', 'betaRules', 'campusJobs', 'courses', 'degree', 'hostel', 'lifetime', 'programme', 'records',
     'status', 'studentId', 'term',
   ],
   unilagCommunity: ['clubs', 'discoveries', 'eligible', 'events', 'quiz', 'tables', 'today', 'trail'],
   unilagShuttle: ['active', 'fare', 'source', 'stops'],
-} as const satisfies { readonly [K in keyof LifeView]?: readonly UnionKeys<LifeView[K]>[] }
+} as const satisfies { readonly [K in keyof LifeView]?: readonly ViewFieldKey<K>[] }
 
 /** The keys every entry of `view.travel.destinations` carries, sorted. */
 export const TRAVEL_DESTINATION_KEYS = [

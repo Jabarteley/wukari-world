@@ -26,13 +26,11 @@ export function readTeachingSnapshot(value: unknown): TeachingPractice | null {
 export function teachingFor(snapshot: unknown): Promise<void> | null {
   if (PLAYS || installedReader) return null
   if (!teachingMarker(snapshot)) return null
-  if (loading) return loading
-  loading = import('./living-world/teaching-state.ts').then(module => {
-    if (typeof module.readTeachingPractice !== 'function') throw new TypeError('Teaching state reader is unavailable.')
+  return loading ??= import('./living-world/teaching-state.ts').then(module => {
+    if (typeof module.readTeachingPractice !== 'function') throw new TypeError('Invalid teaching reader.')
     installedReader = module.readTeachingPractice
   }).catch(error => {
     loading = null
     throw error
   })
-  return loading
 }

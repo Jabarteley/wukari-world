@@ -13,9 +13,8 @@ import { plainRecord as record, ownValue as own } from './snapshot-fields.ts'
 export const PROGRESSION_SYSTEM_IDS = ['achievements', 'episodes', 'projects', 'story'] as const
 type ProgressionSystemId = typeof PROGRESSION_SYSTEM_IDS[number]
 
-const emptyRecord = (value: unknown): boolean => record(value) && Object.keys(value).length === 0
-const validTrackingSince = (value: unknown, now: number): value is number => typeof value === 'number'
-  && Number.isSafeInteger(value) && (value > 0 ? value <= now : value === 0 && now === 0)
+const validTrackingSince = (value: unknown, now: number): value is number => Number.isSafeInteger(value)
+  && ((value as number) > 0 ? (value as number) <= now : value === 0 && now === 0)
 
 const FRESH = {
   achievements: () => ({ version: 1, progress: {}, earned: {}, pinned: [], displayed: null }),
@@ -24,20 +23,18 @@ const FRESH = {
   story: () => ({ version: 1, mode: 'free', start: null, cities: {}, helped: [] }),
 } satisfies { [K in ProgressionSystemId]: () => Omit<LifeState[K], 'trackingSince'> }
 
-function freshSlice(key: ProgressionSystemId, value: unknown, now: number): boolean {
-  if (value === undefined || value === null) return true
-  const fields = Object.entries(FRESH[key]())
-  return record(value) && Object.keys(value).length === fields.length + 1
-    && validTrackingSince(own(value, 'trackingSince'), now) && fields.every(([name, expected]) => {
-      const actual = own(value, name)
-      return Array.isArray(expected) ? Array.isArray(actual) && actual.length === 0
-        : expected !== null && typeof expected === 'object' ? emptyRecord(actual) : actual === expected
-    })
+function same(saved: unknown, expected: unknown): boolean {
+  if (Array.isArray(expected)) return Array.isArray(saved) && saved.length === 0
+  if (!record(expected)) return saved === expected
+  return record(saved) && Object.keys(saved).length === Object.keys(expected).length
+    && Object.entries(expected).every(([name, nested]) => same(own(saved, name), nested))
 }
 
-function snapshotTime(raw: Record<string, unknown>): number | null {
-  const value = own(raw, 't')
-  return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0 ? value : null
+function freshSlice(key: ProgressionSystemId, value: unknown, now: number): boolean {
+  if (value === undefined || value === null) return true
+  if (!record(value)) return false
+  const trackingSince = own(value, 'trackingSince')
+  return validTrackingSince(trackingSince, now) && same(value, { ...FRESH[key](), trackingSince })
 }
 
 /** True when a raw life holds progression data that only the full authored pack may rebuild. */
@@ -49,7 +46,8 @@ export function needsProgressionRules(raw: unknown): boolean {
       const rows = own(missions, key)
       return Array.isArray(rows) && rows.some(row => record(row) && typeof row.id === 'string' && /^[dw]-local-/.test(row.id))
     })) return true
-    const now = snapshotTime(raw)
+    const timestamp = own(raw, 't')
+    const now = Number.isSafeInteger(timestamp) && (timestamp as number) >= 0 ? timestamp as number : null
     return PROGRESSION_SYSTEM_IDS.some(id => {
       const value = own(raw, id)
       if (value === undefined || value === null) return false
@@ -60,30 +58,30 @@ export function needsProgressionRules(raw: unknown): boolean {
 
 export class ProgressionNotLoaded extends Error {
   constructor(key: string) {
-    super(`The life holds progression state (${key}) and its rules are not loaded: fetch src/game/progression-gate.ts first.`)
+    super(key)
     this.name = 'ProgressionNotLoaded'
   }
 }
 
-function slice<K extends ProgressionSystemId>(input: Record<string, unknown>, key: K, ctx: LifeContext, state: LifeState): { trackingSince: number } {
+function slice<K extends ProgressionSystemId>(input: Record<string, unknown>, key: K, ctx: LifeContext, state: LifeState): number {
   const now = ctx.now || state.t
   const saved = own(input, key)
   if (!freshSlice(key, saved, now)) throw new ProgressionNotLoaded(key)
-  return { trackingSince: record(saved) ? own(saved, 'trackingSince') as number : now }
+  return record(saved) ? own(saved, 'trackingSince') as number : now
 }
 
 function putSlice<K extends ProgressionSystemId>(state: LifeState, key: K, value: LifeState[K]): void { state[key] = value }
 
 function standIn(id: ProgressionSystemId, view: NonNullable<SystemDefinition<string>['view']>): SystemDefinition<string> {
   return { id, stateKeys: [id], sanitize(input, state, ctx) {
-    const { trackingSince } = slice(input, id, ctx, state)
+    const trackingSince = slice(input, id, ctx, state)
     putSlice(state, id, { ...FRESH[id](), trackingSince })
   }, view }
 }
 
-const achievementStandIn = standIn('achievements', (state): AchievementsView => ({ trackingSince: state.achievements.trackingSince, earnedCount: 0, pinned: [], displayed: null, rows: [] }))
-const episodeStandIn = standIn('episodes', (state): EpisodesView => ({ trackingSince: state.episodes.trackingSince, mementos: [], rows: [] }))
-const projectStandIn = standIn('projects', (state): ProjectsView => ({ trackingSince: state.projects.trackingSince, mementos: [] }))
-const storyStandIn = standIn('story', (): StoryView => ({ enabled: false }))
-
-export const PROGRESSION_STAND_INS: SystemDefinition<string>[] = [achievementStandIn, episodeStandIn, projectStandIn, storyStandIn]
+export const PROGRESSION_STAND_INS: SystemDefinition<string>[] = [
+  standIn('achievements', (state): AchievementsView => ({ trackingSince: state.achievements.trackingSince, earnedCount: 0, pinned: [], displayed: null, rows: [] })),
+  standIn('episodes', (state): EpisodesView => ({ trackingSince: state.episodes.trackingSince, mementos: [], rows: [] })),
+  standIn('projects', (state): ProjectsView => ({ trackingSince: state.projects.trackingSince, mementos: [] })),
+  standIn('story', (): StoryView => ({ enabled: false })),
+]

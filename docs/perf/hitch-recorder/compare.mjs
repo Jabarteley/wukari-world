@@ -1,7 +1,0 @@
-import { readFileSync } from 'node:fs';
-const q = (a, p) => a.length ? a[Math.min(a.length - 1, Math.floor(p * a.length))] : 0;
-const load = f => { const { frames, phases, stride: K = 3 } = JSON.parse(readFileSync(f, 'utf8')); const by = new Map(); for (let i = 0; i < frames.length; i += K) { if (frames[i + 1] < 0) continue; const ph = phases[frames[i + 2]].replace('travel-market', 'travel-venue').replace('market-walk', 'venue-walk'); if (!by.has(ph)) by.set(ph, []); by.get(ph).push(frames[i + 1]); } const all = []; for (const a of by.values()) { a.sort((x, y) => x - y); all.push(...a); } all.sort((x, y) => x - y); by.set('ALL', all); return by; };
-const st = a => a ? { p95: q(a, .95).toFixed(1), p99: q(a, .99).toFixed(1), max: Math.round(a.at(-1)), g16: a.filter(x => x > 16.7).length, g33: a.filter(x => x > 33).length, g50: a.filter(x => x > 50).length } : null;
-const [b, a, title] = process.argv.slice(2); const B = load(b), A = load(a);
-console.log(`\n### ${title}\n\n| phase | p95 ms before → after | p99 ms | max ms | frames >16.7 | >33 | >50 |\n|---|---|---|---|---|---|---|`);
-for (const ph of ['load', 'nbh-idle', 'nbh-walk', 'home-enter', 'home-exit', 'travel-venue', 'venue-walk', 'map', 'map-close', 'travel-home', 'street-enter', 'street-walk', 'ALL']) { const x = st(B.get(ph)), y = st(A.get(ph)); if (!x || !y) continue; console.log(`| ${ph} | ${x.p95} → ${y.p95} | ${x.p99} → ${y.p99} | ${x.max} → ${y.max} | ${x.g16} → ${y.g16} | ${x.g33} → ${y.g33} | ${x.g50} → ${y.g50} |`); }

@@ -1,5 +1,0 @@
-import { readFileSync } from 'node:fs';
-const B = [['recolor (characters.js)', /characters\.js:(19[4-9]|2[01]\d)|srgbChannel|linearChannel|recoloredTexture/], ['first draw: shader link + upload', /renderScene \/src\/venue-world|draw \/src\/street\/host|draw \/src\/map3d\/map3d/], ['crowd bake (canonical-crowd, native-static-lod)', /canonical-crowd|native-static-lod/], ['bodyMask', /bodyMask/], ['AO bake + scene build', /ao-bake|build\.ts/], ['map build (roads, lga, estates, atlas)', /map3d\/(roads|lga|estates|geo|city-build|houses)/], ['GC', /^GC$/]];
-for (const f of process.argv.slice(2)) { const out = {}; let total = 0, tasks = 0;
-  for (const line of readFileSync(f, 'utf8').split('\n')) { const h = line.match(/^## (\S+): (\d+) long tasks, (\d+) ms total/); if (h) { if (!h[1].startsWith('DRILL')) { tasks += +h[2]; total += +h[3]; } continue; } const m = line.match(/^\s+(\d+) ms\s+(.*)$/); if (!m) continue; const b = B.find(([, r]) => r.test(m[2]))?.[0] ?? 'other'; out[b] = (out[b] || 0) + +m[1]; }
-  console.log(f, `long tasks ${tasks}, ${total} ms`, JSON.stringify(out)); }

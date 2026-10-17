@@ -103,7 +103,11 @@ export function storyCoop(ctx: RouteContext) {
     if (!episode || episode.location.city !== session.city || episode.location.venue !== session.venue) return null
     const choice = host.episodes.runs[episode.id]?.choice ?? 'work'
     const other = choice === 'work' ? 'study' : choice === 'study' ? 'help' : 'work'
-    return { host: episode.challenges[choice], helper: episode.challenges[other] }
+    const question = episode.challenges[choice]
+    const cityTale = episodeById(`place-${session.city}-city-story`)
+    const candidates = [cityTale?.challenges[other], ...Object.values(episode.challenges), ...Object.values(cityTale?.challenges ?? {})]
+    const helper = candidates.find(candidate => candidate && candidate.prompt !== question.prompt)
+    return helper ? { host: question, helper } : null
   }
   function validPair(db: Db, session: StoryHelpSession) {
     const s = db.social
@@ -126,7 +130,7 @@ export function storyCoop(ctx: RouteContext) {
   function complete(db: Db, session: StoryHelpSession): StoryReply {
     const pair = pairedLives(db, session)
     if (!pair) return no('help_session_changed', 'Both friends must still be at the challenge on the active help pass.')
-    const completedAt = ctx.now()
+    const completedAt = Math.min(pair.a.t, pair.b.t)
     const reward = session.proof.kind === 'errand' ? session.proof.rewardId : null
     const host = ctx.act(pair.a, { type: 'story.roots.reward', cityId: session.city, payload: { id: session.id, city: session.city, kind: session.proof.kind, completedAt, ...(reward ? { missionRewardId: reward } : {}) }, stateGuard: 'story help session is completed once in this same transaction' })
     const helper = ctx.act(pair.b, { type: 'story.help.reward', cityId: session.city, payload: { id: session.id, city: session.city, completedAt }, stateGuard: 'story help session is completed once in this same transaction' })

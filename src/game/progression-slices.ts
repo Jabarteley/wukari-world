@@ -92,10 +92,7 @@ function putSlice<K extends ProgressionSystemId>(state: LifeState, key: K, value
 function standIn(id: ProgressionSystemId, view: NonNullable<SystemDefinition<string>['view']>): SystemDefinition<string> {
   return { id, stateKeys: [id], sanitize(input, state, ctx) {
     const { trackingSince } = slice(input, id, ctx, state)
-    const fields = Object.entries(FRESH[id]).map(([name, value]) => [name, Array.isArray(value) ? [] : value !== null && typeof value === 'object' ? {} : value])
-    // FRESH declares every field; each empty container is copied for this life.
-    const fresh = { ...Object.fromEntries(fields), trackingSince } as LifeState[ProgressionSystemId]
-    putSlice(state, id, fresh)
+    putSlice(state, id, { ...structuredClone(FRESH[id]), trackingSince })
   }, view }
 }
 

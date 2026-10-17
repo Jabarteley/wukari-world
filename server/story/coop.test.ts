@@ -21,10 +21,11 @@ import { helpProof, playHelpTable } from './games.ts'
 const NOW = Date.UTC(2026, 9, 17, 12)
 const city = 'kano'
 
-async function scene(t: TestContext, on = true) {
+async function scene(t: TestContext, on = true, movingClock = false) {
   let captured: RouteContext | null = null
   const capture: RouteModule = ctx => { captured = ctx; return {} }
-  const f = await fixture(t, { routes: [...ROUTE_MODULES, capture] })
+  let ticks = 0
+  const f = await fixture(t, { routes: [...ROUTE_MODULES, capture], ...(movingClock ? { now: () => NOW + ticks++ } : {}) })
   const ctx = captured as RouteContext | null
   assert.ok(ctx)
   f.advance(NOW - f.now())
@@ -111,8 +112,11 @@ test('friend help rejects strangers, verifies both answers, returns the helper a
   assert.deepEqual(joined.story.cities, before.story.cities)
   const episode = episodeById(`place-${city}-country-story`)
   assert.ok(episode)
-  const questions = [episode.challenges.work, episode.challenges.study]
+  const cityTale = episodeById(`place-${city}-city-story`)
+  assert.ok(cityTale)
+  const questions = [episode.challenges.work, cityTale.challenges.study]
   assert.equal((await s.view(s.helper)).sessions[0]?.question?.prompt, questions[1]!.prompt)
+  assert.notEqual(questions[0]!.prompt, questions[1]!.prompt)
   const wrong = questions[0]!.options.find(option => option.id !== questions[0]!.correct)
   assert.ok(wrong)
   assert.equal((await s.post('/api/story/help/answer', { id: called.id, answer: wrong.id }, s.host)).code, 'try_again')
@@ -126,6 +130,22 @@ test('friend help rejects strangers, verifies both answers, returns the helper a
   assert.equal(after.story.helper, undefined); assert.equal(after.story.helped.length, 1)
   assert.deepEqual(after.story.cities, before.story.cities)
   assert.equal(storyBlock(after, city), 'story_locked')
+})
+
+test('both friends receive valid completion receipts when server time moves between settlement and reward', async t => {
+  const s = await scene(t, true, true), called = await s.call()
+  assert.ok(called.id)
+  assert.equal((await s.post('/api/story/help/join', { id: called.id }, s.helper)).code, 'help_joined')
+  const country = episodeById(`place-${city}-country-story`), local = episodeById(`place-${city}-city-story`)
+  assert.ok(country && local)
+  assert.equal((await s.post('/api/story/help/answer', { id: called.id, answer: country.challenges.work.correct }, s.host)).code, 'answer_recorded')
+  assert.equal((await s.post('/api/story/help/answer', { id: called.id, answer: local.challenges.study.correct }, s.helper)).code, 'help_completed')
+  const host = await s.stateOf(s.host), helper = await s.stateOf(s.helper)
+  assert.ok(host.story.cities[city]?.roots)
+  assert.ok(host.story.cities[city]!.roots!.completedAt <= host.t)
+  assert.equal(helper.story.helped.length, 1)
+  assert.ok(helper.story.helped[0]!.completedAt <= helper.t)
+  assert.equal(helper.estate.city, 'lagos')
 })
 
 test('three calls per day, exact retry keys, flag disable and helper expiry keep their bounds', async t => {

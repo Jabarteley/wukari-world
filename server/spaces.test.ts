@@ -4,7 +4,11 @@
 import test from 'node:test';
 import type { TestContext } from 'node:test';
 import assert from 'node:assert/strict';
+import { mkdtemp, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { fixture } from './test-fixture.ts';
+import { createStore } from './store.ts';
 import type { Device } from './test-fixture.ts';
 import { fakeGateway, redirectTo } from './testing/fakeGateway.ts';
 import type { Planner } from './testing/fakeGateway.ts';
@@ -24,9 +28,14 @@ const GOOD_PLAN = JSON.stringify({ schema: 'allworld-space', version: 1, target:
   { itemId: 'toilet', x: 5, y: 5, rot: 0 }, { itemId: 'bucket-bowl', x: 4, y: 5, rot: 0 }, { itemId: 'jet-ski', x: 2, y: 2, rot: 0 }, { itemId: 'velvet-sofa', x: 2, y: 3, rot: 0 },
 ] });
 
-async function harness(t: TestContext, env: Record<string, string> = { AI_GATEWAY_API_KEY: KEY }, plan: Planner = () => ({ reply: GOOD_PLAN })) {
+/** A server whose operator has turned AI design on (the setting is stored before it starts, as an operator's choice is), unless `off`. */
+async function harness(t: TestContext, env: Record<string, string> = { AI_GATEWAY_API_KEY: KEY }, plan: Planner = () => ({ reply: GOOD_PLAN }), { off = false }: { off?: boolean } = {}) {
   const gateway = await fakeGateway(PORT, plan);
-  const f = await fixture(t, { moderatorToken: TOKEN, env, fetch: redirectTo(gateway.base) as never });
+  const dir = await mkdtemp(join(tmpdir(), 'spaces-test-'));
+  t.after(() => rm(dir, { recursive: true, force: true }));
+  const store = await createStore(dir, { log: () => {} });
+  if (!off) await store.transact((db) => { (db as Record<string, unknown>)['adminSettings'] = { values: { spacesAi: { value: true, at: 1, by: 'test' } } }; });
+  const f = await fixture(t, { moderatorToken: TOKEN, env, fetch: redirectTo(gateway.base) as never, store } as never);
   t.after(() => gateway.stop());
   const life = async (name: string): Promise<Device> => { const who = await f.device(name); await f.request('/api/life?city=lagos', undefined, who.cookie); await f.request('/api/social/me', undefined, who.cookie); return who; };
   const post = async (who: Device, path: string, body: Record<string, unknown>): Promise<Answer & { status: number }> => {
@@ -50,8 +59,8 @@ test('the system prompt stays small and names every catalogue piece', () => {
   for (const id of Object.keys(FURNITURE)) assert.ok(prompt.includes(`\n${id} |`), id);
 });
 
-test('no key: AI design is off with words, nothing is sent, and the status says so', async (t) => {
-  const { gateway, life, post, f } = await harness(t, {});
+test('AI design is off until an operator turns it on: words, nothing is sent, and the status says so', async (t) => {
+  const { gateway, life, post, f } = await harness(t, { AI_GATEWAY_API_KEY: KEY }, undefined, { off: true });
   const ada = await life('Ada');
   const answer = await post(ada, '/api/spaces/design', { target: 'home', prompt: 'a cosy room' });
   assert.equal(answer.ok, false); assert.equal(answer.code, 'off'); assert.match(answer.reason ?? '', /resting/);
@@ -241,4 +250,13 @@ test('share my place: the card says the applied title; a player with no designed
   assert.equal(await f.server.store.read((db) => homeTitleOf(db, ada.id)), '');
   await f.server.store.transact((db) => { spacesOf(db).homes[ada.id] = { title: 'x', at: 1 }; assert.equal(eraseSpaces(db, [ada.id, bola.id]), 1); });
   assert.equal(await f.server.store.read((db) => homeTitleOf(db, ada.id)), '');
+});
+
+test('turned on but with no model key: the router’s refusal is the same plain words, and nothing is sent', async (t) => {
+  const { gateway, life, post } = await harness(t, {});
+  const ada = await life('Ada');
+  const answer = await post(ada, '/api/spaces/design', { target: 'home', prompt: 'a cosy room' });
+  assert.deepEqual([answer.ok, answer.code], [false, 'off']);
+  assert.match(answer.reason ?? '', /resting/);
+  assert.equal(gateway.seen.length, 0);
 });

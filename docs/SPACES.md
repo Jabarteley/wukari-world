@@ -76,7 +76,7 @@ All need the device session; answers are `{ ok: false, code, reason }` when refu
 
 | Setting (admin World page) | Default |
 |---|---|
-| `spacesAi` | on when the server has a model key (`AI_GATEWAY_API_KEY` or `OPENROUTER_API_KEY`), else off. Import works either way |
+| `spacesAi` | **off** until an operator turns it on (Admin → World → Settings). It also needs a model key; without one the router answers "resting". Import, sharing and the agent tools work either way |
 | `spacesDesignsPerHour` | 10 designs per player per hour, on top of the router's daily caps |
 
 Checks: 60 an hour. Applies: 20 an hour. A home changes through its life, a room through `social.convs[g.N].room`. The one new stored thing is `spaces.homes[publicId] = { title, at }`, the title of the plan last applied to a home (it passed the text filter and `agentWords` again on apply), read by the share card and erased with the player (`server/spaces/store.ts`, `server/admin/erasure-data.ts`).

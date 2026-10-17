@@ -14,7 +14,7 @@
  *          the whole transaction is thrown away and the save is exactly as before. Nothing is sold.
  *          A group room: its members only; the room's pieces become the plan's in one write (rev + 1). Room furniture is free.
  *
- * SETTINGS (admin World page, no release): spacesAi (on when the server has a model key), spacesDesignsPerHour (10).
+ * SETTINGS (admin World page, no release): spacesAi (off until an operator turns it on), spacesDesignsPerHour (10).
  * STORAGE: a home applies through the life, a room through social.convs[g.N].room (server/social/places.ts); the applied home's
  * title is kept for its share card (./store.ts).
  */
@@ -74,8 +74,7 @@ export function spacesService(ctx: RouteContext) {
 }
 
 function build(ctx: RouteContext) {
-  const env = (name: string): string => (typeof ctx.env === 'function' ? ctx.env(name) : '');
-  registerAdminSetting(ctx, { key: 'spacesAi', label: 'AI space design', help: 'Players describe a home or a group room and a language model lays it out (docs/SPACES.md). Starts on when the server has a model key. Pasting a plan works either way.', kind: 'boolean', default: () => Boolean(env('AI_GATEWAY_API_KEY').trim() || env('OPENROUTER_API_KEY').trim()) });
+  registerAdminSetting(ctx, { key: 'spacesAi', label: 'AI space design', help: 'Players describe a home or a group room and a language model lays it out (docs/SPACES.md). Off until an operator turns it on; it also needs a model key (without one the router answers "resting"). Pasting a plan works either way. A design costs about US$0.0006 from the shared US$2 day.', kind: 'boolean', default: () => false });
   registerAdminSetting(ctx, { key: 'spacesDesignsPerHour', label: 'AI designs per player per hour', help: 'On top of the model router’s own daily limits.', kind: 'number', min: 1, max: 100, default: () => 10 });
   const setting = (key: string): boolean | number | string | undefined => ctx.checks?.setting?.(key);
   const aiOn = (): boolean => setting('spacesAi') === true;

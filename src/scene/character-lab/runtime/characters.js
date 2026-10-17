@@ -178,7 +178,7 @@ class AssetStore {
       const [url, entry] = unused.shift();
       const geometries = new Set(), materials = new Set(), textures = new Set();
       for (const mesh of meshesIn(entry.value.scene)) { geometries.add(mesh.geometry); for (const material of materialList(mesh)) { materials.add(material); for (const value of Object.values(material)) if (value?.isTexture) textures.add(value); } }
-      for (const value of [...geometries, ...materials, ...textures]) { if (value.isTexture) neutralMaps.get(value)?.forEach(texture => texture.dispose()); value.dispose(); }
+      for (const value of [...geometries, ...materials, ...textures]) value.dispose();
       bytes -= entry.memory.decodedBytes; this.entries.delete(url);
     }
   }
@@ -190,40 +190,32 @@ class AssetStore {
 }
 
 // Swatches describe albedo, not a multiplier on an already coloured photograph.
-const neutralMaps = new WeakMap();
+const neutralReferences = new WeakMap();
 const linearChannel = value => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4;
 const srgbChannel = value => value <= .0031308 ? value * 12.92 : 1.055 * value ** (1 / 2.4) - .055;
 const LINEAR_BYTE = Float64Array.from({ length: 256 }, (_, byte) => linearChannel(byte / 255));
 // SLICES. A step that yields ['slice'] lets a sliced spawn (spawnSliced, used to bake background people) wait for the next frame
 // there. driveSync and driveAsync go straight on, so every other caller runs exactly as before.
 const SLICE = Object.freeze(['slice']);
-// A sliced recolour reads and writes its texture in bands of rows; one band holds the whole image otherwise. Every pixel gets the
-// same bytes either way: the reference samples the same pixels (every 16th of the whole image) and each output byte depends only
-// on its input byte.
+// A swatch recolours a photographed texture by one factor per channel, in linear light: target / reference, where the reference is
+// the texture's median colour. The material draws the original texture with the factor as its colour, and the shader clamps the
+// product at 1 (clampedDiffuse), which is what a recoloured copy held: no copy per swatch (each was a 1024² canvas, 5.6 MB on the
+// GPU, made and uploaded on the main thread). A sliced read takes the pixels in bands of rows; the reference samples the same
+// pixels (every 16th of the whole image) either way.
 const RECOLOR_BAND_PIXELS = 1 << 17;
-function recoloredTexture(original, swatch) {
-  const steps = recolorSteps(original, swatch, false);
-  let step = steps.next();
-  while (!step.done) step = steps.next();
-  return step.value;
-}
-function* recolorSteps(original, swatch, sliced) {
-  if (!original?.image) return original;
-  let variants = neutralMaps.get(original);
-  if (!variants) { variants = new Map(); neutralMaps.set(original, variants); }
-  if (variants.has(swatch)) return variants.get(swatch);
+function* referenceSteps(original, sliced) {
+  if (!original?.image) return null;
+  if (neutralReferences.has(original)) return neutralReferences.get(original);
   const canvas = document.createElement('canvas'); canvas.width = original.image.width; canvas.height = original.image.height;
-  const context = canvas.getContext('2d'); context.drawImage(original.image, 0, 0);
+  const context = canvas.getContext('2d', { willReadFrequently: true }); context.drawImage(original.image, 0, 0);
   const width = canvas.width, height = canvas.height, rows = sliced ? Math.max(1, Math.floor(RECOLOR_BAND_PIXELS / Math.max(1, width))) : height;
-  const bands = [];
   // Per-channel histograms of every 16th pixel stand in for the sorted sample lists: the median byte is the same.
   // Exclude transparent padding and near-black/white atlas background from the reference.
   const channels = [new Uint32Array(256), new Uint32Array(256), new Uint32Array(256)], opaqueChannels = [new Uint32Array(256), new Uint32Array(256), new Uint32Array(256)];
   let sampled = 0, opaque = 0;
   for (let top = 0; top < height; top += rows) {
     if (sliced) yield SLICE;
-    const pixels = context.getImageData(0, top, width, Math.min(rows, height - top)), data = pixels.data;
-    bands.push([top, pixels]);
+    const data = context.getImageData(0, top, width, Math.min(rows, height - top)).data;
     // Every 16th pixel of the whole image, counted from its first pixel.
     for (let i = ((16 - (top * width) % 16) % 16) * 4; i < data.length; i += 64) {
       const r = data[i] / 255, g = data[i + 1] / 255, b = data[i + 2] / 255;
@@ -234,6 +226,7 @@ function* recolorSteps(original, swatch, sliced) {
       channels[0][data[i]]++; channels[1][data[i + 1]]++; channels[2][data[i + 2]]++; sampled++;
     }
   }
+  canvas.width = canvas.height = 0;
   const reference = channels.map((counts, channel) => {
     const histogram = sampled ? counts : opaqueChannels[channel], count = sampled || opaque;
     if (!count) return linearChannel(.5);
@@ -241,23 +234,26 @@ function* recolorSteps(original, swatch, sliced) {
     while (rank >= histogram[byte]) rank -= histogram[byte++];
     return LINEAR_BYTE[byte];
   });
-  // Each output byte depends only on its channel and input byte: one 256-entry table per channel, same arithmetic as per pixel.
-  const target = new THREE.Color(swatch).toArray();
-  const tables = [0, 1, 2].map(c => Uint8ClampedArray.from(LINEAR_BYTE, linear => Math.round(255 * srgbChannel(Math.min(1, Math.max(0, target[c] * (linear / Math.max(.002, reference[c]))))))));
-  const [red, green, blue] = tables;
-  for (const [top, pixels] of bands) {
-    if (sliced) yield SLICE;
-    const data = pixels.data;
-    for (let i = 0; i < data.length; i += 4) { data[i] = red[data[i]]; data[i + 1] = green[data[i + 1]]; data[i + 2] = blue[data[i + 2]]; }
-    context.putImageData(pixels, 0, top);
-  }
-  // Another body may have made the same variant while this one waited between slices: keep one texture per variant.
-  if (variants.has(swatch)) return variants.get(swatch);
-  const texture = new THREE.CanvasTexture(canvas); texture.colorSpace = THREE.SRGBColorSpace;
-  texture.flipY = original.flipY; texture.wrapS = original.wrapS; texture.wrapT = original.wrapT;
-  texture.repeat.copy(original.repeat); texture.offset.copy(original.offset); texture.rotation = original.rotation;
-  texture.anisotropy = original.anisotropy;
-  variants.set(swatch, texture); return texture;
+  // Another body may have read the same texture while this one waited between slices: the answer is the same.
+  if (neutralReferences.has(original)) return neutralReferences.get(original);
+  neutralReferences.set(original, reference); return reference;
+}
+function referenceOf(original) {
+  const steps = referenceSteps(original, false);
+  let step = steps.next();
+  while (!step.done) step = steps.next();
+  return step.value;
+}
+/** Give a material a swatch: the factor over its map's reference, or the plain swatch when there is no map to recolour. */
+function recolor(material, swatch) {
+  const reference = referenceOf(material.map);
+  if (!reference) { material.color.set(material.map ? '#ffffff' : swatch); return; }
+  const target = new THREE.Color(swatch);
+  material.color.setRGB(target.r / Math.max(.002, reference[0]), target.g / Math.max(.002, reference[1]), target.b / Math.max(.002, reference[2]));
+}
+// The recoloured copy clamped each texel at white; so does the shader, right after the map is applied. A no-op for a factor of 1.
+function clampedDiffuse(shader) {
+  shader.fragmentShader = shader.fragmentShader.replace('#include <map_fragment>', '#include <map_fragment>\n\tdiffuseColor.rgb = min( diffuseColor.rgb, vec3( 1.0 ) );');
 }
 
 const eyeCorrections = new WeakMap();
@@ -291,7 +287,7 @@ function roleOf(material) {
 }
 function privateMaterials(root) {
   for (const mesh of meshesIn(root)) {
-    const materials = materialList(mesh).map(source => { const material = source.clone(); material.userData.originalMap = source.map; material.userData.originalColor = source.color.clone(); return material; });
+    const materials = materialList(mesh).map(source => { const material = source.clone(); material.userData.originalMap = source.map; material.userData.originalColor = source.color.clone(); material.onBeforeCompile = clampedDiffuse; return material; });
     mesh.material = Array.isArray(mesh.material) ? materials : materials[0]; mesh.castShadow = true; mesh.receiveShadow = true;
   }
 }
@@ -421,13 +417,13 @@ export async function createCharacterSystem({ scene, catalogUrl = '/models/catal
       for (const mesh of allMeshes()) { const index = mesh.morphTargetDictionary?.[name]; if (index !== undefined) mesh.morphTargetInfluences[index] = value; }
     }
     function expression(logical, value) { const key = expressionNames.get(logical.toLowerCase()) || `Expr_${logical}`; setMorph(key, value); }
-    // The textures applyLook() will recolour, made ahead in slices; applyLook() then finds them made. Same originals, same swatches.
+    // The reference colours applyLook() will recolour by, read ahead in slices; applyLook() then finds them read. Same originals.
     function* recolorAheadSteps() {
       for (const mesh of allMeshes()) for (const material of materialList(mesh)) {
         const role = roleOf(material);
-        if (role === 'skin') { if (look.colors.skin !== '#ffffff') yield* recolorSteps(complexionTexture || material.userData.originalMap, look.colors.skin, true); }
+        if (role === 'skin') { if (look.colors.skin !== '#ffffff') yield* referenceSteps(complexionTexture || material.userData.originalMap, true); }
         else if (role === 'eyes' && eyeTexture) continue;
-        else if (look.colors[role] && look.colors[role] !== '#ffffff') yield* recolorSteps(material.userData.originalMap, look.colors[role], true);
+        else if (look.colors[role] && look.colors[role] !== '#ffffff') yield* referenceSteps(material.userData.originalMap, true);
       }
     }
     function applyLook() {
@@ -446,13 +442,10 @@ export async function createCharacterSystem({ scene, catalogUrl = '/models/catal
         material.map = material.userData.originalMap;
         if (role === 'skin') {
           if (complexionTexture) material.map = complexionTexture;
-          if (look.colors.skin !== '#ffffff') {
-            material.map = recoloredTexture(material.map, look.colors.skin);
-            material.color.set(material.map ? '#ffffff' : look.colors.skin);
-          }
+          if (look.colors.skin !== '#ffffff') recolor(material, look.colors.skin);
         }
         else if (role === 'eyes' && eyeTexture) material.map = naturalEyeTexture(eyeTexture, look.eyeColor);
-        else if (look.colors[role] && look.colors[role] !== '#ffffff') { material.map = recoloredTexture(material.userData.originalMap, look.colors[role]); material.color.set(material.map ? '#ffffff' : look.colors[role]); }
+        else if (look.colors[role] && look.colors[role] !== '#ffffff') recolor(material, look.colors[role]);
         if (role === 'hair') { mesh.receiveShadow = false; material.roughness = .98; if ('specularIntensity' in material) material.specularIntensity = .12; material.alphaToCoverage = true; }
         material.needsUpdate = true;
       }

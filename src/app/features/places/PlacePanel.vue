@@ -4,7 +4,7 @@
 // this only asks (placesStore.ts). Voice is asked for by its button alone, as everywhere (src/community.ts).
 import '../../../ui/controls.css'
 import '../../../ui/panels/social.css'
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useApp } from '../../state/app.ts'
 import GameIcon from '../../ui/GameIcon.vue'
 import PlayerAvatar from '../social/PlayerAvatar.vue'
@@ -12,12 +12,15 @@ import { copyText } from '../../../ui/share.ts'
 import { FURNITURE } from '../../../game/content/furniture.ts'
 import { PLACES, SERVICE_WORDS } from '../../../places/model.ts'
 import { placeNow, placePeople } from './placeState.ts'
-import { addPiece, askToLeave, movePiece, places, removePiece, setLink, stepOut } from './placesStore.ts'
+import { addPiece, askToLeave, enterRoom, movePiece, places, removePiece, setLink, stepOut } from './placesStore.ts'
 import { gist, loadGist } from '../gist/gistStore.ts'
 import { squareLine } from '../gist/gistModel.ts'
 import { SQUARE_TURN_MS } from '../gist/gistConfig.ts'
 import type { FurnitureDefinition } from '../../../types/content.ts'
 
+// Design with AI (docs/SPACES.md): fetched only when opened.
+const DesignSheet = defineAsyncComponent(() => import('../spaces/DesignSheet.vue'))
+const designOpen = ref(false)
 const { game, shell, community } = useApp()
 const now = computed(() => placeNow.value)
 const room = computed(() => (now.value?.kind === 'room' ? places.room : null))
@@ -133,6 +136,8 @@ const whatsapp = computed(() => `https://wa.me/?text=${encodeURIComponent(`${now
     </div>
 
     <div v-if="tab === 'build' && member && room" class="place-part" data-place="builder">
+      <button type="button" class="social-btn" data-place="design-ai" :disabled="offline" @click="designOpen = true">Design with AI</button>
+      <DesignSheet v-if="designOpen" target="room" :room-id="room.id" @close="designOpen = false" @applied="enterRoom(room.id)" />
       <p class="social-note">Everyone in the group can add, move and take out pieces. They are free and belong to the room. {{ room.items.length }} of {{ PLACES.roomItems }} used.</p>
       <label class="place-field">Add<select v-model="category" aria-label="Kind of furniture"><option v-for="id in categories" :key="id" :value="id">{{ labelOf(id) }}</option></select></label>
       <div class="place-palette">

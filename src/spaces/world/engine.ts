@@ -11,6 +11,7 @@ import { WORLD, type Placement } from '../layout.ts'
 import { createLook, aimSun, THREE } from './look.ts'
 import { buildSpace, type BuiltSpace, type SpaceInput } from './space.ts'
 import { moveOf, step, WALKER, type Ground, type Walker } from './walk.ts'
+import type { Physics } from './physics.ts'
 import type { PlacedModel } from '../../types/spaces.ts'
 
 export type View = 'first' | 'third'
@@ -21,10 +22,17 @@ export interface EngineEvents {
   picked(key: string | null): void
   /** In edit mode, a tap on a floor: where the chosen model should go. */
   tapped(at: { x: number; y: number; z: number; floor: number }): void
+  /** Physics is running (or could not start: the walker then keeps to the floor plan). */
+  physics?(state: 'on' | 'off'): void
 }
 
 export interface Engine {
   setStick(forward: number, right: number): void
+  /** Jump (with physics). */
+  jump(): void
+  /** Pick up the loose model in front, or put down the one held; answers whether one is held now. */
+  grab(): boolean
+  throwHeld(): void
   setView(view: View): void
   setEditing(on: boolean): void
   setModels(list: readonly PlacedModel[]): Promise<void>
@@ -143,7 +151,7 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
   let frame = 0
   const tick = (): void => {
     frame = requestAnimationFrame(tick)
-    const dt = Math.min(clock.getDelta(), 0.05)
+    const dt = Math.min(clock.getDelta(), 0.1)
     let forward = stick.forward, right = stick.right
     if (keys.has('w') || keys.has('arrowup')) forward += 1
     if (keys.has('s') || keys.has('arrowdown')) forward -= 1
@@ -153,7 +161,12 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
     if (keys.has('arrowright')) walker = { ...walker, yaw: walker.yaw - WALKER.turn * dt }
     const fast = keys.has('shift') || Math.hypot(stick.forward, stick.right) > 0.92
     const move = moveOf(walker.yaw, forward, right, fast ? WALKER.run : WALKER.walk, dt)
-    if (move.dx || move.dz) walker = { ...step(ground, walker, move.dx, move.dz), yaw: walker.yaw, pitch: walker.pitch }
+    if (physics) {
+      const at = physics.walk({ x: move.dx, z: move.dz }, dt, jumping || keys.has(' '))
+      jumping = false
+      if (at.y < -10) physics.place({ x: -2, y: 0, z: doorZ })
+      walker = { ...walker, x: at.x, y: at.y, z: at.z, floor: Math.max(0, Math.min(plot.floors - 1, Math.round(at.y / WORLD.storey))) }
+    } else if (move.dx || move.dz) walker = { ...step(ground, walker, move.dx, move.dz), yaw: walker.yaw, pitch: walker.pitch }
     const outdoors = outdoorsAt(walker.x, walker.z)
     if (walker.floor !== lastFloor || outdoors !== lastOutdoors) { lastFloor = walker.floor; lastOutdoors = outdoors; space.show(walker.floor, view === 'first', outdoors); lightRooms(walker.floor); report() }
 
@@ -177,16 +190,44 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
       camera.position.copy(hit ? camTarget.clone().addScaledVector(dir, Math.max(0.3, hit.distance - 0.2)) : camWant)
       camera.lookAt(camTarget)
     }
+    if (physics) {
+      eyeAt.set(walker.x, walker.y + WALKER.eye, walker.z)
+      lookAt.set(-Math.sin(walker.yaw) * Math.cos(walker.pitch), Math.sin(walker.pitch), -Math.cos(walker.yaw) * Math.cos(walker.pitch))
+      physics.step(dt, eyeAt, lookAt)
+    }
     look.renderer.render(look.scene, camera)
   }
-  void space.setModels(input.models, bytesOf)
+  // Physics: loaded beside the first frames; until it is ready (or if it cannot start) the walker keeps to the floor plan.
+  let physics: Physics | null = null, jumping = false
+  const eyeAt = new THREE.Vector3(), lookAt = new THREE.Vector3()
+  const syncModels = (): void => {
+    if (!physics) return
+    const objects = space.modelObjects()
+    physics.setModels(objects.filter((o) => !o.userData['loose']), objects.filter((o) => o.userData['loose']).map((object) => ({ key: String(object.userData['key']), object })))
+  }
+  let closed = false
+  const modelsReady = space.setModels(input.models, bytesOf)
+  void import('./physics.ts').then(async ({ startPhysics }) => {
+    const started = await startPhysics()
+    if (closed) { started.dispose(); return }
+    started.addStatic(space.root, (node) => !space.isShell(node) || node.name === 'models')
+    started.addBoxes(space.furnitureBoxes())
+    started.place({ x: walker.x, y: walker.y, z: walker.z })
+    physics = started
+    await modelsReady
+    syncModels()
+    events.physics?.('on')
+  }).catch(() => { events.physics?.('off') })
   tick()
 
   return {
     setStick(f, r) { stick = { forward: f, right: r } },
+    jump() { jumping = true },
+    grab() { return physics ? physics.grab(eyeAt, lookAt) !== null : false },
+    throwHeld() { physics?.throwHeld(lookAt) },
     setView(next) { view = next; space.show(walker.floor, view === 'first', outdoorsAt(walker.x, walker.z)); report() },
     setEditing(on) { editing = on },
-    setModels: (list) => space.setModels(list, bytesOf),
+    setModels: async (list) => { await space.setModels(list, bytesOf); syncModels() },
     placeModel(p) {
       const object = space.modelObject(p.k)
       if (!object) return
@@ -194,6 +235,8 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
       object.rotation.y = (p.ry * Math.PI) / 180
       object.scale.setScalar(p.s)
       object.userData['floor'] = p.floor
+      object.userData['loose'] = p.loose === true
+      syncModels()
     },
     highlight(key) {
       for (const object of space.modelObjects()) object.traverse((n) => {
@@ -209,6 +252,9 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
     },
     inFront() { return { x: walker.x - Math.sin(walker.yaw) * 1.5, z: walker.z - Math.cos(walker.yaw) * 1.5, floor: walker.floor } },
     dispose() {
+      closed = true
+      physics?.dispose()
+      physics = null
       cancelAnimationFrame(frame)
       observer.disconnect()
       canvas.removeEventListener('pointerdown', onDown); canvas.removeEventListener('pointermove', onMove)

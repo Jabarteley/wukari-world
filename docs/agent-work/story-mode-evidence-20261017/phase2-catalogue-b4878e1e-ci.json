@@ -1,0 +1,50 @@
+{
+  "schema": "allworld-catalogue-ci-measurement",
+  "version": 1,
+  "source": "b4878e1e1d10e124e79f2d46535130c3b8c3a18f",
+  "run": "https://github.com/kromate/joinallworld/actions/runs/39107653763",
+  "conclusion": "success",
+  "typecheck": "success",
+  "releasePolicy": "success",
+  "build": "success",
+  "downloadGate": "success",
+  "startup": {
+    "raw": 613635,
+    "gzip": 222560,
+    "brotli": 195568,
+    "rawCap": 615000,
+    "gzipCap": 223000,
+    "brotliCap": 195600
+  },
+  "firstPaint": {
+    "rawJs": 90488,
+    "gzipJs": 35224,
+    "brotliAll": 35355
+  },
+  "namedHost": {
+    "raw": 78930,
+    "gzip": 29906,
+    "scope": "Only emitted world-adapter chunk, not full scene dependency closure. No full-host size reduction claimed."
+  },
+  "artifact": {
+    "id": 12129550171,
+    "zipBytes": 43817016,
+    "zipSha256": "f6b62b27a9da0e316f6e25b33d4b3f75e40bdd494e72ab6bd46bba7b1eff423b"
+  },
+  "newGlyphCycle": "absent in emitted build log",
+  "preservedWarnings": [
+    "characters -> scene-core -> characters",
+    "shuttle-clearance -> campus-rules -> shuttle-clearance"
+  ],
+  "smoke": {
+    "pass": 17,
+    "fail": 0
+  },
+  "nativeIntegration": {
+    "pass": 53,
+    "fail": 0
+  },
+  "nativeInventoryErrors": 0,
+  "productionSceneAssets": "not yet present; new city/kit/hero asset budgets remain unmeasured",
+  "logSha256": "1d76002219dfcc2405da6240c60de0ac639f42d29c3d45693c970eb24399af85"
+}

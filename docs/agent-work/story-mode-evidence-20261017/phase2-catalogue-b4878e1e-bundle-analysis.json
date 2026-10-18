@@ -1,0 +1,590 @@
+{
+  "classification": "Read-only exact hosted-artifact comparison; old preview is8a, not combined814",
+  "old": {
+    "startupJS": {
+      "raw": 613919,
+      "gzip": 222616,
+      "brotli": 191797
+    },
+    "startupAll": {
+      "raw": 624473,
+      "gzip": 227135,
+      "brotli": 195433
+    },
+    "roles": {
+      "assets/city-lagos-content.js": {
+        "path": "assets/city-lagos-content-419aea5.js",
+        "raw": 3507,
+        "gzip": 1737,
+        "brotli": 1488
+      },
+      "assets/city-lagos-venues.js": {
+        "path": "assets/city-lagos-venues-867c04f.js",
+        "raw": 48799,
+        "gzip": 13800,
+        "brotli": 11538
+      },
+      "assets/engine.js": {
+        "path": "assets/engine-000157a.js",
+        "raw": 249111,
+        "gzip": 90384,
+        "brotli": 76804
+      },
+      "assets/native-recipe.js": {
+        "path": "assets/native-recipe-d6520d9.js",
+        "raw": 4834,
+        "gzip": 1834,
+        "brotli": 1653
+      },
+      "assets/preload-helper.js": {
+        "path": "assets/preload-helper-86ad5cf.js",
+        "raw": 1260,
+        "gzip": 698,
+        "brotli": 569
+      },
+      "assets/vue.js": {
+        "path": "assets/vue-8608fe1.js",
+        "raw": 81273,
+        "gzip": 30920,
+        "brotli": 27975
+      },
+      "assets/city-lagos-regulars.js": {
+        "path": "assets/city-lagos-regulars-b6128bd.js",
+        "raw": 9009,
+        "gzip": 4190,
+        "brotli": 3545
+      },
+      "assets/city-lagos-rules.js": {
+        "path": "assets/city-lagos-rules-c177c09.js",
+        "raw": 3507,
+        "gzip": 1368,
+        "brotli": 1257
+      },
+      "assets/startApp.js": {
+        "path": "assets/startApp-736295c.js",
+        "raw": 66695,
+        "gzip": 22843,
+        "brotli": 20000
+      },
+      "assets/agentCallState.js": {
+        "path": "assets/agentCallState-e072708.js",
+        "raw": 172,
+        "gzip": 149,
+        "brotli": 141
+      },
+      "assets/shell-kit.js": {
+        "path": "assets/shell-kit-4f357dd.js",
+        "raw": 2052,
+        "gzip": 962,
+        "brotli": 876
+      },
+      "assets/callsLoader.js": {
+        "path": "assets/callsLoader-580d1df.js",
+        "raw": 2250,
+        "gzip": 1171,
+        "brotli": 1018
+      },
+      "assets/useAccountLite.js": {
+        "path": "assets/useAccountLite-de11058.js",
+        "raw": 131815,
+        "gzip": 47797,
+        "brotli": 40763
+      },
+      "assets/achievements.js": {
+        "path": "assets/achievements-714c48b.js",
+        "raw": 165,
+        "gzip": 144,
+        "brotli": 123
+      },
+      "assets/app.js": {
+        "path": "assets/app-9d1b405.js",
+        "raw": 8035,
+        "gzip": 3644,
+        "brotli": 3189
+      },
+      "assets/touchOfferModel.js": {
+        "path": "assets/touchOfferModel-036b913.js",
+        "raw": 436,
+        "gzip": 295,
+        "brotli": 262
+      },
+      "assets/shownOnce.js": {
+        "path": "assets/shownOnce-26c9e21.js",
+        "raw": 136,
+        "gzip": 141,
+        "brotli": 117
+      },
+      "assets/GlyphText.vue_vue_type_script_setup_true_lang.js": {
+        "path": "assets/GlyphText.vue_vue_type_script_setup_true_lang-83f192c.js",
+        "raw": 863,
+        "gzip": 539,
+        "brotli": 479
+      },
+      "assets/app.css": {
+        "path": "assets/app-1053440.css",
+        "raw": 3575,
+        "gzip": 1601,
+        "brotli": 1389
+      },
+      "index.html": {
+        "path": "index.html",
+        "raw": 6979,
+        "gzip": 2918,
+        "brotli": 2247
+      }
+    },
+    "host": [
+      {
+        "path": "assets/world-adapter-71ede97.js",
+        "raw": 188939,
+        "gzip": 70896,
+        "brotli": 61434
+      }
+    ],
+    "sceneDelta": {
+      "size": {
+        "raw": 1191115,
+        "gzip": 352884,
+        "brotli": 296195
+      },
+      "files": [
+        "assets/world-adapter-71ede97.js",
+        "assets/inputMode-8cbdca9.js",
+        "assets/city-scenes-334c4e2.js",
+        "assets/conditions-1a0f5f7.js",
+        "assets/routines-fde2376.js",
+        "assets/city-places-b793ca6.js",
+        "assets/shader-warmup-485cb01.js",
+        "assets/native-body-987a28b.js",
+        "assets/three-8806894.js",
+        "assets/native-migration-3ed6770.js",
+        "assets/canonical-crowd-6c3ea34.js",
+        "assets/characters-d16e32b.js",
+        "assets/scene-core-2647625.js",
+        "assets/gesture-cf73db6.js",
+        "assets/neighbourhood-space-17e369d.js",
+        "assets/kit-7c062df.js"
+      ]
+    },
+    "catalogueStatic": null
+  },
+  "current": {
+    "startupJS": {
+      "raw": 613635,
+      "gzip": 222560,
+      "brotli": 191933
+    },
+    "startupAll": {
+      "raw": 624189,
+      "gzip": 227077,
+      "brotli": 195568
+    },
+    "roles": {
+      "assets/city-lagos-content.js": {
+        "path": "assets/city-lagos-content-c67d8e7.js",
+        "raw": 3514,
+        "gzip": 1741,
+        "brotli": 1492
+      },
+      "assets/city-lagos-venues.js": {
+        "path": "assets/city-lagos-venues-8cd1299.js",
+        "raw": 48802,
+        "gzip": 13801,
+        "brotli": 11543
+      },
+      "assets/engine.js": {
+        "path": "assets/engine-dbdc3b0.js",
+        "raw": 249064,
+        "gzip": 90943,
+        "brotli": 76936
+      },
+      "assets/native-recipe.js": {
+        "path": "assets/native-recipe-d6520d9.js",
+        "raw": 4834,
+        "gzip": 1834,
+        "brotli": 1653
+      },
+      "assets/preload-helper.js": {
+        "path": "assets/preload-helper-86ad5cf.js",
+        "raw": 1260,
+        "gzip": 698,
+        "brotli": 569
+      },
+      "assets/vue.js": {
+        "path": "assets/vue-18de86d.js",
+        "raw": 81273,
+        "gzip": 30920,
+        "brotli": 27988
+      },
+      "assets/city-lagos-regulars.js": {
+        "path": "assets/city-lagos-regulars-b367e25.js",
+        "raw": 9010,
+        "gzip": 4188,
+        "brotli": 3548
+      },
+      "assets/city-lagos-rules.js": {
+        "path": "assets/city-lagos-rules-062051e.js",
+        "raw": 3508,
+        "gzip": 1367,
+        "brotli": 1264
+      },
+      "assets/startApp.js": {
+        "path": "assets/startApp-1f925e6.js",
+        "raw": 66661,
+        "gzip": 22821,
+        "brotli": 19952
+      },
+      "assets/agentCallState.js": {
+        "path": "assets/agentCallState-7e0bb7d.js",
+        "raw": 172,
+        "gzip": 150,
+        "brotli": 135
+      },
+      "assets/callsLoader.js": {
+        "path": "assets/callsLoader-70dc4cc.js",
+        "raw": 2255,
+        "gzip": 1171,
+        "brotli": 1017
+      },
+      "assets/useAccountLite.js": {
+        "path": "assets/useAccountLite-f6269db.js",
+        "raw": 107299,
+        "gzip": 37458,
+        "brotli": 32683
+      },
+      "assets/shell-kit.js": {
+        "path": "assets/shell-kit-a309609.js",
+        "raw": 26315,
+        "gzip": 10758,
+        "brotli": 9024
+      },
+      "assets/lazy-load.js": {
+        "path": "assets/lazy-load-a990963.js",
+        "raw": 976,
+        "gzip": 526,
+        "brotli": 466
+      },
+      "assets/achievements.js": {
+        "path": "assets/achievements-714c48b.js",
+        "raw": 165,
+        "gzip": 144,
+        "brotli": 123
+      },
+      "assets/app.js": {
+        "path": "assets/app-0ce5555.js",
+        "raw": 7955,
+        "gzip": 3606,
+        "brotli": 3163
+      },
+      "assets/touchOfferModel.js": {
+        "path": "assets/touchOfferModel-036b913.js",
+        "raw": 436,
+        "gzip": 295,
+        "brotli": 262
+      },
+      "assets/shownOnce.js": {
+        "path": "assets/shownOnce-67eec6c.js",
+        "raw": 136,
+        "gzip": 139,
+        "brotli": 115
+      },
+      "assets/app.css": {
+        "path": "assets/app-1053440.css",
+        "raw": 3575,
+        "gzip": 1601,
+        "brotli": 1389
+      },
+      "index.html": {
+        "path": "index.html",
+        "raw": 6979,
+        "gzip": 2916,
+        "brotli": 2246
+      }
+    },
+    "host": [
+      {
+        "path": "assets/world-adapter-89192d1.js",
+        "raw": 78930,
+        "gzip": 29906,
+        "brotli": 26691
+      }
+    ],
+    "sceneDelta": {
+      "size": {
+        "raw": 1189271,
+        "gzip": 353617,
+        "brotli": 297065
+      },
+      "files": [
+        "assets/world-adapter-89192d1.js",
+        "assets/inputMode-8cbdca9.js",
+        "assets/city-scenes-db08739.js",
+        "assets/conditions-19953b9.js",
+        "assets/routines-0d6ccaa.js",
+        "assets/city-places-fc19c9b.js",
+        "assets/shader-warmup-c3e3d39.js",
+        "assets/native-body-18c15e6.js",
+        "assets/three-edaa9fd.js",
+        "assets/rules-043b4a4.js",
+        "assets/canonical-crowd-97553b1.js",
+        "assets/characters-61fad25.js",
+        "assets/scene-core-c87a4a7.js",
+        "assets/gesture-cf73db6.js",
+        "assets/controls-4329512.js",
+        "assets/neighbourhood-space-430a55d.js",
+        "assets/kit-6d04cc0.js"
+      ]
+    },
+    "catalogueStatic": [
+      "assets/main-66804e1.css",
+      "assets/main-5ceb306.js",
+      "assets/preload-helper-86ad5cf.js"
+    ]
+  },
+  "changed": [
+    {
+      "role": "assets/shell-kit.js",
+      "old": {
+        "path": "assets/shell-kit-4f357dd.js",
+        "raw": 2052,
+        "gzip": 962,
+        "brotli": 876
+      },
+      "current": {
+        "path": "assets/shell-kit-a309609.js",
+        "raw": 26315,
+        "gzip": 10758,
+        "brotli": 9024
+      },
+      "deltaBrotli": 8148
+    },
+    {
+      "role": "assets/lazy-load.js",
+      "current": {
+        "path": "assets/lazy-load-a990963.js",
+        "raw": 976,
+        "gzip": 526,
+        "brotli": 466
+      },
+      "deltaBrotli": 466
+    },
+    {
+      "role": "assets/engine.js",
+      "old": {
+        "path": "assets/engine-000157a.js",
+        "raw": 249111,
+        "gzip": 90384,
+        "brotli": 76804
+      },
+      "current": {
+        "path": "assets/engine-dbdc3b0.js",
+        "raw": 249064,
+        "gzip": 90943,
+        "brotli": 76936
+      },
+      "deltaBrotli": 132
+    },
+    {
+      "role": "assets/vue.js",
+      "old": {
+        "path": "assets/vue-8608fe1.js",
+        "raw": 81273,
+        "gzip": 30920,
+        "brotli": 27975
+      },
+      "current": {
+        "path": "assets/vue-18de86d.js",
+        "raw": 81273,
+        "gzip": 30920,
+        "brotli": 27988
+      },
+      "deltaBrotli": 13
+    },
+    {
+      "role": "assets/city-lagos-rules.js",
+      "old": {
+        "path": "assets/city-lagos-rules-c177c09.js",
+        "raw": 3507,
+        "gzip": 1368,
+        "brotli": 1257
+      },
+      "current": {
+        "path": "assets/city-lagos-rules-062051e.js",
+        "raw": 3508,
+        "gzip": 1367,
+        "brotli": 1264
+      },
+      "deltaBrotli": 7
+    },
+    {
+      "role": "assets/city-lagos-venues.js",
+      "old": {
+        "path": "assets/city-lagos-venues-867c04f.js",
+        "raw": 48799,
+        "gzip": 13800,
+        "brotli": 11538
+      },
+      "current": {
+        "path": "assets/city-lagos-venues-8cd1299.js",
+        "raw": 48802,
+        "gzip": 13801,
+        "brotli": 11543
+      },
+      "deltaBrotli": 5
+    },
+    {
+      "role": "assets/city-lagos-content.js",
+      "old": {
+        "path": "assets/city-lagos-content-419aea5.js",
+        "raw": 3507,
+        "gzip": 1737,
+        "brotli": 1488
+      },
+      "current": {
+        "path": "assets/city-lagos-content-c67d8e7.js",
+        "raw": 3514,
+        "gzip": 1741,
+        "brotli": 1492
+      },
+      "deltaBrotli": 4
+    },
+    {
+      "role": "assets/city-lagos-regulars.js",
+      "old": {
+        "path": "assets/city-lagos-regulars-b6128bd.js",
+        "raw": 9009,
+        "gzip": 4190,
+        "brotli": 3545
+      },
+      "current": {
+        "path": "assets/city-lagos-regulars-b367e25.js",
+        "raw": 9010,
+        "gzip": 4188,
+        "brotli": 3548
+      },
+      "deltaBrotli": 3
+    },
+    {
+      "role": "assets/callsLoader.js",
+      "old": {
+        "path": "assets/callsLoader-580d1df.js",
+        "raw": 2250,
+        "gzip": 1171,
+        "brotli": 1018
+      },
+      "current": {
+        "path": "assets/callsLoader-70dc4cc.js",
+        "raw": 2255,
+        "gzip": 1171,
+        "brotli": 1017
+      },
+      "deltaBrotli": -1
+    },
+    {
+      "role": "index.html",
+      "old": {
+        "path": "index.html",
+        "raw": 6979,
+        "gzip": 2918,
+        "brotli": 2247
+      },
+      "current": {
+        "path": "index.html",
+        "raw": 6979,
+        "gzip": 2916,
+        "brotli": 2246
+      },
+      "deltaBrotli": -1
+    },
+    {
+      "role": "assets/shownOnce.js",
+      "old": {
+        "path": "assets/shownOnce-26c9e21.js",
+        "raw": 136,
+        "gzip": 141,
+        "brotli": 117
+      },
+      "current": {
+        "path": "assets/shownOnce-67eec6c.js",
+        "raw": 136,
+        "gzip": 139,
+        "brotli": 115
+      },
+      "deltaBrotli": -2
+    },
+    {
+      "role": "assets/agentCallState.js",
+      "old": {
+        "path": "assets/agentCallState-e072708.js",
+        "raw": 172,
+        "gzip": 149,
+        "brotli": 141
+      },
+      "current": {
+        "path": "assets/agentCallState-7e0bb7d.js",
+        "raw": 172,
+        "gzip": 150,
+        "brotli": 135
+      },
+      "deltaBrotli": -6
+    },
+    {
+      "role": "assets/app.js",
+      "old": {
+        "path": "assets/app-9d1b405.js",
+        "raw": 8035,
+        "gzip": 3644,
+        "brotli": 3189
+      },
+      "current": {
+        "path": "assets/app-0ce5555.js",
+        "raw": 7955,
+        "gzip": 3606,
+        "brotli": 3163
+      },
+      "deltaBrotli": -26
+    },
+    {
+      "role": "assets/startApp.js",
+      "old": {
+        "path": "assets/startApp-736295c.js",
+        "raw": 66695,
+        "gzip": 22843,
+        "brotli": 20000
+      },
+      "current": {
+        "path": "assets/startApp-1f925e6.js",
+        "raw": 66661,
+        "gzip": 22821,
+        "brotli": 19952
+      },
+      "deltaBrotli": -48
+    },
+    {
+      "role": "assets/GlyphText.vue_vue_type_script_setup_true_lang.js",
+      "old": {
+        "path": "assets/GlyphText.vue_vue_type_script_setup_true_lang-83f192c.js",
+        "raw": 863,
+        "gzip": 539,
+        "brotli": 479
+      },
+      "deltaBrotli": -479
+    },
+    {
+      "role": "assets/useAccountLite.js",
+      "old": {
+        "path": "assets/useAccountLite-de11058.js",
+        "raw": 131815,
+        "gzip": 47797,
+        "brotli": 40763
+      },
+      "current": {
+        "path": "assets/useAccountLite-f6269db.js",
+        "raw": 107299,
+        "gzip": 37458,
+        "brotli": 32683
+      },
+      "deltaBrotli": -8080
+    }
+  ]
+}

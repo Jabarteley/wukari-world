@@ -93,6 +93,13 @@ export interface SessionRecord {
   /** Set only when the session was created with `onboarding: true`: its lives start as guests of the quick start. */
   onboarding?: true
   /**
+   * A PROBE: a session a release check made (scripts/smoke.ts sends `probe: true` with its name). Not a person. It lives at most
+   * PROBE_TTL_MS (protocol.ts), is left out of every count of people (growth, the pulse's visits, the admin's lists and dashboard)
+   * and can be removed in one go from the admin (POST /api/admin/test-sessions/remove). Older probes made before the flag existed
+   * are recognised by their name (protocol.ts isProbeSession).
+   */
+  probe?: true
+  /**
    * The session's ONE character: the city it is in. Written at start-up for every session already
    * stored (server/world/service.ts migrateCharacters) and when an intercity trip arrives, which also
    * records when and from where — a session that moved is then refused a new life in the city it left

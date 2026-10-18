@@ -16,18 +16,21 @@ import { sanctionsOf } from './sanctions.ts';
 import { moderationService } from '../moderation/service.ts';
 import type { LedgerLine } from '../../src/types/life.ts';
 import { scanKeys } from '../keyed.ts';
+import { isProbeSession, ttlFor } from '../protocol.ts';
+import { cityRules } from '../../src/game/content/world.ts';
 import type { Db, RouteContext, SessionRecord } from '../types.ts';
 
 export const PAGE_SIZE = 40;
-export type PlayerFilter = 'all' | 'online' | 'guests' | 'accounts' | 'new' | 'today' | 'broke' | 'banned' | 'flagged';
-export const FILTERS: readonly PlayerFilter[] = ['all', 'online', 'guests', 'accounts', 'new', 'today', 'broke', 'banned', 'flagged'];
+/** `test`: the release check's probe sessions (protocol.ts isProbeSession), which every other filter leaves out. */
+export type PlayerFilter = 'all' | 'online' | 'guests' | 'accounts' | 'new' | 'today' | 'broke' | 'banned' | 'flagged' | 'test';
+export const FILTERS: readonly PlayerFilter[] = ['all', 'online', 'guests', 'accounts', 'new', 'today', 'broke', 'banned', 'flagged', 'test'];
 export const SORTS = ['seen', 'name', 'cash', 'since'] as const;
 export type PlayerSort = (typeof SORTS)[number];
 export const PAGE_SIZES: readonly number[] = [15, 40, 100];
 /** Below this much cash a player counts as broke in the list's filter. */
 export const BROKE_BELOW = 500;
 
-export interface PlayerRow { id: string; name: string; kind: 'guest' | 'account'; city: string | null; online: boolean; cash: number; lastSeen: number; since: number; flags: string[]; admin: boolean }
+export interface PlayerRow { id: string; name: string; kind: 'guest' | 'account' | 'test'; city: string | null; cityName: string | null; online: boolean; cash: number; lastSeen: number; since: number; flags: string[]; admin: boolean }
 
 /** Visit every stored session once. */
 export function eachSession(db: Db, visit: (session: SessionRecord) => void): void {
@@ -36,7 +39,7 @@ export function eachSession(db: Db, visit: (session: SessionRecord) => void): vo
 }
 const stateOf = (session: SessionRecord) => { const city = characterCity(session); return city ? session.cities[city]?.state : undefined; };
 /** Server ms a session was last in use: its expiry minus the lifetime a renewal gives it. */
-const lastSeenOf = (ctx: RouteContext, session: SessionRecord): number => Math.max(0, session.expiresAt - ctx.config.sessionTtlMs);
+const lastSeenOf = (ctx: RouteContext, session: SessionRecord): number => Math.max(0, session.expiresAt - ttlFor(session, ctx.config.sessionTtlMs));
 
 export function playersService(ctx: RouteContext) {
   const sanctions = sanctionsOf(ctx), moderation = moderationService(ctx);
@@ -47,7 +50,8 @@ export function playersService(ctx: RouteContext) {
     if (sanctions.suspended(session.publicId, 'pictures')) flags.push('pictures');
     if (sanctions.suspended(session.publicId, 'calls')) flags.push('calls');
     if (flagged.has(session.publicId)) flags.push('reported');
-    return { id: session.publicId, name: session.name, kind: session.account === undefined ? 'guest' : 'account', city: characterCity(session), online: ctx.online(session.publicId), cash: state?.cash ?? 0,
+    const city = characterCity(session);
+    return { id: session.publicId, name: session.name, kind: isProbeSession(session) ? 'test' : session.account === undefined ? 'guest' : 'account', city, cityName: city ? cityRules(city)?.name ?? null : null, online: ctx.online(session.publicId), cash: state?.cash ?? 0,
       lastSeen: lastSeenOf(ctx, session), since: Number.isFinite(state?.civic?.since) ? state?.civic?.since ?? 0 : 0, flags, admin: playerIsAdmin(ctx, db, session) };
   };
   /** Public ids with an open report against them. */
@@ -64,13 +68,17 @@ export function playersService(ctx: RouteContext) {
       let byHash: string | null = null;
       if (/^[0-9a-f]{64}$/.test(text)) {
         for (const account of Object.values(db.accounts ?? {})) if (account && sameText(emailHash(account.email), text)) { byHash = account.publicId; break; }
-        if (byHash === null) return { rows: [] as PlayerRow[], total: 0, page: 0, pageSize: PAGE_SIZE, scanned: 0 };
+        if (byHash === null) return { rows: [] as PlayerRow[], total: 0, page: 0, pageSize: PAGE_SIZE, scanned: 0, hidden: 0 };
       }
       const hits: PlayerRow[] = [];
-      let scanned = 0;
+      let scanned = 0, hidden = 0;
       eachSession(db, (session) => {
         scanned += 1;
-        if (!(session.expiresAt > now)) return;
+        // The release check's probes are not people: only the `test` filter lists them (expired ones too, since those are what removal
+        // clears); every other answer lists live sessions and says how many probes it left out.
+        const probe = isProbeSession(session);
+        if (filter === 'test' ? !probe : probe) { if (probe && session.expiresAt > now) hidden += 1; return; }
+        if (!probe && !(session.expiresAt > now)) return;
         if (byHash !== null) { if (session.publicId !== byHash) return; }
         else if (text) {
           const idMatch = text.length >= 8 && /^[0-9a-f-]+$/.test(text) && session.publicId.startsWith(text);
@@ -94,7 +102,7 @@ export function playersService(ctx: RouteContext) {
       else if (sort === 'cash') hits.sort((a, b) => way * (a.cash - b.cash));
       else hits.sort((a, b) => way * (a.since - b.since));
       const last = Math.max(0, Math.ceil(hits.length / pageSize) - 1), at = Math.min(Math.max(0, Math.floor(page)), last);
-      return { rows: hits.slice(at * pageSize, (at + 1) * pageSize), total: hits.length, page: at, pageSize, scanned };
+      return { rows: hits.slice(at * pageSize, (at + 1) * pageSize), total: hits.length, page: at, pageSize, scanned, hidden };
     },
 
     /** One player's page. `undefined` when no live session has this id (an archived life is not played and cannot be acted on). */

@@ -11,8 +11,11 @@ export type AdminError = HostErrorCode | JsonBodyErrorCode | StorageErrorCode | 
 export type AdminJson = Record<string, unknown>
 export interface AdminTool { id: string; title: string; group: 'moderation' | 'world' | 'players' | 'other'; kind: 'queue' | 'switch' | 'link'; list?: string; actions?: { id: string; label: string; danger?: boolean; path: string }[] }
 export interface AdminMe extends ApiEnvelope { admin: true; level: 'root' | 'admin'; name: string; ref: string; cities: string[]; tools: AdminTool[]; limits: Record<string, number> }
-export interface PlayerRow { id: string; name: string; kind: 'guest' | 'account'; city: string | null; online: boolean; cash: number; lastSeen: number; since: number; flags: string[]; admin: boolean }
-export interface PlayersPage extends ApiEnvelope { rows: PlayerRow[]; total: number; page: number; pageSize: number; scanned: number }
+/** `kind: 'test'`: a release check's probe session (server/protocol.ts isProbeSession), listed only by `filter=test`. */
+export interface PlayerRow { id: string; name: string; kind: 'guest' | 'account' | 'test'; city: string | null; cityName: string | null; online: boolean; cash: number; lastSeen: number; since: number; flags: string[]; admin: boolean }
+/** `hidden`: probe sessions this answer left out (0 under `filter=test`). */
+export interface PlayersPage extends ApiEnvelope { rows: PlayerRow[]; total: number; page: number; pageSize: number; scanned: number; hidden: number }
+export interface TestSessions extends ApiEnvelope { count: number; live: number; sample: string[]; batch: number }
 export interface AuditView { n: number; at: number; admin: string; adminName: string; action: string; target: string; targetName: string; params: Record<string, string | number | boolean | null>; summary: string; reason: string; amount?: number }
 export interface ActionDone extends ApiEnvelope { ok: true; code: string; summary: string; before?: number; after?: number; applied?: number; clamped?: boolean; line: number; duplicate?: true }
 export interface ConfirmNeeded extends ApiEnvelope { ok: false; code: 'confirmation_required'; token: string; expiresAt: number; summary: string; players?: number; total?: number }
@@ -27,6 +30,8 @@ export interface AdminHttpRoutes {
   'POST /api/admin/players/bulk': Post<{ clientId: string; ids: string[]; action: 'message' | 'credit'; text?: string; amount?: number; reason?: string; confirm?: string }, AdminJson>
   'GET /api/admin/players': Get<PlayersPage>
   'GET /api/admin/players/:id': Get<AdminJson>
+  'GET /api/admin/test-sessions': Get<TestSessions>
+  'POST /api/admin/test-sessions/remove': Post<{ clientId: string }, AdminJson>
   'POST /api/admin/players/:id/erase': Post<{ clientId: string; reason: string; confirm?: string; typed?: string; plan?: string }, AdminJson>
   'GET /api/admin/erasure/:id': Get<AdminJson>
   'POST /api/admin/erasure/:id/retry': Post<{ clientId: string }, AdminJson>

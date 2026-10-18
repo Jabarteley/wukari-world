@@ -708,6 +708,8 @@ export const HTTP_ROUTE_KEYS = [
   'POST /api/admin/players/bulk',
   'GET /api/admin/players',
   'GET /api/admin/players/:id',
+  'GET /api/admin/test-sessions',
+  'POST /api/admin/test-sessions/remove',
   'POST /api/admin/players/:id/erase',
   'GET /api/admin/erasure/:id',
   'POST /api/admin/erasure/:id/retry',

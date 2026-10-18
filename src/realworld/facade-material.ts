@@ -27,6 +27,10 @@ varying vec4 vFacade;
 varying vec2 vWall;
 float fhash(vec3 p) { p = fract(p * 0.3183099 + 0.1); p *= 17.0; return fract(p.x * p.y * p.z * (p.x + p.y + p.z)); }
 float box(vec2 p, vec2 lo, vec2 hi) { vec2 s = step(lo, p) * step(p, hi); return s.x * s.y; }
+float vnoise(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
+  float a = fhash(vec3(i, 1.0)), b = fhash(vec3(i + vec2(1, 0), 1.0)), c = fhash(vec3(i + vec2(0, 1), 1.0)), d = fhash(vec3(i + vec2(1, 1), 1.0));
+  return mix(mix(a, b, f.x), mix(c, d, f.x), f.y); }
+float fbm(vec2 p) { return vnoise(p) * 0.55 + vnoise(p * 2.1) * 0.3 + vnoise(p * 4.3) * 0.15; }
 `)
       .replace('#include <metalnessmap_fragment>', `#include <metalnessmap_fragment>
 float glassMask = 0.0; vec3 lit = vec3(0.0);
@@ -35,8 +39,20 @@ float glassMask = 0.0; vec3 lit = vec3(0.0);
   float u = vWall.x, v = vWall.y;
   // The wall's own weathering, everywhere: darker and dirtier near the ground, faint vertical streaks.
   float grime = mix(0.62, 1.0, smoothstep(0.0, 1.1, v));
-  float streak = fhash(vec3(floor(u * 1.7), seed * 91.0, 3.0));
+  float streak = fhash(vec3(floor(u * 0.6), seed * 91.0, 3.0));
   grime *= 1.0 - 0.08 * streak * smoothstep(roofLine, roofLine - 6.0, v);
+  if (style < 1.5 || style > 2.5) {
+    // Patches of repainting and sun-faded paint.
+    float patchy = fbm(vec2(u, v) * 0.18 + seed * 17.0);
+    diffuseColor.rgb *= 0.86 + 0.26 * patchy;
+    diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * vec3(1.04, 0.98, 0.9), smoothstep(0.55, 0.8, patchy));
+    // Dark mould streaks running down from the roof line (rain off the parapet), broken by noise.
+    float drip = fbm(vec2(u * 0.38 + seed * 9.0, v * 0.08)) * smoothstep(roofLine - 6.0 - 5.0 * fbm(vec2(u * 0.15, seed)), roofLine, v);
+    diffuseColor.rgb *= 1.0 - 0.3 * smoothstep(0.4, 0.8, drip);
+    // Damp tide line at the foot of the wall.
+    float damp = smoothstep(0.9 + 0.5 * vnoise(vec2(u * 0.8, seed)), 0.0, v);
+    diffuseColor.rgb *= 1.0 - 0.3 * damp * (0.6 + 0.4 * fbm(vec2(u * 2.0, v * 3.0)));
+  }
   if (roofLine > 0.0 && v < roofLine - 0.35) {
     float floorIndex = floor(v / storey), fy = fract(v / storey);
     float bay = style > 1.5 ? 1.5 : style > 0.5 ? 3.2 : 3.4;
@@ -90,6 +106,6 @@ float glassMask = 0.0; vec3 lit = vec3(0.0);
       .replace('#include <normal_fragment_maps>', '#include <normal_fragment_maps>\nnormal = normalize(mix(normal, nonPerturbedNormal, glassMask));')
       .replace('#include <emissivemap_fragment>', '#include <emissivemap_fragment>\ntotalEmissiveRadiance += lit;');
   };
-  material.customProgramCacheKey = () => 'realworld-facade-1';
+  material.customProgramCacheKey = () => 'realworld-facade-3';
   return { material, uniforms };
 }

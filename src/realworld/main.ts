@@ -13,6 +13,7 @@ import { buildSurfaces } from './surfaces.ts';
 import { createDaylight } from './sky.ts';
 import { createPost } from './post.ts';
 import { buildTrees } from './trees.ts';
+import { buildDressing } from './dressing.ts';
 
 const params = new URLSearchParams(location.search);
 const vec = (key: string, fallback: [number, number, number]) => (params.get(key)?.split(',').map(Number) ?? fallback) as [number, number, number];
@@ -70,12 +71,14 @@ const canopy = await fetch('/realworld/lagos-island/canopy.json').then((r) => r.
 const onLand = (x: number, z: number) => world.land.some((ring) => { let c = false; for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) { const [xi, zi] = ring[i]!, [xj, zj] = ring[j]!; if ((zi > z) !== (zj > z) && x < ((xj - xi) * (z - zi)) / (zj - zi) + xi) c = !c; } return c; });
 const trees = await buildTrees(canopy.trees.filter(([x, z]) => onLand(x, z)), () => 0);
 scene.add(trees.group);
+const dressing = buildDressing(world);
+scene.add(dressing.group);
 scene.traverse((o) => { const m = (o as THREE.Mesh).material as THREE.Material | undefined; if (m && (o as THREE.Mesh).isMesh && o !== daylight.sky) daylight.setupMaterial(m); });
 const buildMs = Math.round(performance.now() - t0);
 
 const post = createPost(renderer, scene, camera);
 let hour = Number(params.get('hour') ?? 15.5);
-const setHour = (h: number) => { hour = h; daylight.setHour(h); if (params.has('env')) scene.environmentIntensity *= Number(params.get('env')); if (params.has('sun')) for (const l of daylight.csm.lights) l.intensity *= Number(params.get('sun')); facade.uniforms.night.value = daylight.night; post.bloom.strength = 0.12 + 0.5 * daylight.night; dirty = true; };
+const setHour = (h: number) => { hour = h; daylight.setHour(h); if (params.has('env')) scene.environmentIntensity *= Number(params.get('env')); if (params.has('sun')) for (const l of daylight.csm.lights) l.intensity *= Number(params.get('sun')); facade.uniforms.night.value = daylight.night; dressing.setNight(daylight.night); post.bloom.strength = 0.12 + 0.5 * daylight.night; dirty = true; };
 let dirty = true;
 setHour(hour);
 controls.addEventListener('change', () => { dirty = true; });
@@ -100,7 +103,7 @@ requestAnimationFrame(frame);
 
 /** Script hooks for screenshots: set a view and wait until it has been drawn. */
 (window as unknown as { __rw: unknown }).__rw = {
-  ready: true, renderer, scene, camera, controls, setHour,
+  ready: true, renderer, scene, camera, controls, setHour, world,
   view(cam: [number, number, number], at: [number, number, number]) { camera.position.set(...cam); controls.target.set(...at); controls.update(); dirty = true; },
   frames: () => frames,
 };

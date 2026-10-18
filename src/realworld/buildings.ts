@@ -37,7 +37,8 @@ export function buildBuildings(buildings: Building[]): BuiltBuildings {
     // Counter-clockwise in x/z (positive area): the inside is to the left of each edge, outward to the right.
     if (area < 0) ring = [...ring].reverse();
     const seed = hash(b.id), look = style(b, seed), height = Math.max(3, b.height);
-    colour.set(look.colour).convertSRGBToLinear();
+    // Faded paint: every colour a third of the way to a warm grey, and a little darker or lighter per building.
+    colour.set(look.colour).lerp(new THREE.Color('#b8b0a2'), look.style === 2 ? 0.1 : 0.32).multiplyScalar(0.9 + seed * 0.18).convertSRGBToLinear();
     roofColour.set(b.roof ?? '#8d7f6e').convertSRGBToLinear();
     const pitched = height <= 9.5 && look.style !== 2;
     const extra = (top: number): [number, number, number, number] => [look.style, look.storey, seed, top];

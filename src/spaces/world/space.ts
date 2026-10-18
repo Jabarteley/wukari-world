@@ -372,7 +372,7 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
       roof.visible = outdoors
       floors.forEach((g, f) => { g.visible = outdoors || f <= floor })
       ceilings.forEach((g, f) => { g.visible = inside && f <= floor })
-      modelGroup.children.forEach((child) => { child.visible = (child.userData['floor'] ?? 0) <= floor })
+      modelGroup.children.forEach((child) => { child.visible = (child.userData['floor'] ?? 0) <= floor && !child.userData['hidden'] })
     },
     async setModels(list, bytesOf) {
       for (const object of placed.values()) modelGroup.remove(object)

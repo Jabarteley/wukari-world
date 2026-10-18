@@ -65,3 +65,5 @@ export const worldRead = (api: Fetcher, where: WorldWhere) => {
 }
 export const worldSave = (api: Fetcher, where: WorldWhere, models: readonly Placement[]) =>
   call<{ ok: true; code: 'saved'; placed: number; triangles: number }>(api, '/api/spaces/world/layout', { target: where.target, ...(where.id ? { id: where.id } : {}), models })
+export const scriptSave = (api: Fetcher, where: WorldWhere, code: string, lines: readonly string[]) =>
+  call<{ ok: true; code: 'saved' | 'removed'; lines?: number }>(api, '/api/spaces/world/script', { target: where.target, ...(where.id ? { id: where.id } : {}), code, lines })

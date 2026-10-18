@@ -5,12 +5,15 @@
  *   GET  /api/spaces/world?target=home[&host=<publicId>] | target=room&id=<roomId>
  *        the plot, the furniture as the game keeps it, the placed models (with their hash and size) and whether the caller may edit
  *   POST /api/spaces/world/layout { target, id?, models: Placement[] }   save where models stand (owner of a home, member of a room)
+ *   POST /api/spaces/world/script { target, id?, code, lines }   save the space's own script (phase 4); { code: '' } removes it
  *
  * Who may look: a home's owner, and a guest whose visit the host accepted (server/social/visit.ts homeProjection decides); a group
  * room's members, and visitors its link let in (server/social/places.ts room decides). The furniture is never changed here.
  * Kept in `spaces.layouts["home:<publicId>" | "room:<roomId>"]` (src/spaces/layout.ts); erased with the player (store.ts).
  */
 import { cleanLayout, WORLD, type Placement, type SpaceLayout } from '../../src/spaces/layout.ts';
+import { cleanScript, type SpaceScript } from '../../src/spaces/script.ts';
+import { screenText } from '../moderation/text.ts';
 import { plotOf } from '../../src/game/home-layout.ts';
 import { roomPlot } from '../../src/spaces/plan.ts';
 import { plotFor } from '../../src/game/systems/home.ts';
@@ -38,7 +41,13 @@ export function worldService(ctx: RouteContext): ReturnType<typeof build> {
 
 function build(ctx: RouteContext) {
   registerAdminSetting(ctx, { key: 'spaces3d', label: 'Walk through spaces in 3D', help: 'Players walk through their home or group room in a realistic 3D view and place their own models in it (docs/SPACES-3D.md). Off until an operator turns it on.', kind: 'boolean', default: () => false });
+  registerAdminSetting(ctx, { key: 'spacesScripts', label: 'Players\' own code in spaces', help: 'The owner of a home or a member of a group room may give it a script (JavaScript) that moves its models, shows its own filtered lines and keeps a score. Scripts run only in a sandbox on each visitor\'s device, with no network and no account (docs/SPACES-3D.md). Off until an operator turns it on.', kind: 'boolean', default: () => false });
   const on = (): boolean => ctx.checks?.setting?.('spaces3d') === true;
+  const scriptsOn = (): boolean => ctx.checks?.setting?.('spacesScripts') === true;
+  const scriptOf = (db: Db, key: string): (SpaceScript & { at: number; by: string }) | undefined => {
+    const all = (db as { spaces?: { scripts?: Record<string, SpaceScript & { at: number; by: string }> } }).spaces?.scripts;
+    return all && Object.hasOwn(all, key) ? all[key] : undefined;
+  };
   const places = placesService(ctx), visits = visitService(ctx);
 
   const allModels = (db: Db): Record<string, ModelEntry[]> => (db as { spaces?: { models?: Record<string, ModelEntry[]> } }).spaces?.models ?? {};
@@ -95,7 +104,25 @@ function build(ctx: RouteContext) {
       if ('ok' in found) return found;
       const { key, canEdit, ...rest } = found;
       const mine = canEdit ? (allModels(db)[session.publicId] ?? []).filter((m) => !m.hidden).map((m) => modelView(m, session.publicId)) : [];
-      return { ok: true, code: 'ok', world: { ...rest, key, canEdit, models: placed(db, key, session.publicId), mine, limits: { placements: WORLD.placements, triangles: WORLD.triangles } } };
+      const script = scriptsOn() ? scriptOf(db, key) : undefined;
+      return { ok: true, code: 'ok', world: { ...rest, key, canEdit, models: placed(db, key, session.publicId), mine, limits: { placements: WORLD.placements, triangles: WORLD.triangles }, scripts: scriptsOn(), ...(script ? { script: { code: script.code, lines: [...script.lines] } } : {}) } };
+    },
+    /** POST /api/spaces/world/script */
+    saveScript(db: Db, session: SessionRecord, body: Record<string, unknown>) {
+      if (!on() || !scriptsOn()) return no('scripts_off', 'Scripts in spaces are not switched on yet.');
+      const query = new URLSearchParams();
+      query.set('target', typeof body['target'] === 'string' ? body['target'] : '');
+      if (typeof body['id'] === 'string') query.set('id', body['id']);
+      const found = where(db, session, query);
+      if ('ok' in found) return found;
+      if (!found.canEdit) return no('not_allowed', found.kind === 'room' ? 'Only members of the group can give its room a script.' : 'Only the owner can give this home a script.');
+      if (!ctx.allow(`spaces:script:${session.publicId}`, 20)) return no('rate_limited', 'You are saving too fast. Wait a moment.');
+      const col = spacesOf(db);
+      if (body['code'] === '') { if (col.scripts) delete col.scripts[found.key]; return { ok: true as const, code: 'removed' as const }; }
+      const checked = cleanScript(body, (text) => screenText(text, { contact: true, what: 'That line' })?.reason ?? null);
+      if (!checked.ok) return checked;
+      (col.scripts ??= {})[found.key] = { ...checked.script, at: ctx.now(), by: session.publicId };
+      return { ok: true as const, code: 'saved' as const, lines: checked.script.lines.length };
     },
     /** POST /api/spaces/world/layout */
     save(db: Db, session: SessionRecord, body: Record<string, unknown>) {

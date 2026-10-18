@@ -54,9 +54,9 @@ export function createDaylight(renderer: THREE.WebGLRenderer, scene: THREE.Scene
       // At night: moonlight and the city's skyglow keep the shapes readable (cool from above, warm sodium from below).
       const dark = 1 - THREE.MathUtils.smoothstep(sun.y, -0.12, 0.05);
       hemi.color.set('#cfe2f3').lerp(new THREE.Color('#6d7fa8'), dark); hemi.groundColor.set('#8a7a62').lerp(new THREE.Color('#5a4630'), dark);
-      hemi.intensity += 0.35 * dark;
+      hemi.intensity += 0.6 * dark;
       // Daylight: the sun several times brighter than the sky (clear tropical afternoon), so lit and shaded faces read apart.
-      scene.environmentIntensity = 0.1 + 0.28 * THREE.MathUtils.smoothstep(sun.y, -0.05, 0.25);
+      scene.environmentIntensity = 0.14 + 0.24 * THREE.MathUtils.smoothstep(sun.y, -0.05, 0.25);
       // Humid coastal haze: pale blue-grey by day.
       const haze = new THREE.Color().setHSL(0.58, 0.28, 0.1 + 0.58 * THREE.MathUtils.smoothstep(sun.y, -0.1, 0.4));
       if (warm < 0.7) haze.lerp(new THREE.Color('#e7b48a'), (1 - warm) * 0.35 * THREE.MathUtils.smoothstep(sun.y, -0.05, 0.05));

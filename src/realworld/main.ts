@@ -9,6 +9,7 @@ import type { World } from './types.ts';
 import { loadSet } from './textures.ts';
 import { buildBuildings } from './buildings.ts';
 import { createFacadeMaterial } from './facade-material.ts';
+import { zincMaterial } from './materials.ts';
 import { buildSurfaces } from './surfaces.ts';
 import { createDaylight } from './sky.ts';
 import { createPost } from './post.ts';
@@ -49,20 +50,7 @@ const t0 = performance.now();
 const built = buildBuildings(world.buildings);
 const facade = createFacadeMaterial(plaster);
 const walls = new THREE.Mesh(built.walls, facade.material);
-// Zinc roofs: the sampled roof colour with the corrugated sheet's relief and roughness (its own paint is green), weathered in streaks of rust.
-const zinc = new THREE.MeshStandardMaterial({ vertexColors: true, normalMap: metal.normalMap, roughnessMap: metal.roughnessMap, metalness: 0.35, roughness: 1, normalScale: new THREE.Vector2(1.3, 1.3) });
-zinc.onBeforeCompile = (shader) => {
-  shader.vertexShader = shader.vertexShader.replace('#include <common>', '#include <common>\nvarying vec2 vRoofUv;').replace('#include <uv_vertex>', '#include <uv_vertex>\nvRoofUv = uv;');
-  shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `#include <common>
-varying vec2 vRoofUv;
-float rhash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
-float rnoise(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f); return mix(mix(rhash(i), rhash(i + vec2(1, 0)), f.x), mix(rhash(i + vec2(0, 1)), rhash(i + vec2(1, 1)), f.x), f.y); }`)
-    .replace('#include <color_fragment>', `#include <color_fragment>
-{ float sheet = floor(vRoofUv.x / 0.9); float rust = rnoise(vec2(sheet * 3.1, vRoofUv.y * 0.35)) * rnoise(vRoofUv * 0.6);
-  diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.32, 0.17, 0.09), smoothstep(0.25, 0.7, rust) * 0.7);
-  diffuseColor.rgb *= 0.88 + 0.24 * rhash(vec2(sheet, 7.0)); }`);
-};
-zinc.customProgramCacheKey = () => 'realworld-zinc-1';
+const zinc = zincMaterial(metal);
 const metalRoofs = new THREE.Mesh(built.metalRoofs, zinc);
 const flatRoofs = new THREE.Mesh(built.flatRoofs, new THREE.MeshStandardMaterial({ vertexColors: true, map: concrete.map, normalMap: concrete.normalMap, roughnessMap: concrete.roughnessMap }));
 for (const m of [walls, metalRoofs, flatRoofs]) { m.castShadow = m.receiveShadow = !params.has('noshadow'); scene.add(m); }

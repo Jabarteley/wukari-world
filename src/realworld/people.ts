@@ -30,7 +30,7 @@ export function buildPeople(roads: Road[], blocked: (x: number, z: number) => bo
         const side = r() < 0.5 ? 1 : -1, off = road.width / 2 + walk * (0.25 + r() * 0.5);
         const x = a[0] + dx * d - dz * side * off, z = a[1] + dz * d + dx * side * off; if (blocked(x, z)) continue;
         const walking = r() < 0.72, heading = Math.atan2(dx, dz) + (r() < 0.5 ? 0 : Math.PI);
-        people.push({ id: `p${people.length}`, look: {}, seed: `lagos-${Math.floor(r() * 24)}`, x, y: 0.15, z, ry: heading, pose: walking ? 'walk' : 'idle', stride: Math.floor(r() * 4) / 4, scale: 0.71 * (0.94 + r() * 0.12) });
+        people.push({ id: `p${people.length}`, look: {}, seed: `lagos-${Math.floor(r() * 24)}`, x, y: 0.15, z, ry: heading, pose: walking ? 'walk' : 'stand', stride: Math.floor(r() * 4) / 4, scale: 0.71 * (0.94 + r() * 0.12) });
       }
     }
   }

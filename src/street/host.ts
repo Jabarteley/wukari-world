@@ -17,6 +17,9 @@ import type { StandIn } from '../scene/body/stand-in.ts'
 import { tileKey, tileOf } from './frame.ts'
 import { createTileWindow } from './window.ts'
 import { createStreetRenderer } from './renderer.ts'
+import { createRealMaterials } from '../realworld/materials.ts'
+import { createDaylight } from '../realworld/sky.ts'
+import { createPost } from '../realworld/post.ts'
 import { createTileOverlayWindow } from './overlay-window.ts'
 import { MARINA_DEPOT_SOURCE_PINS } from '../game/living-world/depot-site.ts'
 import type { DepotOverlayMarker } from '../app/features/living-world/depotOverlay.ts'
@@ -33,16 +36,34 @@ export interface StreetHostOptions {
 /** A separate, lazy host. Global metres are authoritative; only drawing uses a nearby local origin. */
 export function createStreetHost(container: HTMLElement, options: StreetHostOptions = {}) {
   const kit = createKit({ matte: true }), { THREE } = kit, world = new THREE.Scene()
+  // Realistic street (owner, 17-18 Oct 2026: polish first): a physical sky that also lights the scene, a shadowed sun at Lagos's real
+  // time of day, haze, ambient occlusion and filmic output; real buildings in their materials (src/realworld). ?streetclassic: the old look.
+  const realistic = !/[?&]streetclassic\b/.test(globalThis.location?.search ?? '')
   world.background = new THREE.Color('#b7d0d1'); world.fog = new THREE.Fog('#b7d0d1', 85, 180)
-  const camera = new THREE.PerspectiveCamera(48, 1, 0.1, 220), renderer = options.renderer ?? new THREE.WebGLRenderer({ antialias: true })
-  renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 1.5)); renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.shadowMap.enabled = false
+  const camera = new THREE.PerspectiveCamera(48, 1, 0.1, realistic ? 2000 : 220), renderer = options.renderer ?? new THREE.WebGLRenderer({ antialias: !realistic, powerPreference: 'high-performance' })
+  renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 1.5)); renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.shadowMap.enabled = realistic
+  if (realistic) { renderer.shadowMap.type = THREE.PCFSoftShadowMap; renderer.toneMapping = THREE.NeutralToneMapping; renderer.toneMappingExposure = 0.95 }
   container.appendChild(renderer.domElement)
   // New shader programs link before the draw that first needs them (src/scene/shader-warmup.ts).
   const warmup = createShaderWarmup(renderer)
   Object.assign(renderer.domElement.style, { display: 'block', width: '100%', height: '100%', touchAction: 'none' })
-  world.add(new THREE.HemisphereLight('#e9f1ec', '#797359', 2.5))
-  const sun = new THREE.DirectionalLight('#fff0d0', 2); sun.position.set(20, 45, 15); world.add(sun)
-  const scenery = createStreetRenderer(kit); world.add(scenery.group)
+  const real = realistic ? createRealMaterials(renderer) : undefined
+  const daylight = realistic ? createDaylight(renderer, world, camera, false, 4096) : null
+  if (!daylight) { world.add(new THREE.HemisphereLight('#e9f1ec', '#797359', 2.5)); const sun = new THREE.DirectionalLight('#fff0d0', 2); sun.position.set(20, 45, 15); world.add(sun) }
+  /** Lagos local time (UTC+1) from the game clock, as a decimal hour. */
+  // ?streethour=15.5 holds the street at that hour (for looking at it; the game clock otherwise).
+  const heldHour = Number(new URLSearchParams(globalThis.location?.search ?? '').get('streethour') ?? NaN)
+  const lagosHour = () => { if (Number.isFinite(heldHour)) return heldHour; const at = new Date((options.now ?? Date.now)()); return (at.getUTCHours() + 1 + at.getUTCMinutes() / 60) % 24 }
+  let shownHour = -1
+  function setDaylight() {
+    if (!daylight) return
+    const hour = Math.round(lagosHour() * 4) / 4; if (hour === shownHour) return; shownHour = hour
+    daylight.setHour(hour); real?.setNight(daylight.night)
+    // The street streams a 3 x 3 tile window (384 m): denser haze than the realworld page so its edge fades before it shows.
+    if (world.fog instanceof THREE.FogExp2) world.fog.density = 0.0048
+  }
+  const post = realistic ? createPost(renderer, world, camera) : null
+  const scenery = createStreetRenderer(kit, real); world.add(scenery.group)
   const walker = createWalker({ speed: WALK_SPEED * 0.72, jogSpeed: JOG_SPEED * 0.72 }), orbit = createOrbit()
   orbit.setBase([8, 10, 13], [0, 1, 0]); orbit.setLimits({ near: 0.45, far: 2.5 })
   let view: SceneViewExtension | null = null
@@ -151,7 +172,16 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
       element.style.left = `${(point.x + 1) * container.clientWidth / 2}px`; element.style.top = `${(1 - point.y) * container.clientHeight / 2}px`; element.style.transform = 'translate(-50%,-100%)'
     }
   }
-  function draw() { if (closed) return; const at = scenery.local(walker); avatar.position.set(at.x, 0, at.z); avatar.rotation.y = walker.ry; standIn?.move(at.x, 0, at.z, walker.ry); orbit.follow(at.x, 1.2, at.z); orbit.apply(camera); if (warmup.hold(world, world, camera, draw)) return; view?.render(); renderer.render(world, camera); renderCount++; renderDoors(); renderPracticeLabels() }
+  // Camera collision: real streets are narrow, so the orbit camera is pulled in front of the first building between it and the player.
+  const blockRay = new THREE.Raycaster(), blockers: Object3D[] = [], head = new THREE.Vector3(), toCamera = new THREE.Vector3()
+  function clearView() {
+    blockers.length = 0; scenery.group.traverse(object => { if (object.userData.cameraBlocker && object.visible) blockers.push(object) }); if (!blockers.length) return
+    toCamera.subVectors(camera.position, head); const distance = toCamera.length(); if (distance < 0.5) return
+    blockRay.set(head, toCamera.normalize()); blockRay.far = distance
+    const hit = blockRay.intersectObjects(blockers, false)[0]
+    if (hit) camera.position.copy(head).addScaledVector(toCamera, Math.max(0.6, hit.distance - 0.35))
+  }
+  function draw() { if (closed) return; const at = scenery.local(walker); avatar.position.set(at.x, 0, at.z); avatar.rotation.y = walker.ry; standIn?.move(at.x, 0, at.z, walker.ry); orbit.follow(at.x, 1.2, at.z); orbit.apply(camera); if (realistic && !view) { head.set(at.x, 1.4, at.z); clearView() } if (warmup.hold(world, world, camera, draw)) return; view?.render(); if (daylight && post) { setDaylight(); camera.userData.target = new THREE.Vector3(at.x, 0, at.z); daylight.update(); post.render() } else renderer.render(world, camera); renderCount++; renderDoors(); renderPracticeLabels() }
   const loop = createMotionLoop(dt => {
     if (closed || !initialized) return false
     const accepted = client.journey, before = { x: walker.x, z: walker.z }, ahead = accepted ? Math.hypot(walker.x - accepted.point.x, walker.z - accepted.point.z) : 0
@@ -173,7 +203,7 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
   function pointerMove(event: PointerEvent) { if (!pointer || pointer.id !== event.pointerId) return; if (Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) > 5) pointer.dragged = true; if (pointer.dragged) { orbit.drag(event.clientX - pointer.lastX, event.clientY - pointer.lastY); loop.wake() } pointer.lastX = event.clientX; pointer.lastY = event.clientY }
   function pointerUp(event: PointerEvent) { const start = pointer; pointer = null; if (!start || start.id !== event.pointerId || start.dragged || event.type === 'pointercancel') return; const bounds = renderer.domElement.getBoundingClientRect(), ray = new THREE.Raycaster(); ray.setFromCamera(new THREE.Vector2((event.clientX - bounds.left) / bounds.width * 2 - 1, 1 - (event.clientY - bounds.top) / bounds.height * 2), camera); const hit = ray.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0, 1, 0), 0), new THREE.Vector3()); if (hit) walkGround(scenery.global({ x: hit.x, z: hit.z })) }
   renderer.domElement.addEventListener('pointerdown', pointerDown); renderer.domElement.addEventListener('pointermove', pointerMove); renderer.domElement.addEventListener('pointerup', pointerUp); renderer.domElement.addEventListener('pointercancel', pointerUp)
-  function resize() { if (closed) return; const w = Math.max(1, container.clientWidth), h = Math.max(1, container.clientHeight); renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); draw() }
+  function resize() { if (closed) return; const w = Math.max(1, container.clientWidth), h = Math.max(1, container.clientHeight); renderer.setSize(w, h, false); post?.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix(); draw() }
   const observer = typeof ResizeObserver === 'function' ? new ResizeObserver(resize) : null; observer?.observe(container); resize()
   standIn = createStandIn(kit, () => { if (!closed) { warmup.mark(); draw(); loop.wake() } })
   standIn.wear(player.look, player.seed); standIn.attach({ group: world, avatar, scale: 0.72 }); standIn.pose('stand', undefined, false); standIn.start(renderer)

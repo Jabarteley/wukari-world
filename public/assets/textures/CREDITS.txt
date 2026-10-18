@@ -1,0 +1,1 @@
+Textures: ambientCG (https://ambientcg.com), CC0 1.0 Universal. Sets: Asphalt031, PavingStones070, PaintedPlaster017, Concrete034, CorrugatedSteel007A, Ground037, Grass004, LeafSet024 (1K JPG). Fetched by scripts/realworld/fetch-textures.ts 1K game.

@@ -2,7 +2,8 @@
  * Development: fetch the CC0 PBR texture sets the realworld prototype uses (ambientCG, https://ambientcg.com, CC0 1.0) into
  * public/realworld/textures/<id>/ as color.jpg, normal.jpg (OpenGL), roughness.jpg and ao.jpg (when the set has one).
  * The folder is not committed (.gitignore); run this once after a checkout:
- *   node --experimental-strip-types scripts/realworld/fetch-textures.ts [2K|1K|4K]
+ *   node --experimental-strip-types scripts/realworld/fetch-textures.ts [2K|1K|4K] [game]
+ * With `game`, into public/assets/textures (committed: the game's street draws them; CC0, see CREDITS.txt there).
  */
 import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readdirSync, renameSync, rmSync, writeFileSync } from 'node:fs';
@@ -10,7 +11,8 @@ import { join } from 'node:path';
 
 export const TEXTURE_SETS = ['Asphalt031', 'PavingStones070', 'PaintedPlaster017', 'Concrete034', 'CorrugatedSteel007A', 'Ground037', 'Grass004', 'Foliage001', 'Foliage003', 'LeafSet024'] as const;
 const size = process.argv[2] || '2K';
-const root = join(import.meta.dirname, '../../public/realworld/textures');
+// Development sets (2K, not committed) by default; `1K game` writes the committed 1K sets the game ships (public/assets/textures).
+const root = process.argv[3] === 'game' ? join(import.meta.dirname, '../../public/assets/textures') : join(import.meta.dirname, '../../public/realworld/textures');
 const maps: Record<string, string> = { Color: 'color', NormalGL: 'normal', Roughness: 'roughness', AmbientOcclusion: 'ao', Metalness: 'metalness', Opacity: 'opacity' };
 
 for (const id of TEXTURE_SETS) {

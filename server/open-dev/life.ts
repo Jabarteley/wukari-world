@@ -33,7 +33,9 @@ export function topUp(state: LifeState, cityId: CityId, now: number, target: num
  */
 export function settleLife(state: LifeState, cityId: CityId, now: number): boolean {
   if (state.onboarding.done) return true;
-  const unit = lgasOf(cityId)[0], dream = dreamsFor(cityId)[0];
+  // ALLWORLD_OPEN_LGA (local open mode only) settles new lives in that local government, e.g. lagos-island to start on its real streets.
+  const wanted = (globalThis as { process?: { env?: Record<string, string | undefined> } }).process?.env?.ALLWORLD_OPEN_LGA
+  const unit = lgasOf(cityId).find((lga) => lga.id === wanted) ?? lgasOf(cityId)[0], dream = dreamsFor(cityId)[0];
   if (!unit || !dream) return false;
   const traits = (Object.keys(TRAITS) as TraitId[]).slice(0, TRAITS_REQUIRED);
   return run(state, cityId, now, 'onboarding.look', { shuffle: true })

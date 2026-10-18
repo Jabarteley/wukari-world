@@ -3,6 +3,42 @@ import { createBatch, releaseObjects, sceneMaterials } from '../scene/build.ts'
 import { createWalkGrid } from '../scene/walk-grid.ts'
 import { globalPoint, localPoint, tileGroundAt, tileKey, tileOf, tileOrigin } from './frame.ts'
 import type { MetrePoint, StreetDoor, StreetTile, TileCoord } from './types.ts'
+import * as THREE from 'three'
+import type { RealMaterials } from '../realworld/materials.ts'
+import { buildBuildings } from '../realworld/buildings.ts'
+import { buildClutter } from '../realworld/clutter.ts'
+import { Mesher } from '../realworld/geometry.ts'
+
+/**
+ * Real buildings ('mapped': Lagos Island) drawn as the realworld page draws them: measured heights, facades, zinc or flat roofs, rooftop
+ * tanks and AC units; the tile's ground and roads in the same textured materials. Returns no meshes for a tile without real data.
+ */
+function buildRealPieces(tile: StreetTile, real: RealMaterials): THREE.Mesh[] {
+  const mapped = tile.buildings.filter(building => building.source === 'mapped')
+  if (!mapped.length) return []
+  const meshes: THREE.Mesh[] = []
+  const list = mapped.map(building => ({ id: building.id, ring: building.footprint.map(p => [p.x, p.z] as [number, number]), height: building.height, levels: building.levels ?? null, use: 'unknown', roof: building.roof ?? null }))
+  const built = buildBuildings(list)
+  const shells = [new THREE.Mesh(built.walls, real.facade), new THREE.Mesh(built.metalRoofs, real.zinc), new THREE.Mesh(built.flatRoofs, real.flatRoof)]
+  // The third-person camera stops short of these (src/street/host.ts).
+  for (const shell of shells) shell.userData.cameraBlocker = true
+  meshes.push(...shells)
+  const clutter = buildClutter(list)
+  for (const child of clutter.group.children) meshes.push(child as THREE.Mesh)
+  // Ground: the walkable cells as textured quads (uv in metres), roads as asphalt ribbons with dashed centre lines on wide two-way roads.
+  const ground = new Mesher()
+  for (const run of streetGroundRows(tile)) { const base = ground.count; for (const [x, z] of [[run.x, run.z], [run.x + run.width, run.z], [run.x + run.width, run.z + 2], [run.x, run.z + 2]] as const) ground.vertex(x, 0, z, 0, 1, 0, x + tile.origin.x, z + tile.origin.z); ground.index.push(base, base + 2, base + 1, base, base + 3, base + 2) }
+  const roads = new Mesher()
+  for (const road of tile.roads) for (let i = 1; i < road.points.length; i++) {
+    const a = road.points[i - 1]!, c = road.points[i]!, length = Math.hypot(c.x - a.x, c.z - a.z); if (length <= 0.01) continue
+    const ux = (c.x - a.x) / length, uz = (c.z - a.z) / length, rx = -uz * road.width / 2, rz = ux * road.width / 2, base = roads.count, y = 0.02
+    for (const [x, z] of [[a.x - rx, a.z - rz], [c.x - rx, c.z - rz], [c.x + rx, c.z + rz], [a.x + rx, a.z + rz]] as const) roads.vertex(x, y, z, 0, 1, 0, x + tile.origin.x, z + tile.origin.z)
+    roads.index.push(base, base + 2, base + 1, base, base + 3, base + 2)
+  }
+  meshes.push(new THREE.Mesh(ground.build(), real.ground), new THREE.Mesh(roads.build(), real.asphalt))
+  for (const mesh of meshes) { mesh.castShadow = mesh.material !== real.ground && mesh.material !== real.asphalt; mesh.receiveShadow = true }
+  return meshes
+}
 
 const WALLS = ['#cfbc9c', '#dac9ae', '#bfaf99', '#d0bb91']
 const ROOFS = ['#986649', '#7c6f60', '#8f7058', '#6b7976']
@@ -15,12 +51,13 @@ export function streetGroundRows(tile: StreetTile): { x: number; z: number; widt
 }
 
 /** Tile-local batched scenery; rebasing moves groups only and never rebuilds their geometry. */
-export function buildStreetTile(kit: Kit, tile: StreetTile) {
+export function buildStreetTile(kit: Kit, tile: StreetTile, real?: RealMaterials) {
   const group = new kit.THREE.Group(), b = createBatch(kit.THREE)
+  const realMeshes = real ? buildRealPieces(tile, real) : [], realTile = realMeshes.length > 0
   const ground = streetGroundRows(tile)
-  for (const run of ground) b.quad(run.x + run.width / 2, 0, run.z + 1, run.width, 2, '#c5b899', { rx: -Math.PI / 2 })
+  if (!realTile) for (const run of ground) b.quad(run.x + run.width / 2, 0, run.z + 1, run.width, 2, '#c5b899', { rx: -Math.PI / 2 })
   let roadDetails = 240, facadeDetails = 768
-  for (const road of tile.roads) for (let i = 1; i < road.points.length; i++) {
+  if (!realTile) for (const road of tile.roads) for (let i = 1; i < road.points.length; i++) {
     const a = road.points[i - 1]!, c = road.points[i]!, length = Math.hypot(c.x - a.x, c.z - a.z); if (length <= 0.01) continue
     const yaw = Math.atan2(c.x - a.x, c.z - a.z)
     b.at((a.x + c.x) / 2, 0.015, (a.z + c.z) / 2, yaw, batch => {
@@ -36,6 +73,7 @@ export function buildStreetTile(kit: Kit, tile: StreetTile) {
   // drawing bounding boxes that could cover a road while the authoritative mask permits it.
   const positions: number[] = [], colours: number[] = []
   for (const building of tile.buildings) {
+    if (realTile && building.source === 'mapped') continue
     const points = [...building.footprint], area = points.reduce((sum, p, i) => { const q = points[(i + 1) % points.length]!; return sum + p.x * q.z - q.x * p.z }, 0)
     if (area < 0) points.reverse()
     const seed = seedOf(building.id), wall = WALLS[seed % WALLS.length]!, roof = ROOFS[(seed >>> 5) % ROOFS.length]!
@@ -64,16 +102,17 @@ export function buildStreetTile(kit: Kit, tile: StreetTile) {
   const built = b.build(sceneMaterials(kit))
   if (positions.length) { const geometry = new kit.THREE.BufferGeometry(); geometry.setAttribute('position', new kit.THREE.Float32BufferAttribute(positions, 3)); geometry.setAttribute('color', new kit.THREE.Float32BufferAttribute(colours, 3)); geometry.computeVertexNormals(); built.meshes.push(new kit.THREE.Mesh(geometry, sceneMaterials(kit).solid)); built.triangles += positions.length / 9 }
   if (built.meshes.length) group.add(...built.meshes)
+  if (realMeshes.length) group.add(...realMeshes)
   if (built.triangles > 25000) { releaseObjects(built.meshes); throw Error('Street tile geometry exceeds triangle limit') }
   let disposed = false
-  return { group, groundQuads: ground.length, decorationTriangles: 1008 - roadDetails - facadeDetails, triangles: built.triangles, drawCalls: built.meshes.length, dispose() { if (disposed) return; disposed = true; releaseObjects(built.meshes); group.clear() } }
+  return { group, groundQuads: ground.length, decorationTriangles: 1008 - roadDetails - facadeDetails, triangles: built.triangles, drawCalls: built.meshes.length, dispose() { if (disposed) return; disposed = true; releaseObjects(built.meshes); for (const mesh of realMeshes) mesh.geometry.dispose(); group.clear() } }
 }
-export function createStreetRenderer(kit: Kit) {
+export function createStreetRenderer(kit: Kit, real?: RealMaterials) {
   const group = new kit.THREE.Group(), views = new Map<string, { tile: StreetTile; view: ReturnType<typeof buildStreetTile> }>()
   let origin: MetrePoint = { x: 0, z: 0 }, closed = false
   return {
     group,
-    add(tile: StreetTile) { if (closed || views.has(tileKey(tile.tile))) return; if (views.size >= 9) throw Error('Street resident tile limit exceeded'); const view = buildStreetTile(kit, tile); view.group.position.set(tile.origin.x - origin.x, 0, tile.origin.z - origin.z); views.set(tileKey(tile.tile), { tile, view }); group.add(view.group) },
+    add(tile: StreetTile) { if (closed || views.has(tileKey(tile.tile))) return; if (views.size >= 9) throw Error('Street resident tile limit exceeded'); const view = buildStreetTile(kit, tile, real); view.group.position.set(tile.origin.x - origin.x, 0, tile.origin.z - origin.z); views.set(tileKey(tile.tile), { tile, view }); group.add(view.group) },
     remove(tile: StreetTile) { const entry = views.get(tileKey(tile.tile)); if (!entry) return; group.remove(entry.view.group); entry.view.dispose(); views.delete(tileKey(tile.tile)) },
     rebase(tile: TileCoord) { origin = tileOrigin(tile); for (const { tile: data, view } of views.values()) view.group.position.set(data.origin.x - origin.x, 0, data.origin.z - origin.z) },
     local(point: MetrePoint): MetrePoint { return { x: point.x - origin.x, z: point.z - origin.z } },

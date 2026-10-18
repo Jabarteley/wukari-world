@@ -6,7 +6,7 @@
 - **Owner:** Claude (Allworld main session)
 - **Model / effort:** Claude Opus 5.5
 - **Thread:** local
-- **UTC updated:** 2026-10-18T06:10:00Z
+- **UTC updated:** 2026-10-18T09:00:00Z
 - **Status:** `active`
 - **Work state:** `implementation`
 
@@ -41,10 +41,17 @@
   procedural weathered facades, zinc roofs, merged asphalt with pavements and kerbs, viaducts, real business signboards (Overture places),
   utility poles and cables, procedural traffic; physical sky, cascaded shadows, GTAO, bloom, Neutral tone mapping, SMAA.
 
+- Prototype: 4,000 pedestrians (the game's canonical crowd, per 200 m cell), rooftop tanks/stair houses/dishes/AC units, night (lamp pools,
+  a third of windows lit, dark buildings), half-resolution AO (2x frame rate at 2x pixel ratio).
+- Game street: Lagos street tiles carry the real Lagos Island buildings and roads ('mapped' source; src/street/generate.ts options.mapped,
+  scripts/street/mapped-area.ts); 230 tiles, all gates and venues connected, Marina depot tile excluded and re-pinned. The street host draws
+  them with the realworld materials, a physical sky and shadowed sun at Lagos time, post-processing and camera collision; ?streetclassic
+  keeps the old look, ?streethour=H holds the hour. Open mode: ALLWORLD_OPEN_LGA=lagos-island settles new lives there.
+
 ### In progress / blockers
 
-- Next: people on the pavements (reuse the game's characters), roof clutter (water tanks, AC units), balconies and setbacks, night look,
-  frame-rate pass, then a plan to feed real data into the game's street tiles (server walk masks).
+- Next: trees, signboards, poles and people in the game street (need canopy/places in the tiles), night lamp pools in the game, merged
+  asphalt/pavement polygons per tile, then a production release decision (owner).
 
 ### Immediate resume steps
 
@@ -64,3 +71,4 @@
 |---|---|---|---|---|
 | 2026-10-18T04:20Z | active | branch created from fresh main | git log | baseline screenshots |
 | 2026-10-18T06:10Z | active | prototype renders Lagos Island core with traffic, signs, poles | realworld.html, commits f00c4e89b..HEAD | people, roof clutter, night |
+| 2026-10-18T09:00Z | active | real buildings and roads in the game's street tiles and renderer | street tests 91 pass, typecheck clean, in-game screenshots | street dressing in game |

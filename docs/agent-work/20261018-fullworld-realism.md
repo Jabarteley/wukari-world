@@ -6,7 +6,7 @@
 - **Owner:** Claude (Allworld main session)
 - **Model / effort:** Claude Opus 5.5
 - **Thread:** local
-- **UTC updated:** 2026-10-18T04:20:00Z
+- **UTC updated:** 2026-10-18T06:10:00Z
 - **Status:** `active`
 - **Work state:** `implementation`
 
@@ -36,9 +36,15 @@
 
 - Desktop checkout cleared at the owner's instruction (backup in the notes folder, backups/desktop-uncommitted-20261018).
 
+- Realworld prototype (realworld.html, src/realworld/): Lagos Island core from real data — OSM/Overture footprints, Open Buildings measured heights,
+  imagery roof colours, tree crowns, shoreline and ground photo (Maxar 2019, CC BY-NC); PBR textures (ambientCG CC0, fetched by script);
+  procedural weathered facades, zinc roofs, merged asphalt with pavements and kerbs, viaducts, real business signboards (Overture places),
+  utility poles and cables, procedural traffic; physical sky, cascaded shadows, GTAO, bloom, Neutral tone mapping, SMAA.
+
 ### In progress / blockers
 
-- Mapping the street pipeline and capturing the baseline.
+- Next: people on the pavements (reuse the game's characters), roof clutter (water tanks, AC units), balconies and setbacks, night look,
+  frame-rate pass, then a plan to feed real data into the game's street tiles (server walk masks).
 
 ### Immediate resume steps
 
@@ -57,3 +63,4 @@
 | UTC | Status | Change or finding | Evidence | Next step |
 |---|---|---|---|---|
 | 2026-10-18T04:20Z | active | branch created from fresh main | git log | baseline screenshots |
+| 2026-10-18T06:10Z | active | prototype renders Lagos Island core with traffic, signs, poles | realworld.html, commits f00c4e89b..HEAD | people, roof clutter, night |

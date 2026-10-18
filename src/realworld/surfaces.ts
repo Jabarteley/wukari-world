@@ -72,16 +72,16 @@ export function buildSurfaces(world: World, sets: Sets, ortho?: Ortho): Surfaces
   const parks = new Mesher(), lots = new Mesher();
   for (const area of world.landUse) {
     const ring = open(area.ring); if (ring.length < 3) continue;
-    if (/park|grass|garden|pitch|recreation|cemetery|stadium/.test(area.kind)) addFlat(parks, { outer: ring, holes: [] }, 0.01, new THREE.Color(area.kind === 'pitch' ? '#7f9c5a' : '#8fa36b'));
+    if (/park|grass|garden|pitch|recreation|cemetery|stadium/.test(area.kind)) addFlat(parks, { outer: ring, holes: [] }, 0.01, new THREE.Color(area.kind === 'pitch' ? '#8c9a6c' : '#94a07a'));
     else if (area.kind === 'parking') addFlat(lots, { outer: ring, holes: [] }, 0.012, new THREE.Color('#b0aca4'));
   }
-  group.add(mesh(parks, pbr(sets.grass, { vertexColors: true }), false));
+  group.add(mesh(parks, pbr(sets.grass, { vertexColors: true, roughness: 1, normalScale: new THREE.Vector2(0.5, 0.5) }), false));
   group.add(mesh(lots, pbr(sets.asphalt, { vertexColors: true, polygonOffset: true, polygonOffsetFactor: -1 }), false));
 
   // Asphalt: the merged carriageways.
   const road = new Mesher();
   for (const polygon of world.asphalt) addFlat(road, polygon, ROAD_Y, new THREE.Color('#ffffff'));
-  group.add(mesh(road, pbr(sets.asphalt, { polygonOffset: true, polygonOffsetFactor: -2 }), false));
+  group.add(mesh(road, pbr(sets.asphalt, { color: '#6d6c6a', roughness: 1, polygonOffset: true, polygonOffsetFactor: -2 }), false));
 
   // Pavements: a 15 cm slab with kerb faces round every edge (to the road and to the plots).
   const walk = new Mesher(), kerb = new Mesher();

@@ -14,6 +14,7 @@ import { createDaylight } from './sky.ts';
 import { createPost } from './post.ts';
 import { buildTrees } from './trees.ts';
 import { buildDressing } from './dressing.ts';
+import { buildTraffic } from './vehicles.ts';
 
 const params = new URLSearchParams(location.search);
 const vec = (key: string, fallback: [number, number, number]) => (params.get(key)?.split(',').map(Number) ?? fallback) as [number, number, number];
@@ -73,6 +74,8 @@ const trees = await buildTrees(canopy.trees.filter(([x, z]) => onLand(x, z)), ()
 scene.add(trees.group);
 const dressing = buildDressing(world);
 scene.add(dressing.group);
+const traffic = buildTraffic(world.roads, () => false);
+scene.add(traffic.group);
 scene.traverse((o) => { const m = (o as THREE.Mesh).material as THREE.Material | undefined; if (m && (o as THREE.Mesh).isMesh && o !== daylight.sky) daylight.setupMaterial(m); });
 const buildMs = Math.round(performance.now() - t0);
 
@@ -85,11 +88,12 @@ controls.addEventListener('change', () => { dirty = true; });
 addEventListener('resize', () => { renderer.setSize(innerWidth, innerHeight); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); post.setSize(innerWidth, innerHeight); daylight.csm.updateFrustums(); dirty = true; });
 addEventListener('keydown', (e) => { if (e.key === '[') setHour((hour + 23.5) % 24); if (e.key === ']') setHour((hour + 0.5) % 24); });
 
-let frames = 0;
+let frames = 0, last = 0;
 function frame(now: number) {
   requestAnimationFrame(frame);
   controls.update();
   surfaces.update(now / 1000);
+  const dt = Math.min(0.1, (now - (last || now)) / 1000); last = now; if (!params.has('still')) { traffic.update(dt); dirty = true; }
   if (!dirty && !params.has('live')) return;
   dirty = false;
   camera.userData.target = controls.target;

@@ -165,3 +165,50 @@ test('world: a space\'s script is saved by its owner, its lines filtered, sent w
   const scripts = await s.f.server.store.read((db) => Object.keys((db as any).spaces.scripts ?? {}));
   assert.deepEqual(scripts, [`home:${bola.id}`]);
 });
+
+test('together: members of a room walk it live; the host passes on models, score and lines; the host moves on when they leave', async (t) => {
+  const s = await setup(t);
+  const ada = await s.account('ada@example.com', 'Ada'), bola = await s.account('bola@example.com', 'Bola'), chidi = await s.account('chidi@example.com', 'Chidi');
+  const room = await s.group(ada, [bola]);
+  const open = async (who: Device) => {
+    const peer = await s.f.socket(who);
+    const frames: Json[] = [];
+    peer.ws.on('message', (data) => { const frame = JSON.parse(data.toString()); if (/^space-|^error$/.test(frame.type)) frames.push(frame); });
+    return { peer, frames, send: (frame: Json) => peer.ws.send(JSON.stringify(frame)) };
+  };
+  const settle = () => new Promise((resolve) => setTimeout(resolve, 80));
+  const a = await open(ada), b = await open(bola), c = await open(chidi);
+  a.send({ type: 'space-join', target: 'room', id: room });
+  await settle();
+  assert.equal(a.frames.at(-1)?.type, 'space-room');
+  assert.equal(a.frames.at(-1)?.host, ada.id, 'the first one in hosts a room');
+  b.send({ type: 'space-join', target: 'room', id: room });
+  c.send({ type: 'space-join', target: 'room', id: room });
+  await settle();
+  assert.deepEqual(b.frames.at(-1)?.members.map((m: Json) => m.name).sort(), ['Ada', 'Bola']);
+  assert.equal(c.frames.at(-1)?.type, 'error', 'not a member, not admitted');
+
+  // Bola's tick reaches Ada with her place only; Ada's (the host's) carries the models, score and line.
+  b.send({ type: 'space-tick', p: [1, 0, 2, 0.5], o: [[0, 9, 9, 9, 0, 0, 0, 1]], s: 99 });
+  a.send({ type: 'space-tick', p: [3.333333, 0, 4, 1], o: [[0, 1, 0.5, 2, 0, 0, 0, 1]], s: 7, say: [0, 7] });
+  await settle();
+  const fromBola = a.frames.find((f) => f.type === 'space-peer' && f.id === bola.id);
+  assert.deepEqual(fromBola, { type: 'space-peer', id: bola.id, p: [1, 0, 2, 0.5] });
+  const fromAda = b.frames.find((f) => f.type === 'space-peer' && f.id === ada.id);
+  assert.deepEqual(fromAda?.p, [3.33, 0, 4, 1]);
+  assert.deepEqual(fromAda?.o, [[0, 1, 0.5, 2, 0, 0, 0, 1]]);
+  assert.equal(fromAda?.s, 7);
+  assert.deepEqual(fromAda?.say, [0, 7]);
+  // Bad ticks are dropped.
+  const before = a.frames.length;
+  b.send({ type: 'space-tick', p: [1, 0, 'x', 0] });
+  b.send({ type: 'space-tick', p: [1e9, 0, 0, 0] });
+  await settle();
+  assert.equal(a.frames.length, before);
+
+  a.peer.ws.close();
+  await settle();
+  assert.equal(b.frames.at(-1)?.type, 'space-room');
+  assert.equal(b.frames.at(-1)?.host, bola.id, 'the host moves on');
+  assert.deepEqual(b.frames.at(-1)?.members.map((m: Json) => m.name), ['Bola']);
+});

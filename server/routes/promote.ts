@@ -5,8 +5,8 @@
  *   GET  /api/promote/directory?city=&category=   live businesses of a city, boosted first (no session needed)
  *   POST /api/promote/listings   { id?, name, category, area?, about?, photo? }   create or edit (reviewed before it is live)
  *   POST /api/promote/listings/remove { id }
- *   POST /api/promote/order      { listing, tier, weeks, email?, arcon? }   a boost: a Paystack checkout address, or bank details
- *   POST /api/promote/order/verify { ref }   after the checkout: Allworld asks Paystack itself and starts the boost when paid
+ *   POST /api/promote/order      { listing, tier, weeks, email?, arcon? }   a boost: a Bachs checkout address, or bank details
+ *   POST /api/promote/order/verify { ref }   after the checkout: Allworld asks Bachs itself and starts the boost when paid
  *   POST /api/promote/contact    { listing }  someone opened the business (a count, no name)
  * Admin: GET /api/admin/promote, POST /api/admin/promote/act (server/routes/promote-admin.ts).
  */
@@ -33,12 +33,18 @@ export default function promoteRoutes(ctx: RouteContext): Record<RouteKey, Route
     const verdict = await judge(ctx, { kind: 'business listing', text: `${l.name}\n${categoryLabel(l.category)}\n${l.area}\n${l.about}`, ...(l.photo ? { image: l.photo } : {}), facts: 'A business or service asking to be listed in a city directory.', ad: true }).catch(() => null)
     await ctx.store.transact((db) => promote.reviewed(db, id, verdict)).catch(() => undefined)
   }
+  /** Ask Bachs about an order and start its boost when the payment went through. */
+  async function settle(o: { id: string; ref: string; checkout?: string }) {
+    const said = await promote.verify(o)
+    return said?.paid ? ctx.store.transact((db) => promote.markPaid(db, o.id, 'bachs', said.amount)) : null
+  }
   const later = (work: Promise<unknown>): void => { if (ctx.waitUntil) ctx.waitUntil(work.catch(() => undefined)); else void work.catch(() => undefined) }
   let lastBeat = 0
   ctx.on?.('heartbeat', () => {
     if (ctx.now() - lastBeat < 5 * 60000) return
     lastBeat = ctx.now()
     later(ctx.store.read((db) => promote.pending(db)).then((ids) => Promise.all(ids.map(reviewListing))))
+    if (promote.payment() === 'bachs') later(ctx.store.read((db) => promote.awaiting(db)).then((orders) => Promise.all(orders.map(settle))))
   })
   async function write<R extends object>(request: RouteRequest, call: (db: Db, session: SessionRecord) => R): Promise<R> {
     return ctx.store.transact((db) => {
@@ -69,10 +75,12 @@ export default function promoteRoutes(ctx: RouteContext): Record<RouteKey, Route
       const r = await write(request, (db, s) => promote.order(db, s, b))
       if (!r.ok) return { body: r }
       const { email, ...rest } = r
-      if (promote.payment() === 'paystack' && email) {
-        const url = await promote.checkout({ ref: r.order.ref, amount: r.order.amount, email }, origin())
-        if (!url) return { body: { ok: false, code: 'checkout_failed', reason: 'The payment page could not be opened. Try again in a minute.' } }
-        return { body: { ...rest, pay: url } }
+      if (promote.payment() === 'bachs' && email) {
+        const name = await ctx.store.read((db) => promote.nameOf(db, request.requireSession(db).publicId))
+        const page = await promote.checkout({ ref: r.order.ref, amount: r.order.amount, email, name }, origin())
+        if (!page) return { body: { ok: false, code: 'checkout_failed', reason: 'The payment page could not be opened. Try again in a minute.' } }
+        await ctx.store.transact((db) => promote.keepCheckout(db, r.order.id, page.id))
+        return { body: { ...rest, pay: page.url } }
       }
       return { body: { ...rest, bank: await ctx.store.read((db) => promote.me(db, request.requireSession(db)).bank) } }
     },
@@ -80,12 +88,14 @@ export default function promoteRoutes(ctx: RouteContext): Record<RouteKey, Route
       const b = await body(request)
       const session = await ctx.store.read((db) => request.requireSession(db))
       if (!ctx.allow(`promote:verify:${session.publicId}`, 20, 3600000)) throw ctx.fail(429, 'rate_limited')
-      const found = await ctx.store.read((db) => { const o = promote.orderByRef(db, b.ref); return o && o.owner === session.publicId ? o : null })
+      const found = await ctx.store.read((db) => promote.ownOrder(db, session.publicId, b.ref) ?? null)
       if (!found) return { body: { ok: false, code: 'unknown_order', reason: 'That payment was not found.' } }
-      if (promote.payment() !== 'paystack') return { body: { ok: false, code: 'not_card', reason: 'This order is paid by bank transfer; an admin confirms it.' } }
-      const said = await promote.verify(found.ref)
-      if (!said?.paid) return { body: { ok: false, code: 'not_paid', reason: 'The payment has not gone through yet. If you paid, wait a minute and check again.' } }
-      return { body: await ctx.store.transact((db) => promote.markPaid(db, found.id, 'paystack', said.amount)) }
+      if (promote.payment() !== 'bachs') return { body: { ok: false, code: 'not_card', reason: 'This order is paid by bank transfer; an admin confirms it.' } }
+      if (found.status === 'paid' || found.status === 'ended') return { body: await ctx.store.read((db) => promote.viewOf(db, found)) }
+      if (found.status !== 'pending') return { body: { ok: false, code: 'order_closed', reason: 'That order was cancelled.' } }
+      const done = await settle(found)
+      if (!done) return { body: { ok: false, code: 'not_paid', reason: 'The payment has not gone through yet. If you paid, wait a minute and check again.' } }
+      return { body: done }
     },
     'POST /api/promote/contact': async (request) => {
       if (!ctx.allow(`promote:contact:${addressBucket(request.ip)}`, 60, 60000)) throw ctx.fail(429, 'rate_limited')

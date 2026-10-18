@@ -14,4 +14,7 @@ export const work = phonePanel('work', 'Work', bodyLoader('feed/WorkApp'), { ico
 /** Allworld for Business (docs/PROMOTE.md): the city's businesses, free listing, cheap boosts. */
 export const promote = phonePanel('promote', 'Businesses', bodyLoader('promote/BusinessesApp'), { icon: 'shop', order: 13.4, group: 'money' })
 
-export const FEED_PANELS: readonly VuePanel[] = [feed, me, crews, plans, work, promote]
+/** Earn (docs/EARN.md): real money through Bachs, paid by buyers directly, and the creator pool. */
+export const earn = phonePanel('earn', 'Earn', bodyLoader('earn/EarnApp'), { icon: 'wallet', order: 10.4, group: 'money' })
+
+export const FEED_PANELS: readonly VuePanel[] = [feed, me, crews, plans, work, promote, earn]

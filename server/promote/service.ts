@@ -7,7 +7,7 @@
  *            advertising rules) reads it first; it goes live on "keep", is refused with the reason otherwise, and stays "review" when no
  *            model could answer (tried again on the heartbeat, then left for an admin).
  *   ORDER    a boost or a spotlight for 1 to 8 weeks at the admin's prices (defaults ₦2,500 and ₦7,500 a week). Paid to ALLWORLD, never to
- *            a player: with the owner's Paystack key, a checkout page and a server-side verification of the amount; without it, a bank
+ *            a player: with the owner's Bachs key, a Bachs checkout page and a server-side verification of the amount; without it, a bank
  *            transfer to the details the admin set, confirmed by an admin. A refused or removed listing ends its boosts. Allworld never
  *            holds a player's money and nothing here pays a player.
  *   SPONSORED a live boosted listing of the viewer's city is put into the City tab (one card every few posts), a spotlight into every
@@ -24,10 +24,11 @@ import { accountOfSession } from '../admin/gate.ts'
 import { characterCity } from '../character.ts'
 import { peekShowcase } from '../showcase/data.ts'
 import { peekFeed } from '../feed/data.ts'
+import { bachsClient } from '../payments/bachs.ts'
 import type { Db, RouteContext, SessionRecord } from '../types.ts'
 
 export interface ListingRecord { id: string; owner: string; name: string; category: Category; city: string; area: string; about: string; photo?: string; at: number; status: ListingStatus; reason?: string; tries?: number; contacts?: number }
-export interface OrderRecord { id: string; listing: string; owner: string; tier: Tier; weeks: number; amount: number; city: string; at: number; status: OrderStatus; ref: string; email?: string; arcon?: string; by?: 'paystack' | 'bank' | 'admin'; paidAt?: number; startsAt?: number; endsAt?: number; shown?: number; note?: string }
+export interface OrderRecord { id: string; listing: string; owner: string; tier: Tier; weeks: number; amount: number; city: string; at: number; status: OrderStatus; ref: string; email?: string; arcon?: string; by?: 'bachs' | 'bank' | 'admin'; checkout?: string; paidAt?: number; startsAt?: number; endsAt?: number; shown?: number; note?: string }
 export interface PromoteCollection {
   seq: number; refs: Record<string, string>; revenue: { all: number; months: Record<string, number> }
   listings: Record<string, ListingRecord>; orders: Record<string, OrderRecord>
@@ -44,21 +45,18 @@ export const peekPromote = (db: Db): PromoteCollection | undefined => (db as Rec
 type No = { ok: false; code: string; reason: string }
 const no = (code: string, reason: string): No => ({ ok: false, code, reason })
 const clean = (v: unknown, max: number): string => (typeof v === 'string' ? v.normalize('NFC').replace(/[\u0000-\u001f\u007f]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, max) : '')
-/** What ctx.fetch answers (an outside response); read through this shape only. */
-type Reply = { ok: boolean; json(): Promise<unknown> }
 const EMAIL = /^[^\s@]{1,64}@[^\s@]{1,190}\.[a-z]{2,}$/i
 const WEEK = 7 * 86400000
 
 export function promoteService(ctx: RouteContext) {
   const now = (): number => ctx.now()
-  const env = (name: string): string => (typeof ctx.env === 'function' ? ctx.env(name) : '') ?? ''
   const setting = (key: string) => ctx.checks?.setting?.(key)
   const text = (key: string): string => ctx.checks?.text?.(key) ?? ''
   const adult = (db: Db, id: string): boolean => ctx.checks?.adult?.(db, id) === true
   const blocked = (a: string, b: string): boolean => a !== b && ctx.checks?.blocked?.(a, b) === true
   const prices = (): Record<Tier, number> => ({ boost: Number(setting('promoteBoostPrice')) || TIERS.boost.price, spotlight: Number(setting('promoteSpotlightPrice')) || TIERS.spotlight.price })
-  const paystackKey = (): string => env('PAYSTACK_SECRET_KEY').trim()
-  const payment = (): 'paystack' | 'bank' | 'closed' => (/^sk_(live|test)_[A-Za-z0-9]{10,}$/.test(paystackKey()) ? 'paystack' : text('promoteBankDetails').trim() ? 'bank' : 'closed')
+  const pay = bachsClient(ctx)
+  const payment = (): 'bachs' | 'bank' | 'closed' => (pay.on() ? 'bachs' : text('promoteBankDetails').trim() ? 'bank' : 'closed')
   const nameOf = (db: Db, id: string): string => (db as unknown as { social?: { players?: Record<string, { name?: string }> } }).social?.players?.[id]?.name ?? 'Business owner'
   const person = (db: Db, id: string) => { const a = peekFeed(db)?.authors[id]; return { id, name: nameOf(db, id), ...(a?.handle ? { handle: a.handle } : {}), ...(a?.portrait ? { portrait: a.portrait.hash } : {}) } }
   const boostOf = (c: PromoteCollection, listing: string, t: number): OrderRecord | undefined => (c.owners[c.listings[listing]?.owner ?? '']?.orders ?? []).map((o) => c.orders[o]).find((o): o is OrderRecord => Boolean(o) && o!.listing === listing && o!.status === 'paid' && (o!.startsAt ?? 0) <= t && (o!.endsAt ?? 0) > t)
@@ -138,17 +136,17 @@ export function promoteService(ctx: RouteContext) {
     const mode = payment()
     if (mode === 'closed') return no('payments_closed', 'Boosts open soon. Your listing is free and live meanwhile.')
     const email = clean(body.email, 254)
-    if (mode === 'paystack' && !EMAIL.test(email)) return no('invalid_email', 'Give an e-mail address for the receipt.')
+    if (mode === 'bachs' && !EMAIL.test(email)) return no('invalid_email', 'Give an e-mail address for the receipt.')
     const weeks = Math.max(1, Math.min(PROMOTE.weeksMax, Math.round(Number(body.weeks) || 1)))
     const owner = (c.owners[id] ??= { listings: [], orders: [] })
     if (owner.orders.map((o) => c.orders[o]).filter((o) => o?.status === 'pending').length >= 3) return no('too_many_pending', 'You have three orders waiting for payment. Pay or cancel one first.')
     const ref = `AW-${(++c.seq).toString(36).toUpperCase()}-${ctx.randomId().replace(/-/g, '').slice(0, 8).toUpperCase()}`
-    const o: OrderRecord = { id: `O${c.seq.toString(36)}`, listing: l.id, owner: id, tier, weeks, amount: priceOf(tier, weeks, prices()), city: l.city, at: now(), status: 'pending', ref, by: mode, ...(email && mode === 'paystack' ? { email } : {}), ...(clean(body.arcon, 60) ? { arcon: clean(body.arcon, 60) } : {}) }
+    const o: OrderRecord = { id: `O${c.seq.toString(36)}`, listing: l.id, owner: id, tier, weeks, amount: priceOf(tier, weeks, prices()), city: l.city, at: now(), status: 'pending', ref, by: mode, ...(email && mode === 'bachs' ? { email } : {}), ...(clean(body.arcon, 60) ? { arcon: clean(body.arcon, 60) } : {}) }
     c.orders[o.id] = o; owner.orders.push(o.id); c.refs[ref] = o.id
     return { ok: true, order: orderView(c, o), ...(o.email ? { email: o.email } : {}) }
   }
   /** Mark an order paid (a verified checkout, or an admin who saw the transfer): it runs from now, or after the listing's running boost. */
-  function markPaid(db: Db, orderId: string, by: 'paystack' | 'bank' | 'admin', amount?: number): { ok: true; order: OrderView } | No {
+  function markPaid(db: Db, orderId: string, by: 'bachs' | 'bank' | 'admin', amount?: number): { ok: true; order: OrderView } | No {
     const c = peekPromote(db), o = c?.orders[orderId]
     if (!c || !o) return no('unknown_order', 'That order was not found.')
     if (o.status === 'paid' || o.status === 'ended') return { ok: true, order: orderView(c, o) }
@@ -162,20 +160,16 @@ export function promoteService(ctx: RouteContext) {
     return { ok: true, order: orderView(c, o) }
   }
   const orderByRef = (db: Db, ref: unknown): OrderRecord | undefined => { const c = peekPromote(db); const id = typeof ref === 'string' ? c?.refs[ref] : undefined; return id ? c?.orders[id] : undefined }
-  /** Paystack: start a checkout for a pending order. The secret never leaves the server; the amount is in kobo. */
-  async function checkout(o: { ref: string; amount: number; email: string }, origin: string): Promise<string | null> {
-    const res = await (ctx.fetch as (u: string, i?: object) => Promise<Reply>)('https://api.paystack.co/transaction/initialize', { method: 'POST', headers: { Authorization: `Bearer ${paystackKey()}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ email: o.email, amount: o.amount * 100, reference: o.ref, currency: 'NGN', callback_url: `${origin}/?promote=${encodeURIComponent(o.ref)}` }) }).catch(() => null)
-    const data = res && res.ok ? await res.json().catch(() => null) as { status?: boolean; data?: { authorization_url?: string } } | null : null
-    const url = data?.status ? data.data?.authorization_url : undefined
-    return typeof url === 'string' && url.startsWith('https://checkout.paystack.com/') ? url : null
-  }
-  /** Paystack: what it says about a reference (success and the amount in naira), asked by the server, never taken from the browser. */
-  async function verify(ref: string): Promise<{ paid: boolean; amount: number } | null> {
-    const res = await (ctx.fetch as (u: string, i?: object) => Promise<Reply>)(`https://api.paystack.co/transaction/verify/${encodeURIComponent(ref)}`, { headers: { Authorization: `Bearer ${paystackKey()}` } }).catch(() => null)
-    const data = res && res.ok ? await res.json().catch(() => null) as { data?: { status?: string; amount?: number; currency?: string; reference?: string } } | null : null
-    if (!data?.data) return null
-    return { paid: data.data.status === 'success' && data.data.currency === 'NGN' && data.data.reference === ref, amount: Math.floor((data.data.amount ?? 0) / 100) }
-  }
+  /** One of a person's own orders by its reference, open or not (the buyer may come back after the heartbeat started the boost). */
+  const ownOrder = (db: Db, owner: string, ref: unknown): OrderRecord | undefined => { const c = peekPromote(db); return typeof ref === 'string' && c ? (c.owners[owner]?.orders ?? []).map((o) => c.orders[o]).find((o) => o?.ref === ref) : undefined }
+  const viewOf = (db: Db, o: OrderRecord): { ok: true; order: OrderView } => ({ ok: true, order: orderView(peekPromote(db)!, o) })
+  /** Bachs: a hosted checkout for a pending order, keyed by its reference so a retry opens the same one. */
+  const checkout = (o: { ref: string; amount: number; email: string; name: string }, origin: string) => pay.checkout({ ...o, back: `${origin}/?promote=${encodeURIComponent(o.ref)}`, source: 'allworld_promote' })
+  const keepCheckout = (db: Db, orderId: string, id: string): void => { const o = peekPromote(db)?.orders[orderId]; if (o && o.status === 'pending') o.checkout = id }
+  /** Bachs: what it says about an order's checkout and its payment, asked by the server and never taken from the browser. */
+  const verify = (o: { ref: string; checkout?: string }) => pay.verify(o)
+  /** Heartbeat: card orders opened in the last two days and still waiting, so a boost starts even when the buyer never came back. */
+  const awaiting = (db: Db): OrderRecord[] => Object.values(peekPromote(db)?.orders ?? {}).filter((o) => o.status === 'pending' && o.by === 'bachs' && o.checkout && now() - o.at < 2 * 86400000).sort((a, b) => b.at - a.at).slice(0, 5)
   /** Sponsored cards for a feed page: up to two live boosts of the city (or spotlights everywhere), rotating, counted as shown. */
   function sponsored(db: Db, viewer: string | null, city: string, world: boolean): (ListingView & { order: string })[] {
     const c = peekPromote(db)
@@ -221,7 +215,7 @@ export function promoteService(ctx: RouteContext) {
     if (body.action === 'approve' || body.action === 'restore') { l.status = 'live'; delete l.reason; return { ok: true } }
     return no('invalid_action', 'remove, approve or restore')
   }
-  return { me, directory, save, remove, reviewed, order, markPaid, orderByRef, checkout, verify, payment, sponsored, noteShown, contact, pending, admin, act, prices, listingView, peek: peekPromote, categories: CATEGORIES }
+  return { me, directory, save, remove, reviewed, order, markPaid, orderByRef, ownOrder, viewOf, checkout, keepCheckout, verify, awaiting, payment, nameOf, sponsored, noteShown, contact, pending, admin, act, prices, listingView, peek: peekPromote, categories: CATEGORIES }
 }
 
 /** ERASURE: a person's listings and pending orders go; paid orders stay as the business record of a sale, without the person. */

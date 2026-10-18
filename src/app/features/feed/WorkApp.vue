@@ -35,6 +35,17 @@ async function act(g: GigView, op: string, extra: Record<string, unknown> = {}):
   if (op === 'done') toast('Done. Leave a review, and send the reward from Messages.')
   await load()
 }
+// Paying the worker in real money (docs/EARN.md): straight to their Bachs payout account, Allworld's fee taken by Bachs.
+const paying = ref<{ id: string; amount: number; email: string } | null>(null)
+async function payReal(): Promise<void> {
+  const p = paying.value; if (!p) return
+  busy.value = true
+  let r: { ok: true; pay: string } | { ok: false; reason: string }
+  try { r = await game.fetchJson('/api/earn/pay', { method: 'POST', body: { kind: 'gig', id: p.id, amount: p.amount, email: p.email } }) } catch (e) { r = { ok: false, reason: (e as { reason?: string }).reason ?? 'That did not go through.' } }
+  busy.value = false
+  if (!r.ok) { toast(r.reason, 'error'); return }
+  location.assign(r.pay)
+}
 const stateWord: Record<GigView['state'], string> = { open: 'Open', taken: 'Taken', done: 'Done', closed: 'Closed' }
 const reviewFor = (g: GigView): { stars: number; text: string } => (review.value[g.id] ??= { stars: 5, text: '' })
 const canReview = (g: GigView): boolean => g.state === 'done' && Boolean(g.reviewed) && ((g.mine && !g.reviewed!.poster) || (!g.mine && !g.reviewed!.worker))
@@ -62,6 +73,16 @@ const canReview = (g: GigView): boolean => g.state === 'done' && Boolean(g.revie
           <button type="button" class="feed-pill" @click="act(g, 'close')">Close</button>
         </template>
         <div v-if="g.mine && g.state === 'taken'" class="feed-row"><span class="feed-note">{{ g.worker?.name }} is on it.</span><button type="button" class="social-btn is-primary" :disabled="busy" @click="act(g, 'done')">Mark done</button></div>
+        <p v-if="g.paid" class="feed-note" data-earn="gig-paid">Paid ₦{{ g.paid.toLocaleString('en-NG') }} in real money.</p>
+        <template v-else-if="g.mine && (g.state === 'taken' || g.state === 'done')">
+          <form v-if="paying?.id === g.id" class="feed-form" @submit.prevent="payReal">
+            <label>Amount in real naira<input v-model.number="paying.amount" type="number" min="500" step="100"></label>
+            <label>E-mail for the receipt<input v-model="paying.email" type="email" autocomplete="email"></label>
+            <div class="feed-row"><button type="submit" class="social-btn is-primary" :disabled="busy || !paying.email.includes('@')">Pay {{ g.worker?.name }} ₦{{ (paying.amount || 0).toLocaleString('en-NG') }}</button><button type="button" class="feed-pill" @click="paying = null">Cancel</button></div>
+            <p class="feed-note">Paid through Bachs straight to their payout account. Allworld never holds it.</p>
+          </form>
+          <button v-else type="button" class="feed-pill" @click="paying = { id: g.id, amount: 5000, email: '' }">Pay in real money</button>
+        </template>
         <div v-if="!g.mine && g.state === 'open'" class="feed-row"><span class="feed-note">You applied.</span><button type="button" class="feed-pill" @click="act(g, 'withdraw')">Withdraw</button></div>
         <div v-if="canReview(g)" class="feed-form">
           <span class="feed-stars" role="radiogroup" aria-label="Stars"><button v-for="n in 5" :key="n" type="button" :aria-label="`${n} stars`" @click="reviewFor(g).stars = n">{{ n <= reviewFor(g).stars ? '★' : '☆' }}</button></span>

@@ -14,19 +14,23 @@ import { promoteService, forgetPromotePlayers } from './promote/service.ts';
 const PROJECT = 'allworld-test-project', FOUNDER = 'founder.test@example.com';
 type Json = Record<string, any>;
 const emailHash = (e: string): string => createHash('sha256').update(e.trim().toLowerCase()).digest('hex');
-async function setup(t: TestContext, { paystack = false }: { paystack?: boolean } = {}) {
+async function setup(t: TestContext, { bachs = false }: { bachs?: boolean } = {}) {
   const key = await makeKey('key-1'), provider = fakeProvider([key]);
-  const paid = new Map<string, number>();
+  const paid = new Map<string, string>(), sessions = new Map<string, string>();
   const fetcher = async (url: string, init?: { body?: unknown; headers?: Record<string, string> }) => {
-    if (url.startsWith('https://api.paystack.co/')) {
-      assert.equal(init?.headers?.Authorization, 'Bearer sk_test_abcdefghijklmnop', 'the secret goes only to Paystack');
-      if (url.endsWith('/transaction/initialize')) { const b = JSON.parse(String(init?.body)); paid.set(b.reference, b.amount); return new Response(JSON.stringify({ status: true, data: { authorization_url: `https://checkout.paystack.com/${b.reference}` } }), { status: 200 }); }
-      const ref = decodeURIComponent(url.split('/').pop() ?? '');
-      return new Response(JSON.stringify({ status: true, data: { status: paid.has(ref) ? 'success' : 'abandoned', amount: paid.get(ref) ?? 0, currency: 'NGN', reference: ref } }), { status: 200 });
+    if (url.startsWith('https://sandbox-api.bachs.io/')) {
+      assert.equal(init?.headers?.Authorization, 'Bearer sk_sandbox_abcdefghijklmnop', 'the secret goes only to Bachs');
+      const path = url.slice('https://sandbox-api.bachs.io'.length);
+      if (path === '/v1/checkout-sessions') { const b = JSON.parse(String(init?.body)); assert.equal(init?.headers?.['Idempotency-Key'], b.reference); paid.set(b.reference, b.pricing.amount); sessions.set(`chk_${b.reference.replace(/-/g, '')}`, b.reference); return new Response(JSON.stringify({ checkout_id: `chk_${b.reference.replace(/-/g, '')}`, checkout_url: `https://checkout.bachs.io/c/${b.reference}`, status: 'open', reference: b.reference }), { status: 201 }); }
+      const chk = /^\/v1\/checkout-sessions\/(chk_\w+)$/.exec(path);
+      if (chk) { const ref = sessions.get(chk[1]!)!; return new Response(JSON.stringify({ checkout_id: chk[1], reference: ref, amount: paid.get(ref), currency: 'NGN', status: 'completed', charge: { payment_id: `pay_${chk[1]}` } }), { status: 200 }); }
+      const pay = /^\/v1\/payments\/pay_(chk_\w+)$/.exec(path);
+      if (pay) { const ref = sessions.get(pay[1]!)!; return new Response(JSON.stringify({ payment_id: `pay_${pay[1]}`, checkout_id: pay[1], reference: ref, amount: paid.get(ref), currency: 'NGN', status: 'succeeded' }), { status: 200 }); }
+      return new Response('{}', { status: 404 });
     }
     return provider.fetch(url, init as { body?: unknown });
   };
-  const f = await fixture(t, { env: { ACCOUNTS_FIREBASE_PROJECT_ID: PROJECT, ACCOUNTS_FIREBASE_API_KEY: 'test-web-api-key-0000000000000000000000', FOUNDER_EMAIL_SHA256: emailHash(FOUNDER), NEW_SESSIONS_PER_ADDRESS: '1000', ...(paystack ? { PAYSTACK_SECRET_KEY: 'sk_test_abcdefghijklmnop' } : {}) }, fetch: fetcher as never });
+  const f = await fixture(t, { env: { ACCOUNTS_FIREBASE_PROJECT_ID: PROJECT, ACCOUNTS_FIREBASE_API_KEY: 'test-web-api-key-0000000000000000000000', FOUNDER_EMAIL_SHA256: emailHash(FOUNDER), NEW_SESSIONS_PER_ADDRESS: '1000', ...(bachs ? { BACHS_API_KEY: 'sk_sandbox_abcdefghijklmnop' } : {}) }, fetch: fetcher as never });
   const call = async (path: string, body?: unknown, cookie?: string): Promise<Json> => { const res = await fetch(f.base + path, { method: body ? 'POST' : 'GET', headers: { Origin: f.base, ...(body ? { 'Content-Type': 'application/json' } : {}), ...(cookie ? { Cookie: cookie } : {}) }, body: body ? JSON.stringify(body) : undefined }); return { status: res.status, ...(await res.json() as object) }; };
   let minted = 0;
   async function account(address: string, name: string, adult = true): Promise<Device> {
@@ -69,17 +73,18 @@ test('business: a free listing is reviewed before it is live; refused words say 
 });
 
 test('business: a boost is paid through a checkout Allworld verifies itself, then shows as Sponsored in the city feed; admin sees revenue', async (t) => {
-  const { call, account, founder, approve } = await setup(t, { paystack: true });
+  const { call, account, founder, approve } = await setup(t, { bachs: true });
   const ada = await account('ada@example.com', 'Ada'), bola = await account('bola@example.com', 'Bola');
   const made = await call('/api/promote/listings', { name: 'Ada Tailoring', category: 'fashion', area: 'Surulere' }, ada.cookie);
   await approve(made.listing.id);
   assert.equal((await call('/api/promote/order', { listing: made.listing.id, tier: 'boost', weeks: 2 }, ada.cookie)).code, 'invalid_email');
   const order = await call('/api/promote/order', { listing: made.listing.id, tier: 'boost', weeks: 2, email: 'ada@example.com' }, ada.cookie);
   assert.equal(order.order.amount, 5000);
-  assert.match(order.pay, /^https:\/\/checkout\.paystack\.com\//);
+  assert.match(order.pay, /^https:\/\/checkout\.bachs\.io\//);
   assert.equal((await call('/api/promote/order/verify', { ref: order.order.ref }, bola.cookie)).code, 'unknown_order', 'only the buyer checks their order');
   const paid = await call('/api/promote/order/verify', { ref: order.order.ref }, ada.cookie);
   assert.equal(paid.order.status, 'paid');
+  assert.equal((await call('/api/promote/order/verify', { ref: order.order.ref }, ada.cookie)).order.status, 'paid', 'checking again after it started still says paid');
   const page = await call('/api/feed/list?tab=city&city=lagos', undefined, bola.cookie);
   assert.deepEqual(page.sponsored.map((s: Json) => s.name), ['Ada Tailoring']);
   assert.equal((await call('/api/feed/list?tab=world', undefined, bola.cookie)).sponsored.length, 0, 'a Boost is not in the World tab');
@@ -93,7 +98,7 @@ test('business: a boost is paid through a checkout Allworld verifies itself, the
 });
 
 test('business: erasure takes listings and pending orders; a paid order stays as a sale without the person', async (t) => {
-  const { f, call, account, approve } = await setup(t, { paystack: true });
+  const { f, call, account, approve } = await setup(t, { bachs: true });
   const ada = await account('ada@example.com', 'Ada');
   const made = await call('/api/promote/listings', { name: 'Ada Phones', category: 'tech' }, ada.cookie);
   await approve(made.listing.id);

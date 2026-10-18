@@ -21,6 +21,8 @@ import type { FurnitureDefinition } from '../../../types/content.ts'
 // Design with AI (docs/SPACES.md): fetched only when opened.
 const DesignSheet = defineAsyncComponent(() => import('../spaces/DesignSheet.vue'))
 const designOpen = ref(false)
+const WorldScreen = defineAsyncComponent(() => import('../spaces/WorldScreen.vue'))
+const walking = ref(false)
 const { game, shell, community } = useApp()
 const now = computed(() => placeNow.value)
 const room = computed(() => (now.value?.kind === 'room' ? places.room : null))
@@ -138,6 +140,8 @@ const whatsapp = computed(() => `https://wa.me/?text=${encodeURIComponent(`${now
     <div v-if="tab === 'build' && member && room" class="place-part" data-place="builder">
       <button type="button" class="social-btn" data-place="design-ai" :disabled="offline" @click="designOpen = true">Design with AI</button>
       <DesignSheet v-if="designOpen" target="room" :room-id="room.id" @close="designOpen = false" @applied="enterRoom(room.id)" />
+      <button type="button" class="social-btn" data-place="walk-3d" :disabled="offline" @click="walking = true">Walk in 3D</button>
+      <WorldScreen v-if="walking" :where="{ target: 'room', id: room.id }" @close="walking = false" />
       <p class="social-note">Everyone in the group can add, move and take out pieces. They are free and belong to the room. {{ room.items.length }} of {{ PLACES.roomItems }} used.</p>
       <label class="place-field">Add<select v-model="category" aria-label="Kind of furniture"><option v-for="id in categories" :key="id" :value="id">{{ labelOf(id) }}</option></select></label>
       <div class="place-palette">

@@ -21,12 +21,12 @@ const PROJECT = 'allworld-test-project', FOUNDER = 'founder.test@example.com', O
 type Json = Record<string, any>;
 const CHAIR = new Uint8Array(readFileSync(new URL('../src/housing-studio/assets/dining-chair-near.glb', import.meta.url)));
 
-async function setup(t: TestContext, { on = true }: { on?: boolean } = {}) {
+async function setup(t: TestContext, { on = true, scripts = true }: { on?: boolean; scripts?: boolean } = {}) {
   const key = await makeKey('key-1'), provider = fakeProvider([key]);
   const dir = await mkdtemp(join(tmpdir(), 'spaces-world-'));
   t.after(() => rm(dir, { recursive: true, force: true }));
   const store = await createStore(dir, { log: () => {} });
-  await store.transact((db) => { (db as Record<string, unknown>)['adminSettings'] = { values: { spacesModels: { value: true, at: 1, by: 'test' }, ...(on ? { spaces3d: { value: true, at: 1, by: 'test' } } : {}) } }; });
+  await store.transact((db) => { (db as Record<string, unknown>)['adminSettings'] = { values: { spacesModels: { value: true, at: 1, by: 'test' }, ...(on ? { spaces3d: { value: true, at: 1, by: 'test' } } : {}), ...(scripts ? { spacesScripts: { value: true, at: 1, by: 'test' } } : {}) } }; });
   const f = await fixture(t, { moderatorToken: OPERATOR, env: { ACCOUNTS_FIREBASE_PROJECT_ID: PROJECT, ACCOUNTS_FIREBASE_API_KEY: 'test-web-api-key-0000000000000000000000', FOUNDER_EMAIL_SHA256: emailHash(FOUNDER), NEW_SESSIONS_PER_ADDRESS: '1000' }, fetch: provider.fetch, store } as never);
   const call = async (path: string, body?: unknown, cookie?: string): Promise<Json> => {
     const raw = body instanceof Uint8Array;
@@ -137,4 +137,31 @@ test('world: a group room is arranged by its members; a deleted model leaves it;
   await s.f.server.store.transact((db) => { eraseSpaces(db, [ada.id]); });
   const layouts = await s.f.server.store.read((db) => JSON.parse(JSON.stringify((db as any).spaces.layouts ?? {})));
   assert.deepEqual(Object.keys(layouts), [], 'her home layout and her chair in the room are gone');
+});
+
+test('world: a space\'s script is saved by its owner, its lines filtered, sent with the space, and erased with the player', async (t) => {
+  const off = await setup(t, { scripts: false });
+  const zed = await off.account('zed@example.com', 'Zed');
+  assert.equal((await off.call('/api/spaces/world/script', { target: 'home', code: 'space.score(1)', lines: [] }, zed.cookie)).code, 'scripts_off');
+  assert.equal((await off.call('/api/spaces/world?target=home', undefined, zed.cookie)).world.scripts, false);
+
+  const s = await setup(t);
+  const ada = await s.account('ada@example.com', 'Ada'), bola = await s.account('bola@example.com', 'Bola');
+  const save = (body: Json, who = ada) => s.call('/api/spaces/world/script', { target: 'home', ...body }, who.cookie);
+  const blocked = await save({ code: 'space.say(0)', lines: ['Call me on 08031234567'] });
+  assert.equal(blocked.code, 'line_blocked');
+  assert.match(blocked.reason, /Line 1/);
+  assert.equal((await save({ code: 'x'.repeat(40_001), lines: [] }).catch(() => ({ status: 413 }))).status, 413, 'a body past the limit is cut off: 413 or a closed connection');
+  assert.equal((await save({ code: 'space.say(0, 2)', lines: ['Welcome, {1} mangoes inside!', ''] })).code, 'saved');
+  const seen = await s.call('/api/spaces/world?target=home', undefined, ada.cookie);
+  assert.deepEqual(seen.world.script, { code: 'space.say(0, 2)', lines: ['Welcome, {1} mangoes inside!'] });
+  // Saving always means one's own home: Bola's script lands in hers, not Ada's.
+  assert.equal((await save({ code: 'space.score(9)', lines: [] }, bola)).code, 'saved');
+  assert.equal((await s.call('/api/spaces/world?target=home', undefined, ada.cookie)).world.script.code, 'space.say(0, 2)');
+  assert.equal((await save({ code: '' })).code, 'removed');
+  assert.equal((await s.call('/api/spaces/world?target=home', undefined, ada.cookie)).world.script, undefined);
+  await save({ code: 'space.score(1)', lines: [] });
+  await s.f.server.store.transact((db) => { eraseSpaces(db, [ada.id]); });
+  const scripts = await s.f.server.store.read((db) => Object.keys((db as any).spaces.scripts ?? {}));
+  assert.deepEqual(scripts, [`home:${bola.id}`]);
 });

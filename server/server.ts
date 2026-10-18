@@ -38,7 +38,7 @@ import { createOnce } from './routes/once.ts';
 import { buildSocketHandlers } from './ws/index.ts';
 import { createServerTelemetry, useTelemetry } from './telemetry/index.ts';
 import { readTelemetryConfig } from './telemetry/config.ts';
-import { appHeaders, pageHeaders, apiHeaders, fileCache, inlineScriptHashes, telemetryOrigins, type RequestFacts } from './security-headers.ts';
+import { appHeaders, pageHeaders, apiHeaders, fileCache, isSandboxPath, sandboxHeaders, inlineScriptHashes, telemetryOrigins, type RequestFacts } from './security-headers.ts';
 import { siteFile } from './site-files.ts';
 import { ADMIN_HOST_ENV, ADMIN_ROBOTS, ADMIN_SHELL, adminAddress, adminHostName, adminHostRoute, isAdminHost } from './admin/host.ts';
 import { withPathMeta } from './path-meta.ts';
@@ -507,6 +507,11 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
       const html = isShell || isReplay ? await readFile(path, 'utf8') : isIndex ? (open ? open.page : (page: string) => page)(withPathMeta(await serveIndex(req, path), url.pathname, publicOrigin(req), url.search)) : '';
       const bytes = isIndex || isShell || isReplay ? Buffer.from(html) : await readFile(path);
       if (res.headersSent || res.writableEnded) return;
+      if (adminKind === null && isSandboxPath(url.pathname) && !isIndex) {
+        res.writeHead(200, { 'Content-Type': mime[extname(path)] || 'application/octet-stream', ...sandboxHeaders() });
+        res.end(method === 'HEAD' ? undefined : bytes);
+        return;
+      }
       // The game's page carries the full set of security headers; its inline scripts are admitted by hash, from the page as served.
       const security = isReplay ? appHeaders({ ...factsOf(req), scriptHashes: await inlineScriptHashes(html), accounts: accountsHeaderConfig }) : isShell ? appHeaders({ ...factsOf(req), scriptHashes: await inlineScriptHashes(html), accounts: accountsHeaderConfig, admin: true }) : isIndex ? appHeaders({ ...factsOf(req), scriptHashes: await inlineScriptHashes(html), telemetry: telemetryHosts, avatarAssets: html.includes('name="allworld-3d-assets"'), accounts: accountsHeaderConfig, trustProviders: trustHeaderConfig(envReader(env), accountsHeaderConfig) }) : adminKind ? { 'X-Robots-Tag': 'noindex, nofollow' } : {};
       // Immutable assets cache for a year; the page and mutable street version pointer revalidate.

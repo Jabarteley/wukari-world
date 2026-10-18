@@ -97,6 +97,15 @@ test('Worker: a model upload goes to R2 by its hash and comes back byte for byte
   assert.equal((await call('/api/spaces/models?name=Bad', new TextEncoder().encode('not a model'), ada)).code, 'not_glb')
   assert.equal((await call('/api/spaces/models?name=Json', { a: 1 }, ada)).status, 415)
 
+  // The script sandbox (phase 4) is served by the Worker with its own policy, under the name the page asks for.
+  for (const path of ['/sandbox/space.html', '/sandbox/space.js']) {
+    const answer = await worker.dispatchFetch(origin + path)
+    assert.equal(answer.status, 200, path)
+    assert.match(answer.headers.get('content-security-policy') ?? '', /connect-src 'none'/)
+    assert.equal(answer.headers.get('x-frame-options'), 'SAMEORIGIN')
+    assert.match(await answer.text(), path.endsWith('.js') ? /allow-scripts/ : /sandbox\/space\.js/)
+  }
+
   const bare = kit(await start(false))
   const bob = await bare.account('Bob', 'bob@example.test')
   await bare.op('/api/mod/spaces/switch', { models: true })

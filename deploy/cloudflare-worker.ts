@@ -79,7 +79,7 @@ import '../src/game/routines/pack.ts'; // installs the routines of the regulars:
 import '../src/game/home-plan.ts';
 import { readTelemetryConfig } from '../server/telemetry/config.ts';
 import { createR2Models, type R2Models } from './r2-models.ts';
-import { appHeaders, apiHeaders, fileCache, pageHeaders, inlineScriptHashes, telemetryOrigins, factsOfUrl } from '../server/security-headers.ts';
+import { appHeaders, apiHeaders, fileCache, isSandboxPath, sandboxHeaders, pageHeaders, inlineScriptHashes, telemetryOrigins, factsOfUrl } from '../server/security-headers.ts';
 import telemetryRoutes from '../server/telemetry/routes.ts';
 import { capacityConfig, type CapacityConfig, envReader, outboundFetch, sessionArchiver, lifeAuthority, lifeAnnouncer, routeHeaders, pageFor, cleanOrigin, cleanHost, absolutePreviewImage, validOperatorToken, bearerToken, accountsConfig, founderEmailHash, sessionCookie, isStrictOrigin, presentedSession, mayBind, addressBucket } from '../server/host-context.ts';
 import { openRouteOf } from '../server/agents/oauth-routes.ts';
@@ -239,6 +239,15 @@ async function respond(request: Request, env: WorkerEnv): Promise<Response> {
   // The manifest and the sitemap are made by code (server/site-files.ts), not shipped as assets: the release package admits neither extension.
   const site = siteFile(url.pathname, publicOrigin(env, url));
   if (site) return new Response(request.method === 'HEAD' ? null : site.body, { status: 200, headers: { 'content-type': site.type, 'x-content-type-options': 'nosniff' } });
+  // The script sandbox (public/sandbox/) has headers of its own: it is framed by the game's page and runs players' code. The asset
+  // binding serves an .html file at its name without the extension, so that is the name asked for.
+  if (isSandboxPath(assetPath)) {
+    const sandboxed = await env.ASSETS.fetch(new Request(new URL(assetPath.replace(/\.html$/, ''), url).href, { method: 'GET' }));
+    if (sandboxed.status !== 200) return json(404, { error: 'not_found' });
+    const own = new Headers({ 'content-type': assetPath.endsWith('.js') ? 'text/javascript; charset=utf-8' : 'text/html; charset=utf-8' });
+    for (const [name, value] of Object.entries(sandboxHeaders())) own.set(name, value);
+    return new Response(request.method === 'HEAD' ? null : sandboxed.body, { status: 200, headers: own });
+  }
   const response = await env.ASSETS.fetch(request);
   const headers = new Headers(response.headers);
   headers.set('x-content-type-options', 'nosniff');

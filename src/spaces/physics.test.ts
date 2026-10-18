@@ -45,7 +45,7 @@ test('physics: a loose model falls, rests on the floor and can be picked up and 
   crate.position.set(1, 2, -2)
   post.add(boxAt(0.3, 2, 0.3, 0, 1, 0))
   post.position.set(-2, 0, -2)
-  physics.setModels([post], [{ key: 'crate', object: crate }])
+  physics.setModels([{ key: 'post', object: post }], [{ key: 'crate', object: crate }])
   physics.place({ x: 1, y: 0, z: 0 })
   run(physics, 2)
   assert.ok(Math.abs(crate.position.y) < 0.05, `the crate rests on the floor: y ${crate.position.y}`)

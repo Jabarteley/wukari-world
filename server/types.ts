@@ -352,6 +352,13 @@ export interface ImageRef {
   /** Deleted: expired, pushed out by newer pictures, or removed by an operator. */
   gone?: true
 }
+/** Players' model files, kept by the SHA-256 of their bytes (64 hex characters): the same file is kept once. */
+export interface ModelStore {
+  put(hash: string, bytes: Uint8Array): Promise<void>
+  get(hash: string): Promise<Uint8Array | null>
+  /** Delete these; hashes that are not there are ignored. */
+  remove(hashes: readonly string[]): Promise<void>
+}
 /** One picture in the image store. */
 export interface StoredImage { id: string; conv: string; at: number; size: number; type: 'jpeg' | 'png' | 'webp' }
 /** Where picture bytes are kept: files on Node, a SQLite table of the Durable Object on the Worker. Never the `social` collection. */
@@ -1019,6 +1026,8 @@ export interface RouteRequest {
   /** Exact bounded bytes for provider signature verification; never attached to telemetry. */
   /** The body's bytes, at most `limit`. `kind` 'json' (the default) wants application/json; 'form' wants application/x-www-form-urlencoded (the OAuth endpoints). */
   rawBody?(limit: number, kind?: 'json' | 'form'): Promise<Uint8Array<ArrayBuffer>>
+  /** The body's bytes as they are (an upload), at most `limit`; the content type must be one of `types` (415 otherwise). */
+  binaryBody?(limit: number, types: readonly string[]): Promise<Uint8Array<ArrayBuffer>>
   header?(name: string): string | null
   session(db: Db, options?: { renew?: boolean }): SessionRecord | undefined
   /** Throws 401 device_session_required. */
@@ -1053,7 +1062,7 @@ export interface RouteResult {
   /** Send `body` exactly as given: no `serverTime` or other field added (the MCP endpoint answers JSON-RPC, which has no room for one). */
   bare?: true
   /** Instead of `body`: bytes to send as they are, with their content type. Always sent `private`, `nosniff` and `inline`. */
-  file?: { bytes: Uint8Array; type: string; cache?: 'no-store' }
+  file?: { bytes: Uint8Array; type: string; cache?: 'no-store' | 'immutable' }
 }
 export type RouteHandler = (request: RouteRequest) => RouteResult | void | Promise<RouteResult | void>
 export type RouteMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
@@ -1350,6 +1359,8 @@ export interface RouteContext {
   /** Showcase shop photos (server/showcase/): a store of their own, never trimmed by age or by the chat ceiling; null on a host built without it. */
   showcaseImages?: ImageStore | null
   voices?: VoiceStore | null
+  /** Players' 3D models (server/spaces/models.ts), by content hash: files on Node, R2 on the Worker; null where the host has no storage for them. */
+  models?: ModelStore | null
   /** The module's namespaced top-level collection, created on first use. */
   collection<K extends CollectionName>(db: Db, name: K, initial?: Partial<Collections[K]>): Collections[K]
   collection(db: Db, name: string, initial?: object): Record<string, unknown>

@@ -87,6 +87,8 @@ agents of docs/HOUSE-AGENTS.md) by holding a button; their words go to the serve
 
 ## How a call with an AI character goes
 
+Since 18 October 2026 residents can be called as well as house agents (from the AI agents list, a chat or their card; `docs/RESIDENTS.md` "Contact"). A resident who is asleep by its own schedule does not pick up, and no minutes are used.
+
 1. **Starting.** Settings → AI characters → "Call an AI character" lists the characters standing in a place now (and each character you have talked to has a Call button on its card). The call
    screen opens with the **AI-played** mark, "An AI plays this character", the minutes left today, and the music fades (`jaw:call-active`, as for any call).
 2. **Push-to-talk.** Hold the big button and speak (at most 15 seconds), let go. The words appear on the screen as yours, the character answers, and the answer is spoken. A text box is always there too, and is

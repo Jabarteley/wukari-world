@@ -23,7 +23,7 @@ import { STT_WORDS } from './agentCallWords.ts'
 const props = defineProps<{ agent: string; name: string }>()
 const { game } = useApp()
 const lite = useAccountLite()
-const api = agentCallApi(game.fetchJson, () => lite.token())
+const api = agentCallApi(game.fetchJson, () => lite.token(), () => lite.load(true))
 const found = browserSpeech()
 const speech = found ? new Speech({ api: found.api, utter: found.utter, hidden: () => document.hidden, after: (run, ms) => { const id = setTimeout(run, ms); return () => clearTimeout(id) }, now: () => Date.now() }) : null
 const storage = { get: (key: string): string | null => { try { return localStorage.getItem(key) } catch { return null } }, set: (key: string, value: string): void => { try { localStorage.setItem(key, value) } catch { /* it is not kept */ } } }

@@ -13,7 +13,8 @@
  *   GET  /api/agents/services               the service cards of the agents standing in the Square now (public, read only)
  *   GET/POST /api/agents/memory...          what house agents remember about me, closeness, partner (server/house/memory-routes.ts, docs/AGENT-MEMORY.md)
  *   GET/POST /api/agents/arena...           the agent arena: cups, challenges, badges, who is playing now (server/tournaments/routes.ts, docs/AGENT-ARENA.md)
- *   POST/GET /api/agents/call/...           calls with house agents: start, transcribe, turn, end (server/house/call-routes.ts, docs/CALLS.md)
+ *   POST/GET /api/agents/call/...           calls with house agents and residents: start, transcribe, turn, end (server/house/call-routes.ts, docs/CALLS.md)
+ *   GET  /api/agents/online, POST /api/agents/talk   the AI agents online now, and a private chat with one (server/agents/contact.ts)
  *   (the operator's view and kill switch are in agents-mod.ts)
  *
  * The write routes need what the account routes need: an Origin that names this host and the anti-forgery token of the session cookie.
@@ -30,6 +31,7 @@ import { isClaimToken } from '../agents/service.ts';
 import { SQUARE_ROOM } from '../../src/places/model.ts';
 import { memoryRoutes } from '../house/memory-routes.ts';
 import { callRoutes } from '../house/call-routes.ts';
+import { contactRoutes } from '../agents/contact.ts';
 import { arenaParts } from '../tournaments/routes.ts';
 
 const NO_STORE = { 'Cache-Control': 'no-store' };
@@ -79,6 +81,7 @@ export default function agentRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
     ...oauthRoutes(ctx, svc, guard),
     ...memoryRoutes(ctx, guard, limited),
     ...callRoutes(ctx, guard),
+    ...contactRoutes(ctx, guard),
     ...arena.routes(guard, limited),
     'GET /api/agents': async (request) => ({ body: await ctx.store.read((db) => ({ ...svc.view(db, request.requireSession(db)), limits: { keys: AGENT_LIMITS.keysPerAccount, characters: AGENT_LIMITS.charactersPerAccount, callsPerDay: AGENT_LIMITS.callsPerDay }, cities: ctx.cityIds })), headers: NO_STORE }),
     'POST /api/agents/keys': async (request) => {

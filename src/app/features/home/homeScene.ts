@@ -7,7 +7,6 @@
 //             'jaw:home-frame'  — the scene changed on its own (the skinned body arrived): draw one frame
 import { watch } from 'vue'
 import { useApp } from '../../state/app.ts'
-import { KINDS } from '../../../game/content/furniture.ts'
 import { nudge, turn } from './ghostMoves.ts'
 import { MOVES, defOf, homeUi, objectOf, plotIn, startGhost, whyNot } from './buyModel.ts'
 import type { Ghost, GhostSource } from './buyModel.ts'
@@ -27,7 +26,7 @@ export function show(redraw = true): void {
 }
 
 function onPick(event: Event): void {
-  const { game, command, goTo } = useApp()
+  const { game, shell } = useApp()
   const state = game.state.value
   if (state.location !== 'home') return
   const { id, cell } = ((event as CustomEvent<{ id?: string | null; cell?: { x: number; y: number } | null }>).detail ?? {})
@@ -44,14 +43,8 @@ function onPick(event: Event): void {
   if (!def || !id) return
   H.selected = id
   show(false)
-  const spot = KINDS[def.kind]?.spot
-  // Selecting the spot goes through the server; the accepted state redraws the scene with the marker.
-  if (spot) void goTo('home', spot)
-  else {
-    // The line about the piece is fetched with this screen's first use of it (game/content/furniture-blurbs.ts).
-    void import('../../../game/content/furniture-blurbs.ts').then(({ FURNITURE_BLURBS }) => game.toast(`${def.label} — ${FURNITURE_BLURBS[def.id]}`))
-    if (state.spot) void command('spot', { id: state.spot })
-  }
+  // The item sheet (ItemSheet.vue): what it is, and use it, move it, put it away or sell it.
+  shell.open('home-item', { id })
 }
 
 function onScene(event: Event): void {

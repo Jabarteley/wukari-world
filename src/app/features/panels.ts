@@ -104,9 +104,12 @@ export const homeChip = lazyPanel('home-chip', 'Home', 'hud', () => import('./ho
   slot: () => (homeScene.status === 'error' ? 'alert' : 'hud'),
 })
 
+/** A tapped piece of furniture at home: what it is, use it, move it, put it away or sell it (home/ItemSheet.vue). */
+export const homeItem = lazyPanel('home-item', 'Item', 'modal', bodyLoader('home/ItemSheet'))
+
 export const buy = lazyPanel('buy', 'Buy', 'nav', bodyLoader('home/BuyMode'), {
   /** Buy is only available at home; elsewhere the nav button is disabled with this reason. */
   enabled: (state) => social.me?.visiting ? 'Leave the visit before rearranging your furniture' : state.stories?.running ? 'End your scene before rearranging furniture' : state.location === 'home' || 'Go home to buy furniture',
 })
 
-export const NATIVE_PANELS: readonly VuePanel[] = [captureChip, placesPanel, gistPanel, landPanel, stories, storyChip, neighbourhoodPanel, capture, bank, messages, support, jobs, career, statement, invest, houses, cars, groceries, health, goals, profile, needs, skills, settings, boutique, healthChip, weatherChip, goalChip, settleChip, homeChip, buy, ...PASSPORT_PANELS, ...CIVIC_APPS, ...CIVIC_HUD, ...GROWTH_PANELS, ...GROWTH_HUD_PANELS, ...TABLES_PANELS, ...GAMES_PANELS, ...CAMPUS_PANELS, ...WORLD_PANELS, ...SOCIAL_PANELS, ...START_PANELS, ...TRAVEL_PANELS, ...ACCOUNT_PANELS, ...BUSINESS_PANELS, ...MARKET_PANELS, ...SHOWCASE_PANELS, ...COMMERCE_PANELS, ...POLITICS_PANELS, ...ADMIN_PANELS, ...LIVING_WORLD_PANELS, ...FEED_PANELS]
+export const NATIVE_PANELS: readonly VuePanel[] = [captureChip, placesPanel, gistPanel, landPanel, stories, storyChip, neighbourhoodPanel, capture, bank, messages, support, jobs, career, statement, invest, houses, cars, groceries, health, goals, profile, needs, skills, settings, boutique, healthChip, weatherChip, goalChip, settleChip, homeChip, buy, homeItem, ...PASSPORT_PANELS, ...CIVIC_APPS, ...CIVIC_HUD, ...GROWTH_PANELS, ...GROWTH_HUD_PANELS, ...TABLES_PANELS, ...GAMES_PANELS, ...CAMPUS_PANELS, ...WORLD_PANELS, ...SOCIAL_PANELS, ...START_PANELS, ...TRAVEL_PANELS, ...ACCOUNT_PANELS, ...BUSINESS_PANELS, ...MARKET_PANELS, ...SHOWCASE_PANELS, ...COMMERCE_PANELS, ...POLITICS_PANELS, ...ADMIN_PANELS, ...LIVING_WORLD_PANELS, ...FEED_PANELS]

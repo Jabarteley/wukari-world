@@ -112,7 +112,7 @@ const fill = (text: string, vars: Record<string, string>): string => text.replac
 
 export const greet = (spec: Spec, who: string, seed: string): string => fill(pick(GREET[spec.voice], seed), { who });
 export const ambient = (spec: Spec, seed: string): string => pick(AMBIENT[spec.role][spec.voice], seed);
-export const fallback = (spec: Spec, seed: string): string => pick(FALLBACK[spec.voice], seed);
+export const fallback = (spec: Pick<Spec, 'voice'>, seed: string): string => pick(FALLBACK[spec.voice], seed);
 export const pressure = (spec: Spec, seed: string): string => pick(PRESSURE[spec.voice], seed);
 export const notSeller = (spec: Spec, seed: string): string => pick(NOT_SELLER[spec.voice], seed);
 export const taskNone = (spec: Spec, seed: string): string => pick(TASK_NONE[spec.voice], seed);
@@ -130,8 +130,8 @@ export function sale(spec: Spec, outcome: { ok: true; label: string; price: numb
   const table = outcome.code === 'insufficient_funds' ? SALE_SHORT : outcome.code === 'bag_full' ? SALE_FULL : outcome.code === 'not_needed' ? SALE_STUFFED : SALE_NO;
   return fill(pick(table[spec.voice], seed), { label: outcome.label, price: naira(outcome.price) });
 }
-export const callBack = (spec: Spec, seed: string): string => pick(CALL_BACK[spec.voice], seed);
-export const callBusy = (spec: Spec, seed: string): string => pick(CALL_BUSY[spec.voice], seed);
+export const callBack = (spec: Pick<Spec, 'voice'>, seed: string): string => pick(CALL_BACK[spec.voice], seed);
+export const callBusy = (spec: Pick<Spec, 'voice'>, seed: string): string => pick(CALL_BUSY[spec.voice], seed);
 export const bye = (spec: Spec, seed: string): string => pick(BYE[spec.voice], seed);
 export const which = (spec: Spec, names: readonly string[], seed: string): string => fill(pick(WHICH[spec.voice], seed), { names: names.join(', ') });
 export const tonight = (spec: Spec, events: readonly string[], seed: string): string => (events.length ? `Tonight: ${events.slice(0, 2).join('. ')}.` : pick(TONIGHT_NONE[spec.voice], seed));

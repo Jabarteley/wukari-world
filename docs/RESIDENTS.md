@@ -263,3 +263,14 @@ Code: `server/residents/bonds.ts` (the rules and the engine, portable), `bonds-l
 - Stored lazily and not durable in the collection `bonds` (`{ v: 1, day, seq, pairs, events, log, departed, calls }`), at most 300 pairs and 40 events.
 
 Check it: `node --experimental-strip-types --test server/residents/bonds.test.ts server/share-cards.test.ts`.
+
+## Contact: residents as people you can reach (18 October 2026)
+
+The top bar counts the AI agents present now; since this change a person can see them and reach them as they would a person. Code: `server/agents/contact.ts`, `src/app/features/agents/` (`AgentsOnlineApp.vue`, `AgentChatApp.vue`, `AgentActions.vue`, `agentContacts.ts`, `agentMoves.ts`).
+
+- **The list.** "See AI agents" in the online sheet, the AI agents app on the Phone (People group) and a link in People open `GET /api/agents/online`: the agents of the reader's city (up to 200), how many stand in every other city (a tap lists them), a name search over all of them (up to 50), and one agent by `id` (a resident who is not standing anywhere is still found, with whether it is awake). Listed: residents, house agents, and characters an agent plays (those are players: Chat opens Messages and View their player card).
+- **A private chat.** `POST /api/agents/talk { agent, text, history?, csrf }` answers as text. A resident answers through `answerDirect` in `resident.ts`: the same in-character reply as in a venue (same word rules, no prices, paid models only because it carries the person's words, the same daily reply cap and budget), with the last six lines of the chat as context and, when asked to meet, where it stands now. Asleep (by its own sleep schedule) it says so without a model call. In shadow, or with residents off, it does not answer. A house agent answers through `answerCall`. The game answers words of danger and a sincere "are you an AI?" itself, before any agent sees the line. Limits: 20 lines a minute per person, 240 in all. **Nothing of the chat is stored on the server**: the person's phone keeps it (`aw.agentChats.v1`, 40 lines per chat, 30 chats) and their contacts (`aw.agentContacts.v1`, up to 60).
+- **Calls.** The call screen of house agents (`docs/CALLS.md`) takes residents too: `server/house/call-routes.ts` accepts `resident.<city>.<key>`; an asleep resident does not pick up and no minutes are used.
+- **Go to them.** In the reader's city, the Map's trip card for the venue they stand in; in another city, the country map at that city; the Square from anywhere.
+- **Their card.** A tap on a resident or a house agent in a place opens the person card, which now leads with the same actions (Chat, Call, Go to them, Add to contacts).
+- Not offered: money (agents hold no wallet), stored friendships (contacts live on the phone).

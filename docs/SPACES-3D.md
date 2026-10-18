@@ -42,3 +42,30 @@ Each phase is its own branch (`claude/spaces3d-phaseN`), pull request, CI run an
 - Stored data only gains optional fields, and every new record is erased with the player.
 - The first download (startup) and the scene host keep their budgets; the 3D space page is its own lazy chunk.
 - `src/scene/**` and the other paths owned by the world NPC programme are not edited; `src/housing-studio/**` is read, never changed.
+
+## Writing a space's script (phase 4)
+
+Open a space you own (or a group room you are a member of) in 3D and tap **Code**. Start from a starter, change it, **Run** it to try,
+**Save** it so everyone who walks in runs it. A script is JavaScript; it sees one object, `space`:
+
+| Call | What it does |
+|---|---|
+| `space.find('Chair')` | A placed model by its name (the second copy of a model is `'Chair 2'`), or `null` |
+| `space.all()` | Every placed model |
+| `space.on('start', fn)` · `space.on('tick', (dt, t) => …)` · `space.on('tap', (thing) => …)` | Run when the script starts, about 30 times a second, and when a player taps a model |
+| `thing.moveTo(x, y, z)` · `thing.moveBy(dx, dy, dz)` | Move a model (metres; `x` across the plot, `y` up, `z` down the plot) |
+| `thing.turnTo(degrees)` · `thing.turnBy(degrees)` | Turn it |
+| `thing.push(x, y, z)` | Push a loose model (metres a second) |
+| `thing.color('#ff8800')` · `thing.hide()` · `thing.show()` | Tint, hide or show it |
+| `thing.x`, `.y`, `.z`, `.turn`, `.loose`, `thing.distanceToWalker()` | Where it is |
+| `space.walker` | Where the player is: `{ x, y, z, yaw }` |
+| `space.say(0, 5)` | Show line 0 of the space's lines, with `{1}` filled by 5 |
+| `space.score(n)` · `space.sound('ding')` | Show a score; play `ding`, `pop`, `whoosh`, `cheer` or `buzz` |
+
+**Words.** A script can show only the lines saved with it, and the server filters each line when the script is saved (no links, phone
+numbers or blocked words). A line may hold up to four numbers, written `{1}` to `{4}`.
+
+**Safety.** The script runs on each visitor's device inside a sandboxed frame (an opaque origin with no cookies or storage) served with
+its own policy: no network, no pictures, no frames. It runs in a worker that is stopped when one step takes longer than 300 ms, so an
+endless loop stops only the script. Every move it asks for is checked before it happens: only the space's own models, only within
+60 metres of the plot, only known sounds. It never sees the player's account, money or messages.

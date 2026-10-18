@@ -56,8 +56,14 @@ export interface Physics {
   addStatic(root: Object3D, skip?: (node: Object3D) => boolean): void
   /** Furniture boxes: [x0, z0, x1, z1] on a floor at height `y`, `height` metres tall. */
   addBoxes(boxes: readonly { rect: readonly [number, number, number, number]; y: number; height: number }[]): void
-  /** Players' models: fixed ones solid in their hull, loose ones free. Replaces the models set before. */
-  setModels(fixed: readonly Object3D[], loose: readonly Loose[]): void
+  /** Players' models: fixed ones solid in their hull (moved only by a script), loose ones free. Replaces the models set before. */
+  setModels(fixed: readonly Loose[], loose: readonly Loose[]): void
+  /** A script moved or turned a model: a fixed one goes there smoothly, a loose one is put there. */
+  moveModel(key: string, object: Object3D): void
+  /** A script pushed a loose model (metres a second, added to how it moves). */
+  pushModel(key: string, velocity: { x: number; y: number; z: number }): void
+  /** A script hid or showed a model: a hidden one is not solid. */
+  showModel(key: string, on: boolean): void
   /** Move the walker by a wish (metres this frame, horizontal) and gravity; answers where its feet are. */
   walk(wish: { x: number; z: number }, dt: number, jump: boolean): { x: number; y: number; z: number; grounded: boolean }
   /** Put the walker's feet here (start, or after a fall out of the world). */
@@ -93,6 +99,7 @@ export async function startPhysics(): Promise<Physics> {
 
   let modelBodies: InstanceType<Rapier['RigidBody']>[] = []
   const loose = new Map<string, { body: InstanceType<Rapier['RigidBody']>; object: Object3D }>()
+  const fixedModels = new Map<string, InstanceType<Rapier['RigidBody']>>()
   let holding: string | null = null
   let acc = 0
 
@@ -122,14 +129,18 @@ export async function startPhysics(): Promise<Physics> {
       for (const body of modelBodies) world.removeRigidBody(body)
       modelBodies = []
       loose.clear()
+      fixedModels.clear()
       holding = null
-      for (const object of fixed) {
+      for (const { key, object } of fixed) {
         object.updateWorldMatrix(true, true)
-        const hull = R.ColliderDesc.convexHull(pointsOf(object, null, PHYSICS.hullPoints))
+        // In the model's own frame, on a body that only a script moves (kinematic: it pushes what it meets, nothing pushes it).
+        const hull = R.ColliderDesc.convexHull(pointsOf(object, object, PHYSICS.hullPoints, object.scale.x))
         if (!hull) continue
-        const body = world.createRigidBody(R.RigidBodyDesc.fixed())
+        const q = object.quaternion
+        const body = world.createRigidBody(R.RigidBodyDesc.kinematicPositionBased().setTranslation(object.position.x, object.position.y, object.position.z).setRotation({ x: q.x, y: q.y, z: q.z, w: q.w }))
         world.createCollider(hull.setFriction(0.7), body)
         modelBodies.push(body)
+        fixedModels.set(key, body)
       }
       for (const { key, object } of list) {
         object.updateWorldMatrix(true, true)
@@ -191,6 +202,26 @@ export async function startPhysics(): Promise<Physics> {
       holding = null
     },
     held: () => holding,
+    moveModel(key, object) {
+      const q = object.quaternion, p = object.position
+      const fixedBody = fixedModels.get(key)
+      if (fixedBody) { fixedBody.setNextKinematicTranslation({ x: p.x, y: p.y, z: p.z }); fixedBody.setNextKinematicRotation({ x: q.x, y: q.y, z: q.z, w: q.w }); return }
+      const free = loose.get(key)
+      if (!free || holding === key) return
+      free.body.setTranslation({ x: p.x, y: p.y, z: p.z }, true)
+      free.body.setRotation({ x: q.x, y: q.y, z: q.z, w: q.w }, true)
+      free.body.setLinvel({ x: 0, y: 0, z: 0 }, true)
+    },
+    pushModel(key, v) {
+      const free = loose.get(key)
+      if (!free || holding === key) return
+      const now = free.body.linvel()
+      free.body.setLinvel({ x: now.x + v.x, y: now.y + v.y, z: now.z + v.z }, true)
+    },
+    showModel(key, on) {
+      const body = fixedModels.get(key) ?? loose.get(key)?.body
+      if (body) body.setEnabled(on)
+    },
     step(dt, eye, look) {
       const held = holding ? loose.get(holding) : undefined
       if (held) held.body.setNextKinematicTranslation({ x: eye.x + look.x * PHYSICS.hold, y: eye.y + look.y * PHYSICS.hold - 0.25, z: eye.z + look.z * PHYSICS.hold })

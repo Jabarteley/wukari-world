@@ -31,6 +31,8 @@ test('JavaScript is limited to the service worker, release shims and exact revie
     'docs/agent-work/native-character-release-evidence-20261016/native-street-probe.mjs',
     'docs/agent-work/native-character-release-evidence-20261016/native-world-motion-probe.mjs',
     'docs/agent-work/native-character-release-evidence-20261016/neighbourhood-player-ownership-probe.mjs',
+    // The script sandbox of a 3D space (docs/SPACES-3D.md phase 4): a static page's own script, served with its own policy.
+    'public/sandbox/space.js',
     'public/sw.js',
     'scripts/check-joinallworld-source.mjs', 'scripts/check-workflows.mjs',
     // Reviewed generated-travel gate: proves the committed land-components table matches the catalogue.

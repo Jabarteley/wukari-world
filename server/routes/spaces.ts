@@ -18,6 +18,7 @@
  *   GET  /api/spaces/model-file/:hash                a model's bytes, by content hash
  *   GET  /api/spaces/world?target=home[&host=]|room&id=   a space for the 3D screen (server/spaces/world.ts)
  *   POST /api/spaces/world/layout { target, id?, models }   where my models stand in it
+ *   POST /api/spaces/world/script { target, id?, code, lines }   its own script (sandboxed on each visitor's device)
  */
 import { spacesService } from '../spaces/service.ts';
 import { gamesService } from '../spaces/games.ts';
@@ -49,6 +50,11 @@ export default function spacesRoutes(ctx: RouteContext): Record<RouteKey, RouteH
     },
     'GET /api/spaces/world': async (request) => { await gate(request); return { body: await ctx.store.read((db) => world.read(db, request.requireSession(db), request.query)) }; },
     'POST /api/spaces/world/layout': change((db, session, body) => world.save(db, session, body)),
+    'POST /api/spaces/world/script': async (request) => {
+      await gate(request);
+      const body = await request.json(40_000);
+      return { body: await ctx.store.transact((db) => world.saveScript(db, request.requireSession(db, { renew: true }), body)), renew: true };
+    },
     'GET /api/spaces/status': async (request) => { await gate(request); return { body: { ok: true, code: 'ok', ai: spaces.aiOn() } }; },
     'POST /api/spaces/design': async (request) => { await gate(request); return { body: await spaces.design(request), renew: true }; },
     'POST /api/spaces/check': async (request) => { await gate(request); return { body: await spaces.check(request), renew: true }; },

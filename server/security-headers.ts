@@ -169,6 +169,23 @@ export function pageHeaders(facts: RequestFacts): Record<string, string> {
 }
 
 /** Headers every JSON answer carries (a route may still set Cache-Control, Set-Cookie and Retry-After). */
+/**
+ * THE SCRIPT SANDBOX's headers (public/sandbox/, docs/SPACES-3D.md phase 4). The page runs players' own code, so it may load its
+ * own script and make a worker from a blob, and nothing else: no network, no pictures, no styles, no frames, no forms. It may be
+ * framed only by the game's own page, which frames it with `sandbox="allow-scripts"` (an opaque origin: no cookies, no storage).
+ */
+export const SANDBOX_CONTENT_SECURITY_POLICY = [
+  "default-src 'none'", "script-src 'self'", 'worker-src blob:', "connect-src 'none'", "img-src 'none'", "style-src 'none'", "font-src 'none'",
+  "media-src 'none'", "frame-src 'none'", "object-src 'none'", "form-action 'none'", "base-uri 'none'", "frame-ancestors 'self'",
+].join('; ');
+export const sandboxHeaders = (): Record<string, string> => ({
+  'Content-Security-Policy': SANDBOX_CONTENT_SECURITY_POLICY, 'X-Frame-Options': 'SAMEORIGIN', 'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'no-referrer', 'Permissions-Policy': PERMISSIONS_POLICY.replace('microphone=(self)', 'microphone=()').replace('geolocation=(self)', 'geolocation=()'),
+  'Cache-Control': 'no-cache',
+});
+/** Whether a path is the script sandbox's (served with sandboxHeaders, never the game's page headers). */
+export const isSandboxPath = (path: string): boolean => /^\/sandbox\/space\.(?:html|js)$/.test(path);
+
 /** Cache-Control for bytes a route hands over (RouteResult.file): private always; `immutable` for content named by its own hash (a player's model). */
 export const fileCache = (cache: 'no-store' | 'immutable' | undefined): string => (cache === 'immutable' ? 'private, max-age=604800, immutable' : cache ?? 'private, max-age=300');
 export function apiHeaders(facts: RequestFacts): Record<string, string> {

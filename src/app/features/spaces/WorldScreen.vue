@@ -5,7 +5,8 @@
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef } from 'vue'
 import '../../../ui/controls.css'
 import { useApp } from '../../state/app.ts'
-import { modelBytes, worldRead, worldSave, type ModelView, type PlacedModel, type WorldView, type WorldWhere } from './spacesClient.ts'
+import { modelBytes, scriptSave, worldRead, worldSave, type ModelView, type PlacedModel, type WorldView, type WorldWhere } from './spacesClient.ts'
+import { scriptNames, SCRIPT, TEMPLATES } from '../../../spaces/script.ts'
 import type { Placement } from '../../../spaces/layout.ts'
 import type { Engine, View } from '../../../spaces/world/engine.ts'
 
@@ -33,6 +34,21 @@ const choosing = ref<ModelView | null>(null)
 /** Physics (phase 3): on once Rapier has loaded; whether a model is in the walker's hands. */
 const physicsOn = ref(false)
 const holding = ref(false)
+/** Phase 4: the space's script, the code panel, and what a running script shows. */
+const coding = ref(false)
+const code = ref('')
+const lines = ref('')
+const said = ref('')
+const score = ref<number | null>(null)
+const scriptError = ref('')
+const scriptBusy = ref(false)
+let saidTimer = 0
+const linesOf = (): string[] => lines.value.split('\n').map((l) => l.trim()).filter(Boolean).slice(0, SCRIPT.lines)
+const namesOf = (): Map<string, string> => scriptNames(layout.value)
+function startScript(source: { code: string; lines: string[] } | null): void {
+  scriptError.value = ''; score.value = null; said.value = ''
+  engine?.runScript(source, namesOf())
+}
 let engine: Engine | null = null
 let gone = false
 let counter = Date.now() % 100000
@@ -56,8 +72,16 @@ onMounted(async () => {
     picked(key) { selected.value = key; engine?.highlight(key) },
     tapped(at) { if (choosing.value) add(choosing.value, at); else if (picked.value) move(at) },
     physics(state) { physicsOn.value = state === 'on' },
+    said(text) { said.value = text; clearTimeout(saidTimer); saidTimer = window.setTimeout(() => { said.value = '' }, 4000) },
+    scored(value) { score.value = value },
+    scriptProblem(message, stopped) { scriptError.value = stopped ? message : `Your code: ${message}` },
   })
   loading.value = false
+  if (answer.world.script) {
+    code.value = answer.world.script.code
+    lines.value = answer.world.script.lines.join('\n')
+    startScript(answer.world.script)
+  }
 })
 onBeforeUnmount(() => { gone = true; engine?.dispose(); engine = null })
 
@@ -66,6 +90,25 @@ function leave(): void {
   emit('close')
 }
 function jump(): void { engine?.jump() }
+function useTemplate(id: string): void {
+  const found = TEMPLATES.find((t) => t.id === id)
+  if (!found) return
+  if (code.value.trim() && !globalThis.confirm?.('Replace your code with this starter?')) return
+  code.value = found.code
+  lines.value = found.lines.join('\n')
+}
+function runNow(): void { startScript({ code: code.value, lines: linesOf() }) }
+function stopNow(): void { engine?.runScript(null, namesOf()); score.value = null; said.value = '' }
+async function saveCode(): Promise<void> {
+  if (scriptBusy.value) return
+  scriptBusy.value = true; scriptError.value = ''; note.value = ''
+  const answer = await scriptSave(game, props.where, code.value, linesOf())
+  scriptBusy.value = false
+  if (gone) return
+  if (!answer.ok) { scriptError.value = answer.reason; return }
+  note.value = answer.code === 'removed' ? 'Script removed.' : 'Script saved. Everyone who walks in runs it.'
+  startScript(code.value.trim() ? { code: code.value, lines: linesOf() } : null)
+}
 function grab(): void { holding.value = engine?.grab() ?? false; if (!holding.value) note.value = '' }
 function throwIt(): void { engine?.throwHeld(); holding.value = false }
 function setLoose(on: boolean): void { const p = picked.value; if (!p) return; if (on) p.loose = true; else delete p.loose; changed(p) }
@@ -162,6 +205,27 @@ const round = (v: number): number => Math.round(v * 100) / 100
           <button type="button" class="ws-pill" :class="{ 'is-on': holding }" :aria-pressed="holding" @click="grab">{{ holding ? 'Put down' : 'Pick up' }}</button>
           <button v-if="holding" type="button" class="ws-pill" @click="throwIt">Throw</button>
         </div>
+        <p v-if="score !== null" class="ws-score" role="status">Score {{ score }}</p>
+        <p v-if="said" class="ws-said" role="status">{{ said }}</p>
+        <button v-if="world.canEdit && world.scripts && !editing" type="button" class="ws-pill ws-code" :class="{ 'is-on': coding }" :aria-pressed="coding" @click="coding = !coding">Code</button>
+        <section v-if="coding" class="ws-panel ws-coder" aria-label="This space's code">
+          <label class="ws-hint" for="ws-template">Start from</label>
+          <select id="ws-template" class="ws-select" @change="useTemplate(($event.target as HTMLSelectElement).value); ($event.target as HTMLSelectElement).value = ''">
+            <option value="">Choose a starter…</option>
+            <option v-for="t in TEMPLATES" :key="t.id" :value="t.id">{{ t.title }}</option>
+          </select>
+          <label class="ws-hint" for="ws-code">JavaScript. <code>space.find('Chair')</code>, <code>space.on('tick', (dt) => …)</code>, <code>space.say(0)</code>.</label>
+          <textarea id="ws-code" v-model="code" class="ws-text ws-mono" rows="9" spellcheck="false" autocapitalize="off" autocomplete="off" :maxlength="SCRIPT.code" />
+          <label class="ws-hint" for="ws-lines">Words it may show, one a line ({1} for a number). Line 0 is the first.</label>
+          <textarea id="ws-lines" v-model="lines" class="ws-text" rows="3" />
+          <div class="ws-row ws-row-3">
+            <button type="button" @click="runNow">Run</button>
+            <button type="button" @click="stopNow">Stop</button>
+            <button type="button" :disabled="scriptBusy" @click="saveCode">{{ scriptBusy ? '…' : 'Save' }}</button>
+          </div>
+          <p v-if="scriptError" class="ws-hint ws-bad" role="alert">{{ scriptError }}</p>
+          <p class="ws-hint">Your code runs only in a sandbox on each visitor's phone: it can move your models and show your lines, nothing else.</p>
+        </section>
         <button v-if="world.canEdit" type="button" class="ws-pill ws-edit" :class="{ 'is-on': editing }" :aria-pressed="editing" @click="toggleEdit">{{ editing ? 'Done' : 'Place models' }}</button>
         <section v-if="editing" class="ws-panel" aria-label="Place your models">
           <template v-if="picked">
@@ -222,9 +286,18 @@ const round = (v: number): number => Math.round(v * 100) / 100
 .ws-wide.is-primary { background: #14181c; color: #fff; }
 .ws-wide:disabled { opacity: 0.5; }
 .ws-hint { margin: 0; font-size: 12px; color: #4a5560; }
+.ws-score { position: absolute; top: calc(max(8px, env(safe-area-inset-top)) + 52px); right: 12px; margin: 0; padding: 6px 12px; border-radius: 14px; background: rgba(20, 24, 28, 0.7); color: #fff; font: 700 15px var(--font); }
+.ws-said { position: absolute; left: 50%; top: 32%; transform: translateX(-50%); max-width: 80vw; margin: 0; padding: 10px 16px; border-radius: 16px; background: rgba(255, 255, 255, 0.92); color: #14181c; font: 600 16px var(--font); text-align: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25); }
+.ws-code { position: absolute; right: 12px; top: calc(max(8px, env(safe-area-inset-top)) + 96px); }
+.ws-coder { top: calc(max(8px, env(safe-area-inset-top)) + 148px); bottom: auto; max-height: calc(100vh - 340px); width: min(340px, calc(100vw - 24px)); }
+.ws-select, .ws-text { width: 100%; box-sizing: border-box; border: 1px solid #c9d0d6; border-radius: 10px; padding: 8px; font: 14px var(--font); color: #14181c; background: #fff; }
+.ws-select { min-height: 44px; }
+.ws-mono { font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre; overflow-x: auto; }
+.ws-row-3 { grid-template-columns: repeat(3, 1fr); }
+.ws-bad { color: #a1281d; font-weight: 600; }
 .ws-check { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: 13px; }
 .ws-check input { width: 20px; height: 20px; flex-shrink: 0; }
 .ws-acts { position: absolute; right: 12px; bottom: calc(max(18px, env(safe-area-inset-bottom)) + 54px); display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
-.ws-note { position: absolute; left: 50%; bottom: calc(max(18px, env(safe-area-inset-bottom)) + 124px); transform: translateX(-50%); width: max-content; max-width: 86vw; margin: 0; padding: 8px 12px; border-radius: 12px; background: rgba(20, 24, 28, 0.72); color: #fff; font-size: 13px; }
+.ws-note { position: absolute; left: 50%; top: calc(max(8px, env(safe-area-inset-top)) + 92px); transform: translateX(-50%); width: max-content; max-width: 86vw; margin: 0; padding: 8px 12px; border-radius: 12px; background: rgba(20, 24, 28, 0.72); color: #fff; font-size: 13px; }
 .ws-error { background: #a1281d; }
 </style>

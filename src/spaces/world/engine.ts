@@ -12,6 +12,8 @@ import { createLook, aimSun, THREE } from './look.ts'
 import { buildSpace, type BuiltSpace, type SpaceInput } from './space.ts'
 import { moveOf, step, WALKER, type Ground, type Walker } from './walk.ts'
 import type { Physics } from './physics.ts'
+import { playSound, runScript, type ScriptRunner } from './scripting.ts'
+import type { ScriptOp, SpaceScript } from '../script.ts'
 import type { PlacedModel } from '../../types/spaces.ts'
 
 export type View = 'first' | 'third'
@@ -24,6 +26,10 @@ export interface EngineEvents {
   tapped(at: { x: number; y: number; z: number; floor: number }): void
   /** Physics is running (or could not start: the walker then keeps to the floor plan). */
   physics?(state: 'on' | 'off'): void
+  /** A running script showed one of the space's lines, set the score, or stopped / reported an error. */
+  said?(text: string): void
+  scored?(value: number): void
+  scriptProblem?(message: string, stopped: boolean): void
 }
 
 export interface Engine {
@@ -39,6 +45,8 @@ export interface Engine {
   /** Move one placed model's drawing at once (the layout is the screen's; this only shows it). */
   placeModel(p: Placement): void
   highlight(key: string | null): void
+  /** Run a space's script (stopping the one before); null stops it. `names` are the models' names by placement key. */
+  runScript(script: SpaceScript | null, names: ReadonlyMap<string, string>): void
   /** A point a step in front of the walker, on its floor: where a newly chosen model appears. */
   inFront(): { x: number; z: number; floor: number }
   dispose(): void
@@ -118,6 +126,16 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
     if (!drag || event.pointerId !== drag.id) return
     const tap = drag.moved < 8
     drag = null
+    if (tap && !editing && script) {
+      // A tap on a model reaches the script (space.on('tap', …)).
+      const rect = canvas.getBoundingClientRect()
+      raycaster.setFromCamera(new THREE.Vector2(((event.clientX - rect.left) / rect.width) * 2 - 1, -((event.clientY - rect.top) / rect.height) * 2 + 1), camera)
+      let node: InstanceType<typeof THREE.Object3D> | null = raycaster.intersectObjects(space.modelObjects().filter((o) => o.visible), true)[0]?.object ?? null
+      while (node && !node.userData['key']) node = node.parent
+      const name = node ? scriptNames.get(String(node.userData['key'])) : undefined
+      if (name) script.tap(name)
+      return
+    }
     if (!tap || !editing) return
     const rect = canvas.getBoundingClientRect()
     raycaster.setFromCamera(new THREE.Vector2(((event.clientX - rect.left) / rect.width) * 2 - 1, -((event.clientY - rect.top) / rect.height) * 2 + 1), camera)
@@ -190,6 +208,7 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
       camera.position.copy(hit ? camTarget.clone().addScaledVector(dir, Math.max(0.3, hit.distance - 0.2)) : camWant)
       camera.lookAt(camTarget)
     }
+    script?.tick(dt)
     if (physics) {
       eyeAt.set(walker.x, walker.y + WALKER.eye, walker.z)
       lookAt.set(-Math.sin(walker.yaw) * Math.cos(walker.pitch), Math.sin(walker.pitch), -Math.cos(walker.yaw) * Math.cos(walker.pitch))
@@ -197,13 +216,55 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
     }
     look.renderer.render(look.scene, camera)
   }
+  // The space's script (phase 4): it runs in the sandbox; what it asks for is checked (src/spaces/script.ts) and applied here.
+  let script: ScriptRunner | null = null, scriptRun = 0
+  let scriptNames: ReadonlyMap<string, string> = new Map()
+  const byName = (name: string): InstanceType<typeof THREE.Object3D> | undefined => {
+    for (const [key, n] of scriptNames) if (n === name) return space.modelObject(key)
+    return undefined
+  }
+  const tinted = new WeakSet<InstanceType<typeof THREE.Object3D>>()
+  const applyOp = (op: ScriptOp): void => {
+    if (op.op === 'say') { events.said?.(op.text); return }
+    if (op.op === 'score') { events.scored?.(op.value); return }
+    if (op.op === 'sound') { playSound(op.name); return }
+    const object = byName(op.name)
+    if (!object) return
+    const key = String(object.userData['key'])
+    if (op.op === 'move') { object.position.set(op.x, op.y, op.z); physics?.moveModel(key, object) }
+    else if (op.op === 'turn') { object.rotation.y = (op.degrees * Math.PI) / 180; physics?.moveModel(key, object) }
+    else if (op.op === 'push') physics?.pushModel(key, op)
+    else if (op.op === 'show') { object.userData['hidden'] = !op.on; object.visible = op.on && (object.userData['floor'] ?? 0) <= walker.floor; physics?.showModel(key, op.on) }
+    else if (op.op === 'color') {
+      // Each placement gets its own copies of its materials the first time, so one model's colour leaves its copies alone.
+      if (!tinted.has(object)) {
+        tinted.add(object)
+        object.traverse((n) => { const mesh = n as InstanceType<typeof THREE.Mesh>; if (mesh.isMesh) mesh.material = Array.isArray(mesh.material) ? mesh.material.map((m) => m.clone()) : mesh.material.clone() })
+      }
+      object.traverse((n) => {
+        const mesh = n as InstanceType<typeof THREE.Mesh>
+        if (mesh.isMesh) for (const m of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) (m as InstanceType<typeof THREE.MeshStandardMaterial>).color?.set(op.hex)
+      })
+    }
+  }
+  const scriptHost = {
+    objects: () => [...scriptNames].flatMap(([key, name]) => {
+      const o = space.modelObject(key)
+      return o ? [{ name, x: o.position.x, y: o.position.y, z: o.position.z, ry: (o.rotation.y * 180) / Math.PI, loose: o.userData['loose'] === true }] : []
+    }),
+    walker: () => ({ x: walker.x, y: walker.y, z: walker.z, yaw: walker.yaw }),
+    apply: applyOp,
+    problem: (message: string, stopped: boolean) => events.scriptProblem?.(message, stopped),
+  }
+
   // Physics: loaded beside the first frames; until it is ready (or if it cannot start) the walker keeps to the floor plan.
   let physics: Physics | null = null, jumping = false
   const eyeAt = new THREE.Vector3(), lookAt = new THREE.Vector3()
   const syncModels = (): void => {
     if (!physics) return
     const objects = space.modelObjects()
-    physics.setModels(objects.filter((o) => !o.userData['loose']), objects.filter((o) => o.userData['loose']).map((object) => ({ key: String(object.userData['key']), object })))
+    const keyed = (o: InstanceType<typeof THREE.Object3D>) => ({ key: String(o.userData['key']), object: o })
+    physics.setModels(objects.filter((o) => !o.userData['loose']).map(keyed), objects.filter((o) => o.userData['loose']).map(keyed))
   }
   let closed = false
   const modelsReady = space.setModels(input.models, bytesOf)
@@ -250,9 +311,19 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
         }
       })
     },
+    runScript(next, names) {
+      script?.stop()
+      script = null
+      scriptNames = names
+      const run = ++scriptRun
+      // Once the models are drawn, so the script finds every one of them.
+      if (next && next.code.trim()) void modelsReady.then(() => { if (run === scriptRun && !closed) script = runScript(next, { w: W, d: D }, scriptHost) })
+    },
     inFront() { return { x: walker.x - Math.sin(walker.yaw) * 1.5, z: walker.z - Math.cos(walker.yaw) * 1.5, floor: walker.floor } },
     dispose() {
       closed = true
+      script?.stop()
+      script = null
       physics?.dispose()
       physics = null
       cancelAnimationFrame(frame)

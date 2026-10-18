@@ -8,9 +8,12 @@ type Refused = { ok: false; code: string; reason: string }
 export interface SpaceDesign { ok: true; code: 'designed' | 'checked'; plan: SpacePlanV1; problems: SpaceProblem[]; cost: number; cash: number | null; space: { grid: number; owned: boolean }; model?: string; costMicro?: number }
 type Where = { target: SpaceTarget; roomId?: string }
 
+export interface HostView { kind: 'butler' | 'dj' | 'quizmaster' | 'gateman' | null; persona: string; on: boolean; name: string | null; kinds: { id: string; label: string; name: string }[] }
 export interface SpacesHttpRoutes {
   'GET /api/spaces/status': { response: Ok<{ ok: true; code: 'ok'; ai: boolean }>; errors: E }
   'POST /api/spaces/design': { body: Where & { prompt: string; keep?: boolean }; response: Ok<SpaceDesign | Refused>; errors: E | 'invalid_prompt' }
   'POST /api/spaces/check': { body: Where & { plan: PackedPlan | SpacePlanV1 }; response: Ok<SpaceDesign | Refused>; errors: E }
+  'GET /api/spaces/host': { response: Ok<{ ok: true; code: 'ok'; ai: boolean; host: HostView }>; errors: E }
+  'POST /api/spaces/host': { body: { kind: HostView['kind']; persona?: string; on: boolean }; response: Ok<{ ok: true; code: 'saved' | 'removed'; host: HostView } | Refused>; errors: E | 'invalid_kind' | 'invalid_on' }
   'POST /api/spaces/apply': { body: Where & { plan: PackedPlan | SpacePlanV1; requestId: string }; response: Ok<{ ok: true; code: 'applied'; placed: number; spent: number; problems: SpaceProblem[] } | Refused>; errors: E | 'invalid_request_id' }
 }

@@ -9,6 +9,7 @@ A player designs a home or a group room in their own words, or pastes a plan wri
 3. **Import**: paste a Space Plan (below). It is checked by the same rules, with no model.
 4. **Apply**. A home must be applied at home. Pieces the player already owns are reused; pieces the plan does not use go to storage (nothing is sold); the rest is bought at the shop price. A group room's furniture is free and only its members can apply a plan.
 5. **Walk in**: the home scene shows the new layout at once.
+6. **Share my place** makes a share card with the plan's title ("I designed my place in Allworld: …"); a friend who opens it lands with the player, as a house card does, and the link carries `utm_campaign=space` so arrivals from spaces are counted apart. **Throw a party here** starts an owambe in the home named after the plan. The home's own link (Houses → Visitors → Share a link to my home) lets friends walk straight in.
 
 ## The Space Plan (version 1)
 
@@ -75,7 +76,20 @@ All need the device session; answers are `{ ok: false, code, reason }` when refu
 
 | Setting (admin World page) | Default |
 |---|---|
-| `spacesAi` | on when the server has a model key (`AI_GATEWAY_API_KEY` or `OPENROUTER_API_KEY`), else off. Import works either way |
+| `spacesAi` | **off** until an operator turns it on (Admin → World → Settings). It also needs a model key; without one the router answers "resting". Import, sharing and the agent tools work either way |
 | `spacesDesignsPerHour` | 10 designs per player per hour, on top of the router's daily caps |
 
-Checks: 60 an hour. Applies: 20 an hour. Nothing new is stored: a home changes through its life, a room through `social.convs[g.N].room`.
+Checks: 60 an hour. Applies: 20 an hour. A home changes through its life, a room through `social.convs[g.N].room`. The one new stored thing is `spaces.homes[publicId] = { title, at }`, the title of the plan last applied to a home (it passed the text filter and `agentWords` again on apply), read by the share card and erased with the player (`server/spaces/store.ts`, `server/admin/erasure-data.ts`).
+
+## A host
+
+A player may give their home an AI host: Houses → **AI host for my home**. Four to choose from (Jeeves the butler, DJ Spinz, Quizmaster Ade, Gateman Musa), with an optional one-line description in the player's words (160 characters; the text filter and the AI words rule refuse contact details, money, flirting and the like).
+
+- While anybody is inside the home, the host stands there as an AI-played character with the AI mark (a virtual member of the home's room, as the house agents are: `server/spaces/host.ts`).
+- It greets each guest once a visit, by first name, and from the second visit as a returning guest ("Welcome back, Tunde. Visit number 3").
+- During a party it says one MC line every four minutes.
+- It never answers questions and never claims to be a person.
+- **Words:** each line is written from the host's own templates, so a host needs no model at all. With a model key and `spacesHostModel` on, a greeting or MC line may be written through the model router instead: purpose `agent-talk`, and `carriesPlayerWords` is true when the owner's description is in the prompt. A home's host uses at most 20 model lines a day, at most 30 lines an hour in total. Any refusal falls back to the written line. Every line passes `agentRoom.say`, which applies the text filter and `agentWords(…, { toMinor: true })`.
+- **Stored:** `spaces.hosts[owner] = { kind, persona, on, at, guests: { [guest]: { n, at } } }`. It keeps at most 50 guests, each forgotten after 90 days. When a player is erased, their host goes with them, and so do their visits in every other host's book.
+- **Settings:** `spacesHosts` is off until an operator turns it on. `spacesHostModel` is on by default.
+- **Not built yet:** the plan's six-hourly offline line to the house chat. A host lives only while people are in the home.

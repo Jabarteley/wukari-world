@@ -20,6 +20,8 @@ const PassOn = defineAsyncComponent(() => import('../legacy/PassOn.vue'))
 // Design with AI (docs/SPACES.md): fetched only when opened.
 const DesignSheet = defineAsyncComponent(() => import('../spaces/DesignSheet.vue'))
 const designOpen = ref(false)
+const HostSheet = defineAsyncComponent(() => import('../spaces/HostSheet.vue'))
+const hostOpen = ref(false)
 const passOpen = ref(false)
 const passToggled = (event: Event): void => { passOpen.value = (event.target as HTMLDetailsElement).open }
 import HouseArt from './HouseArt.vue'
@@ -51,10 +53,12 @@ const move = (id: HouseId): Promise<boolean> => act(`move:${id}`, () => command(
   <p v-if="!property" class="ui-error">Houses could not be loaded. Close this app and open it again.</p>
   <div v-else class="houses-app">
     <DesignSheet v-if="designOpen" target="home" @close="designOpen = false" />
+    <HostSheet v-if="hostOpen" @close="hostOpen = false" />
     <details class="ui-card">
       <summary>Furniture, land, stories &amp; neighbours</summary>
       <button type="button" class="ui-button is-block" @click="shell.open('buy')">Arrange furniture</button>
       <button type="button" class="ui-button is-block" @click="designOpen = true">Design with AI</button>
+      <button type="button" class="ui-button is-block" @click="hostOpen = true">AI host for my home</button>
       <button type="button" class="ui-button is-block" @click="shell.open('land')">Expand my land</button>
       <button type="button" class="ui-button is-block" @click="shell.open('stories')">Create a story scene</button>
       <button type="button" class="ui-button is-block" @click="shell.open('neighbourhood')">Visit my neighbours</button>

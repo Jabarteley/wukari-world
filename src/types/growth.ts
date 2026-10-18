@@ -25,7 +25,7 @@ import type { SourceEvent } from '../game/attribution.ts'
 // ---- shares and the events calendar ---------------------------------------------------------------
 
 /** src/game/share-model.ts SHARE_KINDS. */
-export type ShareKind = 'invite' | 'house' | 'missions' | 'week' | 'table' | 'event' | 'wedding' | 'election' | 'news' | 'gist'
+export type ShareKind = 'invite' | 'house' | 'missions' | 'week' | 'table' | 'event' | 'wedding' | 'election' | 'news' | 'gist' | 'space'
 
 /**
  * What a share says (share-model.js cleanFacts): facts the server took from the sharer's own life.
@@ -727,6 +727,6 @@ export const GROWTH_METRICS_RESPONSE_KEYS = [
 export const OUTREACH_OPERATOR_RESPONSE_KEYS = [
   'comeback', 'email', 'log', 'previews', 'push', 'quietNow', 'rules', 'serverTime', 'whatsapp',
 ] as const satisfies readonly (keyof Ok<OutreachOperatorResponse>)[]
-export const SHARE_KINDS = ['invite', 'house', 'missions', 'week', 'table', 'event', 'wedding', 'election', 'news', 'gist'] as const satisfies readonly ShareKind[]
+export const SHARE_KINDS = ['invite', 'house', 'missions', 'week', 'table', 'event', 'wedding', 'election', 'news', 'gist', 'space'] as const satisfies readonly ShareKind[]
 export const CLIENT_SIGNALS = ['webgl-missing', 'opera-mini', 'save-data', 'slow-start', 'installed', 'share-sheet', 'share-fallback'] as const satisfies readonly ClientSignal[]
 export const FUNNEL_STEPS = ['onboarded', 'goal-1', 'settled', 'job', 'shift', 'goals-done', 'mission', 'table', 'day-two-work'] as const satisfies readonly FunnelStep[]

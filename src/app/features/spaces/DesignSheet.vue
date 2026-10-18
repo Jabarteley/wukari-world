@@ -10,10 +10,14 @@ import { ruledPlot } from '../../../game/home-plan.ts'
 import { normalizeSpacePlan, SPACE_LIMITS, type SpacePlanV1, type SpaceProblem } from '../../../spaces/plan.ts'
 import PlanPreview from './PlanPreview.vue'
 import { aiStatus, apply, check, design } from './spacesClient.ts'
+import { useGrowth } from '../growth/useGrowth.ts'
+import { startParty } from '../visit/visitStore.ts'
 
 const props = defineProps<{ target: 'home' | 'room'; roomId?: string }>()
 const emit = defineEmits<{ close: []; applied: [] }>()
 const { game } = useApp()
+const growth = useGrowth()
+const partied = ref(false)
 
 const tab = ref<'describe' | 'import'>('describe')
 const ai = ref(true)
@@ -94,6 +98,16 @@ async function applyPlan(): Promise<void> {
   done.value = true
   emit('applied')
 }
+/** After a home is applied: the share card of the designed home (the `space` kind), or an owambe in it named after the plan. */
+function sharePlace(): void { void growth.share('space', { surface: 'phone' }) }
+async function throwParty(): Promise<void> {
+  if (busy.value) return
+  error.value = ''; busy.value = 'apply'
+  const why = await startParty((plan.value?.title ?? '').slice(0, 40), 'gold')
+  busy.value = ''
+  if (why) { error.value = why; return }
+  partied.value = true
+}
 function change(): void { plan.value = null; problems.value = []; error.value = '' }
 </script>
 
@@ -102,9 +116,13 @@ function change(): void { plan.value = null; problems.value = []; error.value = 
     <header class="sp-head"><h2>Design your {{ isHome ? 'home' : 'room' }}</h2><p>An AI draws it. You check it, then it is yours.</p></header>
     <div v-if="done" class="sp-body sp-done" role="status">
       <h3>{{ isHome ? 'Your home is ready' : 'Your room is ready' }}</h3>
-      <p>{{ isHome ? 'The pieces are in place.' : 'Everyone in the group can see the new pieces.' }}</p>
+      <p>{{ isHome ? 'The pieces are in place. Send it to your friends: they can walk in from the link.' : 'Everyone in the group can see the new pieces.' }}</p>
       <button type="button" class="ui-button is-primary is-block sp-btn" @click="emit('close')">{{ isHome ? 'Walk in' : 'Close' }}</button>
-      <button v-if="isHome" type="button" class="ui-button is-block sp-btn" @click="emit('close')">Close</button>
+      <template v-if="isHome">
+        <button type="button" class="ui-button is-block sp-btn" :disabled="growth.state.busy !== null" @click="sharePlace">{{ growth.state.busy === 'space' ? 'Preparing…' : 'Share my place' }}</button>
+        <button type="button" class="ui-button is-block sp-btn" :disabled="busy !== '' || partied" @click="throwParty">{{ partied ? 'Party on: invite friends from Houses' : 'Throw a party here' }}</button>
+      </template>
+      <p v-if="error" class="sp-error" role="alert">{{ error }}</p>
     </div>
     <template v-else>
       <div v-if="!plan" class="sp-tabs" role="tablist">

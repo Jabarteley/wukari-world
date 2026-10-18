@@ -287,7 +287,10 @@ export default defineConfig({
     terserOptions: { maxWorkers: 1, compress: { passes: 3 }, format: { comments: false } },
     modulePreload: { polyfill: false },
     sourcemap: wantMaps ? 'hidden' : false,
-    rollupOptions: { treeshake: { moduleSideEffects: (id) => !id.endsWith('/src/scene/home-scene.ts') && !/\/src\/game\/wardrobe\/(catalogue|rules|look|view|prices)\.ts$/.test(id) && !id.endsWith('/src/game/table-stakes.ts') && !id.endsWith('/src/character/native-catalog.ts') && !id.endsWith('/src/character/native-migration.ts') }, input: { app: 'index.html', adminshell: 'adminshell.html', replay: 'replay.html' }, output: { hashCharacters: 'hex', chunkFileNames: 'assets/[name]-[hash:7].js', entryFileNames: 'assets/[name]-[hash:7].js', assetFileNames: 'assets/[name]-[hash:7][extname]', onlyExplicitManualChunks: true, manualChunks(id) {
+    rollupOptions: { treeshake: { moduleSideEffects: (id) => !id.endsWith('/src/scene/home-scene.ts') && !/\/src\/game\/wardrobe\/(catalogue|rules|look|view|prices)\.ts$/.test(id) && !id.endsWith('/src/game/table-stakes.ts') && !id.endsWith('/src/character/native-catalog.ts') && !id.endsWith('/src/character/native-migration.ts') }, input: { app: 'index.html', adminshell: 'adminshell.html', replay: 'replay.html', countries: 'county/index.html', cities: 'cities/index.html', cityScenes: 'cities/scenes/index.html' }, output: { hashCharacters: 'hex', chunkFileNames: 'assets/[name]-[hash:7].js', entryFileNames: 'assets/[name]-[hash:7].js', assetFileNames: 'assets/[name]-[hash:7][extname]', onlyExplicitManualChunks: true, manualChunks(id) {
+    const recipeCity = id.match(/\/src\/scene\/recipe\/cities\/([a-z0-9-]+)\.ts$/)
+    if (recipeCity) return `recipe-city-${recipeCity[1]}`
+    if (/\/src\/scene\/recipe\//.test(id)) return 'scene-recipes'
     if (id === CITY_INDEX_ID) return 'city-index'
     if (/\/src\/game\/wardrobe\//.test(id)) return undefined
     // The stake rules are read by the server and by the Tables app only (the browser's growth system leaves 'tables.server' out): leave them to the import graph, never the engine.

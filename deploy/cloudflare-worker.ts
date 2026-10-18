@@ -52,6 +52,7 @@ import { oldCharacterLanding } from './legacy-bridge.ts';
 import { siteFile } from '../server/site-files.ts';
 import { ADMIN_HOST_ENV, ADMIN_ROBOTS, ADMIN_SHELL, adminAddress, adminHostName, adminHostRoute, isAdminHost } from '../server/admin/host.ts';
 import { withPathMeta } from '../server/path-meta.ts';
+import { sceneCataloguePage } from '../server/scene-catalogue.ts';
 import { createSqliteStore } from './sqlite-store.ts';
 import { parseLayout } from '../server/keyed.ts';
 import { RELEASE_STORE_LAYOUT } from './store-release.ts';
@@ -257,7 +258,8 @@ async function respond(request: Request, env: WorkerEnv): Promise<Response> {
   const head = request.method === 'HEAD';
   const origin = publicOrigin(env, url);
   // A short address (/games, /abuja, …) gets its own title, description and link-preview tags; the page's scripts are untouched, so the hashes below are the same.
-  const text = withPathMeta(await (head ? await env.ASSETS.fetch(new Request(request.url, { method: 'GET' })) : response).text(), url.pathname, origin, url.search);
+  const html = await (head ? await env.ASSETS.fetch(new Request(request.url, { method: 'GET' })) : response).text();
+  const text = sceneCataloguePage(url.pathname) ? html : withPathMeta(html, url.pathname, origin, url.search);
   for (const [name, value] of Object.entries(appHeaders({ ...factsOfUrl(url), scriptHashes: await inlineScriptHashes(text), telemetry: telemetryOrigins(readTelemetryConfig(env, { buildId: env.BUILD_ID })), avatarAssets: text.includes('name="allworld-3d-assets"'), accounts: accountsConfig(env), trustProviders: trustHeaderConfig(envReader(env), accountsConfig(env)) }))) headers.set(name, value);
   if (head || response.status !== 200) return new Response(head ? null : text, { status: response.status, headers });
   // The game's own page: its default link-preview image is made absolute, because the crawlers of chat apps do not

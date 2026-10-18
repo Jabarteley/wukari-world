@@ -76,6 +76,10 @@ jobs:
             dist/assets/*.css
             dist/.vite/manifest.json
             dist/index.html
+            dist/county/index.html
+            dist/cities/index.html
+            dist/cities/scenes/index.html
+            dist/assets/scene-factory/**
           retention-days: 3
       - run: npm run size:download
       - run: npm run cartridge:check

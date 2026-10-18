@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "observedAt": "2026-10-18T06:23:06.744248+00:00",
+  "httpStatus": 200,
+  "body": {
+    "ok": true,
+    "build": "joinallworld-678b6bbe50900561d712ebe35f4",
+    "relay": true,
+    "companionAi": true,
+    "serverTime": 1792304586789,
+    "transport": "cloudflare",
+    "buildId": "joinallworld-678b6bbe50900561d712ebe35f4"
+  },
+  "sourceSha": "678b6bbe50900561d712ebe35f4932e48227d3b5",
+  "expectedBuildId": "joinallworld-678b6bbe50900561d712ebe35f4",
+  "activeBuildMatches": true,
+  "responseSha256": "1066fcaf4a4fffc81a1ee00ee65ea4bdd7f4b8dbe662bdc4e2625db7fc407ed7",
+  "releaseRun": 39102769792,
+  "priorOldBuildProof": "phase1-live-health-678b6bbe.json",
+  "routingChanges": false,
+  "browserAcceptance": "pending-read-only-public-check"
+}

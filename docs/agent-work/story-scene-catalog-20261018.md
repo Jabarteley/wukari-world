@@ -1,5 +1,14 @@
 # City scene catalogue work record
 
+## Finite chunk-cycle correction — 18 October 2026
+
+- Integration owner granted exclusive `vite.config.ts` chunk-rule ownership for one source-only correction on `story/phase2-scenes`, revision `a44af5f0c25bf6195c66c4365afcc3bde290c008`. Catalogue source remains frozen; no other shared source is owned by this unit.
+- Hosted CI `39107151597` reports a new `glyphs -> shell-kit -> glyphs` chunk cycle and startup Brotli 195,783 bytes against the unchanged 195,600-byte cap. Earlier source review saw the subscription but missed that `onlyExplicitManualChunks` extracts the intermediary module; that review was insufficient to rule out a chunk-level initialization cycle.
+- Evidence: `/tmp/story-catalogue-ci-39107151597-build.log`, warning at line 206. `GameIcon.vue` imports `glyphs.ts` and `iconSvg.ts`; those helpers import the icons and DOM modules already assigned to `shell-kit`. Both helpers have only `GameIcon.vue` as their runtime importer. The glyph subscription executes at module evaluation, making coherent ordering material.
+- Planned correction: explicitly assign only `src/app/ui/glyphs.ts` and `src/app/ui/iconSvg.ts` to the existing `shell-kit`, closing both intermediary paths. No recipe, catalogue, host or lazy Phone glyph definitions are added to startup. No broad scene regrouping is justified by this evidence.
+- Resources: source reads and edits only; no local build, tests, browser, server, heavy analysis or application output changes. Integration owner retains commit, hosted CI and runtime acceptance.
+- Applied the one-line rule correction; `git diff --check` passes. `vite.config.ts` SHA-256: `4b2c98b810b4152a42a8c642b9d1b53d0447a9c11e2b7895f65872180e3afdb5`. Source-level handoff is ready for the next hosted measurement. Confirm the new glyph chunk cycle is absent and evaluate startup plus the full scene dependency closure; the current named host size is not a full-host saving. Vite ownership returns to the integration owner at this handoff.
+
 ## Identity
 
 - **Work ID:** `story-scene-catalog-20261018`

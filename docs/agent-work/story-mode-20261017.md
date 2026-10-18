@@ -5,7 +5,7 @@
 - **Work ID:** `story-mode-20261017`
 - **Owner:** Story programme integration
 - **Thread:** `01a14bf1-fd6d-7de1-9770-a0c22f5d554a`
-- **UTC updated:** `2026-10-18T07:16:26Z`
+- **UTC updated:** `2026-10-18T07:25:02Z`
 - **Status:** `active`
 - **Work state:** `implementation`
 
@@ -545,3 +545,17 @@ The heavy slot is free. Root is restarting only the task QA preview fromea762506
 - Final per-venue runtime checks37/37 and compiler/installer checks49/49 pass. Canonical host measurements cover284cities/6423venues using34actual support signatures, not6423renders: host-scenery.json SHA147805aa16d306813b6423666e02ceba90cfb2be40621c3a00c1cf07f7072318,1175sourcepins freshly verified. Real Accra admits12native residents,pending0/errors0,total63012tri/24draw. Production assets/index,284install, normal typecheck and full fleet/visual proof remain open.
 - V2 hanging cloth accepted at its bounded pixel scope; folded stock rejected. Actual V2 ray diagnosis proves a structural post cast-shadow contribution to its diagonal patch. V3 retains the sun/materials and accepted hanging cloth, changing folded stock only:3492hero triangles/58392raw/32247Brotli,1448stall triangles. All19other kit parts and the upper hero compare equal at the stated raw/decoded geometry and UV layer. Producer final packaging and independent pixels remain pending; no bulk approval.
 - Next executable step: publish this finite catalogue correction, run hosted CI and inspect its actual bytes/graph; review packaged V3 and continue integration. External factory spendUS$0; assistant usage cost unavailable.
+
+
+## Emitted correction follow-up 2026-10-18T07:24:00Z
+
+- Pusheda44af5f0c25bf6195c66c4365afcc3bde290c008; hostedCI39107151597 builds and records the Vite manifest but still rejects195783startupBrotli,183over unchanged195600. Raw614081/gzip222792 pass. New emittedglyphs→shell-kit→glyphs cycle identifies an omitted shared subscription module; a finite independent source correction owns onlyVite rules. Existing character/campus cycles remain separate. Namedhost78963raw/29919gzip still excludes extracted dependencies; not a wholehost saving. Exactnegative receiptphase2-catalogue-a44af5f0-ci.json retained. Artifact download stays outsideclone;5351 untouched.
+- Exact upstream dependency install completed through the heavy slot,Node512,npmci89packages/4seconds; terminal0. No runtime preview restart or local app build. Producer owns serial V4 canopy generation after V3 independent cloth acceptance; compiler unit owns unshared package/docs/lazy prefetch source. Temporary third source-only emitted-graph correction is justified by this independent CI failure and shares no writers or local heavy slot.
+- Source-only educational audit covers8episodes/24daily-weeklymissions inKano/Nairobi/Tokyo/Paris. Fictional tasks practice transferable choices but no sampled episode teaches sourced history, and mission completion does not assess learning. Four original lesson proposals now have checked primary source claims, exactURLs and application/explanation prompts inprep/mission-learning-primary-candidates-20261018.json. They are preparation only; Phase3 integration and browser learning proof remain open.
+- Next: independently review the emitted-cycle correction, publish its exact hosted measurement, inspect actual catalogue UI from outside-clone artifact, and review V4 canopy. No bulk assets/Phase2release accepted.
+
+
+## Cohesive glyph correction 2026-10-18T07:25:02Z
+
+- Review of the actual emitted warning confirms the shared group omitted two intermediary modules:GameIcon imports bothglyphs.ts andiconSvg.ts, which import the icons/DOM helpers already in shell-kit. The single Vite amendment groups exactly those two already-startup helpers with their callers/dependencies. The glyph subscription remains once per module evaluation; no runtime code, lazy feature or budget changes. Source review accepts the correction for hosted measurement only. Independent reviewer returnedVite ownership; gitdiff--check passes.
+- Originalnegativea44 CI receipt remains unchanged in its measurements. Next executable step: commit/push the cohesive helper correction with its diagnostic receipts, dispatch exact CI and require emitted-cycle/byte/browser proof. New scene packs and unfinished package/prefetch/factory files stay excluded.

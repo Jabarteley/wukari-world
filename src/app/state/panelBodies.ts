@@ -63,6 +63,12 @@ const loaders = {
   'travel/VisitorHome': () => import('../features/travel/VisitorHome.vue'),
   'world/WorldLgaPanel': () => import('../features/world/WorldLgaPanel.vue'),
   'world/HouseCard': () => import('../features/world/HouseCard.vue'),
+  'feed/FeedApp': () => import('../features/feed/FeedApp.vue'),
+  'feed/MeApp': () => import('../features/feed/MeApp.vue'),
+  'feed/CrewsApp': () => import('../features/feed/CrewsApp.vue'),
+  'feed/PlansApp': () => import('../features/feed/PlansApp.vue'),
+  'feed/WorkApp': () => import('../features/feed/WorkApp.vue'),
+  'lite/LiteShell': () => import('../features/lite/LiteShell.vue'),
 } satisfies Record<string, () => Promise<BodyModule>>
 
 export type PanelBody = keyof typeof loaders

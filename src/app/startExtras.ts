@@ -15,6 +15,8 @@ export function startExtras(diagnostics: boolean): void {
   if (location.search.includes('agents-join=')) void import('./features/agents/joinEntry.ts').then(({ startJoin }) => { startJoin() })
   // A web assistant's sign-in (/oauth/authorize): its request is kept for this tab and Settings asks the person (features/agents/oauthEntry.ts).
   if (location.pathname === '/oauth/authorize') { void import('./features/agents/oauthEntry.ts').then(({ startOAuth }) => { startOAuth() }); return }
+  // A crew's or an event's invitation (/c/<code>, /ev/<code> send people to /?crew=, /?event=): opened once there is a life (features/feed/feedEntry.ts).
+  if (/[?&](crew|event|friend)=/.test(location.search)) void import('./features/feed/feedEntry.ts').then(({ startFeedEntry }) => { startFeedEntry() })
   const startPaths = (): void => { void import('./features/paths/arrive.ts').then((module) => { module.startPaths() }) }
   // The Square's address or a group room's link: kept for this tab, then the place is opened once there is a life (features/places/placeEntry.ts).
   if (location.pathname === '/square' || location.pathname === '/square/' || location.pathname.startsWith('/r/')) { void import('./features/places/placeEntry.ts').then((module) => { module.startPlaceEntry() }); return }

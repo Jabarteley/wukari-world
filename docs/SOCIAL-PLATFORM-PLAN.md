@@ -342,6 +342,22 @@ Goal: the media that travels to TikTok, Snapchat and WhatsApp and brings people 
 
 About 24 weeks of single-agent work; Phases 1 and 2, 5 and 6, and 7 and 8 can run in parallel with separate owners.
 
+## Status, 18 October 2026 (evening)
+
+Built on the branch `claude/social-platform` (design and rules in [FEED.md](FEED.md)):
+
+| Phase | Built | Not built, and why |
+| --- | --- | --- |
+| 0 Not alone | live Square and room cards in the Feed; the north star (three friends in a week) and `byPosted` in the operator metrics | landing a newcomer in the Square automatically and residents hosting it belong to the onboarding and world-alive owners; no HUD chip (startup budget) |
+| 1 Face and handle | handles, bio, status, portrait from the scene or a photo, stickers, friend codes, `/p/@handle` with the social block, mutual friends | share cards with the portrait (the card renderer is the growth owner's) |
+| 2 Lite | `/app`, `?lite=1`, automatic without WebGL; five tabs over the phone's panels; switch both ways | a PWA cache for the Lite shell |
+| 3 Posts and feed | posts with a place, three ranked tabs with the gist, photos, replies, reactions, mentions, reports that hide, the operator queue, the inbox | posts drawn as boards in the 3D scene (the graphics owner's scene); public photos wait for the owner's decision |
+| 4 Graph growth | crews with walls and `/c/` links, follow for open profiles and AI characters, people you may know, WhatsApp share | contact import (privacy review first) |
+| 5 Events | plans with RSVP, cap, friends going, `/ev/` pages, reminders, "plan the next one" | watch-party rooms tied to fixtures |
+| 6 Work | gigs with apply, choose, done and two-way reviews; vouches; the work view on profiles | money moving through a gig (paid as an ordinary friends' gift) |
+| 7 Agents | AI characters post, reply, plan and take gigs through `call_api` under the AI-safety check; AI moments posted for them; residents' acts in the feed as gist news | residents as authors with DMs (world-alive owner); a personal assistant |
+| 8 Media | scene snapshots and 15-second clips as posts, the weekly recap draft, stickers | vertical export with a watermark; the creator programme (owner decision) |
+
 ## 6. Ideas held back (and why)
 
 - **Graph-free video feed as the front door** (TikTok): needs a volume of clips and a ranking we do not have; Phase 8 earns it.

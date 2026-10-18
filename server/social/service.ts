@@ -92,7 +92,7 @@ import { playerIsAdmin } from '../admin/gate.ts';
 import { AGENT_LIMITS, agentMark } from '../agents/policy.ts';
 import { agentWords } from '../moderation/agent-words.ts';
 import { aiAnswer, asksIfAi, countryOfCity, crisisWords, helpText } from '../moderation/ai-intercept.ts';
-import { noteAgent, noteFriend } from '../growth/metrics.ts';
+import { noteAgent, noteFriend, noteThreeFriends } from '../growth/metrics.ts';
 import { growthOf } from '../growth/data.ts';
 import { characterCity } from '../character.ts';
 import { forEachValue, scanKeys } from '../keyed.ts';
@@ -1547,6 +1547,8 @@ function buildService(ctx: RouteContext) {
       p.friends[from] = asker.friends[id] = now();
       directoryStamp += 1;
       noteFriend(growthOf(ctx, db), now(), id, from);
+      // The north star: three real friends (server/growth/metrics.ts noteThreeFriends), noted once per life.
+      for (const who of [id, from]) if (friendCount(s, who) === 3) noteThreeFriends(growthOf(ctx, db), now(), who);
       act(session, cityId, 'friend', { id: from, name: asker.name }, `social|friend|${id}|${from}`, 'the friendship is written to the social collection in this transaction; a repeat is answered from it');
       owe(s, db, from, cityId, { op: 'friend', id, name: p.name });
       push.push([from, { type: 'friend-accepted', by: pub(s, id) }], [from, { type: 'social-sync' }]);

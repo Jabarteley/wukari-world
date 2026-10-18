@@ -160,14 +160,14 @@ export const HOUSES_DRAW_CALLS: Budget = {
 // ---- Built JavaScript today: gzip and raw (src/app/entry.test.ts, src/scene/city-scenes.test.ts) --------------------------------
 
 export const STARTUP_RAW: Budget = {
-  value: 615_000, unit: 'raw bytes', limit: 'max', status: 'current',
+  value: 616_000, unit: 'raw bytes', limit: 'max', status: 'current',
   enforcedIn: 'src/app/entry.test.ts',
-  why: 'Measured 614,121 bytes after the reviewed wallet audit, exact-action recovery and cross-identity snapshot mask. The 0.99% raw-only allowance over the former 609,000 ceiling covers those safety paths; gzip and Brotli limits remain unchanged.',
+  why: 'Measured 614,121 bytes after the reviewed wallet audit, exact-action recovery and cross-identity snapshot mask (0.99% over the former 609,000). Raised by 1,000 on 18 Oct 2026 for the social platform: the Lite decision (no scene for a browser that cannot draw one), the feed apps\' five registrations and their inbox badge, measured 615,175. The owner\'s 17 Oct direction lifted the first-download budget for the 3D world; first paint is unchanged.',
 }
 export const STARTUP_GZIP: Budget = {
-  value: 223_000, unit: 'gzip bytes', limit: 'max', status: 'current',
+  value: 223_500, unit: 'gzip bytes', limit: 'max', status: 'current',
   enforcedIn: 'src/app/entry.test.ts',
-  why: 'The same startup, gzipped: measured 219.5 kB plus about 1.6%.',
+  why: 'The same startup, gzipped: measured 219.5 kB plus about 1.6%; raised by 500 on 18 Oct 2026 with the raw budget (Lite and the feed apps), measured 223,107.',
 }
 export const LOADING_RAW: Budget = {
   value: 92_000, unit: 'raw bytes', limit: 'max', status: 'current',
@@ -198,9 +198,9 @@ export const FIRST_PAINT_BROTLI: Budget = {
   why: 'Shell first paint may not grow: index.html, its stylesheet and the chunks it statically imports (baseline after phase 0, with the boot-recovery and old-browser notice: 36.6 kB, plus about 0.6%).',
 }
 export const STARTUP_BROTLI: Budget = {
-  value: 195_600, unit: 'brotli bytes', limit: 'max', status: 'provisional',
+  value: 196_100, unit: 'brotli bytes', limit: 'max', status: 'provisional',
   enforcedIn: 'scripts/download-budget.ts',
-  why: 'The automatic startup (shell, engine, the default city) may not grow (baseline after phase 0: the largest of the cities, Lagos, measures 195.4 kB, plus about 0.1%).',
+  why: 'The automatic startup (shell, engine, the default city) may not grow (baseline after phase 0: the largest of the cities, Lagos, measures 195.4 kB, plus about 0.1%). Raised by 500 on 18 Oct 2026 for Lite and the feed apps (measured 195,912), under the owner\'s 17 Oct direction.',
 }
 export const BASE_BODY_BROTLI: Budget = {
   value: 300_000, unit: 'brotli bytes', limit: 'max', status: 'provisional',

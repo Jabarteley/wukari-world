@@ -89,7 +89,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> => value !==
 interface MetricsBook {
   days: Record<string, Record<string, number>>
   cohorts: Record<string, { size: number; r: Record<string, number> }>
-  lives: Record<string, { first: number; last: number | null; steps: number; src?: string; ret?: number; fr?: number; cl?: number; ag?: number; done?: number }>
+  lives: Record<string, { first: number; last: number | null; steps: number; src?: string; ret?: number; fr?: number; cl?: number; ag?: number; po?: number; f3?: number; done?: number }>
 }
 function book(g: GrowthCollection, cityId: CityId = 'lagos'): MetricsBook {
   const m = g.metrics;
@@ -171,7 +171,11 @@ export function noteFriend(g: GrowthCollection, now: number, ...publicIds: strin
 export function noteClan(g: GrowthCollection, now: number, publicId: string): void { noteDay(g, now, 'cl', [publicId]); }
 /** A life sent a message to an AI character: note the day, once. Ignored for a life not followed. */
 export function noteAgent(g: GrowthCollection, now: number, publicId: string): void { noteDay(g, now, 'ag', [publicId]); }
-function noteDay(g: GrowthCollection, now: number, field: 'fr' | 'cl' | 'ag', publicIds: string[]): void {
+/** A life posted in the feed for the first time: note the day, once. Ignored for a life not followed. */
+/** A life reached three real friends: note the day, once (the north star: three friends within a week). */
+export function noteThreeFriends(g: GrowthCollection, now: number, publicId: string): void { noteDay(g, now, 'f3', [publicId]); }
+export function notePosted(g: GrowthCollection, now: number, publicId: string): void { noteDay(g, now, 'po', [publicId]); }
+function noteDay(g: GrowthCollection, now: number, field: 'fr' | 'cl' | 'ag' | 'po' | 'f3', publicIds: string[]): void {
   const day = lagosTime(now).day;
   for (const [, m] of cityBooks(g)) for (const id of publicIds) { const life = Object.hasOwn(m.lives, id) ? m.lives[id] : undefined; if (life && life[field] === undefined) life[field] = day; }
 }
@@ -185,7 +189,7 @@ function settle(g: GrowthCollection, day: number): void {
       life.done = (life.done ?? 0) | (1 << bit);
       const returned = (life.ret ?? 0) & (1 << bit) ? 1 : 0, early = (at: number | undefined): 'yes' | 'no' => (at !== undefined && at - life.first <= FRIEND_WITHIN_DAYS ? 'yes' : 'no');
       const today = (split[life.first] ||= {});
-      for (const group of [`src:${life.src ?? 'unknown|unknown|unknown'}`, `friend:${early(life.fr)}`, `clan:${early(life.cl)}`, `agent:${early(life.ag)}`]) {
+      for (const group of [`src:${life.src ?? 'unknown|unknown|unknown'}`, `friend:${early(life.fr)}`, `clan:${early(life.cl)}`, `agent:${early(life.ag)}`, `posted:${early(life.po)}`]) {
         // Only the source groups are capped (the six yes/no groups are always kept): a new one past the cap is counted under other.
         const key = group.startsWith('src:') && !Object.hasOwn(today, group) && Object.keys(today).length >= SPLIT_GROUPS_PER_DAY ? 'src:other|other|other' : group;
         const cell = ((today[key] ||= {})[offset] ||= [0, 0]);
@@ -255,7 +259,7 @@ export function returnSplit(g: GrowthCollection): ReturnSplit {
     return { source, medium, campaign, ...row(days) };
   }).sort((a, b) => b.d1.lives - a.d1.lives).slice(0, 40);
   return { bySource, byFriend: { yes: row(sum.get('friend:yes')), no: row(sum.get('friend:no')) },
-    byClan: { yes: row(sum.get('clan:yes')), no: row(sum.get('clan:no')) }, byAgent: { yes: row(sum.get('agent:yes')), no: row(sum.get('agent:no')) },
+    byClan: { yes: row(sum.get('clan:yes')), no: row(sum.get('clan:no')) }, byAgent: { yes: row(sum.get('agent:yes')), no: row(sum.get('agent:no')) }, byPosted: { yes: row(sum.get('posted:yes')), no: row(sum.get('posted:no')) },
     note: 'A life is counted once it is old enough. "Has a friend" means a real friend made in the first two days (the founder\'s welcome does not count). "Has a clan" means created or joined a clan in the first two days; "talked to an agent" means sent a message to an AI character in the first two days. Lives that started before this was counted are not in it.' };
 }
 const dateOf = (day: number): string => new Date(day * 86400000).toISOString().slice(0, 10);
@@ -286,6 +290,9 @@ export function report(g: GrowthCollection, now: number, { days = 35 }: { days?:
   const totals: Record<string, number> = {};
   for (const row of daily) for (const [name, value] of Object.entries(row)) if (name !== 'day' && name !== 'date' && typeof value === 'number') totals[name] = (totals[name] ?? 0) + value;
   const funnel = FUNNEL_ORDER.map((id) => ({ step: id, lives: totals[`funnel.${id}`] ?? 0 }));
-  return { generatedAt: now, timezone: 'Africa/Lagos', source: 'first-party', days: daily, cohorts, totals, funnel, ...sourceReport(g, today, span), returns: returnSplit(g), tracked: Object.keys(m.lives).length,
+  // THE NORTH STAR (docs/SOCIAL-PLATFORM-PLAN.md): of the lives at least eight days old that are still followed, how many had three real friends within their first week.
+  const old = Object.values(m.lives).filter((life) => today - life.first >= 8), reached = old.filter((life) => life.f3 !== undefined && life.f3 - life.first <= 7).length
+  const northStar = { lives: old.length, threeFriendsInAWeek: reached, rate: old.length ? Math.round((reached / old.length) * 1000) / 10 : null }
+  return { generatedAt: now, timezone: 'Africa/Lagos', source: 'first-party', days: daily, cohorts, totals, funnel, ...sourceReport(g, today, span), returns: returnSplit(g), northStar, tracked: Object.keys(m.lives).length,
     retention: { daily: `${KEEP.days} days`, cohorts: `${KEEP.cohorts} days`, perLife: `${KEEP.window} days, then deleted` } };
 }

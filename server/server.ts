@@ -63,6 +63,8 @@ export type AllworldServer = http.Server & {
   telemetry: ServerTelemetry
   /** The one shutdown order (see below). */
   flush(): Promise<void>
+  /** The route context, for tests that call a module's check directly (a gist moment). */
+  context: RouteContext
 }
 type ServerTelemetry = ReturnType<typeof createServerTelemetry>;
 /** A ws WebSocket once the host has authenticated it: the socket plus the fields of WsConnection (the host sets the first ones on upgrade, the socket modules the rest on open). */
@@ -822,7 +824,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
   })());
   server.close = (callback?: (error?: Error) => void) => { closeHttp((error) => { flush().finally(() => callback?.(error)); }); return server; };
   // Attached before the startup work is awaited, as before: nothing that runs during startup can find them missing.
-  const running = Object.assign(server, { wss, beat, store, shards, world, telemetry, flush });
+  const running = Object.assign(server, { wss, beat, store, shards, world, telemetry, flush, context: ctx });
   await Promise.all(startup.splice(0));
   return running;
 }

@@ -398,6 +398,7 @@ export default defineConfig({
     // Small modules every page uses, shared by the lazy panels and each needing no more than Vue and the engine: kept in the engine chunk
     // (already in the first download) instead of one file apiece, which would each carry its own header and lose what the others share when compressed.
     if (/\/src\/(geo\/frame|campus\/unilag\/(slices|volunteer)|app\/ui\/format|app\/features\/(commerce\/connectionReturn|account\/(accountLite|accountTrack)|hud\/coachModel|sim\/settingsModel|tour\/tourState|neighbourhood\/cityWalkState))\.ts$/.test(id)) return 'engine'
+    if (id.endsWith('/src/lazy-load.ts')) return 'engine'
     // The shell's existing buttons, sheets and glyph helpers share one download across the game and the inspector.
     if (/\/src\/app\/(?:ui\/(?:BaseButton|BaseSheet|SkeletonRows|GameIcon)\.vue|features\/kit\/GlyphText\.vue)(\?|$)/.test(id) || /\/src\/(?:ui\/(?:dom|icon-map|phone\/icons)|app\/(?:ui\/(?:glyphs|iconSvg)|features\/kit\/glyphText))\.ts$/.test(id)) return 'shell-kit'
     // Reading a world-feed answer into a city's money and the short money form (docs/CURRENCY.md): only the lazy feed module, the top bar's count-up and the civic boards use them; the writer (money.ts) is in the engine.

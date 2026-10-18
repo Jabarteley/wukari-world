@@ -336,7 +336,7 @@ test('contacts: hashes only, blinded with a secret, matched only both ways; noth
   const { phoneHash } = await import('../src/feed/phone.ts');
   const { f, get, post, player } = await setup(t);
   const ada = await player('Ada'), bola = await player('Bola'), eve = await player('Eve'), kid = await player('Kid', { adult: false });
-  const [A, B, E] = await Promise.all(['+2348031111111', '+2348032222222', '+2348033333333'].map(phoneHash));
+  const [A = '', B = '', E = ''] = await Promise.all(['+2348031111111', '+2348032222222', '+2348033333333'].map(phoneHash));
   assert.equal((await post('/api/feed/contacts/self', { hash: A }, ada)).code, 'consent_required');
   assert.equal((await post('/api/feed/contacts/self', { hash: A, consent: true }, kid)).code, 'adults_only');
   assert.equal((await post('/api/feed/contacts/match', { hashes: [B] }, ada)).code, 'declare_first');

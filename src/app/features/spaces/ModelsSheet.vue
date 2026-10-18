@@ -10,7 +10,8 @@ import { checkGlb, GLB_LIMITS, type GlbInfo } from '../../../spaces/glb.ts'
 import { modelBytes, modelDelete, modelRename, modelUpload, modelsMine, type ModelView, type ModelsMine } from './spacesClient.ts'
 
 const ModelPreview = defineAsyncComponent(() => import('./ModelPreview.vue'))
-const emit = defineEmits<{ close: [] }>()
+/** `place`: the player wants this model in their house now; the Houses app opens the 3D screen with it in hand. */
+const emit = defineEmits<{ close: []; place: [model: ModelView] }>()
 const { game } = useApp()
 
 const loading = ref(true)
@@ -46,7 +47,7 @@ async function pick(event: Event): Promise<void> {
   const input = event.target as HTMLInputElement
   const file = input.files?.[0]
   input.value = ''
-  error.value = ''; note.value = ''
+  error.value = ''; note.value = ''; justUploaded.value = null
   if (!file) return
   if (file.size > GLB_LIMITS.bytes) { error.value = `This file is ${mb(file.size)}. A model may be at most ${mb(GLB_LIMITS.bytes)}.`; return }
   const bytes = await file.arrayBuffer()
@@ -66,8 +67,11 @@ async function upload(): Promise<void> {
   note.value = answer.code === 'already' ? 'You already have this model.' : `${answer.model.name} is in your models.`
   picked.value = null
   shownId.value = answer.model.id
+  justUploaded.value = answer.model
   await load()
 }
+/** The model just uploaded: the next step is to put it in the house. */
+const justUploaded = ref<ModelView | null>(null)
 async function show(model: ModelView): Promise<void> {
   error.value = ''
   picked.value = null
@@ -101,7 +105,7 @@ async function remove(model: ModelView): Promise<void> {
 
 <template>
   <BaseSheet open label="My 3D models" @close="emit('close')">
-    <header class="sp-head"><h2>My 3D models</h2><p>Upload models you made (.glb from Blender, SketchUp and others) and place them in your spaces.</p></header>
+    <header class="sp-head"><h2>My 3D models</h2><p>Upload a model (.glb from Blender, SketchUp and others), put it in your house and drag it where you want it.</p></header>
     <div class="sp-body">
       <p v-if="loading" class="sp-note" role="status">Loading…</p>
       <template v-else-if="state">
@@ -116,8 +120,9 @@ async function remove(model: ModelView): Promise<void> {
             <button type="button" class="ui-button is-block sp-btn" :disabled="busy" @click="picked = null; shown = null">Cancel</button>
           </template>
           <template v-else>
-            <label v-if="state.canUpload" class="ui-button is-primary is-block sp-btn sp-file">
-              Choose a .glb file
+            <button v-if="justUploaded" type="button" class="ui-button is-primary is-block sp-btn" data-models="place" @click="emit('place', justUploaded)">Put {{ justUploaded.name }} in my house</button>
+            <label v-if="state.canUpload" class="ui-button is-block sp-btn sp-file" :class="{ 'is-primary': !justUploaded }">
+              {{ justUploaded ? 'Upload another' : 'Choose a .glb file' }}
               <input type="file" accept=".glb,model/gltf-binary" @change="pick" />
             </label>
             <p v-else-if="state.why" class="sp-note">{{ state.why }}</p>
@@ -138,6 +143,7 @@ async function remove(model: ModelView): Promise<void> {
                   <span>{{ model.triangles.toLocaleString('en') }} triangles · {{ metres(model.size) }}<template v-if="model.hidden"> · hidden after reports</template></span>
                 </button>
                 <span class="sp-acts">
+                  <button type="button" class="sp-mini" :aria-label="`Put ${model.name} in my house`" @click="emit('place', model)">Place</button>
                   <button type="button" class="sp-mini" :aria-label="`Rename ${model.name}`" @click="renaming = model.id; newName = model.name">Rename</button>
                   <button type="button" class="sp-mini" :aria-label="`Delete ${model.name}`" :disabled="busy" @click="remove(model)">Delete</button>
                 </span>

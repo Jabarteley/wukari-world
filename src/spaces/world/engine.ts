@@ -123,20 +123,50 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
   observer.observe(canvas)
   resize()
 
-  // Looking: drag on the canvas. A short tap (no drag) is a pick or a placement while editing.
+  // Looking: drag on the canvas. A short tap (no drag) is a pick or a placement while editing. While editing, a drag that
+  // starts on the chosen (highlighted) model slides it over the floors instead of looking round.
   const raycaster = new THREE.Raycaster()
-  let drag: { id: number; x: number; y: number; moved: number } | null = null
-  const onDown = (event: PointerEvent): void => { if (drag) return; drag = { id: event.pointerId, x: event.clientX, y: event.clientY, moved: 0 }; canvas.setPointerCapture?.(event.pointerId) }
+  let drag: { id: number; x: number; y: number; moved: number; model: boolean } | null = null
+  let lit: string | null = null
+  const aim = (event: PointerEvent): void => {
+    const rect = canvas.getBoundingClientRect()
+    raycaster.setFromCamera(new THREE.Vector2(((event.clientX - rect.left) / rect.width) * 2 - 1, -((event.clientY - rect.top) / rect.height) * 2 + 1), camera)
+  }
+  const modelAt = (event: PointerEvent): string | null => {
+    aim(event)
+    let node: InstanceType<typeof THREE.Object3D> | null = raycaster.intersectObjects(space.modelObjects().filter((o) => o.visible), true)[0]?.object ?? null
+    while (node && !node.userData['key']) node = node.parent
+    return node ? String(node.userData['key']) : null
+  }
+  /** Where the pointer meets a floor; while dragging `held`, where it meets the level that model stands on, so a drag across a wall still lands. */
+  const floorAt = (event: PointerEvent, held: InstanceType<typeof THREE.Object3D> | null = null): { x: number; y: number; z: number; floor: number } | null => {
+    aim(event)
+    const floor = raycaster.intersectObjects(space.surfaces().filter((o) => o.visible && (o.parent?.visible ?? true)), false)[0]
+    if (floor) {
+      const f = typeof floor.object.userData['floor'] === 'number' ? floor.object.userData['floor'] as number : 0
+      return { x: floor.point.x, y: 0, z: floor.point.z, floor: f }
+    }
+    if (!held) return null
+    const level = new THREE.Plane(new THREE.Vector3(0, 1, 0), -held.position.y)
+    const point = raycaster.ray.intersectPlane(level, new THREE.Vector3())
+    return point ? { x: point.x, y: 0, z: point.z, floor: typeof held.userData['floor'] === 'number' ? held.userData['floor'] as number : 0 } : null
+  }
+  const onDown = (event: PointerEvent): void => {
+    if (drag) return
+    drag = { id: event.pointerId, x: event.clientX, y: event.clientY, moved: 0, model: editing && lit !== null && modelAt(event) === lit }
+    try { canvas.setPointerCapture?.(event.pointerId) } catch { /* a pointer the browser no longer tracks: the drag still works */ }
+  }
   const onMove = (event: PointerEvent): void => {
     if (!drag || event.pointerId !== drag.id) return
     const dx = event.clientX - drag.x, dy = event.clientY - drag.y
     drag.moved += Math.abs(dx) + Math.abs(dy)
     drag.x = event.clientX; drag.y = event.clientY
+    if (drag.model) { const at = floorAt(event, lit ? space.modelObject(lit) ?? null : null); if (at) events.tapped(at); return }
     walker = { ...walker, yaw: walker.yaw - dx * 0.006, pitch: Math.max(-1.2, Math.min(0.9, walker.pitch - dy * 0.005)) }
   }
   const onUp = (event: PointerEvent): void => {
     if (!drag || event.pointerId !== drag.id) return
-    const tap = drag.moved < 8
+    const tap = drag.moved < 8 && !drag.model
     drag = null
     if (tap && !editing && script) {
       // A tap on a model reaches the script (space.on('tap', …)).
@@ -349,6 +379,7 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
       syncModels()
     },
     highlight(key) {
+      lit = key
       for (const object of space.modelObjects()) object.traverse((n) => {
         const mesh = n as InstanceType<typeof THREE.Mesh>
         if (!mesh.isMesh) return

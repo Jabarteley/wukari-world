@@ -5,14 +5,16 @@
 import { computed, onBeforeUnmount, onMounted, ref, shallowRef } from 'vue'
 import '../../../ui/controls.css'
 import { useApp } from '../../state/app.ts'
-import { modelBytes, scriptSave, worldRead, worldSave, type ModelView, type PlacedModel, type WorldView, type WorldWhere } from './spacesClient.ts'
+import { modelBytes, modelUpload, scriptSave, worldRead, worldSave, type ModelView, type PlacedModel, type WorldView, type WorldWhere } from './spacesClient.ts'
+import { checkGlb, GLB_LIMITS } from '../../../spaces/glb.ts'
 import { scriptNames, SCRIPT, TEMPLATES } from '../../../spaces/script.ts'
 import type { Placement } from '../../../spaces/layout.ts'
 import type { Engine, View } from '../../../spaces/world/engine.ts'
 import { fillLine } from '../../../spaces/script.ts'
 import type { Together } from '../../../spaces/world/together.ts'
 
-const props = defineProps<{ where: WorldWhere }>()
+/** `place`: a model to put down in front of the player as soon as the space is built (just uploaded, or chosen in My 3D models). */
+const props = defineProps<{ where: WorldWhere; place?: ModelView | null }>()
 const emit = defineEmits<{ close: [] }>()
 const { game } = useApp()
 
@@ -90,6 +92,13 @@ onMounted(async () => {
   })
   loading.value = false
   startTogether()
+  if (props.place && answer.world.canEdit) {
+    // Straight from an upload: the model is put down in front of the player, chosen, ready to drag.
+    if (!editing.value) toggleEdit()
+    choosing.value = props.place
+    placeInFront()
+    note.value = `${props.place.name} is in front of you. Drag it where you want it, then Save.`
+  }
   if (answer.world.script) {
     code.value = answer.world.script.code
     lines.value = answer.world.script.lines.join('\n')
@@ -216,6 +225,27 @@ function placeInFront(): void {
   void add(model, { x: at.x, y: 0, z: at.z, floor: at.floor })
   note.value = ''
 }
+/** Upload a .glb without leaving the space: checked here first (the server checks again), then put down in front of the player. */
+async function uploadHere(event: Event): Promise<void> {
+  const input = event.target as HTMLInputElement
+  const file = input.files?.[0]
+  input.value = ''
+  if (!file || !world.value || busy.value) return
+  error.value = ''
+  if (file.size > GLB_LIMITS.bytes) { error.value = `This file is ${(file.size / 1e6).toFixed(1)} MB. A model may be at most ${GLB_LIMITS.bytes / 1e6} MB.`; return }
+  const checked = checkGlb(new Uint8Array(await file.arrayBuffer()))
+  if (!checked.ok) { error.value = checked.reason; return }
+  busy.value = true
+  note.value = 'Uploading…'
+  const answer = await modelUpload(file, file.name.replace(/\.glb$/i, '').replace(/[_-]+/g, ' ').trim().slice(0, 40) || 'Model')
+  busy.value = false
+  if (gone) return
+  if (!answer.ok) { note.value = ''; error.value = answer.reason; return }
+  if (!world.value.mine.some((m) => m.id === answer.model.id)) world.value = { ...world.value, mine: [...world.value.mine, answer.model] }
+  choosing.value = answer.model
+  placeInFront()
+  note.value = `${answer.model.name} is in front of you. Drag it where you want it, then Save.`
+}
 function move(at: { x: number; z: number; floor: number }): void { const p = picked.value; if (!p) return; p.x = round(at.x); p.z = round(at.z); p.floor = at.floor; changed(p) }
 function turn(degrees: number): void { const p = picked.value; if (!p) return; p.ry = (((p.ry + degrees) % 360) + 360) % 360; changed(p) }
 function size(factor: number): void { const p = picked.value; if (!p) return; p.s = Math.min(20, Math.max(0.05, round(p.s * factor))); changed(p) }
@@ -301,15 +331,18 @@ const round = (v: number): number => Math.round(v * 100) / 100
               <button type="button" aria-label="Remove from the space" @click="remove">✕</button>
             </div>
             <label class="ws-check"><input type="checkbox" :checked="picked.loose === true" @change="setLoose(($event.target as HTMLInputElement).checked)" /> Loose: falls, rolls and can be picked up</label>
-            <p class="ws-hint">Tap a floor to move it there.</p>
+            <p class="ws-hint">Drag it to move it, or tap a floor.</p>
           </template>
           <template v-else>
-            <p v-if="!world.mine.length" class="ws-hint">Upload models in Houses → My 3D models first.</p>
-            <div v-else class="ws-models" role="group" aria-label="My models">
+            <label class="ws-wide ws-file" :class="{ 'is-primary': !world.mine.length }" data-world="upload">
+              {{ busy ? 'Uploading…' : 'Upload a .glb' }}
+              <input type="file" accept=".glb,model/gltf-binary" :disabled="busy" @change="uploadHere" />
+            </label>
+            <div v-if="world.mine.length" class="ws-models" role="group" aria-label="My models">
               <button v-for="m in world.mine" :key="m.id" type="button" :class="{ 'is-on': choosing?.id === m.id }" @click="choose(m)">{{ m.name }}</button>
             </div>
             <button v-if="choosing" type="button" class="ws-wide" @click="placeInFront">Put it in front of me</button>
-            <p class="ws-hint">{{ choosing ? `Or tap a floor.` : 'Choose a model, or tap one in the space.' }}</p>
+            <p class="ws-hint">{{ choosing ? `Or tap a floor.` : world.mine.length ? 'Choose a model, or tap one in the space.' : 'A .glb from Blender, SketchUp and others. It lands in front of you.' }}</p>
           </template>
           <p class="ws-hint">{{ layout.length }} of {{ world.limits.placements }} placed · {{ triangles.toLocaleString('en') }} of {{ world.limits.triangles.toLocaleString('en') }} triangles</p>
           <button type="button" class="ws-wide is-primary" :disabled="busy || !dirty" @click="save">{{ busy ? 'Saving…' : dirty ? 'Save' : 'Saved' }}</button>
@@ -346,6 +379,8 @@ const round = (v: number): number => Math.round(v * 100) / 100
 .ws-wide { min-height: 44px; border: 0; border-radius: 12px; background: var(--c-fill, #eef0f2); color: var(--c-ink, #14181c); font: 600 14px var(--font); cursor: pointer; }
 .ws-wide.is-primary { background: #14181c; color: #fff; }
 .ws-wide:disabled { opacity: 0.5; }
+.ws-file { position: relative; display: grid; place-items: center; overflow: hidden; }
+.ws-file input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 .ws-hint { margin: 0; font-size: 12px; color: #4a5560; }
 .ws-score { position: absolute; top: calc(max(8px, env(safe-area-inset-top)) + 52px); right: 12px; margin: 0; padding: 6px 12px; border-radius: 14px; background: rgba(20, 24, 28, 0.7); color: #fff; font: 700 15px var(--font); }
 .ws-here { position: absolute; top: calc(max(8px, env(safe-area-inset-top)) + 52px); left: 12px; margin: 0; padding: 6px 12px; border-radius: 14px; background: rgba(20, 24, 28, 0.7); color: #fff; font: 600 14px var(--font); }

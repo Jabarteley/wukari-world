@@ -15,6 +15,7 @@ import { createPost } from './post.ts';
 import { buildTrees } from './trees.ts';
 import { buildDressing } from './dressing.ts';
 import { buildTraffic } from './vehicles.ts';
+import { buildPeople } from './people.ts';
 
 const params = new URLSearchParams(location.search);
 const vec = (key: string, fallback: [number, number, number]) => (params.get(key)?.split(',').map(Number) ?? fallback) as [number, number, number];
@@ -76,6 +77,9 @@ const dressing = buildDressing(world);
 scene.add(dressing.group);
 const traffic = buildTraffic(world.roads, () => false);
 scene.add(traffic.group);
+const people = buildPeople(world.roads, () => false, (m) => daylight.setupMaterial(m), Number(params.get('people') ?? 4000));
+scene.add(people.group);
+void people.ready.then(() => { dirty = true; });
 scene.traverse((o) => { const m = (o as THREE.Mesh).material as THREE.Material | undefined; if (m && (o as THREE.Mesh).isMesh && o !== daylight.sky) daylight.setupMaterial(m); });
 const buildMs = Math.round(performance.now() - t0);
 
@@ -97,6 +101,7 @@ function frame(now: number) {
   if (!dirty && !params.has('live')) return;
   dirty = false;
   camera.userData.target = controls.target;
+  people.update(camera);
   daylight.update();
   post.render();
   frames++;
@@ -107,7 +112,7 @@ requestAnimationFrame(frame);
 
 /** Script hooks for screenshots: set a view and wait until it has been drawn. */
 (window as unknown as { __rw: unknown }).__rw = {
-  ready: true, renderer, scene, camera, controls, setHour, world,
+  ready: true, renderer, scene, camera, controls, setHour, world, people,
   view(cam: [number, number, number], at: [number, number, number]) { camera.position.set(...cam); controls.target.set(...at); controls.update(); dirty = true; },
   frames: () => frames,
 };

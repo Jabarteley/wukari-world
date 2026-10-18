@@ -157,7 +157,7 @@ async function sendBulk(): Promise<void> {
         <caption class="adm-sr">Players matching the filters, newest activity first</caption>
         <thead><tr>
           <th class="adm-check"><input type="checkbox" :checked="all" :disabled="eraseActive" aria-label="Choose every player on this page" @change="toggleAll"></th>
-          <th scope="col" :aria-sort="aria('name')"><button type="button" :disabled="eraseActive" @click="sorter('name')">Name</button></th><th scope="col" class="adm-hide-xs">Kind</th><th scope="col">City</th>
+          <th scope="col" :aria-sort="aria('name')"><button type="button" :disabled="eraseActive" @click="sorter('name')">Name</button></th><th scope="col" class="adm-hide-xs">Kind</th><th scope="col" class="adm-hide-xs">City</th>
           <th class="adm-num" :aria-sort="aria('cash')"><button type="button" :disabled="eraseActive" @click="sorter('cash')">Cash</button></th>
           <th class="adm-num" :aria-sort="aria('seen')"><button type="button" :disabled="eraseActive" @click="sorter('seen')">Seen</button></th>
           <th scope="col" class="adm-num adm-hide-sm" :aria-sort="aria('since')"><button type="button" :disabled="eraseActive" @click="sorter('since')">Joined</button></th><th scope="col" class="adm-hide-sm">Flags</th></tr></thead>
@@ -165,8 +165,8 @@ async function sendBulk(): Promise<void> {
           <template v-if="!data && !error"><tr v-for="n in 6" :key="n" class="adm-skel-row"><td colspan="8"><i /></td></tr></template>
           <tr v-for="row in data?.rows ?? []" :key="row.id" class="click" :tabindex="eraseActive ? -1 : 0" @click="!eraseActive && emit('open', row.id)" @keydown.enter="!eraseActive && emit('open', row.id)">
             <td class="adm-check" @click.stop><input type="checkbox" :checked="selected.has(row.id)" :disabled="eraseActive" :aria-label="`Choose ${row.name}`" @change="toggle(row)"></td>
-            <td class="adm-name"><b>{{ row.name }}</b> <span v-if="row.online" class="adm-chip green">online</span><span v-if="row.admin" class="adm-chip blue">admin</span></td>
-            <td class="adm-hide-xs"><span class="adm-chip" :class="{ grey: row.kind === 'test', violet: row.kind === 'account' }">{{ KIND[row.kind] ?? row.kind }}</span></td><td :title="row.city ?? undefined">{{ cityLabel(row) }}</td><td class="adm-num">{{ naira(row.cash) }}</td><td class="adm-num">{{ relative(row.lastSeen, api.now()) }}</td><td class="adm-num adm-hide-sm">{{ row.since ? relative(row.since, api.now()) : '–' }}</td>
+            <td class="adm-name"><b>{{ row.name }}</b> <span v-if="row.online" class="adm-chip green">online</span><span v-if="row.admin" class="adm-chip blue">admin</span><div class="adm-sub adm-only-xs">{{ cityLabel(row) }}</div></td>
+            <td class="adm-hide-xs"><span class="adm-chip" :class="{ grey: row.kind === 'test', violet: row.kind === 'account' }">{{ KIND[row.kind] ?? row.kind }}</span></td><td class="adm-hide-xs" :title="row.city ?? undefined">{{ cityLabel(row) }}</td><td class="adm-num">{{ naira(row.cash) }}</td><td class="adm-num adm-when">{{ relative(row.lastSeen, api.now()) }}</td><td class="adm-num adm-hide-sm">{{ row.since ? relative(row.since, api.now()) : '–' }}</td>
             <td class="adm-hide-sm"><span v-for="flag in row.flags" :key="flag" class="adm-chip red">{{ flag }}</span><span v-if="!row.flags.length" class="adm-muted">–</span></td>
           </tr>
           <tr v-if="data && !data.rows.length"><td colspan="8" class="adm-empty">{{ filter === 'test' ? 'No test sessions are stored.' : `No players match${q || filter !== 'all' ? ' these filters' : ''}.` }} <button v-if="q || filter !== 'all'" class="adm-btn" @click="q = ''; filter = 'all'">{{ filter === 'test' && !q ? 'Back to everyone' : 'Clear filters' }}</button></td></tr>

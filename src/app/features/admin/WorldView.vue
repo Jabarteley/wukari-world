@@ -86,17 +86,17 @@ async function notice(m: number): Promise<void> { const r = await api.post('/api
       <p v-if="govNote" :class="govNote.ok ? 'adm-ok' : 'adm-error'" role="status">{{ govNote.text }}</p>
       <template v-if="gov">
         <p class="adm-sub">{{ gov.records.count }} public record entries · {{ gov.openOffences }} open offences · {{ gov.jailed.length }} in jail</p>
-        <table class="adm-table"><thead><tr><th>Seat</th><th>Holder</th><th>Treasury</th><th>Officers / judges</th><th>Petition</th><th></th></tr></thead><tbody>
-          <tr v-for="seat in gov.seats" :key="seat.scope"><td><b>{{ seat.title }}</b> of {{ seat.name }}</td><td>{{ seat.holder ? `${seat.holder.name} (${seat.holder.votes} votes)` : 'empty' }}</td><td>{{ naira(seat.treasury) }}</td><td>{{ seat.officers }} / {{ seat.judges }}</td>
+        <table class="adm-table adm-stack"><thead><tr><th>Seat</th><th>Holder</th><th>Treasury</th><th>Officers / judges</th><th>Petition</th><th></th></tr></thead><tbody>
+          <tr v-for="seat in gov.seats" :key="seat.scope"><td><b>{{ seat.title }}</b> of {{ seat.name }}</td><td data-label="Holder">{{ seat.holder ? `${seat.holder.name} (${seat.holder.votes} votes)` : 'empty' }}</td><td data-label="Treasury">{{ naira(seat.treasury) }}</td><td data-label="Officers / judges">{{ seat.officers }} / {{ seat.judges }}</td>
             <td>{{ seat.petition ? `${seat.petition.signed} of ${seat.petition.needed}` : '' }}<template v-if="seat.flags.length"> · audit: {{ seat.flags.join(', ') }}</template></td>
             <td><button v-if="seat.holder" class="adm-btn danger" @click="undo({ action: 'remove-officeholder', scope: seat.scope })">Remove</button></td></tr>
         </tbody></table>
         <h3 style="margin-top:14px">In jail</h3>
         <p v-if="!gov.jailed.length" class="adm-muted">Nobody.</p>
-        <table v-else class="adm-table"><tbody><tr v-for="item in gov.jailed" :key="item.id"><td><b>{{ item.name }}</b></td><td>{{ item.minutes }} minutes, arrested by {{ item.by }}</td><td><button class="adm-btn" @click="undo({ action: 'release', player: item.id })">Release</button></td></tr></tbody></table>
+        <table v-else class="adm-table adm-stack"><tbody><tr v-for="item in gov.jailed" :key="item.id"><td><b>{{ item.name }}</b></td><td>{{ item.minutes }} minutes, arrested by {{ item.by }}</td><td><button class="adm-btn" @click="undo({ action: 'release', player: item.id })">Release</button></td></tr></tbody></table>
         <h3 style="margin-top:14px">Officers and judges</h3>
         <p v-if="!gov.police.length && !gov.judges.length" class="adm-muted">None enrolled.</p>
-        <table v-else class="adm-table"><tbody>
+        <table v-else class="adm-table adm-stack"><tbody>
           <tr v-for="item in gov.police" :key="`p${item.id}`"><td><b>{{ item.name }}</b></td><td>police · {{ item.scope }} · enrolled by {{ item.by }}</td><td><button class="adm-btn" @click="undo({ action: 'dismiss', role: 'police', player: item.id })">Dismiss</button></td></tr>
           <tr v-for="item in gov.judges" :key="`j${item.id}`"><td><b>{{ item.name }}</b></td><td>judge · {{ item.scope }} · enrolled by {{ item.by }}</td><td><button class="adm-btn" @click="undo({ action: 'dismiss', role: 'judge', player: item.id })">Dismiss</button></td></tr>
         </tbody></table>
@@ -107,10 +107,10 @@ async function notice(m: number): Promise<void> { const r = await api.post('/api
       <p v-if="note" class="adm-ok" role="status">{{ note }}</p>
       <div v-if="asking" class="adm-card" role="alertdialog" aria-label="Confirm"><p><b>{{ asking.label }}</b></p><label>Type ON to confirm<input v-model="word" autocomplete="off"></label>
         <p><button class="adm-btn danger" :disabled="word.trim().toUpperCase() !== 'ON'" @click="set(asking.key, true, asking.token)">Turn on</button> <button class="adm-btn" @click="asking = null">Cancel</button></p></div>
-      <table class="adm-table"><tbody>
+      <table class="adm-table adm-stack"><tbody>
         <tr v-for="s in settings" :key="s.key"><td><b>{{ s.label }}</b><div class="adm-sub">{{ s.help }}</div></td>
           <td v-if="s.kind === 'boolean'"><button class="adm-btn" :class="{ primary: s.value }" @click="set(s.key, !s.value)">{{ s.value ? 'On' : 'Off' }}</button></td>
-          <td v-else-if="s.kind === 'text'"><textarea v-model="drafts[s.key]" :aria-label="s.label" rows="3" :maxlength="s.max ?? 2000" :placeholder="String(s.value)" style="width:320px" /> <button class="adm-btn" @click="set(s.key, drafts[s.key] ?? '')">Set</button></td>
+          <td v-else-if="s.kind === 'text'"><textarea v-model="drafts[s.key]" :aria-label="s.label" rows="3" :maxlength="s.max ?? 2000" :placeholder="String(s.value)" style="width:min(320px, 100%)" /> <button class="adm-btn" @click="set(s.key, drafts[s.key] ?? '')">Set</button></td>
           <td v-else><input v-model="drafts[s.key]" :aria-label="s.label" type="number" :min="s.min ?? undefined" :max="s.max ?? undefined" :placeholder="String(s.value)" style="width:110px"> <button class="adm-btn" @click="set(s.key, Number(drafts[s.key]))">Set</button></td>
           <td class="adm-sub">default {{ String(s.default) }}<template v-if="s.changed"> · <a href="#" @click.prevent="set(s.key, null)">reset</a></template></td></tr>
         <tr><td><b>E-mail sending</b><div class="adm-sub">The operator kill switch for all e-mail.</div></td><td><button class="adm-btn" :class="{ danger: switches.email }" @click="set('emailOff', !switches.email)">{{ switches.email ? 'Off' : 'On' }}</button></td><td /></tr>

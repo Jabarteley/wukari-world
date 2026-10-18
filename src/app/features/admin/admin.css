@@ -12,6 +12,8 @@
 .adm *, .adm *::before, .adm *::after { box-sizing: border-box; }
 .adm.is-game { position: fixed; inset: 0; z-index: 2147483000; height: calc(100 * var(--ui-vh, 1vh)); zoom: var(--ui-zoom, 1); }
 .adm.is-page { height: 100vh; height: 100dvh; }
+/* One scroll area: the main column. The frame itself never scrolls, so the rail and the top bar stay put. */
+.adm.is-page, .adm.is-game { overflow: hidden; }
 .adm-skip { position: absolute; left: 8px; top: -60px; z-index: 2147483001; background: var(--ink); color: #fff; padding: 8px 12px; border-radius: 8px; font-weight: 600; text-decoration: none; } .adm-skip:focus { top: 8px; }
 .adm-fixed { position: fixed; inset: 20px; z-index: 2147483000; background: #fff; padding: 12px; border-radius: 10px; }
 
@@ -42,7 +44,7 @@
 .adm-tools { display: flex; gap: 6px; }
 .adm-iconbtn { position: relative; border: 1px solid var(--line-strong); background: #fff; border-radius: var(--radius-sm); min-height: 40px; min-width: 40px; padding: 0 12px; font: 600 13px var(--font, inherit); cursor: pointer; color: var(--ink); } .adm-iconbtn:hover { background: var(--sunken); }
 .adm-dot { position: absolute; top: -6px; right: -6px; background: var(--accent); color: #fff; border-radius: 999px; font: 700 10px/16px system-ui; min-width: 16px; text-align: center; font-style: normal; }
-.adm-main { flex: 1; overflow: auto; padding: 14px; width: 100%; max-width: 1680px; margin: 0 auto; padding-bottom: 14px; }
+.adm-main { position: relative; flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; padding: 14px; width: 100%; max-width: 1680px; margin: 0 auto; padding-bottom: 14px; }
 .adm-tabs { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; background: var(--rail); padding-bottom: env(safe-area-inset-bottom); }
 .adm.is-game .adm-tabs { position: absolute; }
 .adm-tabs button { flex: 1; min-height: 52px; border: 0; background: transparent; color: #cfd3dc; font: 600 11px var(--font, inherit); cursor: pointer; padding: 6px 2px; }
@@ -101,7 +103,21 @@
 .adm-seg { display: inline-flex; background: var(--sunken); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 3px; gap: 2px; } .adm-seg button { border: 0; border-radius: 6px; background: transparent; color: var(--muted); padding: 6px 12px; min-height: 32px; font: 600 13px var(--font, inherit); cursor: pointer; } .adm-seg button[aria-pressed="true"] { background: #fff; color: var(--ink); box-shadow: 0 1px 2px #1018281a; }
 
 .adm-scroll { overflow-x: auto; }
-.adm-tablewrap { max-height: calc(100vh - 260px); overflow: auto; }
+/* Tables scroll sideways inside their card when they must, never up and down: the page is the only vertical scroll. */
+.adm-tablewrap { overflow-x: auto; }
+.adm-card:has(> .adm-table) { overflow-x: auto; }
+.adm-table td.adm-when { white-space: nowrap; color: var(--muted); }
+.adm-table td.adm-grow { min-width: 220px; }
+.adm label:has(> input[type=checkbox]) { display: flex; align-items: flex-start; gap: 8px; font-weight: 400; color: var(--ink); } .adm label > input[type=checkbox] { margin-top: 2px; flex: none; }
+/* A table marked adm-stack becomes one card per row below 760px, each value under its column's name. */
+@media (max-width: 759px) {
+  .adm-stack, .adm-stack tbody, .adm-stack tr, .adm-stack td { display: block; width: 100%; }
+  .adm-stack thead { display: none; }
+  .adm-table.adm-stack tr { padding: 12px 0; border-bottom: 1px solid var(--line); } .adm-stack tbody tr:last-child { border-bottom: 0; }
+  .adm-table.adm-stack td { border: 0; padding: 3px 0; } .adm-stack td:empty { display: none; }
+  .adm-stack td[data-label]::before { content: attr(data-label); display: block; font-size: 12px; font-weight: 600; color: var(--muted); }
+  .adm-stack td.adm-grow { min-width: 0; } .adm-stack td .adm-btn { margin-top: 6px; }
+}
 .adm-table { width: 100%; border-collapse: collapse; font-size: 14px; }
 .adm-table th { text-align: left; font-size: 12px; font-weight: 600; color: var(--muted); padding: 10px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; background: var(--sunken); }
 .adm-table th button { border: 0; background: none; font: inherit; text-transform: inherit; letter-spacing: inherit; color: inherit; cursor: pointer; padding: 0; min-height: 24px; }
@@ -109,7 +125,7 @@
 .adm-sticky th { position: sticky; top: 0; z-index: 2; box-shadow: 0 1px 0 var(--line); }
 .adm-table td, .adm-table tbody th { padding: 11px 10px; border-bottom: 1px solid #eef0f3; vertical-align: middle; background: transparent; color: var(--ink); } .adm-table tbody th { text-align: left; font-weight: 600; font-size: 14px; } .adm-table tbody tr:last-child td, .adm-table tbody tr:last-child th { border-bottom: 0; }
 /* Columns a narrow screen drops, so a table never scrolls sideways: xs below 520px, sm below 760px. */
-@media (max-width: 519px) { .adm-hide-xs { display: none; } } @media (max-width: 759px) { .adm-hide-sm { display: none; } }
+.adm-only-xs { display: none; } @media (max-width: 519px) { .adm-hide-xs { display: none; } .adm-only-xs { display: block; margin: 2px 0 0; } } @media (max-width: 759px) { .adm-hide-sm { display: none; } }
 @media (max-width: 759px) { .adm-main { padding: 10px; } .adm-card { padding: 12px; } .adm-top { padding-left: 10px; padding-right: 10px; } } .adm-table tr.click { cursor: pointer; } .adm-table tr.click:hover, .adm-table tr.on { background: #f6faf8; } .adm-table tr.click:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
 .adm-check { width: 34px; } .adm-pager { margin: 8px 0 0; }
 .adm-skeleton { min-height: 96px; background: linear-gradient(90deg, #eceff4 25%, #f6f7f9 50%, #eceff4 75%); background-size: 200% 100%; animation: adm-shimmer 1.4s infinite linear; } .adm-skel-row i { display: block; height: 18px; border-radius: 6px; background: #eceff4; }
@@ -134,7 +150,7 @@
 .adm-tablist { display: flex; gap: 2px; overflow-x: auto; border-bottom: 1px solid var(--line); margin-bottom: 12px; } .adm-tablist button { border: 0; background: none; padding: 10px 12px; min-height: 42px; font: 600 13px var(--font, inherit); color: var(--muted); cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; }
 .adm-tablist button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
 .adm-grouplabel { width: 90px; font-size: 12px; font-weight: 700; } .adm-hist { margin-bottom: 8px; }
-.adm-queue { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); margin-bottom: 12px; } @media (min-width: 1000px) { .adm-queue { grid-template-columns: minmax(280px, 1fr) minmax(0, 1.4fr); } }
+.adm-queue { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr); margin-bottom: 12px; } @media (min-width: 1000px) { .adm-queue { grid-template-columns: minmax(280px, 1fr) minmax(0, 1.4fr); } } .adm-queue > :only-child { grid-column: 1 / -1; }
 .adm-queue .adm-card { margin-bottom: 0; }
 .adm-list { display: grid; gap: 6px; align-content: start; } .adm-list button { display: grid; gap: 2px; text-align: left; border: 1px solid var(--line); background: #fafbfc; border-radius: 10px; padding: 8px 10px; cursor: pointer; font: inherit; color: var(--ink); } .adm-list button.on { border-color: var(--accent); background: var(--accent-soft); } .adm-list small { color: var(--muted); }
 .adm-detail { display: grid; gap: 6px; align-content: start; } .adm-prior { background: #f8f9fb; border-radius: 10px; padding: 8px 10px; } .adm-picture { max-width: 100%; max-height: 320px; margin-top: 6px; }

@@ -49,10 +49,10 @@ onMounted(() => { void load() })
     <p v-if="error" class="adm-error" role="alert">{{ error }} <button class="adm-btn" @click="load()">Try again</button></p>
     <div class="adm-queue">
       <div class="adm-card adm-scroll adm-tablewrap">
-        <table class="adm-table adm-sticky"><thead><tr><th>#</th><th>When</th><th>Admin</th><th>Action</th><th>Player</th><th>What changed</th></tr></thead><tbody>
+        <table class="adm-table adm-sticky"><thead><tr><th class="adm-hide-xs">#</th><th>When</th><th class="adm-hide-sm">Admin</th><th>Action</th><th>Player</th><th>What changed</th></tr></thead><tbody>
           <template v-if="!loaded"><tr v-for="n in 5" :key="n" class="adm-skel-row"><td colspan="6"><i /></td></tr></template>
           <tr v-for="line in lines" :key="line.n" class="click" :class="{ on: open === line.n }" tabindex="0" @click="open = line.n" @keydown.enter="open = line.n">
-            <td>{{ line.n }}</td><td :title="absolute(line.at)">{{ relative(line.at, api.now()) }}</td><td>{{ line.adminName }}</td><td><span class="adm-chip">{{ line.action }}</span></td>
+            <td class="adm-hide-xs">{{ line.n }}</td><td class="adm-when" :title="absolute(line.at)">{{ relative(line.at, api.now()) }}</td><td class="adm-hide-sm">{{ line.adminName }}</td><td><span class="adm-chip">{{ line.action }}</span></td>
             <td>{{ line.targetName }}</td><td>{{ line.summary }}<span v-if="line.amount !== undefined" class="adm-sub"> ({{ line.amount < 0 ? '−' : '+' }}{{ naira(Math.abs(line.amount)) }})</span></td></tr>
           <tr v-if="loaded && !lines.length"><td colspan="6" class="adm-empty">No entries match. <button class="adm-btn" @click="clear">Clear filters</button></td></tr></tbody></table>
         <div class="adm-row adm-between adm-pager"><span class="adm-muted">{{ total }} entries match (the last 5,000 are kept)</span><button v-if="next !== null" class="adm-btn" :disabled="busy" @click="load(true)">Older</button></div>

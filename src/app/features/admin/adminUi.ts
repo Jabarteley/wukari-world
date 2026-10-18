@@ -14,6 +14,14 @@ export const VIEWS: readonly { id: ViewId; label: string; short: string; key: st
   { id: 'audit', label: 'Audit log', short: 'Audit', key: 'l', title: 'Audit log' },
 ]
 
+/** The rail's groups, in order: what each section of the admin is for. Every view is in exactly one. */
+export const NAV_GROUPS: readonly { label: string; views: readonly ViewId[] }[] = [
+  { label: 'Overview', views: ['dashboard'] },
+  { label: 'People', views: ['players', 'moderation', 'prayers', 'residents'] },
+  { label: 'World', views: ['announce', 'world'] },
+  { label: 'Records', views: ['audit'] },
+]
+
 export interface Route { view: ViewId; player: string | null; tab: string | null }
 /** `#/players/<id>/<tab>` and the like, for the admin address (where a link can be shared with another admin). */
 export function parseRoute(hash: string): Route {

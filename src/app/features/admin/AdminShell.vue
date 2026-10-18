@@ -5,7 +5,7 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { admin, useAdmin } from './useAdmin.ts'
 import type { Account } from '../account/accountStore.ts'
-import { VIEWS, hashOf, loadRecent, parseRoute, ui, undo } from './adminUi.ts'
+import { NAV_GROUPS, VIEWS, hashOf, loadRecent, parseRoute, ui, undo } from './adminUi.ts'
 import type { ViewId } from './adminUi.ts'
 import { absolute, relative } from './adminModel.ts'
 import type { PlayersPage } from '../../../types/admin.ts'
@@ -92,9 +92,14 @@ const skip = (): void => { globalThis.document?.getElementById('adm-main')?.focu
   <div class="adm" :class="`is-${mode}`" role="application" aria-label="Admin">
     <a class="adm-skip" href="#adm-main" @click.prevent="skip">Skip to content</a>
     <aside class="adm-side" aria-label="Admin sections">
-      <b class="adm-brand">Allworld admin</b>
-      <nav>
-        <button v-for="item in VIEWS" :key="item.id" type="button" :class="{ on: ui.route.view === item.id }" :aria-current="ui.route.view === item.id ? 'page' : undefined" @click="go(item.id)">{{ item.label }}<kbd aria-hidden="true">g {{ item.key }}</kbd></button>
+      <b class="adm-brand"><i class="adm-mark" aria-hidden="true" />Allworld<small>Admin</small></b>
+      <nav aria-label="Admin sections">
+        <template v-for="group in NAV_GROUPS" :key="group.label">
+          <span class="adm-navgroup" aria-hidden="true">{{ group.label }}</span>
+          <template v-for="item in VIEWS.filter((view) => group.views.includes(view.id))" :key="item.id">
+            <button type="button" :class="{ on: ui.route.view === item.id }" :aria-current="ui.route.view === item.id ? 'page' : undefined" @click="go(item.id)">{{ item.label }}<kbd aria-hidden="true">g {{ item.key }}</kbd></button>
+          </template>
+        </template>
       </nav>
       <div class="adm-who">{{ admin.me ? `${admin.me.name} · ${admin.me.level}` : '' }}</div>
       <a v-if="page" class="adm-side-link" :href="gameUrl">Open the game</a>
@@ -121,7 +126,7 @@ const skip = (): void => { globalThis.document?.getElementById('adm-main')?.focu
         </div>
       </header>
       <main id="adm-main" class="adm-main" tabindex="-1">
-        <DashboardView v-if="ui.route.view === 'dashboard'" @player="go('players', $event)" @tests="ui.playersFilter = 'test'; go('players')" />
+        <DashboardView v-if="ui.route.view === 'dashboard'" @player="go('players', $event)" @tests="ui.playersFilter = 'test'; go('players')" @view="go($event)" />
         <PlayersView v-else-if="ui.route.view === 'players'" :player="ui.route.player" :tab="ui.route.tab" @open="go('players', $event)" @back="go('players')" @tab="go('players', ui.route.player, $event)" />
         <AnnounceView v-else-if="ui.route.view === 'announce'" />
         <WorldView v-else-if="ui.route.view === 'world'" />

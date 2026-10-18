@@ -22,7 +22,7 @@ const say = (text: string) => { hud.textContent = text; };
 const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: 'high-performance', preserveDrawingBuffer: params.has('shot') });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 renderer.setSize(innerWidth, innerHeight);
-renderer.toneMapping = THREE.AgXToneMapping; renderer.toneMappingExposure = Number(params.get('exposure') ?? 1.05);
+renderer.toneMapping = ({ agx: THREE.AgXToneMapping, aces: THREE.ACESFilmicToneMapping, neutral: THREE.NeutralToneMapping } as const)[(params.get('tm') ?? 'neutral') as 'agx' | 'aces' | 'neutral'] ?? THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = Number(params.get('exposure') ?? 1.05);
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.getElementById('stage')!.appendChild(renderer.domElement);
 
@@ -44,13 +44,31 @@ const t0 = performance.now();
 const built = buildBuildings(world.buildings);
 const facade = createFacadeMaterial(plaster);
 const walls = new THREE.Mesh(built.walls, facade.material);
-const metalRoofs = new THREE.Mesh(built.metalRoofs, new THREE.MeshStandardMaterial({ vertexColors: true, map: metal.map, normalMap: metal.normalMap, roughnessMap: metal.roughnessMap, metalnessMap: metal.metalnessMap, metalness: 0.6, normalScale: new THREE.Vector2(1.2, 1.2) }));
+// Zinc roofs: the sampled roof colour with the corrugated sheet's relief and roughness (its own paint is green), weathered in streaks of rust.
+const zinc = new THREE.MeshStandardMaterial({ vertexColors: true, normalMap: metal.normalMap, roughnessMap: metal.roughnessMap, metalness: 0.35, roughness: 1, normalScale: new THREE.Vector2(1.3, 1.3) });
+zinc.onBeforeCompile = (shader) => {
+  shader.vertexShader = shader.vertexShader.replace('#include <common>', '#include <common>\nvarying vec2 vRoofUv;').replace('#include <uv_vertex>', '#include <uv_vertex>\nvRoofUv = uv;');
+  shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `#include <common>
+varying vec2 vRoofUv;
+float rhash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+float rnoise(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f); return mix(mix(rhash(i), rhash(i + vec2(1, 0)), f.x), mix(rhash(i + vec2(0, 1)), rhash(i + vec2(1, 1)), f.x), f.y); }`)
+    .replace('#include <color_fragment>', `#include <color_fragment>
+{ float sheet = floor(vRoofUv.x / 0.9); float rust = rnoise(vec2(sheet * 3.1, vRoofUv.y * 0.35)) * rnoise(vRoofUv * 0.6);
+  diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.32, 0.17, 0.09), smoothstep(0.25, 0.7, rust) * 0.7);
+  diffuseColor.rgb *= 0.88 + 0.24 * rhash(vec2(sheet, 7.0)); }`);
+};
+zinc.customProgramCacheKey = () => 'realworld-zinc-1';
+const metalRoofs = new THREE.Mesh(built.metalRoofs, zinc);
 const flatRoofs = new THREE.Mesh(built.flatRoofs, new THREE.MeshStandardMaterial({ vertexColors: true, map: concrete.map, normalMap: concrete.normalMap, roughnessMap: concrete.roughnessMap }));
 for (const m of [walls, metalRoofs, flatRoofs]) { m.castShadow = m.receiveShadow = !params.has('noshadow'); scene.add(m); }
-const surfaces = buildSurfaces(world, { asphalt, paving, ground, grass, concrete });
+const orthoFit = await fetch('/realworld/lagos-island/ortho.json').then((r) => r.json() as Promise<{ u: [number, number, number]; v: [number, number, number] }>);
+const orthoTexture = await new THREE.TextureLoader().loadAsync('/realworld/lagos-island/ortho.jpg');
+orthoTexture.colorSpace = THREE.SRGBColorSpace; orthoTexture.anisotropy = renderer.capabilities.getMaxAnisotropy(); orthoTexture.flipY = true;
+const surfaces = buildSurfaces(world, { asphalt, paving, ground, grass, concrete }, params.get('ortho') === '0' ? undefined : { texture: orthoTexture, ...orthoFit });
 scene.add(surfaces.group);
 const canopy = await fetch('/realworld/lagos-island/canopy.json').then((r) => r.json() as Promise<{ trees: [number, number, number, number][] }>);
-const trees = await buildTrees(canopy.trees, () => 0);
+const onLand = (x: number, z: number) => world.land.some((ring) => { let c = false; for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) { const [xi, zi] = ring[i]!, [xj, zj] = ring[j]!; if ((zi > z) !== (zj > z) && x < ((xj - xi) * (z - zi)) / (zj - zi) + xi) c = !c; } return c; });
+const trees = await buildTrees(canopy.trees.filter(([x, z]) => onLand(x, z)), () => 0);
 scene.add(trees.group);
 scene.traverse((o) => { const m = (o as THREE.Mesh).material as THREE.Material | undefined; if (m && (o as THREE.Mesh).isMesh && o !== daylight.sky) daylight.setupMaterial(m); });
 const buildMs = Math.round(performance.now() - t0);

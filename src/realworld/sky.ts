@@ -23,7 +23,7 @@ export function sunDirection(hour: number): THREE.Vector3 {
 export function createDaylight(renderer: THREE.WebGLRenderer, scene: THREE.Scene, camera: THREE.PerspectiveCamera, cascades = true): Daylight {
   const sky = new Sky(); sky.scale.setScalar(45000);
   const u = sky.material.uniforms;
-  u.turbidity!.value = 6.5; u.rayleigh!.value = 1.6; u.mieCoefficient!.value = 0.006; u.mieDirectionalG!.value = 0.85;
+  u.turbidity!.value = 4.2; u.rayleigh!.value = 1.9; u.mieCoefficient!.value = 0.004; u.mieDirectionalG!.value = 0.86;
   scene.add(sky);
   // A single shadowed sun that follows the camera's target, when cascades are off (?csm=0).
   const single = new THREE.DirectionalLight('#fff2de', 3.4);
@@ -54,9 +54,9 @@ export function createDaylight(renderer: THREE.WebGLRenderer, scene: THREE.Scene
       // Daylight: the sun several times brighter than the sky (clear tropical afternoon), so lit and shaded faces read apart.
       scene.environmentIntensity = 0.06 + 0.32 * THREE.MathUtils.smoothstep(sun.y, -0.05, 0.25);
       // Humid coastal haze: pale blue-grey by day.
-      const haze = new THREE.Color().setHSL(0.58, 0.16, 0.1 + 0.62 * THREE.MathUtils.smoothstep(sun.y, -0.1, 0.4));
+      const haze = new THREE.Color().setHSL(0.58, 0.28, 0.1 + 0.58 * THREE.MathUtils.smoothstep(sun.y, -0.1, 0.4));
       if (warm < 0.7) haze.lerp(new THREE.Color('#e7b48a'), (1 - warm) * 0.35 * THREE.MathUtils.smoothstep(sun.y, -0.05, 0.05));
-      scene.fog = new THREE.FogExp2(haze, 0.0003);
+      scene.fog = new THREE.FogExp2(haze, 0.00019);
     },
     setupMaterial(material) {
       if (!cascades) return;

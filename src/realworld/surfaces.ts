@@ -8,6 +8,8 @@ import type { PbrSet } from './textures.ts';
  * surface so junctions are clean) with lane markings, raised pavements with kerbs, parks and pitches, and viaducts on piers.
  */
 export interface Sets { asphalt: PbrSet; paving: PbrSet; ground: PbrSet; grass: PbrSet; concrete: PbrSet }
+/** The aerial photograph over the area and its fit from street metres to uv (scripts/geo/export-ortho.py). */
+export interface Ortho { texture: THREE.Texture; u: [number, number, number]; v: [number, number, number] }
 export interface Surfaces { group: THREE.Group; water: THREE.Mesh; update(time: number): void }
 
 const SIDEWALK_TOP = 0.15, ROAD_Y = 0.02;
@@ -16,7 +18,7 @@ function pbr(set: PbrSet, extra: THREE.MeshStandardMaterialParameters = {}): THR
   return new THREE.MeshStandardMaterial({ map: set.map, normalMap: set.normalMap, roughnessMap: set.roughnessMap, aoMap: set.aoMap, metalnessMap: set.metalnessMap, ...extra });
 }
 
-export function buildSurfaces(world: World, sets: Sets): Surfaces {
+export function buildSurfaces(world: World, sets: Sets, ortho?: Ortho): Surfaces {
   const group = new THREE.Group();
   // Land: the outlines traced from imagery, with a concrete quay face down into the water along real shore (not along the straight
   // cuts where the traced box ends).
@@ -38,7 +40,27 @@ export function buildSurfaces(world: World, sets: Sets): Surfaces {
       quay.quad(base, base + 3, base + 2, base + 1); quay.quad(base, base + 1, base + 2, base + 3);
     }
   }
-  group.add(mesh(landMesh, pbr(sets.ground, { roughness: 1 }), true));
+  // The ground's colour is the aerial photograph (yards, lots, beaches, what the roads and buildings do not cover), its relief and
+  // roughness the ground texture at a metre scale.
+  const landGeometry = landMesh.build();
+  if (ortho) {
+    const pos = landGeometry.attributes.position!, uv1 = new Float32Array(pos.count * 2);
+    for (let i = 0; i < pos.count; i++) { const x = pos.getX(i), z = pos.getZ(i); uv1[i * 2] = ortho.u[0] * x + ortho.u[1] * z + ortho.u[2]; uv1[i * 2 + 1] = ortho.v[0] * x + ortho.v[1] * z + ortho.v[2]; }
+    landGeometry.setAttribute('uv1', new THREE.BufferAttribute(uv1, 2));
+    ortho.texture.channel = 1;
+  }
+  const landMaterial = pbr(sets.ground, { roughness: 1 });
+  if (ortho) {
+    landMaterial.map = ortho.texture; ortho.texture.wrapS = ortho.texture.wrapT = THREE.ClampToEdgeWrapping;
+    // Outside the photograph: plain ground, faded in over the last 2 % of the frame.
+    landMaterial.onBeforeCompile = (shader) => {
+      shader.fragmentShader = shader.fragmentShader.replace('#include <map_fragment>', `#include <map_fragment>
+        { vec2 edge = min(vMapUv, 1.0 - vMapUv); float inside = smoothstep(0.0, 0.02, min(edge.x, edge.y));
+          diffuseColor.rgb = mix(vec3(0.42, 0.37, 0.3), diffuseColor.rgb, inside); }`);
+    };
+    landMaterial.customProgramCacheKey = () => 'realworld-ortho-ground';
+  }
+  const landObject = new THREE.Mesh(landGeometry, landMaterial); landObject.receiveShadow = true; group.add(landObject);
   group.add(mesh(quay, pbr(sets.concrete, { color: '#9c978c' }), true));
 
   // Lagoon water: one large plane below the quay, glossy with moving ripples, reflecting the sky (scene.environment).

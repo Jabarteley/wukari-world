@@ -94,7 +94,7 @@ test('glb: limits on triangles, pictures and parts', () => {
   assert.equal(refused(model({ json: (g) => { g.nodes = Array.from({ length: GLB_LIMITS.nodes + 1 }, () => ({})) } })), 'too_complex')
   // Instanced copies count.
   assert.equal(refused(model({ triangles: 1000, json: (g) => {
-    g.accessors.push({ bufferView: 0, componentType: 5126, count: 200, type: 'VEC3' })
+    g.accessors.push({ bufferView: 0, componentType: 5126, count: 201, type: 'VEC3' })
     g.nodes[0].extensions = { EXT_mesh_gpu_instancing: { attributes: { TRANSLATION: 1 } } }
   } })), 'too_many_triangles')
 })

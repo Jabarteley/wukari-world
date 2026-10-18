@@ -103,7 +103,7 @@ test('models: bad files, wrong types and bad names are refused in plain words', 
   assert.equal(linked.code, 'outside_file');
   const json = await s.call('/api/spaces/models?name=x', { hello: 1 }, ada.cookie);
   assert.equal(json.status, 415);
-  const huge = await s.call('/api/spaces/models?name=x', new Uint8Array(10_000_001), ada.cookie).catch(() => ({ status: 413 }));
+  const huge = await s.call('/api/spaces/models?name=x', new Uint8Array(20_000_001), ada.cookie).catch(() => ({ status: 413 }));
   assert.equal(huge.status, 413);
   assert.equal((await s.upload(ada, tiny(1), '')).code, 'invalid_name');
   assert.equal((await s.upload(ada, tiny(1), 'call 08031234567')).code, 'contact_not_allowed');

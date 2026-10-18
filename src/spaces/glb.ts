@@ -10,9 +10,9 @@
  */
 
 export const GLB_LIMITS = Object.freeze({
-  bytes: 10_000_000,
+  bytes: 20_000_000,
   jsonBytes: 4_000_000,
-  triangles: 100_000,
+  triangles: 200_000,
   textures: 16,
   texturePx: 4096,
   nodes: 2_000,

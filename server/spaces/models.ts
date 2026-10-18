@@ -43,7 +43,7 @@ export function modelsService(ctx: RouteContext): ReturnType<typeof build> {
 }
 
 function build(ctx: RouteContext) {
-  registerAdminSetting(ctx, { key: 'spacesModels', label: 'Players upload 3D models', help: 'Players with an account may upload their own .glb models (at most 30 each, 10 MB a model) and place them in their own spaces (docs/SPACES-3D.md). Off until an operator turns it on.', kind: 'boolean', default: () => false });
+  registerAdminSetting(ctx, { key: 'spacesModels', label: 'Players upload 3D models', help: 'Players with an account may upload their own .glb models (at most 30 each, 20 MB and 200,000 triangles a model) and place them in their own spaces (docs/SPACES-3D.md). Off until an operator turns it on.', kind: 'boolean', default: () => false });
   const trust = trustService(ctx);
   const on = (): boolean => ctx.checks?.setting?.('spacesModels') === true;
   const ready = (): boolean => Boolean(ctx.models);

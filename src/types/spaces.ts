@@ -10,7 +10,7 @@ export interface SpaceDesign { ok: true; code: 'designed' | 'checked'; plan: Spa
 type Where = { target: SpaceTarget; roomId?: string }
 
 /** Players' 3D models (server/spaces/models.ts, docs/SPACES-3D.md). */
-export const MODELS = Object.freeze({ perPlayer: 30, bytesPerPlayer: 150_000_000, uploadsPerHour: 10, name: 40, reportsToHide: 3 })
+export const MODELS = Object.freeze({ perPlayer: 30, bytesPerPlayer: 300_000_000, uploadsPerHour: 10, name: 40, reportsToHide: 3 })
 export interface ModelView { id: string; by: string; name: string; hash: string; bytes: number; triangles: number; textures: number; size: [number, number, number]; min: [number, number, number]; animations: number; skinned: boolean; hidden: boolean; at: number }
 export interface ModelsMine { ok: true; code: 'ok'; on: boolean; ready: boolean; canUpload: boolean; why: string | null; models: ModelView[]; used: { count: number; bytes: number }; limits: { count: number; bytes: number; file: number; triangles: number } }
 type ModelDone = Ok<{ ok: true; code: 'uploaded' | 'already' | 'renamed'; model: ModelView } | Refused>

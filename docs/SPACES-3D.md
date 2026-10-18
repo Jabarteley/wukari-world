@@ -17,10 +17,10 @@ opens, a ball game, a light show. Everything below ships behind a setting, off u
 
 Each phase is its own branch (`claude/spaces3d-phaseN`), pull request, CI run and release, behind its own setting.
 
-1. **Models library** (`spacesModels`). Upload a `.glb` (at most 10 MB, 100,000 triangles, 16 textures of at most 4096 px),
+1. **Models library** (`spacesModels`). Upload a `.glb` (at most 20 MB, 200,000 triangles, 16 textures of at most 4096 px),
    checked byte by byte on the server: glTF 2.0 binary only, every buffer and image inside the file (no outside links), only the
    extensions three.js draws, a name that passes the text filter. Stored by content hash, so the same file is kept once. A player
-   keeps at most 30 models (150 MB). Players may report a model; an operator can remove it. Erased with the player.
+   keeps at most 30 models (300 MB). Players may report a model; an operator can remove it. Erased with the player.
 2. **Walk in 3D** (`spaces3d`). A new lazy screen draws a space from its plan: walls, floors, doors, stairs, the furniture
    (the housing studio's models where they exist) and the player's own models, with the realistic renderer. Walk with a stick and
    drag to look (phone) or WASD and the mouse (computer); first or third person. Place, move, turn and scale your own models in

@@ -27,7 +27,8 @@ export function unavailableProfilePageHtml(origin: unknown = ''): string {
   return `${head(origin, '/', title, description)}<body><main class="wrap gone"><h1>Profile unavailable</h1><p>This character may have hidden their public profile, or the link may be wrong.</p><a href="${esc(`${base}/`)}">Open Allworld</a></main></body></html>`
 }
 
-export function publicProfilePageHtml(profile: PublicCharacterProfile, origin: unknown = ''): string {
+/** `social`: the feed's block (server/feed/pages.ts profileSocialHtml), already escaped; empty when the person set nothing. */
+export function publicProfilePageHtml(profile: PublicCharacterProfile, origin: unknown = '', social = ''): string {
   const base = safeOrigin(origin), canonical = `${base}${profile.path}`, kind = profile.kind === 'agent' ? 'Agent character' : 'Human character'
   const total = profile.counts.achievements + profile.counts.stories + profile.counts.projects + profile.counts.collections
   const description = `${profile.name}'s ${kind.toLowerCase()} record on Allworld: ${total} earned accomplishment${total === 1 ? '' : 's'}.`
@@ -35,7 +36,7 @@ export function publicProfilePageHtml(profile: PublicCharacterProfile, origin: u
   const history = profile.history.map(row => `<li><span class="stamp">${kindLabel(row.kind)}</span><b>${esc(row.title)}</b><p class="meta">Earned ${date(row.earnedAt)} · ${esc(origins(row))}</p>${row.memento ? `<div class="memento"><strong>${esc(row.memento.icon)} ${esc(row.memento.title)}</strong>${esc(row.memento.description)}</div>` : ''}</li>`).join('')
   const older = profile.next ? `<a class="older" href="${esc(`${profile.path}?after=${encodeURIComponent(profile.next)}`)}">Older accomplishments</a>` : ''
   return `${head(origin, profile.path, `${profile.name}'s accomplishments — Allworld`, description)}<body><main class="wrap"><div class="top"><a class="brand" href="${esc(`${base}/`)}">Allworld</a><span class="type">Public character record</span></div>
-<section class="cover"><p>${kind}</p><h1>${esc(profile.name)}</h1><p>Earned achievements and completed stories, projects and collections.</p></section>
+<section class="cover"><p>${kind}</p><h1>${esc(profile.name)}</h1><p>Earned achievements and completed stories, projects and collections.</p></section>${social}
 <section class="counts" aria-label="Accomplishment totals"><div><b>${profile.counts.achievements}</b><span>Achievements</span></div><div><b>${profile.counts.stories}</b><span>Stories</span></div><div><b>${profile.counts.projects}</b><span>Projects</span></div><div><b>${profile.counts.collections}</b><span>Collections</span></div></section>
 <h2>Earned badges</h2>${badges ? `<ul class="badges">${badges}</ul>` : '<p class="empty">No earned achievement badges are recorded yet.</p>'}
 <h2>Accomplishment history</h2>${history ? `<ul class="history">${history}</ul>${older}` : '<p class="empty">No completed stories, projects, collections or achievements are recorded yet.</p>'}

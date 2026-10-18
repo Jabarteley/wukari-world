@@ -11,6 +11,7 @@ import { forgetStoryHelp } from '../story/coop.ts'
  * values: an unknown collection that still contains one of the actors fails preflight instead.
  */
 import { forgetClanPlayers } from '../clans/forget.ts'
+import { forgetFeedPlayers } from '../feed/service.ts'
 import { clearPlayerFamily } from '../social/family.ts'
 import { eraseLivingWorldProgress } from '../living-world/privacy.ts'
 import { eraseRealValue } from '../real-value/privacy.ts'
@@ -728,6 +729,7 @@ export function eraseData(ctx: RouteContext, db: Db, plan: ErasurePlan): Erasure
   scrubPolitics(db, ids)
   scrubBusiness(db, ids)
   forgetClanPlayers(db, ids)
+  forgetFeedPlayers(db, ids)
   eraseSpaces(db, ids)
   scrubTrustAndSupport(db, ids, accounts)
   scrubAdminCollections(db, ids, accounts)

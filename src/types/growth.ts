@@ -423,6 +423,8 @@ export interface ReturnSplit {
   byClan: { yes: ReturnRow; no: ReturnRow }
   /** Sent a message to an AI character within the first two days, or not. */
   byAgent: { yes: ReturnRow; no: ReturnRow }
+  /** Posted in the feed in the first two days. */
+  byPosted?: { yes: ReturnRow; no: ReturnRow }
   /** What "has a friend" means, and what the numbers cannot say. */
   note: string
 }

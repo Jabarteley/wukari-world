@@ -819,7 +819,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
   })());
   server.close = (callback?: (error?: Error) => void) => { closeHttp((error) => { flush().finally(() => callback?.(error)); }); return server; };
   // Attached before the startup work is awaited, as before: nothing that runs during startup can find them missing.
-  const running = Object.assign(server, { wss, beat, store, shards, world, telemetry, flush });
+  const running = Object.assign(server, { wss, beat, store, shards, world, telemetry, flush, context: ctx });
   await Promise.all(startup.splice(0));
   return running;
 }

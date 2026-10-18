@@ -181,6 +181,8 @@ function buildService(ctx: RouteContext) {
     const item: GistItem = { n: ++gist.seq, at: now, city: entry.city, kind: entry.kind, text, ...(Object.keys(refs).length ? { refs } : {}) };
     list.push(item);
     prune(gist, now);
+    // The feed drafts it as a moment for the people it names (server/feed/service.ts noteMoment). A failure there never loses the line.
+    if (people.length) { try { ctx.checks?.moment?.(db, item, people.map((person) => person.id)); } catch { /* the gist line stands */ } }
     return item;
   }
 

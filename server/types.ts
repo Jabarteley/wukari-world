@@ -751,7 +751,7 @@ export interface GrowthMetricsRecord {
   days?: Record<string, Record<string, number>>
   cohorts?: Record<string, { size: number; r: Record<string, number> }>
   /** `src` (optional, added with the return split): the cleaned "source|medium|campaign" the life arrived by; `ret` a bit mask of the retention days seen (1, 7, 30 → bits 0, 1, 2); `fr` the Lagos day of its first real friend; `done` the same mask for the days already counted into `split`. */
-  lives?: Record<string, { first: number; last: number | null; steps: number; src?: string; ret?: number; fr?: number; done?: number }>
+  lives?: Record<string, { first: number; last: number | null; steps: number; src?: string; ret?: number; fr?: number; cl?: number; ag?: number; po?: number; done?: number }>
   /**
    * Day-1, day-7 and day-30 return by how a life arrived and by whether it made a friend in its first two days, counted once when
    * the life is old enough: { [cohortLagosDay]: { "src:<source|medium|campaign>" | "friend:yes" | "friend:no": { "1" | "7" | "30": [lives, returned] } } }.
@@ -1179,6 +1179,8 @@ export interface ContextChecks {
   agentClear?: (db: Db, publicId: string) => void
   /** Clans (server/clans/): a finished game's result, for the ladders. Call inside the transaction that records the result; it never throws. */
   gameResult?: (db: Db, result: import('../src/clans/results.ts').GameResult) => void
+  /** Feed (server/feed/service.ts): the gist recorded a public line naming these people; drafts a moment for each adult and posts an AI character's. */
+  moment?: (db: Db, item: { n: number; at: number; city: string; kind: string; text: string }, ids: readonly string[]) => void
   /** Agents: a player was reported; enough reports about a character an agent plays suspend its keys. */
   agentReported?: (db: Db, aboutId: string) => void
 }

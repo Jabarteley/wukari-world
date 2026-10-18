@@ -30,6 +30,9 @@ import type { CampusHttpRoutes } from './campus.ts'
 import type { CallClientFrame, CallServerFrame } from './calls.ts'
 import type { ArenaClientFrame, ArenaErrorCode, ArenaServerFrame } from './arena.ts'
 import type { SpaceClientFrame, SpaceServerFrame } from './spaces.ts'
+import type { InboxLine } from './feed.ts'
+/** The feed's inbox changed (server/feed/): how many lines are unread, and the new one. */
+export interface FeedInboxFrame { type: 'feed-inbox'; unseen: number; line?: InboxLine }
 import type { NoticeFrame, NoticeHttpRoutes } from './notice.ts'
 import type { CompanionHttpRoutes } from './companion.ts'
 import type { AnnounceFrame } from './announce.ts'
@@ -59,6 +62,7 @@ import type { PublicProfileHttpRoutes } from './public-profile.ts'
 import type { ArenaHttpRoutes } from './arena.ts'
 import type { ClansHttpRoutes } from './clans.ts'
 import type { SpacesHttpRoutes } from './spaces.ts'
+import type { FeedHttpRoutes } from './feed.ts'
 import type { StoryHttpRoutes } from './story-http.ts'
 
 // ---- shared primitives ---------------------------------------------------------------------------
@@ -291,7 +295,7 @@ export interface CoreHttpRoutes {
  * telemetry endpoints are added beside them by server/server.ts: growth.ts TelemetryHttpRoutes.)
  */
 export interface HttpRoutes extends CoreHttpRoutes, SocialHttpRoutes, CivicHttpRoutes, SupportHttpRoutes, ModerationHttpRoutes, WorldHttpRoutes,
-  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, ProjectHttpRoutes, RetentionHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, PlacesHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes, PublicProfileHttpRoutes, ArenaHttpRoutes, ClansHttpRoutes, StoryHttpRoutes, SpacesHttpRoutes {
+  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, ProjectHttpRoutes, RetentionHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, PlacesHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes, PublicProfileHttpRoutes, ArenaHttpRoutes, ClansHttpRoutes, StoryHttpRoutes, SpacesHttpRoutes, FeedHttpRoutes {
   'GET /api/world/land': { query: { city: CityId }; response: Ok<LandView>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | 'invalid_city' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' }
   'POST /api/world/land/buy': { body: LandBuyRequest; response: Ok<{ ok: boolean; code: string; duplicate?: true; pending?: true }>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | JsonBodyErrorCode | OnceErrorCode | 'invalid_city' | 'invalid_land_purchase' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' | 'land_pending' | 'not_owned_home' | 'land_price_changed' | 'land_intent_changed' }
 }
@@ -549,7 +553,7 @@ export interface PulseFrame { type: 'pulse'; online: number; visits: number; tod
  * socket and the social client's socket both receive every frame addressed to the player.
  * WORKER: also `HeartbeatFrame`.
  */
-export type ServerFrame = RoomServerFrame | SocialServerFrame | TableServerFrame | ArenaServerFrame | CallServerFrame | LifeChangedFrame | LiveServerFrame | NoticeFrame | PulseFrame | AnnounceFrame | SpaceServerFrame
+export type ServerFrame = RoomServerFrame | SocialServerFrame | TableServerFrame | ArenaServerFrame | CallServerFrame | LifeChangedFrame | LiveServerFrame | NoticeFrame | PulseFrame | AnnounceFrame | SpaceServerFrame | FeedInboxFrame
 export type ClientFrameType = ClientFrame['type']
 export type ServerFrameType = ServerFrame['type']
 
@@ -558,6 +562,7 @@ export type ServerFrameType = ServerFrame['type']
 export { registeredCityIds } from '../game/cities/registry.ts'
 
 export const HTTP_ROUTE_KEYS = [
+  'GET /api/feed/me', 'POST /api/feed/seen', 'GET /api/feed/list', 'GET /api/feed/crew', 'GET /api/feed/by', 'GET /api/feed/post', 'POST /api/feed/post', 'POST /api/feed/post/remove', 'POST /api/feed/react', 'POST /api/feed/reply', 'POST /api/feed/reply/remove', 'POST /api/feed/report', 'POST /api/feed/draft/remove', 'POST /api/feed/media', 'GET /api/feed/media/:hash', 'GET /api/feed/portrait/:id', 'GET /api/feed/profile', 'POST /api/feed/profile', 'POST /api/feed/handle', 'GET /api/feed/code', 'POST /api/feed/follow', 'GET /api/feed/suggestions', 'POST /api/feed/vouch', 'POST /api/feed/crews', 'POST /api/feed/crews/join', 'POST /api/feed/crews/leave', 'GET /api/feed/crews/one', 'GET /api/feed/events', 'GET /api/feed/events/one', 'POST /api/feed/events', 'POST /api/feed/events/rsvp', 'POST /api/feed/events/cancel', 'GET /api/feed/gigs', 'POST /api/feed/gigs', 'POST /api/feed/gigs/act', 'GET /api/mod/feed', 'POST /api/mod/feed',
   'GET /api/profiles/:id',
   'GET /api/living-world/assessment', 'POST /api/living-world/assessment/start', 'POST /api/living-world/assessment/step',
   'GET /api/living-world/justice-practice', 'POST /api/living-world/justice-practice/start', 'POST /api/living-world/justice-practice/step',
@@ -947,6 +952,7 @@ export const SERVER_FRAME_TYPES = [
   'ping-incoming', 'ping-joined', 'ping-ended',
   'notice', 'pulse', 'announce',
   'space-room', 'space-peer',
+  'feed-inbox',
 ] as const satisfies readonly ServerFrameType[]
 /** WORKER: every frame type the shared modules send, and its application heartbeat. */
 export const WORKER_SERVER_FRAME_TYPES: readonly (ServerFrameType | HeartbeatFrame['type'])[] = [...SERVER_FRAME_TYPES, 'heartbeat']

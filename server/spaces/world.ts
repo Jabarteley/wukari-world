@@ -97,6 +97,13 @@ function build(ctx: RouteContext) {
 
   return {
     on,
+    /** Who may be in this space live (server/ws/spaces.ts): the same rule as reading it. */
+    access(db: Db, session: SessionRecord, query: URLSearchParams): { ok: true; key: string; kind: 'home' | 'room'; owner: string } | ReturnType<typeof no> {
+      if (!on()) return no('world_off', 'Walking through spaces in 3D is not switched on yet.');
+      const found = where(db, session, query);
+      if ('ok' in found) return found;
+      return { ok: true, key: found.key, kind: found.kind, owner: found.owner.id };
+    },
     /** GET /api/spaces/world */
     read(db: Db, session: SessionRecord, query: URLSearchParams): WorldView | ReturnType<typeof no> {
       if (!on()) return no('world_off', 'Walking through spaces in 3D is not switched on yet.');

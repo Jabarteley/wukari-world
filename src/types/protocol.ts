@@ -29,6 +29,7 @@ import type { ProjectHttpRoutes } from './projects.ts'
 import type { CampusHttpRoutes } from './campus.ts'
 import type { CallClientFrame, CallServerFrame } from './calls.ts'
 import type { ArenaClientFrame, ArenaErrorCode, ArenaServerFrame } from './arena.ts'
+import type { SpaceClientFrame, SpaceServerFrame } from './spaces.ts'
 import type { NoticeFrame, NoticeHttpRoutes } from './notice.ts'
 import type { CompanionHttpRoutes } from './companion.ts'
 import type { AnnounceFrame } from './announce.ts'
@@ -526,7 +527,7 @@ export interface HeartbeatAckFrame { type: 'heartbeat-ack' }
 /** Everything a browser may send (on the Worker also `HeartbeatAckFrame`). */
 /** Asks for the counts frames (`pulse`): answered at once with the current counts, then sent when they change. Not repeated. */
 export interface PulseWatchFrame { type: 'pulse-watch' }
-export type ClientFrame = RoomClientFrame | SocialClientFrame | TableClientFrame | ArenaClientFrame | CallClientFrame | LiveClientFrame | PulseWatchFrame
+export type ClientFrame = RoomClientFrame | SocialClientFrame | TableClientFrame | ArenaClientFrame | CallClientFrame | LiveClientFrame | PulseWatchFrame | SpaceClientFrame
 /**
  * ONE CHARACTER ON SEVERAL DEVICES (docs/DEVICES.md). Every answer that carries the life (GET /api/life, POST /api/action)
  * carries `rev`, a number that only goes up for one character: a device never replaces what it shows with an answer whose
@@ -548,7 +549,7 @@ export interface PulseFrame { type: 'pulse'; online: number; visits: number; tod
  * socket and the social client's socket both receive every frame addressed to the player.
  * WORKER: also `HeartbeatFrame`.
  */
-export type ServerFrame = RoomServerFrame | SocialServerFrame | TableServerFrame | ArenaServerFrame | CallServerFrame | LifeChangedFrame | LiveServerFrame | NoticeFrame | PulseFrame | AnnounceFrame
+export type ServerFrame = RoomServerFrame | SocialServerFrame | TableServerFrame | ArenaServerFrame | CallServerFrame | LifeChangedFrame | LiveServerFrame | NoticeFrame | PulseFrame | AnnounceFrame | SpaceServerFrame
 export type ClientFrameType = ClientFrame['type']
 export type ServerFrameType = ServerFrame['type']
 
@@ -927,6 +928,7 @@ export const CLIENT_FRAME_TYPES = [
   'arena-create', 'arena-join', 'arena-watch', 'arena-start', 'arena-options', 'arena-input', 'arena-again', 'arena-leave', 'arena-stake', 'arena-back',
   'call-invite', 'call-accept', 'call-decline', 'call-cancel', 'call-hangup', 'call-signal', 'call-settings', 'call-ice', 'call-report',
   'live-watch', 'live-unwatch', 'pulse-watch',
+  'space-join', 'space-tick', 'space-leave',
 ] as const satisfies readonly ClientFrameType[]
 /** WORKER: every frame type of the registry, and the answer to its application heartbeat. */
 export const WORKER_CLIENT_FRAME_TYPES: readonly (ClientFrameType | HeartbeatAckFrame['type'])[] = [...CLIENT_FRAME_TYPES, 'heartbeat-ack']
@@ -944,6 +946,7 @@ export const SERVER_FRAME_TYPES = [
   'live-snapshot', 'live-move',
   'ping-incoming', 'ping-joined', 'ping-ended',
   'notice', 'pulse', 'announce',
+  'space-room', 'space-peer',
 ] as const satisfies readonly ServerFrameType[]
 /** WORKER: every frame type the shared modules send, and its application heartbeat. */
 export const WORKER_SERVER_FRAME_TYPES: readonly (ServerFrameType | HeartbeatFrame['type'])[] = [...SERVER_FRAME_TYPES, 'heartbeat']

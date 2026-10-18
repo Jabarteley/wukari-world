@@ -61,7 +61,7 @@ export type ScriptOp =
   | { op: 'push'; name: string; x: number; y: number; z: number }
   | { op: 'color'; name: string; hex: string }
   | { op: 'show'; name: string; on: boolean }
-  | { op: 'say'; text: string }
+  | { op: 'say'; text: string; line: number; values: number[] }
   | { op: 'score'; value: number }
   | { op: 'sound'; name: SoundName }
 
@@ -92,7 +92,7 @@ export function checkOp(raw: unknown, names: ReadonlySet<string>, lines: readonl
       const line = index >= 0 ? lines[index] : undefined
       if (line === undefined) return null
       const values = (raw as unknown[]).slice(2, 6).map((v) => finite(v, 1e9)).filter((v): v is number => v !== null)
-      return { op: 'say', text: fillLine(line, values) }
+      return { op: 'say', text: fillLine(line, values), line: index, values }
     }
     case 'score': { const value = finite(a, 1e9); return value !== null ? { op: 'score', value } : null }
     case 'sound': return typeof a === 'string' && (SCRIPT.sounds as readonly string[]).includes(a) ? { op: 'sound', name: a as SoundName } : null

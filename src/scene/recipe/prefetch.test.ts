@@ -35,6 +35,96 @@ function response(bytes: Uint8Array): Response {
   return new Response(new Uint8Array(bytes).buffer, { status: 200, headers: { 'content-length': String(bytes.length) } })
 }
 
+test('more than a hundred links warm only three distinct nearest surface destinations without traversing them', async () => {
+  let changed = () => {}
+  const idle: (() => void | Promise<void>)[] = [], loads: string[] = [], origins: string[] = []
+  const packs = new Map(await Promise.all(['beta', 'gamma', 'delta'].map(async id => [id, await pack(id)] as const)))
+  const links = [
+    ...Array.from({ length: 120 }, (_, index) => ({ to: `air-${index}`, mode: 'air', km: index + 1 })),
+    { to: 'alpha', mode: 'road', km: 0 }, { to: 'closed', mode: 'road', km: 0, status: 'coming' },
+    { to: 'beta', mode: 'air', km: 1 }, { to: 'delta', mode: 'road', km: 30 },
+    { to: 'gamma', mode: 'rail', km: 10 }, { to: 'beta', mode: 'road', km: 10 },
+    { to: 'gamma', mode: 'road', km: 40 }, { to: 'extra', mode: 'road', km: 50 },
+  ]
+  const stop = startNeighborRecipePrefetch({
+    currentCity: () => 'alpha', onCityChange: refresh => { changed = refresh; return () => {} },
+    idle: run => { idle.push(run) }, hold: () => false,
+    neighbours: origin => { origins.push(origin); return links },
+    loadPack: async id => { loads.push(id); return packs.get(id) },
+    fetcher: async input => {
+      const url = String(input), name = url.includes('/heroes/') ? url.split('/').at(-1)!.split('-')[0]! : 'kit'
+      return response(name === 'kit' ? KIT_BYTES : new TextEncoder().encode(name))
+    },
+  })
+  for (const expected of ['beta', 'gamma', 'delta']) {
+    assert.equal(idle.length, 1)
+    await idle.shift()!()
+    assert.equal(loads.at(-1), expected)
+  }
+  assert.equal(idle.length, 0)
+  assert.deepEqual(loads, ['beta', 'gamma', 'delta'])
+  assert.deepEqual(origins, ['alpha'])
+  changed()
+  while (idle.length) await idle.shift()!()
+  assert.deepEqual(loads, ['beta', 'gamma', 'delta'], 'already warmed selections must not expand the origin budget')
+  stop()
+})
+
+test('distance and missing metadata produce a deterministic bounded selection', async () => {
+  const cases = [
+    {
+      links: [
+        { to: 'z', mode: 'road', km: NaN }, { to: 'c', mode: 'road', km: -1 },
+        { to: 'b', mode: 'rail', km: Infinity }, { to: 'a', mode: 'road' },
+        { to: 'finite', mode: 'road', km: 5 }, { to: 'zero', mode: 'rail', km: 0 },
+        { to: 'air', mode: 'air', km: 0 },
+      ], expected: ['zero', 'finite', 'a'],
+    },
+    {
+      links: [
+        { to: 'z', mode: 'air', km: Infinity }, { to: 'c', mode: 'air', km: 3 },
+        { to: 'b', mode: 'air', km: 2 }, { to: 'a', mode: 'air', km: 1 }, { to: 'unknown' },
+      ], expected: ['a', 'b', 'c'],
+    },
+    { links: [{ to: 'd' }, { to: 'c' }, { to: 'b' }, { to: 'a' }], expected: ['a', 'b', 'c'] },
+  ]
+  for (const { links, expected } of cases) {
+    const idle: (() => void | Promise<void>)[] = [], loads: string[] = []
+    const stop = startNeighborRecipePrefetch({
+      currentCity: () => 'origin', onCityChange: () => () => {}, idle: run => { idle.push(run) }, hold: () => false,
+      neighbours: () => links,
+      loadPack: async id => { loads.push(id); throw new Error('unavailable pack') },
+      fetcher: async () => { assert.fail('a failed pack must not fetch assets') },
+    })
+    while (idle.length) await idle.shift()!()
+    assert.deepEqual(loads, expected)
+    stop()
+  }
+})
+
+test('a held queued turn does no work and a new origin replaces its bounded selection', async () => {
+  let city = 'origin', held = false, changed = () => {}
+  const idle: (() => void | Promise<void>)[] = [], loads: string[] = []
+  const stop = startNeighborRecipePrefetch({
+    currentCity: () => city, onCityChange: refresh => { changed = refresh; return () => {} }, idle: run => { idle.push(run) }, hold: () => held,
+    neighbours: origin => Array.from({ length: 120 }, (_, i) => ({ to: `${origin}-${String(i).padStart(3, '0')}` })),
+    loadPack: async id => { loads.push(id); throw new Error('unavailable pack') },
+    fetcher: async () => { assert.fail('a failed pack must not fetch assets') },
+  })
+  held = true
+  await idle.shift()!()
+  assert.deepEqual(loads, [])
+  assert.equal(idle.length, 0)
+  city = 'next'; changed()
+  assert.equal(idle.length, 0)
+  held = false; changed()
+  while (idle.length) await idle.shift()!()
+  assert.deepEqual(loads, ['next-000', 'next-001', 'next-002'])
+  city = 'last'; changed(); stop()
+  while (idle.length) await idle.shift()!()
+  assert.deepEqual(loads, ['next-000', 'next-001', 'next-002'])
+})
+
 test('linked packs and exact immutable assets warm one city per idle turn', async () => {
   let city = 'alpha', changed = () => {}
   const idle: (() => void | Promise<void>)[] = [], loads: string[] = [], reads: { url: string; init?: RequestInit }[] = []

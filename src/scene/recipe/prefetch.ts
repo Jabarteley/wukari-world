@@ -11,13 +11,16 @@ export interface RecipePrefetchOptions {
   onCityChange: (refresh: () => void) => Stop
   idle: Idle
   hold: () => boolean
-  neighbours?: (city: string) => readonly { to: string; status?: string }[]
+  neighbours?: (city: string) => readonly { to: string; status?: string; mode?: string; km?: number }[]
   loadPack?: PackLoader
   fetcher?: typeof globalThis.fetch
 }
 
 type GeneratedRegistry = Readonly<Record<string, () => Promise<{ default: RecipeCityPack }>>>
 let registryJob: Promise<GeneratedRegistry> | null = null
+
+const modeRank = (mode: string | undefined): number => mode === 'road' || mode === 'rail' ? 0 : mode === 'air' ? 1 : 2
+const distance = (km: number | undefined): number => km !== undefined && Number.isFinite(km) && km >= 0 ? km : Infinity
 
 async function generatedPack(city: string): Promise<unknown> {
   const job = registryJob ??= import('./registry.generated.ts').then(module => module.RECIPE_CITY_LOADERS)
@@ -53,7 +56,7 @@ async function consumeAsset(ref: RecipeAssetRef, fetcher: typeof globalThis.fetc
 }
 
 /**
- * Import linked city data one city per idle turn and fully consume its immutable GLBs into the browser HTTP cache.
+ * Import at most three nearby linked cities, one per idle turn, and consume their immutable GLBs into the browser HTTP cache.
  * This never decodes an image, texture or geometry; normal venue loading remains the validation and preparation path.
  */
 export function startNeighborRecipePrefetch(options: RecipePrefetchOptions): Stop {
@@ -76,11 +79,16 @@ export function startNeighborRecipePrefetch(options: RecipePrefetchOptions): Sto
     request = null
     const origin = options.currentCity(), seen = new Set<string>()
     try {
-      queue = neighbours(origin).flatMap(link => {
-        if ((link.status ?? 'open') !== 'open' || link.to === origin || seen.has(link.to)) return []
-        seen.add(link.to)
-        return [link.to]
-      })
+      queue = neighbours(origin)
+        .filter(link => (link.status ?? 'open') === 'open' && link.to !== origin)
+        .sort((a, b) => modeRank(a.mode) - modeRank(b.mode)
+          || (distance(a.km) < distance(b.km) ? -1 : distance(a.km) > distance(b.km) ? 1 : 0)
+          || (a.to < b.to ? -1 : a.to > b.to ? 1 : 0))
+        .flatMap(link => {
+          if (seen.has(link.to)) return []
+          seen.add(link.to)
+          return [link.to]
+        }).slice(0, 3)
     } catch { queue = [] }
     schedule()
   }

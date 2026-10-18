@@ -285,7 +285,15 @@ export default defineConfig({
     minify: 'terser',
     // Keep one minifier worker on the shared development computer as well as one outer build lease.
     terserOptions: { maxWorkers: 1, compress: { passes: 3 }, format: { comments: false } },
-    modulePreload: { polyfill: false },
+    modulePreload: {
+      polyfill: false,
+      // UI bodies discover JavaScript through native imports. Keep their CSS preloads and the
+      // complete preload lists for the game shell, city data, maps and venue renderer.
+      resolveDependencies(file, dependencies, { hostType }) {
+        const uiBody = /(?:^|\/)[A-Z][A-Za-z0-9]*(?:App|Panel|Sheet|Tab|Chip|Modal|Card|Host|Banner|Bar|Notices|Notice|Nudge|Offer|Ask|Button|Actions|Progress|Entry|Toggle|Unsupported)-[a-f0-9]{7}\.js$/.test(file);
+        return hostType === 'js' && uiBody ? dependencies.filter(file => !file.endsWith('.js')) : dependencies;
+      },
+    },
     sourcemap: wantMaps ? 'hidden' : false,
     rollupOptions: { treeshake: { moduleSideEffects: (id) => !id.endsWith('/src/scene/home-scene.ts') && !/\/src\/game\/wardrobe\/(catalogue|rules|look|view|prices)\.ts$/.test(id) && !id.endsWith('/src/game/table-stakes.ts') && !id.endsWith('/src/character/native-catalog.ts') && !id.endsWith('/src/character/native-migration.ts') }, input: { app: 'index.html', adminshell: 'adminshell.html', replay: 'replay.html', countries: 'county/index.html', cities: 'cities/index.html', cityScenes: 'cities/scenes/index.html' }, output: { hashCharacters: 'hex', chunkFileNames: 'assets/[name]-[hash:7].js', entryFileNames: 'assets/[name]-[hash:7].js', assetFileNames: 'assets/[name]-[hash:7][extname]', onlyExplicitManualChunks: true, manualChunks(id) {
     const recipeCity = id.match(/\/src\/scene\/recipe\/cities\/([a-z0-9-]+)\.ts$/)
@@ -395,9 +403,6 @@ export default defineConfig({
     if (/\/src\/app\/features\/hud\/(OnlinePill\.vue|usePulse\.ts|onlinePillModel\.ts)/.test(id)) return 'online-pill'
     // Capability-gated Story screens share one lazy download and a single preload entry.
     if (/\/src\/app\/features\/story\/[^/]+\.vue(?:\?|$)/.test(id)) return 'story-ui'
-    // State and helpers already fetched with the game shell share one startup chunk. updateNotice stays with the first-paint graph:
-    // grouping that entry dependency here would promote the complete game-state dependency closure before the player starts.
-    if (/\/src\/app\/(state\/app|features\/(account\/(accountOpen|shownOnce|useAccountLite)|calls\/(callsLoader|agentCallState)|growth\/(shareInvite|touchOfferModel)))\.ts$/.test(id)) return 'app-runtime'
     // Small modules every page uses, shared by the lazy panels and each needing no more than Vue and the engine: kept in the engine chunk
     // (already in the first download) instead of one file apiece, which would each carry its own header and lose what the others share when compressed.
     if (/\/src\/(geo\/frame|campus\/unilag\/(slices|volunteer)|app\/ui\/format|app\/features\/(commerce\/connectionReturn|account\/(accountLite|accountTrack)|hud\/coachModel|sim\/settingsModel|tour\/tourState|neighbourhood\/cityWalkState))\.ts$/.test(id)) return 'engine'

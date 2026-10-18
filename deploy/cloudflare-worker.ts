@@ -297,7 +297,7 @@ export interface WorkerEnv {
   REVERSE_GEAR_ISSUANCE?: string
   JOINALLWORLD: DurableObjectNamespace
   ASSETS: Fetcher
-  /** Players' 3D models (deploy/r2-models.ts), the R2 bucket `allworld-models`; unset: uploads are refused as not ready. */
+  /** Players' 3D models (deploy/r2-models.ts), the R2 bucket `allworld`; unset: uploads are refused as not ready. */
   MODELS?: R2Models
   BUILD_ID?: string
   PUBLIC_ORIGIN?: string

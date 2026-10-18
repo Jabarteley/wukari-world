@@ -217,7 +217,9 @@ function rememberModule(module: CityModule): CityModule {
   loadedModules.set(module.id, module)
   loadedRules.set(module.id, module.rules)
   mutableCityRules[module.id] = publicRules(module.rules)
-  linkCache = null
+  // The modules' own links are read only while the network's authored links are not in (allCityLinks): once they are, a module
+  // that loads changes no link, and dropping the cache would rebuild every generated link (~50 ms) for nothing.
+  if (!authoredCityLinks) linkCache = null
   return module
 }
 

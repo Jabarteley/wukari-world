@@ -12,18 +12,13 @@ let showing: ((bytes: ArrayBuffer) => Promise<void>) | null = null
 let gone = false
 
 onMounted(async () => {
-  const [{ createLook, parseModel, shadowFloor, disposeTree, aimSun, THREE }, { OrbitControls }] = await Promise.all([
-    import('../../../spaces/world/look.ts'), import('three/examples/jsm/controls/OrbitControls.js'),
-  ])
+  const { createLook, parseModel, shadowFloor, disposeTree, aimSun, orbit, THREE } = await import('../../../spaces/world/look.ts')
   if (gone || !canvas.value) return
   const element = canvas.value
   const look = createLook(element, { quality: 'normal', background: '#dde3e8' })
   const camera = new THREE.PerspectiveCamera(40, 1, 0.05, 200)
-  const controls = new OrbitControls(camera, element)
-  controls.enableDamping = true
-  controls.autoRotate = true
-  controls.autoRotateSpeed = 1.2
-  controls.addEventListener('start', () => { controls.autoRotate = false })
+  let spinning = true
+  const controls = orbit(camera, element, new THREE.Vector3(), { onStart: () => { spinning = false } })
   const floor = shadowFloor(4)
   look.scene.add(floor)
   let current: InstanceType<typeof THREE.Group> | null = null
@@ -41,8 +36,9 @@ onMounted(async () => {
   let frame = 0
   const tick = (): void => {
     frame = requestAnimationFrame(tick)
-    mixer?.update(Math.min(clock.getDelta(), 0.1))
-    controls.update()
+    const dt = Math.min(clock.getDelta(), 0.1)
+    mixer?.update(dt)
+    if (spinning) controls.spin(dt * 0.25)
     look.renderer.render(look.scene, camera)
   }
   tick()
@@ -59,13 +55,10 @@ onMounted(async () => {
       const radius = Math.max(model.size.x, model.size.y, model.size.z, 0.2)
       floor.scale.setScalar(Math.max(1, radius / 3))
       aimSun(look, new THREE.Vector3(0, model.size.y / 2, 0), radius * 1.2)
-      controls.target.set(0, model.size.y / 2, 0)
-      // Far enough that the whole model fits the view, from a little above and to one side.
-      const distance = (radius / 2) / Math.tan((camera.fov * Math.PI) / 360) * 1.25
-      camera.position.set(distance * 0.55, model.size.y / 2 + distance * 0.25, distance * 0.8)
       camera.near = radius / 100; camera.far = radius * 50
       camera.updateProjectionMatrix()
-      controls.minDistance = radius * 0.4; controls.maxDistance = radius * 6
+      // Far enough that the whole model fits the view.
+      controls.frame(new THREE.Vector3(0, model.size.y / 2, 0), (radius / 2) / Math.tan((camera.fov * Math.PI) / 360) * 1.25, radius * 0.4, radius * 6)
       status.value = ''
     } catch {
       status.value = ''

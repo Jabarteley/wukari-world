@@ -8,8 +8,7 @@
  * with nothing before it is fetched (the server already refuses such files: src/spaces/glb.ts).
  */
 import * as THREE from 'three'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js'
+import type { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js'
 
 export { THREE }
@@ -69,14 +68,16 @@ export function aimSun(look: Look, centre: THREE.Vector3, half: number): void {
   box.updateProjectionMatrix()
 }
 
-let loader: GLTFLoader | null = null
-function gltfLoader(): GLTFLoader {
-  if (loader) return loader
-  const manager = new THREE.LoadingManager()
-  // Pictures inside a .glb become blob: links the loader makes itself; anything else would be an outside fetch, so it reads nothing.
-  manager.setURLModifier((url) => (url.startsWith('blob:') || url.startsWith('data:') ? url : 'data:,'))
-  loader = new GLTFLoader(manager)
-  loader.setMeshoptDecoder(MeshoptDecoder)
+// The loader and the meshopt decoder are fetched the way the skinned body fetches them (vite.config.ts leaves them to the bundler),
+// so they stay in the body's lazy chunk and nothing the city scene loads changes.
+let loader: Promise<GLTFLoader> | null = null
+function gltfLoader(): Promise<GLTFLoader> {
+  loader ??= Promise.all([import('three/examples/jsm/loaders/GLTFLoader.js'), import('three/examples/jsm/libs/meshopt_decoder.module.js')]).then(([gltf, meshopt]) => {
+    const manager = new THREE.LoadingManager()
+    // Pictures inside a .glb become blob: links the loader makes itself; anything else would be an outside fetch, so it reads nothing.
+    manager.setURLModifier((url) => (url.startsWith('blob:') || url.startsWith('data:') ? url : 'data:,'))
+    return new gltf.GLTFLoader(manager).setMeshoptDecoder(meshopt.MeshoptDecoder)
+  })
   return loader
 }
 
@@ -86,7 +87,7 @@ export interface LoadedModel { root: THREE.Group; clips: THREE.AnimationClip[]; 
  * file are dropped: the space has its own.
  */
 export async function parseModel(bytes: ArrayBuffer, maxAnisotropy = 8): Promise<LoadedModel> {
-  const gltf = await gltfLoader().parseAsync(bytes, '')
+  const gltf = await (await gltfLoader()).parseAsync(bytes, '')
   const root = new THREE.Group()
   const content = gltf.scene
   const drop: THREE.Object3D[] = []
@@ -123,16 +124,55 @@ export function disposeTree(root: THREE.Object3D): void {
   })
 }
 
-/** A floor that only shows shadows (for a model on its own), and a soft grid under it. */
+/** A floor that only shows shadows, for a model on its own. */
 export function shadowFloor(radius = 6): THREE.Group {
   const group = new THREE.Group()
-  const floor = new THREE.Mesh(new THREE.CircleGeometry(radius, 48), new THREE.ShadowMaterial({ opacity: 0.28 }))
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(radius * 2, radius * 2), new THREE.ShadowMaterial({ opacity: 0.3 }))
   floor.rotation.x = -Math.PI / 2
   floor.receiveShadow = true
-  const grid = new THREE.GridHelper(radius * 2, Math.round(radius * 4), 0x90a4ae, 0xb0bec5)
-  ;(grid.material as THREE.Material).transparent = true
-  ;(grid.material as THREE.Material).opacity = 0.35
-  grid.position.y = 0.001
-  group.add(floor, grid)
+  group.add(floor)
   return group
+}
+
+/**
+ * Turn the camera around a point with a finger or the mouse, and come closer with a pinch or the wheel. A few lines of our own:
+ * three's OrbitControls would ride in the three chunk every city scene fetches (vite.config.ts).
+ */
+export function orbit(camera: THREE.PerspectiveCamera, element: HTMLElement, target: THREE.Vector3, { onStart }: { onStart?: () => void } = {}) {
+  let yaw = 0.6, pitch = 0.35, distance = 4, min = 0.5, max = 40
+  const pointers = new Map<number, { x: number; y: number }>()
+  let pinch = 0
+  const place = (): void => {
+    pitch = Math.max(-0.2, Math.min(1.45, pitch))
+    distance = Math.max(min, Math.min(max, distance))
+    camera.position.set(target.x + Math.sin(yaw) * Math.cos(pitch) * distance, target.y + Math.sin(pitch) * distance, target.z + Math.cos(yaw) * Math.cos(pitch) * distance)
+    camera.lookAt(target)
+  }
+  const spread = (): number => { const [a, b] = [...pointers.values()]; return a && b ? Math.hypot(a.x - b.x, a.y - b.y) : 0 }
+  const down = (event: PointerEvent): void => { element.setPointerCapture?.(event.pointerId); pointers.set(event.pointerId, { x: event.clientX, y: event.clientY }); pinch = spread(); onStart?.() }
+  const move = (event: PointerEvent): void => {
+    const last = pointers.get(event.pointerId)
+    if (!last) return
+    if (pointers.size === 1) { yaw -= (event.clientX - last.x) * 0.008; pitch += (event.clientY - last.y) * 0.006 }
+    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY })
+    if (pointers.size === 2) { const now = spread(); if (pinch > 0 && now > 0) distance *= pinch / now; pinch = now }
+    place()
+  }
+  const up = (event: PointerEvent): void => { pointers.delete(event.pointerId); pinch = spread() }
+  const wheel = (event: WheelEvent): void => { event.preventDefault(); distance *= Math.exp(event.deltaY * 0.001); onStart?.(); place() }
+  element.addEventListener('pointerdown', down)
+  element.addEventListener('pointermove', move)
+  element.addEventListener('pointerup', up)
+  element.addEventListener('pointercancel', up)
+  element.addEventListener('wheel', wheel, { passive: false })
+  place()
+  return {
+    /** Look at `centre` from `far` metres, keeping the angle. */
+    frame(centre: THREE.Vector3, far: number, near = far / 8, farthest = far * 4): void { target.copy(centre); distance = far; min = near; max = farthest; place() },
+    spin(radians: number): void { yaw += radians; place() },
+    dispose(): void {
+      element.removeEventListener('pointerdown', down); element.removeEventListener('pointermove', move)
+      element.removeEventListener('pointerup', up); element.removeEventListener('pointercancel', up); element.removeEventListener('wheel', wheel)
+    },
+  }
 }

@@ -1,0 +1,84 @@
+
+> joinallworld@0.1.0 size:download
+> node --experimental-strip-types scripts/download-budget.ts
+
+Download budgets (src/budgets.ts)
+ok   LOADING_RAW               90568  budget 92,000 raw bytes (max)  first-paint JavaScript
+ok   LOADING_GZIP              35262  budget 37,000 gzip bytes (max)  first-paint JavaScript
+ok   FIRST_PAINT_BROTLI        35369  budget 36,800 brotli bytes (max) [provisional]  5 files: index.html, stylesheet and JavaScript
+ok   STARTUP_RAW              613919  budget 615,000 raw bytes (max)  largest over 284 cities (lagos)
+ok   STARTUP_GZIP             222616  budget 223,000 gzip bytes (max)  largest over 284 cities (lagos)
+ok   STARTUP_BROTLI           195433  budget 195,600 brotli bytes (max) [provisional]  largest over 284 cities (lagos)
+ok   SCENE_HOST_RAW           188939  budget 192,000 raw bytes (max)  shared scene chunk (world-adapter)
+ok   SCENE_HOST_GZIP           70896  budget 71,000 gzip bytes (max)  shared scene chunk (world-adapter)
+n/a  BASE_BODY_BROTLI              -  budget 300,000 brotli bytes (max) [provisional]  no file matches /(^|\/)base-body[^/]*\.(glb|gltf|bin)$/
+n/a  CLIP_PACK_BROTLI              -  budget 200,000 brotli bytes (max) [provisional]  no file matches /(^|\/)clip-pack[^/]*\.(glb|gltf|bin|json)$/
+n/a  WARDROBE_ITEM_BROTLI          -  budget 60,000 brotli bytes (max) [provisional]  no file matches /(^|\/)wardrobe\/[^/]+\.(glb|gltf)$/
+n/a  STREET_TILE_BROTLI            -  budget 60,000 brotli bytes (max) [provisional]  no file matches /(^|\/)(street-)?tiles?\/[^/]+\.(glb|gltf|bin)$/
+
+First paint (5 files) and lagos startup (20 files): kB raw / gzip / brotli
+   101.1     39.8     35.4  first paint
+   624.5    227.1    195.4  lagos startup
+
+Lazy groups, largest brotli first (30 of 1589): kB raw / gzip / brotli, files, largest file
+ 53644.6  43403.2  40802.4  *.glb files                       81  character-lab/models/round12/male/garments/fitted-skirt-01.glb (2537.2 kB)
+ 85657.7  13536.6  10573.3  *.txt files                      5389  assets/words/dictionary.d80755c96549793205b95f86256c6eb4ac4da912a245911142162233001dfd38.txt (821.6 kB)
+ 29960.3   3686.2   2782.3  *.json files                     290  assets/progression/episodes-1.e1ec2e167455e130d13b0ff5f66bb1ba0f4c7e204a342219584fb9556a41edb7.json (350.8 kB)
+  1514.0   1479.0   1471.0  *.jpg files                       24  character-lab/models/round2/male/textures/skin-light.jpg (186.1 kB)
+  4905.9   1186.4    620.9  city-wellington-terrain            1  assets/city-wellington-terrain-112ccac.js (620.9 kB)
+   541.8    535.0    534.2  *.png files                       10  og/allworld.png (154.3 kB)
+  3470.7   1003.2    525.6  city-auckland-terrain              1  assets/city-auckland-terrain-ad7edcd.js (525.6 kB)
+  2991.9    746.2    403.9  city-stockholm-geometry            1  assets/city-stockholm-geometry-3294476.js (403.9 kB)
+   676.5    469.7    378.1  rivers                             1  assets/rivers-25db21e.js (378.1 kB)
+  2882.5    701.7    372.1  city-new-york-geometry             1  assets/city-new-york-geometry-71196cf.js (372.1 kB)
+  2674.8    663.0    365.0  city-amsterdam-geometry            1  assets/city-amsterdam-geometry-d03e59f.js (365.0 kB)
+  2791.1    656.9    352.9  city-auckland-geometry             1  assets/city-auckland-geometry-fd97c82.js (352.9 kB)
+  1616.7    526.2    329.0  city-macau-terrain                 1  assets/city-macau-terrain-af73786.js (329.0 kB)
+  2443.2    582.8    315.1  city-mariehamn-geometry            1  assets/city-mariehamn-geometry-7ec2e40.js (315.1 kB)
+  1500.9    381.7    308.7  progression-rules                  1  assets/progression-rules-a144661.js (308.7 kB)
+  2208.1    534.5    290.6  city-seoul-geometry                1  assets/city-seoul-geometry-ffbff68.js (290.6 kB)
+  1280.5    378.6    235.9  city-oslo-geometry                 1  assets/city-oslo-geometry-dfa058a.js (235.9 kB)
+   236.2    234.8    234.5  *.webp files                       9  icons/entry-wide.webp (114.4 kB)
+  1310.9    420.0    227.8  city-serekunda-terrain             1  assets/city-serekunda-terrain-ac01f7b.js (227.8 kB)
+  2392.7    715.1    225.5  city-oslo-terrain                  1  assets/city-oslo-terrain-a3fe377.js (225.5 kB)
+  1714.3    417.8    208.6  city-suva-terrain                  1  assets/city-suva-terrain-db5d0eb.js (208.6 kB)
+  1133.0    322.4    200.4  city-hong-kong-geometry            1  assets/city-hong-kong-geometry-53ad1c1.js (200.4 kB)
+  2201.1    629.4    199.1  city-hong-kong-terrain             1  assets/city-hong-kong-terrain-648c8ba.js (199.1 kB)
+  1555.1    355.9    198.2  city-serekunda-geometry            1  assets/city-serekunda-geometry-2faaaa6.js (198.2 kB)
+  1056.4    296.3    195.2  city-nuuk-geometry                 1  assets/city-nuuk-geometry-bb802bb.js (195.2 kB)
+  2101.3    590.2    194.5  city-nuuk-terrain                  1  assets/city-nuuk-terrain-5f6de35.js (194.5 kB)
+  1508.8    403.5    192.2  city-bsb-terrain                   1  assets/city-bsb-terrain-e4cc054.js (192.2 kB)
+  1409.9    332.4    180.3  city-macau-geometry                1  assets/city-macau-geometry-78a15d4.js (180.3 kB)
+  1294.6    319.4    169.4  city-koror-geometry                1  assets/city-koror-geometry-8f6a4ef.js (169.4 kB)
+   713.1    239.7    168.2  city-willemstad-terrain            1  assets/city-willemstad-terrain-2c3c793.js (168.2 kB)
+{
+  "pass": true,
+  "resources": 46,
+  "totals": {
+    "raw": 48387978,
+    "gzip": 39824074,
+    "brotli": 37317883
+  },
+  "defaults": [
+    {
+      "body": "female",
+      "totals": {
+        "raw": 7213494,
+        "gzip": 4910085,
+        "brotli": 4048407
+      }
+    },
+    {
+      "body": "male",
+      "totals": {
+        "raw": 8039714,
+        "gzip": 5694542,
+        "brotli": 4835731
+      }
+    }
+  ],
+  "conflicts": 0,
+  "errors": 0,
+  "extras": 0,
+  "overBudget": 0
+}

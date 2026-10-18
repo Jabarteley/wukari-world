@@ -1,0 +1,55 @@
+{
+  "sourceRevision": "8a94130206815cf8905e7a48402a6e82a7c70f37",
+  "captureMethod": "Native Chrome CDP Page.captureScreenshot format png, fromSurface true, captureBeyondViewport false. Original bytes saved without crop, resize, conversion or pixel changes. PNG IHDR dimensions and SHA256 read from original bytes.",
+  "captures": [
+    {
+      "file": "current-8a941302-story-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "b536787c1d3b533af38f7b3149aa93639db86fde21d0a112aa0450250d316e21",
+      "visuallyReviewed": true
+    },
+    {
+      "file": "current-8a941302-free-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "c131a08bbb2efc7a621be88eb2d8c14d55fdea8292bedfa5679f0b64464efb1c",
+      "visuallyReviewed": true
+    },
+    {
+      "file": "current-8a941302-restored-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "287370d6debf696597719f716dc0789dc72cbb4ea385e7146bfa3cdeb8260c07",
+      "visuallyReviewed": true
+    },
+    {
+      "file": "current-8a941302-restored-320.png",
+      "width": 320,
+      "height": 740,
+      "sha256": "620d568ef93f415296abe6c89c765ba4e5de0d6dad1b362de554cf190f70dbc6",
+      "visuallyReviewed": true
+    },
+    {
+      "file": "current-8a941302-hospital-lock-320.png",
+      "width": 320,
+      "height": 740,
+      "sha256": "243a2b49dab449b90cc99c08b6a06637a9d4c58cb6863f32c7bb4e0f532ceb6e",
+      "visuallyReviewed": true
+    },
+    {
+      "file": "current-8a941302-helper-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "051e0088194b2b6783bb3311d5c681eba5c91f4cd7fb407ba80e2be29b058d52",
+      "visuallyReviewed": true
+    },
+    {
+      "file": "current-8a941302-nairobi-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "a911eb6cf7bb32d71e288b57e975d9dc20a8d26e093a08d20e8571a5c5db7d51",
+      "visuallyReviewed": true
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "observedAt": "2026-10-18T03:56:16.647667+00:00",
+  "ciRun": 39094348275,
+  "sourceSha": "8a94130206815cf8905e7a48402a6e82a7c70f37",
+  "conclusion": "success",
+  "workflowEvent": "workflow_dispatch",
+  "url": "https://github.com/kromate/joinallworld/actions/runs/39094348275",
+  "requiredJobs": {
+    "release-policy": "success",
+    "typecheck-fast": "success",
+    "build-and-smoke-fast": "success"
+  },
+  "optionalFullJobs": "skipped as explicitly requested",
+  "localActualArtifactDownloadCheck": "pass; conflicts/errors/extras/overBudget all0",
+  "bytes": {
+    "LOADING_RAW": 90568,
+    "LOADING_GZIP": 35262,
+    "FIRST_PAINT_BROTLI": 35369,
+    "STARTUP_RAW": 613919,
+    "STARTUP_GZIP": 222616,
+    "STARTUP_BROTLI": 195433,
+    "SCENE_HOST_RAW": 188939,
+    "SCENE_HOST_GZIP": 70896
+  },
+  "artifact": {
+    "artifactId": 12123099843,
+    "archiveSha256": "0d80b3eaa8dbf41c4acd41943075aee14f8da3a1bb309037c68e3e5fc8489a19",
+    "archiveBytes": 42122069,
+    "githubRegisteredDigestMatches": true,
+    "filesInstalled": 2665,
+    "installedPayloadAggregateSha256": "ac71a7fcc04b3fff7b1d7024962e59115baf6dadf05a368f76fd7955c4f994a5",
+    "everyCopiedFileHashVerified": true,
+    "manifestIncluded": false
+  },
+  "localApplicationBuild": false,
+  "liveRelease": "pending follow-up PR/merge/protected release"
+}

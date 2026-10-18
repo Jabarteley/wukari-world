@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "observedAt": "2026-10-18T05:31:24.926716+00:00",
+  "sourceScope": "Two observational QA helpers only; application runtime and emitted artifact unchanged.",
+  "originalHelperRevision": "5576f5685a3c77e0c0d0033fbf610cdc3cfee599",
+  "files": {
+    "docs/agent-work/story-mode-evidence-20261017/phone/phase1-mode-timing-observer.ts": "ca84ce96ba3307aec08dc8bef4c8429cf1ab1d9cf081ad39c2bcc374ef427203",
+    "docs/agent-work/story-mode-evidence-20261017/phone/phase1-mode-timing-proxy.mts": "f69ddf5a0c8122a6d64665641fa24812c94e1da5f7028f3a3d65963ded245a08"
+  },
+  "releaseSourceChecks": {
+    "pass": 5,
+    "fail": 0,
+    "scope": "Unchanged server/release.test.ts executed from an exact candidate Git-index export.",
+    "excludedFromCandidate": "Untracked future prototype reproduction helpers remain untouched in the working clone; they are not in the PR. No source guard changed."
+  },
+  "helperTypecheck": {
+    "strict": true,
+    "isolated": true,
+    "target": "ES2023",
+    "module": "NodeNext",
+    "libs": [
+      "ES2023",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "explicitConfigSelection": "TypeScript CLI requires --ignoreConfig when explicit files are supplied; all strict flags are explicit.",
+    "errors": 0,
+    "heapMiB": 512
+  },
+  "syntax": {
+    "proxy": "pass",
+    "strippedBrowserObserver": "pass"
+  },
+  "review": "Independent source review found no blocking measurement, forwarding or CSP semantic change. Historical measured samples remain bound to original helpers; this conversion is not a new latency measurement.",
+  "runtimeDelta": "Native Node type stripping before serving the typed observer; array-valued CSP now raises an explicit error. Observed singular header and fixed endpoints unchanged.",
+  "sourceGuardChanged": false,
+  "budgetsChanged": false
+}

@@ -11,6 +11,7 @@ import type { Component } from 'vue'
 import { renderToString } from 'vue/server-renderer'
 import type { LifeState } from '../../../types/life.ts'
 import type { App } from '../../state/app.ts'
+import type { Owned } from './lookModel.ts'
 import { createFakeServer } from '../../testing/fakeServer.ts'
 
 const root = fileURLToPath(new URL('../../../..', import.meta.url))
@@ -89,7 +90,7 @@ test('the first screen: full-screen creator with the welcome, the quick characte
   assert.match(html, /<input[^>]*name="name"[^>]*minlength="3"[^>]*maxlength="24"[^>]*autocomplete="nickname"/)
   assert.match(html, /<button[^>]*data-key="play-now"[^>]*>Play now<\/button>/)
   assert.match(html, /<button[^>]*data-key="primary"[^>]*>Next: Look<\/button>/)
-  assert.ok(words.includes('No password, no e-mail.'))
+  assert.ok(words.includes('Play now and finish your character later.'))
   assert.ok(!html.includes('cr-pitch'), 'the landing pitch is not repeated above the heading')
   assert.ok(html.indexOf('Welcome to Allworld') < html.indexOf('Find my city'), 'Find my city comes after the heading, not before it')
   assert.match(html, /class="cr-stage-tools"[^>]*>/)
@@ -253,7 +254,7 @@ test('a life that finished: its Sim is ready, with a way to edit the look', asyn
 })
 
 test('the look editor: native appearance controls, locked styles say where they are sold, colours are editable', async () => {
-  const { starterWardrobe } = await load<{ starterWardrobe: () => unknown }>('/src/app/features/start/lookModel.ts')
+  const { starterWardrobe } = await load<{ starterWardrobe: () => Owned }>('/src/app/features/start/lookModel.ts')
   const look = app.game.state.value.onboarding.look
   const html = await render('LookEditor', { look, owned: starterWardrobe() })
   const words = text(html)
@@ -265,7 +266,8 @@ test('the look editor: native appearance controls, locked styles say where they 
   assert.match(html, /aria-label="Height"/)
   assert.match(html, /aria-label="Expression strength"/)
   assert.ok(words.includes('Detailed body controls') && words.includes('Detailed face controls'))
-  assert.match(html, /title="Buy in the Boutique"/)
+  const limited = await render('LookEditor', { look, owned: { ...starterWardrobe(), native: [] } })
+  assert.match(limited, /<button[^>]*disabled[^>]*title="Buy in the Boutique"/)
 })
 
 test('the canonical character stage starts loading with its controls and no alternate figure', async () => {

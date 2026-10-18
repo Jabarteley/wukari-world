@@ -21,6 +21,9 @@ Each phase is its own branch (`claude/spaces3d-phaseN`), pull request, CI run an
    checked byte by byte on the server: glTF 2.0 binary only, every buffer and image inside the file (no outside links), only the
    extensions three.js draws, a name that passes the text filter. Stored by content hash, so the same file is kept once. A player
    keeps at most 30 models (300 MB). Players may report a model; an operator can remove it. Erased with the player.
+   The flow ends in the house: after an upload, **Put it in my house** opens Walk in 3D with the model set down in front of the
+   player, chosen, to drag where it should stand and Save. Walk in 3D's Place models panel has its own **Upload a .glb**, so a
+   player already inside never leaves. Houses shows the house as this screen builds it (`housePhoto.ts`), not a drawing of it.
 2. **Walk in 3D** (`spaces3d`). A new lazy screen draws a space from its plan: walls, floors, doors, stairs, the furniture
    (the housing studio's models where they exist) and the player's own models, with the realistic renderer. Walk with a stick and
    drag to look (phone) or WASD and the mouse (computer); first or third person. Place, move, turn and scale your own models in

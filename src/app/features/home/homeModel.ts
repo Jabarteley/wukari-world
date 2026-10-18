@@ -33,3 +33,15 @@ export const carsRules = (resaleRate: number): string[] => [
   `Selling returns ${Math.round(resaleRate * 100)}% of the list price — the amount is on each Sell button.`,
   'Prices are set per vehicle. Vehicle names, fuel costs and speeds are provisional and may change.',
 ]
+
+/** The Upgrade & look fold's one line: the house now and the next tier's price, or that it is the top of the ladder. */
+export const upgradeLine = (tiers: readonly { label: string; current: boolean; cost: number }[], format: (amount: number) => string): string => {
+  const at = tiers.findIndex((tier) => tier.current)
+  const now = tiers[at]?.label ?? 'Your house'
+  const next = tiers[at + 1]
+  return next ? `${now} · next: ${next.label} for ${format(next.cost)}` : `${now} · top of the ladder`
+}
+
+/** The Homes to rent fold's one line: what a guest, a saver or someone at the top reads before opening it. */
+export const rentLine = (guest: boolean, next: { label: string; district: string } | undefined, percent: number): string =>
+  guest ? 'Browse homes; settle in to rent one' : next ? `Next step up: ${next.label}, ${next.district} · ${percent}% saved` : 'Top of the ladder'

@@ -6,7 +6,8 @@ import { useApp } from '../../state/app.ts'
 import BaseSheet from '../../ui/BaseSheet.vue'
 import { hostRead, hostWrite, type HostState } from './spacesClient.ts'
 
-const emit = defineEmits<{ close: [] }>()
+/** `saved`: the host chosen (or removed), as the Houses tile should now read. The sheet closes itself after it. */
+const emit = defineEmits<{ close: []; saved: [line: string] }>()
 const { game } = useApp()
 
 const loading = ref(true)
@@ -14,7 +15,6 @@ const ai = ref(true)
 const host = ref<HostState | null>(null)
 const kind = ref<HostState['kind']>(null)
 const persona = ref('')
-const on = ref(true)
 const busy = ref(false)
 const error = ref('')
 const saved = ref('')
@@ -24,7 +24,12 @@ function take(next: HostState): void {
   host.value = next
   kind.value = next.kind
   persona.value = next.persona
-  on.value = next.kind ? next.on : true
+}
+/** Saving is switching on; removing is switching off. One less control to understand. */
+function finish(line: string): void {
+  saved.value = line
+  emit('saved', line)
+  setTimeout(() => { if (!gone) emit('close') }, 900)
 }
 onMounted(async () => {
   const answer = await hostRead(game)
@@ -39,12 +44,12 @@ onBeforeUnmount(() => { gone = true })
 async function save(): Promise<void> {
   if (!kind.value || busy.value) return
   error.value = ''; saved.value = ''; busy.value = true
-  const answer = await hostWrite(game, { kind: kind.value, persona: persona.value.trim().slice(0, 160), on: on.value })
+  const answer = await hostWrite(game, { kind: kind.value, persona: persona.value.trim().slice(0, 160), on: true })
   busy.value = false
   if (gone) return
   if (!answer.ok) { error.value = answer.reason; return }
   take(answer.host)
-  saved.value = 'Saved. Your host is ready.'
+  finish(`${answer.host.name ?? 'Your host'} · on`)
 }
 async function remove(): Promise<void> {
   if (busy.value) return
@@ -54,13 +59,13 @@ async function remove(): Promise<void> {
   if (gone) return
   if (!answer.ok) { error.value = answer.reason; return }
   take(answer.host)
-  saved.value = 'Host removed.'
+  finish('Greets guests when you are out')
 }
 </script>
 
 <template>
   <BaseSheet open label="Your AI host" @close="emit('close')">
-    <header class="sp-head"><h2>An AI host for your home</h2><p>It greets your guests by name, remembers who came back, and MCs your parties. It is an AI and is marked as one.</p></header>
+    <header class="sp-head"><h2>An AI host for your home</h2><p>Pick one. It greets your guests by name, remembers who came back and MCs your parties. It is an AI and is marked as one.</p></header>
     <div class="sp-body">
       <p v-if="loading" class="sp-note" role="status">Loading…</p>
       <p v-else-if="!ai" class="sp-note">AI hosts are resting today.</p>
@@ -68,12 +73,11 @@ async function remove(): Promise<void> {
         <div class="sp-kinds" role="group" aria-label="Host type">
           <button v-for="item in host?.kinds ?? []" :key="item.id" type="button" :class="{ 'is-on': kind === item.id }" :aria-pressed="kind === item.id" :disabled="busy" @click="kind = item.id as HostState['kind']">{{ item.label }} · {{ item.name }}</button>
         </div>
-        <label class="sp-label" for="sp-persona">Personality</label>
-        <textarea id="sp-persona" v-model="persona" class="sp-text" rows="3" maxlength="160" :disabled="busy" placeholder="Loud, funny, loves Afrobeats" />
-        <label class="sp-check"><input v-model="on" type="checkbox" :disabled="busy" /> Host is on</label>
-        <button type="button" class="ui-button is-primary is-block sp-btn" :disabled="!kind || busy" @click="save">{{ busy ? 'Saving…' : 'Save' }}</button>
-        <button v-if="host?.kind" type="button" class="ui-button is-block sp-btn" :disabled="busy" @click="remove">Remove host</button>
-        <p v-if="saved" class="sp-ok" role="status">{{ saved }}</p>
+        <label class="sp-label" for="sp-persona">Personality <small>(optional)</small></label>
+        <textarea id="sp-persona" v-model="persona" class="sp-text" rows="2" maxlength="160" :disabled="busy" placeholder="Loud, funny, loves Afrobeats" />
+        <button type="button" class="ui-button is-primary is-block sp-btn" data-host="save" :disabled="!kind || busy || Boolean(saved)" @click="save">{{ busy ? 'Saving…' : host?.kind && host.on ? 'Save changes' : 'Switch the host on' }}</button>
+        <button v-if="host?.kind" type="button" class="ui-button is-block sp-btn" data-host="remove" :disabled="busy || Boolean(saved)" @click="remove">Switch it off</button>
+        <p v-if="saved" class="sp-ok" role="status">Done: {{ saved }}.</p>
       </template>
       <p v-if="error" class="sp-error" role="alert">{{ error }}</p>
     </div>

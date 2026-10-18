@@ -9,13 +9,17 @@
  *   POST /api/spaces/apply   { target, roomId?, plan, requestId } make the home or the room the plan
  *   GET  /api/spaces/host                            the AI host of my home (server/spaces/host.ts)
  *   POST /api/spaces/host    { kind | null, persona?, on }      choose, change or remove it
+ *   GET  /api/spaces/games                           the built-in lite games and mine (server/spaces/games.ts)
+ *   GET  /api/spaces/game?id=                        one lite game's definition, for its screen
+ *   POST /api/spaces/games   { def }                 import a lite game
  */
 import { spacesService } from '../spaces/service.ts';
+import { gamesService } from '../spaces/games.ts';
 import { hostService } from '../spaces/host.ts';
 import type { RouteContext, RouteHandler, RouteKey } from '../types.ts';
 
 export default function spacesRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
-  const spaces = spacesService(ctx), hosts = hostService(ctx);
+  const spaces = spacesService(ctx), hosts = hostService(ctx), games = gamesService(ctx);
   const limited = (publicId: string): void => { if (!ctx.allow(`spaces:http:${publicId}`, 30)) throw ctx.fail(429, 'rate_limited'); };
   const gate = async (request: Parameters<RouteHandler>[0]): Promise<void> => { limited(await ctx.store.read((db) => request.requireSession(db).publicId)); };
   return {
@@ -28,6 +32,13 @@ export default function spacesRoutes(ctx: RouteContext): Record<RouteKey, RouteH
       await gate(request);
       const body = await request.json();
       return { body: await ctx.store.transact((db) => hosts.write(db, request.requireSession(db, { renew: true }), body)), renew: true };
+    },
+    'GET /api/spaces/games': async (request) => { await gate(request); return { body: await ctx.store.read((db) => games.list(db, request.requireSession(db))) }; },
+    'GET /api/spaces/game': async (request) => { await gate(request); return { body: games.one(request.query.get('id')) }; },
+    'POST /api/spaces/games': async (request) => {
+      await gate(request);
+      const body = await request.json();
+      return { body: await ctx.store.transact((db) => games.importGame(db, request.requireSession(db, { renew: true }), body)), renew: true };
     },
   };
 }

@@ -27,4 +27,7 @@ You design a place in Allworld, the browser life game. The result is a Space Pla
 
 ## Build a game
 
-Coming with the cartridge path: see reference/cartridge.md when it exists.
+1. **Try a lite game first.** The schema is in `reference/lite-game.md`. Import it with the MCP tool `import_game { def }`, or give
+   the player the JSON to paste in the game's **Games** app → **Make a game** → **Import**.
+2. **Otherwise make a cartridge.** Follow `reference/cartridge.md`: copy the Coconut Dodge template, run the tests and checks, and open a
+   pull request to `kromate/joinallworld`. The owner reviews it before it goes live.

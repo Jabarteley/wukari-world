@@ -142,6 +142,11 @@ test('only an authentic local errand occurrence survives on a Roots receipt', ()
   state.story.cities.lagos = { missions: [], venues: [], roots: { id: 'roots-1', kind: 'errand', completedAt: 900_000, missionRewardId } }
   const restored = createLife(structuredClone(state), context(true))
   assert.equal(restored.story.cities.lagos?.roots?.missionRewardId, missionRewardId)
+  for (const invalidReceipt of [undefined, 'mission:v1:ibadan:daily:1:unknown', 'mission:v1:lagos:daily:1:unknown']) {
+    state.story.cities.lagos.roots = { id: 'roots-invalid', kind: 'errand', completedAt: 900_000, ...(invalidReceipt ? { missionRewardId: invalidReceipt } : {}) }
+    const invalid = createLife(structuredClone(state), context(true))
+    assert.equal(invalid.story.cities.lagos?.roots, undefined)
+  }
   state.story.cities.lagos.roots = { id: 'roots-2', kind: 'two-seat', completedAt: 900_000, missionRewardId }
   const nonErrand = createLife(structuredClone(state), context(true))
   assert.equal(nonErrand.story.cities.lagos?.roots?.missionRewardId, undefined)

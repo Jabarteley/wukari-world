@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-10-18T00:12:55Z",
-  "status": "verification-in-progress",
+  "updatedAt": "2026-10-18T00:44:52Z",
+  "status": "repair-local-gates-pass-ci-pending",
   "phase": 1,
   "checkout": "/Users/anthonyakpan/work/joinallworld-story",
   "baseSha": "c42aeee66e0fbc60e85cb808d8d2ec263a7ac4d4",
-  "mainIntegrated": "580e4af0837b468f796ea2f2c261abb451cfc644",
+  "mainIntegrated": "c607e1e5d2776bdfebca080eff0c03638e0b1f2a",
   "sourceFilesSha256": {
     "src/game/progression-slices.ts": "c623e9ac4b19392c259b0d318b22287d99e68d7ab15ae6dec3bf199562daa5e0",
     "src/game/snapshot-fields.ts": "d7c4e3ab990930ba3de1485dae2045462648577a15460b67dd5bd7716a99e25e",
@@ -14,7 +14,9 @@
     "src/types/engine.test.ts": "b925ddc8a1802724ca5ea2460d180f5218fee6307c3ea4f1d127e209b85c221e",
     "src/game/progression-gate.ts": "d391d54c1634fff963cf9972a5baf20932391616af259d7d418cbb91a37b346a",
     "vite.config.ts": "7f50422ccd4f24dd5cabd0a2560dc7b2eeebc2ebabedb0a55d88cb977ef00be1",
-    "server/admin/erasure-data.ts": "9611fc3124442fa9ca8320e7c96dacf757053ea314681fa2af695db7a6ab76be"
+    "server/admin/erasure-data.ts": "9611fc3124442fa9ca8320e7c96dacf757053ea314681fa2af695db7a6ab76be",
+    "src/game/systems/story.ts": "6947838dde8f2ae914a3dcdb5524043dc9682341c0575dde2987fd735fa83518",
+    "src/story/story-system.test.ts": "d03cc8ddd4266845f9e460e6b9738f4fe5e99608fc9a60baaae968a0c928f8d0"
   },
   "checks": {
     "citiesScenes": {
@@ -41,7 +43,8 @@
       "projects": 5,
       "errors": 0,
       "baselinedErrors": 0,
-      "log": "phase1-spaces-merge-typecheck.log"
+      "log": "phase1-current-main-typecheck.log",
+      "scope": "Roots receipt repair, integrated main c607e1e5 and untracked factory preparation"
     },
     "snapshotGates": {
       "passed": 63,
@@ -54,27 +57,77 @@
       "failed": 0,
       "durationMs": 850.043458,
       "log": "phase1-spaces-erasure.log"
+    },
+    "builtDownloadAndGraph": {
+      "artifactSha": "4eb1e9dbcd4c75737f1fcdcdcc8a88068b76906f",
+      "cities": 284,
+      "startup": {
+        "rawJavaScript": 613955,
+        "gzipJavaScript": 222618,
+        "brotliAll": 195461
+      },
+      "sceneHost": {
+        "raw": 188923,
+        "gzip": 70906
+      },
+      "storyScreensInStartup": false,
+      "storyScreensInSceneHost": false,
+      "unchangedMeasuredBudgets": "pass",
+      "nativeAssetInventory": "pass; CI reports 0 errors",
+      "evidence": "phase1-bundle-4eb1e9db.json"
+    },
+    "rootsReceiptRepair": {
+      "passed": 20,
+      "failed": 0,
+      "durationMs": 947.802625,
+      "scope": [
+        "src/story/story-system.test.ts",
+        "server/story/coop.test.ts"
+      ],
+      "preRepairReproduction": {
+        "invalidErrandRetained": true
+      }
+    },
+    "exactCurrentCitiesScenes": {
+      "status": "interrupted-before-completion",
+      "sourceSha": "4eb1e9dbcd4c75737f1fcdcdcc8a88068b76906f",
+      "artifactSha": "4eb1e9dbcd4c75737f1fcdcdcc8a88068b76906f",
+      "reason": "Restart after the reproduced Roots receipt repair and current main integration",
+      "log": "phase1-cities-scenes-4eb1e9db.log"
+    },
+    "rootsAndSpacesIntegration": {
+      "passed": 25,
+      "failed": 0,
+      "durationMs": 1056.976875,
+      "log": "phase1-roots-spaces-tests.log"
     }
   },
   "latestCI": {
-    "url": "https://github.com/kromate/joinallworld/actions/runs/39081036432",
-    "sha": "fa97782580f29982664d0d6bc52be4b82cd740c6",
-    "conclusion": "failure",
+    "url": "https://github.com/kromate/joinallworld/actions/runs/39081960187",
+    "sha": "4eb1e9dbcd4c75737f1fcdcdcc8a88068b76906f",
+    "status": "completed",
+    "conclusion": "success",
     "typecheck": "success",
+    "buildAndSmoke": "success",
+    "releasePolicy": "success",
     "startup": {
-      "raw": 613968,
-      "gzip": 222642,
-      "brotli": 195642
+      "rawJavaScript": 613955,
+      "gzipJavaScript": 222618,
+      "brotliAll": 195461
     },
     "sceneHost": {
       "raw": 188923,
-      "gzip": 70909
+      "gzip": 70906
     },
     "unchangedCaps": {
-      "raw": 615000,
-      "gzip": 223000,
-      "brotli": 195600
-    }
+      "rawJavaScript": 615000,
+      "gzipJavaScript": 223000,
+      "brotliAll": 195600
+    },
+    "nativeAssetInventory": {
+      "errors": 0
+    },
+    "nativeIntegration": "success"
   },
   "browser": {
     "checkpoint": "phone/checkpoint.json",
@@ -97,11 +150,64 @@
     "liveStoryBuild": null
   },
   "factorySpendUsd": 0,
-  "nextCandidate": "One lazy Story screen chunk; equivalent shared-loader return simplifications. Exact bundle measurements pending CI.",
+  "nextCandidate": "Reject malformed persisted errand credit, integrate main c607e1e5, then repeat exact automated gates; browser remains pending human unlock.",
   "upstreamProductionHealth": {
     "ok": true,
     "build": "joinallworld-4c5a9e70eb5a3b12d42eda5b2ef",
     "observedAt": "2026-10-18T00:08:36Z",
     "storyIncluded": false
+  },
+  "currentCI": {
+    "status": "not-dispatched",
+    "sha": null,
+    "sourceParent": "4eb1e9dbcd4c75737f1fcdcdcc8a88068b76906f",
+    "reason": "Repair plus current main merge025dbfbe has passed full local typecheck and25focused checks; commit and dispatch exact CI next."
+  },
+  "qaServer": {
+    "port": 5351,
+    "apiPort": 5352,
+    "pid": null,
+    "launchedFromSha": "4eb1e9dbcd4c75737f1fcdcdcc8a88068b76906f",
+    "healthOk": null,
+    "healthBuildTag": "0.1.0",
+    "persistentData": ".data-story-qa/",
+    "status": "stopped-to-preserve-test-clock",
+    "stoppedAt": "2026-10-18T00:44:16Z",
+    "restart": "node --experimental-strip-types /tmp/story-qa-server-20261017.mts",
+    "reason": "Human unlock pending. Graceful task-owned stop saves open-dev clock and preserves ordinary UI-earned player state."
+  },
+  "priorCI": {
+    "url": "https://github.com/kromate/joinallworld/actions/runs/39081036432",
+    "sha": "fa97782580f29982664d0d6bc52be4b82cd740c6",
+    "conclusion": "failure",
+    "typecheck": "success",
+    "startup": {
+      "raw": 613968,
+      "gzip": 222642,
+      "brotli": 195642
+    },
+    "sceneHost": {
+      "raw": 188923,
+      "gzip": 70909
+    },
+    "unchangedCaps": {
+      "raw": 615000,
+      "gzip": 223000,
+      "brotli": 195600
+    }
+  },
+  "factoryPreparation": {
+    "focusedTests": {
+      "passed": 24,
+      "failed": 0,
+      "recipeContract": 14,
+      "talkBank": 6,
+      "contactSheet": 4
+    },
+    "webpTool": "prep/webp-tool.json",
+    "webpVerifiedVersion": "1.6.0; libsharpyuv 0.4.2",
+    "actualBlenderGeneration": false,
+    "productionWiring": false,
+    "staging": "future-phase files remain untracked and unstaged"
   }
 }

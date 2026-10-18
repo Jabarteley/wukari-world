@@ -37,9 +37,10 @@ function validMissionReward(value: unknown, city: string): value is string {
 }
 
 function cleanRoots(value: unknown, now: number, city: string): StoryRootsReceipt | undefined {
-  if (!isRecord(value) || !ref(value.id) || !['second-answer', 'two-seat', 'errand'].includes(String(value.kind)) || !stamp(value.completedAt, now) || value.completedAt === 0) return undefined
+  if (!isRecord(value) || !ref(value.id) || !helpKind(value.kind) || !stamp(value.completedAt, now) || value.completedAt === 0) return undefined
   const missionRewardId = value.kind === 'errand' && validMissionReward(value.missionRewardId, city) ? value.missionRewardId : undefined
-  return { id: value.id, kind: value.kind as StoryRootsReceipt['kind'], completedAt: value.completedAt, ...(missionRewardId ? { missionRewardId } : {}) }
+  if (value.kind === 'errand' && !missionRewardId) return undefined
+  return { id: value.id, kind: value.kind, completedAt: value.completedAt, ...(missionRewardId ? { missionRewardId } : {}) }
 }
 
 function cleanCity(value: unknown, city: string, now: number): StoryCityReceipts | null {

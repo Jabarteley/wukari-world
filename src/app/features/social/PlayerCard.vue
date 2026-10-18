@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// A real player's card: Chat, Call (or, for someone who is not in the game, Ping), Add friend, the interactions you can have when you are in the same
+// A real player's card (a resident or a house agent: features/agents/AgentActions.vue, then the no-records profile): Chat, Call (or, for someone who is not in the game, Ping), Add friend, the interactions you can have when you are in the same
 // venue, Ask to be my Bae, Send money, Block and Report. Every disabled control says why, and
 // every write goes through the social client (which re-reads the overview and this card after).
 // A money gift carries one client id from the moment its form opens, so a double tap or a retry
@@ -25,6 +25,8 @@ import PingButton from '../ping/PingButton.vue'
 const VisitButton = defineAsyncComponent(() => import('../visit/VisitButton.vue'))
 const PersonJustice = defineAsyncComponent(() => import('../politics/PersonJustice.vue'))
 const PublicProfile = defineAsyncComponent(() => import('./PublicProfile.vue'))
+// A resident or a house agent: chat, call, go to them, keep as a contact (features/agents).
+const AgentActions = defineAsyncComponent(() => import('../agents/AgentActions.vue'))
 import PingStrip from '../ping/PingStrip.vue'
 import { pingInstead } from '../ping/pingModel.ts'
 import type { SocialResult } from './socialClient.ts'
@@ -145,7 +147,7 @@ async function sendReport(): Promise<void> {
 </script>
 
 <template>
-  <PublicProfile v-if="recordlessActor" mode="no-records" :id="id" :actor-label="recordlessActor" />
+  <template v-if="recordlessActor"><AgentActions :id="id" /><PublicProfile mode="no-records" :id="id" :actor-label="recordlessActor" /></template>
   <GateNote v-else-if="gate" :gate="gate" :action="action?.label ?? null" @action="runAction" @retry="retryLoad" />
   <p v-else-if="!profile" class="social-note">Loading player…</p>
   <template v-else-if="profileError !== null">

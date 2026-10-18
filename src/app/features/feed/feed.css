@@ -49,3 +49,4 @@
 .feed-stars button{border:0;background:none;font-size:22px;cursor:pointer;padding:0 2px}
 .feed-compose .feed-row input{flex:1 1 140px}
 .feed-compose .feed-row select{flex:0 1 auto}
+.feed-form label.feed-row,.feed-card label.feed-row{display:flex;flex-wrap:nowrap;gap:8px;align-items:center;font-weight:500}

@@ -10,7 +10,7 @@ opens, a ball game, a light show. Everything below ships behind a setting, off u
 |---|---|
 | Player code | Runs in a sandbox: a frame with no access to the account, money, other players' data or the network. It moves its own objects and reads input through a small API. A runaway script freezes only its own frame and is stopped. |
 | Where uploaded models appear | Only in the uploader's own spaces (their home, the group rooms they may edit) and in what those spaces run. The street and the cities are unchanged. |
-| Storage | Cloudflare R2, bucket `allworld-models`. The Node host keeps files on disk beside its data. |
+| Storage | Cloudflare R2, bucket `allworld` (keys `glb/<sha-256>`). The Node host keeps files on disk beside its data. |
 | Realism | Image-based lighting, soft shadows, filmic tone mapping and physically based materials; a real physics engine; first- and third-person walking. The 3D space page may be as large as it needs: the first download and the scene host stay where they are. |
 
 ## Phases

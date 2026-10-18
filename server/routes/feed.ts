@@ -25,6 +25,10 @@
 import { HTTP_PER_MINUTE } from './social.ts'
 import { addressBucket } from '../host-context.ts'
 import { feedService } from '../feed/service.ts'
+import { review } from '../feed/review.ts'
+import { contactsService } from '../feed/contacts.ts'
+import { promoteService } from '../promote/service.ts'
+import { registerAdminSetting } from '../admin/settings.ts'
 import type { Push } from '../feed/service.ts'
 import { crewPageHtml, eventPageHtml, goneHtml } from '../feed/pages.ts'
 import { cleanCode, FEED } from '../../src/feed/model.ts'
@@ -48,6 +52,12 @@ const videoKind = (bytes: Uint8Array): 'webm' | 'mp4' | null => (bytes[0] === 0x
 
 export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
   const feed = feedService(ctx)
+  const contacts = contactsService(ctx)
+  const promote = promoteService(ctx)
+  // Public photos and clips: on (the owner's decision of 18 Oct 2026); an admin can switch them back to friends-and-crews without a deploy.
+  registerAdminSetting(ctx, { key: 'feedPublicMedia', label: 'Feed: public photos and clips', help: 'On: adults may post photos and clips for everyone. The AI reviewer checks every public picture when it is posted. Off: photos go to friends and crews only.', kind: 'boolean', default: () => (typeof ctx.env === 'function' ? ctx.env('FEED_PUBLIC_MEDIA') : '').trim().toLowerCase() !== 'off' })
+  /** The AI reviewer, after the commit: never in the request's way, never blocking an answer. */
+  const reviewLater = (target: { kind: 'post' | 'reply' | 'crew' | 'event' | 'gig' | 'profile'; id: string; rn?: number }, why: 'report' | 'new'): void => { ctx.waitUntil?.(review(ctx, target, why).catch(() => null)); if (!ctx.waitUntil) void review(ctx, target, why).catch(() => null) }
   // The gist tells the feed about every public line that names someone (server/gist/ledger.ts add): drafts and AI moments.
   if (ctx.checks) ctx.checks.moment = (db, item, ids) => feed.noteMoment(db, item, ids)
   let lastReminder = 0
@@ -57,7 +67,7 @@ export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
     const work = (async () => {
       const any = await ctx.store.read((db) => Boolean(feed.peek(db)))
       if (!any) return
-      send(await ctx.store.transact((db) => feed.remind(db), { durable: false }))
+      send(await ctx.store.transact((db) => { feed.takeTrash(); const pushed = feed.remind(db); feed.purge(db); const gone = feed.takeTrash(); if (gone.length) (feed.peek(db)!.trash ??= []).push(...gone); contacts.sweep(db); return pushed }, { durable: false }))
       // Bytes of erased players' media (server/feed/service.ts forgetFeedPlayers): deleted, then taken off the list.
       const trash = await ctx.store.read((db) => (feed.peek(db)?.trash ?? []).slice(0, 100))
       if (trash.length && ctx.models) {
@@ -71,7 +81,7 @@ export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
   const dropBytes = (hashes: string[]): void => { if (hashes.length && ctx.models) ctx.waitUntil?.(ctx.models.remove(hashes).catch(() => undefined)) }
 
   /** One write as the caller: session, rate limit, the change, then (after the commit) the live frames and any bytes no longer named. */
-  async function write<R extends object>(request: RouteRequest, call: (db: Db, session: SessionRecord) => R): Promise<Omit<R, 'push'>> {
+  async function write<R extends object>(request: RouteRequest, call: (db: Db, session: SessionRecord) => R): Promise<R extends unknown ? Omit<R, 'push'> : never> {
     const outcome = await ctx.store.transact((db) => {
       const session = request.requireSession(db, { renew: true })
       if (!ctx.allow(`social:http:${session.publicId}`, HTTP_PER_MINUTE)) throw ctx.fail(429, 'rate_limited')
@@ -82,7 +92,7 @@ export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
     const { push, ...rest } = outcome.result as R & { push?: Push }
     send(push)
     dropBytes(outcome.trash)
-    return rest as Omit<R, 'push'>
+    return rest as R extends unknown ? Omit<R, 'push'> : never
   }
   const viewerOf = (request: RouteRequest) => ctx.store.read((db) => request.session(db)?.publicId ?? null)
   const readAs = async <R>(request: RouteRequest, call: (db: Db, viewer: string | null) => R): Promise<R> => {
@@ -120,7 +130,9 @@ export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
       media = { hash: await sha256(stored), type: checked.picture.type, w: checked.picture.width, h: checked.picture.height }
     }
     await ctx.models.put(media.hash, stored)
-    return write(request, (db, s) => feed.noteMedia(db, s, media, use))
+    const done = await write(request, (db, s) => feed.noteMedia(db, s, media, use))
+    if (done.ok && use === 'portrait') reviewLater({ kind: 'profile', id: session.publicId }, 'new')
+    return done
   }
   async function file(request: RouteRequest, hash: string, type: string, allowed: boolean) {
     if (!allowed || !ctx.models) throw ctx.fail(404, 'unknown_media')
@@ -149,20 +161,35 @@ export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
     'GET /api/feed/list': async (request) => {
       const tab = request.query.get('tab'), city = await cityOf(request)
       if (tab !== 'friends' && tab !== 'city' && tab !== 'world') throw ctx.fail(400, 'invalid_tab')
-      return { body: await readAs(request, (db, viewer) => feed.read(db, viewer, { tab, city, after: request.query.get('after') })), headers: noStore }
+      const after = request.query.get('after')
+      const page = await readAs(request, (db, viewer) => { const r = feed.read(db, viewer, { tab, city, after }); return r.ok && tab !== 'friends' && !after ? { ...r, sponsored: promote.sponsored(db, viewer, city, tab === 'world') } : r })
+      // Sponsored cards shown are counted for the business (a number, nobody's name), after the answer.
+      const shown = 'sponsored' in page && page.sponsored?.length ? page.sponsored.map((s) => s.order) : []
+      if (shown.length) { const work = ctx.store.transact((db) => promote.noteShown(db, shown), { durable: false }).catch(() => undefined); if (ctx.waitUntil) ctx.waitUntil(work) }
+      return { body: page, headers: noStore }
     },
     'GET /api/feed/crew': async (request) => ({ body: await readAs(request, (db, viewer) => feed.read(db, viewer, { tab: 'crew', crew: request.query.get('id') ?? '', after: request.query.get('after') })), headers: noStore }),
     'GET /api/feed/by': async (request) => ({ body: await readAs(request, (db, viewer) => { const id = feed.resolve(db, request.query.get('id')); return id ? feed.read(db, viewer, { tab: 'author', by: id, after: request.query.get('after') }) : { ok: false, code: 'unknown_player', reason: 'That person was not found.' } }), headers: noStore }),
     'GET /api/feed/post': async (request) => ({ body: await readAs(request, (db, viewer) => feed.thread(db, viewer, request.query.get('id'))), headers: noStore }),
     'POST /api/feed/post': async (request) => {
       const b = await body(request)
-      return { body: await write(request, (db, s) => { const r = feed.createPost(db, s, b); if (r.ok) { counted('feed.post')(db); notePosted(growthOf(ctx, db), ctx.now(), s.publicId) } return r }), renew: true }
+      const answer = await write(request, (db, s) => { const r = feed.createPost(db, s, b); if (r.ok) { counted('feed.post')(db); notePosted(growthOf(ctx, db), ctx.now(), s.publicId) } return r })
+      // Every public photo or clip is looked at once when it is posted (there is no other scanning of pictures).
+      if (answer.ok && answer.post.media && (answer.post.vis === 'public' || answer.post.vis === 'city')) reviewLater({ kind: 'post', id: answer.post.id }, 'new')
+      return { body: answer, renew: true }
     },
     'POST /api/feed/post/remove': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.removePost(db, s, b)) } },
     'POST /api/feed/react': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.react(db, s, b)) } },
     'POST /api/feed/reply': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => { const r = feed.reply(db, s, b); if (r.ok) counted('feed.reply')(db); return r }) } },
     'POST /api/feed/reply/remove': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.removeReply(db, s, b)) } },
-    'POST /api/feed/report': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.report(db, s, b)) } },
+    'POST /api/feed/report': async (request) => {
+      const b = await body(request)
+      const answer = await write(request, (db, s) => feed.report(db, s, b))
+      if (!answer.ok) return { body: answer }
+      const { review: target, ...rest } = answer
+      if (target) reviewLater(target, 'report')
+      return { body: rest }
+    },
     'POST /api/feed/draft/remove': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.dropDraft(db, s, b)) } },
     'POST /api/feed/media': async (request) => ({ body: await upload(request), renew: true }),
     'GET /api/feed/media/:hash': async (request) => {
@@ -185,6 +212,22 @@ export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
     },
     'POST /api/feed/follow': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => { const r = feed.follow(db, s, b); if (r.ok && b.on !== false) counted('feed.follow')(db); return r }) } },
     'GET /api/feed/suggestions': async (request) => ({ body: await ctx.store.read((db) => feed.suggestions(db, request.requireSession(db))), headers: noStore }),
+    // Contacts (server/feed/contacts.ts): hashes only, blinded with a secret that is not in the data, matched only both ways.
+    'GET /api/feed/contacts': async (request) => ({ body: await ctx.store.read((db) => contacts.status(db, request.requireSession(db))), headers: noStore }),
+    'POST /api/feed/contacts/self': async (request) => {
+      const b = await body(request), session = await ctx.store.read((db) => request.requireSession(db))
+      if (!ctx.allow(`contacts:self:${addressBucket(request.ip)}`, 10, 3600000)) throw ctx.fail(429, 'rate_limited')
+      return { body: await contacts.declare(session, b), headers: noStore }
+    },
+    'POST /api/feed/contacts/match': async (request) => {
+      const raw = await request.json(40_000), session = await ctx.store.read((db) => request.requireSession(db))
+      if (!ctx.allow(`contacts:match:${addressBucket(request.ip)}`, 20, 86400000)) throw ctx.fail(429, 'rate_limited')
+      const done = await contacts.match(session, raw && typeof raw === 'object' ? raw as Record<string, unknown> : {})
+      if (!done.ok) return { body: done, headers: noStore }
+      const people = await ctx.store.read((db) => done.matched.map((id) => feed.profile(db, session.publicId, id)).flatMap((r) => (r.ok ? [{ id: r.profile.id, name: r.profile.name, ...(r.profile.handle ? { handle: r.profile.handle } : {}), ...(r.profile.portrait ? { portrait: r.profile.portrait } : {}) }] : [])))
+      return { body: { ok: true, matched: people, waiting: done.waiting }, headers: noStore }
+    },
+    'POST /api/feed/contacts/forget': async (request) => ({ body: await ctx.store.transact((db) => contacts.forget(db, request.requireSession(db, { renew: true }).publicId)), headers: noStore }),
     'POST /api/feed/vouch': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.vouch(db, s, b)) } },
     'POST /api/feed/crews': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => { const r = feed.createCrew(db, s, b); if (r.ok) counted('crew.made')(db); return r }), renew: true } },
     'POST /api/feed/crews/join': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => { const r = feed.joinCrew(db, s, b); if (r.ok) counted('crew.joined')(db); return r }), renew: true } },

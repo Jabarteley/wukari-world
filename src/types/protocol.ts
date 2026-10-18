@@ -63,6 +63,7 @@ import type { ArenaHttpRoutes } from './arena.ts'
 import type { ClansHttpRoutes } from './clans.ts'
 import type { SpacesHttpRoutes } from './spaces.ts'
 import type { FeedHttpRoutes } from './feed.ts'
+import type { PromoteHttpRoutes } from './promote.ts'
 import type { StoryHttpRoutes } from './story-http.ts'
 
 // ---- shared primitives ---------------------------------------------------------------------------
@@ -295,7 +296,7 @@ export interface CoreHttpRoutes {
  * telemetry endpoints are added beside them by server/server.ts: growth.ts TelemetryHttpRoutes.)
  */
 export interface HttpRoutes extends CoreHttpRoutes, SocialHttpRoutes, CivicHttpRoutes, SupportHttpRoutes, ModerationHttpRoutes, WorldHttpRoutes,
-  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, ProjectHttpRoutes, RetentionHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, PlacesHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes, PublicProfileHttpRoutes, ArenaHttpRoutes, ClansHttpRoutes, StoryHttpRoutes, SpacesHttpRoutes, FeedHttpRoutes {
+  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, ProjectHttpRoutes, RetentionHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, PlacesHttpRoutes, BusinessHttpRoutes, MarketHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes, PublicProfileHttpRoutes, ArenaHttpRoutes, ClansHttpRoutes, StoryHttpRoutes, SpacesHttpRoutes, FeedHttpRoutes, PromoteHttpRoutes {
   'GET /api/world/land': { query: { city: CityId }; response: Ok<LandView>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | 'invalid_city' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' }
   'POST /api/world/land/buy': { body: LandBuyRequest; response: Ok<{ ok: boolean; code: string; duplicate?: true; pending?: true }>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | JsonBodyErrorCode | OnceErrorCode | 'invalid_city' | 'invalid_land_purchase' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' | 'land_pending' | 'not_owned_home' | 'land_price_changed' | 'land_intent_changed' }
 }
@@ -562,7 +563,7 @@ export type ServerFrameType = ServerFrame['type']
 export { registeredCityIds } from '../game/cities/registry.ts'
 
 export const HTTP_ROUTE_KEYS = [
-  'GET /api/feed/me', 'POST /api/feed/seen', 'GET /api/feed/list', 'GET /api/feed/crew', 'GET /api/feed/by', 'GET /api/feed/post', 'POST /api/feed/post', 'POST /api/feed/post/remove', 'POST /api/feed/react', 'POST /api/feed/reply', 'POST /api/feed/reply/remove', 'POST /api/feed/report', 'POST /api/feed/draft/remove', 'POST /api/feed/media', 'GET /api/feed/media/:hash', 'GET /api/feed/portrait/:id', 'GET /api/feed/profile', 'POST /api/feed/profile', 'POST /api/feed/handle', 'GET /api/feed/code', 'POST /api/feed/follow', 'GET /api/feed/suggestions', 'POST /api/feed/vouch', 'POST /api/feed/crews', 'POST /api/feed/crews/join', 'POST /api/feed/crews/leave', 'GET /api/feed/crews/one', 'GET /api/feed/events', 'GET /api/feed/events/one', 'POST /api/feed/events', 'POST /api/feed/events/rsvp', 'POST /api/feed/events/cancel', 'GET /api/feed/gigs', 'POST /api/feed/gigs', 'POST /api/feed/gigs/act', 'GET /api/mod/feed', 'POST /api/mod/feed',
+  'GET /api/feed/me', 'POST /api/feed/seen', 'GET /api/feed/list', 'GET /api/feed/crew', 'GET /api/feed/by', 'GET /api/feed/post', 'POST /api/feed/post', 'POST /api/feed/post/remove', 'POST /api/feed/react', 'POST /api/feed/reply', 'POST /api/feed/reply/remove', 'POST /api/feed/report', 'POST /api/feed/draft/remove', 'POST /api/feed/media', 'GET /api/feed/media/:hash', 'GET /api/feed/portrait/:id', 'GET /api/feed/profile', 'POST /api/feed/profile', 'POST /api/feed/handle', 'GET /api/feed/code', 'POST /api/feed/follow', 'GET /api/feed/suggestions', 'POST /api/feed/vouch', 'POST /api/feed/crews', 'POST /api/feed/crews/join', 'POST /api/feed/crews/leave', 'GET /api/feed/crews/one', 'GET /api/feed/events', 'GET /api/feed/events/one', 'POST /api/feed/events', 'POST /api/feed/events/rsvp', 'POST /api/feed/events/cancel', 'GET /api/feed/gigs', 'POST /api/feed/gigs', 'POST /api/feed/gigs/act', 'GET /api/mod/feed', 'POST /api/mod/feed', 'GET /api/feed/contacts', 'POST /api/feed/contacts/self', 'POST /api/feed/contacts/match', 'POST /api/feed/contacts/forget', 'GET /api/promote/me', 'GET /api/promote/directory', 'POST /api/promote/listings', 'POST /api/promote/listings/remove', 'POST /api/promote/order', 'POST /api/promote/order/verify', 'POST /api/promote/contact', 'GET /api/admin/promote', 'POST /api/admin/promote/act', 'GET /api/admin/feed', 'POST /api/admin/feed/undo', 'POST /api/admin/feed/act',
   'GET /api/profiles/:id',
   'GET /api/living-world/assessment', 'POST /api/living-world/assessment/start', 'POST /api/living-world/assessment/step',
   'GET /api/living-world/justice-practice', 'POST /api/living-world/justice-practice/start', 'POST /api/living-world/justice-practice/step',
@@ -910,6 +911,7 @@ export const HTTP_ROUTE_KEYS = [
   'POST /api/agents/claim', 'GET /api/agents/claim/:token', 'POST /api/agents/keys/:id/rename', 'POST /api/agents/characters/:id/takeover', 'GET /api/agents/league', 'GET /api/agents/services', 'POST /api/mod/agents/settings',
   'GET /api/agents/arena', 'POST /api/agents/arena/enter', 'POST /api/agents/arena/challenge', 'GET /api/agents/arena/challenge/:code', 'GET /api/agents/arena/cup/:id', 'GET /api/agents/arena/now',
   'GET /api/agents/call/config', 'POST /api/agents/call/start', 'POST /api/agents/call/transcribe', 'POST /api/agents/call/turn', 'POST /api/agents/call/end',
+  'GET /api/agents/online', 'POST /api/agents/talk',
   'GET /api/agents/memory', 'POST /api/agents/memory/forget', 'POST /api/agents/memory/remember', 'POST /api/agents/memory/flirt', 'POST /api/agents/memory/partner',
   'POST /api/trust/phone/complete',
   'POST /api/trust/dojah/webhook',

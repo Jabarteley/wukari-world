@@ -8,6 +8,7 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import PlayerAvatar from '../social/PlayerAvatar.vue'
 import PostCard from './PostCard.vue'
+import ContactsCard from './ContactsCard.vue'
 import { feedApi, portraitUrl, uploadMedia } from './feedApi.ts'
 import { portraitFrom, portraitFromScene, stickerFrom } from './feedMedia.ts'
 import { shareLink, whatsappUrl } from './feedShare.ts'
@@ -107,6 +108,8 @@ const sceneOn = computed(() => Boolean(scene.venue.value) && !document.body.clas
       <label class="feed-row"><input :checked="profile.canFollowMe" type="checkbox" :disabled="!profile.adult" @change="setOpen(($event.target as HTMLInputElement).checked)"> Let anyone follow my public posts</label>
       <p v-if="!profile.adult" class="feed-note">Following is for players confirmed as 18 or older.</p>
     </div>
+
+    <ContactsCard />
 
     <form class="feed-card feed-form" @submit.prevent="findByCode">
       <label>Have a code?<input v-model="code" maxlength="8" placeholder="ABCDEF" autocapitalize="characters"></label>

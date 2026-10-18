@@ -475,7 +475,7 @@ test('Cloudflare: the page is strict until accounts are configured, then allows 
   const response = await google.request('/some/deep/link'); await response.arrayBuffer();
   const csp = response.headers.get('content-security-policy') as string;
   assert.match(directive(csp, 'script-src'), /https:\/\/accounts\.google\.com\/gsi\/client$/);
-  assert.equal(directive(csp, 'frame-src'), 'frame-src https://accounts.google.com/gsi/');
+  assert.equal(directive(csp, 'frame-src'), "frame-src 'self' https://accounts.google.com/gsi/");
   assert.match(directive(csp, 'style-src'), /https:\/\/accounts\.google\.com\/gsi\/style$/);
   assert.equal(response.headers.get('cross-origin-opener-policy'), 'same-origin-allow-popups');
 });

@@ -52,6 +52,9 @@ const loaders = {
   'politics/PoliticsApp': () => import('../features/politics/PoliticsApp.vue'),
   'social/PeopleApp': () => import('../features/social/PeopleApp.vue'),
   'social/PersonApp': () => import('../features/social/PersonApp.vue'),
+  'agents/AgentsOnlineApp': () => import('../features/agents/AgentsOnlineApp.vue'),
+  'agents/AgentChatApp': () => import('../features/agents/AgentChatApp.vue'),
+  'home/ItemSheet': () => import('../features/home/ItemSheet.vue'),
   'social/ContactsApp': () => import('../features/social/ContactsApp.vue'),
   'social/FamilyApp': () => import('../features/social/FamilyApp.vue'),
   'social/InviteApp': () => import('../features/social/InviteApp.vue'),
@@ -69,6 +72,7 @@ const loaders = {
   'feed/PlansApp': () => import('../features/feed/PlansApp.vue'),
   'feed/WorkApp': () => import('../features/feed/WorkApp.vue'),
   'lite/LiteShell': () => import('../features/lite/LiteShell.vue'),
+  'promote/BusinessesApp': () => import('../features/promote/BusinessesApp.vue'),
 } satisfies Record<string, () => Promise<BodyModule>>
 
 export type PanelBody = keyof typeof loaders

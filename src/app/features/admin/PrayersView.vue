@@ -54,12 +54,12 @@ async function take(): Promise<void> {
       </div>
       <p v-if="error" class="adm-error" role="alert">{{ error }}</p>
       <p v-if="page && !items.length" class="adm-muted">No prayers match.</p>
-      <table v-else class="adm-table"><thead><tr><th>When</th><th>Who</th><th>Prayer</th><th>Situation</th><th></th></tr></thead><tbody>
+      <table v-else class="adm-table adm-stack"><thead><tr><th>When</th><th>Who</th><th>Prayer</th><th>Situation</th><th></th></tr></thead><tbody>
         <tr v-for="item in items" :key="item.n">
-          <td :title="absolute(item.at)">{{ relative(item.at, api.now()) }}</td>
+          <td class="adm-when" :title="absolute(item.at)">{{ relative(item.at, api.now()) }}</td>
           <td><b>{{ item.name }}</b><div class="adm-sub">{{ item.by }} · {{ item.city || 'no city' }}<template v-if="item.minor"> · under 18</template></div></td>
-          <td>{{ item.text }}</td>
-          <td class="adm-sub">{{ item.situation }}</td>
+          <td class="adm-grow">{{ item.text }}</td>
+          <td class="adm-sub" data-label="Situation">{{ item.situation }}</td>
           <td><span v-if="item.answered" class="adm-sub">{{ WORDS[item.answered.act] ?? item.answered.act }} (act {{ item.answered.line }})</span><button v-else class="adm-btn" @click="answer(item)">Answer</button></td>
         </tr>
       </tbody></table>
@@ -96,11 +96,11 @@ async function take(): Promise<void> {
       <h3>The log of acts</h3>
       <p class="adm-sub">Append-only: who, when, what, target, reason. {{ page?.log.total ?? 0 }} in all.</p>
       <p v-if="page && !page.log.lines.length" class="adm-muted">Nothing yet.</p>
-      <table v-else class="adm-table"><thead><tr><th>#</th><th>When</th><th>Who</th><th>What</th><th>Target</th><th>Reason</th></tr></thead><tbody>
+      <table v-else class="adm-table adm-stack"><thead><tr><th>#</th><th>When</th><th>Who</th><th>What</th><th>Target</th><th>Reason</th></tr></thead><tbody>
         <tr v-for="line in page?.log.lines ?? []" :key="line.n">
-          <td>{{ line.n }}</td><td :title="absolute(line.at)">{{ relative(line.at, api.now()) }}</td><td>{{ line.adminName }}</td>
+          <td class="adm-hide-sm">{{ line.n }}</td><td class="adm-when" :title="absolute(line.at)">{{ relative(line.at, api.now()) }}</td><td data-label="Who">{{ line.adminName }}</td>
           <td><b>{{ WORDS[line.kind] ?? line.kind }}</b><div class="adm-sub">{{ line.summary }}<template v-if="line.prayer"> · prayer {{ line.prayer }}</template><template v-if="line.gist"> · gist {{ line.gist }}</template></div></td>
-          <td>{{ line.targetName }}<div class="adm-sub">{{ line.targetKind }}{{ line.city ? ` · ${line.city}` : '' }}</div></td><td>{{ line.reason }}</td>
+          <td data-label="Target">{{ line.targetName }}<div class="adm-sub">{{ line.targetKind }}{{ line.city ? ` · ${line.city}` : '' }}</div></td><td class="adm-grow" data-label="Reason">{{ line.reason }}</td>
         </tr>
       </tbody></table>
     </div>

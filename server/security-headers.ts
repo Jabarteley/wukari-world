@@ -126,7 +126,8 @@ export function appContentSecurityPolicy({ scriptHashes, telemetry = [], account
     `connect-src ${["'self'", ...(!admin && avatarAssets ? ['blob:'] : []), ...(admin ? [] : [...sockets, ...telemetry, BEACON_CONNECT]), ...extra['connect-src']].join(' ')}`,
     "media-src 'self' blob:",
     "worker-src 'self' blob:",
-    ...(extra['frame-src'].length ? [`frame-src ${extra['frame-src'].join(' ')}`] : []),
+    // A frame-src replaces default-src for frames, so it keeps 'self': a 3D space's script sandbox (/sandbox/space.html) is framed from here.
+    ...(extra['frame-src'].length ? [`frame-src ${["'self'", ...extra['frame-src']].join(' ')}`] : []),
     "manifest-src 'self'",
     "base-uri 'self'",
     "form-action 'self'",

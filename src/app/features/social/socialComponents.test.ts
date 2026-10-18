@@ -371,6 +371,8 @@ test('the registry: the same ids, placements, order, groups and badges as the la
     { id: 'contacts', title: 'Contacts', placement: 'phone', order: 20, group: 'people', phone: undefined, kind: 'vue' },
     { id: 'family', title: 'Family', placement: 'phone', order: 36, group: 'people', phone: undefined, kind: 'vue' },
     { id: 'invite', title: 'Invite', placement: 'phone', order: 38, group: 'people', phone: undefined, kind: 'vue' },
+    { id: 'ai-agents', title: 'AI agents', placement: 'phone', order: 21, group: 'people', phone: undefined, kind: 'vue' },
+    { id: 'agent-chat', title: 'Chat', placement: 'modal', order: undefined, group: undefined, phone: undefined, kind: 'vue' },
   ])
   const badge = (id: string) => SOCIAL_PANELS.find((panel) => panel.id === id)?.badge as undefined | (() => number)
   assert.equal(SOCIAL_PANELS.find((panel) => panel.id === 'contacts')?.badge, undefined)

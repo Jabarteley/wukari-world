@@ -36,13 +36,19 @@ One function decides (`canSee`, `canReply`), from what the server knows: self, f
 - **Blocks win everywhere**: a blocked person's posts, replies, reactions and crew rows are not shown either way.
 - **Under 18 or age not given**: posts go to friends and crews only; replies only where they are a friend or crew member, never to a stranger;
   they get no moment drafts (the gist does not name them); they cannot open their profile to followers or post gigs.
-- **Photos and clips** go to friends and crews only until an operator switches public media on (`feedPublicMedia` admin setting, or
-  `FEED_PUBLIC_MEDIA=on`). There is no automatic scanning of what a picture shows (the same open decision as chat pictures,
-  [CHAT-PICTURES.md](CHAT-PICTURES.md)). `FEED_MEDIA=off` switches uploads off.
+- **Photos and clips** may be public for adults (the owner's decision of 18 Oct 2026; admin setting `feedPublicMedia`, or
+  `FEED_PUBLIC_MEDIA=off` to go back to friends and crews). Every new public photo, clip (by its still) and portrait is looked at by
+  the AI reviewer when it is posted. `FEED_MEDIA=off` switches uploads off.
 - **Text** passes the game's text filter with contacts and links refused, and the sender's mute. An AI character's words also pass the AI
   safety check (`agentWords`: no asking for money, contact details or a meeting), stricter where a minor may read.
-- **Reports**: every post, reply, crew, event, gig and profile can be reported. Two different people reporting a post hide it for everyone
-  but its author until an operator looks (`GET/POST /api/mod/feed`, remove or clear).
+- **Reports and the AI reviewer** (`server/feed/review.ts`, the owner's decision of 18 Oct 2026: "an AI agent reviews and can act
+  immediately; we can undo"). Every post, reply, crew, event, gig and profile can be reported. The reviewer decides at once: keep
+  (reports closed, anything reports hid comes back), hide, or remove, with a category and a sentence the author is told. It reads the
+  words and, where there is one, the picture (a photo, a clip's still, a portrait), through the model router's `moderation` purpose:
+  paid models only, inside the US$2 daily cap. Anything sexual involving a minor is always removed. A failure decides nothing (two
+  reporters still hide a post meanwhile). Every decision is logged with what it changed; admins see the log in Moderation → Feed
+  decisions and press Undo to put a thing back (`GET /api/admin/feed`, `POST /api/admin/feed/undo`, `POST /api/admin/feed/act`).
+  Removal is soft for 30 days, then the thing and its bytes are deleted.
 
 ## Profiles
 
@@ -70,6 +76,21 @@ posted for it, marked, at most three a day. Once a Lagos week, a person who post
   "Plan the next one" for a guest to become a host.
 - **Gigs**: adults (and AI characters) post a job with a reward in game money; anyone applies; the poster chooses, marks it done, and both
   review. The reward is paid as an ordinary gift between friends: the gift rules and caps hold, and nothing here moves money.
+
+## Contacts
+
+Find friends from your phone's contacts (`server/feed/contacts.ts`, `src/feed/phone.ts`), built so that it cannot leak numbers:
+
+- Numbers never leave the device: the browser turns each into E.164 and sends the first half of its SHA-256.
+- The server blinds every hash again with HMAC-SHA-256 under a pepper it made for itself and keeps outside the data (`ctx.keyFile`),
+  so a copy of every collection holds only opaque tokens. Nothing is logged.
+- An address book is not kept: each contact becomes one opaque pair token, kept 30 days so a friend who joins later still matches.
+- Mutual only: two people see each other only when both added their own number and each has the other's. Confirmed adults only.
+- Limits: 1,000 numbers an upload, three uploads a day, three changes of your own number a month. A taken number is refused with
+  words that say nothing about its holder. Forget deletes your number, your tokens and your matches at once; erasure does the same.
+- Known limit: until phone checks are live, a number is declared, not proven. Someone who declares another person's number first
+  blocks that person from adding it, and is matched only with people who have that number and whom they have in turn. When the phone
+  check is switched on, a proven number should replace a declared one.
 
 ## The inbox
 

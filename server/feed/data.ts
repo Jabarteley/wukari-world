@@ -15,7 +15,7 @@ import type { Db, RouteContext } from '../types.ts'
 import type { GigState, PostKind, Skill, Visibility } from '../../src/feed/model.ts'
 import type { FeedMedia, InboxLine } from '../../src/types/feed.ts'
 
-export interface Reply { n: number; by: string; at: number; body: string; ai?: 1 }
+export interface Reply { n: number; by: string; at: number; body: string; ai?: 1; /** Removed by the reviewer or an operator: kept until undone or purged. */ gone?: 1 }
 export interface PostRecord {
   id: string; by: string; at: number; kind: PostKind; body: string
   place?: { city: string; venue?: string; label?: string }
@@ -25,6 +25,8 @@ export interface PostRecord {
   rx?: Record<string, string>
   replies?: Reply[]; rn?: number
   reports?: string[]; hidden?: 1; gone?: 1; ai?: 1
+  /** The still image a clip is reviewed and previewed by (a pending photo of the same author). */
+  poster?: string
 }
 export interface DraftRecord { n: number; at: number; city: string; kind: string; text: string }
 export interface PendingMedia extends FeedMedia { at: number; use: 'post' | 'portrait' }
@@ -55,7 +57,7 @@ export interface AuthorRecord {
   /** The Lagos week whose recap draft was made (made once, even if dropped). */
   recapWeek?: number
 }
-export interface CrewRecord { id: string; name: string; colour: string; about: string; owner: string; members: string[]; code: string; at: number; kicked?: Record<string, number> }
+export interface CrewRecord { id: string; name: string; colour: string; about: string; owner: string; members: string[]; code: string; at: number; kicked?: Record<string, number>; /** Removed by moderation: no page, no joining; members keep their wall. */ banned?: 1 }
 export interface EventRecord {
   id: string; by: string; title: string; about: string; city: string; venue?: string; label: string
   start: number; end: number; cap: number; going: string[]; maybe: string[]; cohosts: string[]; code: string; at: number; post?: string; gone?: 1
@@ -67,11 +69,23 @@ export interface GigRecord {
   reviews?: Partial<Record<'poster' | 'worker', { stars: number; text: string; at: number }>>
 }
 export interface ReportRecord { kind: 'post' | 'reply' | 'crew' | 'event' | 'gig' | 'profile'; id: string; n?: number; by: string; reason: string; at: number; done?: 1 }
+/** One moderation decision, by the AI reviewer or an operator, with what it changed so it can be undone. */
+export interface DecisionRecord {
+  n: number; at: number; by: 'ai' | 'operator'; kind: ReportRecord['kind']; id: string; rn?: number
+  action: 'remove' | 'hide' | 'keep'; category: string; reason: string
+  /** The fields as they were before, restored by undo. */
+  before: Record<string, unknown>
+  undone?: { at: number; by: string }
+  /** The reviewer saw a picture (a photo, a clip's poster or a portrait). */
+  saw?: 'text' | 'image'
+}
 export interface CityLists { posts: string[]; events: string[]; gigs: string[] }
 export interface FeedCollection {
   v: 1; seq: number; world: string[]; reports: ReportRecord[]
   /** Media hashes whose bytes the heartbeat deletes (erasure puts them here). */
   trash?: string[]
+  /** Moderation decisions, newest last, at most 500; `dn` counts them. */
+  decisions?: DecisionRecord[]; dn?: number
   authors: Record<string, AuthorRecord>; posts: Record<string, PostRecord>; cities: Record<string, CityLists>
   handles: Record<string, string>; codes: Record<string, { k: 'friend' | 'crew' | 'event'; id: string }>
   crews: Record<string, CrewRecord>; events: Record<string, EventRecord>; gigs: Record<string, GigRecord>

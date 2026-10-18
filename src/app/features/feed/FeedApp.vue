@@ -10,6 +10,8 @@ import { useApp } from '../../state/app.ts'
 import EmptyState from '../../ui/EmptyState.vue'
 import PlayerAvatar from '../social/PlayerAvatar.vue'
 import PostCard from './PostCard.vue'
+import SponsoredCard from '../promote/SponsoredCard.vue'
+import type { ListingView } from '../../../types/promote.ts'
 import { feedApi, portraitUrl, uploadMedia } from './feedApi.ts'
 import { feedUnseen } from './feedBadge.ts'
 import { encodePhoto, recordScene, snapshotScene, canRecord } from './feedMedia.ts'
@@ -28,7 +30,7 @@ const api = feedApi((path, options) => game.fetchJson(path, options))
 type Tab = FeedTab | 'inbox'
 const tab = ref<Tab>(props.params?.tab === 'city' || props.params?.tab === 'world' || props.params?.tab === 'inbox' ? props.params.tab : 'friends')
 const me = ref<FeedMe | null>(null)
-const posts = ref<PostView[]>([]), news = ref<NewsLine[]>([]), next = ref<string | null>(null)
+const posts = ref<PostView[]>([]), news = ref<NewsLine[]>([]), next = ref<string | null>(null), sponsored = ref<ListingView[]>([])
 const loading = ref(false), failed = ref(''), now = ref(Date.now())
 const open = ref<PostView | null>(null)
 const suggestions = ref<Suggestion[]>([])
@@ -49,7 +51,7 @@ async function load(more = false): Promise<void> {
   if (!r.ok) { failed.value = r.reason; return }
   posts.value = more ? [...posts.value, ...r.posts.filter((p) => !posts.value.some((q) => q.id === p.id))] : r.posts
   next.value = r.next
-  if (!more) news.value = r.news ?? []
+  if (!more) { news.value = r.news ?? []; sponsored.value = r.sponsored ?? [] }
   if (tab.value === 'friends' && !more && r.posts.length < 4) void loadSuggestions()
 }
 async function loadSuggestions(): Promise<void> { const r = await api.suggestions(); if (r.ok) suggestions.value = r.people.slice(0, 8) }
@@ -65,7 +67,7 @@ watch(tab, (t) => { posts.value = []; next.value = null; open.value = null; if (
 
 // ---- composing ---------------------------------------------------------------------------------------------------------------------
 const text = ref(''), vis = ref<Visibility | ''>(''), crew = ref(''), label = ref(''), media = ref<FeedMedia | null>(null), preview = ref(''), busy = ref(false), draftN = ref<number | null>(null)
-const recording = ref<Recording | null>(null)
+const recording = ref<Recording | null>(null), poster = ref<string | null>(null)
 const adult = computed(() => Boolean(me.value?.profile.adult))
 const choices = computed<{ id: Visibility; label: string }[]>(() => {
   const all: { id: Visibility; label: string }[] = []
@@ -94,8 +96,11 @@ async function pickPhoto(event: Event): Promise<void> {
 const snap = async (): Promise<void> => attach(await snapshotScene(sceneCanvas))
 async function clip(): Promise<void> {
   if (recording.value) { recording.value.stop(); return }
+  // The clip's still, taken as it starts: the reviewer looks at it and the player shows it before the clip plays.
+  const still = await snapshotScene(sceneCanvas)
   const r = recordScene(sceneCanvas)
   if (!r) { toast('This browser cannot record the scene.', 'error'); return }
+  if (still) void uploadMedia(still, 'post').then((up) => { poster.value = up.ok ? up.media.hash : null })
   recording.value = r
   toast(`Recording up to ${Math.round(FEED.media.clipMs / 1000)} seconds. Tap again to stop.`)
   const done = await r.done
@@ -107,10 +112,10 @@ async function dropDraft(n: number): Promise<void> { await api.dropDraft(n); if 
 async function publish(): Promise<void> {
   if (busy.value || (!text.value.trim() && !media.value && draftN.value === null)) return
   busy.value = true
-  const r = await api.post({ body: text.value, vis: vis.value || undefined, ...(vis.value === 'crew' && crew.value ? { crew: crew.value } : {}), ...(media.value ? { media: media.value.hash } : {}), ...(draftN.value !== null ? { draft: draftN.value } : {}), ...(label.value.trim() ? { label: label.value.trim() } : {}) })
+  const r = await api.post({ body: text.value, vis: vis.value || undefined, ...(vis.value === 'crew' && crew.value ? { crew: crew.value } : {}), ...(media.value ? { media: media.value.hash, ...(poster.value ? { poster: poster.value } : {}) } : {}), ...(draftN.value !== null ? { draft: draftN.value } : {}), ...(label.value.trim() ? { label: label.value.trim() } : {}) })
   busy.value = false
   if (!r.ok) { toast(r.reason, 'error'); return }
-  text.value = ''; label.value = ''; clearMedia()
+  text.value = ''; label.value = ''; clearMedia(); poster.value = null
   if (draftN.value !== null && me.value) me.value.drafts = me.value.drafts.filter((d) => d.n !== draftN.value)
   draftN.value = null
   posts.value = [r.post, ...posts.value]
@@ -225,7 +230,12 @@ async function addFriend(s: Suggestion): Promise<void> {
 
       <p v-if="failed" class="feed-error" role="alert">{{ failed }} <button type="button" class="social-btn" @click="load()">Try again</button></p>
       <EmptyState v-else-if="!posts.length && !loading" icon="people" :title="tab === 'friends' ? 'Your friends have not posted yet' : 'Quiet so far'" :text="tab === 'friends' ? 'Post the first thing, add people you meet, or start a crew. The World tab is never empty.' : 'Be the first to post here.'" />
-      <PostCard v-for="p in posts" :key="p.id" :post="p" :api="api" :now="now" @changed="replace" @removed="removed" @person="person" @open="openPost" @toast="toast" @share="share" @event="openEvent" @gig="openGig" />
+      <template v-for="(p, i) in posts" :key="p.id">
+        <PostCard :post="p" :api="api" :now="now" @changed="replace" @removed="removed" @person="person" @open="openPost" @toast="toast" @share="share" @event="openEvent" @gig="openGig" />
+        <SponsoredCard v-if="i === 0 && sponsored[0]" :listing="sponsored[0]" />
+        <SponsoredCard v-if="i === 5 && sponsored[1]" :listing="sponsored[1]" />
+      </template>
+      <SponsoredCard v-if="!posts.length && sponsored[0]" :listing="sponsored[0]" />
       <button v-if="next" type="button" class="social-btn" :disabled="loading" @click="load(true)">More</button>
       <p v-if="loading" class="feed-note" role="status">Loading…</p>
     </template>

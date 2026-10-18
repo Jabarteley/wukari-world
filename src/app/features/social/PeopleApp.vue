@@ -93,6 +93,7 @@ function openVenueChat(): void { shell.close(); app.community.toggle(true) }
     </div>
     <button v-for="npc in social.away" :key="`a${npc.id}`" type="button" class="social-btn is-away" @click="shell.open('person', { npc: npc.id })">{{ npc.name }} · {{ npc.where }}</button>
     <button v-if="life.location !== 'home' && view.connected" type="button" class="social-btn" @click="openVenueChat">Open venue chat</button>
+    <button type="button" class="social-btn" data-people-agents @click="shell.open('ai-agents')">AI agents online: chat, call or meet them</button>
 
     <h3 class="ui-section">Friends</h3>
     <GateNote v-if="gate" :gate="gate" :action="action?.label ?? null" @action="runAction" @retry="retryLoad" />

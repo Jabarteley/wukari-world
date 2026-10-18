@@ -12,9 +12,14 @@ export function wordsOf(error: unknown): Error {
   return new Error(error instanceof Error && error.message && !/^[a-z_]+$/.test(error.message) ? error.message : 'That did not work. Try again.')
 }
 
-export function agentCallApi(fetchJson: FetchJson, token: () => string | null): CallApi & { transcribe(call: string, audioBase64: string, mediaType: string): Promise<string> } {
+export function agentCallApi(fetchJson: FetchJson, token: () => string | null, refresh?: () => Promise<void>): CallApi & { transcribe(call: string, audioBase64: string, mediaType: string): Promise<string> } {
+  const send = <T>(path: string, body: Record<string, unknown>): Promise<T> => fetchJson<T>(path, { method: 'POST', body: { ...body, csrf: token() } })
   const post = async <T>(path: string, body: Record<string, unknown>): Promise<T> => {
-    try { return await fetchJson<T>(path, { method: 'POST', body: { ...body, csrf: token() } }) } catch (error) { throw wordsOf(error) }
+    try { return await send<T>(path, body) } catch (error) {
+      // A token read before this session began is stale: `refresh` reads it again, and the call is tried once more.
+      if (!refresh || typeof error !== 'object' || error === null || Reflect.get(error, 'code') !== 'csrf_rejected') throw wordsOf(error)
+      try { await refresh(); return await send<T>(path, body) } catch (again) { throw wordsOf(again) }
+    }
   }
   let current = ''
   return {

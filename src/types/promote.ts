@@ -7,8 +7,8 @@ export interface ListingView {
   id: string; owner: FeedPerson; name: string; category: Category; categoryLabel: string; city: string; cityName: string; area: string; about: string
   photo?: string; at: number; status: ListingStatus; reason?: string; boosted: boolean; shop?: string; mine: boolean
 }
-export interface OrderView { id: string; listing: string; listingName: string; tier: Tier; weeks: number; amount: number; city: string; status: OrderStatus; at: number; startsAt?: number; endsAt?: number; ref: string; by?: 'paystack' | 'bank' | 'admin' }
-export interface PromoteMe { listings: ListingView[]; orders: OrderView[]; prices: Record<Tier, number>; payment: 'paystack' | 'bank' | 'closed'; bank: string; adult: boolean; account: boolean }
+export interface OrderView { id: string; listing: string; listingName: string; tier: Tier; weeks: number; amount: number; city: string; status: OrderStatus; at: number; startsAt?: number; endsAt?: number; ref: string; by?: 'bachs' | 'bank' | 'admin' }
+export interface PromoteMe { listings: ListingView[]; orders: OrderView[]; prices: Record<Tier, number>; payment: 'bachs' | 'bank' | 'closed'; bank: string; adult: boolean; account: boolean }
 type E = HostErrorCode | JsonBodyErrorCode | 'rate_limited' | 'device_session_required' | 'storage_unavailable'
 type Refused = { ok: false; code: string; reason: string }
 type Done<T extends object = object> = Ok<({ ok: true } & T) | Refused>

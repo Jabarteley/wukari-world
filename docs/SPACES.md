@@ -4,7 +4,7 @@ A player designs a home or a group room in their own words, or pastes a plan wri
 
 ## What the player does
 
-1. **Houses → Furniture, land, stories & neighbours → Design with AI**, or **Build → Design with AI** in a group room.
+1. **Houses → More for your home → Design with AI**, or **Build → Design with AI** in a group room. Describing is the one way shown; pasting a plan is a link under it.
 2. **Describe**: a few words ("quiet study with plants", "party house, big sound"), optionally **Keep what I have**. About 6 to 13 seconds later the sheet shows a drawing of every floor, the title, what it costs ("₦65,000 to buy · you have ₦900,000") and any piece that was moved or left out, with the reason.
 3. **Import**: paste a Space Plan (below). It is checked by the same rules, with no model.
 4. **Apply**. A home must be applied at home. Pieces the player already owns are reused; pieces the plan does not use go to storage (nothing is sold); the rest is bought at the shop price. A group room's furniture is free and only its members can apply a plan.
@@ -83,7 +83,7 @@ Checks: 60 an hour. Applies: 20 an hour. A home changes through its life, a room
 
 ## A host
 
-A player may give their home an AI host: Houses → **AI host for my home**. Four to choose from (Jeeves the butler, DJ Spinz, Quizmaster Ade, Gateman Musa), with an optional one-line description in the player's words (160 characters; the text filter and the AI words rule refuse contact details, money, flirting and the like).
+A player may give their home an AI host: Houses → More for your home → **AI host**. Saving switches it on and the sheet closes; **Switch it off** removes it. Four to choose from (Jeeves the butler, DJ Spinz, Quizmaster Ade, Gateman Musa), with an optional one-line description in the player's words (160 characters; the text filter and the AI words rule refuse contact details, money, flirting and the like).
 
 - While anybody is inside the home, the host stands there as an AI-played character with the AI mark (a virtual member of the home's room, as the house agents are: `server/spaces/host.ts`).
 - It greets each guest once a visit, by first name, and from the second visit as a returning guest ("Welcome back, Tunde. Visit number 3").

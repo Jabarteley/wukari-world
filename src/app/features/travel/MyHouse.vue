@@ -5,8 +5,12 @@
 // card for a settled life, the settling-in screen for a guest. Rules and prices: src/game/systems/estate.ts, src/game/content/world.ts.
 //
 // Actions: 'estate.style' { style: { field: index } }, 'estate.upgrade' { to } and 'estate.move-in'.
+//
+// `part`: the Houses app shows the house itself ('hero': the picture, the address, moving in) at the top of its page and the
+// upgrades and the look ('upgrade') in a fold further down; 'all' is the whole card in one.
 import '../../../ui/panels/world.css'
 import { computed, ref } from 'vue'
+import HousePhoto from '../spaces/HousePhoto.vue'
 import type { HouseStyleField } from '../../../types/life.ts'
 import type { HouseTierId } from '../../../types/life.ts'
 import { useApp } from '../../state/app.ts'
@@ -23,6 +27,7 @@ import { FIELD_NAMES, afterStyle, minutesToGo, offeredTiers, offlineWhy, swatchL
 import { linkWords } from './travelBoundary.ts'
 import { startSettling } from '../start/settleModel.ts'
 
+const props = withDefaults(defineProps<{ part?: 'all' | 'hero' | 'upgrade' }>(), { part: 'all' })
 const { game, shell, command } = useApp()
 const { act, pending } = useAct()
 const estate = computed(() => game.view.value.estate)
@@ -60,9 +65,11 @@ function showOnMap(): void {
     <button v-if="!choosing" type="button" class="ui-button is-primary is-block" data-choose-lga @click="chooseLga">Choose your {{ estate.unit }}</button>
     <LgaCard v-else :heading="`Choose your ${estate.unit}`" compact />
   </section>
-  <section v-else-if="estate" class="world-card" data-my-house>
-    <h3>Your own house</h3>
-    <HouseArt :look="estate.style" :tier="estate.tier.id" :scaffold="Boolean(estate.upgrade)" />
+  <section v-else-if="estate" class="world-card" :class="{ 'is-hero': props.part === 'hero' }" data-my-house>
+    <h3 v-if="props.part === 'all'">Your own house</h3>
+    <template v-if="props.part !== 'upgrade'">
+    <HousePhoto v-if="props.part === 'hero'"><HouseArt :look="estate.style" :tier="estate.tier.id" :scaffold="Boolean(estate.upgrade)" /></HousePhoto>
+    <HouseArt v-else :look="estate.style" :tier="estate.tier.id" :scaffold="Boolean(estate.upgrade)" />
     <p class="world-now"><b>{{ estate.tier.label }}</b><small>{{ estate.plot ? estate.plot.address : 'Your plot is being set aside…' }}</small></p>
     <div v-if="estate.upgrade" role="status">
       <p class="ui-note">Builders at work on your {{ estate.upgrade.label }}: about {{ minutesToGo(estate.upgrade.remaining) }} to go. It finishes even while you are away.</p>
@@ -82,6 +89,8 @@ function showOnMap(): void {
       <p class="ui-note">Weekly rent stops. Your furniture comes with you; what does not fit goes to storage.</p>
     </template>
     <button v-if="estate.plot" type="button" class="ui-button is-block" @click="showOnMap">Show it on the map</button>
+    </template>
+    <template v-if="props.part !== 'hero'">
     <h3>Upgrade your house</h3>
     <p class="ui-note">Choose a bigger home. Pay once with in-game cash; the builders finish even while you are away. Your furniture stays yours.</p>
     <div class="world-tiers">
@@ -109,6 +118,6 @@ function showOnMap(): void {
       </div>
     </div>
     <ResidenceCard />
-
+    </template>
   </section>
 </template>

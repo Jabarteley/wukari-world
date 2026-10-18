@@ -37,5 +37,5 @@ export function ready(): void {
   void settled.then(() => import('./startExtras.ts')).then(({ startAfterReady }) => { startAfterReady() }, () => undefined)
   // `?diagnostics`: the scene's frame counter, readable by a person and by a test harness; a short address (/games, /abuja, …): its chunk. Fetched only then (./startExtras.ts).
   const diagnostics = new URLSearchParams(location.search).has('diagnostics')
-  if (diagnostics || location.pathname !== '/' || /[?&](claim-agent|crew|event|friend|promote)=/.test(location.search)) void import('./startExtras.ts').then(({ startExtras }) => { startExtras(diagnostics) })
+  if (diagnostics || location.pathname !== '/' || /[?&](claim-agent|crew|event|friend|promote|earn)=/.test(location.search)) void import('./startExtras.ts').then(({ startExtras }) => { startExtras(diagnostics) })
 }

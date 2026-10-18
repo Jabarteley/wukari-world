@@ -25,7 +25,24 @@ function paymentReturn(ref: string): void {
     }, () => game.toast('The payment could not be checked. Open Businesses to try again.', 'error'))
   }, { immediate: true })
 }
+/** Back from Bachs (/?earn=account after the payout-account page, /?earn=<ref> after paying a ticket or a gig). */
+function earnReturn(value: string): void {
+  const { game, shell } = useApp()
+  const params = new URLSearchParams(location.search); params.delete('earn')
+  history.replaceState(null, '', `${location.pathname}${params.size ? `?${params}` : ''}${location.hash}`)
+  const stop = watch(() => game.connected.value, (ready) => {
+    if (!ready) return
+    stop()
+    if (value === 'account') { void game.fetchJson('/api/earn/account/refresh', { method: 'POST', body: {} }).catch(() => undefined).finally(() => shell.open('earn')); return }
+    void game.fetchJson<{ ok: boolean; reason?: string; sale?: { kind: string } }>('/api/earn/pay/verify', { method: 'POST', body: { ref: value } }).then((r) => {
+      game.toast(r.ok ? (r.sale?.kind === 'ticket' ? 'Paid. You have a ticket and you are on the list.' : 'Paid. The money is on its way to them.') : r.reason ?? 'The payment is not confirmed yet.', r.ok ? 'info' : 'error')
+      shell.open('earn')
+    }, () => game.toast('The payment could not be checked. Open Earn to try again.', 'error'))
+  }, { immediate: true })
+}
 export function startFeedEntry(): void {
+  const earned = new URLSearchParams(location.search).get('earn')
+  if (earned && (earned === 'account' || /^AE-[A-Z0-9-]{4,40}$/.test(earned))) { earnReturn(earned); return }
   const paid = new URLSearchParams(location.search).get('promote')
   if (paid && /^AW-[A-Z0-9-]{4,40}$/.test(paid)) { paymentReturn(paid); return }
   const wanted = read()

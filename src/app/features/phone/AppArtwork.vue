@@ -7,15 +7,15 @@ import { PHONE_ART, PHONE_ART_COLUMNS, PHONE_ART_X, PHONE_ART_Y } from '../../..
 /** The apps whose picture is a mark of the icon set, not a cell of the atlas. */
 const ICON_SET_APPS: readonly string[] = ['showcase', 'market']
 const props = defineProps<{ app: string }>()
-/** Apps that draw another app's picture until they have their own (the feed's apps borrow the nearest one). */
-const BORROWED: Readonly<Record<string, string>> = { person: 'contacts', passport: 'goals', gist: 'community', feed: 'community', me: 'contacts', crews: 'people', plans: 'events', work: 'career' }
+/** The feed's apps (src/app/features/feed) draw the nearest app's picture until they have their own. */
+const FEED_ART: Readonly<Record<string, string>> = { feed: 'community', me: 'contacts', crews: 'people', plans: 'events', work: 'career' }
 const atlas = new URL('../../../ui/phone/app-icons.webp', import.meta.url).href
 // An app that declares an icon-set mark draws it (a rounded square in its colour). Every other app with no atlas picture keeps the settings gears.
 const drawn = computed(() => ICON_SET_APPS.includes(props.app) && !PHONE_ART.includes(props.app))
 const mark = computed(() => glyph(glyphFor(props.app)))
 const tint = computed(() => tintOf({ id: props.app }))
 const style = computed(() => {
-  const picture = BORROWED[props.app] ?? props.app
+  const picture = props.app === 'person' ? 'contacts' : props.app === 'passport' ? 'goals' : props.app === 'gist' ? 'community' : FEED_ART[props.app] ?? props.app
   const found = PHONE_ART.indexOf(picture)
   const index = found < 0 ? PHONE_ART.indexOf('settings') : found
   const column = index % PHONE_ART_COLUMNS

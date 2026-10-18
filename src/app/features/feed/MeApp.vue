@@ -4,7 +4,7 @@
 import '../../../ui/controls.css'
 import '../../../ui/panels/social.css'
 import './feed.css'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import PlayerAvatar from '../social/PlayerAvatar.vue'
 import PostCard from './PostCard.vue'
@@ -28,6 +28,7 @@ async function load(): Promise<void> {
   profile.value = r.profile; handle.value = r.profile.handle ?? ''; bio.value = r.profile.bio ?? ''; status.value = r.profile.status?.text ?? ''
   const mine = await api.by(r.profile.id); if (mine.ok) posts.value = mine.posts
 }
+watch(() => game.view.value.connected, (on, was) => { if (on && !was) void load() })
 onMounted(() => { void load(); if (props.params?.code) { code.value = props.params.code; void findByCode() } })
 async function saveHandle(): Promise<void> {
   busy.value = true; const r = await api.handle(handle.value); busy.value = false

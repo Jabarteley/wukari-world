@@ -238,7 +238,7 @@ test('moments: a gist line about an adult becomes a draft, posted in one tap; er
   const posted = await post('/api/feed/post', { draft: 77, body: 'Come and eat!' }, ada);
   assert.equal(posted.post.kind, 'moment'); assert.equal(posted.post.gist, 77);
   assert.match(posted.post.body, /food stall[\s\S]*Come and eat/);
-  assert.equal((await get('/api/feed/me', ada)).drafts.length, 0);
+  assert.equal((await get('/api/feed/me', ada)).drafts.filter((d: Json) => d.kind !== 'recap').length, 0);
   await f.server.store.transact((db) => forgetFeedPlayers(db, new Set([ada.id])));
   const stored = await feedDb();
   assert.equal(JSON.stringify(stored).includes(ada.id), false);
@@ -256,4 +256,31 @@ test('operator: the queue shows reported posts, remove deletes and clear unhides
   await mod({ kind: 'post', id: p.post.id, action: 'clear' });
   assert.equal((await get('/api/feed/list?tab=world', bola)).posts.length, 1);
   assert.equal((await mod()).items.length, 0);
+});
+
+test('recap: a week with posts and an event gives one recap draft; posting it is a recap post', async (t) => {
+  const { f, get, post, player } = await setup(t);
+  const ada = await player('Ada');
+  await post('/api/feed/post', { body: 'First', label: 'Yaba Market' }, ada);
+  await post('/api/feed/post', { body: 'Second', label: 'Yaba Market' }, ada);
+  // The draft is made on the next read of the profile, once per Lagos week.
+  const me = await get('/api/feed/me', ada);
+  const recap = me.drafts.find((d: Json) => d.kind === 'recap');
+  assert.ok(recap, JSON.stringify(me.drafts));
+  assert.match(recap.text, /2 posts/); assert.match(recap.text, /Yaba Market/);
+  assert.equal((await get('/api/feed/me', ada)).drafts.filter((d: Json) => d.kind === 'recap').length, 1, 'made once');
+  const posted = await post('/api/feed/post', { draft: recap.n }, ada);
+  assert.equal(posted.post.kind, 'recap');
+  await post('/api/feed/draft/remove', { n: recap.n }, ada);
+  assert.equal((await get('/api/feed/me', ada)).drafts.filter((d: Json) => d.kind === 'recap').length, 0, 'not made again the same week');
+  void f;
+});
+
+test('agents: an AI character\'s post passes the AI-safety words check', async (t) => {
+  const { f, post, player } = await setup(t);
+  const bot = await player('Bot');
+  await f.server.store.transact((db) => { const p = (db as unknown as { social: { players: Record<string, { agent?: { char?: true } }> } }).social.players[bot.id]!; p.agent = { char: true }; });
+  assert.equal((await post('/api/feed/post', { body: 'Send me some money and I will double it' }, bot)).ok, false);
+  const fine = await post('/api/feed/post', { body: 'Quiz night at the Square, come and play' }, bot);
+  assert.equal(fine.ok, true); assert.equal(fine.post.ai, true);
 });

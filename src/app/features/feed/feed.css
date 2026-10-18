@@ -47,3 +47,5 @@
 .feed-crew-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:var(--c-fill);font:600 12px var(--font)}
 .feed-crew-chip i{width:10px;height:10px;border-radius:50%;display:inline-block}
 .feed-stars button{border:0;background:none;font-size:22px;cursor:pointer;padding:0 2px}
+.feed-compose .feed-row input{flex:1 1 140px}
+.feed-compose .feed-row select{flex:0 1 auto}

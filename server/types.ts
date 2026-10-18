@@ -751,7 +751,7 @@ export interface GrowthMetricsRecord {
   days?: Record<string, Record<string, number>>
   cohorts?: Record<string, { size: number; r: Record<string, number> }>
   /** `src` (optional, added with the return split): the cleaned "source|medium|campaign" the life arrived by; `ret` a bit mask of the retention days seen (1, 7, 30 → bits 0, 1, 2); `fr` the Lagos day of its first real friend; `done` the same mask for the days already counted into `split`. */
-  lives?: Record<string, { first: number; last: number | null; steps: number; src?: string; ret?: number; fr?: number; cl?: number; ag?: number; po?: number; done?: number }>
+  lives?: Record<string, { first: number; last: number | null; steps: number; src?: string; ret?: number; fr?: number; cl?: number; ag?: number; po?: number; f3?: number; done?: number }>
   /**
    * Day-1, day-7 and day-30 return by how a life arrived and by whether it made a friend in its first two days, counted once when
    * the life is old enough: { [cohortLagosDay]: { "src:<source|medium|campaign>" | "friend:yes" | "friend:no": { "1" | "7" | "30": [lives, returned] } } }.

@@ -17,6 +17,8 @@ import type { Recording } from './feedMedia.ts'
 import { shareLink } from './feedShare.ts'
 import { agoText, FEED, visibilityWord } from '../../../feed/model.ts'
 import { cityName as registryCityName } from '../../../game/cities/registry.ts'
+import { social } from '../social/useSocial.ts'
+import { enterRoom, enterSquare, loadPlaces, places } from '../places/placesStore.ts'
 import type { FeedTab, Visibility } from '../../../feed/model.ts'
 import type { FeedMe, FeedMedia, InboxLine, NewsLine, PostView, Suggestion } from '../../../types/feed.ts'
 
@@ -52,9 +54,11 @@ async function load(more = false): Promise<void> {
 }
 async function loadSuggestions(): Promise<void> { const r = await api.suggestions(); if (r.ok) suggestions.value = r.people.slice(0, 8) }
 onMounted(() => {
-  void loadMe(); void load()
+  void loadMe(); void load(); void loadPlaces()
   if (props.params?.post) void openPost(props.params.post)
 })
+// In Lite the Feed is on screen before the game has connected: read again once it has.
+watch(() => game.view.value.connected, (on, was) => { if (on && !was) { void loadMe(); void load(); void loadPlaces() } })
 // A new inbox line (a reply, a reaction): read the inbox again.
 watch(feedUnseen, (n, before) => { if (n > before) void loadMe() })
 watch(tab, (t) => { posts.value = []; next.value = null; open.value = null; if (t === 'inbox') void readInbox(); else void load() })
@@ -127,6 +131,11 @@ async function share(post: PostView): Promise<void> {
 const openEvent = (id: string): void => { shell.open('plans', { event: id }) }
 const openGig = (): void => { shell.open('work') }
 
+// ---- live places: where people are right now (the Square, your group rooms) ----
+const lonely = computed(() => (social.me?.friends.length ?? 0) < 3)
+const liveRooms = computed(() => places.rooms.filter((r) => r.here > 0).slice(0, 3))
+async function join(id: string | null): Promise<void> { const ok = id ? await enterRoom(id) : await enterSquare(); if (ok) shell.closeSheet() }
+
 // ---- inbox, people, places ---------------------------------------------------------------------------------------------------------
 async function readInbox(): Promise<void> { await loadMe(); if (feedUnseen.value) { await api.seen(); feedUnseen.value = 0 } }
 const inbox = computed<InboxLine[]>(() => me.value?.inbox ?? [])
@@ -191,6 +200,11 @@ async function addFriend(s: Suggestion): Promise<void> {
         <p v-if="me && !adult" class="feed-note">Until you confirm you are 18 or older, posts go to friends and crews.</p>
         <p v-else-if="media && !me?.publicMedia" class="feed-note">Photos and clips go to friends and crews for now.</p>
       </form>
+
+      <div v-if="tab !== 'world' && (places.squareHere > 0 || liveRooms.length)" class="feed-strip" data-feed="live">
+        <div v-if="places.squareHere > 0" class="feed-live"><b>{{ places.squareHere }} {{ places.squareHere === 1 ? 'person is' : 'people are' }} in the Square now{{ lonely ? '. Go say hi.' : '' }}</b><button type="button" @click="join(null)">Join</button></div>
+        <div v-for="r in liveRooms" :key="r.id" class="feed-live"><b>{{ r.here }} in {{ r.name }}</b><button type="button" @click="join(r.id)">Join</button></div>
+      </div>
 
       <div v-if="tab === 'friends' && suggestions.length" class="feed-card" data-feed="suggestions">
         <b>People you may know</b>

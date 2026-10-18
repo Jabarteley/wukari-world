@@ -52,6 +52,8 @@ export interface AuthorRecord {
   /** Lagos day and the counts of that day, for the daily caps. */
   day?: { d: number; posts: number; replies: number; crews: number; events: number; gigs: number; ai: number }
   first?: number
+  /** The Lagos week whose recap draft was made (made once, even if dropped). */
+  recapWeek?: number
 }
 export interface CrewRecord { id: string; name: string; colour: string; about: string; owner: string; members: string[]; code: string; at: number; kicked?: Record<string, number> }
 export interface EventRecord {

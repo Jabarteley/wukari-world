@@ -38,7 +38,7 @@ export interface PostView {
   ai?: true
 }
 export interface NewsLine { n: number; at: number; city: string; text: string }
-export interface FeedPage { tab: FeedTab | 'crew' | 'author'; posts: PostView[]; next: string | null; news?: NewsLine[] }
+export interface FeedPage { ok: true; tab: FeedTab | 'crew' | 'author'; posts: PostView[]; next: string | null; news?: NewsLine[] }
 export interface Draft { n: number; at: number; city: string; kind: string; text: string }
 export interface InboxLine { at: number; kind: 'reply' | 'reaction' | 'follow' | 'crew' | 'rsvp' | 'gig' | 'vouch' | 'review' | 'mention'; text: string; post?: string; from?: FeedPerson; seen?: true }
 export interface ProfileView extends FeedPerson {

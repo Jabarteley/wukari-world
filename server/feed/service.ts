@@ -15,6 +15,7 @@ import { FEED, SKILLS, allowedVisibility, canReply, canSee, cleanBody, cleanCode
 import type { FeedTab, Relation, Skill, Visibility } from '../../src/feed/model.ts'
 import type { CrewView, Draft, EventView, FeedMe, FeedPage, FeedPerson, FeedPlace, GigView, InboxLine, NewsLine, PostView, ProfileView, ReplyView, Suggestion, WorkView, FeedMedia } from '../../src/types/feed.ts'
 import { screenText } from '../moderation/text.ts'
+import { agentWords } from '../moderation/agent-words.ts'
 import { friendsIn } from '../social/founder.ts'
 import { lagosTime } from '../../src/game/clock.ts'
 import { cityName } from '../../src/game/cities/registry.ts'
@@ -59,6 +60,8 @@ function buildService(ctx: RouteContext) {
   const exists = (db: Db, id: string): boolean => Object.hasOwn(playersOf(db), id)
   const mutedRefusal = (id: string): Refused | null => { const m = ctx.checks?.muted?.(id); return m ? no(m.code, m.reason) : null }
   const screened = (text: string, what: string): Refused | null => { const v = screenText(text, { what, contact: true }); return v ? no(v.code, v.reason) : null }
+  /** An AI character's words also pass the AI-safety check (docs/AI-SAFETY.md): no asking for money, contact details or meetings; stricter where a minor may read. */
+  const aiRefusal = (db: Db, id: string, text: string, toMinor: boolean, what: string): Refused | null => { if (!text || !aiOf(db, id)) return null; const v = agentWords(text, { toMinor }); return v.ok ? null : no(v.code, `${what}: ${v.reason}`) }
   const place = (city: string, venue?: string, label?: string): FeedPlace => ({ city, cityName: city === 'world' ? 'Allworld' : cityName(city) ?? city, ...(venue ? { venue } : {}), ...(label ? { label } : {}) })
 
   function author(f: FeedCollection, db: Db, id: string): AuthorRecord {
@@ -194,7 +197,7 @@ function buildService(ctx: RouteContext) {
   }
   function read(db: Db, viewer: string | null, { tab, city, after, crew, by }: { tab: FeedTab | 'crew' | 'author'; city?: string; after?: string | null; crew?: string; by?: string }): FeedPage | Refused {
     const f = peekFeed(db)
-    if (!f) return { tab, posts: [], next: null, ...(tab !== 'friends' ? { news: newsOf(db, tab === 'world' ? 'world' : city ?? 'world', 8) } : {}) }
+    if (!f) return { ok: true, tab, posts: [], next: null, ...(tab !== 'friends' ? { news: newsOf(db, tab === 'world' ? 'world' : city ?? 'world', 8) } : {}) }
     const c = cursorOf(after ?? null)
     let ids: string[] = []
     if (tab === 'friends') {
@@ -219,11 +222,11 @@ function buildService(ctx: RouteContext) {
       const offset = offsetOf(after)
       const ranked = rank(candidates.map((p) => ({ post: p, at: p.at, kind: p.kind, replies: p.replies?.length ?? 0, reactions: Object.keys(p.rx ?? {}).length, friend: Boolean(viewer && friends(db, viewer, p.by)), mine: p.by === viewer, ai: p.ai === 1 })), now())
       const page = ranked.slice(offset, offset + FEED.page).map((r) => r.post)
-      return { tab, posts: page.map((p) => postView(db, f, p, viewer)), next: ranked.length > offset + FEED.page ? `r${offset + FEED.page}` : null, ...(!offset ? { news: newsOf(db, tab === 'world' ? 'world' : city ?? 'world', 8) } : {}) }
+      return { ok: true, tab, posts: page.map((p) => postView(db, f, p, viewer)), next: ranked.length > offset + FEED.page ? `r${offset + FEED.page}` : null, ...(!offset ? { news: newsOf(db, tab === 'world' ? 'world' : city ?? 'world', 8) } : {}) }
     }
     const ordered = candidates.sort((a, b) => b.at - a.at || (a.id < b.id ? 1 : -1))
     const page = ordered.slice(0, FEED.page), oldest = page.at(-1)
-    return { tab, posts: page.map((p) => postView(db, f, p, viewer)), next: ordered.length > FEED.page && oldest ? `${oldest.at}.${oldest.id}` : null }
+    return { ok: true, tab, posts: page.map((p) => postView(db, f, p, viewer)), next: ordered.length > FEED.page && oldest ? `${oldest.at}.${oldest.id}` : null }
   }
 
   // ---- writing posts --------------------------------------------------------------------------------------------------------------
@@ -261,7 +264,7 @@ function buildService(ctx: RouteContext) {
     if (Number.isSafeInteger(draftN) && draftN > 0) {
       const draft = (a.drafts ?? []).find((x) => x.n === draftN)
       if (!draft) return no('draft_gone', 'That moment is no longer waiting to be posted.')
-      kind = 'moment'; gist = draft.n
+      if (draft.kind === 'recap') kind = 'recap'; else { kind = 'moment'; gist = draft.n }
       text = text ? `${draft.text}\n${text}` : draft.text
       a.drafts = (a.drafts ?? []).filter((x) => x.n !== draftN)
     }
@@ -272,10 +275,10 @@ function buildService(ctx: RouteContext) {
       if (!found) return no('media_gone', 'That photo was not found. Add it again.')
       media = { hash: found.hash, type: found.type, w: found.w, h: found.h, ...(found.ms ? { ms: found.ms } : {}) }
       a.media = (a.media ?? []).filter((m) => m !== found)
-      kind = found.type === 'webm' || found.type === 'mp4' ? 'clip' : kind === 'moment' ? 'moment' : 'photo'
+      kind = found.type === 'webm' || found.type === 'mp4' ? 'clip' : kind === 'moment' || kind === 'recap' ? kind : 'photo'
     }
     if (!text && !media) return no('empty', 'Write something or add a photo.')
-    if (text) { const bad = screened(text, 'Your post'); if (bad) return bad }
+    if (text) { const bad = screened(text, 'Your post') ?? aiRefusal(db, id, text, true, 'Your post'); if (bad) return bad }
     const crewId = typeof body.crew === 'string' ? body.crew : undefined
     const crew = crewId ? f.crews[crewId] : undefined
     if (crewId && (!crew || !crew.members.includes(id))) return no('invalid_crew', 'Choose one of your crews to post to.')
@@ -323,7 +326,7 @@ function buildService(ctx: RouteContext) {
     if (!canReply(post, relation(db, f!, post, id))) return no('cannot_reply', adult(db, id) ? 'Replies to this post are for the author\'s friends.' : 'Until you are confirmed as 18 or older, you can reply to friends and crews only.')
     const text = cleanBody(body.body, FEED.reply)
     if (!text) return no('empty', 'Write a reply.')
-    const bad = screened(text, 'Your reply'); if (bad) return bad
+    const bad = screened(text, 'Your reply') ?? aiRefusal(db, id, text, !adult(db, post.by), 'Your reply'); if (bad) return bad
     const a = author(f!, db, id), d = dayOf(a)
     if (d.replies >= FEED.repliesPerDay) return no('daily_limit', 'You have replied a lot today. Try again tomorrow.')
     const list = (post.replies ??= [])
@@ -379,10 +382,34 @@ function buildService(ctx: RouteContext) {
   }
   const portraitOf = (db: Db, id: string): { hash: string; type: 'png' | 'webp' | 'jpeg' } | null => peekFeed(db)?.authors[id]?.portrait ?? null
 
+  // ---- the weekly recap (a draft, like a moment) ----------------------------------------------------------------------------------
+  /** Drafts above this are recaps: RECAP_BASE + the Lagos week. Gist numbers never reach it. */
+  const RECAP_BASE = 1_000_000_000
+  function recapDraft(f: FeedCollection, a: AuthorRecord, id: string): void {
+    const t = now(), week = lagosTime(t).week, n = RECAP_BASE + week
+    if ((a.drafts ?? []).some((d) => d.n === n) || a.recapWeek === week) return
+    const since = t - 7 * 86400000
+    const posts = (a.posts ?? []).map((p) => f.posts[p]).filter((p): p is PostRecord => Boolean(p) && p!.at >= since && p!.kind !== 'recap')
+    const went = (a.events ?? []).map((k) => f.events[k]).filter((e): e is EventRecord => Boolean(e) && !e!.gone && e!.end >= since && e!.end <= t && e!.going.includes(id))
+    const done = (a.gigs ?? []).map((k) => f.gigs[k]).filter((g): g is GigRecord => Boolean(g) && g!.worker === id && (g!.doneAt ?? 0) >= since)
+    const replies = posts.reduce((sum, p) => sum + (p.replies?.length ?? 0), 0)
+    if (!posts.length && !went.length && !done.length) return
+    const places = new Map<string, number>()
+    for (const p of posts) { const where = p.place?.label || (p.place?.city && p.place.city !== 'world' ? cityName(p.place.city) ?? '' : ''); if (where) places.set(where, (places.get(where) ?? 0) + 1) }
+    const top = [...places].sort((x, y) => y[1] - x[1])[0]?.[0]
+    const bits = [posts.length ? `${posts.length} post${posts.length === 1 ? '' : 's'}` : '', replies ? `${replies} repl${replies === 1 ? 'y' : 'ies'}` : '', went.length ? `${went.length} event${went.length === 1 ? '' : 's'} (${went.slice(0, 2).map((e) => e.title).join(', ')})` : '', done.length ? `${done.length} gig${done.length === 1 ? '' : 's'} done` : ''].filter(Boolean)
+    const text = `My week on Allworld: ${bits.join(', ')}.${top ? ` Mostly around ${top}.` : ''}`.slice(0, FEED.body)
+    const drafts = (a.drafts ??= []).filter((d) => d.n < RECAP_BASE)
+    drafts.push({ n, at: t, city: posts[0]?.place?.city ?? 'world', kind: 'recap', text })
+    a.drafts = drafts.slice(-FEED.drafts)
+    a.recapWeek = week
+  }
+
   // ---- profile --------------------------------------------------------------------------------------------------------------------
   function me(db: Db, session: SessionRecord): FeedMe {
     const f = feedOf(ctx, db), id = session.publicId, a = author(f, db, id)
     a.drafts = (a.drafts ?? []).filter((x) => now() - x.at < FEED.draftMs)
+    recapDraft(f, a, id)
     if (!a.code) { a.code = randomCode((c) => Object.hasOwn(f.codes, c)); f.codes[a.code] = { k: 'friend', id } }
     return {
       profile: profileView(db, f, id, id), drafts: (a.drafts ?? []).slice().reverse() as Draft[], inbox: (a.inbox ?? []).slice().reverse().map((l) => (l.at <= (a.seenAt ?? 0) ? { ...l, seen: true as const } : l)),
@@ -542,7 +569,7 @@ function buildService(ctx: RouteContext) {
     const mute = mutedRefusal(id); if (mute) return mute
     const title = cleanLine(body.title, FEED.event.title); if (title.length < 3) return no('invalid_title', 'Give the event a name.')
     const about = cleanBody(body.about, FEED.event.about)
-    for (const [text, what] of [[title, 'The title'], [about, 'The description']] as const) if (text) { const bad = screened(text, what); if (bad) return bad }
+    for (const [text, what] of [[title, 'The title'], [about, 'The description']] as const) if (text) { const bad = screened(text, what) ?? aiRefusal(db, id, text, true, what); if (bad) return bad }
     if (d.events >= FEED.event.perDay) return no('daily_limit', 'You have planned enough events today.')
     const timing = eventTiming(body.start, body.hours, now()); if ('ok' in timing) return timing
     const where = lifePlace(session), city = typeof body.city === 'string' && ctx.cityIds.includes(body.city as never) ? body.city : where.city
@@ -622,7 +649,7 @@ function buildService(ctx: RouteContext) {
     if (!adult(db, id) && !aiOf(db, id)) return no('adults_only', 'Posting a gig is for players confirmed as 18 or older. You can still apply to gigs.')
     const title = cleanLine(body.title, FEED.gig.title); if (title.length < 3) return no('invalid_title', 'Say what the gig is.')
     const about = cleanBody(body.about, FEED.gig.about)
-    for (const [text, what] of [[title, 'The title'], [about, 'The description']] as const) if (text) { const bad = screened(text, what); if (bad) return bad }
+    for (const [text, what] of [[title, 'The title'], [about, 'The description']] as const) if (text) { const bad = screened(text, what) ?? aiRefusal(db, id, text, true, what); if (bad) return bad }
     const reward = rewardOf(body.reward); if (reward === null) return no('invalid_reward', `A reward is ₦0 to ₦${FEED.gig.rewardMax.toLocaleString('en-NG')} in game money.`)
     if (d.gigs >= FEED.gig.perDay) return no('daily_limit', 'You have posted enough gigs today.')
     const city = lifePlace(session).city

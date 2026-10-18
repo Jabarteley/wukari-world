@@ -89,7 +89,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> => value !==
 interface MetricsBook {
   days: Record<string, Record<string, number>>
   cohorts: Record<string, { size: number; r: Record<string, number> }>
-  lives: Record<string, { first: number; last: number | null; steps: number; src?: string; ret?: number; fr?: number; cl?: number; ag?: number; po?: number; done?: number }>
+  lives: Record<string, { first: number; last: number | null; steps: number; src?: string; ret?: number; fr?: number; cl?: number; ag?: number; po?: number; f3?: number; done?: number }>
 }
 function book(g: GrowthCollection, cityId: CityId = 'lagos'): MetricsBook {
   const m = g.metrics;
@@ -172,8 +172,10 @@ export function noteClan(g: GrowthCollection, now: number, publicId: string): vo
 /** A life sent a message to an AI character: note the day, once. Ignored for a life not followed. */
 export function noteAgent(g: GrowthCollection, now: number, publicId: string): void { noteDay(g, now, 'ag', [publicId]); }
 /** A life posted in the feed for the first time: note the day, once. Ignored for a life not followed. */
+/** A life reached three real friends: note the day, once (the north star: three friends within a week). */
+export function noteThreeFriends(g: GrowthCollection, now: number, publicId: string): void { noteDay(g, now, 'f3', [publicId]); }
 export function notePosted(g: GrowthCollection, now: number, publicId: string): void { noteDay(g, now, 'po', [publicId]); }
-function noteDay(g: GrowthCollection, now: number, field: 'fr' | 'cl' | 'ag' | 'po', publicIds: string[]): void {
+function noteDay(g: GrowthCollection, now: number, field: 'fr' | 'cl' | 'ag' | 'po' | 'f3', publicIds: string[]): void {
   const day = lagosTime(now).day;
   for (const [, m] of cityBooks(g)) for (const id of publicIds) { const life = Object.hasOwn(m.lives, id) ? m.lives[id] : undefined; if (life && life[field] === undefined) life[field] = day; }
 }
@@ -288,6 +290,9 @@ export function report(g: GrowthCollection, now: number, { days = 35 }: { days?:
   const totals: Record<string, number> = {};
   for (const row of daily) for (const [name, value] of Object.entries(row)) if (name !== 'day' && name !== 'date' && typeof value === 'number') totals[name] = (totals[name] ?? 0) + value;
   const funnel = FUNNEL_ORDER.map((id) => ({ step: id, lives: totals[`funnel.${id}`] ?? 0 }));
-  return { generatedAt: now, timezone: 'Africa/Lagos', source: 'first-party', days: daily, cohorts, totals, funnel, ...sourceReport(g, today, span), returns: returnSplit(g), tracked: Object.keys(m.lives).length,
+  // THE NORTH STAR (docs/SOCIAL-PLATFORM-PLAN.md): of the lives at least eight days old that are still followed, how many had three real friends within their first week.
+  const old = Object.values(m.lives).filter((life) => today - life.first >= 8), reached = old.filter((life) => life.f3 !== undefined && life.f3 - life.first <= 7).length
+  const northStar = { lives: old.length, threeFriendsInAWeek: reached, rate: old.length ? Math.round((reached / old.length) * 1000) / 10 : null }
+  return { generatedAt: now, timezone: 'Africa/Lagos', source: 'first-party', days: daily, cohorts, totals, funnel, ...sourceReport(g, today, span), returns: returnSplit(g), northStar, tracked: Object.keys(m.lives).length,
     retention: { daily: `${KEEP.days} days`, cohorts: `${KEEP.cohorts} days`, perLife: `${KEEP.window} days, then deleted` } };
 }

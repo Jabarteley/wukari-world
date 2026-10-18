@@ -445,6 +445,8 @@ export interface GrowthMetricsResponse {
   campaigns: SourceCampaign[]
   /** Day-1, day-7 and day-30 return by how a life arrived (ad source) and by whether it made a friend in its first two days. Aggregate only. */
   returns: ReturnSplit
+  /** Of the followed lives at least eight days old, how many had three real friends within their first week (the social platform's north star). */
+  northStar: { lives: number; threeFriendsInAWeek: number; rate: number | null }
   /** Lives currently followed (inside their 31-day window). */
   tracked: number
   /** How long each kind of record is kept, as sentences. */
@@ -724,7 +726,7 @@ export const TABLE_STATE_FRAME_KEYS = [
   'clock', 'cityId', 'host', 'log', 'n', 'optionList', 'result', 'stakes', 'table', 'toMove', 'type', 'view', 'you',
 ] as const satisfies readonly (keyof TableStateFrame)[]
 export const GROWTH_METRICS_RESPONSE_KEYS = [
-  'analytics', 'campaigns', 'cohorts', 'days', 'funnel', 'generatedAt', 'retention', 'returns', 'serverTime', 'source', 'sources', 'timezone', 'totals', 'tracked',
+  'analytics', 'campaigns', 'cohorts', 'days', 'funnel', 'generatedAt', 'northStar', 'retention', 'returns', 'serverTime', 'source', 'sources', 'timezone', 'totals', 'tracked',
 ] as const satisfies readonly (keyof Ok<GrowthMetricsResponse>)[]
 export const OUTREACH_OPERATOR_RESPONSE_KEYS = [
   'comeback', 'email', 'log', 'previews', 'push', 'quietNow', 'rules', 'serverTime', 'whatsapp',

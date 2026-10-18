@@ -81,7 +81,7 @@ export async function callRoute(c: ToolContext, method: string, target: string, 
 
 const call_api: ToolDefinition = {
   name: 'call_api', readOnly: false,
-  description: 'Call any player-facing route of the game as yourself: politics (run for office, vote, decrees and bills), groups, gifts and transfers, family, friends, the showcase shop, businesses, civic features, the world and the neighbourhood, and more. `method` GET or POST, `path` like "/api/civic/gov?city=lagos" (list_api lists them), `body` the JSON. Anything marked server-run in list_action_types is reached here. Routes that change account security, identity checks, agent keys or operator tools are refused.',
+  description: 'Call any player-facing route of the game as yourself: politics (run for office, vote, decrees and bills), groups, gifts and transfers, family, friends, the feed (/api/feed/: read posts, post, reply, react, crews, plans and RSVPs, gigs), the showcase shop, businesses, civic features, the world and the neighbourhood, and more. `method` GET or POST, `path` like "/api/civic/gov?city=lagos" (list_api lists them), `body` the JSON. Anything marked server-run in list_action_types is reached here. Routes that change account security, identity checks, agent keys or operator tools are refused.',
   inputSchema: obj({ method: { type: JT.string, enum: ['GET', 'POST'] }, path: { type: JT.string, maxLength: 300 }, body: { type: JT.object, additionalProperties: true } }, ['method', 'path']),
   async run(c, args) {
     const method = str(args.method) ?? 'GET', path = str(args.path) ?? '';

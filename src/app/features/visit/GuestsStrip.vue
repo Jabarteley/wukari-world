@@ -3,7 +3,7 @@
 // someone who came through a link); a guest sees who else is inside and Leave. Names are text, never markup.
 import '../../../ui/controls.css'
 import '../../../ui/panels/social.css'
-import { computed, ref } from 'vue'
+import { computed, defineAsyncComponent, ref } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { useCall } from '../calls/useCall.ts'
 import PlayerAvatar from '../social/PlayerAvatar.vue'
@@ -19,6 +19,9 @@ const host = computed(() => props.house.role === 'host')
 const friends = computed(() => new Set((social.me?.friends ?? []).map((item) => item.id)))
 const asked = computed(() => new Set((social.me?.requests.out ?? []).map((item) => item.id)))
 const others = computed(() => props.house.guests.filter((guest) => guest.id !== mine.value))
+// Walk through the host's home in 3D (docs/SPACES-3D.md): fetched only when opened.
+const WorldScreen = defineAsyncComponent(() => import('../spaces/WorldScreen.vue'))
+const walking = ref(false)
 const captureBusy = ref(false)
 const captureError = ref('')
 /** Someone inside who is not the viewer's friend (yet): they came through a link or an invitation. */
@@ -42,6 +45,8 @@ async function setCaptureConsent(allow: boolean): Promise<void> {
   <section class="guests-strip" aria-label="Guests" data-visit="guests">
     <h3 class="ui-section">Guests<small>{{ house.guests.length }}/{{ house.capacity }}</small></h3>
     <p v-if="!host" class="social-note">You are visiting {{ house.host.name }}’s home.</p>
+    <button v-if="!host" type="button" class="ui-button is-block" data-visit="walk-3d" @click="walking = true">Walk in 3D</button>
+    <WorldScreen v-if="walking" :where="{ target: 'home', host: house.host.id }" @close="walking = false" />
     <div v-if="!host && house.myCapture" class="guest-capture" data-visit="capture-consent">
       <strong>Photos and silent scene video</strong>
       <p>Allow {{ house.host.name }} to save photos and silent videos of this room. Each clip lasts up to 30 seconds. Files stay on their device. This permission ends when your visit does.</p>

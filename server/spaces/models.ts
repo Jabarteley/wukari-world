@@ -17,7 +17,7 @@ import { MODELS, type ModelView } from '../../src/types/spaces.ts';
 import { registerAdminSetting } from '../admin/settings.ts';
 import { screenText } from '../moderation/text.ts';
 import { trustService } from '../trust/service.ts';
-import { spacesOf, type ModelEntry } from './store.ts';
+import { forgetPlacements, spacesOf, type ModelEntry } from './store.ts';
 import type { Db, RouteContext, RouteRequest, SessionRecord } from '../types.ts';
 
 const no = (code: string, reason: string) => ({ ok: false as const, code, reason });
@@ -160,6 +160,7 @@ function build(ctx: RouteContext) {
       if (at < 0) return no('unknown_model', 'That model is not yours or is gone.');
       const [gone] = list.splice(at, 1);
       (col.modelTrash ??= []).push(gone!.hash);
+      forgetPlacements(col, session.publicId, gone!.id);
       if (!list.length) delete col.models![session.publicId];
       return { ok: true as const, code: 'deleted' as const };
     },
@@ -202,7 +203,7 @@ function build(ctx: RouteContext) {
       const at = list.findIndex((m) => m.id === body['id']);
       if (at < 0) return no('unknown_model', 'No such model.');
       const entry = list[at]!;
-      if (body['action'] === 'remove') { list.splice(at, 1); (col.modelTrash ??= []).push(entry.hash); return { ok: true as const, code: 'removed' as const }; }
+      if (body['action'] === 'remove') { list.splice(at, 1); (col.modelTrash ??= []).push(entry.hash); forgetPlacements(col, by, entry.id); return { ok: true as const, code: 'removed' as const }; }
       if (body['action'] === 'hide') { entry.hidden = true; return { ok: true as const, code: 'hidden' as const }; }
       if (body['action'] === 'clear') { delete entry.hidden; delete entry.reports; entry.cleared = true; return { ok: true as const, code: 'cleared' as const }; }
       return no('invalid_action', 'action must be remove, hide or clear.');

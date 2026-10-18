@@ -2,8 +2,9 @@
 // transport error becomes a refusal in words.
 import type { SpacePlanV1, SpaceProblem, SpaceTarget } from '../../../spaces/plan.ts'
 import { packPlan } from '../../../spaces/plan.ts'
-import type { ModelView, ModelsMine } from '../../../types/spaces.ts'
-export type { ModelView, ModelsMine }
+import type { ModelView, ModelsMine, PlacedModel, WorldView } from '../../../types/spaces.ts'
+import type { Placement } from '../../../spaces/layout.ts'
+export type { ModelView, ModelsMine, PlacedModel, WorldView }
 
 export interface Fetcher { fetchJson: <T = Record<string, unknown>>(path: string, options?: { method?: 'POST'; body?: unknown }) => Promise<T> }
 export type Refusal = { ok: false; code: string; reason: string }
@@ -55,3 +56,12 @@ export async function modelUpload(file: Blob, name: string): Promise<ModelDone |
 export async function modelBytes(hash: string): Promise<ArrayBuffer | null> {
   try { const response = await fetch(modelFileUrl(hash), { credentials: 'same-origin' }); return response.ok ? await response.arrayBuffer() : null } catch { return null }
 }
+
+// A space in 3D (docs/SPACES-3D.md, phase 2).
+export interface WorldWhere { target: 'home' | 'room'; host?: string; id?: string }
+export const worldRead = (api: Fetcher, where: WorldWhere) => {
+  const query = new URLSearchParams({ target: where.target, ...(where.host ? { host: where.host } : {}), ...(where.id ? { id: where.id } : {}) })
+  return call<WorldView>(api, `/api/spaces/world?${query}`)
+}
+export const worldSave = (api: Fetcher, where: WorldWhere, models: readonly Placement[]) =>
+  call<{ ok: true; code: 'saved'; placed: number; triangles: number }>(api, '/api/spaces/world/layout', { target: where.target, ...(where.id ? { id: where.id } : {}), models })

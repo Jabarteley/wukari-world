@@ -55,6 +55,7 @@ export function expectedConfig(sourceSha, publish) {
     assets: { directory: './assets', binding: 'ASSETS', not_found_handling: 'single-page-application', run_worker_first: true },
     durable_objects: { bindings: [{ name: 'JOINALLWORLD', class_name: 'JoinAllworldState' }] },
     migrations: [{ tag: 'joinallworld-sqlite-v1', new_sqlite_classes: ['JoinAllworldState'] }],
+    r2_buckets: [{ binding: 'MODELS', bucket_name: 'allworld' }],
     vars: { BUILD_ID: `joinallworld-${sourceSha}` }, observability: { enabled: false },
   };
 }

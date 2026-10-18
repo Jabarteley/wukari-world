@@ -386,3 +386,13 @@ The heavy slot is free. Root is restarting only the task QA preview fromea762506
 - The first post-fix request exposed missing local fixture data, not another production source defect. The CI bundle evidence intentionally contains JS/CSS/index/manifest only. Existing deterministic progression assets were emitted with an exactly matching tracked manifest and missing repository public files restored to ignored dist. No application build or local minification ran.
 - Source diff is limited to lazy construction of the journey-id index. Existing provider barrier, catalogue data, receipt validation, stored state, budgets and UI are unchanged. Prior full284-city/scene and browser evidence remains labelled with its original runtime revision.
 - Reviewable local acceptance is phase1-worker-fix-checks.json. Next: ordinary follow-up PR, current hosted CI, merge, release and active live check.
+
+## Worker repair byte checkpoint 2026-10-18T03:37:33.323002+00:00
+
+- Hosted CI39093791469 onccd5d2bd passed build and typecheck but rejected startup Brotli195615 against unchanged195600 cap. Startup raw613961/gzip222639; scene host188939raw/70896gzip. No release retry ran.
+- Removed the two single-caller fresh-slice assignment wrappers, retaining the exact fresh-shape guard, timestamp selection and fresh data construction inside sanitize. Source review confirms this path reaches startup; no compressed saving is claimed before hosted output.
+- Current focused fresh-slice/Story/Kano/Nairobi checks11/11 pass; actual Worker smoke5/5 in6275.317ms and normal typecheck5projects/0errors/0baseline additions pass. All guards/caps unchanged.
+- Existing CI bundle upload now also covers codex/story-* so its actual emitted code is available before the size gate. No checks are skipped or relaxed.
+- Independently verified all246 v4 asset payload hashes (21670980bytes; manifest5e9a67535f4b006fe0ab477e2324545dbaa6fb02ec3607e609e55d71b59f69d2). Asset visual review remains separate; no runtime/phone acceptance.
+- Current future Talk world audit source hashes independently match:284cities/13154banks/789240lines,0failures/0greeting collisions, no provider calls. This is factory data/safety proof only; no banks shipped.
+- Next executable step: push this compact repair, current CI/download-byte proof, then follow-up PR and protected release.

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-18T03:28:51.532671+00:00",
-  "status": "verified-locally-hosted-gates-pending",
+  "updatedAt": "2026-10-18T03:37:33.323002+00:00",
+  "status": "compact-repair-verified-locally-hosted-byte-check-pending",
   "baseSha": "377300fab8039d551638540047091b7c31609dbc",
   "branch": "codex/story-core-worker-startup-fix",
   "source": {
@@ -21,8 +21,8 @@
     "workerSmoke": {
       "pass": 5,
       "fail": 0,
-      "durationMs": 6490.731333,
-      "log": "phase1-worker-five-complete-fixture.log",
+      "durationMs": 6275.317166,
+      "log": "phase1-worker-five-compact.log",
       "fixture": "Existing neutral esbuild + actual Miniflare Worker test fixture, including public IDs, restart, static HTML, combined gameplay and missing hashed asset behavior"
     },
     "storyJourneys": {
@@ -39,7 +39,14 @@
       "projects": 5,
       "errors": 0,
       "baselineAdditions": 0,
-      "heapMiB": 3584
+      "heapMiB": 3584,
+      "log": "phase1-worker-fix-compact-typecheck.log"
+    },
+    "freshSlicesAndStoryJourneys": {
+      "pass": 11,
+      "fail": 0,
+      "durationMs": 519.7015,
+      "log": "phase1-worker-fix-fresh-slices.log"
     }
   },
   "localFixturePreparation": {
@@ -54,8 +61,29 @@
     "ciRun": 39090198072,
     "prCiRun": 39091668137
   },
-  "hostedCi": null,
+  "hostedCi": {
+    "run": 39093791469,
+    "sourceSha": "ccd5d2bd2dc0b10c0ca1b4b2f194dd75d9b1b13b",
+    "conclusion": "failure",
+    "reason": "STARTUP_BROTLI195615 exceeds fixed195600 by15. Build and typecheck passed.",
+    "startup": {
+      "raw": 613961,
+      "gzip": 222639,
+      "brotli": 195615
+    },
+    "sceneHost": {
+      "raw": 188939,
+      "gzip": 70896
+    },
+    "log": "phase1-worker-fix-ci-failure.log"
+  },
   "repairPr": null,
   "release": null,
-  "activeLiveBuild": null
+  "activeLiveBuild": null,
+  "sourceFilesSha256": {
+    "src/game/journeys.ts": "1b84aded1b1f21a60febb77664bab729f37bc45abaeef9a24cfbeb93868bf11c",
+    "src/game/progression-slices.ts": "2a6cc46c68a180fbc606bbec7171a9d7d3a39e27287cbc64f2cc9876b1adff17",
+    ".github/workflows/ci.yml": "848a701e145838b75253e76bf457a1477ac8e7b76cf0e57ea6ba850129071e5b"
+  },
+  "byteRepair": "Inline two single-caller fresh-slice assignment helpers without changing validation, tracking timestamps or fresh object construction. Preserve all caps. Extend existing bundle evidence upload to the fix branch prefix."
 }

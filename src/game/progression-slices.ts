@@ -7,7 +7,7 @@ import type { AchievementsView } from '../types/achievements.ts'
 import type { EpisodesView } from '../types/episodes.ts'
 import type { ProjectsView } from '../types/projects.ts'
 import type { StoryView } from '../types/story.ts'
-import type { LifeContext, LifeState, SystemDefinition } from '../types/index.ts'
+import type { LifeState, SystemDefinition } from '../types/index.ts'
 import { plainRecord as record, ownValue as own } from './snapshot-fields.ts'
 
 export const PROGRESSION_SYSTEM_IDS = ['achievements', 'episodes', 'projects', 'story'] as const
@@ -63,19 +63,12 @@ export class ProgressionNotLoaded extends Error {
   }
 }
 
-function slice<K extends ProgressionSystemId>(input: Record<string, unknown>, key: K, ctx: LifeContext, state: LifeState): number {
-  const now = ctx.now || state.t
-  const saved = own(input, key)
-  if (!freshSlice(key, saved, now)) throw new ProgressionNotLoaded(key)
-  return record(saved) ? own(saved, 'trackingSince') as number : now
-}
-
-function putSlice<K extends ProgressionSystemId>(state: LifeState, key: K, value: LifeState[K]): void { state[key] = value }
-
 function standIn(id: ProgressionSystemId, view: NonNullable<SystemDefinition<string>['view']>): SystemDefinition<string> {
   return { id, stateKeys: [id], sanitize(input, state, ctx) {
-    const trackingSince = slice(input, id, ctx, state)
-    putSlice(state, id, { ...FRESH[id](), trackingSince })
+    const now = ctx.now || state.t, saved = own(input, id)
+    if (!freshSlice(id, saved, now)) throw new ProgressionNotLoaded(id)
+    const trackingSince = record(saved) ? own(saved, 'trackingSince') as number : now
+    Object.assign(state, { [id]: { ...FRESH[id](), trackingSince } })
   }, view }
 }
 

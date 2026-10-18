@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-18T03:28:51.532671+00:00",
-  "status": "worker-repair-local-checks-pass-hosted-gates-pending",
+  "updatedAt": "2026-10-18T03:37:33.323002+00:00",
+  "status": "worker-repair-byte-reduction-verified-locally-hosted-gates-pending",
   "phase": 1,
   "checkout": "/Users/anthonyakpan/work/joinallworld-story",
   "baseSha": "c42aeee66e0fbc60e85cb808d8d2ec263a7ac4d4",
@@ -213,7 +213,11 @@
         "pass": 5,
         "fail": 0
       },
-      "typecheck": "5 projects, 0 errors"
+      "typecheck": "5 projects, 0 errors",
+      "rejectedCi": 39093791469,
+      "rejectedStartupBrotli": 195615,
+      "byteRepair": "Single-caller fresh-slice helper inlining, no validation changes",
+      "localChecks": "Worker5/5, fresh slices/story journeys11/11, typecheck5/0"
     }
   },
   "factorySpendUsd": 0,
@@ -451,7 +455,7 @@
     ],
     "rejectedCaptures": "Old 365px crops and transient/obsolete clinic frames remain local and are excluded from committed evidence."
   },
-  "nextAction": "Publish bounded Worker repair PR, verify hosted CI, merge and run exact-source protected release.",
+  "nextAction": "Push compact bounded repair, run current CI and inspect actual emitted bytes, then ordinary PR/merge/release/live verification.",
   "prCI": {
     "id": 39091668137,
     "url": "https://github.com/kromate/joinallworld/actions/runs/39091668137",

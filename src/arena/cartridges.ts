@@ -38,6 +38,9 @@ export const CARTRIDGES: readonly Cartridge[] = Object.freeze([
     venues: ['race-track', 'airstrip', 'arcade'], modes: MODES, reads: READS, writes: WRITES, manifest: { entry: 'RaceGame', lazy: ['race-3d', 'meshopt_decoder.module', 'native-body'], assets: RACE_ASSETS } }),
   defineCartridge({ contract: CARTRIDGE_CONTRACT, id: 'football', name: 'Football', blurb: '1v1 or 2v2 with friends. Others can watch.', rev: 2,
     venues: ['viewing-centre', 'stadium', 'arcade'], modes: MODES, reads: READS, writes: WRITES, manifest: { entry: 'FootballGame', lazy: ['football-3d', 'meshopt_decoder.module', 'native-body'], assets: FOOTBALL_ASSETS } }),
+  // Player-made lite games: one engine and one flat renderer for every definition (src/arena/lite/, docs/SPACES.md "Lite games"). Drawn by code, no assets.
+  defineCartridge({ contract: CARTRIDGE_CONTRACT, id: 'lite', name: 'Made by players', blurb: 'Small games players made. Dodge, collect, race to the goal.', rev: 1,
+    venues: ['arcade', 'square'], modes: MODES, reads: READS, writes: WRITES, manifest: { entry: 'LiteGame', assets: [] } }),
 ])
 
 export const cartridgeOf = (id: unknown): Cartridge | null => CARTRIDGES.find((c) => c.id === id) ?? null

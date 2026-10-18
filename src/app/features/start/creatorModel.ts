@@ -96,7 +96,7 @@ export function defaultSpirit(random: () => number = Math.random): { traits: Tra
 export type SettleType = 'onboarding.look' | 'onboarding.traits' | 'onboarding.dream' | 'onboarding.lottery' | 'onboarding.home'
 export interface SettleAction { type: SettleType; payload: Record<string, unknown>; label: string }
 export interface SettleInput {
-  saved: Pick<OnboardingState, 'step' | 'look' | 'traits' | 'dream' | 'lottery'>
+  saved: Pick<OnboardingState, 'done' | 'step' | 'look' | 'traits' | 'dream' | 'lottery'>
   draft: { look: Look; traits: readonly TraitId[]; dream: DreamId | null; area: AreaChoice | undefined }
   /** Move in without leaving the venue the Sim is in. */
   stay?: boolean
@@ -109,6 +109,7 @@ const sameTraits = (a: readonly string[], b: readonly string[]): boolean => a.le
  * player, because it only decides start cash) and the move-in with the local government. null = something is missing.
  */
 export function settlePlan({ saved, draft, stay = false }: SettleInput): SettleAction[] | null {
+  if (saved.done) return []
   if (!draft.area?.lga || draft.traits.length !== TRAITS_REQUIRED || !draft.dream) return null
   const plan: SettleAction[] = []
   if (saved.step <= 0 || !sameLook(saved.look, draft.look)) plan.push({ type: 'onboarding.look', payload: { look: draft.look }, label: 'Saving your look…' })

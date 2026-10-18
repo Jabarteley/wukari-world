@@ -72,7 +72,7 @@ function rest(): { x: number; y: number } {
   if (prefs.x !== undefined && prefs.y !== undefined) return { x: clamp(prefs.x * window.innerWidth, 4, window.innerWidth - size.value - 4), y: clamp(prefs.y * window.innerHeight, 56, window.innerHeight - size.value - 4) }
   // Out of the way of the bars, the venue card and the map's own buttons: the right edge, a little above the middle of the screen.
   const narrow = window.innerWidth <= 720
-  const x = window.innerWidth - size.value - (narrow ? 6 : 18)
+  const x = window.innerWidth - size.value - (narrow ? 60 : 18)
   const y = narrow ? window.innerHeight * 0.4 : window.innerHeight * 0.52
   return { x, y: clamp(y, 100, window.innerHeight - size.value - 8) }
 }

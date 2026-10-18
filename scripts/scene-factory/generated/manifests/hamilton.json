@@ -15,7 +15,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
+      "sha256": "ce7d4d2562c6a0466aeb88d2e2c006d3140af6389016373f4c7b1ed7d8b2532c",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4811,7 +4811,7 @@
         },
         {
           "path": "src/scene/recipe/compile.ts",
-          "sha256": "163525893bfb5f3567312910b2b1bed815dee68ea5495472f52c5ecb7f7d0715"
+          "sha256": "296ccab52ce7097465781dac67429d29bd9e60d01b43924d468f877de5204100"
         },
         {
           "path": "src/scene/recipe/contract.ts",

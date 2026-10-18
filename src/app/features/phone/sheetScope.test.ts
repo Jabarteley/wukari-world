@@ -32,7 +32,7 @@ function rig() {
   const Creator = defineComponent({ setup() {
     const onDone = (event: Event): void => {
       if ((event as CustomEvent<{ ok: boolean }>).detail.ok !== true) return
-      const plan = settlePlan({ saved: { step: 1, look: DEFAULT_LOOK, traits: [], dream: null, lottery: null }, draft: { look: cr.draft!.look, traits: cr.draft!.traits, dream: cr.draft!.dream, area: cr.draft!.area }, stay: false })
+      const plan = settlePlan({ saved: { done: false, step: 1, look: DEFAULT_LOOK, traits: [], dream: null, lottery: null }, draft: { look: cr.draft!.look, traits: cr.draft!.traits, dream: cr.draft!.dream, area: cr.draft!.area }, stay: false })
       for (const action of plan ?? []) sent.push(action.type)
     }
     onMounted(() => { log.mounted += 1; events.addEventListener('done', onDone) })

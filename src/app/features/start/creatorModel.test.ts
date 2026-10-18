@@ -9,7 +9,7 @@ import { cityCatalogue, loadAllCityRules, loadCityContent } from '../../../game/
 await Promise.all([loadAllCityRules(), loadCityContent('lagos')])
 
 const look = { ...DEFAULT_LOOK }
-const saved = { step: 1, look, traits: [] as never[], dream: null, lottery: null }
+const saved = { done: false, step: 1, look, traits: [] as never[], dream: null, lottery: null }
 
 test('a new device sees five steps and starts on the first; a settling life has no "Who are you?"', () => {
   assert.deepEqual(stepsFor('new').map((step) => step.id), ['who', 'look', 'spirit', 'home', 'ready'])
@@ -66,6 +66,13 @@ test('the settle plan sends only what the server does not hold, in order, and th
   assert.deepEqual(settlePlan({ saved: held, draft })?.map((action) => action.type), ['onboarding.home'])
   assert.equal(settlePlan({ saved, draft: { ...draft, area: undefined } }), null)
   assert.equal(settlePlan({ saved, draft: { ...draft, dream: null } }), null)
+})
+
+test('a life already moved in needs no more settlement choices', () => {
+  const draft = { look, traits: ['hustler', 'foodie'] as never[], dream: 'lekki-landlord' as never, area: { lga: 'surulere', via: 'device' as const } }
+  const staleOrIncompleteDraft = { ...draft, look: { ...look, hair: 'afro' } as typeof look, traits: [] as never[], dream: null, area: undefined }
+  assert.deepEqual(settlePlan({ saved: { ...saved, done: true }, draft: staleOrIncompleteDraft }), [])
+  assert.equal(settlePlan({ saved: { ...saved, done: false }, draft: { ...draft, area: undefined } }), null)
 })
 
 test('places are data: the open city is found, the others are coming and have no local governments to choose', () => {

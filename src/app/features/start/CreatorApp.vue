@@ -308,7 +308,7 @@ async function settleChoices(stay: boolean): Promise<void> {
     if (!result.ok) { cr.pending = ''; cr.error = failureText(result, view.value.connected, words.value?.why); return }
   }
   cr.pending = ''
-  if (draftNow.area) { worldTrack('lga_chosen', { method: draftNow.area.via === 'device' ? 'device' : 'manual', lga: draftNow.area.lga }); worldChanged() }
+  if (plan.some((action) => action.type === 'onboarding.home') && draftNow.area) { worldTrack('lga_chosen', { method: draftNow.area.via === 'device' ? 'device' : 'manual', lga: draftNow.area.lga }); worldChanged() }
   cr.settling = false
   play.settling = false
   shell.close()

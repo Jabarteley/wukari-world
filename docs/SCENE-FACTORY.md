@@ -64,9 +64,9 @@ The world planner requires `scripts/scene-factory/asset-index.json`. The current
 - `npm run scenes:build` plans the world and atomically installs only the factory-owned paths. It refuses foreign or changed files, removes only verified obsolete outputs, and writes the world manifest last.
 - `npm run scenes:check` rebuilds the plan in memory and compares the installed inventory and bytes without creating files or temporary directories.
 
-Both commands run Node with a 512 MiB heap limit. `prebuild` runs `scenes:check`, so an ordinary application build cannot proceed with missing or stale generated scene outputs. The actual world build installed 1,436 files. A fresh `scenes:check` matched all 1,436 without writing or deleting files; both report world manifest `1dfe2099d15873ffef52b5f9ad8ab7aa48a694102ada36d6610c4bfa48908987`.
+Both commands run Node with a 512 MiB heap limit. `prebuild` runs `scenes:check`, so an ordinary application build cannot proceed with missing or stale generated scene outputs. The actual world build installed 1,436 files. A fresh `scenes:check` matched all 1,436 without writing or deleting files; the current generated world manifest SHA-256 is `60d23f8cd01cf512a4d92d61084a23a24377d3eaeb36aad40e9dd102476c9a6f`.
 
-The first actual checks exposed two integration issues. Narrow normalization for the legacy Nigerian country alias (`nigeria`/`ng`) now passes its focused 20/20 cases. A wider hero could obstruct activity; rear-band reservation now passes its actual-venue 19/19 cases. The full build and mutation-free check now pass; browser and release acceptance remain separate.
+The first actual checks exposed two integration issues. Narrow normalization for the legacy Nigerian country alias (`nigeria`/`ng`) now passes its focused 20/20 cases. A wider hero could obstruct activity; rear-band reservation now passes its actual-venue 19/19 cases. The current recorded world build and mutation-free check pass. The corrected phone-sheet fixture and full typecheck now pass all five projects with zero errors in r12. The latest recorded scene batch also passes camera4, city-scenes8, public-venue-budget and companion checks. An earlier full all-city run passed all six logical cases; see the programme record for its exact source/evidence scope. Browser and release acceptance remain separate.
 
 The refreshed host audit covers 284 cities, 6,423 targets and 34 configurations, with zero failures and 1,223 source pins. The measured case is 1,264 triangles, seven meshes, three lights and a maximum of nine draw calls. Within-venue measured-state triangle drift is 3.2718%; the separate global cross-venue comparison is 27.78% and is not an equivalent pass condition.
 
@@ -88,8 +88,8 @@ The compiler, runtime contract and installer have focused fixture coverage. The 
 
 The following acceptance gates remain open:
 
-- completion of the required all-city and scene suites (full typecheck now passes all five projects with zero errors);
-- exact hosted-bundle review, mobile review across four cities, and Save-Data/2G, retry, disposal and learning-UI evidence;
+- exact hosted-bundle review: CI39152681757 for source `48b541d8` passed fixed byte caps (startup 611,768 raw / 222,368 gzip / 195,733 Brotli; scene host 79,002 raw / 29,959 gzip), native inventory/cartridge, host, type and UI checks, but failed the eager-chunk contract for `app/updateNotice/vue` versus `app/vue`. The Vite correction and a new hosted run remain pending;
+- corrected-artifact phone review and cold timing: the four-city journeys were completed on an older build, but close framing, Lumo and the creator overlay had demonstrated issues. Confirmation on the corrected artifact, plus Save-Data/2G, retry, disposal and learning-UI evidence, remains open;
 - release acceptance.
 
 The reviewed front/side views do not certify phone composition or materials in game, surveyed or photorealistic forms, or visual uniqueness for every city. No external geometry or photo reuse is implied by the factual source records. Source facts and licences, original procedural geometry, runtime correctness and visual acceptance remain separate evidence.

@@ -20,8 +20,11 @@ export function compileRecipe(value: ValidatedRecipe, prepared: PreparedCityAsse
   const bounds: [number, number, number, number] = [-recipe.footprint.w / 2, -recipe.footprint.d / 2, recipe.footprint.w / 2, recipe.footprint.d / 2];
   const metres = (p: readonly number[]): [number, number, number] => [p[0]! / METRES_TO_SCENE, p[1]! / METRES_TO_SCENE, p[2]! / METRES_TO_SCENE];
   const asset = metadata.assets.kit;
+  // Preserve the composed preset against the host's shortest arrival distance (13 scene units).
+  const start = Math.max(1, ...[recipe.camera.landscape, recipe.camera.portrait]
+    .map(([x, y, z]) => Math.hypot(x, y - 0.7, z) / 13));
   return {
-    mood: recipe.mood, accent: recipe.palette.accent, camera: { ...recipe.camera },
+    mood: recipe.mood, accent: recipe.palette.accent, camera: { ...recipe.camera, start },
     walk: { bounds, entrance: [recipe.entrance[0], recipe.entrance[1]], open: false, block: value.walk.block },
     runtime: { createHost: recipeRuntimeHost(value, prepared, reservation), reservation, bounds, support: [{ rect: bounds, y: 0 }], entranceYaw: recipe.entrance[2],
       request: { id: `recipe:${recipe.city}:${recipe.venue}`, near: { url: asset.url, sha256: asset.measurement.sha256 }, far: { url: asset.url, sha256: asset.measurement.sha256 },

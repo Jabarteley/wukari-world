@@ -163,7 +163,7 @@ test('accounts widen the policy only when configured: the identity endpoints, th
   const google = appHeaders({ ...facts, accounts: { projectId: 'demo-allworld-test', apiKey: 'k'.repeat(30), googleClientId: ACCOUNTS_ENV.ACCOUNTS_GOOGLE_CLIENT_ID } });
   const policy = google['Content-Security-Policy'] as string;
   assert.equal(directive(policy, 'script-src'), "script-src 'self' 'sha256-x' https://static.cloudflareinsights.com https://accounts.google.com/gsi/client");
-  assert.equal(directive(policy, 'frame-src'), 'frame-src https://accounts.google.com/gsi/');
+  assert.equal(directive(policy, 'frame-src'), "frame-src 'self' https://accounts.google.com/gsi/");
   assert.equal(directive(policy, 'style-src'), "style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style");
   assert.match(directive(policy, 'connect-src'), /https:\/\/accounts\.google\.com\/gsi\/$/);
   assert.equal(google['Cross-Origin-Opener-Policy'], 'same-origin-allow-popups');
@@ -183,7 +183,7 @@ test('the Node host: the page carries the strict policy until accounts are confi
   const csp = response.headers.get('content-security-policy') as string;
   assert.match(directive(csp, 'connect-src'), /https:\/\/identitytoolkit\.googleapis\.com https:\/\/securetoken\.googleapis\.com https:\/\/accounts\.google\.com\/gsi\/$/);
   assert.match(directive(csp, 'script-src'), /https:\/\/accounts\.google\.com\/gsi\/client$/);
-  assert.equal(directive(csp, 'frame-src'), 'frame-src https://accounts.google.com/gsi/');
+  assert.equal(directive(csp, 'frame-src'), "frame-src 'self' https://accounts.google.com/gsi/");
   assert.equal(response.headers.get('cross-origin-opener-policy'), 'same-origin-allow-popups');
   const api = await fetch(`${on.base}/api/does-not-exist`); await api.arrayBuffer();
   assert.equal(api.headers.get('content-security-policy'), null, 'the API answers carry no page policy');

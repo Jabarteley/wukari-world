@@ -24,6 +24,8 @@ export interface PostView {
   vis: Visibility
   crew?: { id: string; name: string }
   media?: FeedMedia
+  /** A clip's still image (a media hash). */
+  poster?: string
   /** A moment: the gist line it came from (a share card can be made from it). */
   gist?: number
   event?: EventView
@@ -40,7 +42,7 @@ export interface PostView {
 export interface NewsLine { n: number; at: number; city: string; text: string }
 export interface FeedPage { ok: true; tab: FeedTab | 'crew' | 'author'; posts: PostView[]; next: string | null; news?: NewsLine[] }
 export interface Draft { n: number; at: number; city: string; kind: string; text: string }
-export interface InboxLine { at: number; kind: 'reply' | 'reaction' | 'follow' | 'crew' | 'rsvp' | 'gig' | 'vouch' | 'review' | 'mention'; text: string; post?: string; from?: FeedPerson; seen?: true }
+export interface InboxLine { at: number; kind: 'reply' | 'reaction' | 'follow' | 'crew' | 'rsvp' | 'gig' | 'vouch' | 'review' | 'mention' | 'moderation'; text: string; post?: string; from?: FeedPerson; seen?: true }
 export interface ProfileView extends FeedPerson {
   bio?: string
   status?: { text: string; place?: string; at: number }
@@ -107,7 +109,7 @@ export interface FeedHttpRoutes {
   'GET /api/feed/crew': { query: { id: string; after?: string }; response: Ok<FeedPage | Refused>; errors: E }
   'GET /api/feed/by': { query: { id: string; after?: string }; response: Ok<FeedPage | Refused>; errors: E }
   'GET /api/feed/post': { query: { id: string }; response: Done<{ post: PostView }>; errors: E }
-  'POST /api/feed/post': { body: { body?: string; vis?: Visibility; crew?: string; media?: string; draft?: number; label?: string }; response: Done<{ post: PostView }>; errors: E }
+  'POST /api/feed/post': { body: { body?: string; vis?: Visibility; crew?: string; media?: string; poster?: string; draft?: number; label?: string }; response: Done<{ post: PostView }>; errors: E }
   'POST /api/feed/post/remove': { body: { id: string }; response: Done; errors: E }
   'POST /api/feed/react': { body: { id: string; emoji: string | null }; response: Done<{ post: PostView }>; errors: E }
   'POST /api/feed/reply': { body: { id: string; body: string }; response: Done<{ post: PostView }>; errors: E }
@@ -136,6 +138,13 @@ export interface FeedHttpRoutes {
   'GET /api/feed/gigs': { query: { city?: string }; response: Ok<{ ok: true; gigs: GigView[]; mine: GigView[] }>; errors: E }
   'POST /api/feed/gigs': { body: { title: string; about?: string; reward: number }; response: Done<{ gig: GigView }>; errors: E }
   'POST /api/feed/gigs/act': { body: { id: string; op: 'apply' | 'withdraw' | 'choose' | 'done' | 'close' | 'review'; worker?: string; stars?: number; text?: string }; response: Done<{ gig: GigView }>; errors: E }
+  'GET /api/admin/feed': { response: Ok<{ ok: true; decisions: object[]; open: number }>; errors: E | 'not_found' }
+  'POST /api/admin/feed/undo': { body: { n: number; reason?: string }; response: Done; errors: E | 'not_found' | 'invalid_decision' | 'origin_required' }
+  'POST /api/admin/feed/act': { body: { kind: string; id: string; rn?: number; action: 'remove' | 'hide' | 'keep'; reason?: string }; response: Done<{ n: number }>; errors: E | 'not_found' | 'invalid_action' | 'origin_required' }
+  'GET /api/feed/contacts': { response: Ok<{ ok: true; declared: boolean; declaredAt: number | null; found: number; uploadedAt: number | null; adult: boolean; limits: object }>; errors: E }
+  'POST /api/feed/contacts/self': { body: { hash?: string; consent?: boolean; off?: boolean }; response: Done<{ declared: boolean }>; errors: E }
+  'POST /api/feed/contacts/match': { body: { hashes: string[] }; response: Done<{ matched: FeedPerson[]; waiting: number }>; errors: E | 'body_too_large' }
+  'POST /api/feed/contacts/forget': { body: object; response: Done; errors: E }
   'GET /api/mod/feed': { response: Ok<{ ok: true; items: object[] }>; errors: E | 'moderator_required' }
   'POST /api/mod/feed': { body: { kind: string; id: string; n?: number; action: 'remove' | 'clear' }; response: Done; errors: E | 'moderator_required' }
 }

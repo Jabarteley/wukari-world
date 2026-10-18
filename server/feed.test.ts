@@ -284,3 +284,83 @@ test('agents: an AI character\'s post passes the AI-safety words check', async (
   const fine = await post('/api/feed/post', { body: 'Quiz night at the Square, come and play' }, bot);
   assert.equal(fine.ok, true); assert.equal(fine.post.ai, true);
 });
+
+test('reviewer: a report is decided at once, the author is told, undo puts it back; a model failure changes nothing', async (t) => {
+  const { review, readVerdict } = await import('./feed/review.ts');
+  const { feedService } = await import('./feed/service.ts');
+  const { f, get, post, player } = await setup(t);
+  const ada = await player('Ada'), bola = await player('Bola');
+  const p = (await post('/api/feed/post', { body: 'Send me 5000 and I will send back 10000 tomorrow' }, ada)).post;
+  await post('/api/feed/report', { kind: 'post', id: p.id, reason: 'scam' }, bola);
+  const ctx = f.server.context;
+  let asked = '';
+  const verdict = await review(ctx, { kind: 'post', id: p.id }, 'report', { ask: async (m) => { asked = String(m[1]!.content); return '{"action":"remove","category":"scam","reason":"Promises of doubled money are not allowed."}'; } });
+  assert.equal(verdict?.action, 'remove');
+  assert.match(asked, /Reported by 1 person for: scam/);
+  assert.equal((await get(`/api/feed/post?id=${p.id}`, bola)).code, 'unknown_post');
+  assert.equal((await get(`/api/feed/post?id=${p.id}`, ada)).code, 'unknown_post', 'a removed post is gone for its author too');
+  assert.ok((await get('/api/feed/me', ada)).inbox.some((l: Json) => l.kind === 'moderation' && /removed your post/.test(l.text)));
+  const log = await f.server.store.read((db) => feedService(ctx).decisions(db));
+  assert.equal(log.decisions[0]!.by, 'ai'); assert.equal(log.open, 0);
+  await f.server.store.transact((db) => feedService(ctx).undo(db, log.decisions[0]!.n, 'Owner'));
+  assert.equal((await get(`/api/feed/post?id=${p.id}`, bola)).ok, true, 'undo brings it back');
+  // A failure, or an answer that cannot be read, leaves things as they are.
+  const q = (await post('/api/feed/post', { body: 'Nice day in Yaba' }, ada)).post;
+  await post('/api/feed/report', { kind: 'post', id: q.id, reason: 'spam' }, bola);
+  assert.equal(await review(ctx, { kind: 'post', id: q.id }, 'report', { ask: async () => null }), null);
+  assert.equal(await review(ctx, { kind: 'post', id: q.id }, 'report', { ask: async () => 'I think it is fine' }), null);
+  assert.equal((await get(`/api/feed/post?id=${q.id}`, bola)).ok, true);
+  // Keep closes the reports and unhides what reports hid.
+  await review(ctx, { kind: 'post', id: q.id }, 'report', { ask: async () => '{"action":"keep","category":"ok","reason":""}' });
+  assert.equal((await f.server.store.read((db) => feedService(ctx).decisions(db))).open, 0);
+  // Minor safety is always removed, whatever action the model wrote.
+  assert.deepEqual(readVerdict('{"action":"keep","category":"minor-safety","reason":"x"}'), { action: 'remove', category: 'minor-safety', reason: 'x' });
+});
+
+test('reviewer: an admin decision on a profile removes bio, status and handle, and undo restores them', async (t) => {
+  const { feedService } = await import('./feed/service.ts');
+  const { f, get, post, player } = await setup(t);
+  const ada = await player('Ada'), bola = await player('Bola');
+  await post('/api/feed/handle', { handle: 'ada' }, ada); await post('/api/feed/profile', { bio: 'Hello there' }, ada);
+  const ctx = f.server.context;
+  const d = await f.server.store.transact((db) => feedService(ctx).decide(db, { by: 'operator', kind: 'profile', id: ada.id, action: 'remove', category: 'admin', reason: 'test' }));
+  assert.ok(d.ok);
+  assert.equal((await get(`/api/feed/profile?id=${ada.id}`, bola)).profile.bio, undefined);
+  assert.equal((await get('/api/feed/profile?id=%40ada', bola)).code, 'unknown_player');
+  await f.server.store.transact((db) => feedService(ctx).undo(db, (d as { decision: { n: number } }).decision.n, 'Owner'));
+  const back = (await get('/api/feed/profile?id=%40ada', bola)).profile;
+  assert.equal(back.bio, 'Hello there'); assert.equal(back.handle, 'ada');
+});
+
+test('contacts: hashes only, blinded with a secret, matched only both ways; nothing stored reads back; forget deletes it all', async (t) => {
+  const { phoneHash } = await import('../src/feed/phone.ts');
+  const { f, get, post, player } = await setup(t);
+  const ada = await player('Ada'), bola = await player('Bola'), eve = await player('Eve'), kid = await player('Kid', { adult: false });
+  const [A, B, E] = await Promise.all(['+2348031111111', '+2348032222222', '+2348033333333'].map(phoneHash));
+  assert.equal((await post('/api/feed/contacts/self', { hash: A }, ada)).code, 'consent_required');
+  assert.equal((await post('/api/feed/contacts/self', { hash: A, consent: true }, kid)).code, 'adults_only');
+  assert.equal((await post('/api/feed/contacts/match', { hashes: [B] }, ada)).code, 'declare_first');
+  assert.equal((await post('/api/feed/contacts/self', { hash: A, consent: true }, ada)).declared, true);
+  assert.equal((await post('/api/feed/contacts/self', { hash: B, consent: true }, bola)).declared, true);
+  assert.equal((await post('/api/feed/contacts/self', { hash: A, consent: true }, eve)).code, 'number_unavailable', 'a number held by someone else says nothing more');
+  await post('/api/feed/contacts/self', { hash: E, consent: true }, eve);
+  // Ada has Bola's number: nothing yet, Bola has not uploaded Ada's.
+  const first = await post('/api/feed/contacts/match', { hashes: [B, E] }, ada);
+  assert.deepEqual([first.matched.length, first.waiting], [0, 2]);
+  // Bola uploads Ada's number: both see each other. Eve never uploaded Ada: Eve is never shown to Ada.
+  const second = await post('/api/feed/contacts/match', { hashes: [A] }, bola);
+  assert.deepEqual(second.matched.map((p: Json) => p.id), [ada.id]);
+  assert.equal((await get('/api/feed/contacts', ada)).found, 1);
+  assert.ok((await get('/api/feed/suggestions', ada)).people.some((s: Json) => s.person.id === bola.id && s.why === 'In your contacts'));
+  // The store holds no number and no client hash, only blinded tokens.
+  const stored = await f.server.store.read((db) => JSON.stringify((db as Record<string, unknown>).contacts));
+  for (const leak of ['2348031111111', '2348032222222', A, B, E]) assert.equal(stored.includes(leak), false, `stored text contains ${leak}`);
+  assert.equal(JSON.stringify(await f.server.store.read((db) => db)).includes(A), false);
+  // Forget: Ada's number, edges and matches go, and Bola's match of Ada too.
+  await post('/api/feed/contacts/forget', {}, ada);
+  assert.deepEqual([(await get('/api/feed/contacts', ada)).declared, (await get('/api/feed/contacts', ada)).found, (await get('/api/feed/contacts', bola)).found], [false, 0, 0]);
+  // Limits: three uploads a day.
+  await post('/api/feed/contacts/self', { hash: A, consent: true }, ada);
+  for (let i = 0; i < 3; i++) await post('/api/feed/contacts/match', { hashes: [E] }, ada);
+  assert.equal((await post('/api/feed/contacts/match', { hashes: [E] }, ada)).code, 'rate_limited');
+});

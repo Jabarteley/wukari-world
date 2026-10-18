@@ -65,7 +65,7 @@ watch(tab, (t) => { posts.value = []; next.value = null; open.value = null; if (
 
 // ---- composing ---------------------------------------------------------------------------------------------------------------------
 const text = ref(''), vis = ref<Visibility | ''>(''), crew = ref(''), label = ref(''), media = ref<FeedMedia | null>(null), preview = ref(''), busy = ref(false), draftN = ref<number | null>(null)
-const recording = ref<Recording | null>(null)
+const recording = ref<Recording | null>(null), poster = ref<string | null>(null)
 const adult = computed(() => Boolean(me.value?.profile.adult))
 const choices = computed<{ id: Visibility; label: string }[]>(() => {
   const all: { id: Visibility; label: string }[] = []
@@ -94,8 +94,11 @@ async function pickPhoto(event: Event): Promise<void> {
 const snap = async (): Promise<void> => attach(await snapshotScene(sceneCanvas))
 async function clip(): Promise<void> {
   if (recording.value) { recording.value.stop(); return }
+  // The clip's still, taken as it starts: the reviewer looks at it and the player shows it before the clip plays.
+  const still = await snapshotScene(sceneCanvas)
   const r = recordScene(sceneCanvas)
   if (!r) { toast('This browser cannot record the scene.', 'error'); return }
+  if (still) void uploadMedia(still, 'post').then((up) => { poster.value = up.ok ? up.media.hash : null })
   recording.value = r
   toast(`Recording up to ${Math.round(FEED.media.clipMs / 1000)} seconds. Tap again to stop.`)
   const done = await r.done
@@ -107,10 +110,10 @@ async function dropDraft(n: number): Promise<void> { await api.dropDraft(n); if 
 async function publish(): Promise<void> {
   if (busy.value || (!text.value.trim() && !media.value && draftN.value === null)) return
   busy.value = true
-  const r = await api.post({ body: text.value, vis: vis.value || undefined, ...(vis.value === 'crew' && crew.value ? { crew: crew.value } : {}), ...(media.value ? { media: media.value.hash } : {}), ...(draftN.value !== null ? { draft: draftN.value } : {}), ...(label.value.trim() ? { label: label.value.trim() } : {}) })
+  const r = await api.post({ body: text.value, vis: vis.value || undefined, ...(vis.value === 'crew' && crew.value ? { crew: crew.value } : {}), ...(media.value ? { media: media.value.hash, ...(poster.value ? { poster: poster.value } : {}) } : {}), ...(draftN.value !== null ? { draft: draftN.value } : {}), ...(label.value.trim() ? { label: label.value.trim() } : {}) })
   busy.value = false
   if (!r.ok) { toast(r.reason, 'error'); return }
-  text.value = ''; label.value = ''; clearMedia()
+  text.value = ''; label.value = ''; clearMedia(); poster.value = null
   if (draftN.value !== null && me.value) me.value.drafts = me.value.drafts.filter((d) => d.n !== draftN.value)
   draftN.value = null
   posts.value = [r.post, ...posts.value]

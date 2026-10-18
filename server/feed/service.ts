@@ -20,7 +20,7 @@ import { friendsIn } from '../social/founder.ts'
 import { lagosTime } from '../../src/game/clock.ts'
 import { cityName } from '../../src/game/cities/registry.ts'
 import { feedOf, peekFeed } from './data.ts'
-import type { AuthorRecord, CrewRecord, EventRecord, FeedCollection, GigRecord, PostRecord, Reply, ReportRecord } from './data.ts'
+import type { AuthorRecord, CrewRecord, DecisionRecord, EventRecord, FeedCollection, GigRecord, PostRecord, Reply, ReportRecord } from './data.ts'
 import type { Db, RouteContext, SessionRecord } from '../types.ts'
 
 export interface Refused { ok: false; code: string; reason: string }
@@ -50,7 +50,7 @@ function buildService(ctx: RouteContext) {
   const today = (): number => lagosTime(now()).day
   const env = (name: string): string => (typeof ctx.env === 'function' ? ctx.env(name) : '') ?? ''
   /** Public photos and clips: off until the owner decides (there is no automatic scanning). */
-  const publicMedia = (): boolean => { const s = ctx.checks?.setting?.('feedPublicMedia'); return typeof s === 'boolean' ? s : env('FEED_PUBLIC_MEDIA').trim().toLowerCase() === 'on' }
+  const publicMedia = (): boolean => { const s = ctx.checks?.setting?.('feedPublicMedia'); return typeof s === 'boolean' ? s : env('FEED_PUBLIC_MEDIA').trim().toLowerCase() !== 'off' }
   const mediaOn = (): boolean => Boolean(ctx.models) && env('FEED_MEDIA').trim().toLowerCase() !== 'off'
   const adult = (db: Db, id: string): boolean => ctx.checks?.adult?.(db, id) === true
   const blocked = (a: string, b: string): boolean => a !== b && ctx.checks?.blocked?.(a, b) === true
@@ -123,14 +123,14 @@ function buildService(ctx: RouteContext) {
   }
   function postView(db: Db, f: FeedCollection, post: PostRecord, viewer: string | null, full = false): PostView {
     const rel = relation(db, f, post, viewer)
-    const replies = (post.replies ?? []).filter((r) => !blocked(r.by, viewer ?? ''))
+    const replies = (post.replies ?? []).filter((r) => !r.gone && !blocked(r.by, viewer ?? ''))
     const crew = post.crew ? f.crews[post.crew] : undefined
     const ev = post.ev ? f.events[post.ev] : undefined, gig = post.gig ? f.gigs[post.gig] : undefined
     return {
       id: post.id, by: person(db, f, post.by, viewer), at: post.at, kind: post.kind, body: post.body,
       place: post.place ? place(post.place.city, post.place.venue, post.place.label) : null, vis: post.vis,
       ...(crew ? { crew: { id: crew.id, name: crew.name } } : {}),
-      ...(post.media ? { media: post.media } : {}), ...(post.gist ? { gist: post.gist } : {}),
+      ...(post.media ? { media: post.media } : {}), ...(post.poster ? { poster: post.poster } : {}), ...(post.gist ? { gist: post.gist } : {}),
       ...(ev && !ev.gone ? { event: eventView(db, f, ev, viewer) } : {}), ...(gig ? { gig: gigView(db, f, gig, viewer) } : {}),
       reactions: reactionsOf(post, viewer), replies: replies.length,
       thread: (full ? replies : replies.slice(-3)).map((r) => replyView(db, f, r, viewer)),
@@ -268,13 +268,15 @@ function buildService(ctx: RouteContext) {
       text = text ? `${draft.text}\n${text}` : draft.text
       a.drafts = (a.drafts ?? []).filter((x) => x.n !== draftN)
     }
-    let media: FeedMedia | undefined
+    let media: FeedMedia | undefined, posterHash: string | undefined
     if (typeof body.media === 'string' && body.media) {
       if (!mediaOn()) return no('media_off', 'Photos and clips are not switched on here.')
       const found = (a.media ?? []).find((m) => m.hash === body.media && m.use === 'post' && now() - m.at < FEED.media.pendingMs)
       if (!found) return no('media_gone', 'That photo was not found. Add it again.')
       media = { hash: found.hash, type: found.type, w: found.w, h: found.h, ...(found.ms ? { ms: found.ms } : {}) }
       a.media = (a.media ?? []).filter((m) => m !== found)
+      // A clip's still (the scene when it started): the reviewer looks at it, and the player shows it before the clip plays.
+      if ((found.type === 'webm' || found.type === 'mp4') && typeof body.poster === 'string') { const still = (a.media ?? []).find((m) => m.hash === body.poster && m.use === 'post' && m.type !== 'webm' && m.type !== 'mp4'); if (still) { posterHash = still.hash; a.media = (a.media ?? []).filter((m) => m !== still) } }
       kind = found.type === 'webm' || found.type === 'mp4' ? 'clip' : kind === 'moment' || kind === 'recap' ? kind : 'photo'
     }
     if (!text && !media) return no('empty', 'Write something or add a photo.')
@@ -286,7 +288,7 @@ function buildService(ctx: RouteContext) {
     if (typeof vis !== 'string') return vis
     const at = lifePlace(session), label = cleanLine(body.label, FEED.place)
     if (label) { const bad = screened(label, 'The place'); if (bad) return bad }
-    const post: PostRecord = { id: newId(f, 'p'), by: id, at: now(), kind, body: text, place: { city: at.city, ...(at.venue ? { venue: at.venue } : {}), ...(label ? { label } : {}) }, vis, ...(crew ? { crew: crew.id } : {}), ...(media ? { media } : {}), ...(gist ? { gist } : {}), ...(aiOf(db, id) ? { ai: 1 as const } : {}) }
+    const post: PostRecord = { id: newId(f, 'p'), by: id, at: now(), kind, body: text, place: { city: at.city, ...(at.venue ? { venue: at.venue } : {}), ...(label ? { label } : {}) }, vis, ...(crew ? { crew: crew.id } : {}), ...(media ? { media } : {}), ...(posterHash ? { poster: posterHash } : {}), ...(gist ? { gist } : {}), ...(aiOf(db, id) ? { ai: 1 as const } : {}) }
     f.posts[post.id] = post
     indexPost(f, a, post)
     d.posts += 1
@@ -375,9 +377,9 @@ function buildService(ctx: RouteContext) {
     const f = peekFeed(db)
     if (!f || !HASH.test(hash)) return null
     if (viewer) { const own = f.authors[viewer]?.media?.find((m) => m.hash === hash); if (own) return own }
-    for (const id of [...f.world.slice(-200), ...(viewer ? f.authors[viewer]?.posts ?? [] : [])]) { const p = f.posts[id]; if (p?.media?.hash === hash && canSee(p, relation(db, f, p, viewer))) return p.media }
+    for (const id of [...f.world.slice(-200), ...(viewer ? f.authors[viewer]?.posts ?? [] : [])]) { const p = f.posts[id]; if ((p?.media?.hash === hash || p?.poster === hash) && canSee(p, relation(db, f, p, viewer))) return p.poster === hash ? { hash, type: 'jpeg', w: p.media?.w ?? 0, h: p.media?.h ?? 0 } : p.media! }
     // Wider search, bounded: the viewer's circle.
-    if (viewer) for (const other of Object.keys(playersOf(db)[viewer]?.friends ?? {}).concat((f.authors[viewer]?.crews ?? []).flatMap((c) => f.crews[c]?.members ?? []))) for (const id of (f.authors[other]?.posts ?? []).slice(-60)) { const p = f.posts[id]; if (p?.media?.hash === hash && canSee(p, relation(db, f, p, viewer))) return p.media }
+    if (viewer) for (const other of Object.keys(playersOf(db)[viewer]?.friends ?? {}).concat((f.authors[viewer]?.crews ?? []).flatMap((c) => f.crews[c]?.members ?? []))) for (const id of (f.authors[other]?.posts ?? []).slice(-60)) { const p = f.posts[id]; if ((p?.media?.hash === hash || p?.poster === hash) && canSee(p, relation(db, f, p, viewer))) return p.poster === hash ? { hash, type: 'jpeg', w: p.media?.w ?? 0, h: p.media?.h ?? 0 } : p.media! }
     return null
   }
   const portraitOf = (db: Db, id: string): { hash: string; type: 'png' | 'webp' | 'jpeg' } | null => peekFeed(db)?.authors[id]?.portrait ?? null
@@ -474,7 +476,7 @@ function buildService(ctx: RouteContext) {
     const f = peekFeed(db), c = cleanCode(value), hit = c ? f?.codes[c] : undefined
     if (!f || !hit) return no('unknown_code', 'That code was not found. Check the six letters.')
     if (hit.k === 'friend') { if (viewer && blocked(viewer, hit.id)) return no('unknown_code', 'That code was not found. Check the six letters.'); return { ok: true, kind: 'friend', profile: profileView(db, f, hit.id, viewer) } }
-    if (hit.k === 'crew') { const k = f.crews[hit.id]; return k ? { ok: true, kind: 'crew', crew: crewView(db, f, k, viewer) } : no('unknown_code', 'That crew is gone.') }
+    if (hit.k === 'crew') { const k = f.crews[hit.id]; return k && !k.banned ? { ok: true, kind: 'crew', crew: crewView(db, f, k, viewer) } : no('unknown_code', 'That crew is gone.') }
     const e = f.events[hit.id]; return e && !e.gone ? { ok: true, kind: 'event', event: eventView(db, f, e, viewer) } : no('unknown_code', 'That event is gone.')
   }
 
@@ -503,6 +505,8 @@ function buildService(ctx: RouteContext) {
     const add = (x: string, points: number, why: string, mutual = 0): void => { if (skip(x)) return; const s = score.get(x) ?? { mutual: 0, why, points: 0 }; s.points += points; s.mutual += mutual; if (points >= 2 || !s.why) s.why = why; score.set(x, s) }
     for (const friend of mine) for (const x of Object.keys(players[friend]?.friends ?? {})) if (friends(db, friend, x)) add(x, 3, 'Friends with people you know', 1)
     for (const k of f?.authors[id]?.crews ?? []) for (const x of f?.crews[k]?.members ?? []) add(x, 4, `In your crew ${f?.crews[k]?.name ?? ''}`.trim())
+    // Matched from contacts both ways (server/feed/contacts.ts): high, after a waiting request.
+    for (const x of ((db as unknown as { contacts?: { found?: Record<string, { ids: string[] }> } }).contacts?.found?.[id]?.ids ?? [])) add(x, 20, 'In your contacts')
     // Asked you for friendship already: shown first.
     for (const x of Object.keys(me?.in ?? {})) if (!blocked(id, x) && exists(db, x) && !mine.has(x)) score.set(x, { mutual: 0, why: 'Asked to be your friend', points: 100 })
     // Active posters in the player's city, when there is little else.
@@ -531,7 +535,7 @@ function buildService(ctx: RouteContext) {
   }
   function joinCrew(db: Db, session: SessionRecord, body: Record<string, unknown>): { ok: true; crew: CrewView; push: Push } | Refused {
     const id = session.publicId, f = feedOf(ctx, db), c = cleanCode(body.code), hit = c ? f.codes[c] : undefined, crew = hit?.k === 'crew' ? f.crews[hit.id] : undefined
-    if (!crew) return no('unknown_code', 'That crew link was not found.')
+    if (!crew || crew.banned) return no('unknown_code', 'That crew link was not found.')
     if (crew.members.includes(id)) return { ok: true, crew: crewView(db, f, crew, id), push: [] }
     if (crew.kicked?.[id] && now() - crew.kicked[id]! < 7 * 86400000) return no('not_allowed', 'You were asked to leave this crew. You can come back after a week.')
     if (crew.members.some((m) => blocked(m, id))) return no('not_allowed', 'You cannot join this crew.')
@@ -752,12 +756,12 @@ function buildService(ctx: RouteContext) {
   }
 
   // ---- reports and the operator ---------------------------------------------------------------------------------------------------
-  function report(db: Db, session: SessionRecord, body: Record<string, unknown>): { ok: true } | Refused {
+  function report(db: Db, session: SessionRecord, body: Record<string, unknown>): { ok: true; review: { kind: ReportRecord['kind']; id: string; rn?: number } | null } | Refused {
     const id = session.publicId, f = peekFeed(db)
     const kind = (['post', 'reply', 'crew', 'event', 'gig', 'profile'] as const).find((k) => k === body.kind)
     const reason = REPORT_REASONS.find((r) => r === body.reason) ?? 'other'
     if (!f || !kind || typeof body.id !== 'string' || body.id.length < 1 || body.id.length > 80) return no('invalid_report', 'That could not be reported.')
-    if (f.reports.some((r) => r.by === id && r.kind === kind && r.id === body.id && r.n === (body.n ?? undefined) && !r.done)) return { ok: true }
+    if (f.reports.some((r) => r.by === id && r.kind === kind && r.id === body.id && r.n === (body.n ?? undefined) && !r.done)) return { ok: true, review: null }
     f.reports.push({ kind, id: body.id, ...(typeof body.n === 'number' ? { n: body.n } : {}), by: id, reason, at: now() })
     if (f.reports.length > FEED.reports) f.reports.splice(0, f.reports.length - FEED.reports)
     // Two different people reporting a post hide it for everyone (its author still sees it) until an operator looks.
@@ -765,7 +769,8 @@ function buildService(ctx: RouteContext) {
       const post = f.posts[body.id]
       if (post) { const by = new Set([...(post.reports ?? []), id]); post.reports = [...by].slice(0, 20); if (by.size >= FEED.reportsToHide) post.hidden = 1 }
     }
-    return { ok: true }
+    // The AI reviewer looks at it at once (server/feed/review.ts, after this transaction commits).
+    return { ok: true, review: { kind, id: body.id, ...(typeof body.n === 'number' ? { rn: body.n } : {}) } }
   }
   function queue(db: Db): { ok: true; items: (ReportRecord & { text: string; author: string | null; hidden: boolean })[] } {
     const f = peekFeed(db)
@@ -779,26 +784,119 @@ function buildService(ctx: RouteContext) {
     }
     return { ok: true, items: f.reports.filter((r) => !r.done).slice(-200).reverse().map((r) => ({ ...r, ...textOf(r) })) }
   }
-  /** Operator: { kind, id, n?, action: 'remove' | 'clear' }. Remove deletes the thing (a profile: its bio, status and portrait); clear keeps it and unhides it. */
+  // ---- decisions: the reviewer's and the operator's, every one reversible ----------------------------------------------------------
+  /** What the reviewer reads of a reported or new thing: its words, the picture to look at (a hash in the media store), who made it. */
+  function snapshot(db: Db, kind: ReportRecord['kind'], id: string, rn?: number): { text: string; image?: string; author: string | null; reasons: string[]; reporters: number; public: boolean } | null {
+    const f = peekFeed(db)
+    if (!f) return null
+    const reports = f.reports.filter((r) => r.kind === kind && r.id === id && (rn === undefined || r.n === rn) && !r.done)
+    const base = { reasons: [...new Set(reports.map((r) => r.reason))], reporters: new Set(reports.map((r) => r.by)).size }
+    if (kind === 'post') {
+      const p = f.posts[id]; if (!p || p.gone) return null
+      const image = p.media && (p.media.type === 'jpeg' || p.media.type === 'png' || p.media.type === 'webp') ? p.media.hash : p.poster
+      return { ...base, text: p.body, ...(image ? { image } : {}), author: p.by, public: p.vis === 'public' || p.vis === 'city' }
+    }
+    if (kind === 'reply') { const r = f.posts[id]?.replies?.find((x) => x.n === rn); return r && !r.gone ? { ...base, text: r.body, author: r.by, public: true } : null }
+    if (kind === 'crew') { const c = f.crews[id]; return c && !c.banned ? { ...base, text: `${c.name}\n${c.about}`, author: c.owner, public: true } : null }
+    if (kind === 'event') { const e = f.events[id]; return e && !e.gone ? { ...base, text: `${e.title}\n${e.about}\n${e.label}`, author: e.by, public: true } : null }
+    if (kind === 'gig') { const g = f.gigs[id]; return g && g.state !== 'closed' ? { ...base, text: `${g.title}\n${g.about}`, author: g.by, public: true } : null }
+    const a = f.authors[id]; if (!a) return null
+    return { ...base, text: [a.handle ? `@${a.handle}` : '', a.bio ?? '', a.status?.text ?? ''].filter(Boolean).join('\n'), ...(a.portrait ? { image: a.portrait.hash } : {}), author: id, public: true }
+  }
+  /** Apply one decision and log it. `keep` closes the reports and unhides what reports hid. Returns the decision, or a refusal. */
+  function decide(db: Db, input: { by: 'ai' | 'operator'; kind: ReportRecord['kind']; id: string; rn?: number; action: 'remove' | 'hide' | 'keep'; category: string; reason: string; saw?: 'text' | 'image' }, push: Push = []): { ok: true; decision: DecisionRecord; push: Push } | Refused {
+    const f = peekFeed(db)
+    if (!f) return no('unknown_target', 'That is not there any more.')
+    const { kind, id, rn, action } = input
+    const before: Record<string, unknown> = {}
+    let author: string | null = null, what = ''
+    if (kind === 'post') {
+      const p = f.posts[id]; if (!p) return no('unknown_target', 'That post is not there any more.')
+      Object.assign(before, { hidden: p.hidden ?? null, gone: p.gone ?? null, reports: p.reports ?? [] }); author = p.by; what = 'your post'
+      if (action === 'remove') p.gone = 1; else if (action === 'hide') p.hidden = 1; else { delete p.hidden; p.reports = [] }
+    } else if (kind === 'reply') {
+      const r = f.posts[id]?.replies?.find((x) => x.n === rn); if (!r) return no('unknown_target', 'That reply is not there any more.')
+      Object.assign(before, { gone: r.gone ?? null }); author = r.by; what = 'your reply'
+      if (action !== 'keep') r.gone = 1
+    } else if (kind === 'crew') {
+      const c = f.crews[id]; if (!c) return no('unknown_target', 'That crew is not there any more.')
+      Object.assign(before, { banned: c.banned ?? null }); author = c.owner; what = `your crew ${c.name}`
+      if (action !== 'keep') c.banned = 1
+    } else if (kind === 'event') {
+      const e = f.events[id]; if (!e) return no('unknown_target', 'That event is not there any more.')
+      const p = e.post ? f.posts[e.post] : undefined
+      Object.assign(before, { gone: e.gone ?? null, postGone: p?.gone ?? null }); author = e.by; what = `your event ${e.title}`
+      if (action !== 'keep') { e.gone = 1; if (p) p.gone = 1 }
+    } else if (kind === 'gig') {
+      const g = f.gigs[id]; if (!g) return no('unknown_target', 'That gig is not there any more.')
+      Object.assign(before, { state: g.state }); author = g.by; what = `your gig ${g.title}`
+      if (action !== 'keep') g.state = 'closed'
+    } else {
+      const a = f.authors[id]; if (!a) return no('unknown_target', 'That profile is not there any more.')
+      Object.assign(before, { bio: a.bio ?? null, status: a.status ?? null, portrait: a.portrait ?? null, handle: a.handle ?? null, handleAt: a.handleAt ?? null }); author = id; what = 'your profile'
+      if (action !== 'keep') { delete a.bio; delete a.status; delete a.portrait; if (a.handle && f.handles[a.handle] === id) delete f.handles[a.handle]; delete a.handle }
+    }
+    for (const r of f.reports) if (r.kind === kind && r.id === id && (rn === undefined || r.n === rn)) r.done = 1
+    const decision: DecisionRecord = { n: (f.dn = (f.dn ?? 0) + 1), at: now(), by: input.by, kind, id, ...(rn !== undefined ? { rn } : {}), action, category: input.category.slice(0, 40), reason: input.reason.slice(0, 200), before, ...(input.saw ? { saw: input.saw } : {}) }
+    const list = (f.decisions ??= []); list.push(decision); if (list.length > 500) list.splice(0, list.length - 500)
+    if (author && action !== 'keep') tell(db, f, author, { kind: 'moderation', text: `${action === 'remove' ? 'We removed' : 'We hid'} ${what}: ${decision.reason || decision.category}. If this is a mistake, report a problem and a person will look again.` }, push)
+    return { ok: true, decision, push }
+  }
+  /** Put back what a decision changed (the operator's undo). A second undo changes nothing. */
+  function undo(db: Db, n: number, by: string): { ok: true; decision: DecisionRecord } | Refused {
+    const f = peekFeed(db), d = f?.decisions?.find((x) => x.n === n)
+    if (!f || !d) return no('unknown_decision', 'That decision is not in the log any more.')
+    if (d.undone) return { ok: true, decision: d }
+    const b = d.before, set = <T extends object>(target: T, key: keyof T & string): void => { const v = b[key]; if (v === null || v === undefined) delete (target as Record<string, unknown>)[key]; else (target as Record<string, unknown>)[key] = v }
+    if (d.kind === 'post') { const p = f.posts[d.id]; if (p) { set(p, 'hidden'); set(p, 'gone'); if (Array.isArray(b.reports)) p.reports = b.reports as string[] } }
+    else if (d.kind === 'reply') { const r = f.posts[d.id]?.replies?.find((x) => x.n === d.rn); if (r) set(r, 'gone') }
+    else if (d.kind === 'crew') { const c = f.crews[d.id]; if (c) set(c, 'banned') }
+    else if (d.kind === 'event') { const e = f.events[d.id]; if (e) { set(e, 'gone'); const p = e.post ? f.posts[e.post] : undefined; if (p) { if (b.postGone === null) delete p.gone; else p.gone = 1 } } }
+    else if (d.kind === 'gig') { const g = f.gigs[d.id]; if (g && typeof b.state === 'string') g.state = b.state as GigRecord['state'] }
+    else { const a = f.authors[d.id]; if (a) { for (const k of ['bio', 'status', 'portrait', 'handleAt'] as const) set(a, k); const h = b.handle; if (typeof h === 'string' && (!f.handles[h] || f.handles[h] === d.id)) { f.handles[h] = d.id; a.handle = h } } }
+    d.undone = { at: now(), by }
+    return { ok: true, decision: d }
+  }
+  /** The admin's view: the newest decisions with what they were about, and the reports nobody has decided yet. */
+  function decisions(db: Db): { ok: true; decisions: (DecisionRecord & { text: string; author: string | null })[]; open: number } {
+    const f = peekFeed(db)
+    if (!f) return { ok: true, decisions: [], open: 0 }
+    const textOf = (d: DecisionRecord): { text: string; author: string | null } => {
+      if (d.kind === 'post') { const p = f.posts[d.id]; return { text: p?.body ?? '(gone)', author: p?.by ?? null } }
+      if (d.kind === 'reply') { const r = f.posts[d.id]?.replies?.find((x) => x.n === d.rn); return { text: r?.body ?? '(gone)', author: r?.by ?? null } }
+      if (d.kind === 'crew') { const c = f.crews[d.id]; return { text: c ? `${c.name}: ${c.about}` : '(gone)', author: c?.owner ?? null } }
+      if (d.kind === 'event') { const e = f.events[d.id]; return { text: e ? `${e.title}: ${e.about}` : '(gone)', author: e?.by ?? null } }
+      if (d.kind === 'gig') { const g = f.gigs[d.id]; return { text: g ? `${g.title}: ${g.about}` : '(gone)', author: g?.by ?? null } }
+      return { text: [d.before.handle ? `@${String(d.before.handle)}` : '', String(d.before.bio ?? ''), String((d.before.status as { text?: string } | null)?.text ?? '')].filter(Boolean).join(' · ') || '(profile)', author: d.id }
+    }
+    return { ok: true, decisions: (f.decisions ?? []).slice(-200).reverse().map((d) => ({ ...d, ...textOf(d) })), open: f.reports.filter((r) => !r.done).length }
+  }
+  /** Old removals leave the store for good after 30 days (the time to undo them); their bytes go too. Bounded per call. */
+  function purge(db: Db): void {
+    const f = peekFeed(db)
+    if (!f?.decisions?.length) return
+    const old = now() - 30 * 86400000
+    let n = 0
+    for (const d of f.decisions) {
+      if (d.at > old || d.undone || d.action !== 'remove' || d.before.purged) continue
+      if (d.kind === 'post') { const p = f.posts[d.id]; if (p?.gone) { if (p.poster) trash.push(p.poster); dropPost(f, p) } }
+      else if (d.kind === 'reply') { const post = f.posts[d.id]; if (post?.replies) post.replies = post.replies.filter((r) => !(r.n === d.rn && r.gone)) }
+      d.before.purged = true
+      if (++n >= 50) return
+    }
+  }
+  /** Operator (bearer token): { kind, id, n?, action: 'remove' | 'clear' | 'restore', decision? }. Clear is keep; restore undoes a decision. */
   function moderate(db: Db, body: Record<string, unknown>): { ok: true } | Refused {
-    const f = peekFeed(db), action = body.action, kind = body.kind, id = typeof body.id === 'string' ? body.id : ''
-    if (!f || (action !== 'remove' && action !== 'clear')) return no('invalid_action', 'remove or clear')
-    const close = (): void => { for (const r of f.reports) if (r.kind === kind && r.id === id && (body.n === undefined || r.n === body.n)) r.done = 1 }
-    if (kind === 'post' || kind === 'reply') {
-      const post = f.posts[id]
-      if (post && action === 'remove') { if (kind === 'reply') post.replies = (post.replies ?? []).filter((r) => r.n !== Number(body.n)); else dropPost(f, post) }
-      if (post && action === 'clear' && kind === 'post') { delete post.hidden; post.reports = [] }
-    } else if (kind === 'crew' && action === 'remove') { const c = f.crews[id]; if (c) for (const m of [...c.members]) removeFromCrew(f, c, m) }
-    else if (kind === 'event' && action === 'remove') { const e = f.events[id]; if (e) { e.gone = 1; delete f.codes[e.code]; if (e.post && f.posts[e.post]) dropPost(f, f.posts[e.post]!) } }
-    else if (kind === 'gig' && action === 'remove') { const g = f.gigs[id]; if (g) g.state = 'closed' }
-    else if (kind === 'profile' && action === 'remove') { const a = f.authors[id]; if (a) { delete a.bio; delete a.status; if (a.portrait) { trash.push(a.portrait.hash); delete a.portrait } if (a.handle) { delete f.handles[a.handle]; delete a.handle } } }
-    close()
-    return { ok: true }
+    if (body.action === 'restore') { const r = undo(db, Number(body.decision), 'operator'); return r.ok ? { ok: true } : r }
+    const kind = (['post', 'reply', 'crew', 'event', 'gig', 'profile'] as const).find((k) => k === body.kind)
+    if (!kind || typeof body.id !== 'string' || (body.action !== 'remove' && body.action !== 'clear')) return no('invalid_action', 'remove, clear or restore')
+    const r = decide(db, { by: 'operator', kind, id: body.id, ...(typeof body.n === 'number' ? { rn: body.n } : {}), action: body.action === 'clear' ? 'keep' : 'remove', category: 'operator', reason: typeof body.reason === 'string' ? body.reason : '' })
+    return r.ok ? { ok: true } : r
   }
 
   return {
     publicMedia, mediaOn, takeTrash, read, thread, me, seen, profile, code, resolve, editProfile, setHandle, createPost, removePost, react, reply, removeReply,
-    noteMedia, mediaAllowed, portraitOf, follow, suggestions, createCrew, joinCrew, leaveCrew, crew, createEvent, rsvp, cancelEvent, events, event, remind,
+    noteMedia, mediaAllowed, portraitOf, snapshot, decide, undo, decisions, purge, follow, suggestions, createCrew, joinCrew, leaveCrew, crew, createEvent, rsvp, cancelEvent, events, event, remind,
     createGig, gigAct, gigs, vouch, noteMoment, dropDraft, report, queue, moderate, profileView, crewView, eventView,
     peek: peekFeed,
   }

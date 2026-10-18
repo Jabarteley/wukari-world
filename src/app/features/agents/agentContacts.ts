@@ -3,6 +3,7 @@
 // AI agents screens and the chat import this. The pure functions take and return plain values; `agentBook` is the reactive copy the screens read.
 import { reactive } from 'vue'
 import type { OnlineAgent } from '../../../types/agents-http.ts'
+import { dayLabel } from '../messages/messagesText.ts'
 
 export const CHATS_KEY = 'aw.agentChats.v1', CONTACTS_KEY = 'aw.agentContacts.v1'
 /** Lines kept per chat, chats kept, contacts kept, lines sent back with a new one. */
@@ -63,6 +64,32 @@ export function toggleContact(list: readonly Contact[], who: { id: string; name:
   return list.some((c) => c.id === who.id) ? list.filter((c) => c.id !== who.id) : [{ id: who.id, name: who.name, city: who.city, at }, ...list].slice(0, CONTACTS_MAX)
 }
 
+/** A line of the chat on its way: shown at once as "Sending…", then kept, or "Not sent" with a Retry (like Messages' outbox). */
+export interface Outgoing { id: string; text: string; status: 'sending' | 'failed'; reason?: string }
+export type ChatRow =
+  | { kind: 'day'; key: string; label: string }
+  | { kind: 'line'; key: string; line: ChatLine; /** The last of a run from one side: the time shows. */ tail: boolean }
+  | { kind: 'out'; key: string; out: Outgoing }
+/** A run is one side with no more than five minutes between lines and no day change. */
+export const RUN_MS = 5 * 60000
+/** The thread as drawn: day separators, the kept lines grouped into runs, then the lines still on their way. */
+export function chatRows(lines: readonly ChatLine[], outgoing: readonly Outgoing[], now: number): ChatRow[] {
+  const rows: ChatRow[] = []
+  let day = ''
+  const side = (line: ChatLine): string => (line.note ? 'note' : line.me ? 'me' : 'them')
+  const joins = (a: ChatLine, b: ChatLine): boolean => side(a) === side(b) && side(a) !== 'note' && b.at - a.at <= RUN_MS && new Date(a.at).toDateString() === new Date(b.at).toDateString()
+  for (const [index, line] of lines.entries()) {
+    const key = new Date(line.at).toDateString()
+    if (key !== day) { rows.push({ kind: 'day', key: `day:${key}`, label: dayLabel(line.at, now) }); day = key }
+    const next = lines[index + 1]
+    rows.push({ kind: 'line', key: `l:${index}`, line, tail: !next || !joins(line, next) })
+  }
+  if (outgoing.length && new Date(now).toDateString() !== day) rows.push({ kind: 'day', key: 'day:now', label: dayLabel(now, now) })
+  for (const out of outgoing) rows.push({ kind: 'out', key: `o:${out.id}`, out })
+  return rows
+}
+/** The chats whose name has the words typed (empty query: all), newest first. */
+export const filterAgentChats = (chats: readonly Chat[], query: string): Chat[] => { const q = query.trim().toLowerCase(); return q ? chats.filter((chat) => chat.name.toLowerCase().includes(q)) : [...chats] }
 /** What a row says under the name: "Selling books · Balogun Market, Lagos", or the city alone. */
 export function whereLine(agent: Pick<OnlineAgent, 'doing' | 'place' | 'cityName'>): string {
   const place = agent.place ? `${agent.place}, ${agent.cityName}` : agent.cityName

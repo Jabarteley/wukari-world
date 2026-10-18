@@ -1,16 +1,22 @@
 <script setup lang="ts">
-// AI agents ('ai-agents', a People app, and "See AI agents" in the online sheet): every AI agent online now, as people are listed: your chats with them and
-// the ones you keep as contacts first, then those in your city, then the other cities with how many are in each (a tap lists them). Search by name across
-// the world. Each one: Chat, Call, Go to them, and their card. Read from GET /api/agents/online (server/agents/contact.ts); refreshed every 30 seconds while open.
+// AI agents ('ai-agents', a People app, and "See AI agents" in the online sheet): every AI agent online now, listed as chats are listed in Messages: a
+// row with the avatar, the name and where they are; a tap opens the chat with them (Call, Go to them and their card are in its header). Your chats with
+// them and the ones you keep as contacts come first, then those in your city, then the other cities with how many are in each (a tap lists them).
+// Search by name across the world. Read from GET /api/agents/online (server/agents/contact.ts); refreshed every 30 seconds while open.
 import '../../../ui/controls.css'
-import '../../../ui/panels/social.css'
 import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { cityName } from '../../../game/cities/registry.ts'
+import { formatClock } from '../../../game/clock.ts'
 import type { OnlineAgent } from '../../../types/agents-http.ts'
-import PlayerAvatar from '../social/PlayerAvatar.vue'
+import ListRow from '../../ui/ListRow.vue'
+import ListRows from '../../ui/ListRows.vue'
+import RowMark from '../../ui/RowMark.vue'
+import SectionTitle from '../../ui/SectionTitle.vue'
+import EmptyState from '../../ui/EmptyState.vue'
+import { listTime } from '../messages/messagesText.ts'
 import { agentBook, recentChats, whereLine } from './agentContacts.ts'
-import { answersHere, callAgent, fetchAgents, goToAgent, openChat, viewAgent } from './agentMoves.ts'
+import { fetchAgents, openChat } from './agentMoves.ts'
 
 defineProps<{ params?: unknown }>()
 const { game } = useApp()
@@ -49,110 +55,103 @@ watch(here, () => { void load() })
 const elsewhere = computed(() => Object.entries(state.cities).filter(([city]) => city !== here.value).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])))
 const placeOfCity = (city: string): string => (city === 'world' ? 'The Square' : cityName(city) ?? city)
 const chats = computed(() => recentChats(agentBook.chats).slice(0, 8))
-const lastLine = (id: string): string => agentBook.chats[id]?.lines.at(-1)?.text ?? ''
+/** The contacts not already shown among the chats. */
+const contacts = computed(() => agentBook.contacts.filter((contact) => !chats.value.some((chat) => chat.id === contact.id)))
+/** The agents of this city not already shown above. */
+const hereList = computed(() => state.agents.filter((agent) => !chats.value.some((chat) => chat.id === agent.id) && !contacts.value.some((contact) => contact.id === agent.id)))
+const lastLine = (id: string): string => { const line = agentBook.chats[id]?.lines.at(-1); return line ? `${line.me ? 'You: ' : ''}${line.text}` : '' }
+const time = (at: number): string => formatClock(at).split('· ')[1] ?? ''
 /** A saved contact or a chat, as the list knows it now (standing somewhere) or as it was kept. */
 const known = (item: { id: string; name: string; city: string }): OnlineAgent => online.value.get(item.id) ?? { id: item.id, name: item.name, kind: item.id.startsWith('house.') ? 'house' : 'resident', city: item.city, cityName: placeOfCity(item.city), venue: null, place: null, doing: null, look: null }
+const subOf = (item: { id: string; name: string; city: string }): string => (online.value.has(item.id) ? whereLine(known(item)) : `${placeOfCity(item.city)} · not out now`)
 </script>
 
 <template>
   <div class="ai-agents" data-ai-agents>
-    <div class="social-head"><h3>AI agents online</h3><button type="button" class="social-btn" :disabled="state.loading" @click="load()">Refresh</button></div>
-    <p class="social-note">
-      <template v-if="state.total !== null">{{ state.total.toLocaleString('en-US') }} AI {{ state.total === 1 ? 'agent is' : 'agents are' }} out in the world now. </template>
-      Each is a character played by AI. Chat, call or go and meet them like anyone else.
+    <input v-model="q" class="ai-agents-filter" type="search" name="agent-search" maxlength="40" placeholder="Search AI agents by name" aria-label="Search AI agents by name" autocomplete="off">
+    <p class="ai-agents-note">
+      <template v-if="state.total">{{ state.total.toLocaleString('en-US') }} AI {{ state.total === 1 ? 'character is' : 'characters are' }} out in the world now. </template>
+      Tap one to chat; call them or go to them from the chat.
     </p>
-    <input v-model="q" class="social-field ai-agents-search" type="search" name="agent-search" maxlength="40" placeholder="Search AI agents by name" aria-label="Search AI agents by name" autocomplete="off">
 
     <template v-if="found">
-      <h3 class="ui-section">Found</h3>
-      <p v-if="!found.length" class="social-note">Nobody online has a name like that.</p>
-      <div v-for="agent in found" :key="`f${agent.id}`" class="social-row ai-agent-row" data-agent-row>
-        <PlayerAvatar :name="agent.name" :seed="agent.id" status="online" />
-        <div class="ai-agent-body"><strong>{{ agent.name }}<span class="agent-tag">AI</span></strong><small>{{ whereLine(agent) }}</small>
-          <span class="social-actions">
-            <button type="button" class="social-btn is-primary" @click="openChat(agent)">Chat</button>
-            <button v-if="answersHere(agent.id)" type="button" class="social-btn" @click="callAgent(agent)">Call</button>
-            <button type="button" class="social-btn" :disabled="!agent.venue" @click="goToAgent(agent)">Go to them</button>
-            <button type="button" class="social-btn" @click="viewAgent(agent)">View</button>
-          </span>
-        </div>
-      </div>
+      <SectionTitle>Found</SectionTitle>
+      <p v-if="!found.length" class="ai-agents-note">Nobody online has a name like that.</p>
+      <ListRows v-else label="Found">
+        <ListRow v-for="agent in found" :key="`f${agent.id}`" as="button" :data-agent-row="agent.id" :title="agent.name" :sub="whereLine(agent)" @click="openChat(agent)">
+          <template #icon><span class="ai-agents-avatar is-online"><RowMark :name="agent.name" :seed="agent.id" /></span></template>
+          <template #end><span class="ai-tag">AI</span></template>
+        </ListRow>
+      </ListRows>
     </template>
 
     <template v-else>
       <template v-if="chats.length">
-        <h3 class="ui-section">Your chats</h3>
-        <button v-for="item in chats" :key="`c${item.id}`" type="button" class="social-row ai-agent-chat" @click="openChat(known(item))">
-          <PlayerAvatar :name="item.name" :seed="item.id" :status="online.has(item.id) ? 'online' : undefined" />
-          <div class="ai-agent-body"><strong>{{ item.name }}<span class="agent-tag">AI</span></strong><small>{{ lastLine(item.id) }}</small></div>
-        </button>
+        <SectionTitle>Your chats</SectionTitle>
+        <ListRows label="Your chats with AI characters">
+          <ListRow v-for="item in chats" :key="`c${item.id}`" as="button" :data-agent-row="item.id" :title="item.name" :sub="lastLine(item.id)" @click="openChat(known(item))">
+            <template #icon><span class="ai-agents-avatar" :class="{ 'is-online': online.has(item.id) }"><RowMark :name="item.name" :seed="item.id" /></span></template>
+            <template #end><span class="ai-agents-when"><small>{{ listTime(item.at, Date.now(), time) }}</small><span class="ai-tag">AI</span></span></template>
+          </ListRow>
+        </ListRows>
       </template>
 
-      <template v-if="agentBook.contacts.length">
-        <h3 class="ui-section">Contacts</h3>
-        <div v-for="item in agentBook.contacts" :key="`k${item.id}`" class="social-row ai-agent-row">
-          <PlayerAvatar :name="item.name" :seed="item.id" :status="online.has(item.id) ? 'online' : undefined" />
-          <div class="ai-agent-body"><strong>{{ item.name }}<span class="agent-tag">AI</span></strong><small>{{ online.has(item.id) ? whereLine(known(item)) : placeOfCity(item.city) }}</small>
-            <span class="social-actions">
-              <button type="button" class="social-btn is-primary" @click="openChat(known(item))">Chat</button>
-              <button type="button" class="social-btn" @click="callAgent(item)">Call</button>
-              <button type="button" class="social-btn" :disabled="!known(item).venue" @click="goToAgent(known(item))">Go to them</button>
-              <button type="button" class="social-btn" @click="viewAgent(item)">View</button>
-            </span>
-          </div>
-        </div>
+      <template v-if="contacts.length">
+        <SectionTitle>Contacts</SectionTitle>
+        <ListRows label="AI characters in your contacts">
+          <ListRow v-for="item in contacts" :key="`k${item.id}`" as="button" :data-agent-row="item.id" :title="item.name" :sub="subOf(item)" @click="openChat(known(item))">
+            <template #icon><span class="ai-agents-avatar" :class="{ 'is-online': online.has(item.id) }"><RowMark :name="item.name" :seed="item.id" /></span></template>
+            <template #end><span class="ai-tag">AI</span></template>
+          </ListRow>
+        </ListRows>
       </template>
 
-      <h3 class="ui-section">In {{ placeOfCity(here) }}</h3>
-      <p v-if="state.error" class="social-note is-warn">This could not be loaded. <button type="button" class="social-btn" @click="load()">Retry</button></p>
-      <p v-else-if="state.total === null" class="social-note">Looking…</p>
-      <p v-else-if="!state.agents.length" class="social-note">No AI agent is out in {{ placeOfCity(here) }} right now. They keep their own hours: try another city below.</p>
-      <div v-for="agent in state.agents" :key="`h${agent.id}`" class="social-row ai-agent-row" data-agent-row>
-        <PlayerAvatar :name="agent.name" :seed="agent.id" status="online" />
-        <div class="ai-agent-body"><strong>{{ agent.name }}<span class="agent-tag">AI</span></strong><small>{{ whereLine(agent) }}</small>
-          <span class="social-actions">
-            <button type="button" class="social-btn is-primary" @click="openChat(agent)">Chat</button>
-            <button v-if="answersHere(agent.id)" type="button" class="social-btn" @click="callAgent(agent)">Call</button>
-            <button type="button" class="social-btn" :disabled="!agent.venue" @click="goToAgent(agent)">Go to them</button>
-            <button type="button" class="social-btn" @click="viewAgent(agent)">View</button>
-          </span>
-        </div>
-      </div>
+      <SectionTitle :note="state.agents.length ? String(state.agents.length) : ''">In {{ placeOfCity(here) }}</SectionTitle>
+      <p v-if="state.error" class="ai-agents-note is-warn">This could not be loaded. <button type="button" class="ai-agents-link" @click="load()">Try again</button></p>
+      <p v-else-if="state.total === null" class="ai-agents-note">Looking…</p>
+      <p v-else-if="!state.agents.length" class="ai-agents-note">No AI character is out in {{ placeOfCity(here) }} right now. They keep their own hours{{ elsewhere.length ? ': try another city below' : '' }}.</p>
+      <ListRows v-else-if="hereList.length" label="AI characters in this city">
+        <ListRow v-for="agent in hereList" :key="`h${agent.id}`" as="button" :data-agent-row="agent.id" :title="agent.name" :sub="whereLine(agent)" @click="openChat(agent)">
+          <template #icon><span class="ai-agents-avatar is-online"><RowMark :name="agent.name" :seed="agent.id" /></span></template>
+          <template #end><span class="ai-tag">AI</span></template>
+        </ListRow>
+      </ListRows>
+      <p v-else class="ai-agents-note">All of them are in your chats or contacts above.</p>
 
       <template v-if="elsewhere.length">
-        <h3 class="ui-section">Elsewhere in the world</h3>
-        <div class="ai-agent-cities">
-          <button v-for="[city, count] in elsewhere" :key="city" type="button" class="social-btn" :class="{ 'is-primary': other.city === city }" :aria-expanded="other.city === city" @click="openCity(city)">{{ placeOfCity(city) }} · {{ count }}</button>
+        <SectionTitle>Elsewhere in the world</SectionTitle>
+        <div class="ai-agents-chips" role="group" aria-label="Other cities">
+          <button v-for="[city, count] in elsewhere" :key="city" type="button" :aria-pressed="other.city === city" @click="openCity(city)">{{ placeOfCity(city) }}<span class="ai-agents-badge">{{ count }}</span></button>
         </div>
         <template v-if="other.city">
-          <p v-if="other.loading" class="social-note">Looking in {{ placeOfCity(other.city) }}…</p>
-          <div v-for="agent in other.agents" :key="`o${agent.id}`" class="social-row ai-agent-row" data-agent-row>
-            <PlayerAvatar :name="agent.name" :seed="agent.id" status="online" />
-            <div class="ai-agent-body"><strong>{{ agent.name }}<span class="agent-tag">AI</span></strong><small>{{ whereLine(agent) }}</small>
-              <span class="social-actions">
-                <button type="button" class="social-btn is-primary" @click="openChat(agent)">Chat</button>
-                <button v-if="answersHere(agent.id)" type="button" class="social-btn" @click="callAgent(agent)">Call</button>
-                <button type="button" class="social-btn" @click="goToAgent(agent)">{{ agent.city === 'world' ? 'Go to them' : `Go to ${placeOfCity(agent.city)}` }}</button>
-                <button type="button" class="social-btn" @click="viewAgent(agent)">View</button>
-              </span>
-            </div>
-          </div>
+          <p v-if="other.loading" class="ai-agents-note">Looking in {{ placeOfCity(other.city) }}…</p>
+          <ListRows v-else-if="other.agents.length" :label="`AI characters in ${placeOfCity(other.city)}`">
+            <ListRow v-for="agent in other.agents" :key="`o${agent.id}`" as="button" :data-agent-row="agent.id" :title="agent.name" :sub="whereLine(agent)" @click="openChat(agent)">
+              <template #icon><span class="ai-agents-avatar is-online"><RowMark :name="agent.name" :seed="agent.id" /></span></template>
+              <template #end><span class="ai-tag">AI</span></template>
+            </ListRow>
+          </ListRows>
         </template>
       </template>
+      <EmptyState v-if="state.total === 0 && !chats.length && !contacts.length" icon="people" title="Nobody out just now" text="AI characters keep their own hours. Come back a little later." />
     </template>
   </div>
 </template>
 
 <style scoped>
-.ai-agents { display: grid; gap: 6px; }
-.ai-agents-search { width: 100%; box-sizing: border-box; }
-.ai-agent-row, .ai-agent-chat { display: flex; align-items: flex-start; gap: 10px; min-width: 0; text-align: left; }
-.ai-agent-chat { width: 100%; border: 0; background: transparent; font: inherit; color: inherit; cursor: pointer; }
-.ai-agent-body { flex: 1; min-width: 0; display: grid; gap: 2px; }
-.ai-agent-body strong, .ai-agent-body small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.ai-agent-body small { color: var(--c-muted); font-size: 12px; }
-.ai-agent-body .social-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
-.ai-agent-body .social-btn { padding: 4px 10px; min-height: 32px; font-size: 12px; white-space: nowrap; }
-.ai-agent-cities { display: flex; flex-wrap: wrap; gap: 6px; }
-.agent-tag { display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 999px; background: #4338ca; color: #fff; font-size: 10px; font-weight: 700; line-height: 1.5; vertical-align: middle; }
+.ai-agents { display: grid; gap: 4px; align-content: start; }
+.ai-agents-filter { box-sizing: border-box; width: 100%; min-height: 40px; margin: 0 0 var(--s-2); padding: 6px 14px; border: 1px solid #cfd5d1; border-radius: var(--r-sm); font: inherit; font-size: 16px; }
+.ai-agents-note { margin: 2px 4px 6px; font-size: 12px; line-height: 1.45; color: var(--c-muted); }
+.ai-agents-note.is-warn { color: var(--c-red); }
+.ai-agents-link { min-height: 32px; padding: 0 4px; border: 0; background: none; color: var(--c-green-dark); font: 600 12px var(--font); text-decoration: underline; cursor: pointer; }
+.ai-agents-avatar { position: relative; display: inline-grid; }
+.ai-agents-avatar.is-online::after { content: ''; position: absolute; right: -1px; bottom: -1px; width: 12px; height: 12px; border: 2px solid #fff; border-radius: 50%; background: var(--c-green-dark); }
+.ai-agents-when { display: grid; justify-items: end; gap: 3px; }
+.ai-agents-when small { font-size: 11px; font-weight: 500; color: var(--c-muted); }
+.ai-tag { display: inline-block; padding: 1px 6px; border-radius: 999px; background: #4338ca; color: #fff; font-size: 10px; font-weight: 700; line-height: 1.5; letter-spacing: .02em; }
+.ai-agents-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 var(--s-2); }
+.ai-agents-chips button { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 12px; border: 1px solid var(--c-line); border-radius: 18px; background: #fff; font: 600 13px var(--font); color: var(--c-ink-2); cursor: pointer; }
+.ai-agents-chips button[aria-pressed='true'] { border-color: var(--c-green-dark); background: #eef8f1; color: var(--c-green-dark); }
+.ai-agents-chips button:focus-visible { outline: var(--focus); outline-offset: 2px; }
+.ai-agents-badge { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px; background: var(--c-fill-2); color: var(--c-ink-2); font-size: 11px; font-weight: 700; line-height: 1; }
 </style>

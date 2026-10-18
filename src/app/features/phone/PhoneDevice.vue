@@ -248,7 +248,7 @@ defineExpose({
 /* A Vue app that wants the whole app area (a chat: its own header, a scrolling thread, a pinned composer) marks its root `panel-fill`. */
 .ph-appbody:has(> :deep(.panel-fill)) { display: flex; flex-direction: column; padding: 0; overflow: clip; }
 /* An open conversation has its own header with its own back arrow: the app bar steps aside (what is left is the room the status bar needs), so back is chat to list to home, and the thread gets the room. */
-.ph-app:has(:deep(.messages.panel-fill)) > .ph-appbar { height: 46px; min-height: 0; padding: 0; overflow: hidden; visibility: hidden; border-bottom: 0; }
-@media (max-width: 520px) { .ph-app:has(:deep(.messages.panel-fill)) > .ph-appbar { height: 42px; } }
+.ph-app:has(:deep(.messages.panel-fill)) > .ph-appbar, .ph-app:has(:deep(.agent-chat.panel-fill)) > .ph-appbar { height: 46px; min-height: 0; padding: 0; overflow: hidden; visibility: hidden; border-bottom: 0; }
+@media (max-width: 520px) { .ph-app:has(:deep(.messages.panel-fill)) > .ph-appbar, .ph-app:has(:deep(.agent-chat.panel-fill)) > .ph-appbar { height: 42px; } }
 .ph-appbody > :deep(.panel-fill) { flex: 1; min-height: 0; display: flex; flex-direction: column; }
 </style>

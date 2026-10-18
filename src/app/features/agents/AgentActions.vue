@@ -1,6 +1,7 @@
 <script setup lang="ts">
-// The card of a resident or a house agent (a tap on them in a place, or "View" in the AI agents list): who they are and where they stand now, and what a
-// person can do with a person: write, call, go to them, keep them as a contact. Read from GET /api/agents/online?id= (server/agents/contact.ts).
+// The card of a resident or a house agent (a tap on them in a place, or their name in the chat): who they are and where they stand now, and what a
+// person can do with a person, laid out as a player's card is: Chat and Call across the top, Go to them and the contact under. Read from
+// GET /api/agents/online?id= (server/agents/contact.ts).
 import '../../../ui/controls.css'
 import '../../../ui/panels/social.css'
 import { computed, ref, watch } from 'vue'
@@ -24,7 +25,7 @@ async function load(id: string): Promise<void> {
 }
 watch(() => props.id, (id) => { void load(id) }, { immediate: true })
 const saved = computed(() => agentBook.contacts.some((c) => c.id === props.id))
-const status = computed(() => (!agent.value ? '' : agent.value.venue ? whereLine(agent.value) : awake.value ? `In ${agent.value.cityName}, between places` : `Asleep now · ${agent.value.cityName}`))
+const status = computed(() => (!agent.value ? '' : agent.value.venue ? `Online now · ${whereLine(agent.value)}` : awake.value ? `Online now · ${agent.value.cityName}, between places` : `Asleep now · ${agent.value.cityName}`))
 </script>
 
 <template>
@@ -33,13 +34,15 @@ const status = computed(() => (!agent.value ? '' : agent.value.venue ? whereLine
     <p v-else-if="state === 'error'" class="social-note is-warn">This could not be loaded. <button type="button" class="social-btn" @click="load(id)">Retry</button></p>
     <p v-else-if="state === 'gone'" class="social-note">They are not around right now.</p>
     <template v-else-if="agent">
-      <div class="social-head people-who"><PlayerAvatar :name="agent.name" :seed="agent.id" :status="agent.venue ? 'online' : undefined" /><h3>{{ agent.name }}<span class="agent-tag">AI</span></h3></div>
-      <p class="social-note">{{ status }}</p>
-      <div class="agent-actions-row">
+      <div class="social-head people-who"><PlayerAvatar :name="agent.name" :seed="agent.id" :status="agent.venue || awake ? 'online' : 'offline'" /><h3>{{ agent.name }}<span class="ai-tag" title="An AI plays this character">AI</span></h3></div>
+      <p class="agent-actions-status" :class="{ 'is-online': agent.venue || awake }">{{ status }}</p>
+      <div class="agent-actions-main">
         <button type="button" class="ui-button is-primary" data-agent-chat @click="openChat(agent)">Chat</button>
         <button type="button" class="ui-button" data-agent-call :disabled="!awake" :title="awake ? `Call ${agent.name}` : 'Asleep now'" @click="callAgent(agent)">Call</button>
-        <button type="button" class="ui-button" data-agent-go :disabled="!agent.venue" :title="agent.venue ? `Go to ${agent.place}` : 'Not standing anywhere just now'" @click="goToAgent(agent)">Go to them</button>
-        <button type="button" class="ui-button" data-agent-save @click="flipContact(agent)">{{ saved ? 'In contacts ✓' : 'Add to contacts' }}</button>
+      </div>
+      <div class="agent-actions-row">
+        <button type="button" class="ui-button is-small" data-agent-go :disabled="!agent.venue" :title="agent.venue ? `Go to ${agent.place}` : 'Not standing anywhere just now'" @click="goToAgent(agent)">Go to them</button>
+        <button type="button" class="ui-button is-small" data-agent-save @click="flipContact(agent)">{{ saved ? 'In contacts ✓' : 'Add to contacts' }}</button>
       </div>
       <p class="social-note">An AI plays {{ agent.name.split(' ')[0] }}. Calls use your daily minutes for AI characters.</p>
     </template>
@@ -48,6 +51,9 @@ const status = computed(() => (!agent.value ? '' : agent.value.venue ? whereLine
 
 <style scoped>
 .agent-actions { display: grid; gap: 8px; margin-bottom: 12px; }
-.agent-actions-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-.agent-tag { display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 999px; background: #4338ca; color: #fff; font-size: 10px; font-weight: 700; line-height: 1.5; vertical-align: middle; }
+.agent-actions-status { margin: -4px 0 0; font-size: 12px; font-weight: 600; color: var(--c-muted); }
+.agent-actions-status.is-online { color: var(--c-green-dark); }
+.agent-actions-status::before { content: ''; display: inline-block; width: 7px; height: 7px; margin-right: 5px; border-radius: 50%; background: currentColor; vertical-align: 1px; }
+.agent-actions-main, .agent-actions-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.ai-tag { display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 999px; background: #4338ca; color: #fff; font-size: 10px; font-weight: 700; line-height: 1.5; vertical-align: middle; }
 </style>

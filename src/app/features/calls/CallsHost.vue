@@ -16,7 +16,7 @@ const AgentCallScreen = defineAsyncComponent(() => import('./AgentCallScreen.vue
 
 <template>
   <Teleport :to="host">
-    <div v-if="agentCallStore.open" class="calls-layer-agent"><AgentCallScreen :key="agentCallStore.open.agent" :agent="agentCallStore.open.agent" :name="agentCallStore.open.name" /></div>
+    <div v-if="agentCallStore.open" class="calls-layer-agent"><AgentCallScreen :key="`${agentCallStore.open.agent}:${agentCallStore.open.turn}`" :agent="agentCallStore.open.agent" :name="agentCallStore.open.name" /></div>
     <CallsUi v-if="callVisible() || callStore.view.phase !== 'idle'" :in-dialog="host !== 'body'" />
   </Teleport>
 </template>

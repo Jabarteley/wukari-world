@@ -45,9 +45,9 @@ export const aiAgents = definePanel({
   component: defineAsyncComponent(bodyLoader('agents/AgentsOnlineApp')),
 })
 
-/** A chat with a resident or a house agent, kept on this phone (features/agents/AgentChatApp.vue). */
+/** A chat with a resident or a house agent, kept on this phone (features/agents/AgentChatApp.vue): a phone screen like a Messages conversation, reached from the AI agents list, Messages and a card (not an app icon). */
 export const agentChat = definePanel({
-  id: 'agent-chat', title: 'Chat', placement: 'modal',
+  id: 'agent-chat', title: 'Chat', placement: 'phone', hidden: () => true,
   component: defineAsyncComponent(bodyLoader('agents/AgentChatApp')),
 })
 

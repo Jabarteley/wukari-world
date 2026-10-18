@@ -72,6 +72,8 @@ const SprayPacket = defineAsyncComponent(() => import('./SprayPacket.vue'))
 import type { AttachChoice } from './AttachSheet.vue'
 import Lightbox from './Lightbox.vue'
 import { askedAboutNotifications, noteAskedAboutNotifications } from './notifyAsk.ts'
+// The chats with AI characters are kept on this phone (features/agents/agentContacts.ts) and open their own screen ('agent-chat').
+import { agentBook, filterAgentChats, recentChats } from '../agents/agentContacts.ts'
 
 const finding = ref(false)
 const props = defineProps<{ params?: unknown }>()
@@ -383,6 +385,10 @@ const groupCount = computed(() => me.value?.conversations.filter((item) => item.
 const toStart = computed(() => (ui.tab === 'chats' && listMode.value === 'all' && !chatFilter.value && me.value ? friendsToStart(me.value.friends, me.value.conversations) : []))
 function startWith(friend: { id: string; name: string }): void { setOpen(provisionalKey(friend.id)); ui.openName = friend.name }
 const unreadTotal = computed(() => onlyUnread(me.value?.conversations ?? []).length)
+/** The chats with AI characters, under the chats: newest first, searched with the same box. */
+const aiChats = computed(() => (ui.tab === 'chats' && listMode.value === 'all' ? filterAgentChats(recentChats(agentBook.chats), chatFilter.value) : []))
+const aiLast = (lines: readonly { me: boolean; text: string }[]): string => { const line = lines.at(-1); return line ? `${line.me ? 'You: ' : ''}${line.text}` : '' }
+function openAiChat(item: { id: string; name: string; city: string }): void { shell.open('agent-chat', { id: item.id, name: item.name, city: item.city }) }
 const clockNow = computed(() => { void now.value; return game.serverNow() })
 const showSettings = ref(false)
 const lightbox = ref<Message | null>(null)
@@ -658,6 +664,15 @@ defineExpose({
           <p v-if="!chatList.length && !chatsMore && !group.open && ui.tab === 'groups' && chatFilter" class="messages-note" role="status">{{ me.conversationsMore?.next ? 'No matching groups in these conversations yet. Load more to keep searching.' : 'No matching groups. Try another search or create a group.' }}</p>
           <p v-else-if="!chatList.length && !chatsMore && !group.open && ui.tab === 'groups' && groupCount > 0" class="messages-note" role="status">No matching groups.</p>
           <p v-else-if="!chatList.length && !chatsMore && !group.open && ui.tab === 'chats' && me.conversations.length" class="messages-note" role="status">No chat has that name.</p>
+          <template v-if="aiChats.length">
+            <SectionTitle>AI characters</SectionTitle>
+            <ListRows label="Chats with AI characters">
+              <ListRow v-for="item in aiChats" :key="item.id" as="button" :data-agent-conv="item.id" :title="item.name" :sub="aiLast(item.lines)" @click="openAiChat(item)">
+                <template #icon><span class="messages-avatar"><RowMark :name="item.name" :seed="item.id" /></span></template>
+                <template #end><span class="messages-when"><small>{{ listTime(item.at, clockNow, time) }}</small><span class="messages-ai" title="An AI plays this character">AI</span></span></template>
+              </ListRow>
+            </ListRows>
+          </template>
           <template v-if="toStart.length">
             <SectionTitle>{{ me.conversations.length ? 'Friends to message' : 'Start a chat with a friend' }}</SectionTitle>
             <ListRows label="Friends to message">
@@ -667,7 +682,7 @@ defineExpose({
               </ListRow>
             </ListRows>
           </template>
-          <EmptyState v-if="ui.tab === 'chats' && !group.open && !me.conversations.length && !toStart.length" icon="messages" title="No chats yet" text="Tap New message to find a player, or tap someone at a venue and press Chat. You can also make a group with your friends.">
+          <EmptyState v-if="ui.tab === 'chats' && !group.open && !me.conversations.length && !toStart.length && !aiChats.length" icon="messages" title="No chats yet" text="Tap New message to find a player, or tap someone at a venue and press Chat. You can also make a group with your friends.">
             <BaseButton @click="shell.open('people')">See who is here</BaseButton>
           </EmptyState>
           <EmptyState v-if="ui.tab === 'groups' && !group.open && !chatFilter && !chatList.length && !chatsMore && !me.conversationsMore?.next" icon="messages" title="No groups yet" text="Create a group to start a shared conversation. You can add friends now or make it just you to begin.">
@@ -830,6 +845,7 @@ defineExpose({
 .messages-latest { position: absolute; right: 14px; bottom: 12px; display: inline-flex; align-items: center; gap: 6px; min-width: var(--tap); min-height: 40px; padding: 0 12px; border: 0; border-radius: 20px; background: #fff; box-shadow: var(--e-1), var(--ring); font: 700 16px var(--font); cursor: pointer; }
 .messages-quoted { margin: 0 12px 4px; padding: 6px 10px; border-left: 3px solid var(--c-line); border-radius: 6px; background: var(--c-fill); font-size: 12px; overflow-wrap: anywhere; }
 .messages-filter { box-sizing: border-box; width: 100%; min-height: 40px; margin: 0 0 var(--s-2); padding: 6px 14px; border: 1px solid #cfd5d1; border-radius: var(--r-sm); font: inherit; font-size: 16px; }
+.messages-ai { display: inline-block; padding: 1px 6px; border-radius: 999px; background: #4338ca; color: #fff; font-size: 10px; font-weight: 700; line-height: 1.5; letter-spacing: .02em; }
 .messages-at { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: var(--c-green-dark); color: #fff; font-size: 11px; font-weight: 700; }
 .messages-update > .bubble-actions { flex-basis: 100%; justify-content: flex-start; margin: -4px 0 2px; padding-left: 50px; }
 .messages-badge.is-quiet { background: var(--c-muted); }

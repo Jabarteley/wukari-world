@@ -351,8 +351,8 @@ export default defineConfig({
     if (/node_modules\/three\//.test(id)) return 'three'
     // The one-line component wrapper every compiled .vue file imports: beside Vue, which each of them imports as well, so the first page and the shell kit do not need a file of its own for it.
     if (id === '\0plugin-vue:export-helper') return 'vue'
-    // The loading page already reads this Vue-only update signal; keep its existing first-paint boundary in the framework chunk.
-    if (id.endsWith('/src/app/state/updateNotice.ts')) return 'vue'
+    // These small loading-page utilities are also shared by lazy entries; keep them in the existing first-paint chunk.
+    if (/\/src\/(storage-(key|city)|app\/state\/updateNotice)\.ts$/.test(id)) return 'vue'
     if (/node_modules\/@?vue\/|node_modules\/vue\//.test(id)) return 'vue'
     // Account metadata and tracking are shared by the lazy game/admin shells, not the loading page.
     // The campus rules are fetched when a life uses the campus (src/game/campus-gate.ts), not with the first page.

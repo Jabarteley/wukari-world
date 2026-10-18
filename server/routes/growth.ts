@@ -51,6 +51,7 @@ import { growthOf, playerOf, sweep, LIMITS } from '../growth/data.ts';
 import { createShare, findShare, sharePageHtml } from '../growth/share.ts';
 import { bonusConfig, claimedOf, publicOffer } from '../bonus/service.ts';
 import { referralService } from '../growth/referral.ts';
+import { isProbeSession } from '../protocol.ts';
 import { CLIENT_SIGNALS, count, countSource, prune, touch } from '../growth/metrics.ts';
 import { outreachService } from '../growth/outreach.ts';
 import { tablesService } from '../growth/tables.ts';
@@ -96,6 +97,8 @@ export default function growthRoutes(ctx: RouteContext): Record<RouteKey, RouteH
       if (!ctx.allow(`growth:http:${session.publicId}`, LIMITS.httpPerMinute)) throw ctx.fail(429, 'rate_limited');
       // The growth funnel, referrals and e-mail are about people: an AI agent character is counted apart (server/agents/, the pulse's `ai`).
       if (isAgentOrigin(requestOrigin(request, session))) return { ok: false, code: 'not_counted', reason: 'AI agents are not part of the growth numbers.' };
+      // A release check's probe session (protocol.ts) is not a person either: nothing about it is counted.
+      if (isProbeSession(session)) return { ok: false, code: 'not_counted', reason: 'Probe sessions are not part of the growth numbers.' };
       const cityId = city(body.cityId);
       // A life is never created here: someone who has not finished character creation is simply not ready.
       const stored = session.cities?.[cityId]?.state;

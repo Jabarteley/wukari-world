@@ -27,6 +27,7 @@ import { limitsOf } from './config.ts';
 import { eachSession } from './players.ts';
 import { citiesToday } from './history.ts';
 import { peek } from './store.ts';
+import { isProbeSession } from '../protocol.ts';
 import { adminStats } from './tools.ts';
 import type { Db, RouteContext } from '../types.ts';
 
@@ -93,12 +94,13 @@ export function statsService(ctx: RouteContext) {
 
   function snapshot(db: Db) {
     const now = ctx.now(), today = lagosTime(now).day, limit = limitsOf(ctx).scanMax;
-    let seen = 0, cash = 0, players = 0, withCash = 0;
+    let seen = 0, cash = 0, players = 0, withCash = 0, probes = 0;
     const balances: number[] = [], richest: { id: string; name: string; cash: number }[] = [];
     const categories: Record<string, { net: number; players: number }> = {}, cities: Record<string, { residents: number; visitors: number }> = {};
     eachSession(db, (session) => {
       seen += 1;
       if (seen > limit || !(session.expiresAt > now)) return;
+      if (isProbeSession(session)) { probes += 1; return; } // a release check's probe is not a player
       const city = characterCity(session), state = city ? session.cities[city]?.state : undefined;
       if (!city || !state) return;
       players += 1; cash += state.cash; if (state.cash > 0) withCash += 1;
@@ -122,7 +124,7 @@ export function statsService(ctx: RouteContext) {
       const lines = conv.messages;
       for (let i = lines.length - 1; i >= 0; i--) { const line = lines[i]; if (!line || line.at < dayStart) break; if (line.from !== null) messagesToday += 1; }
     }
-    return { asOf: now, sessionsRead: Math.min(seen, limit), sessionsHeld: seen, truncated: seen > limit, players, cashInCirculation: cash, playersWithCash: withCash, median: Math.round(median), richest, cities,
+    return { asOf: now, sessionsRead: Math.min(seen, limit), sessionsHeld: seen, truncated: seen > limit, players, probes, cashInCirculation: cash, playersWithCash: withCash, median: Math.round(median), richest, cities,
       social: { messagesToday, groups, conversations, pings: Object.keys(db.social?.pings ?? {}).length },
       faucets: list.filter((item) => item.net > 0 && !apart(item)).slice(0, 5), sinks: list.filter((item) => item.net < 0 && !apart(item)).slice(0, 5), adminMoney: list.filter(apart), cost: `one pass over ${Math.min(seen, limit)} stored sessions (reads only), cached ${SNAPSHOT_CACHE_MS / 60000} minutes` };
   }

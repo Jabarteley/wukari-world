@@ -448,3 +448,43 @@ test('account erasure includes owned agent characters and retries a durable map-
   assert.equal(retry.body.count, 2);
   assert.equal((await a.admin(path, founder.cookie, intent)).body.jobId, first.body.jobId);
 });
+
+test('release-check probe sessions are short-lived, counted nowhere, hidden from the player lists and removable in one go by the root admin', async (t) => {
+  const a = await admins(t);
+  const founder = await a.account(FOUNDER_ADDRESS, 'Founder'), ada = await a.ready('Adaobi');
+  // What scripts/smoke.ts does: a session made with `probe: true`, which then loads a life; and an older probe, known only by its name.
+  const probe = async (name: string, flag: boolean) => { const res = await a.f.request('/api/session', flag ? { name, probe: true } : { name }); const cookie = res.headers.get('set-cookie')?.split(';')[0] ?? ''; await a.f.request('/api/life?city=lagos', null, cookie); return { cookie, id: ((await res.json()) as { session: { id: string } }).session.id }; };
+  const flagged = await probe('Zz City 7', true), legacy = await probe('Zz Test', false);
+  await a.f.request('/api/growth/hello', { cityId: 'lagos' }, flagged.cookie);
+  await a.f.request('/api/growth/hello', { cityId: 'lagos' }, ada.cookie);
+  const everyone = (await a.admin('/api/admin/players', founder.cookie)).body as { rows: { id: string; kind: string; cityName: string | null }[]; hidden: number };
+  assert.deepEqual(everyone.rows.map((row) => row.id).sort(), [ada.id, founder.id].sort(), 'probes are not in Everyone');
+  assert.equal(everyone.hidden, 2); assert.equal(everyone.rows.find((row) => row.id === ada.id)?.cityName, 'Lagos');
+  assert.equal(((await a.admin('/api/admin/players?filter=guests', founder.cookie)).body.rows as unknown[]).length, 1, 'nor in Guests');
+  const tests = (await a.admin('/api/admin/players?filter=test', founder.cookie)).body as { rows: { id: string; kind: string }[]; hidden: number };
+  assert.deepEqual(tests.rows.map((row) => [row.id, row.kind]).sort(), [[flagged.id, 'test'], [legacy.id, 'test']].sort()); assert.equal(tests.hidden, 0);
+  const dash = (await a.admin('/api/admin/dashboard', founder.cookie)).body as { players: { newToday: number; activeToday: number } };
+  assert.deepEqual([dash.players.newToday, dash.players.activeToday], [1, 1], 'the probe that said hello was not counted');
+  const eco = (await a.admin('/api/admin/economy?fresh=1', founder.cookie)).body as { players: number; probes: number };
+  assert.deepEqual([eco.players, eco.probes], [2, 2]);
+  const pulse = await (await a.f.request('/api/world/pulse', null, flagged.cookie)).json() as { today: number };
+  assert.equal(pulse.today, 1, 'a probe asking for the pulse is counted as itself (it is on the page) but adds no visit');
+  const count = (await a.admin('/api/admin/test-sessions', founder.cookie)).body as { count: number; live: number };
+  assert.deepEqual([count.count, count.live], [2, 2]);
+  const other = await a.account(OTHER_ADMIN_ADDRESS, 'Second');
+  assert.equal((await a.admin('/api/admin/test-sessions/remove', other.cookie, {})).status, 403, 'only root removes');
+  const removed = (await a.admin('/api/admin/test-sessions/remove', founder.cookie, {})).body as { removed: number; remaining: number };
+  assert.deepEqual([removed.removed, removed.remaining], [2, 0]);
+  assert.equal(((await a.admin('/api/admin/players?filter=test', founder.cookie)).body.rows as unknown[]).length, 0);
+  assert.equal(((await a.admin('/api/admin/players', founder.cookie)).body.rows as unknown[]).length, 3, 'the people remain');
+  assert.equal((await a.f.request('/api/session', null, flagged.cookie)).status, 401, 'a removed probe is gone');
+  // A probe (flagged, or known by its name) expires within fifteen minutes however often it renews; the person's session does not.
+  const late = await probe('Zz City 9', true), named = await probe('Zz Test', false);
+  a.f.advance(10 * 60000);
+  assert.equal((await a.f.request('/api/session', null, late.cookie)).status, 200, 'renewed at ten minutes');
+  a.f.advance(16 * 60000);
+  assert.equal((await a.f.request('/api/session', null, late.cookie)).status, 401, 'but gone sixteen minutes after its last request: a renewal gives a probe fifteen minutes, never the host lifetime');
+  assert.equal((await a.f.request('/api/session', null, named.cookie)).status, 401);
+  assert.equal((await a.f.request('/api/session', null, ada.cookie)).status, 200);
+  assert.equal(((await a.admin('/api/admin/audit?action=test-sessions', founder.cookie)).body.lines as unknown[]).length, 1);
+});

@@ -13,7 +13,7 @@ import Funnel from './charts/Funnel.vue'
 import type { FunnelRow } from './charts/Funnel.vue'
 import { recordDone } from './adminUi.ts'
 
-const emit = defineEmits<{ player: [id: string] }>()
+const emit = defineEmits<{ player: [id: string]; tests: [] }>()
 const api = useAdmin()
 interface Dash {
   asOf: number; online: { value: number; cities: Record<string, number> }; cities: Record<string, { new: number; seen: number }>; yesterday: { new: number; active: number; sessions: number }; today: { sessions: number }
@@ -30,6 +30,8 @@ interface Eco {
   asOf: number; cashInCirculation: number; players: number; median: number; richest: { id: string; name: string; cash: number }[]; sessionsRead: number; truncated: boolean; cost: string
   faucets: { category: string; net: number }[]; sinks: { category: string; net: number }[]; adminMoney: { category: string; net: number }[]
   cities: Record<string, { residents: number; visitors: number }>; social: { messagesToday: number; groups: number; conversations: number; pings: number }
+  /** The release check's probe sessions seen in the walk: not people (server/admin/probes.ts). */
+  probes?: number
 }
 const dash = ref<Dash | null>(null), hist = ref<Hist | null>(null), eco = ref<Eco | null>(null), error = ref(''), busy = ref(false)
 const span = ref<'today' | 'week'>('week'), now = ref(Date.now())
@@ -63,6 +65,9 @@ const cityRows = computed(() => {
 })
 const collections = computed(() => Object.entries(dash.value?.storage.collections ?? {}).sort((a, b) => b[1] - a[1]).slice(0, 12))
 const funnel = computed(() => hist.value?.funnel[span.value])
+// Guests, less the release check's probe sessions once the economy walk has counted them (the fast count cannot tell them apart).
+const guests = computed(() => Math.max(0, (dash.value?.accounts.guests ?? 0) - (eco.value?.probes ?? 0)))
+const probes = computed(() => eco.value?.probes ?? 0)
 const tileNote = (text: string | null): string => text ?? 'no earlier day to compare with'
 
 const guideTest = ref('')
@@ -88,7 +93,7 @@ const asOf = computed(() => (dash.value ? `as of ${absolute(dash.value.asOf)}, $
         <div class="adm-card adm-tile"><h3>Online now</h3><div class="adm-big">{{ dash.online.value }}</div><Spark :values="peakSeries" :labels="twoLabels" name="Busiest moment of each day" /><div class="adm-sub">exact, live · trend is the busiest moment of each day</div></div>
         <div class="adm-card adm-tile"><h3>Players today</h3><div class="adm-big">{{ dash.players.activeToday }}</div><Spark :values="seenSeries" :labels="twoLabels" name="Players seen each day" /><div class="adm-sub">{{ tileNote(tileChange([dash.yesterday.active, dash.players.activeToday])) }}</div></div>
         <div class="adm-card adm-tile"><h3>New today</h3><div class="adm-big">{{ dash.players.newToday }}</div><Spark :values="newSeries" :labels="twoLabels" name="New players each day" color="#2563eb" /><div class="adm-sub">{{ tileNote(tileChange([dash.yesterday.new, dash.players.newToday])) }}</div></div>
-        <div class="adm-card adm-tile"><h3>Signed up / guests</h3><div class="adm-big">{{ dash.accounts.accounts }} <small>/ {{ dash.accounts.guests }}</small></div><Spark :values="accSeries" :labels="twoLabels" name="Accounts" color="#7c3aed" /><div class="adm-sub">{{ percent(dash.accounts.accounts, dash.accounts.accounts + dash.accounts.guests) }}% have an account · guests approximate</div></div>
+        <div class="adm-card adm-tile"><h3>Signed up / guests</h3><div class="adm-big">{{ dash.accounts.accounts }} <small>/ {{ guests.toLocaleString('en-GB') }}</small></div><Spark :values="accSeries" :labels="twoLabels" name="Accounts" color="#7c3aed" /><div class="adm-sub">{{ percent(dash.accounts.accounts, dash.accounts.accounts + guests) }}% have an account · guests approximate<template v-if="probes"> · {{ probes.toLocaleString('en-GB') }} test sessions left out</template></div></div>
         <div class="adm-card adm-tile"><h3>Back in 7 days</h3><div class="adm-big">{{ returningNow }}</div><Spark :values="seenSeries" :labels="twoLabels" name="Players seen each day" color="#b45309" /><div class="adm-sub">seen this week, not new this week · approximate</div></div>
         <div class="adm-card adm-tile"><h3>Open reports</h3><div class="adm-big">{{ dash.reports.open }}</div><div class="adm-sub">{{ dash.reports.problems.open }} problem reports open · {{ dash.businesses.open }} stalls open</div></div>
       </div>
@@ -164,6 +169,7 @@ const asOf = computed(() => (dash.value ? `as of ${absolute(dash.value.asOf)}, $
             <p class="adm-line"><span>Call relay configured</span><b>{{ extra('calls-relay-set') ?? '-' }}</b></p>
             <p class="adm-line"><span>AI guide configured</span><b>{{ extra('guide-on') ?? '-' }}</b></p>
             <p class="adm-line"><span>Rows written today</span><b>{{ dash.storage.writes ?? 'not metered on this host' }}</b></p>
+            <p v-if="probes" class="adm-line"><span>Test sessions held (release check)</span><b>{{ probes.toLocaleString('en-GB') }} · <a href="#/players" @click.prevent="emit('tests')">remove in Players</a></b></p>
           </div>
           <div><h4>Stored collections</h4>
             <p v-for="[name, size] in collections" :key="name" class="adm-line"><span>{{ name }}</span><b :class="`tone-${sizeTone(size)}`">{{ bytes(size) }}<template v-if="sizeTone(size) !== 'ok'"> ·&nbsp;{{ sizeTone(size) === 'bad' ? 'near the limit' : 'growing' }}</template></b></p>

@@ -17,7 +17,9 @@ import { prepareStoredCityContent } from '../request-city-content.ts';
  *   GET  /api/admin/economy[?fresh=1]         the economy snapshot (a walk over the sessions), cached 10 min
  *   GET  /api/admin/history[?days=30]         the dashboard's history: 30 days of exact counters and the daily samples, the new-player funnel
  *   POST /api/admin/players/bulk              { clientId, ids (at most 20), action: message | credit, text? amount? reason? confirm? }
- *   GET  /api/admin/players?q&filter&city&page    search and list
+ *   GET  /api/admin/players?q&filter&city&page    search and list (filter=test: the release check's probe sessions, hidden from every other list)
+ *   GET  /api/admin/test-sessions             how many probe sessions the store holds (server/admin/probes.ts)
+ *   POST /api/admin/test-sessions/remove      { clientId }   root only: delete up to one batch of them; repeat until none remain
  *   GET  /api/admin/players/:id               one player
  *   POST /api/admin/players/:id/act           { clientId, action, reason?, confirm?, …params }   server/admin/actions.ts
  *   POST /api/admin/world/grant               { clientId, audience, city?, amount, reason, preview?, confirm? }
@@ -69,6 +71,7 @@ import { settingsOf } from '../admin/settings.ts';
 import { festivalsOf } from '../admin/festivals.ts';
 import { statsService } from '../admin/stats.ts';
 import { erasureService } from '../admin/erasure.ts';
+import { probesService } from '../admin/probes.ts';
 import { prayersOf } from '../prayers/service.ts';
 import { voiceService, REPLY_MAX } from '../residents/voice.ts';
 import { ACT_KINDS, LIMITS as PRAYER_LIMITS, NOTICE as PRAYER_NOTICE, SKIES } from '../prayers/model.ts';
@@ -91,6 +94,7 @@ export default function adminRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
   const world = worldService(ctx), moderation = moderationService(ctx), social = socialService(ctx), outreach = outreachService(ctx), shops = businessService(ctx), notice = noticeOf(ctx);
   const trust = trustService(ctx), prayers = prayersOf(ctx), voice = voiceService(ctx);
   const erasure = erasureService(ctx, () => stats.invalidate());
+  const probes = probesService(ctx);
   linkFeatures(ctx);
   // The history of the dashboard: one small row per day, sampled by the heartbeat (server/admin/history.ts).
   const history = recorder(ctx, (db) => {
@@ -177,6 +181,8 @@ export default function adminRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
       const sort = SORTS.find((item) => item === request.query.get('sort')) ?? 'seen';
       return players.list(db, { q: request.query.get('q') ?? '', filter, city, page: Number(request.query.get('page')) || 0, sort, desc: request.query.get('dir') !== 'asc', size: Number(request.query.get('size')) || 0 });
     }),
+    'GET /api/admin/test-sessions': read((db) => probes.count(db)),
+    'POST /api/admin/test-sessions/remove': write('test-sessions', (db, admin) => { if (!admin.root) throw refuse(403, 'root_required', 'Only the root admin can remove test sessions.'); return { fingerprint: ['remove'], run: () => probes.remove(db, admin) }; }),
     'GET /api/admin/players/:id': read((db, _admin, request) => {
       const found = players.detail(db, publicId(request.params.id));
       if (!found) throw refuse(404, 'unknown_player', 'No live player has that id.');

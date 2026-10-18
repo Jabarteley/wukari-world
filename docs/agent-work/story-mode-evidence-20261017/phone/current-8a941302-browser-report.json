@@ -1,0 +1,173 @@
+{
+  "sourceRevision": "8a94130206815cf8905e7a48402a6e82a7c70f37",
+  "tab": "460562389",
+  "origin": "http://127.0.0.1:5351/",
+  "actor": "Story Host Kano",
+  "moduleScripts": [
+    "/assets/app-9d1b405.js",
+    "/__open-dev.js"
+  ],
+  "health": {
+    "method": "Read-only curl GET /api/health",
+    "ok": true,
+    "build": "joinallworld-8a94130206815cf8905e7a48402"
+  },
+  "baseline": {
+    "mode": "Story Path",
+    "city": "Kaduna",
+    "venue": "Chechinya Market · Kaduna North",
+    "wallet": 49996750,
+    "missions": 0,
+    "venues": 2,
+    "cities": 275,
+    "kanoChapter": 4
+  },
+  "transitions": [
+    {
+      "from": "Story Path",
+      "to": "Free Roam",
+      "elapsedMs": 315,
+      "observation": {
+        "buttons": [
+          {
+            "pressed": "true",
+            "text": "Free RoamExplore without chapter locks."
+          },
+          {
+            "pressed": "false",
+            "text": "Story PathFollow the chapter journey."
+          }
+        ],
+        "kanoRetained": true,
+        "progress": "0 missions2 venues284 of 284 cities",
+        "scrollWidth": 390,
+        "width": 390
+      }
+    },
+    {
+      "from": "Free Roam",
+      "to": "Story Path",
+      "elapsedMs": 293,
+      "observation": {
+        "buttons": [
+          {
+            "pressed": "false",
+            "text": "Free RoamExplore without chapter locks."
+          },
+          {
+            "pressed": "true",
+            "text": "Story PathFollow the chapter journey."
+          }
+        ],
+        "kanoRetained": true,
+        "progress": "0 missions2 venues275 of 284 cities",
+        "scrollWidth": 390,
+        "width": 390
+      }
+    }
+  ],
+  "timingMethod": "One sample per ordered transition. Date.now in CUA Node scope immediately before awaited documented Playwright locator.click; await read-only Playwright.evaluate of pressed states and rendered progress DOM; Date.now immediately after evaluate returned. Includes locator resolution, browser actionability wait, click dispatch, transport round trips and DOM observation overhead. It is a click-call-to-observed-state upper bound, not isolated application latency. No listeners, state injection, resampling, or API timing invented.",
+  "timingAcceptance": "315ms exceeds requested300ms upper bound;293ms meets. Overall latency criterion not demonstrated. Actual app latency cannot be separated from automation overhead.",
+  "networkTiming": "Existing CDP Network.responseReceived buffer returned0events. No network listeners installed.",
+  "narrow": {
+    "progress": "0 missions2 venues275 of 284 cities",
+    "scrollWidth": 320,
+    "width": 320
+  },
+  "restoredHospital": {
+    "text": "Giwa Hospital\n\nKaduna North · Short hop\n\nLocked\n\nTrek\nFree\n11s\nOkada\n₦250\n5s · go-slow\nBus\n₦250\n10s · go-slow\nTaxi\n₦450\n8s · go-slow\n\nGiwa Hospital opens at chapter 2: Belong.\n\nStory path locked\nAbout · 16 things to do",
+    "travelPerformed": false
+  },
+  "finalMode": "Story Path",
+  "finalView": "Map showing Giwa Hospital locked",
+  "captureMethod": "Native Chrome CDP Page.captureScreenshot format png, fromSurface true, captureBeyondViewport false. Original bytes saved without crop, resize, conversion or pixel changes. PNG IHDR dimensions and SHA256 read from original bytes.",
+  "captures": [
+    {
+      "file": "current-8a941302-story-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "b536787c1d3b533af38f7b3149aa93639db86fde21d0a112aa0450250d316e21",
+      "visuallyReviewed": true
+    },
+    {
+      "file": "current-8a941302-free-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "c131a08bbb2efc7a621be88eb2d8c14d55fdea8292bedfa5679f0b64464efb1c",
+      "visuallyReviewed": true
+    },
+    {
+      "file": "current-8a941302-restored-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "287370d6debf696597719f716dc0789dc72cbb4ea385e7146bfa3cdeb8260c07",
+      "visuallyReviewed": true
+    },
+    {
+      "file": "current-8a941302-restored-320.png",
+      "width": 320,
+      "height": 740,
+      "sha256": "620d568ef93f415296abe6c89c765ba4e5de0d6dad1b362de554cf190f70dbc6",
+      "visuallyReviewed": true
+    },
+    {
+      "file": "current-8a941302-hospital-lock-320.png",
+      "width": 320,
+      "height": 740,
+      "sha256": "243a2b49dab449b90cc99c08b6a06637a9d4c58cb6863f32c7bb4e0f532ceb6e",
+      "visuallyReviewed": true
+    },
+    {
+      "file": "current-8a941302-helper-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "051e0088194b2b6783bb3311d5c681eba5c91f4cd7fb407ba80e2be29b058d52",
+      "visuallyReviewed": true
+    },
+    {
+      "file": "current-8a941302-nairobi-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "a911eb6cf7bb32d71e288b57e975d9dc20a8d26e093a08d20e8571a5c5db7d51",
+      "visuallyReviewed": true
+    }
+  ],
+  "limitations": [
+    "Responsive desktop browser viewports, not physical phones.",
+    "Free Roam hospital availability was not inspected in this finite pair.",
+    "Kano chapter4 retention checked in DOM text; city list disclosure remained collapsed.",
+    "Helper and Nairobi checked read-only via existing cookies; no mode toggles or replay. No travel, reward collection, clock manipulation, source changes or server operations."
+  ],
+  "additionalActors": {
+    "helper": {
+      "tab": "460562392",
+      "origin": "http://localhost:5351/",
+      "actor": "Story Helper Lagos",
+      "mode": "Story Path",
+      "keepsakes": "Help keepsakes · 2Kano Roots keepsakeYou helped a friend complete a challenge.10/19/2026Kano Roots keepsakeYou helped a friend complete a challenge.10/19/2026",
+      "module": [
+        "/assets/app-9d1b405.js",
+        "/__open-dev.js"
+      ],
+      "progress": "0 missions0 venues1 of 284 cities",
+      "scrollWidth": 390,
+      "width": 390
+    },
+    "nairobi": {
+      "tab": "460562395",
+      "origin": "http://nairobi.localhost:5351/",
+      "actor": "Story Nairobi Start",
+      "mode": [
+        "Story PathFollow the chapter journey."
+      ],
+      "module": [
+        "/assets/app-9d1b405.js",
+        "/__open-dev.js"
+      ],
+      "progress": "3 missions2 venues1 of 284 cities",
+      "scrollWidth": 390,
+      "signature": "City signature challengeCity tablesTake a seat and learn the game people gather around here.Open Tables",
+      "width": 390
+    }
+  }
+}

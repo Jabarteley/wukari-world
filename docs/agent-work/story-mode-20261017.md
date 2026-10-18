@@ -5,9 +5,9 @@
 - **Work ID:** `story-mode-20261017`
 - **Owner:** Story programme integration
 - **Thread:** `01a14bf1-fd6d-7de1-9770-a0c22f5d554a`
-- **UTC updated:** `2026-10-18T02:52:20Z`
+- **UTC updated:** `2026-10-18T05:31:24.926716+00:00`
 - **Status:** `active`
-- **Work state:** `verification`
+- **Work state:** `implementation`
 
 ## Goal and boundaries
 
@@ -24,16 +24,16 @@ Deliver four independently reviewed and released phases of Story Mode for `kroma
 
 ## Repository state
 
-- **Base:** `c42aeee66e0fbc60e85cb808d8d2ec263a7ac4d4`; current pushed runtime `ea76250649a728172d623e80b8fb22112f570e0a`, integrating main `9eab3816db3f1cdc2fc3e5671915f8c7549b9efa`. Normal typecheck5projects/0errors, focused66/66, full city/scene15/15 and284-city built graph pass. Final merged-source browser gate also passes.
-- **Branch:** `story/phase1-core`
+- **Base:** `c42aeee66e0fbc60e85cb808d8d2ec263a7ac4d4`; primary Phase1 merged as `377300fab8039d551638540047091b7c31609dbc`. Current pushed repair runtime `8a94130206815cf8905e7a48402a6e82a7c70f37` passes CI39094348275, normal typecheck5/0, focused fresh-slice/Story/journey11/11 and exact release Worker5/5. Original runtime `ea76250649a728172d623e80b8fb22112f570e0a` retains full city/scene15/15,284-city graph and browser evidence at its named source. Current built repair responsive/browser retention and isolated trusted-event timing confirmation pass at their stated scopes; PR/release remain pending.
+- **Branch:** `codex/story-core-worker-startup-fix` (bounded fix-forward after PR34 release gate rejected startup)
 - **Initial dirty status:** clean.
-- **Resources:** Task QA Vite5351/API5352 gracefully stopped after browser ownership returned; exec54611 terminal143, PID70392 terminated. Saved actors/progress and local clock preserved. All local heavy/compiler/test/artifact sessions terminal. Protected listeners and Desktop checkout untouched. One future scene architecture review is source-only; future factory files remain unstaged.
+- **Resources:** Task-only static Node QA5351 is active as exec11040, heap512MiB, serving the verified8a941302 CI bundle directly. Existing saved actors/progress and clock retained. Earlier Vite5351/API5352 exec54611 is terminal143; no5352 listener. All local heavy/compiler/test/artifact sessions are terminal; generation is held during browser confirmation. Protected listeners and Desktop checkout untouched. Future factory files remain unstaged.
 
 ## Acceptance tracker
 
 | Phase | Required outcome and proof | Implementation | CI / merge / release | Next action |
 |---|---|---|---|---|
-| 1 Core | Reversible per-character free/story switch; permanent receipt-derived ladder and city tally in both modes; all four city doors and venue gate; map locks; city signatures; friends-only verified co-op with isolated helper pass, quotas, expiry, keepsake and solo path; erasure; 320/390px actual journeys | Implemented; local typecheck 5/0, full city/scene suites 15/15, snapshot gates 63/63 and merged erasure checks 4/4 pass | CI39090198072 success on ea762506; no PR | Create PR from accepted runtime and curated evidence, merge/release/verify live |
+| 1 Core | Reversible per-character free/story switch; permanent receipt-derived ladder and city tally in both modes; all four city doors and venue gate; map locks; city signatures; friends-only verified co-op with isolated helper pass, quotas, expiry, keepsake and solo path; erasure; 320/390px actual journeys | Implemented; local typecheck 5/0, full city/scene suites 15/15, snapshot gates 63/63 and merged erasure checks 4/4 pass | PR34 merged377300fa; PR CI39091668137 success; release39092396438 failed before deploy | Repair implemented; PR35/current CI39099658897 pending, then protected release/live verification |
 | 2 Scenes | Validated distinct recipes for every non-authored venue; Blender regional kits and sourced heroes; lazy packs; regeneration/check/contact sheets; Accra/Nairobi/Tokyo/Paris phone journeys and cold-load measurements | Pure contract/input tooling, final kit/hero and actual CPU Accra prototype reviewed; no runtime wiring | Pending | Start delivery branch after phase1 release; implement real compiler and host composition |
 | 3 Talk | Filtered per-city/per-NPC banks and sourced beta phrasebooks; deterministic greet/hours/directions; capped safe live path; cost/zero-call ledger and three-city browser evidence | Pure bank/draft tooling and beta phrase inputs reviewed; no runtime wiring | Pending | Implement factory execution and adapters outside owned house/model paths |
 | 4 Realism | Recipe sky/material/lighting pass and mapped-street chapter3 entry; phone budgets and full return journey | Queued | Pending | Coordinate allowed seam after phase2 |
@@ -59,14 +59,14 @@ No phase is accepted from a worker report, passing build or release receipt alon
 
 ## Immediate resume steps
 
-1. Current runtime `ea762506` passes all required pre-PR checks, including final Chrome320/390 browser confirmation. Native Mac lock is no longer a blocker.
-2. Commit curated Phase1 evidence only, recheck main, push and create/attach the PR. Wait for green CI, merge through PR and run the protected release on the new main.
-3. Confirm the active public build and actual live page, checkpoint Phase1, then branch Phase2 from fresh main. Future factory files stay out of Phase1.
+1. Current repair8a941302 passes CI39094348275, exact artifact download budgets, neutral Worker5/5 and typecheck5/0. Built app confirmation now proves retained progress, locks, helper keepsakes, distinct Nairobi content and no horizontal overflow at320/390. Instrumented trusted-event timing is26.3/24.2ms; original automation-inclusive315/293ms is preserved.
+2. Independently inspect the finite browser report/native PNG metadata, curate only repair evidence and this record, then create the bounded repair PR, require current PR CI and merge normally.
+3. Release exact new main through the protected workflow, verify active health/build and actual public page, then branch Phase2 from fresh main. Keep future scene/talk files out of the repair.
 
 ## Release state
 
-- **Local implementation:** Story core, reversible switch, authoritative capability, map locks and lazy co-op UI implemented. Focused checks116/116 before the disabled-view refinement; its focused checks28/28. Actual co-op and travel passed. Current candidate pushed; no PR, merge or release yet.
-- **Deployment:** authorized, not started.
+- **Local implementation:** Story core, reversible switch, authoritative capability, map locks and lazy co-op UI implemented. Focused checks116/116 before the disabled-view refinement; its focused checks28/28. Actual co-op and travel passed. PR34 merged377300fa with successful current CI39091668137. Protected release39092396438 rejected startup before deployment; bounded journey-index repair and active live acceptance pending.
+- **Deployment:** protected release39092396438 failed before deployment for377300fa. Live remains9eab3816; Story setting defaultfalse.
 - **Gate:** all four tracker rows remain open.
 
 ## Checkpoint history
@@ -344,3 +344,121 @@ The heavy slot is free. Root is restarting only the task QA preview fromea762506
 - Final merged browser confirmation passes at320/390CSSpx: first/only ordered Story→Free299ms and Free→Story290ms, cities275→284→275, Kaduna venues3→19→3, Giwa Hospital enabled in Free and chapter2Belong locked in Story. KanoChapter4 retained. Helper has two keepsakes and own Kano lock; Nairobi opens the actual chess table surface. No new travel, games, challenges or clock advances in this finite rerun.
 - Eight unmodified native PNGs visually reviewed; independent header/hash/byte check8/8,721925bytes. Earlier completed quests/co-op/travel remain historical gameplay evidence with separate source/scope labels. These are warm local browser timings, not physical-phone or production measurements.
 - Task QA stopped gracefully after input pause and ownership handback. All parent local execution sessions terminal. No PR, merge or Story deployment yet. All four phases remain open. Next: evidence commit, PR, green current CI, merge, protected release and active live verification.
+
+## Phase1 PR checkpoint 2026-10-18T03:01:01Z
+
+- [PR34](https://github.com/kromate/joinallworld/pull/34) opened and attached at4fddbddb22d921be75caa74e7de6a1276c6d75d0. Only curated evidence/documentation differs from the verified runtimeea762506. Fresh main9eab was an ancestor before the ordinary push.
+- PR CI39091668137 has passed policy and typecheck; hosted build/download/smoke is still running. The external review service skipped its review because the eligible file count exceeded its limit and available review credits were insufficient. No upgrade or extra credits were requested. Internal source review and the exact independent checks above remain the acceptance basis.
+- No Story release yet. Merge after current CI passes, then run the protected release and confirm active public build and actual live page.
+- Future-only deterministic scene layout tooling added outside runtime: nine focused checks pass, preserving actual effective targets/authored precedence and conservative explicit host allowances. Normal typecheck passes5/0. Parent rerun is active; final decoded asset geometry and complete host/browser acceptance remain open. No Phase2 source is staged.
+- Input proposal covers284cities/243country groupings; five palette corrections retained. Six current pilot briefs preserve102recipe targets,48authored venues and6homes. Region labels are art palette choices;61ambiguous placements still await parent judgment.
+- The existing runtime-scene interface is the selected Phase2 seam. Geometry and image pixels must prepare before city loading resolves, then mount synchronously with full reservation and verified native readmission. Shared edits stay in the allowed scene selection/loading regions. Shared campus fallback kinds must remain targets while actual city-authored kinds remain preserved; this distinction needs an explicit implementation test.
+- All14regional kit prototypes and five remaining six-pilot landmarks are being produced in an isolated temporary directory by the designated generation owner. Refined Accra remains unchanged. No public/runtime writes, provider calls or paid factory/GPU spend.
+
+## Phase1 merged/release checkpoint 2026-10-18T03:06:12Z
+
+- [PR34](https://github.com/kromate/joinallworld/pull/34) merged through the ordinary protected path at `377300fab8039d551638540047091b7c31609dbc`,2026-10-18T03:05:19Z. Its tree exactly matches accepted PR head4fddbddb; no runtime code changed after final browser acceptance.
+- PR CI39091668137 success. Exact PR output repeats613961raw/222634gzip/195450Brotli startup and188939raw/70896gzip host. No budget changed.
+- [Protected release39092396438](https://github.com/kromate/joinallworld/actions/runs/39092396438) dispatched with source_sha377300fa,deploytrue,publish_stagingfalse. It is running; live health still showed9eab before deployment. Source/defaultflag proof is separate from actual live UI acceptance.
+- Parent actual-asset-metadata layout probe passes23Accra recipes at36386UTF-8 bytes; max3694estimated triangles,12meshes,3lights including an explicit400triangle/3mesh/3light host planning allowance. This is data/metadata validation only, not construction, pixels or runtime budgets. The first probe used an incorrect durable-report path; failure log retained and corrected from the actual manifest.
+- Next executable step: wait for exact protected release, verify expected build `('joinallworld-'+mergeSha).slice(0,40)` through public health and actual live page through browser operator; checkpoint and create Phase2 branch from freshmain only afterward.
+
+## Phase1 release rejected / fix-forward registration 2026-10-18T03:18:34Z
+
+- Release39092396438 failed before deployment: all5Worker smoke checks throw `progression_content_unavailable` during module startup. Build/download and Node smoke passed. Deploy job skipped; publichealth remains healthy9eab. This is a real release gate failure, not accepted delivery.
+- Created `codex/story-core-worker-startup-fix` from exact main377300fa. Carrying only this record/evidence dirt plus untracked future factory work; no stash/reset or Desktop mutation. The original primary Phase1 PR remains34; a separate bounded repair PR is explicitly authorized by the supplied fix-forward instruction.
+- Integration owns the progression snapshot/export boundary and related focused tests. Read-only diagnosis is delegated; no source repair has been applied. Existing Worker smoke tests provide the actual symptom; parent is installing the pinned test tooling to reproduce with the same finite harness. No local application build or minification/size estimate.
+- Asset generation pauses after its current command and retains all outputs while the focused Worker check takes the single heavy slot. Protected ports and production data remain untouched. Next: one red-capable Worker startup command, minimise module caller, targeted repair/regression, normal typecheck/currentCI, follow-up PR and release.
+
+## Worker startup repair checkpoint 2026-10-18T03:24:38Z
+
+- Neutral Worker reproduction is red in4.295s:0/1 pass, progression_content_unavailable before any fixture request. Exact command and stack retained in phase1-worker-startup-reproduction.log.
+- The new journey index eagerly traversed the lazy progression proxy at module evaluation. Node smoke selected the eager source provider and missed this; the actual Worker selects the asset provider and installs content behind its existing startup barrier.
+- Minimal source repair defers the Map until first journey lookup. It keeps indexed reads and the existing unavailable/retry behavior. The installed snapshot cannot be replaced. Only src/game/journeys.ts is owned for this repair; no provider or release gate changes.
+- Existing neutral-esbuild/Miniflare fixture is the regression seam. No duplicate Node-only test was added. Parent review accepts the two-line lazy index plus changed lookup, subject to real Worker checks.
+- Current branch codex/story-core-worker-startup-fix, source base377300fab8039d551638540047091b7c31609dbc. Tracked repair source and this record only; future scene/talk files remain untracked and excluded.
+- The19-asset v4 batch completed and returned the heavy slot; light packaging/review continues. Factory external spend remains US$0; worker compute cost unknown.
+- Next executable step: verify local Worker startup repair, then release five/typecheck and ordinary protected PR/release.
+
+## Worker repair local acceptance 2026-10-18T03:28:51.532671+00:00
+
+- Exact release five Worker checks now pass5/5 in6490.731ms. Story ladder/Kano/Nairobi journey checks pass8/8; normal typecheck5projects/0errors/0baseline additions.
+- The first post-fix request exposed missing local fixture data, not another production source defect. The CI bundle evidence intentionally contains JS/CSS/index/manifest only. Existing deterministic progression assets were emitted with an exactly matching tracked manifest and missing repository public files restored to ignored dist. No application build or local minification ran.
+- Source diff is limited to lazy construction of the journey-id index. Existing provider barrier, catalogue data, receipt validation, stored state, budgets and UI are unchanged. Prior full284-city/scene and browser evidence remains labelled with its original runtime revision.
+- Reviewable local acceptance is phase1-worker-fix-checks.json. Next: ordinary follow-up PR, current hosted CI, merge, release and active live check.
+
+## Worker repair byte checkpoint 2026-10-18T03:37:33.323002+00:00
+
+- Hosted CI39093791469 onccd5d2bd passed build and typecheck but rejected startup Brotli195615 against unchanged195600 cap. Startup raw613961/gzip222639; scene host188939raw/70896gzip. No release retry ran.
+- Removed the two single-caller fresh-slice assignment wrappers, retaining the exact fresh-shape guard, timestamp selection and fresh data construction inside sanitize. Source review confirms this path reaches startup; no compressed saving is claimed before hosted output.
+- Current focused fresh-slice/Story/Kano/Nairobi checks11/11 pass; actual Worker smoke5/5 in6275.317ms and normal typecheck5projects/0errors/0baseline additions pass. All guards/caps unchanged.
+- Existing CI bundle upload now also covers codex/story-* so its actual emitted code is available before the size gate. No checks are skipped or relaxed.
+- Independently verified all246 v4 asset payload hashes (21670980bytes; manifest5e9a67535f4b006fe0ab477e2324545dbaa6fb02ec3607e609e55d71b59f69d2). Asset visual review remains separate; no runtime/phone acceptance.
+- Current future Talk world audit source hashes independently match:284cities/13154banks/789240lines,0failures/0greeting collisions, no provider calls. This is factory data/safety proof only; no banks shipped.
+- Next executable step: push this compact repair, current CI/download-byte proof, then follow-up PR and protected release.
+
+## Exact built-artifact QA checkpoint 2026-10-18
+
+- Pushed compact runtime8a941302; hosted CI39094348275 is checking it. Actual artifact12123099843 archive SHA2560d80b3eaa8dbf41c4acd41943075aee14f8da3a1bb309037c68e3e5fc8489a19 independently matches GitHub digest. All2665 copied JS/CSS/index file hashes verified. No Vite manifest is present in this archive; stale prior manifest removed to the named backup. Prior emitted code retained under the backup path in phase1-artifact-install-8a941302.json. No local application build ran.
+- npm run size:download is running against those actual emitted files under the512MiB serial slot (exec78929). Source public/data assets match existing deterministic emit paths; no runtime factory assets installed.
+- Task-only static Node QA host is running on127.0.0.1:5351, exec11040, launcher/tmp/story-built-qa-server-20261018.mts, heap512MiB. It serves verified dist directly; no Vite transform or second API listener. Saved .data-story-qa actors and persisted open-dev clock are retained, and the launcher exposes no time-advance route. Story setting is local-only true; remote default remains false.
+- Existing actor resume routes are local-only and read existing guest sessions. No new character/data injection, repeated time jumps or production login is authorized by this finite repair confirmation. Browser owner will verify load and reversible mode/progress at320/390, then return ownership before host shutdown.
+
+## Current repair acceptance checkpoint 2026-10-18T04:15:17.768388+00:00
+
+- Hosted CI39094348275 is terminal success on8a941302. All2665 installed emitted-file hashes and archive digest are verified; actual local size:download is terminal pass with conflicts/errors/extras/overBudget all0. Startup613919raw/222616gzip/195433Brotli; scene host188939raw/70896gzip. Caps unchanged.
+- Fresh origin/main remains377300fa. Public health rechecked2026-10-18T04:14:01Z:HTTP200,oktrue,buildjoinallworld-9eab3816db3f1cdc2fc3e567191. Repair PR does not yet exist; production has not changed.
+- On this resume the prior Desktop NPC programme record is absent at its previously supplied path. The current coordination index was read. All supplied ownership exclusions remain in force; absence is not permission to adopt those paths or unpublished changes.
+- Current finite browser confirmation remains active on the task-only static host; do not stop it before handback. Next: browser evidence review, repair PR and protected release.
+
+## User preview checkpoint 2026-10-18T04:21:16.569311+00:00
+
+- User asked how to test the current game. Provided http://127.0.0.1:5351 in a separate private window, Kano/Passport Story switch, tale/mission unlocks, reversible mode/progress and Nairobi comparison. Explicitly labelled future scene/talk work unfinished.
+- Read-back root and health bothHTTP200,oktrue,exactbuildjoinallworld-8a94130206815cf8905e7a48402. The static QA host is now also the user's preview. Keep exec11040/5351 running after browser handback while user testing continues. Do not overwrite its served8a dist with future-phase assets while that preview is in use.
+
+## Local resume and factory input checkpoint 2026-10-18T04:42:57.956828+00:00
+
+- The cached QA browser showed a missing saved-life message. Independent read-only resume checks prove all3existing actors remain: resume returns303+cookie, and presenting each cookie to/api/session returns200/exactname. No cookie values were printed or saved. The QA303response lacks Location; explicit navigation to home after resuming is required. This is task-only fixture behavior, not a production source change.
+- Browser owner resumed the host successfully. Actual connected baseline is Chechinya Market/Kaduna North, wallet49996750 and1finishedmission; the earlier cached Kawo49997000 view is historical. No causal claim is made about that drift. No replay, new character or clock jump was used. First mode pair remains pending at the reported checkpoint. Helper and Nairobi use separatelocalhost origins to preserve cookie isolation. User preview5351remains active.
+- Future-only R1 hero input array has204unique cities:6frozen pilots,22new original proposals,176exact-name/type promotions. Parent checked counts/hashcd007719b14cf283e8fb1f3b2ea4c229f4d65e54ea7642d4583291acbe52237d. Three independent officialOSMobject reads match the audit's selected tags and versions; raw response hashes differ, so no raw-hash reproduction is claimed.
+- Remaining80source inventory has40prior/new leads and40gaps. One further primary-source pass accounts for those40as13supported candidates,2alternatives,3mismatches,22gaps, with search-result-only leads explicitly labelled. Creative review/source preparation continues; no new geometry, production approvals, paid calls or runtime asset integration. External factory spendUS$0, assistant compute unknown.
+- Only exact current repair artifact receipts and5bounded proof logs are staged. Future scene/talk files stay excluded. Next executable step: finite browser acceptance, repair PR/currentCI, protected release and live acceptance.
+
+
+## Integration checkpoint 2026-10-18T05:02:30.296785+00:00
+
+- The owner can test the exact built8a941302 preview at127.0.0.1:5351. This listener remains available and its served artifact will not be overwritten during testing. Private browsing keeps the owner's test save separate from the retained fixture actors.
+- A fresh browser tab loaded the exact/assets/app-9d1b405.js module and matching8a health. One ordered Story/Free/Story pair retained Kano chapter4 and current-city0missions/2venues; city counts275/284/275. Giwa Hospital's chapter2 gate is restored. Five unaltered native PNGs at390x844/320x740 have independently checked signatures, dimensions and hashes; no horizontal document overflow observed.
+- Click-call-through-DOM upper bounds315ms/293ms include actionability, locator and transport overhead. The300ms performance gate is OPEN; no application-only latency or physical-phone result is inferred. Source review accepts the bounded startup fix, retains the existing startup barrier, and confirms fresh-slice validation precedes assignment.
+- Next executable step: finish read-only helper/Nairobi retained-state checks, resolve browser timing with passive DOM-only observation, then curate repair evidence and open the follow-up PR. Future scene/talk files remain excluded. No release or live build change has occurred.
+
+
+## Integration checkpoint 2026-10-18T05:09:25.531804+00:00
+
+- Current8a941302 runtime passes focused Worker5/5, fresh-slice/Story/journey11/11, typecheck5/0, exact download caps and hosted CI39094348275. Eight current native responsive captures have independently verified PNG headers, dimensions and SHA256 values. Seven cover unchanged5351 and one covers the isolated measurement page.
+- Helper retains two Kano Roots keepsakes and only its own starting city. Nairobi retains distinct City tables/Open Tables content. No new actors, travel, reward collection or clock manipulation occurred in confirmation.
+- A separate task-only5353 HTTP/WebSocket proxy observes trusted mode clicks and successful DOM plus two animation frames. One ordered pair measured26.300/24.200ms, both visible with retained progress. Existing315/293ms automation-inclusive observations are preserved without subtraction. The measurement is instrumented desktop Chrome, not actual paint, phone hardware or a claim about isolated uninstrumented-origin latency. Its initial observer was blocked by the existing inline-script policy; the single correction serves a same-origin external script under unchanged script-src and maps only the existing local WebSocket endpoint to the proxy port.
+- A cold-origin console diagnostic involvingkano:racecourse is preserved with its full stack. Source inspection shows the qualified-key reader unchanged atlive9eab3816; the lenient registry logs once then continues with the valid city prefix. No new functional failure was demonstrated. It remains a separate preexisting issue.
+- Factory prep resumes serial headless asset validation/prototypes while the repair proceeds through PR/release. Aggregate external spend remainsUS$0; no future factory sources or outputs enter this repair.
+- Next executable step: commit only current repair evidence and own record, push normally, open/attach the bounded fix-forward PR, await its required current checks, merge, release exact main and verify the active public build.5351 remains available for the owner.
+
+
+## Integration checkpoint 2026-10-18T05:13:31.134401+00:00
+
+- Fix-forward PR35 is open and attached: https://github.com/kromate/joinallworld/pull/35. Exact head5576f5685a3c77e0c0d0033fbf610cdc3cfee599 adds only curated evidence to reviewed runtime8a941302. Current PR CI39099658897 is running. No unrelated factory sources or outputs were staged. Ordinary push preserved history; freshly fetched origin/main remains377300fa.
+- Task-only measurement proxy5353 is terminal0 after its one accepted pair. Owner preview5351 remains running unchanged. Serial asset prototypes own the heavy slot; factory CLI preparation has disjoint new-file ownership. No production mutation has occurred.
+- Next executable step: wait for current PR checks, merge only exact reviewed head, dispatch protected release for new main, verify live health/build and read-only public page, then checkpoint Phase1 and branch Phase2.
+
+
+## Integration checkpoint 2026-10-18T05:26:45.297306+00:00
+
+- PR35 CI39099658897 completed with one smoke failure. Build, download caps and typecheck pass, and emitted application module remainsapp-9d1b405.js. The unchanged release source-inventory guard rejected the two new observational QA helpers because they used JavaScript extensions. This is a task tooling mistake, not a new runtime or byte failure.
+- Converting the two helper sources to TypeScript with proper types and native type stripping for the served browser observer. The release guard, whitelist and all budgets remain unchanged. Original browser observations and helper source are pinned to5576f568; the app runtime is unchanged.
+- Full rejected log retained with its hash in phase1-worker-fix-checks.json. No merge or deployment. Next: focused tool typecheck/source smoke, push the bounded conversion, require fresh PR CI and continue the protected release.
+
+
+## Integration checkpoint 2026-10-18T05:31:24.926716+00:00
+
+- The two observational tools now use typed.ts/.mts sources; the proxy strips observer types through Node before serving the unchanged external JavaScript endpoint. Strict isolated tool typecheck and proxy/stripped-observer syntax checks pass. Independent review found no blocking semantic change. App runtime, fixed endpoints/CSP policy, release guard and budgets are unchanged. Historical measured samples remain bound to original helper revision5576f568.
+- All five unchanged release-source tests pass from an exact candidate Git-index export. The working clone also contains five untracked future prototype reproduction helpers, which the filesystem inventory sees; those remain untouched and outside this PR. The export tests the actual candidate rather than hiding or changing the guard.
+- Next: push only the conversion and its acceptance record, require fresh PR35 CI, merge/release exact reviewed source and verify the active live build. The owner preview5351 is still running; all prototype assets remain excluded.

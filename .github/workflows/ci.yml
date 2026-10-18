@@ -67,7 +67,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npm run build
       - name: Preserve Story bundle evidence
-        if: startsWith(github.ref, 'refs/heads/story/')
+        if: startsWith(github.ref, 'refs/heads/story/') || startsWith(github.ref, 'refs/heads/codex/story-')
         uses: actions/upload-artifact@v4
         with:
           name: story-bundle-${{ github.sha }}

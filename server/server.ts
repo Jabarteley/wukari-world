@@ -20,6 +20,7 @@ import { WebSocketServer, WebSocket } from 'ws';
 import { createStore } from './store.ts';
 import { createShardStore } from './world/shards.ts';
 import { createFileVoices } from './social/voice-files.ts';
+import { createFileModels } from './spaces/model-files.ts';
 import { createFileImages } from './social/image-files.ts';
 import { keepAlways } from './showcase/image-files.ts';
 import * as worldRegistry from './world/registry.ts';
@@ -37,7 +38,7 @@ import { createOnce } from './routes/once.ts';
 import { buildSocketHandlers } from './ws/index.ts';
 import { createServerTelemetry, useTelemetry } from './telemetry/index.ts';
 import { readTelemetryConfig } from './telemetry/config.ts';
-import { appHeaders, pageHeaders, apiHeaders, inlineScriptHashes, telemetryOrigins, type RequestFacts } from './security-headers.ts';
+import { appHeaders, pageHeaders, apiHeaders, fileCache, inlineScriptHashes, telemetryOrigins, type RequestFacts } from './security-headers.ts';
 import { siteFile } from './site-files.ts';
 import { ADMIN_HOST_ENV, ADMIN_ROBOTS, ADMIN_SHELL, adminAddress, adminHostName, adminHostRoute, isAdminHost } from './admin/host.ts';
 import { withPathMeta } from './path-meta.ts';
@@ -147,6 +148,16 @@ const isSecure = (req: IncomingMessage, trustProxy: boolean): boolean => ('encry
 const errorDetail = (error: unknown): unknown => fieldOf(error, 'code') || fieldOf(error, 'message');
 async function rawJsonBody(req: IncomingMessage, limit: number, kind: 'json' | 'form' = 'json'): Promise<Uint8Array<ArrayBuffer>> {
   if (!req.headers['content-type']?.startsWith(kind === 'form' ? 'application/x-www-form-urlencoded' : 'application/json')) throw fail(415, kind === 'form' ? 'form_required' : 'json_required');
+  return bodyBytes(req, limit);
+}
+/** An upload's bytes as they are (a player's model), when its content type is one of `types`. */
+async function binaryBody(req: IncomingMessage, limit: number, types: readonly string[]): Promise<Uint8Array<ArrayBuffer>> {
+  const type = (req.headers['content-type'] ?? '').split(';')[0]?.trim().toLowerCase() ?? '';
+  if (!types.includes(type)) throw fail(415, 'type_not_accepted');
+  if (Number(req.headers['content-length']) > limit) throw fail(413, 'body_too_large');
+  return bodyBytes(req, limit);
+}
+async function bodyBytes(req: IncomingMessage, limit: number): Promise<Uint8Array<ArrayBuffer>> {
   const chunks: Uint8Array[] = []; let size = 0;
   for await (const chunk of req) {
     const bytes = typeof chunk === 'string' ? new TextEncoder().encode(chunk) : chunk as Uint8Array;
@@ -395,6 +406,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
           moderator: () => isModerator(req),
           json: (limit?: number) => jsonBody(req, limit).then(body => (request.body = body)),
           rawBody: (limit: number, kind?: 'json' | 'form') => rawJsonBody(req, limit, kind),
+          binaryBody: (limit: number, types: readonly string[]) => binaryBody(req, limit, types),
           header: (name: string) => { const value = req.headers[name.toLowerCase()]; return typeof value === 'string' ? value : null; },
           session: (db: Db, { renew = false }: { renew?: boolean } = {}) => { const session = sessionFor(req, db, renew); if (session) { request.publicId = session.publicId; request.secret = session.secret; } return session; },
           requireSession(db: Db, options?: { renew?: boolean }) { const session = this.session(db, options); if (!session) throw fail(401, 'device_session_required'); return session; },
@@ -416,7 +428,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
         if (result.file && status < 300) {
           // Bytes a route hands over as they are (a chat picture): private to the caller, never sniffed, shown in the page.
           if (!res.headersSent && !res.destroyed) {
-            res.writeHead(status, { ...apiHeaders(factsOf(req)), 'Content-Type': result.file.type, 'Cache-Control': result.file.cache ?? 'private, max-age=300', 'Content-Disposition': 'inline', 'Content-Length': String(result.file.bytes.length) });
+            res.writeHead(status, { ...apiHeaders(factsOf(req)), 'Content-Type': result.file.type, 'Cache-Control': fileCache(result.file.cache), 'Content-Disposition': 'inline', 'Content-Length': String(result.file.bytes.length) });
             res.end(Buffer.from(result.file.bytes));
           }
           telemetry.http({ method, route: route.key, status, ms: performance.now() - at.began, publicId: request.publicId });
@@ -550,7 +562,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
   /** Small HTML pages outside /api/, by path prefix: pages.set('/s/', async ({ path, query, origin, ip }) => ({ status, html })). */
   const pages = new Map<string, PageHandler>();
   const ctx: RouteContext = {
-    store, images: createFileImages(join(dataDir, 'chat-images')), showcaseImages: keepAlways(createFileImages(join(dataDir, 'showcase-images'))), voices: createFileVoices(join(dataDir, 'chat-voice-notes')), shards: shards as ShardStore, now, fail, allow, peek, retryIn, collection, send, broadcast, publicSession, cityIds: registeredCityIds(), telemetry,
+    store, images: createFileImages(join(dataDir, 'chat-images')), showcaseImages: keepAlways(createFileImages(join(dataDir, 'showcase-images'))), voices: createFileVoices(join(dataDir, 'chat-voice-notes')), models: createFileModels(join(dataDir, 'space-models')), shards: shards as ShardStore, now, fail, allow, peek, retryIn, collection, send, broadcast, publicSession, cityIds: registeredCityIds(), telemetry,
     ...(interactiveTeachingStarts === true ? { interactiveTeachingStarts: true } : {}),
     reverseGearIssuance: reverseGearIssuance === true,
     randomId,

@@ -12,17 +12,43 @@
  *   GET  /api/spaces/games                           the built-in lite games and mine (server/spaces/games.ts)
  *   GET  /api/spaces/game?id=                        one lite game's definition, for its screen
  *   POST /api/spaces/games   { def }                 import a lite game
+ *   GET  /api/spaces/models                          my 3D models and whether I may upload (server/spaces/models.ts)
+ *   POST /api/spaces/models?name=   (body: the .glb, model/gltf-binary)   upload one
+ *   POST /api/spaces/models/rename { id, name } · /delete { id } · /report { by, id }
+ *   GET  /api/spaces/model-file/:hash                a model's bytes, by content hash
+ *   GET  /api/spaces/world?target=home[&host=]|room&id=   a space for the 3D screen (server/spaces/world.ts)
+ *   POST /api/spaces/world/layout { target, id?, models }   where my models stand in it
  */
 import { spacesService } from '../spaces/service.ts';
 import { gamesService } from '../spaces/games.ts';
 import { hostService } from '../spaces/host.ts';
+import { modelsService } from '../spaces/models.ts';
+import { worldService } from '../spaces/world.ts';
 import type { RouteContext, RouteHandler, RouteKey } from '../types.ts';
 
 export default function spacesRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
-  const spaces = spacesService(ctx), hosts = hostService(ctx), games = gamesService(ctx);
+  const spaces = spacesService(ctx), hosts = hostService(ctx), games = gamesService(ctx), models = modelsService(ctx), world = worldService(ctx);
   const limited = (publicId: string): void => { if (!ctx.allow(`spaces:http:${publicId}`, 30)) throw ctx.fail(429, 'rate_limited'); };
   const gate = async (request: Parameters<RouteHandler>[0]): Promise<void> => { limited(await ctx.store.read((db) => request.requireSession(db).publicId)); };
+  const change = (fn: (db: Parameters<typeof models.rename>[0], session: Parameters<typeof models.rename>[1], body: Record<string, unknown>) => object): RouteHandler => async (request) => {
+    await gate(request);
+    const body = await request.json();
+    return { body: await ctx.store.transact((db) => fn(db, request.requireSession(db, { renew: true }), body)), renew: true };
+  };
   return {
+    'GET /api/spaces/models': async (request) => { await gate(request); return { body: await ctx.store.read((db) => models.mine(db, request.requireSession(db))) }; },
+    'POST /api/spaces/models': async (request) => { await gate(request); return { body: await models.upload(request), renew: true }; },
+    'POST /api/spaces/models/rename': change((db, session, body) => models.rename(db, session, body)),
+    'POST /api/spaces/models/delete': change((db, session, body) => models.remove(db, session, body)),
+    'POST /api/spaces/models/report': change((db, session, body) => models.report(db, session, body)),
+    // Fetched once per model by every visitor of a space: its own, roomier limit.
+    'GET /api/spaces/model-file/:hash': async (request) => {
+      const id = await ctx.store.read((db) => request.requireSession(db).publicId);
+      if (!ctx.allow(`spaces:model-file:${id}`, 240)) throw ctx.fail(429, 'rate_limited');
+      return models.file(request);
+    },
+    'GET /api/spaces/world': async (request) => { await gate(request); return { body: await ctx.store.read((db) => world.read(db, request.requireSession(db), request.query)) }; },
+    'POST /api/spaces/world/layout': change((db, session, body) => world.save(db, session, body)),
     'GET /api/spaces/status': async (request) => { await gate(request); return { body: { ok: true, code: 'ok', ai: spaces.aiOn() } }; },
     'POST /api/spaces/design': async (request) => { await gate(request); return { body: await spaces.design(request), renew: true }; },
     'POST /api/spaces/check': async (request) => { await gate(request); return { body: await spaces.check(request), renew: true }; },

@@ -1,0 +1,104 @@
+{
+  "sourceRevision": "8a94130206815cf8905e7a48402a6e82a7c70f37",
+  "tab": "460562399",
+  "origin": "http://127.0.0.1:5353/",
+  "upstream": "http://127.0.0.1:5351/",
+  "actor": "Story Host Kano",
+  "actualModule": "/assets/app-9d1b405.js",
+  "baseline": {
+    "mode": [
+      "Story PathFollow the chapter journey."
+    ],
+    "progress": "0 missions2 venues275 of 284 cities",
+    "scrollWidth": 390,
+    "timing": "{\"sourceRevision\":\"8a94130206815cf8905e7a48402a6e82a7c70f37\",\"method\":\"Trusted click event to successful mode DOM, followed by two animation frames. Animation-frame callbacks precede paint; no actual paint or physical-phone timing is asserted.\",\"origin\":\"http://127.0.0.1:5353\",\"pending\":null,\"samples\":[]}",
+    "visibility": "visible",
+    "width": 390
+  },
+  "first": {
+    "progress": "0 missions2 venues284 of 284 cities",
+    "timing": "{\"sourceRevision\":\"8a94130206815cf8905e7a48402a6e82a7c70f37\",\"method\":\"Trusted click event to successful mode DOM, followed by two animation frames. Animation-frame callbacks precede paint; no actual paint or physical-phone timing is asserted.\",\"origin\":\"http://127.0.0.1:5353\",\"pending\":null,\"samples\":[{\"from\":\"Story Path\",\"to\":\"Free Roam\",\"outcome\":\"successful-dom-plus-two-animation-frames\",\"trusted\":true,\"eventTimeStamp\":17958.89999985695,\"timeOrigin\":1792299993698.8,\"domObservedAt\":17981,\"completedAt\":17985.200000047684,\"elapsedMs\":26.300000190734863,\"visibility\":\"visible\",\"successfulAnnouncement\":\"Free Roam is on.\",\"pressed\":[{\"label\":\"Free Roam\",\"pressed\":\"true\"},{\"label\":\"Story Path\",\"pressed\":\"false\"}]}]}"
+  },
+  "restored": {
+    "kanoRetained": true,
+    "progress": "0 missions2 venues275 of 284 cities",
+    "scrollWidth": 390,
+    "timing": "{\"sourceRevision\":\"8a94130206815cf8905e7a48402a6e82a7c70f37\",\"method\":\"Trusted click event to successful mode DOM, followed by two animation frames. Animation-frame callbacks precede paint; no actual paint or physical-phone timing is asserted.\",\"origin\":\"http://127.0.0.1:5353\",\"pending\":null,\"samples\":[{\"from\":\"Story Path\",\"to\":\"Free Roam\",\"outcome\":\"successful-dom-plus-two-animation-frames\",\"trusted\":true,\"eventTimeStamp\":17958.89999985695,\"timeOrigin\":1792299993698.8,\"domObservedAt\":17981,\"completedAt\":17985.200000047684,\"elapsedMs\":26.300000190734863,\"visibility\":\"visible\",\"successfulAnnouncement\":\"Free Roam is on.\",\"pressed\":[{\"label\":\"Free Roam\",\"pressed\":\"true\"},{\"label\":\"Story Path\",\"pressed\":\"false\"}]},{\"from\":\"Free Roam\",\"to\":\"Story Path\",\"outcome\":\"successful-dom-plus-two-animation-frames\",\"trusted\":true,\"eventTimeStamp\":25132.39999985695,\"timeOrigin\":1792299993698.8,\"domObservedAt\":25153.200000047684,\"completedAt\":25156.599999904633,\"elapsedMs\":24.200000047683716,\"visibility\":\"visible\",\"successfulAnnouncement\":\"Story Path is on.\",\"pressed\":[{\"label\":\"Free Roam\",\"pressed\":\"false\"},{\"label\":\"Story Path\",\"pressed\":\"true\"}]}]}",
+    "width": 390
+  },
+  "measurement": {
+    "sourceRevision": "8a94130206815cf8905e7a48402a6e82a7c70f37",
+    "method": "Trusted click event to successful mode DOM, followed by two animation frames. Animation-frame callbacks precede paint; no actual paint or physical-phone timing is asserted.",
+    "origin": "http://127.0.0.1:5353",
+    "pending": null,
+    "samples": [
+      {
+        "from": "Story Path",
+        "to": "Free Roam",
+        "outcome": "successful-dom-plus-two-animation-frames",
+        "trusted": true,
+        "eventTimeStamp": 17958.89999985695,
+        "timeOrigin": 1792299993698.8,
+        "domObservedAt": 17981,
+        "completedAt": 17985.200000047684,
+        "elapsedMs": 26.300000190734863,
+        "visibility": "visible",
+        "successfulAnnouncement": "Free Roam is on.",
+        "pressed": [
+          {
+            "label": "Free Roam",
+            "pressed": "true"
+          },
+          {
+            "label": "Story Path",
+            "pressed": "false"
+          }
+        ]
+      },
+      {
+        "from": "Free Roam",
+        "to": "Story Path",
+        "outcome": "successful-dom-plus-two-animation-frames",
+        "trusted": true,
+        "eventTimeStamp": 25132.39999985695,
+        "timeOrigin": 1792299993698.8,
+        "domObservedAt": 25153.200000047684,
+        "completedAt": 25156.599999904633,
+        "elapsedMs": 24.200000047683716,
+        "visibility": "visible",
+        "successfulAnnouncement": "Story Path is on.",
+        "pressed": [
+          {
+            "label": "Free Roam",
+            "pressed": "false"
+          },
+          {
+            "label": "Story Path",
+            "pressed": "true"
+          }
+        ]
+      }
+    ]
+  },
+  "capture": {
+    "file": "current-8a941302-instrumented-restored-390.png",
+    "width": 390,
+    "height": 844,
+    "sha256": "287370d6debf696597719f716dc0789dc72cbb4ea385e7146bfa3cdeb8260c07",
+    "method": "Native Page.captureScreenshot PNG,fromSurface:true,captureBeyondViewport:false; saved original bytes without alterations",
+    "visuallyReviewed": true
+  },
+  "acceptance": "Both single-pair samples are <=300ms for trusted click to successful DOM plus two animation frames in instrumented desktop Chrome390px. Not actual paint proof,physicalphone proof,or uninstrumented5351measurement.",
+  "limitations": [
+    "Observational proxy and DOM observer add overhead and use separate5353localStorage origin.",
+    "Original unmodified5351automation-inclusive315/293ms report and seven captures remain unchanged.",
+    "One initial missing observer corrected by parent same-origin external script matching unchanged script-src; one reload; no mode samples before correction.",
+    "Initial cold-origin app city-index error retained in current-8a941302-instrumented-cold-errors.json; not suppressed or resolved by this timing pass.",
+    "No further mode sampling, travel, rewards, clock jumps, app source edits or new actors."
+  ],
+  "coldDiagnosticReview": {
+    "classification": "Preexisting nonfatal cold-snapshot diagnostic; no new functional failure demonstrated in this unit.",
+    "evidence": "Observed error-level console stack timestamp2026-10-18T05:04:47.244Z. Current lifeCities.ts addQualified calls add(value) before extracting prefix; same function body inspected at9eab3816. registry.ts wholeIndexFor in lenient browser mode calls console.error(error) once and returns false; subsequent add(prefix) continues. Existing actor loaded connected/Saved and completed the ordered pair. This does not claim the diagnostic is fixed.",
+    "fullLog": "current-8a941302-instrumented-cold-errors.json"
+  }
+}

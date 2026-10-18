@@ -1,0 +1,222 @@
+/**
+ * OWNER: spaces
+ * THE 3D SPACE SCREEN'S ENGINE (docs/SPACES-3D.md, phase 2): one renderer in the realistic look, the space (./space.ts), a walker
+ * (./walk.ts) in first or third person, and the editing of players' models. The Vue screen (WorldScreen.vue) owns the buttons;
+ * this owns the canvas, the frame loop and the input on it.
+ *
+ * Input. Phone: the left thumb's stick walks (src/app/features/spaces/WorldScreen.vue sends it here), dragging anywhere else looks.
+ * Computer: W A S D or the arrows walk, Shift runs, dragging looks. While editing, a tap on a floor puts the chosen model there.
+ */
+import { WORLD, type Placement } from '../layout.ts'
+import { createLook, aimSun, THREE } from './look.ts'
+import { buildSpace, type BuiltSpace, type SpaceInput } from './space.ts'
+import { moveOf, step, WALKER, type Ground, type Walker } from './walk.ts'
+import type { PlacedModel } from '../../types/spaces.ts'
+
+export type View = 'first' | 'third'
+export interface EngineEvents {
+  /** The walker changed floor, or the view changed. */
+  status(status: { floor: number; floors: number; view: View }): void
+  /** In edit mode, a tap picked a placed model (or nothing). */
+  picked(key: string | null): void
+  /** In edit mode, a tap on a floor: where the chosen model should go. */
+  tapped(at: { x: number; y: number; z: number; floor: number }): void
+}
+
+export interface Engine {
+  setStick(forward: number, right: number): void
+  setView(view: View): void
+  setEditing(on: boolean): void
+  setModels(list: readonly PlacedModel[]): Promise<void>
+  /** Move one placed model's drawing at once (the layout is the screen's; this only shows it). */
+  placeModel(p: Placement): void
+  highlight(key: string | null): void
+  /** A point a step in front of the walker, on its floor: where a newly chosen model appears. */
+  inFront(): { x: number; z: number; floor: number }
+  dispose(): void
+}
+
+export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { models: readonly PlacedModel[] }, bytesOf: (hash: string) => Promise<ArrayBuffer | null>, events: EngineEvents): Engine {
+  const phone = globalThis.matchMedia?.('(pointer: coarse)').matches ?? false
+  const look = createLook(canvas, { quality: phone ? 'normal' : 'high', background: '#a9c7de' })
+  const maxAniso = look.renderer.capabilities.getMaxAnisotropy()
+  const space: BuiltSpace = buildSpace(input, maxAniso)
+  look.scene.add(space.root)
+  const { plot } = space.plan
+  const W = plot.w * WORLD.tile, D = plot.d * WORLD.tile
+  aimSun(look, new THREE.Vector3(W / 2, 0, D / 2), Math.max(W, D) * 0.8 + 2)
+  look.scene.fog = new THREE.Fog('#a9c7de', 30, 90)
+
+  // Warm light in each room of the floor the walker is on (no shadows: the sun and the room image do those).
+  const lights: InstanceType<typeof THREE.PointLight>[] = []
+  const lightRooms = (floor: number): void => {
+    for (const light of lights) look.scene.remove(light)
+    lights.length = 0
+    for (const room of (space.plan.floors[floor] ?? []).slice(0, 8)) {
+      const light = new THREE.PointLight('#ffe2b8', 6, Math.max(room.w, room.h) * 1.6, 2)
+      light.position.set((room.x + room.w / 2) * WORLD.tile, floor * WORLD.storey + 2.5, (room.y + room.h / 2) * WORLD.tile)
+      look.scene.add(light)
+      lights.push(light)
+    }
+  }
+
+  // A stand-in body for third person: the player's own avatar can come later.
+  const body = new THREE.Group()
+  const skin = new THREE.MeshStandardMaterial({ color: '#8d5a3b', roughness: 0.6 }), shirt = new THREE.MeshStandardMaterial({ color: '#2f6fb0', roughness: 0.8 })
+  const torso = new THREE.Mesh(new THREE.CapsuleGeometry(0.22, 0.75, 6, 16), shirt)
+  torso.position.y = 0.95
+  const head = new THREE.Mesh(new THREE.SphereGeometry(0.14, 24, 16), skin)
+  head.position.y = 1.6
+  for (const part of [torso, head]) { part.castShadow = true; body.add(part) }
+  look.scene.add(body)
+
+  const ground: Ground = {
+    walls: (f) => space.walls(f), blocks: (f) => space.blocks(f), stairs: space.plan.stairs.map((s) => ({ ...s })),
+    bounds: [-WORLD.margin + 0.5, -WORLD.margin + 0.5, W + WORLD.margin - 0.5, D + WORLD.margin - 0.5], floors: plot.floors,
+  }
+  // Start in the yard facing the front door (the left wall), a little outside.
+  const doorZ = (plot.grid - 2 + 0.5) * WORLD.tile
+  let walker: Walker = { x: -2, z: doorZ, y: 0, floor: 0, yaw: -Math.PI / 2, pitch: -0.08 }
+  let view: View = 'third', editing = false
+  const camera = new THREE.PerspectiveCamera(phone ? 70 : 62, 1, 0.05, 200)
+  const keys = new Set<string>()
+  let stick = { forward: 0, right: 0 }
+  let lastFloor = -1, lastOutdoors: boolean | null = null
+  const outdoorsAt = (x: number, z: number): boolean => x < 0 || z < 0 || x > W || z > D
+
+  const report = (): void => { events.status({ floor: walker.floor, floors: plot.floors, view }) }
+  const resize = (): void => {
+    const w = canvas.clientWidth || 360, h = canvas.clientHeight || 640
+    look.renderer.setSize(w, h, false)
+    camera.aspect = w / h
+    camera.updateProjectionMatrix()
+  }
+  const observer = new ResizeObserver(resize)
+  observer.observe(canvas)
+  resize()
+
+  // Looking: drag on the canvas. A short tap (no drag) is a pick or a placement while editing.
+  const raycaster = new THREE.Raycaster()
+  let drag: { id: number; x: number; y: number; moved: number } | null = null
+  const onDown = (event: PointerEvent): void => { if (drag) return; drag = { id: event.pointerId, x: event.clientX, y: event.clientY, moved: 0 }; canvas.setPointerCapture?.(event.pointerId) }
+  const onMove = (event: PointerEvent): void => {
+    if (!drag || event.pointerId !== drag.id) return
+    const dx = event.clientX - drag.x, dy = event.clientY - drag.y
+    drag.moved += Math.abs(dx) + Math.abs(dy)
+    drag.x = event.clientX; drag.y = event.clientY
+    walker = { ...walker, yaw: walker.yaw - dx * 0.006, pitch: Math.max(-1.2, Math.min(0.9, walker.pitch - dy * 0.005)) }
+  }
+  const onUp = (event: PointerEvent): void => {
+    if (!drag || event.pointerId !== drag.id) return
+    const tap = drag.moved < 8
+    drag = null
+    if (!tap || !editing) return
+    const rect = canvas.getBoundingClientRect()
+    raycaster.setFromCamera(new THREE.Vector2(((event.clientX - rect.left) / rect.width) * 2 - 1, -((event.clientY - rect.top) / rect.height) * 2 + 1), camera)
+    const models = raycaster.intersectObjects(space.modelObjects().filter((o) => o.visible), true)[0]
+    if (models) {
+      let node: InstanceType<typeof THREE.Object3D> | null = models.object
+      while (node && !node.userData['key']) node = node.parent
+      if (node) { events.picked(String(node.userData['key'])); return }
+    }
+    const floor = raycaster.intersectObjects(space.surfaces().filter((o) => o.visible && (o.parent?.visible ?? true)), false)[0]
+    if (floor) {
+      const f = typeof floor.object.userData['floor'] === 'number' ? floor.object.userData['floor'] as number : 0
+      events.tapped({ x: floor.point.x, y: 0, z: floor.point.z, floor: f })
+    } else events.picked(null)
+  }
+  const onKey = (event: KeyboardEvent): void => {
+    const target = event.target as HTMLElement | null
+    if (target && /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)) return
+    if (event.type === 'keydown') keys.add(event.key.toLowerCase()); else keys.delete(event.key.toLowerCase())
+  }
+  canvas.addEventListener('pointerdown', onDown)
+  canvas.addEventListener('pointermove', onMove)
+  canvas.addEventListener('pointerup', onUp)
+  canvas.addEventListener('pointercancel', onUp)
+  globalThis.addEventListener('keydown', onKey)
+  globalThis.addEventListener('keyup', onKey)
+
+  const blockers = (): InstanceType<typeof THREE.Object3D>[] => space.root.children.filter((c) => c.name.startsWith('floor-') && c.visible)
+  const camTarget = new THREE.Vector3(), camWant = new THREE.Vector3()
+  const clock = new THREE.Clock()
+  let frame = 0
+  const tick = (): void => {
+    frame = requestAnimationFrame(tick)
+    const dt = Math.min(clock.getDelta(), 0.05)
+    let forward = stick.forward, right = stick.right
+    if (keys.has('w') || keys.has('arrowup')) forward += 1
+    if (keys.has('s') || keys.has('arrowdown')) forward -= 1
+    if (keys.has('d')) right += 1
+    if (keys.has('a')) right -= 1
+    if (keys.has('arrowleft')) walker = { ...walker, yaw: walker.yaw + WALKER.turn * dt }
+    if (keys.has('arrowright')) walker = { ...walker, yaw: walker.yaw - WALKER.turn * dt }
+    const fast = keys.has('shift') || Math.hypot(stick.forward, stick.right) > 0.92
+    const move = moveOf(walker.yaw, forward, right, fast ? WALKER.run : WALKER.walk, dt)
+    if (move.dx || move.dz) walker = { ...step(ground, walker, move.dx, move.dz), yaw: walker.yaw, pitch: walker.pitch }
+    const outdoors = outdoorsAt(walker.x, walker.z)
+    if (walker.floor !== lastFloor || outdoors !== lastOutdoors) { lastFloor = walker.floor; lastOutdoors = outdoors; space.show(walker.floor, view === 'first', outdoors); lightRooms(walker.floor); report() }
+
+    body.position.set(walker.x, walker.y, walker.z)
+    body.rotation.y = walker.yaw
+    body.visible = view === 'third'
+    const eye = walker.y + WALKER.eye
+    if (view === 'first') {
+      camera.position.set(walker.x, eye, walker.z)
+      camera.rotation.set(walker.pitch, walker.yaw, 0, 'YXZ')
+    } else {
+      // Behind the walker and a little above, pulled in when a wall is in the way.
+      camTarget.set(walker.x, eye - 0.15, walker.z)
+      const back = 3.2, pitch = Math.max(-0.2, Math.min(1.1, 0.35 - walker.pitch))
+      camWant.set(walker.x + Math.sin(walker.yaw) * Math.cos(pitch) * back, eye + Math.sin(pitch) * back, walker.z + Math.cos(walker.yaw) * Math.cos(pitch) * back)
+      const dir = camWant.clone().sub(camTarget), len = dir.length()
+      raycaster.set(camTarget, dir.normalize())
+      raycaster.far = len
+      const hit = raycaster.intersectObjects(blockers(), true)[0]
+      raycaster.far = Infinity
+      camera.position.copy(hit ? camTarget.clone().addScaledVector(dir, Math.max(0.3, hit.distance - 0.2)) : camWant)
+      camera.lookAt(camTarget)
+    }
+    look.renderer.render(look.scene, camera)
+  }
+  void space.setModels(input.models, bytesOf)
+  tick()
+
+  return {
+    setStick(f, r) { stick = { forward: f, right: r } },
+    setView(next) { view = next; space.show(walker.floor, view === 'first', outdoorsAt(walker.x, walker.z)); report() },
+    setEditing(on) { editing = on },
+    setModels: (list) => space.setModels(list, bytesOf),
+    placeModel(p) {
+      const object = space.modelObject(p.k)
+      if (!object) return
+      object.position.set(p.x, p.floor * WORLD.storey + p.y, p.z)
+      object.rotation.y = (p.ry * Math.PI) / 180
+      object.scale.setScalar(p.s)
+      object.userData['floor'] = p.floor
+    },
+    highlight(key) {
+      for (const object of space.modelObjects()) object.traverse((n) => {
+        const mesh = n as InstanceType<typeof THREE.Mesh>
+        if (!mesh.isMesh) return
+        for (const m of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) {
+          const std = m as InstanceType<typeof THREE.MeshStandardMaterial>
+          if (!std.emissive) continue
+          std.userData['emissive'] ??= std.emissive.getHex()
+          std.emissive.setHex(object.userData['key'] === key ? 0x335577 : std.userData['emissive'] as number)
+        }
+      })
+    },
+    inFront() { return { x: walker.x - Math.sin(walker.yaw) * 1.5, z: walker.z - Math.cos(walker.yaw) * 1.5, floor: walker.floor } },
+    dispose() {
+      cancelAnimationFrame(frame)
+      observer.disconnect()
+      canvas.removeEventListener('pointerdown', onDown); canvas.removeEventListener('pointermove', onMove)
+      canvas.removeEventListener('pointerup', onUp); canvas.removeEventListener('pointercancel', onUp)
+      globalThis.removeEventListener('keydown', onKey); globalThis.removeEventListener('keyup', onKey)
+      space.dispose()
+      torso.geometry.dispose(); head.geometry.dispose(); skin.dispose(); shirt.dispose()
+      look.dispose()
+    },
+  }
+}

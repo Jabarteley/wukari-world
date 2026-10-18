@@ -1,0 +1,13 @@
+{
+  "tab": "460562399",
+  "origin": "http://127.0.0.1:5353/",
+  "context": "First cold localStorage-origin load, existing host cookie, before any mode click. Observer output absent; parent confirmed inline observer blocked by unchanged CSP.",
+  "errors": [
+    {
+      "level": "error",
+      "message": "He: isCityId(\"kano:racecourse\") needs the whole city index: await loadCityIndex()\n    at Ve (http://127.0.0.1:5353/assets/engine-000157a.js:2:18350)\n    at Je (http://127.0.0.1:5353/assets/engine-000157a.js:2:18455)\n    at Ot (http://127.0.0.1:5353/assets/engine-000157a.js:2:22005)\n    at r (http://127.0.0.1:5353/assets/engine-000157a.js:2:219967)\n    at l (http://127.0.0.1:5353/assets/engine-000157a.js:2:220060)\n    at Th (http://127.0.0.1:5353/assets/engine-000157a.js:2:220957)\n    at Mh (http://127.0.0.1:5353/assets/engine-000157a.js:2:219636)\n    at Eh (http://127.0.0.1:5353/assets/engine-000157a.js:2:221800)\n    at Se (http://127.0.0.1:5353/assets/useAccountLite-de11058.js:2:117513)\n    at xe (http://127.0.0.1:5353/assets/useAccountLite-de11058.js:2:117626)",
+      "timestamp": "2026-10-18T05:04:47.244Z",
+      "url": "http://127.0.0.1:5353/assets/engine-000157a.js"
+    }
+  ]
+}

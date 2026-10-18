@@ -1,0 +1,222 @@
+{
+  "version": 1,
+  "updatedAt": "2026-10-18T05:31:24.926716+00:00",
+  "status": "qa-helper-types-fixed-focused-source-guard-pass-fresh-pr-ci-pending",
+  "baseSha": "377300fab8039d551638540047091b7c31609dbc",
+  "branch": "codex/story-core-worker-startup-fix",
+  "source": {
+    "path": "src/game/journeys.ts",
+    "sha256": "1b84aded1b1f21a60febb77664bab729f37bc45abaeef9a24cfbeb93868bf11c"
+  },
+  "failure": {
+    "releaseRun": 39092396438,
+    "message": "progression_content_unavailable",
+    "localReproduction": "neutral Worker bundle fails before any fixture request",
+    "reproductionPass": 0,
+    "reproductionFail": 1,
+    "reproductionDurationMs": 4294.671834
+  },
+  "repair": "Initialize the journey-id index on first lookup after the existing startup barrier; retain indexed subsequent reads. No provider, budget, security or stored-state changes.",
+  "checks": {
+    "workerSmoke": {
+      "pass": 5,
+      "fail": 0,
+      "durationMs": 6275.317166,
+      "log": "phase1-worker-five-compact.log",
+      "fixture": "Existing neutral esbuild + actual Miniflare Worker test fixture, including public IDs, restart, static HTML, combined gameplay and missing hashed asset behavior"
+    },
+    "storyJourneys": {
+      "pass": 8,
+      "fail": 0,
+      "durationMs": 444.429042,
+      "files": [
+        "src/story/ladder.test.ts",
+        "src/game/cities/kano/journey.test.ts",
+        "src/game/cities/nairobi/journey.test.ts"
+      ]
+    },
+    "typecheck": {
+      "projects": 5,
+      "errors": 0,
+      "baselineAdditions": 0,
+      "heapMiB": 3584,
+      "log": "phase1-worker-fix-compact-typecheck.log"
+    },
+    "freshSlicesAndStoryJourneys": {
+      "pass": 11,
+      "fail": 0,
+      "durationMs": 519.7015,
+      "log": "phase1-worker-fix-fresh-slices.log"
+    }
+  },
+  "localFixturePreparation": {
+    "applicationBuild": false,
+    "existingCiEmittedCodeSource": "ea76250649a728172d623e80b8fb22112f570e0a",
+    "progressionContent": "Existing deterministic data-asset generator; output manifest exactly matches the tracked source manifest. No application bundle built.",
+    "staticFiles": "Restored missing public/ files into ignored dist, preserving all existing CI emitted code."
+  },
+  "reusedOriginalPhase1Evidence": {
+    "scope": "Source data, journey algorithms and UI are unchanged by this repair; original full city/scene and phone browser evidence is retained at its original source revision.",
+    "runtimeSha": "ea76250649a728172d623e80b8fb22112f570e0a",
+    "ciRun": 39090198072,
+    "prCiRun": 39091668137
+  },
+  "hostedCi": {
+    "version": 1,
+    "observedAt": "2026-10-18T03:56:16.647667+00:00",
+    "ciRun": 39094348275,
+    "sourceSha": "8a94130206815cf8905e7a48402a6e82a7c70f37",
+    "conclusion": "success",
+    "workflowEvent": "workflow_dispatch",
+    "url": "https://github.com/kromate/joinallworld/actions/runs/39094348275",
+    "requiredJobs": {
+      "release-policy": "success",
+      "typecheck-fast": "success",
+      "build-and-smoke-fast": "success"
+    },
+    "optionalFullJobs": "skipped as explicitly requested",
+    "localActualArtifactDownloadCheck": "pass; conflicts/errors/extras/overBudget all0",
+    "bytes": {
+      "LOADING_RAW": 90568,
+      "LOADING_GZIP": 35262,
+      "FIRST_PAINT_BROTLI": 35369,
+      "STARTUP_RAW": 613919,
+      "STARTUP_GZIP": 222616,
+      "STARTUP_BROTLI": 195433,
+      "SCENE_HOST_RAW": 188939,
+      "SCENE_HOST_GZIP": 70896
+    },
+    "artifact": {
+      "artifactId": 12123099843,
+      "archiveSha256": "0d80b3eaa8dbf41c4acd41943075aee14f8da3a1bb309037c68e3e5fc8489a19",
+      "archiveBytes": 42122069,
+      "githubRegisteredDigestMatches": true,
+      "filesInstalled": 2665,
+      "installedPayloadAggregateSha256": "ac71a7fcc04b3fff7b1d7024962e59115baf6dadf05a368f76fd7955c4f994a5",
+      "everyCopiedFileHashVerified": true,
+      "manifestIncluded": false
+    },
+    "localApplicationBuild": false,
+    "liveRelease": "pending follow-up PR/merge/protected release"
+  },
+  "repairPr": {
+    "number": 35,
+    "url": "https://github.com/kromate/joinallworld/pull/35",
+    "headSha": "5576f5685a3c77e0c0d0033fbf610cdc3cfee599",
+    "currentCiRun": 39099658897,
+    "state": "open-conversion-push-pending"
+  },
+  "release": null,
+  "activeLiveBuild": null,
+  "sourceFilesSha256": {
+    "src/game/journeys.ts": "1b84aded1b1f21a60febb77664bab729f37bc45abaeef9a24cfbeb93868bf11c",
+    "src/game/progression-slices.ts": "2a6cc46c68a180fbc606bbec7171a9d7d3a39e27287cbc64f2cc9876b1adff17",
+    ".github/workflows/ci.yml": "848a701e145838b75253e76bf457a1477ac8e7b76cf0e57ea6ba850129071e5b"
+  },
+  "byteRepair": "Inline two single-caller fresh-slice assignment helpers without changing validation, tracking timestamps or fresh object construction. Preserve all caps. Extend existing bundle evidence upload to the fix branch prefix.",
+  "rejectedHostedCi": {
+    "run": 39093791469,
+    "sourceSha": "ccd5d2bd2dc0b10c0ca1b4b2f194dd75d9b1b13b",
+    "conclusion": "failure",
+    "reason": "STARTUP_BROTLI195615 exceeds fixed195600 by15. Build and typecheck passed.",
+    "startup": {
+      "raw": 613961,
+      "gzip": 222639,
+      "brotli": 195615
+    },
+    "sceneHost": {
+      "raw": 188939,
+      "gzip": 70896
+    },
+    "log": "phase1-worker-fix-ci-failure.log"
+  },
+  "browserConfirmation": {
+    "sourceSha": "8a94130206815cf8905e7a48402a6e82a7c70f37",
+    "module": "/assets/app-9d1b405.js",
+    "unmodifiedOrigin": "http://127.0.0.1:5351/",
+    "report": "phone/current-8a941302-browser-report.json",
+    "nativeCaptures": 8,
+    "nativeCaptureBytes": 604280,
+    "allNativeDimensionsAndHashesVerified": true,
+    "viewports": [
+      [
+        390,
+        844
+      ],
+      [
+        320,
+        740
+      ]
+    ],
+    "overflowObserved": false,
+    "retention": "Kano chapter4; current-city0missions/2venues;275/284/275 open cities; helper two keepsakes and1city; Nairobi distinct tables",
+    "unmodifiedAutomationInclusiveMs": [
+      315,
+      293
+    ],
+    "instrumentedReport": "phone/current-8a941302-instrumented-report.json",
+    "instrumentedOrigin": "http://127.0.0.1:5353/",
+    "trustedEventToSuccessfulDomPlusTwoAnimationFramesMs": [
+      26.300000190734863,
+      24.200000047683716
+    ],
+    "methodLimit": "Instrumented desktop Chrome, not actual paint, physical-phone or an uninstrumented-origin latency claim.",
+    "preexistingColdDiagnostic": "Qualified visited key triggers nonfatal city-index console diagnostic, unchanged at9eab3816; preserved full stack in phone/current-8a941302-instrumented-cold-errors.json.",
+    "sourceReview": "phone/current-8a941302-source-review.md",
+    "proxyReview": "phone/current-8a941302-instrumented-proxy-review.json"
+  },
+  "rejectedPrCi": {
+    "run": 39099658897,
+    "headSha": "5576f5685a3c77e0c0d0033fbf610cdc3cfee599",
+    "conclusion": "failure",
+    "build": "pass",
+    "downloadBudgets": "pass",
+    "typecheck": "pass",
+    "reason": "Two new observational QA helpers used JavaScript extensions, violating the unchanged exact JavaScript inventory in server/release.test.ts. Convert the helpers to typed source; do not relax the guard.",
+    "log": "phase1-worker-repair-pr-ci-failure.log",
+    "logSha256": "6185d91ec1ecd0dc6ae1eb2506e9928e500083212d12a579ea0386323fb3d00b",
+    "applicationModule": "/assets/app-9d1b405.js",
+    "smokePass": 16,
+    "smokeFail": 1,
+    "rawLogSha256": "f132c6c26faceb2f97f54968c5c121e5054c5492d3caf935f054d106e22ff4ea",
+    "logNormalization": "Trailing horizontal whitespace and CR removed; all log lines retained. Raw SHA256 separately pinned to the original GitHub log."
+  },
+  "qaToolRepair": {
+    "version": 1,
+    "observedAt": "2026-10-18T05:31:24.926716+00:00",
+    "sourceScope": "Two observational QA helpers only; application runtime and emitted artifact unchanged.",
+    "originalHelperRevision": "5576f5685a3c77e0c0d0033fbf610cdc3cfee599",
+    "files": {
+      "docs/agent-work/story-mode-evidence-20261017/phone/phase1-mode-timing-observer.ts": "ca84ce96ba3307aec08dc8bef4c8429cf1ab1d9cf081ad39c2bcc374ef427203",
+      "docs/agent-work/story-mode-evidence-20261017/phone/phase1-mode-timing-proxy.mts": "f69ddf5a0c8122a6d64665641fa24812c94e1da5f7028f3a3d65963ded245a08"
+    },
+    "releaseSourceChecks": {
+      "pass": 5,
+      "fail": 0,
+      "scope": "Unchanged server/release.test.ts executed from an exact candidate Git-index export.",
+      "excludedFromCandidate": "Untracked future prototype reproduction helpers remain untouched in the working clone; they are not in the PR. No source guard changed."
+    },
+    "helperTypecheck": {
+      "strict": true,
+      "isolated": true,
+      "target": "ES2023",
+      "module": "NodeNext",
+      "libs": [
+        "ES2023",
+        "DOM",
+        "DOM.Iterable"
+      ],
+      "explicitConfigSelection": "TypeScript CLI requires --ignoreConfig when explicit files are supplied; all strict flags are explicit.",
+      "errors": 0,
+      "heapMiB": 512
+    },
+    "syntax": {
+      "proxy": "pass",
+      "strippedBrowserObserver": "pass"
+    },
+    "review": "Independent source review found no blocking measurement, forwarding or CSP semantic change. Historical measured samples remain bound to original helpers; this conversion is not a new latency measurement.",
+    "runtimeDelta": "Native Node type stripping before serving the typed observer; array-valued CSP now raises an explicit error. Observed singular header and fixed endpoints unchanged.",
+    "sourceGuardChanged": false,
+    "budgetsChanged": false
+  }
+}

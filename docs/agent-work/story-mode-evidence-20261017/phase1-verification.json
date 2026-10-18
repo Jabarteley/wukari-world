@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-18T02:52:20Z",
-  "status": "all-pre-pr-gates-pass-pr-and-release-pending",
+  "updatedAt": "2026-10-18T03:37:33.323002+00:00",
+  "status": "worker-repair-byte-reduction-verified-locally-hosted-gates-pending",
   "phase": 1,
   "checkout": "/Users/anthonyakpan/work/joinallworld-story",
   "baseSha": "c42aeee66e0fbc60e85cb808d8d2ec263a7ac4d4",
@@ -190,10 +190,35 @@
     "temporaryLauncher": "/tmp/story-qa-server-20261017.mts; local fixture only, excluded from shipped source."
   },
   "release": {
-    "pullRequest": null,
-    "mergeSha": null,
-    "releaseRun": null,
-    "liveStoryBuild": null
+    "pullRequest": 34,
+    "mergeSha": "377300fab8039d551638540047091b7c31609dbc",
+    "releaseRun": 39092396438,
+    "liveStoryBuild": null,
+    "pullRequestUrl": "https://github.com/kromate/joinallworld/pull/34",
+    "mergedAt": "2026-10-18T03:05:19Z",
+    "releaseUrl": "https://github.com/kromate/joinallworld/actions/runs/39092396438",
+    "releaseStatus": "failure-before-deploy",
+    "sourceTreeMatchesPrHead": true,
+    "storyModeDefault": false,
+    "failure": "All5Worker smoke checks fail during startup: progression_content_unavailable; deploy job skipped. Build/download and Node smoke passed.",
+    "failureLog": "phase1-release-39092396438-failure.log",
+    "productionHealthAfterFailure": {
+      "ok": true,
+      "build": "joinallworld-9eab3816db3f1cdc2fc3e567191"
+    },
+    "fixForward": {
+      "branch": "codex/story-core-worker-startup-fix",
+      "checks": "phase1-worker-fix-checks.json",
+      "workerSmoke": {
+        "pass": 5,
+        "fail": 0
+      },
+      "typecheck": "5 projects, 0 errors",
+      "rejectedCi": 39093791469,
+      "rejectedStartupBrotli": 195615,
+      "byteRepair": "Single-caller fresh-slice helper inlining, no validation changes",
+      "localChecks": "Worker5/5, fresh slices/story journeys11/11, typecheck5/0"
+    }
   },
   "factorySpendUsd": 0,
   "factoryPreparation": {
@@ -430,5 +455,15 @@
     ],
     "rejectedCaptures": "Old 365px crops and transient/obsolete clinic frames remain local and are excluded from committed evidence."
   },
-  "nextAction": "Commit only curated Phase1 evidence, push after fresh-main check, open and attach PR, wait for current CI, merge, release and confirm the active public build/live page before Phase2."
+  "nextAction": "Push compact bounded repair, run current CI and inspect actual emitted bytes, then ordinary PR/merge/release/live verification.",
+  "prCI": {
+    "id": 39091668137,
+    "url": "https://github.com/kromate/joinallworld/actions/runs/39091668137",
+    "headSha": "4fddbddb22d921be75caa74e7de6a1276c6d75d0",
+    "status": "completed",
+    "conclusion": "success",
+    "sizeMeasurementsMatchRuntimeCandidate": true,
+    "log": "phase1-pr-ci-39091668137.log",
+    "externalReview": "Skipped by external service due eligible file count and review credit availability; no upgrade or credits purchased."
+  }
 }

@@ -50,6 +50,22 @@ const base64 = (bytes: Uint8Array): string => { let s = ''; for (let i = 0; i < 
 const imageType = (bytes: Uint8Array): string | null => (bytes[0] === 0xff && bytes[1] === 0xd8 ? 'image/jpeg' : bytes[0] === 0x89 && bytes[1] === 0x50 ? 'image/png' : bytes[8] === 0x57 && bytes[9] === 0x45 ? 'image/webp' : null)
 
 export interface ReviewDeps { ask?: (messages: readonly ChatMessage[]) => Promise<string | null> }
+
+/** What advertising may not be, on top of the feed's rules (docs/PROMOTE.md, and the advertising code's usual exclusions). */
+const AD_POLICY = `This item is a BUSINESS LISTING or ADVERT. Also remove (category illegal or scam) anything that offers: betting, lotteries or gambling; loans, credit or "quick cash"; crypto, forex, investments, returns or "double your money"; network marketing or recruitment that asks for money; adult services or escort work; drugs, weapons, tobacco or vaping; prescription medicine or miracle cures; fake documents; anything aimed at children that sells to them. Ordinary shops, food, fashion, beauty, repairs, transport, tutoring, events, phones and home services are fine.`
+
+/** One judgment of words and an optional picture (a hash in the media store). Null when there was no usable answer. */
+export async function judge(ctx: RouteContext, input: { kind: string; text: string; image?: string; facts: string; ad?: boolean }, deps: ReviewDeps = {}): Promise<(Verdict & { saw: 'text' | 'image' }) | null> {
+  const bytes = input.image && ctx.models ? await ctx.models.get(input.image).catch(() => null) : null
+  const mime = bytes && bytes.length <= 400_000 ? imageType(bytes) : null
+  const words = `Kind: ${input.kind}. ${input.facts}\nText of the item:\n"""${input.text.slice(0, 1500)}"""`
+  const user = (mime && bytes ? [{ type: TEXT_PART, text: words }, { type: IMAGE_PART, image_url: { url: `data:${mime};base64,${base64(bytes)}` } }] : words) as unknown as string
+  const messages: ChatMessage[] = [{ role: 'system', content: input.ad ? `${POLICY}\n${AD_POLICY}` : POLICY }, { role: 'user', content: user }]
+  const ask = deps.ask ?? (async (m: readonly ChatMessage[]) => { const r = await routerOf(ctx).ask({ purpose: 'moderation', messages: m, maxTokens: 120, carriesPlayerWords: true, timeoutMs: 20000 }); return r.ok ? r.text : null })
+  const answer = await ask(messages).catch(() => null)
+  const verdict = answer ? readVerdict(answer) : null
+  return verdict ? { ...verdict, saw: mime ? 'image' : 'text' } : null
+}
 /**
  * Review one thing now and apply the verdict. `why` is 'report' (someone reported it) or 'new' (a new public picture or portrait).
  * For a new picture only hide/remove are applied; a keep writes nothing. Returns the verdict, or null when there was none.

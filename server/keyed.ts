@@ -134,6 +134,7 @@ export const KEYED_SPECS: Readonly<Record<string, readonly KeyedSpec[]>> = Objec
   livingWorld: [{ path: ['driving'] }, { path: ['qualifications'] }, { path: ['barber'] }],
   clans: [{ path: ['clans'] }, { path: ['names'] }, { path: ['codes'] }, { path: ['players'] }, { path: ['boards'] }, { path: ['league'] }],
   agents: [{ path: ['keys'] }, { path: ['owners'] }, { path: ['chars'] }, { path: ['claims'] }, { path: ['names'] }],
+  promote: [{ path: ['listings'] }, { path: ['orders'] }, { path: ['owners'] }, { path: ['cities'] }],
   contacts: [{ path: ['me'] }, { path: ['keys'] }, { path: ['edges'] }, { path: ['mine'] }, { path: ['found'] }],
   feed: [{ path: ['authors'] }, { path: ['posts'] }, { path: ['cities'] }, { path: ['handles'] }, { path: ['codes'] }, { path: ['crews'] }, { path: ['events'] }, { path: ['gigs'] }],
 });

@@ -13,6 +13,7 @@ import { forgetStoryHelp } from '../story/coop.ts'
 import { forgetClanPlayers } from '../clans/forget.ts'
 import { forgetFeedPlayers } from '../feed/service.ts'
 import { forgetContactsPlayers } from '../feed/contacts.ts'
+import { forgetPromotePlayers } from '../promote/service.ts'
 import { clearPlayerFamily } from '../social/family.ts'
 import { eraseLivingWorldProgress } from '../living-world/privacy.ts'
 import { eraseRealValue } from '../real-value/privacy.ts'
@@ -732,6 +733,7 @@ export function eraseData(ctx: RouteContext, db: Db, plan: ErasurePlan): Erasure
   forgetClanPlayers(db, ids)
   forgetFeedPlayers(db, ids)
   forgetContactsPlayers(db, ids)
+  forgetPromotePlayers(db, ids)
   eraseSpaces(db, ids)
   scrubTrustAndSupport(db, ids, accounts)
   scrubAdminCollections(db, ids, accounts)

@@ -11,4 +11,7 @@ export const crews = phonePanel('crews', 'Crews', bodyLoader('feed/CrewsApp'), {
 export const plans = phonePanel('plans', 'Plans', bodyLoader('feed/PlansApp'), { icon: 'sparkles', order: 11.8, group: 'people' })
 export const work = phonePanel('work', 'Work', bodyLoader('feed/WorkApp'), { icon: 'goals', order: 10.5, group: 'money' })
 
-export const FEED_PANELS: readonly VuePanel[] = [feed, me, crews, plans, work]
+/** Allworld for Business (docs/PROMOTE.md): the city's businesses, free listing, cheap boosts. */
+export const promote = phonePanel('promote', 'Businesses', bodyLoader('promote/BusinessesApp'), { icon: 'shop', order: 13.4, group: 'money' })
+
+export const FEED_PANELS: readonly VuePanel[] = [feed, me, crews, plans, work, promote]

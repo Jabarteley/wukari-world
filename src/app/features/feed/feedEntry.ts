@@ -11,7 +11,23 @@ function read(): Wanted | null {
   for (const kind of ['crew', 'event', 'friend'] as const) { const code = cleanCode(params.get(kind)); if (code) return { kind, code } }
   try { const kept = JSON.parse(sessionStorage.getItem(KEY) ?? 'null') as Wanted | null; return kept && cleanCode(kept.code) ? kept : null } catch { return null }
 }
+/** Back from a business boost's checkout (/?promote=<ref>): Allworld asks the payment provider itself, then shows the result. */
+function paymentReturn(ref: string): void {
+  const { game, shell } = useApp()
+  const params = new URLSearchParams(location.search); params.delete('promote')
+  history.replaceState(null, '', `${location.pathname}${params.size ? `?${params}` : ''}${location.hash}`)
+  const stop = watch(() => game.connected.value, (ready) => {
+    if (!ready) return
+    stop()
+    void game.fetchJson<{ ok: boolean; reason?: string }>('/api/promote/order/verify', { method: 'POST', body: { ref } }).then((r) => {
+      game.toast(r.ok ? 'Paid. Your boost is running.' : r.reason ?? 'The payment is not confirmed yet.', r.ok ? 'info' : 'error')
+      shell.open('promote', { tab: 'mine' })
+    }, () => game.toast('The payment could not be checked. Open Businesses to try again.', 'error'))
+  }, { immediate: true })
+}
 export function startFeedEntry(): void {
+  const paid = new URLSearchParams(location.search).get('promote')
+  if (paid && /^AW-[A-Z0-9-]{4,40}$/.test(paid)) { paymentReturn(paid); return }
   const wanted = read()
   if (!wanted) return
   try { sessionStorage.setItem(KEY, JSON.stringify(wanted)) } catch { /* private mode */ }

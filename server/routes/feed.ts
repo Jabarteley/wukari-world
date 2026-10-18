@@ -27,6 +27,7 @@ import { addressBucket } from '../host-context.ts'
 import { feedService } from '../feed/service.ts'
 import { review } from '../feed/review.ts'
 import { contactsService } from '../feed/contacts.ts'
+import { promoteService } from '../promote/service.ts'
 import { registerAdminSetting } from '../admin/settings.ts'
 import type { Push } from '../feed/service.ts'
 import { crewPageHtml, eventPageHtml, goneHtml } from '../feed/pages.ts'
@@ -52,6 +53,7 @@ const videoKind = (bytes: Uint8Array): 'webm' | 'mp4' | null => (bytes[0] === 0x
 export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
   const feed = feedService(ctx)
   const contacts = contactsService(ctx)
+  const promote = promoteService(ctx)
   // Public photos and clips: on (the owner's decision of 18 Oct 2026); an admin can switch them back to friends-and-crews without a deploy.
   registerAdminSetting(ctx, { key: 'feedPublicMedia', label: 'Feed: public photos and clips', help: 'On: adults may post photos and clips for everyone. The AI reviewer checks every public picture when it is posted. Off: photos go to friends and crews only.', kind: 'boolean', default: () => (typeof ctx.env === 'function' ? ctx.env('FEED_PUBLIC_MEDIA') : '').trim().toLowerCase() !== 'off' })
   /** The AI reviewer, after the commit: never in the request's way, never blocking an answer. */
@@ -159,7 +161,12 @@ export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
     'GET /api/feed/list': async (request) => {
       const tab = request.query.get('tab'), city = await cityOf(request)
       if (tab !== 'friends' && tab !== 'city' && tab !== 'world') throw ctx.fail(400, 'invalid_tab')
-      return { body: await readAs(request, (db, viewer) => feed.read(db, viewer, { tab, city, after: request.query.get('after') })), headers: noStore }
+      const after = request.query.get('after')
+      const page = await readAs(request, (db, viewer) => { const r = feed.read(db, viewer, { tab, city, after }); return r.ok && tab !== 'friends' && !after ? { ...r, sponsored: promote.sponsored(db, viewer, city, tab === 'world') } : r })
+      // Sponsored cards shown are counted for the business (a number, nobody's name), after the answer.
+      const shown = 'sponsored' in page && page.sponsored?.length ? page.sponsored.map((s) => s.order) : []
+      if (shown.length) { const work = ctx.store.transact((db) => promote.noteShown(db, shown), { durable: false }).catch(() => undefined); if (ctx.waitUntil) ctx.waitUntil(work) }
+      return { body: page, headers: noStore }
     },
     'GET /api/feed/crew': async (request) => ({ body: await readAs(request, (db, viewer) => feed.read(db, viewer, { tab: 'crew', crew: request.query.get('id') ?? '', after: request.query.get('after') })), headers: noStore }),
     'GET /api/feed/by': async (request) => ({ body: await readAs(request, (db, viewer) => { const id = feed.resolve(db, request.query.get('id')); return id ? feed.read(db, viewer, { tab: 'author', by: id, after: request.query.get('after') }) : { ok: false, code: 'unknown_player', reason: 'That person was not found.' } }), headers: noStore }),

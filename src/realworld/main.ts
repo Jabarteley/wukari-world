@@ -16,6 +16,7 @@ import { buildTrees } from './trees.ts';
 import { buildDressing } from './dressing.ts';
 import { buildTraffic } from './vehicles.ts';
 import { buildPeople } from './people.ts';
+import { buildClutter } from './clutter.ts';
 
 const params = new URLSearchParams(location.search);
 const vec = (key: string, fallback: [number, number, number]) => (params.get(key)?.split(',').map(Number) ?? fallback) as [number, number, number];
@@ -64,6 +65,8 @@ zinc.customProgramCacheKey = () => 'realworld-zinc-1';
 const metalRoofs = new THREE.Mesh(built.metalRoofs, zinc);
 const flatRoofs = new THREE.Mesh(built.flatRoofs, new THREE.MeshStandardMaterial({ vertexColors: true, map: concrete.map, normalMap: concrete.normalMap, roughnessMap: concrete.roughnessMap }));
 for (const m of [walls, metalRoofs, flatRoofs]) { m.castShadow = m.receiveShadow = !params.has('noshadow'); scene.add(m); }
+const clutter = buildClutter(world.buildings);
+scene.add(clutter.group);
 const orthoFit = await fetch('/realworld/lagos-island/ortho.json').then((r) => r.json() as Promise<{ u: [number, number, number]; v: [number, number, number] }>);
 const orthoTexture = await new THREE.TextureLoader().loadAsync('/realworld/lagos-island/ortho.jpg');
 orthoTexture.colorSpace = THREE.SRGBColorSpace; orthoTexture.anisotropy = renderer.capabilities.getMaxAnisotropy(); orthoTexture.flipY = true;

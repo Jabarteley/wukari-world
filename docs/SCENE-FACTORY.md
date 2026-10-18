@@ -66,7 +66,7 @@ The world planner requires `scripts/scene-factory/asset-index.json`. The current
 
 Both commands run Node with a 512 MiB heap limit. `prebuild` runs `scenes:check`, so an ordinary application build cannot proceed with missing or stale generated scene outputs. The actual world build installed 1,436 files. A fresh `scenes:check` matched all 1,436 without writing or deleting files; the current generated world manifest SHA-256 is `4142723a9742898e5ccffc9a5c7bae22f97142e37368e9fba71d818b07e3f637`.
 
-The first actual checks exposed two integration issues. Narrow normalization for the legacy Nigerian country alias (`nigeria`/`ng`) now passes its focused 20/20 cases. A wider hero could obstruct activity; rear-band reservation now passes its actual-venue 19/19 cases. The current recorded world build and mutation-free check pass. The corrected phone-sheet fixture and full typecheck now pass all five projects with zero errors in r15. The latest recorded scene batch also passes camera4, city-scenes8, public-venue-budget and companion checks. An earlier full all-city run passed all six logical cases; see the programme record for its exact source/evidence scope. Browser and release acceptance remain separate.
+The first actual checks exposed two integration issues. Narrow normalization for the legacy Nigerian country alias (`nigeria`/`ng`) now passes its focused 20/20 cases. A wider hero could obstruct activity; rear-band reservation now passes its actual-venue 19/19 cases. The current recorded world build and mutation-free check pass. The corrected phone-sheet fixture and full typecheck pass all five projects with zero errors in r15. Camera projection/reset13, city-scenes8, venue-world23, public-venue-budget and companion checks pass at their recorded source scopes. An earlier full all-city run passed all six logical cases; see the programme record for exact evidence. Browser and release acceptance remain separate.
 
 The refreshed host audit covers 284 cities, 6,423 targets and 34 configurations, with zero failures and 1,223 source pins. The measured case is 1,264 triangles, seven meshes, three lights and a maximum of nine draw calls. Within-venue measured-state triangle drift is 3.2718%; the separate global cross-venue comparison is 27.78% and is not an equivalent pass condition.
 
@@ -76,21 +76,23 @@ The refreshed host audit covers 284 cities, 6,423 targets and 34 configurations,
 
 After the first scene and the existing UI preloads are ready, `src/app/state/idlePreload.ts` imports `src/scene/recipe/idle.ts`. That lazy module owns the city watcher and starts the neighbor prefetcher. It selects at most three distinct open links from the current city: road or rail first, then air; nearest known distance first, with destination ID breaking ties. Only that selection is warmed, one city per idle turn, including its exact content-addressed GLBs. Repeated refreshes cannot widen the selection. This bound matters because the global flight network can link one city directly to hundreds of others. It stops speculative work on Light mode, Save-Data, 2G and slow-2G, discards stale queues when the current city changes, and never decodes images, textures or geometry. Actual venue loading still performs the authoritative validation and preparation.
 
+Recipe cameras fit measured scenery, residents and the current player into the actual viewport and the space available above the phone controls. The lazy recipe module solves the perspective bounds; the shared host supplies its current frame through an optional callback. Authored scenes retain their existing camera path. Recentring a recipe scene refits after walking or resizing.
+
 ## Asset and runtime limits
 
 `scripts/scene-factory/assets.ts` validates GLB structure, measurement identity, required nodes, geometry and byte ceilings. A regional kit contains the required 20 prop nodes and one 1,024×1,024 WebP atlas. Heroes have their own stricter geometry and byte bounds. Generated runtime URLs include the full asset SHA-256, matching the long-lived immutable cache policy.
 
 `src/scene/recipe/contract.ts` caps a city recipe document at 120,000 UTF-8 bytes and validates exact target coverage, spots, placement bounds and the per-venue host allowance. `src/scene/recipe/prepare.ts` independently enforces declared raw bytes and decoded asset identity when a venue is actually loaded.
 
-## Open acceptance gates
+## Validation and current evidence
 
-The compiler, runtime contract and installer have focused fixture coverage. The refreshed host map covers 284 cities and 6,423 target venues, including an empty authored-only Lagos map. The full-world build and mutation-free check pass; runtime and delivery gates below remain open.
+The compiler, runtime contract and installer have focused fixture coverage. The refreshed host map covers 284 cities and 6,423 target venues, including an empty authored-only Lagos map. The full-world build and mutation-free check pass.
 
-The following acceptance gates remain open:
+Exact source `0b656f29b0b73ab294c1be15f28cd25391579386` passes [hosted CI39158588048](https://github.com/kromate/joinallworld/actions/runs/39158588048), including the strict loading-page contract, native-character integration, fixed byte limits, host acceptance, typecheck and UI checks. Largest gameplay startup is 611,375 raw / 222,083 gzip / 195,606 Brotli bytes; the shared scene host is 79,827 raw / 30,233 gzip. No budget was raised by this programme.
 
-- exact hosted-bundle review: fixed byte caps passed on earlier sources, but strict first-paint smoke exposed extracted loading utilities. The complete three-utility grouping needs exact emitted-bundle confirmation; no smoke assertion or cap changed;
-- corrected-artifact phone review and cold timing: creator submission and four-city pointer zoom/reset pass on2a; three-linked prefetch and SaveData suppression were observed. The default scene views still clipped content, so recipe-only perspective fitting now uses measured bounds and actual HUD-safe pixels. Thirteen projection/reset checks pass; actual fitted-artifact views and full-ready timing remain open. 2G suppression remains inconclusive;
-- release acceptance.
+The isolated artifact from that source passes four-city camera-fit and pointer zoom/reset review at 320 and 390 pixels. The creator submits once and closes, linked prefetch remains bounded to three cities, and ordinary walking and return were observed. Accra additionally stops at the actual scene boundary. Eight local replays with cache disabled reach complete scene and native-player readiness within 770.3–1301.1 ms. These are desktop phone-tier observations over unthrottled local networking. Physical devices and constrained networks remain unmeasured. SaveData suppression was observed on the previous unchanged prefetch implementation; browser 2G remains inconclusive. Evidence is under `docs/agent-work/story-mode-evidence-20261017/phone/`.
+
+A guide-bubble overflow at 320 pixels is corrected in source and awaits its own emitted-artifact check. Production release acceptance is recorded separately in the programme work record.
 
 The reviewed front/side views do not certify phone composition or materials in game, surveyed or photorealistic forms, or visual uniqueness for every city. No external geometry or photo reuse is implied by the factual source records. Source facts and licences, original procedural geometry, runtime correctness and visual acceptance remain separate evidence.
 

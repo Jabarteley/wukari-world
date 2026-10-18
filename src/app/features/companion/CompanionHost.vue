@@ -169,6 +169,7 @@ function onKey(event: KeyboardEvent): void {
 const bubble = ref<Nudge | null>(null)
 let bubbleTimer = 0, bubbleAt = 0
 const side = computed(() => (pos.x + size.value / 2 > window.innerWidth / 2 ? 'is-left' : 'is-right'))
+const bubbleStyle = computed(() => ({ maxWidth: `${clamp(side.value === 'is-left' ? pos.x + size.value - 12 : viewport.value - pos.x - 12, 0, 260)}px` }))
 const above = computed(() => pos.y > 190)
 const dot = computed(() => companionUi.unread > 0 && !bubble.value)
 function sync(): void { lines.value = [...memory.data.log]; companionUi.tick++; companionUi.unread = memory.unread() }
@@ -397,7 +398,7 @@ function onPoint(event: CustomEvent<{ active: boolean; target?: Box | null; card
 <template>
   <Teleport to="body">
     <div v-if="shown" v-show="floating" ref="root" class="lumo-root" :class="{ 'is-still': reduced, 'is-moving': override !== null }" :style="style">
-      <div v-if="bubble && !companionUi.open && !tour.active" class="lumo-bubble" :class="[side, above ? 'is-above' : 'is-below']" role="status">
+      <div v-if="bubble && !companionUi.open && !tour.active" class="lumo-bubble" :class="[side, above ? 'is-above' : 'is-below']" :style="bubbleStyle" role="status">
         <p>{{ bubble.text }}</p>
         <div class="lumo-bubble-actions">
           <button v-for="(action, at) in bubble.actions.slice(0, 2)" :key="at" type="button" :class="{ 'is-primary': at === 0 }" @click="act(action)">{{ action.label }}</button>
@@ -422,7 +423,7 @@ function onPoint(event: CustomEvent<{ active: boolean; target?: Box | null; card
 .lumo-stage:active { cursor: grabbing; }
 .lumo-stage canvas { display: block; width: 100%; height: 100%; filter: drop-shadow(0 6px 8px rgba(16, 24, 20, .22)); pointer-events: none; }
 .lumo-dot { position: absolute; top: 8px; right: 10px; width: 14px; height: 14px; border-radius: 50%; background: var(--c-badge); border: 2px solid #fff; }
-.lumo-bubble { position: absolute; width: max-content; max-width: min(260px, calc(100vw - 24px)); padding: 10px 12px; border-radius: 16px; background: #fff; color: var(--c-ink); box-shadow: var(--e-2); pointer-events: auto; animation: lumo-pop var(--m-pop) var(--ease-pop); }
+.lumo-bubble { position: absolute; box-sizing: border-box; width: max-content; max-width: min(260px, calc(100vw - 24px)); padding: 10px 12px; border-radius: 16px; background: #fff; color: var(--c-ink); box-shadow: var(--e-2); overflow-wrap: anywhere; pointer-events: auto; animation: lumo-pop var(--m-pop) var(--ease-pop); }
 .lumo-bubble.is-above { bottom: calc(100% + 4px); } .lumo-bubble.is-below { top: calc(100% + 4px); }
 .lumo-bubble.is-left { right: 0; } .lumo-bubble.is-right { left: 0; }
 .lumo-bubble p { margin: 0; font-size: 14px; line-height: 1.35; }

@@ -5,7 +5,7 @@
 - **Work ID:** `story-mode-20261017`
 - **Owner:** Story programme integration
 - **Thread:** `01a14bf1-fd6d-7de1-9770-a0c22f5d554a`
-- **UTC updated:** `2026-10-18T18:34:45Z`
+- **UTC updated:** `2026-10-18T18:47:46Z`
 - **Status:** `active`
 - **Work state:** `implementation`
 
@@ -28,12 +28,14 @@ Deliver four independently reviewed and released phases of Story Mode for `kroma
 
 - **Fixture coordination:** the creator reconciliation also owns the saved-onboarding fixture in `src/app/features/phone/sheetScope.test.ts`; add its explicit unfinished `done: false` field to match the strengthened authority contract. The scene-guide writer may update only current measured manifest and acceptance status in `docs/SCENE-FACTORY.md`.
 
+- **Cold-load evidence seam:** exclusively own the existing diagnostics type/projection in root `src/venue-world.ts` to expose recipe runtime and visible native-root readiness, errors, stable root identity and player classification. No rendering, camera, physics, warmup, first-person or protected `src/scene/**` performance changes. The first-person owner record claims only its existing view hunks in this root host. A two-observation natural submitted-frame increase after readiness gives a conservative ready-by bound; idle without a later draw remains inconclusive.
+
 ## Repository state
 
 - **Base:** Phase1 PR35 merged as `678b6bbe50900561d712ebe35f4932e48227d3b5`; exact combined CI39101841081 and protected release39102769792 passed, followed by active public health and unauthenticated320/390 browser proof. This is historical delivery evidence, not a claim that later main releases remain on678b6bbe.
-- **Branch:** `story/phase2-scenes`, pushed base `48b541d8a0d97bdece4a1e5a99ca90b764dc6047`; current camera, creator, control-overlap and first-paint chunk corrections are locally verified and being published. Fresh origin/main remains c16fb841 and is an ancestor. No Phase2 PR/release yet.
+- **Branch:** `story/phase2-scenes`, pushed source `2a61eb4b1d0a98895e8d184ded0644af86cd9cbc`; exact CI39154860456 is running. Readiness diagnostic projection and refreshed witnesses are verified locally and being published. Fresh origin/main remains c16fb841 and is an ancestor. No Phase2 PR/release yet.
 - **Initial dirty status:** clean.
-- **Resources:** Historical game5351 and catalogue5354 untouched. Owned full game5357 exec19062 still serves the prepared7f9 artifact and preserved synthetic data. Isolated Chrome65923/CDP5356 idle. No heavy job active after r12. Reuse runner validates the owned data marker before the next exact artifact; no browser proof of new source yet. World manifest60d23f8c and host inputce7d4d25. Future talk source and other owner records remain excluded from Phase2.
+- **Resources:** Historical game5351 and catalogue5354 untouched. Owned full game5357 exec19062 still serves the prepared7f9 artifact and preserved synthetic data. Isolated Chrome65923/CDP5356 idle. No heavy job active after r12. Reuse runner validates the owned data marker before the next exact artifact; no browser proof of new source yet. World manifestbc4d5f36 and host input425cebf7. Future talk source and other owner records remain excluded from Phase2.
 
 
 ## Acceptance tracker
@@ -939,3 +941,11 @@ The offline284-city local builder and phone conversation card were handed back a
 - Exact hosted CI39152681757 on48b541d8 passes startup611768raw/222368gzip/195733Brotli, scene host79002raw/29959gzip, asset inventory and cartridge. It fails strict eager chunk smoke because updateNotice emitted separately. The Vue-only signal is now grouped with Vue; no assertion or byte cap was weakened. New hosted proof is required, and native-character integration was skipped after the old smoke failure.
 - Corrected browser artifact proof remains open for all four default camera compositions, normal zoom pointer hit target, fresh creator submission, linked-city prefetch bound and cold readiness. Existing four synthetic lives and private replay exports are preserved. Isolated Playwright approval persists. No photorealistic or fleet-wide perceptual uniqueness claim.
 - Next executable step: publish the owned correction paths, dispatch exact-source CI with UI checks, prepare its immutable artifact and replace only owned5357 with validated preserved QA data. Then repeat the finite phone journeys before creating Phase2 PR.
+
+## Cold-load readiness projection checkpoint 2026-10-18T18:47:46Z
+
+- Added only the root host diagnostics type/projection: current recipe runtime status/error and visible native-root id/status/error/player classification. No frame-loop, rendering, camera, physics, first-person or protected scene-performance edits. This is read-only on an explicit diagnostic read.
+- The browser protocol first observes the current recipe and identified player/native roots ready without errors, then observes the same identities and location ready after a subsequent natural submitted render. That observation timestamp is a conservative full-ready bound. A host with no later natural draw yields inconclusive timing, not an invented pass.
+- Canonical host refresh r6, world build/check, city-scenes8 and full typecheck5/0 pass. World `bc4d5f36914450b48d336e1eb3f122f172c70f36b9fff22683806365bf5de6da`, host `425cebf7ba11bb2ffd05e076d01e3f4a4a28a87693f91bc9c61622b7bb64de1d`. Exact commands, source pins and logs: `story-mode-evidence-20261017/prep/physical-world-verification-20261018-r13.json`. Current local evidence does not substitute for hosted byte checks or actual phone timing.
+- Intermediate camera/creator source2a61eb4b is already in hosted CI39154860456. Its immutable bundle may be used for preliminary visual correction review. Final cold readiness and release acceptance require the new diagnostic artifact; historical5351/5354 remain untouched.
+- Next: push this diagnostics-only successor, run hosted CI, prepare the immutable artifact and verify the finite four-city phone journeys. Phase2 still has no PR/release.

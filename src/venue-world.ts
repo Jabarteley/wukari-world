@@ -146,7 +146,8 @@ export interface VenueDiagnostics extends SceneDiagnostics {
   things: { id: string; kind: string; label: string; x: number; z: number; px: number; py: number; at: boolean }[]
   people: { id: string; kind: string; x: number; z: number; px: number; py: number }[]
   objects: { id: string; itemId: string; x: number; z: number; px: number; py: number }[]
-  characterModels: { name: string; foundation: string; detail: string }[]
+  runtime: { status: string | null; error: string | null }
+  characterModels: { id: string; name: string; foundation: string; detail: string; status: string | null; error: string | null; player: boolean }[]
   drawCalls: number | undefined
   triangles: number | undefined
   geometries: number | undefined
@@ -1647,10 +1648,11 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
         things: thingList.map((thing) => { current!.group.updateMatrixWorld(true); const at = screenOf(thing.x, thing.top * 0.5, thing.z, { x: 0, y: 0 }); return { id: thing.id, kind: thing.kind, label: thing.label, x: thing.x, z: thing.z, px: Math.round(at.x), py: Math.round(at.y), at: atThing === thing.id }; }),
         people: (walkOf()?.people() || []).map((person) => { const at = screenOf(person.x, person.top * 0.5, person.z, { x: 0, y: 0 }); return { id: person.id, kind: person.kind, x: person.x, z: person.z, px: Math.round(at.x), py: Math.round(at.y) }; }),
         objects: (current?.objects?.() || []).map((item) => { const at = screenOf(item.x, 0.35, item.z, { x: 0, y: 0 }); return { id: item.id, itemId: item.itemId, x: item.x, z: item.z, px: Math.round(at.x), py: Math.round(at.y) }; }),
+        runtime: { status: current?.group.userData.runtimeStatus == null ? null : String(current.group.userData.runtimeStatus), error: current?.group.userData.runtimeError == null ? null : String(current.group.userData.runtimeError) },
         characterModels: (() => {
-          const result: { name: string; foundation: string; detail: string }[] = [];
+          const result: VenueDiagnostics['characterModels'] = [];
           current?.group.traverseVisible(object => {
-            if (object.userData.characterFoundation) result.push({ name: object.name, foundation: String(object.userData.characterFoundation), detail: String(object.userData.characterDetail) });
+            if (object.userData.characterFoundation) result.push({ id: object.uuid, name: object.name, foundation: String(object.userData.characterFoundation), detail: String(object.userData.characterDetail), status: object.userData.characterStatus == null ? null : String(object.userData.characterStatus), error: object.userData.characterError == null ? null : String(object.userData.characterError), player: object === standIn.object || object === current?.playerBody });
           });
           return result;
         })(),

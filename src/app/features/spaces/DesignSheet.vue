@@ -14,7 +14,8 @@ import { useGrowth } from '../growth/useGrowth.ts'
 import { startParty } from '../visit/visitStore.ts'
 
 const props = defineProps<{ target: 'home' | 'room'; roomId?: string }>()
-const emit = defineEmits<{ close: []; applied: [] }>()
+/** `walk`: a home was applied and the player pressed Walk in; the Houses app opens the 3D screen. */
+const emit = defineEmits<{ close: []; applied: []; walk: [] }>()
 const { game } = useApp()
 const growth = useGrowth()
 const partied = ref(false)
@@ -117,7 +118,7 @@ function change(): void { plan.value = null; problems.value = []; error.value = 
     <div v-if="done" class="sp-body sp-done" role="status">
       <h3>{{ isHome ? 'Your home is ready' : 'Your room is ready' }}</h3>
       <p>{{ isHome ? 'The pieces are in place. Send it to your friends: they can walk in from the link.' : 'Everyone in the group can see the new pieces.' }}</p>
-      <button type="button" class="ui-button is-primary is-block sp-btn" @click="emit('close')">{{ isHome ? 'Walk in' : 'Close' }}</button>
+      <button type="button" class="ui-button is-primary is-block sp-btn" data-design="done" @click="isHome ? emit('walk') : emit('close')">{{ isHome ? 'Walk in' : 'Close' }}</button>
       <template v-if="isHome">
         <button type="button" class="ui-button is-block sp-btn" :disabled="growth.state.busy !== null" @click="sharePlace">{{ growth.state.busy === 'space' ? 'Preparing…' : 'Share my place' }}</button>
         <button type="button" class="ui-button is-block sp-btn" :disabled="busy !== '' || partied" @click="throwParty">{{ partied ? 'Party on: invite friends from Houses' : 'Throw a party here' }}</button>
@@ -125,14 +126,10 @@ function change(): void { plan.value = null; problems.value = []; error.value = 
       <p v-if="error" class="sp-error" role="alert">{{ error }}</p>
     </div>
     <template v-else>
-      <div v-if="!plan" class="sp-tabs" role="tablist">
-        <button type="button" role="tab" :aria-selected="tab === 'describe'" :class="{ 'is-on': tab === 'describe' }" @click="tab = 'describe'; error = ''">Describe</button>
-        <button type="button" role="tab" :aria-selected="tab === 'import'" :class="{ 'is-on': tab === 'import' }" @click="tab = 'import'; error = ''">Import</button>
-      </div>
       <div class="sp-body">
         <template v-if="!plan">
           <template v-if="tab === 'describe'">
-            <p v-if="!ai" class="sp-note">AI design is resting today. You can paste a plan in Import.</p>
+            <p v-if="!ai" class="sp-note">AI design is resting today. You can still paste a plan.</p>
             <template v-else>
               <label class="sp-label" for="sp-prompt">What do you want?</label>
               <textarea id="sp-prompt" v-model="prompt" class="sp-text" rows="4" maxlength="500" :disabled="busy === 'design'" placeholder="Tell the designer about your space" />
@@ -142,11 +139,13 @@ function change(): void { plan.value = null; problems.value = []; error.value = 
               <button type="button" class="ui-button is-primary is-block sp-btn" :disabled="!prompt.trim() || busy === 'design'" @click="makeDesign">{{ busy === 'design' ? 'Drawing…' : 'Design' }}</button>
               <button v-if="busy === 'design'" type="button" class="ui-button is-block sp-btn" @click="cancel">Cancel</button>
             </template>
+            <button type="button" class="sp-link" data-design="import" @click="tab = 'import'; error = ''">Have a plan file? Paste it instead</button>
           </template>
           <template v-else>
             <label class="sp-label" for="sp-paste">Paste a plan</label>
             <textarea id="sp-paste" v-model="pasted" class="sp-text sp-mono" rows="8" spellcheck="false" placeholder="{ &quot;schema&quot;: &quot;allworld-space&quot;, ... }" :disabled="busy === 'check'" />
             <button type="button" class="ui-button is-primary is-block sp-btn" :disabled="!pasted.trim() || busy === 'check'" @click="checkPasted">{{ busy === 'check' ? 'Checking…' : 'Check plan' }}</button>
+            <button type="button" class="sp-link" data-design="describe" @click="tab = 'describe'; error = ''">Describe it in words instead</button>
           </template>
         </template>
         <template v-else>
@@ -184,6 +183,7 @@ function change(): void { plan.value = null; problems.value = []; error.value = 
 .sp-check { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; }
 .sp-check input { width: 20px; height: 20px; }
 .sp-btn { min-height: 44px; }
+.sp-link { align-self: start; min-height: 44px; padding: 0; border: 0; background: none; font: 600 13px var(--font); color: var(--c-green-dark, #14532d); text-decoration: underline; cursor: pointer; }
 .sp-note { margin: 0; font-size: 14px; color: var(--c-ink-2); }
 .sp-title { margin: 0; font-size: 16px; }
 .sp-floors { display: flex; gap: 6px; }

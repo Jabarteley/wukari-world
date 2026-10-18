@@ -1,17 +1,20 @@
 {
-  "updatedAt": "2026-10-17T23:58:26Z",
+  "updatedAt": "2026-10-18T00:12:55Z",
   "status": "verification-in-progress",
   "phase": 1,
   "checkout": "/Users/anthonyakpan/work/joinallworld-story",
   "baseSha": "c42aeee66e0fbc60e85cb808d8d2ec263a7ac4d4",
-  "mainIntegrated": "4c5a9e70eb5a3b12d42eda5b2ef6c71c1bb55114",
+  "mainIntegrated": "580e4af0837b468f796ea2f2c261abb451cfc644",
   "sourceFilesSha256": {
     "src/game/progression-slices.ts": "c623e9ac4b19392c259b0d318b22287d99e68d7ab15ae6dec3bf199562daa5e0",
     "src/game/snapshot-fields.ts": "d7c4e3ab990930ba3de1485dae2045462648577a15460b67dd5bd7716a99e25e",
-    "src/game/teaching-gate.ts": "deeaf056f197dfe5a46c3666fe286f8a9df2659be85fd13616cb2caeb367c8ea",
-    "src/game/homeward-gate.ts": "1e7223818998e6f6e8d4cfae68bb9d5f1ec01d81d05083469e32529ee28d66e2",
+    "src/game/teaching-gate.ts": "9399e0561a43a8487ba761a0c70e5f89060c3097dd7f54d5af94fc93469568c2",
+    "src/game/homeward-gate.ts": "62d260f49807fd80f7457d9160ea2bde3bb5b07b73c7095e834103061cb4c270",
     "src/types/view.ts": "8c70ac11e42aa9636e32ef853a9e85f32b26374f40318e28bb45b073025d4b58",
-    "src/types/engine.test.ts": "b925ddc8a1802724ca5ea2460d180f5218fee6307c3ea4f1d127e209b85c221e"
+    "src/types/engine.test.ts": "b925ddc8a1802724ca5ea2460d180f5218fee6307c3ea4f1d127e209b85c221e",
+    "src/game/progression-gate.ts": "d391d54c1634fff963cf9972a5baf20932391616af259d7d418cbb91a37b346a",
+    "vite.config.ts": "7f50422ccd4f24dd5cabd0a2560dc7b2eeebc2ebabedb0a55d88cb977ef00be1",
+    "server/admin/erasure-data.ts": "9611fc3124442fa9ca8320e7c96dacf757053ea314681fa2af695db7a6ab76be"
   },
   "checks": {
     "citiesScenes": {
@@ -38,23 +41,34 @@
       "projects": 5,
       "errors": 0,
       "baselinedErrors": 0,
-      "log": "phase1-typecheck-repaired.log"
+      "log": "phase1-spaces-merge-typecheck.log"
     },
     "snapshotGates": {
       "passed": 63,
       "failed": 0,
-      "durationMs": 4366.534959,
-      "log": "phase1-gates-repaired-final.log"
+      "durationMs": 4153.268708,
+      "log": "phase1-final-loaders.log"
+    },
+    "spacesErasureIntegration": {
+      "passed": 4,
+      "failed": 0,
+      "durationMs": 850.043458,
+      "log": "phase1-spaces-erasure.log"
     }
   },
   "latestCI": {
-    "url": "https://github.com/kromate/joinallworld/actions/runs/39079984013",
-    "sha": "f3af60c4df1c713da39ad65da241b23d32126435",
+    "url": "https://github.com/kromate/joinallworld/actions/runs/39081036432",
+    "sha": "fa97782580f29982664d0d6bc52be4b82cd740c6",
     "conclusion": "failure",
+    "typecheck": "success",
     "startup": {
-      "raw": 614443,
-      "gzip": 222817,
-      "brotli": 195796
+      "raw": 613968,
+      "gzip": 222642,
+      "brotli": 195642
+    },
+    "sceneHost": {
+      "raw": 188923,
+      "gzip": 70909
     },
     "unchangedCaps": {
       "raw": 615000,
@@ -82,5 +96,12 @@
     "releaseRun": null,
     "liveStoryBuild": null
   },
-  "factorySpendUsd": 0
+  "factorySpendUsd": 0,
+  "nextCandidate": "One lazy Story screen chunk; equivalent shared-loader return simplifications. Exact bundle measurements pending CI.",
+  "upstreamProductionHealth": {
+    "ok": true,
+    "build": "joinallworld-4c5a9e70eb5a3b12d42eda5b2ef",
+    "observedAt": "2026-10-18T00:08:36Z",
+    "storyIncluded": false
+  }
 }

@@ -78,9 +78,8 @@ function needsHomewardRules(raw: unknown): boolean {
 
 export function homewardFor(raw: unknown): Promise<void> | null {
   if (rules || !needsHomewardRules(raw)) return null
-  loading ??= import('./homeward-rules.ts').then(installHomewardRules).catch(error => {
+  return loading ??= import('./homeward-rules.ts').then(installHomewardRules).catch(error => {
     loading = null
     throw error
   })
-  return loading
 }

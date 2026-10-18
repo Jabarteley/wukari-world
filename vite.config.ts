@@ -388,6 +388,8 @@ export default defineConfig({
     if (/\/src\/game\/home-plan\.ts$/.test(id)) return undefined
     // The online pill (src/app/features/hud/OnlinePill.vue), its poll and its wording: fetched with the top bar (HudBar.vue), one file; the Hunt chip reads the same poll.
     if (/\/src\/app\/features\/hud\/(OnlinePill\.vue|usePulse\.ts|onlinePillModel\.ts)/.test(id)) return 'online-pill'
+    // Capability-gated Story screens share one lazy download and a single preload entry.
+    if (/\/src\/app\/features\/story\/[^/]+\.vue(?:\?|$)/.test(id)) return 'story-ui'
     // Small modules every page uses, shared by the lazy panels and each needing no more than Vue and the engine: kept in the engine chunk
     // (already in the first download) instead of one file apiece, which would each carry its own header and lose what the others share when compressed.
     if (/\/src\/(geo\/frame|campus\/unilag\/(slices|volunteer)|app\/ui\/format|app\/features\/(commerce\/connectionReturn|account\/(accountLite|accountTrack)|hud\/coachModel|sim\/settingsModel|tour\/tourState|neighbourhood\/cityWalkState))\.ts$/.test(id)) return 'engine'

@@ -24,8 +24,7 @@ export function readTeachingSnapshot(value: unknown): TeachingPractice | null {
 
 /** Null means no rules are needed for this snapshot; a promise means wait before accepting it. */
 export function teachingFor(snapshot: unknown): Promise<void> | null {
-  if (PLAYS || installedReader) return null
-  if (!teachingMarker(snapshot)) return null
+  if (PLAYS || installedReader || !teachingMarker(snapshot)) return null
   return loading ??= import('./living-world/teaching-state.ts').then(module => {
     if (typeof module.readTeachingPractice !== 'function') throw new TypeError('Invalid teaching reader.')
     installedReader = module.readTeachingPractice

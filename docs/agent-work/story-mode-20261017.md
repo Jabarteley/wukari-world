@@ -5,7 +5,7 @@
 - **Work ID:** `story-mode-20261017`
 - **Owner:** Story programme integration
 - **Thread:** `01a14bf1-fd6d-7de1-9770-a0c22f5d554a`
-- **UTC updated:** `2026-10-17T23:57:50Z`
+- **UTC updated:** `2026-10-18T00:12:55Z`
 - **Status:** `active`
 - **Work state:** `implementation`
 
@@ -129,3 +129,11 @@ No phase is accepted from a worker report, passing build or release receipt alon
 - Next executable step: finish the fresh typecheck/gate run, commit/push the candidate and run CI; resume browser acceptance only after the Mac is unlocked.
 
 - Repaired local typecheck is clean:5projects,0errors,0baseline additions. Expanded progression/teaching/homeward/browser-profile/client checks pass63/63 in4367ms. Existing expected error identity/text contracts are preserved; no assertions were loosened. The candidate is ready for an exact hosted build/size measurement.
+
+## Candidate checkpoint 2026-10-18T00:12:55Z
+
+- CI39081036432 onfa977825 passes typecheck and policy. Build succeeds; unchanged startup cap still rejects195642Brotli,42bytes over195600. Startupraw613968/gzip222642 andscenehost188923raw/70909gzip pass.
+- The next candidate groups only the Story Vue screens into one lazy chunk, reducing separate preload names. Shared TypeScript view helpers remain outside that manual group because the ordinary travel card imports one of them; it must not bring in the full Story screen. Loader return/early-return consolidation preserves existing promise, failure and retry behavior. Snapshot/client/travel/teaching checks still pass63/63.
+- New main580e4af0 is integrated through02997092. Its Spaces erasure hook conflicted only in the known-collection list; bothstoryHelp andspaces plus both cleanup hooks are retained. Focused erasure integration passes4/4; full local typecheck after merge is clean5projects/0errors/0baseline additions. No protected owner source was rewritten.
+- Required asset branchc254d432 is fetched and is already an ancestor of the candidate. The existing Blender common helper matches the reviewed SHA256159fe2ac049251a159d4c9b1cb20814df3162d30ad5d3440e8af282f23958547. Future contact-sheet tooling passes4/4 and caps each image at4MiB, each sheet payload at8MiB and100cells. It remains untracked preparation with the existing asset scripts; no generation/render has run and spend remainsUS$0.
+- Read-only production health reports healthy upstream build4c5a9e70. A separate upstream Spaces release is in progress; Story remains unmerged and unreleased. The Mac unlock request and post-Kaduna browser gate remain outstanding.

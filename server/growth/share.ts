@@ -26,6 +26,7 @@ import { peekRecords, keyOf } from '../records/store.ts';
 import { KEEP_MS, itemByNumber, peekGist } from '../gist/ledger.ts';
 import { LIMITS, playerOf, sweep } from './data.ts';
 import { count } from './metrics.ts';
+import { homeTitleOf } from '../spaces/store.ts';
 import type { CityId } from '../../src/types/protocol.ts';
 import type { LifeState } from '../../src/types/life.ts';
 import type { ShareFacts, ShareKind } from '../../src/types/growth.ts';
@@ -54,7 +55,7 @@ export function publicGist(db: Db, n: unknown, now: number): { n: number; text: 
 }
 
 /** The facts of a share, read from the sharer's settled life. Nothing comes from the request but the kind (and an event id). */
-export function factsFor(kind: ShareKind, session: Pick<SessionRecord, 'name'>, state: LifeState, cityId: CityId, now: number, player: GrowthPlayerRecord, eventId?: unknown, tableId?: unknown, publicRecord?: PublicEntry | null, publicLine?: { n: number; text: string; city: string } | null, wedding?: { a: string; b: string; city: string } | null): Partial<ShareFacts> | null {
+export function factsFor(kind: ShareKind, session: Pick<SessionRecord, 'name'>, state: LifeState, cityId: CityId, now: number, player: GrowthPlayerRecord, eventId?: unknown, tableId?: unknown, publicRecord?: PublicEntry | null, publicLine?: { n: number; text: string; city: string } | null, wedding?: { a: string; b: string; city: string } | null, space = ''): Partial<ShareFacts> | null {
   const actualCity: CityId = typeof state.estate?.city === 'string' && cityRules(state.estate.city) ? state.estate.city : cityId;
   const view = viewLife(state, { now, cityId: actualCity });
   // Where the sharer lives: the local government of their own house, or the district of the home they rent. A guest (no
@@ -83,6 +84,8 @@ export function factsFor(kind: ShareKind, session: Pick<SessionRecord, 'name'>, 
   // A wedding card says the two public first names of a resident wedding that was announced in the gist and has opened (server/residents/bonds.ts publicWedding),
   // and the city: nothing about how close anyone was. Players have no marriages yet, so without such a wedding there is nothing to share.
   if (kind === 'wedding') return wedding ? { ...base, name: wedding.a, partner: wedding.b, city: cityRules(wedding.city)?.name ?? base.city } : null;
+  // A designed home (server/spaces/store.ts): its title passed the text filter and agentWords when it was applied.
+  if (kind === 'space') return space ? { ...base, headline: space } : null;
   if (kind === 'event') {
     const event = eventsBetween(now, now + 8 * 86400000, cityId).find((item) => item.id === eventId);
     return event ? { ...base, event: event.title, venue: event.venueLabel } : null;
@@ -100,8 +103,8 @@ export function createShare(ctx: Pick<RouteContext, 'now' | 'fail' | 'randomId'>
   if (!player) return no('server_full', 'Sharing is not available right now. Try again later.');
   if (body.wedding !== undefined && (typeof body.wedding !== 'string' || !/^[a-z]-[0-9]{1,6}$/.test(body.wedding))) throw ctx.fail(400, 'invalid_wedding');
   if (body.table !== undefined && (typeof body.table !== 'string' || !/^[a-z0-9-]{1,40}$/.test(body.table))) throw ctx.fail(400, 'invalid_table');
-  const raw = factsFor(kind, session, state, cityId, now, player, body.event, body.table, kind === 'election' || kind === 'news' ? publicEntry(db, body.record) : null, kind === 'gist' ? publicGist(db, body.record, now) : null, kind === 'wedding' ? publicWedding((db as Record<string, unknown>)['bonds'], body.wedding) : null);
-  if (!raw) return no('nothing_to_share', kind === 'table' ? 'Finish a table game first, then share the result.' : kind === 'wedding' ? 'There is no wedding to share just now.' : kind === 'election' || kind === 'news' ? 'That entry of the public record could not be found.' : kind === 'gist' ? 'That line of the gist is gone. Open the Gist again.' : 'That event is not on this week.');
+  const raw = factsFor(kind, session, state, cityId, now, player, body.event, body.table, kind === 'election' || kind === 'news' ? publicEntry(db, body.record) : null, kind === 'gist' ? publicGist(db, body.record, now) : null, kind === 'wedding' ? publicWedding((db as Record<string, unknown>)['bonds'], body.wedding) : null, kind === 'space' ? homeTitleOf(db, session.publicId) : '');
+  if (!raw) return no('nothing_to_share', kind === 'space' ? 'Design your home first (Houses → Design with AI), then share it.' : kind === 'table' ? 'Finish a table game first, then share the result.' : kind === 'wedding' ? 'There is no wedding to share just now.' : kind === 'election' || kind === 'news' ? 'That entry of the public record could not be found.' : kind === 'gist' ? 'That line of the gist is gone. Open the Gist again.' : 'That event is not on this week.');
   const facts = cleanFacts(raw), text = JSON.stringify(facts);
   sweep(g, now);
   // The same card twice is the same link: a second tap on Share makes nothing new.

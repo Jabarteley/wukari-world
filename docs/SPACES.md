@@ -9,6 +9,7 @@ A player designs a home or a group room in their own words, or pastes a plan wri
 3. **Import**: paste a Space Plan (below). It is checked by the same rules, with no model.
 4. **Apply**. A home must be applied at home. Pieces the player already owns are reused; pieces the plan does not use go to storage (nothing is sold); the rest is bought at the shop price. A group room's furniture is free and only its members can apply a plan.
 5. **Walk in**: the home scene shows the new layout at once.
+6. **Share my place** makes a share card with the plan's title ("I designed my place in Allworld: …"); a friend who opens it lands with the player, as a house card does, and the link carries `utm_campaign=space` so arrivals from spaces are counted apart. **Throw a party here** starts an owambe in the home named after the plan. The home's own link (Houses → Visitors → Share a link to my home) lets friends walk straight in.
 
 ## The Space Plan (version 1)
 
@@ -75,7 +76,7 @@ All need the device session; answers are `{ ok: false, code, reason }` when refu
 
 | Setting (admin World page) | Default |
 |---|---|
-| `spacesAi` | on when the server has a model key (`AI_GATEWAY_API_KEY` or `OPENROUTER_API_KEY`), else off. Import works either way |
+| `spacesAi` | **off** until an operator turns it on (Admin → World → Settings). It also needs a model key; without one the router answers "resting". Import, sharing and the agent tools work either way |
 | `spacesDesignsPerHour` | 10 designs per player per hour, on top of the router's daily caps |
 
-Checks: 60 an hour. Applies: 20 an hour. Nothing new is stored: a home changes through its life, a room through `social.convs[g.N].room`.
+Checks: 60 an hour. Applies: 20 an hour. A home changes through its life, a room through `social.convs[g.N].room`. The one new stored thing is `spaces.homes[publicId] = { title, at }`, the title of the plan last applied to a home (it passed the text filter and `agentWords` again on apply), read by the share card and erased with the player (`server/spaces/store.ts`, `server/admin/erasure-data.ts`).

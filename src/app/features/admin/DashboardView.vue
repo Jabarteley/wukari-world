@@ -68,7 +68,13 @@ const funnel = computed(() => hist.value?.funnel[span.value])
 // Guests, less the release check's probe sessions once the economy walk has counted them (the fast count cannot tell them apart).
 const guests = computed(() => Math.max(0, (dash.value?.accounts.guests ?? 0) - (eco.value?.probes ?? 0)))
 const probes = computed(() => eco.value?.probes ?? 0)
-const tileNote = (text: string | null): string => text ?? 'no earlier day to compare with'
+const tileNote = (text: string | null): string => (text ? text.charAt(0).toUpperCase() + text.slice(1) + '.' : 'No earlier day to compare with.')
+/** The state of a fill in words, so it is never colour alone. */
+const toneWord = (tone: 'ok' | 'warn' | 'bad'): string => (tone === 'bad' ? ' · near the limit' : tone === 'warn' ? ' · filling up' : '')
+// The cities table shows the busiest few by default: with ~284 open cities the full list is a stream, not an overview.
+const CITY_ROWS = 12
+const allCities = ref(false)
+const shownCities = computed(() => (allCities.value ? cityRows.value : cityRows.value.slice(0, CITY_ROWS)))
 
 const guideTest = ref('')
 async function testGuide(): Promise<void> {
@@ -86,17 +92,17 @@ const asOf = computed(() => (dash.value ? `as of ${absolute(dash.value.asOf)}, $
       <p class="adm-muted" role="status">{{ asOf || 'Loading…' }}<template v-if="dash"> · refreshes every minute · build {{ dash.build }}, up {{ uptime(dash.uptimeMs) }}</template></p>
       <button class="adm-btn" :disabled="busy" @click="load(true); economy(true)">{{ busy ? 'Refreshing…' : 'Refresh now' }}</button>
     </div>
-    <p v-if="error" class="adm-error" role="alert">{{ error }}</p>
-    <div v-if="!dash && !error" class="adm-grid" aria-busy="true"><div v-for="n in 6" :key="n" class="adm-card adm-skeleton" /></div>
+    <p v-if="error" class="adm-error" role="alert">The dashboard could not be read: {{ error }} <button class="adm-btn" @click="load(true)">Try again</button></p>
+    <div v-if="!dash && !error" class="adm-stats adm-skeleton" aria-busy="true" aria-label="Loading the overview"><div v-for="n in 6" :key="n" class="adm-stat" /></div>
     <template v-if="dash">
-      <div class="adm-tiles">
-        <div class="adm-card adm-tile"><h3>Online now</h3><div class="adm-big">{{ dash.online.value }}</div><Spark :values="peakSeries" :labels="twoLabels" name="Busiest moment of each day" /><div class="adm-sub">exact, live · trend is the busiest moment of each day</div></div>
-        <div class="adm-card adm-tile"><h3>Players today</h3><div class="adm-big">{{ dash.players.activeToday }}</div><Spark :values="seenSeries" :labels="twoLabels" name="Players seen each day" /><div class="adm-sub">{{ tileNote(tileChange([dash.yesterday.active, dash.players.activeToday])) }}</div></div>
-        <div class="adm-card adm-tile"><h3>New today</h3><div class="adm-big">{{ dash.players.newToday }}</div><Spark :values="newSeries" :labels="twoLabels" name="New players each day" color="#2563eb" /><div class="adm-sub">{{ tileNote(tileChange([dash.yesterday.new, dash.players.newToday])) }}</div></div>
-        <div class="adm-card adm-tile"><h3>Signed up / guests</h3><div class="adm-big">{{ dash.accounts.accounts }} <small>/ {{ guests.toLocaleString('en-GB') }}</small></div><Spark :values="accSeries" :labels="twoLabels" name="Accounts" color="#7c3aed" /><div class="adm-sub">{{ percent(dash.accounts.accounts, dash.accounts.accounts + guests) }}% have an account · guests approximate<template v-if="probes"> · {{ probes.toLocaleString('en-GB') }} test sessions left out</template></div></div>
-        <div class="adm-card adm-tile"><h3>Back in 7 days</h3><div class="adm-big">{{ returningNow }}</div><Spark :values="seenSeries" :labels="twoLabels" name="Players seen each day" color="#b45309" /><div class="adm-sub">seen this week, not new this week · approximate</div></div>
-        <div class="adm-card adm-tile"><h3>Open reports</h3><div class="adm-big">{{ dash.reports.open }}</div><div class="adm-sub">{{ dash.reports.problems.open }} problem reports open · {{ dash.businesses.open }} stalls open</div></div>
-      </div>
+      <section class="adm-stats" aria-label="Today at a glance">
+        <div class="adm-stat"><h2>Online now</h2><p class="adm-big">{{ dash.online.value.toLocaleString('en-GB') }}</p><Spark :values="peakSeries" :labels="twoLabels" name="Busiest moment of each day" /><p class="adm-sub">Exact, live. Trend: the busiest moment of each day.</p></div>
+        <div class="adm-stat"><h2>Players today</h2><p class="adm-big">{{ dash.players.activeToday.toLocaleString('en-GB') }}</p><Spark :values="seenSeries" :labels="twoLabels" name="Players seen each day" /><p class="adm-sub">{{ tileNote(tileChange([dash.yesterday.active, dash.players.activeToday])) }}</p></div>
+        <div class="adm-stat"><h2>New today</h2><p class="adm-big">{{ dash.players.newToday.toLocaleString('en-GB') }}</p><Spark :values="newSeries" :labels="twoLabels" name="New players each day" color="#2563eb" /><p class="adm-sub">{{ tileNote(tileChange([dash.yesterday.new, dash.players.newToday])) }}</p></div>
+        <div class="adm-stat"><h2>Signed up / guests</h2><p class="adm-big">{{ dash.accounts.accounts.toLocaleString('en-GB') }} <small>/ {{ guests.toLocaleString('en-GB') }}</small></p><Spark :values="accSeries" :labels="twoLabels" name="Accounts" color="#7c3aed" /><p class="adm-sub">{{ percent(dash.accounts.accounts, dash.accounts.accounts + guests) }}% have an account. Guests approximate<template v-if="probes">, {{ probes.toLocaleString('en-GB') }} test sessions left out</template>.</p></div>
+        <div class="adm-stat"><h2>Back in 7 days</h2><p class="adm-big">{{ returningNow.toLocaleString('en-GB') }}</p><Spark :values="seenSeries" :labels="twoLabels" name="Players seen each day" color="#b45309" /><p class="adm-sub">Seen this week, not new this week. Approximate.</p></div>
+        <div class="adm-stat"><h2>Open reports</h2><p class="adm-big" :class="{ 'tone-warn': dash.reports.open > 0 }">{{ dash.reports.open.toLocaleString('en-GB') }}</p><p class="adm-sub">{{ dash.reports.problems.open }} problem reports open, {{ dash.businesses.open }} stalls open.</p></div>
+      </section>
 
       <div class="adm-two">
         <div class="adm-card"><Trend title="Growth: new players and new accounts a day" :labels="labels" :series="[{ name: 'New players', color: '#2563eb', values: series(days, (row) => row.new) }, { name: 'New accounts', color: '#7c3aed', values: accountsPerDay(days) }]" /><p class="adm-sub">New players: exact (counted as they arrive). New accounts: the growth of the count between measured days, so a gap is a day not measured. History: {{ hist?.startedOn ? `daily samples start ${hist.startedOn}` : 'daily samples start now' }}.</p></div>
@@ -104,14 +110,14 @@ const asOf = computed(() => (dash.value ? `as of ${absolute(dash.value.asOf)}, $
       </div>
 
       <div class="adm-card">
-        <div class="adm-row adm-between"><h3>New-player funnel</h3><div class="adm-seg" role="group" aria-label="Funnel period"><button type="button" :aria-pressed="span === 'today'" @click="span = 'today'">Today</button><button type="button" :aria-pressed="span === 'week'" @click="span = 'week'">7 days</button></div></div>
+        <div class="adm-row adm-between"><h2>New-player funnel</h2><div class="adm-seg" role="group" aria-label="Funnel period"><button type="button" :aria-pressed="span === 'today'" @click="span = 'today'">Today</button><button type="button" :aria-pressed="span === 'week'" @click="span = 'week'">7 days</button></div></div>
         <Funnel v-if="funnel" :title="`New players, ${span === 'today' ? 'today' : 'last 7 days'}`" :rows="funnel.steps" />
         <p v-if="funnel" class="adm-sub">Came back the next day: <b>{{ funnel.returned.rate === null ? 'too early to say' : `${funnel.returned.back} of ${funnel.returned.size} (${funnel.returned.rate}%)` }}</b>. Steps are counted by the day they happen, so they are not strictly the same people. Hover a step for what it counts.</p>
       </div>
 
       <div v-if="hist?.returns" class="adm-card adm-scroll">
-        <h3>Coming back: by friends, clan, agents and by where they came from</h3>
-        <table class="adm-table"><thead><tr><th>Group</th><th>Day 1</th><th>Day 7</th><th>Day 30</th></tr></thead><tbody>
+        <h2>Coming back: by friends, clan, agents and by where they came from</h2>
+        <table class="adm-table"><caption class="adm-sr">Share of players who came back, by group and by day</caption><thead><tr><th scope="col">Group</th><th scope="col">Day 1</th><th scope="col">Day 7</th><th scope="col">Day 30</th></tr></thead><tbody>
           <tr><td>Made a friend early</td><td>{{ returnCell(hist.returns.byFriend.yes.d1) }}</td><td>{{ returnCell(hist.returns.byFriend.yes.d7) }}</td><td>{{ returnCell(hist.returns.byFriend.yes.d30) }}</td></tr>
           <tr><td>No friend yet</td><td>{{ returnCell(hist.returns.byFriend.no.d1) }}</td><td>{{ returnCell(hist.returns.byFriend.no.d7) }}</td><td>{{ returnCell(hist.returns.byFriend.no.d30) }}</td></tr>
           <tr v-if="hist.returns.byClan"><td>Joined a clan early</td><td>{{ returnCell(hist.returns.byClan.yes.d1) }}</td><td>{{ returnCell(hist.returns.byClan.yes.d7) }}</td><td>{{ returnCell(hist.returns.byClan.yes.d30) }}</td></tr>
@@ -124,12 +130,12 @@ const asOf = computed(() => (dash.value ? `as of ${absolute(dash.value.asOf)}, $
       </div>
 
       <div class="adm-two">
-        <div class="adm-card adm-scroll"><h3>Cities</h3>
-          <table class="adm-table"><thead><tr><th>City</th><th>Online</th><th>Seen today</th><th>New today</th><th>Residents</th><th>Visitors</th></tr></thead><tbody>
-            <tr v-for="row in cityRows" :key="row.id"><td>{{ row.id }}</td><td>{{ row.online }}</td><td>{{ row.seen }}</td><td>{{ row.new }}</td><td>{{ row.residents ?? '-' }}</td><td>{{ row.visitors ?? '-' }}</td></tr>
-            <tr v-if="!cityRows.length"><td colspan="6" class="adm-muted">Nobody yet.</td></tr></tbody></table>
+        <div class="adm-card"><div class="adm-row adm-between"><h2>Cities</h2><button v-if="cityRows.length > CITY_ROWS" type="button" class="adm-linkbtn" :aria-expanded="allCities" @click="allCities = !allCities">{{ allCities ? `Show the busiest ${CITY_ROWS}` : `Show all ${cityRows.length}` }}</button></div>
+          <table class="adm-table"><caption class="adm-sr">Players by city today</caption><thead><tr><th scope="col">City</th><th scope="col" class="adm-num">Online</th><th scope="col" class="adm-num">Seen today</th><th scope="col" class="adm-num">New today</th><th scope="col" class="adm-num adm-hide-sm">Residents</th><th scope="col" class="adm-num adm-hide-sm">Visitors</th></tr></thead><tbody>
+            <tr v-for="row in shownCities" :key="row.id"><th scope="row">{{ row.id }}</th><td class="adm-num">{{ row.online }}</td><td class="adm-num">{{ row.seen }}</td><td class="adm-num">{{ row.new }}</td><td class="adm-num adm-hide-sm">{{ row.residents ?? '–' }}</td><td class="adm-num adm-hide-sm">{{ row.visitors ?? '–' }}</td></tr>
+            <tr v-if="!cityRows.length"><td colspan="6" class="adm-empty">No city has had a player today.</td></tr></tbody></table>
           <p class="adm-sub">Online: memory, exact. Seen and new: the growth counters, exact. Residents and visitors: the economy snapshot (below), at most ten minutes old.</p></div>
-        <div class="adm-card"><h3>Economy</h3>
+        <div class="adm-card"><h2>Economy</h2>
           <template v-if="eco">
             <div class="adm-kv"><div><div class="adm-big">{{ naira(eco.cashInCirculation) }}</div><div class="adm-sub">cash in circulation · {{ eco.players }} players</div></div><div><div class="adm-big">{{ naira(eco.median) }}</div><div class="adm-sub">median balance</div></div></div>
             <div class="adm-two adm-tight"><div><h4>Faucets today</h4><p v-for="item in eco.faucets" :key="item.category" class="adm-line"><span>{{ item.category }}</span><b>+{{ naira(item.net) }}</b></p><p v-if="!eco.faucets.length" class="adm-muted">None yet.</p></div>
@@ -145,25 +151,25 @@ const asOf = computed(() => (dash.value ? `as of ${absolute(dash.value.asOf)}, $
       </div>
 
       <div class="adm-two">
-        <div class="adm-card"><h3>Social</h3>
+        <div class="adm-card"><h2>Social</h2>
           <p class="adm-line"><span>Messages today</span><b>{{ eco?.social.messagesToday ?? '-' }}</b></p>
           <p class="adm-line"><span>Groups / conversations</span><b>{{ eco ? `${eco.social.groups} / ${eco.social.conversations}` : '-' }}</b></p>
           <p class="adm-line"><span>Pings waiting</span><b>{{ eco?.social.pings ?? '-' }}</b></p>
           <p v-for="row in group('Calls today')" :key="row.label" class="adm-line"><span>{{ row.label }}</span><b>{{ row.value ?? '-' }}</b></p>
           <p class="adm-sub">Messages, groups and pings: one pass over the conversations with the economy snapshot (ten-minute cache). Calls: the host's counters for today (UTC), memory only.</p></div>
-        <div class="adm-card"><h3>AI guide</h3>
+        <div class="adm-card"><h2>AI guide</h2>
           <p v-for="row in group('AI guide today')" :key="row.label" class="adm-line"><span>{{ row.label }}</span><b>{{ row.value ?? '-' }}</b></p>
           <p class="adm-sub">Model replies are counted here; answers the guide works out in the player's own browser never reach the server, so they are not counted. Cost is an estimate from the configured prices.</p>
           <button class="adm-btn" @click="testGuide">Test the AI guide</button><p v-if="guideTest" class="adm-sub" role="status">{{ guideTest }}</p></div>
       </div>
 
-      <div class="adm-card"><h3>System</h3>
+      <div class="adm-card"><h2>System</h2>
         <div class="adm-two adm-tight">
           <div>
-            <p class="adm-line"><span>Device sessions held</span><b>{{ dash.capacity.sessions.held }} of {{ dash.capacity.sessions.most }}</b></p>
-            <div class="adm-bar" :class="fillTone(dash.capacity.sessions.held, dash.capacity.sessions.most)"><i :style="{ width: Math.min(100, percent(dash.capacity.sessions.held, dash.capacity.sessions.most)) + '%' }" /></div>
-            <p class="adm-line"><span>Sockets open</span><b>{{ dash.capacity.sockets.open }} of {{ dash.capacity.sockets.most }}</b></p>
-            <div class="adm-bar" :class="fillTone(dash.capacity.sockets.open, dash.capacity.sockets.most)"><i :style="{ width: Math.min(100, percent(dash.capacity.sockets.open, dash.capacity.sockets.most)) + '%' }" /></div>
+            <p class="adm-line"><span>Device sessions held</span><b>{{ dash.capacity.sessions.held.toLocaleString('en-GB') }} of {{ dash.capacity.sessions.most.toLocaleString('en-GB') }}{{ toneWord(fillTone(dash.capacity.sessions.held, dash.capacity.sessions.most)) }}</b></p>
+            <div class="adm-bar" :class="fillTone(dash.capacity.sessions.held, dash.capacity.sessions.most)" role="meter" aria-label="Device sessions held" :aria-valuenow="dash.capacity.sessions.held" aria-valuemin="0" :aria-valuemax="dash.capacity.sessions.most"><i :style="{ width: Math.min(100, percent(dash.capacity.sessions.held, dash.capacity.sessions.most)) + '%' }" /></div>
+            <p class="adm-line"><span>Sockets open</span><b>{{ dash.capacity.sockets.open.toLocaleString('en-GB') }} of {{ dash.capacity.sockets.most.toLocaleString('en-GB') }}{{ toneWord(fillTone(dash.capacity.sockets.open, dash.capacity.sockets.most)) }}</b></p>
+            <div class="adm-bar" :class="fillTone(dash.capacity.sockets.open, dash.capacity.sockets.most)" role="meter" aria-label="Sockets open" :aria-valuenow="dash.capacity.sockets.open" aria-valuemin="0" :aria-valuemax="dash.capacity.sockets.most"><i :style="{ width: Math.min(100, percent(dash.capacity.sockets.open, dash.capacity.sockets.most)) + '%' }" /></div>
             <p class="adm-line"><span>E-mail sent today</span><b>{{ dash.mail.email.sentToday }} of {{ dash.mail.email.cap }}{{ dash.mail.email.off ? ' (off)' : '' }}</b></p>
             <p class="adm-line"><span>Push sent today</span><b>{{ dash.mail.push.sentToday }} of {{ dash.mail.push.cap }}{{ dash.mail.push.off ? ' (off)' : '' }}</b></p>
             <p class="adm-line"><span>Call relay configured</span><b>{{ extra('calls-relay-set') ?? '-' }}</b></p>

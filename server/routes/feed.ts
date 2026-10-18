@@ -235,6 +235,9 @@ export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
     'POST /api/feed/crews/leave': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.leaveCrew(db, s, b)) } },
     'GET /api/feed/communities': async (request) => { const city = await cityOf(request); return { body: await readAs(request, (db, viewer) => feed.discover(db, viewer, city, request.query.get('kind'))), headers: noStore } },
     'POST /api/feed/crews/mod': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.setMod(db, s, b)) } },
+    'POST /api/feed/crews/locals': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.setLocals(db, s, b)) } },
+    // The location badge: the city the device found itself in, never a position; the network's country only as the host saw it.
+    'POST /api/feed/located': async (request) => { const b = await body(request); const country = request.header?.('cf-ipcountry') ?? ''; return { body: await write(request, (db, s) => feed.setLocated(db, s, b, country)) } },
     'POST /api/feed/crews/world': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.attachWorld(db, s, b)) } },
     'GET /api/feed/crews/one': async (request) => ({ body: await readAs(request, (db, viewer) => feed.crew(db, viewer, request.query.get('id'))), headers: noStore }),
     'GET /api/feed/events': async (request) => { const city = await cityOf(request); return { body: await readAs(request, (db, viewer) => feed.events(db, viewer, city)), headers: noStore } },

@@ -172,7 +172,7 @@ test('only the on-device check reads a position, and those files hold no way to 
     const source = readFileSync(join(root, file), 'utf8')
     return /getCurrentPosition|watchPosition|GeolocationPosition|navigator\.geolocation/.test(source) || coordinateRead.test(source)
   })
-  assert.deepEqual(reading.sort(), ['src/app/features/locate/locateModel.ts', 'src/app/features/start/findCity.ts', 'src/app/features/world/lgaCardModel.ts'])
+  assert.deepEqual(reading.sort(), ['src/app/features/feed/locateCity.ts', 'src/app/features/locate/locateModel.ts', 'src/app/features/start/findCity.ts', 'src/app/features/world/lgaCardModel.ts'])
   for (const file of reading) {
     const code = readFileSync(join(root, file), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '')
     assert.ok(!/watchPosition/.test(code), `${file}: the position is never watched`)

@@ -58,7 +58,7 @@ async function dropReply(n: number): Promise<void> {
       <PlayerAvatar v-else :name="post.by.name" :seed="post.by.id" />
       <div class="feed-who">
         <button type="button" class="feed-name" @click="emit('person', post.by.id, post.by.name)"><b>{{ post.by.name }}<span v-if="post.by.handle" class="feed-note"> @{{ post.by.handle }}</span></b></button>
-        <small>{{ meta }}<template v-if="post.ai || post.by.ai"> · <span class="ai-tag" title="An AI agent plays this character">AI-played</span></template></small>
+        <small>{{ meta }}<template v-if="post.by.located"> · <span class="feed-located" :title="`Their device confirmed they are in ${post.by.located.name}`">📍 {{ post.by.located.name }}</span></template><template v-if="post.ai || post.by.ai"> · <span class="ai-tag" title="An AI agent plays this character">AI-played</span></template></small>
       </div>
       <button type="button" class="feed-pill" aria-label="More" @click="menu = !menu">⋯</button>
     </header>

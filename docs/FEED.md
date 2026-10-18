@@ -151,3 +151,22 @@ eight days old, how many had three real friends within their first week.
 - **Contact import**: needs a privacy review under the NDPA first.
 - **Public photos and clips**: the owner's decision on scanning and moderation staffing.
 - **Creator payouts**: the owner's decision.
+
+## Location badge and locals-only communities
+
+Optional, for adults (18+), in My profile → Location badge. "Check where I am" asks the browser for a position **once** (high accuracy
+off, no watching); `src/app/features/feed/locateCity.ts` tests it on the device against the city boundaries of the city packs and, for a
+city without them, its centre (within `LOCATED.km`, 25 km), and refuses a fix worse than 5 km. The position is a local value of that
+function, never stored, logged or sent (the source scan in `src/app/features/locate/locate.test.ts` lists it with the other readers).
+Only when the player then presses "Show it" is `POST /api/feed/located { city }` sent: a city id, nothing else.
+
+The server keeps `authors[id].located = { city, at, net? }`: the city, the server's time, and `net` when the request's network country
+(Cloudflare's `cf-ipcountry`) is the city's country. It shows as "📍 In Lagos · confirmed by their device (and network)" on the profile,
+on posts and in member lists, to everyone who sees the profile. It lasts 90 days, can be checked at most 5 times a day, and "Remove"
+deletes it. Like the local-government badge of the game (docs/LOCATION.md) it can be faked by someone who fakes their phone's
+location; the network word makes that harder from abroad, not impossible.
+
+**Locals only.** A community based on a real place can be kept for people whose badge is in its **city**, its **state** or its
+**country** (`CrewRecord.locals`; chosen when it starts, or by the founder later with `POST /api/feed/crews/locals`, `all` to open it
+again). The founder needs a qualifying badge to set it. Joining without one is refused with how to get it; members who joined before
+stay. The badge is checked when someone joins, not afterwards.

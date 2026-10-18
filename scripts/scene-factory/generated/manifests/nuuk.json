@@ -5,17 +5,17 @@
   "city": "nuuk",
   "region": "americas-oceania",
   "recipeFile": "nuuk.json",
-  "recipeSha256": "61c4f51a5a0e5eb2299067bd2c37dc07cd9bb7c7628b0ece1229ac5d75f78c78",
+  "recipeSha256": "2e503dddbd5dc270d7898239f600cb56a7cba7a35c5be21c20252ff4f67b5ad7",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/nuuk.json",
-      "sha256": "42ab3ceb97ebb415d38abc24ac387016a2ff6b04b0f0ec1b219b150b19393a7b",
-      "inputSha256": "b893cfa0c9d5e9a8ad3bcd92d84ab50e4ecfcab2c00556adfd5c11eeb99bfe2b",
+      "sha256": "6105ffc86d7889a8a820f5487f63bb5ee821f350b5d0289ca4d19317c55e158f",
+      "inputSha256": "e6c022a62b24f9b0384e3240d3d69b0156feae9eaa0d7efb3e36f517cab2c5b4",
       "contentSha256": "cfbb84d99b1a64a45ecf999dd7721af2c591935a5e3b3120824f29938425f4c6"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5109,11 +5109,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 22,
-    "attemptedCandidateCount": 22,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 22,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 4,
+    "firstCandidateSuccessCount": 18,
+    "firstCandidateSuccessRate": 0.8181818181818182,
     "venues": [
       {
         "venue": "nuuk-airport-nuuk-airport",
@@ -5156,6 +5156,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "No six-pair crowd allocation fits the validated walk grid"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5174,6 +5179,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5210,6 +5220,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5255,6 +5270,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5324,7 +5344,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 30296,
+    "utf8Bytes": 30294,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5338,37 +5358,37 @@
     "estimates": [
       {
         "venue": "nuuk-airport-nuuk-airport",
-        "triangles": 4010,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nuuk-clinic",
-        "triangles": 3402,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nuuk-community-notices",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "nuuk-community-voting-game",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "nuuk-community-voting-game",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "nuuk-community-workshop",
-        "triangles": 2490,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nuuk-market-game",
-        "triangles": 3086,
+        "triangles": 3830,
         "meshes": 13,
         "lights": 3
       },
@@ -5386,37 +5406,37 @@
       },
       {
         "venue": "nuuk-osm-node-1295226025",
-        "triangles": 2578,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nuuk-osm-node-14068566886",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nuuk-osm-node-3265809565",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nuuk-osm-node-4784596045",
-        "triangles": 3686,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nuuk-osm-way-252790932",
-        "triangles": 2882,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nuuk-osm-way-253674855",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5428,7 +5448,7 @@
       },
       {
         "venue": "nuuk-osm-way-255823944",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5446,13 +5466,13 @@
       },
       {
         "venue": "nuuk-osm-way-410015972",
-        "triangles": 4878,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nuuk-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5464,7 +5484,7 @@
       },
       {
         "venue": "nuuk-transit",
-        "triangles": 2698,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

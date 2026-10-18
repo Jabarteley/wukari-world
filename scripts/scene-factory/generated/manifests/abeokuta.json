@@ -5,17 +5,17 @@
   "city": "abeokuta",
   "region": "yoruba-southwest",
   "recipeFile": "abeokuta.json",
-  "recipeSha256": "fcf214c96e9455c743f5042bd34825db0c418000154d484c4c617f25e3d6d160",
+  "recipeSha256": "1dbd280917a82ace975dd27d766fc75ecf28218831ce974aa62a1fab2eca8d06",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/abeokuta.json",
-      "sha256": "16e7a5a4ef3c09d0f80eba4286bdadc21ec31089fc7998e6d9507bcac0930523",
-      "inputSha256": "ff82a7ca497cfa34db6792f84e63578f527829a475534ddcdd964822b243e27a",
+      "sha256": "4e42e55a583470f4e9833e6180858f538a036b1b07d2040b00b0e1b105f13742",
+      "inputSha256": "17850affd0a17c5776d8a135f0ccf5da937152ba0fbfa25eae909ddbc80f0717",
       "contentSha256": "a5f450f2ec481362c74672204cf5b8de57bd725f3fbd1268fd8bc289ea096509"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5034,7 +5034,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 4407,
+    "utf8Bytes": 4316,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5048,19 +5048,19 @@
     "estimates": [
       {
         "venue": "abeokuta-clinic",
-        "triangles": 2490,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ake-polling",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kuto-kitchen",
-        "triangles": 3926,
+        "triangles": 3906,
         "meshes": 13,
         "lights": 3
       }

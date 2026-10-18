@@ -5,17 +5,17 @@
   "city": "adamstown",
   "region": "americas-oceania",
   "recipeFile": "adamstown.json",
-  "recipeSha256": "b784b437dbb32f741a3a3c00eff26faaadcb0e826a9282acb9c7faaa80a36067",
+  "recipeSha256": "931116dcd5ca437497043242304723ce05ea773eca53905d57f62c2cdba0182d",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/adamstown.json",
-      "sha256": "95a790ac14f44965c9578acf0c4bfc1c6e1d32fa9b4ec4d0ce66577513fb9c93",
-      "inputSha256": "7aef596c92c85f270b0371ec86349ec550d5adcacac87664a33d5b837a92c8c4",
+      "sha256": "261b81861f4dd9642a792a6405f499b8f20a57d44b80cb98eac16e7ce502649a",
+      "inputSha256": "cace848d0fce424e53129f2df7c337d3cc4e5318c74abc06068c1c5506e562a6",
       "contentSha256": "62a8dfd8f95dae3b818f409e9050c201fd04c6abcf16599a0af8c11775e73ab6"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5091,6 +5091,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5109,6 +5114,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5118,11 +5128,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5132,11 +5137,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5206,7 +5206,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 19608,
+    "utf8Bytes": 19559,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5220,55 +5220,55 @@
     "estimates": [
       {
         "venue": "adamstown-airport-adamstown-airport",
-        "triangles": 3558,
+        "triangles": 2546,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "adamstown-clinic",
-        "triangles": 3890,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "adamstown-community-notices",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "adamstown-community-voting-game",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "adamstown-community-workshop",
-        "triangles": 2910,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "adamstown-market-game",
-        "triangles": 4642,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "adamstown-meal-stop",
-        "triangles": 3178,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "adamstown-osm-node-1196324630",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "adamstown-community-workshop",
+        "triangles": 2490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "adamstown-market-game",
+        "triangles": 3638,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "adamstown-meal-stop",
+        "triangles": 2946,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "adamstown-osm-node-1196324630",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "adamstown-osm-node-14080325436",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5280,25 +5280,25 @@
       },
       {
         "venue": "adamstown-osm-node-7034086618",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "adamstown-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "adamstown-recreation",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "adamstown-transit",
-        "triangles": 2986,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

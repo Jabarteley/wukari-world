@@ -5,17 +5,17 @@
   "city": "cairo",
   "region": "maghreb",
   "recipeFile": "cairo.json",
-  "recipeSha256": "0a5358a116c1c222b4fcc061a7ba514be988d069a93cbfe63ce7b97faebac046",
+  "recipeSha256": "041e63c82acc50b289480f302163de5a9a1c0a29439cf85750a4a029b25d99a7",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/cairo.json",
-      "sha256": "5131e0f21e7132f879eefce53913e864718d0d300209f7517b2f1f0c1c5144c2",
-      "inputSha256": "d9a6fa9eba7b266213156c0e02b43a96da50b1b2258bdeb2042c5d58f13e42d8",
+      "sha256": "1ca2cf5b819c8c1d7696e4fe9c0dc32c9a30c33775980c97f119bbb5ba7f3f7b",
+      "inputSha256": "c2c7e6c92b86cd4fe34d278467fed9244b3cad5510d718e6078676d277cc0fa1",
       "contentSha256": "c244bbd9db354f862aa63ff4d0e26c4c73e6582aad315c631c4f06aa234782f5"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5137,11 +5137,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 26,
-    "attemptedCandidateCount": 31,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 26,
-    "rejectedCandidateCount": 5,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.8076923076923077,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 26,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "cairo-agricultural-museum",
@@ -5184,11 +5184,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5198,11 +5193,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5293,11 +5283,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5379,11 +5364,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5393,11 +5373,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5413,7 +5388,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 35564,
+    "utf8Bytes": 35568,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5427,31 +5402,31 @@
     "estimates": [
       {
         "venue": "cairo-agricultural-museum",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cairo-airport-cairo-airport",
-        "triangles": 2698,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cairo-al-azhar-university",
-        "triangles": 4878,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cairo-aquarium-grotto-garden",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cairo-arab-al-mohammedi-park",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5463,19 +5438,19 @@
       },
       {
         "venue": "cairo-cairo-stadium",
-        "triangles": 2578,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cairo-cairo-tower",
-        "triangles": 3526,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cairo-child-museum",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5487,31 +5462,31 @@
       },
       {
         "venue": "cairo-city-stars-mall",
-        "triangles": 4614,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cairo-clinic",
-        "triangles": 2490,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cairo-community-notices",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cairo-community-voting-game",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cairo-community-workshop",
-        "triangles": 3890,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
@@ -5523,13 +5498,13 @@
       },
       {
         "venue": "cairo-gayer-anderson-museum",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cairo-great-pyramid",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5541,19 +5516,19 @@
       },
       {
         "venue": "cairo-meal-stop",
-        "triangles": 2946,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cairo-nilometer",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cairo-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5565,13 +5540,13 @@
       },
       {
         "venue": "cairo-saint-mercurius-church",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cairo-transit",
-        "triangles": 3530,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },

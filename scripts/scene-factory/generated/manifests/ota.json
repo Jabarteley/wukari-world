@@ -5,17 +5,17 @@
   "city": "ota",
   "region": "yoruba-southwest",
   "recipeFile": "ota.json",
-  "recipeSha256": "fb1cedebf261cc15832a4b8717ad73eb01fce42c33488f4f5bffbaf73bfc395a",
+  "recipeSha256": "831bbfe1ddee7f4da0e3b106a15f4630fc45cacab1c77a1b64b8a3f850272e41",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/ota.json",
-      "sha256": "3a1d0da8f67f8e433e22da339837424974ac133aae08777ba0fd01270b6eb2e3",
-      "inputSha256": "65d050e32c3bfe41e9582868c5dd3ee95325b22d849954fd60881ee89810bfdb",
+      "sha256": "da267fa007408a6e3fbde285cdde742e353c803c8efc378f35a238dea28b7d97",
+      "inputSha256": "fe1d8fa27d5c79fc5619e5fa6683e394add053c112b128fedc46baf548696d73",
       "contentSha256": "16565fa82b2b05052d8cb943b0417fdd3ea498c94ea44826ad97f96fa24d3be9"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5078,7 +5078,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 8378,
+    "utf8Bytes": 8469,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5092,25 +5092,25 @@
     "estimates": [
       {
         "venue": "canaanland-worship",
-        "triangles": 3340,
+        "triangles": 2640,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ota-border-kitchen",
-        "triangles": 2974,
+        "triangles": 3206,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ota-community-clinic",
-        "triangles": 3890,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ota-polling",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5122,7 +5122,7 @@
       },
       {
         "venue": "sango-mosque",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       }

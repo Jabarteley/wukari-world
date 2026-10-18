@@ -5,17 +5,17 @@
   "city": "yola",
   "region": "sahel-north",
   "recipeFile": "yola.json",
-  "recipeSha256": "b58432626b19a62340b07ab3433dd857f281f3c637a17b493e8736e923eb4535",
+  "recipeSha256": "dfad8a28526cf76645c61bbd735fcc11ddc6186349a1da6ab604f76101e70ff4",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/yola.json",
-      "sha256": "2bb5a50cce15ad284b2558b5709ea428e34eb2ed3c4435bb975e3edf1d584463",
-      "inputSha256": "1d64bd7f79d2cc5fd07984c31f9580b8f5abaa97f59c3980bde2dc8fdea4f032",
+      "sha256": "a91be7d85c7fc9643382dc1cc5df7d5a6ee0b095edeec86ac19e03f95eda3ef6",
+      "inputSha256": "d67a1e2d20674cbb88aabf7e53c295a383c8a09fbadd0d593faeceed80eadcf7",
       "contentSha256": "ea5bf25d53f052e674e46465018c0e077b8878f74dc2db5c04d0499ab8109474"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5088,11 +5088,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 19,
-    "attemptedCandidateCount": 23,
+    "attemptedCandidateCount": 19,
     "acceptedCandidateCount": 19,
-    "rejectedCandidateCount": 4,
-    "firstCandidateSuccessCount": 16,
-    "firstCandidateSuccessRate": 0.8421052631578947,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 19,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "adamawa-ministry-tourism-arts-culture",
@@ -5144,11 +5144,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5239,11 +5234,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5271,16 +5261,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5296,7 +5276,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 26980,
+    "utf8Bytes": 27029,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5322,79 +5302,79 @@
       },
       {
         "venue": "emirates-museum-yola",
-        "triangles": 2882,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "fmc-yola",
-        "triangles": 3342,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "gorilla-park-yola",
-        "triangles": 4738,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "jimeta-ultra-modern-market",
-        "triangles": 3282,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "karew-jimeta-market",
-        "triangles": 3282,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "keystone-bank-yola",
-        "triangles": 3862,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lamido-palace-yola",
-        "triangles": 2462,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "mauth-yola",
-        "triangles": 3370,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "mubi-park-motor-park",
-        "triangles": 2802,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "musa-barbing-salon",
-        "triangles": 3342,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "national-museum-yola",
-        "triangles": 3342,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-theresas-cathedral-yola",
         "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "gorilla-park-yola",
+        "triangles": 3826,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "jimeta-ultra-modern-market",
+        "triangles": 5010,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "karew-jimeta-market",
+        "triangles": 5014,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "keystone-bank-yola",
+        "triangles": 2462,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "lamido-palace-yola",
+        "triangles": 3374,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "mauth-yola",
+        "triangles": 3402,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "mubi-park-motor-park",
+        "triangles": 3814,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "musa-barbing-salon",
+        "triangles": 3374,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "national-museum-yola",
+        "triangles": 3374,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-theresas-cathedral-yola",
+        "triangles": 2882,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "yahuza-suya-spot",
-        "triangles": 3230,
+        "triangles": 3222,
         "meshes": 13,
         "lights": 3
       },
@@ -5406,19 +5386,19 @@
       },
       {
         "venue": "yola-market",
-        "triangles": 3282,
+        "triangles": 4334,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yola-mosque",
-        "triangles": 3342,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yola-race-course",
-        "triangles": 3554,
+        "triangles": 2606,
         "meshes": 13,
         "lights": 3
       }

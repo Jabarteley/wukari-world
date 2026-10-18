@@ -5,17 +5,17 @@
   "city": "castries",
   "region": "americas-oceania",
   "recipeFile": "castries.json",
-  "recipeSha256": "2ac338ac86a114ee071c09f89ca7cfd14d25c41a6b1db82a30de737a09b55608",
+  "recipeSha256": "58bda104fa3970f8aa8c8b5b16b10375e6cbc6a42576f29f9d1534f6822f2f98",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/castries.json",
-      "sha256": "2a03d297de4b2be73ad9fb7c1ea4b8c4dc24e2e0a202ef095b9b76425d5ee6a7",
-      "inputSha256": "39cbf8340507bfd37f7c02cce2938627af762bfecd4cb75da6dee72bd2884dc9",
+      "sha256": "647a0070d9db5009bd7b0d97e45d1143d1e4067236c07f8090e7b1bf1064a725",
+      "inputSha256": "d0001837cd1a0fc349ac141c4a7c30b05f86ee984c49b4cb9e4c71a5a8a06910",
       "contentSha256": "ccc9b2f22841d180517b6ce2dac23caaedf4cc286f78189580a4bda23b2251ca"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5372,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34690,
+    "utf8Bytes": 34619,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,19 +5386,19 @@
     "estimates": [
       {
         "venue": "castries-airport-castries-airport",
-        "triangles": 4238,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "castries-clinic",
-        "triangles": 3890,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "castries-community-notices",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5410,7 +5410,7 @@
       },
       {
         "venue": "castries-community-workshop",
-        "triangles": 3438,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
@@ -5422,37 +5422,37 @@
       },
       {
         "venue": "castries-meal-stop",
-        "triangles": 2946,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "castries-osm-node-10017170962",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "castries-osm-node-10649346505",
-        "triangles": 3490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "castries-osm-node-4027985616",
         "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "castries-osm-node-4027985616",
+        "triangles": 3526,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "castries-osm-node-5221676738",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "castries-osm-node-6322922716",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5464,43 +5464,43 @@
       },
       {
         "venue": "castries-osm-way-1430525424",
-        "triangles": 3798,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "castries-osm-way-1479934483",
-        "triangles": 3798,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "castries-osm-way-257640501",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "castries-osm-way-353009951",
-        "triangles": 3178,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "castries-osm-way-353723748",
-        "triangles": 3194,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "castries-osm-way-396954377",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "castries-osm-way-399244147",
-        "triangles": 3610,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
@@ -5512,7 +5512,7 @@
       },
       {
         "venue": "castries-osm-way-576357922",
-        "triangles": 3526,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
@@ -5524,13 +5524,13 @@
       },
       {
         "venue": "castries-recreation",
-        "triangles": 4710,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "castries-transit",
-        "triangles": 3530,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

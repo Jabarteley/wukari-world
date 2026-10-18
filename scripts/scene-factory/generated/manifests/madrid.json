@@ -5,17 +5,17 @@
   "city": "madrid",
   "region": "western-europe",
   "recipeFile": "madrid.json",
-  "recipeSha256": "0ff4bd683b20fd4452f113d7d060da2abf26f397ac3d88efe526ad5fc6ca4d7a",
+  "recipeSha256": "cd64cdb1064034c307a5b042711f3f54679618a71921154edfacf74cc081fa6f",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/madrid.json",
-      "sha256": "9a3cf80269eea237e9492757e9de4230c73c507229b1c9b4d7e0f7c3c3f732a7",
-      "inputSha256": "6cfed8b09f76b2e81d5b767a0a5d72141a493eb30fada883d5c9a526366559bc",
+      "sha256": "8308c9d62d970f00ce8b8bb0b6125f285d2a76bbc59c1c82574487e96d536856",
+      "inputSha256": "4e91d10fb7eec9d42bbbbe76c99b9019c198ffa7df201b1760ca412f6d129244",
       "contentSha256": "b5d93dee7baa961a655ef963c6d09382f2003ede4d56a15d39ddc8b35f11c49a"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,22 +5130,17 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "madrid-airport-madrid-airport",
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5281,6 +5276,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5308,6 +5308,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34586,
+    "utf8Bytes": 34683,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,43 +5396,43 @@
     "estimates": [
       {
         "venue": "madrid-airport-madrid-airport",
-        "triangles": 4010,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "madrid-clinic",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "madrid-community-notices",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "madrid-community-voting-game",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "madrid-community-workshop",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "madrid-market-game",
-        "triangles": 3006,
+        "triangles": 5050,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "madrid-meal-stop",
-        "triangles": 3178,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
@@ -5439,7 +5444,7 @@
       },
       {
         "venue": "madrid-osm-way-198982440",
-        "triangles": 3526,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
@@ -5457,49 +5462,49 @@
       },
       {
         "venue": "madrid-osm-way-32030445",
-        "triangles": 3798,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "madrid-osm-way-35817901",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "madrid-osm-way-368926226",
-        "triangles": 4598,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "madrid-osm-way-394889267",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "madrid-osm-way-368926226",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "madrid-osm-way-394889267",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "madrid-osm-way-394889270",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "madrid-osm-way-409110880",
-        "triangles": 3526,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "madrid-osm-way-444827472",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "madrid-osm-way-48582857",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5517,25 +5522,25 @@
       },
       {
         "venue": "madrid-osm-way-7990496",
-        "triangles": 3934,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "madrid-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "madrid-recreation",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "madrid-transit",
-        "triangles": 3590,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

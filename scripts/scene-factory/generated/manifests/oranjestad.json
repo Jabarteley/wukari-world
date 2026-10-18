@@ -5,17 +5,17 @@
   "city": "oranjestad",
   "region": "americas-oceania",
   "recipeFile": "oranjestad.json",
-  "recipeSha256": "efb53f3f47fd84470e4984e54ae3c9782360be161e9363bde2245954862dd977",
+  "recipeSha256": "ed78bf2034eb231050638ae498d256a103019fd46dfae06120d482fcf425f376",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/oranjestad.json",
-      "sha256": "cf0293081830bf7d39abe33858fa8b6c9b1056cdd21865a55b111c162ad0784e",
-      "inputSha256": "8d0eccb401837317fc0e0088440226cec3f8ad276d61126f855bbf0c65c84858",
+      "sha256": "e892f4fb4bddcf9f61a4041dafdf95d7d929dd7b41726ddcd46dd4b7013e8fd4",
+      "inputSha256": "b57a744c4d30d6adb569dd47e08ff210dd02914e62859f597ee753bc38e27863",
       "contentSha256": "a5c8d68e3fcfff312218cf632cc6a4e2d04f0621c63b50910cbd0a37928ee4c4"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5133,8 +5133,8 @@
     "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
     "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "oranjestad-airport-oranjestad-airport",
@@ -5150,6 +5150,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5177,11 +5187,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5317,11 +5322,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34648,
+    "utf8Bytes": 34817,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,19 +5396,19 @@
     "estimates": [
       {
         "venue": "oranjestad-airport-oranjestad-airport",
-        "triangles": 3530,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oranjestad-clinic",
-        "triangles": 2490,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oranjestad-community-notices",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5420,7 +5420,7 @@
       },
       {
         "venue": "oranjestad-community-workshop",
-        "triangles": 3890,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
@@ -5438,31 +5438,31 @@
       },
       {
         "venue": "oranjestad-osm-node-11591843520",
-        "triangles": 3458,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oranjestad-osm-node-1770257502",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oranjestad-osm-node-1773562177",
-        "triangles": 3458,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oranjestad-osm-node-3753152873",
-        "triangles": 2946,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oranjestad-osm-node-540115823",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5474,25 +5474,25 @@
       },
       {
         "venue": "oranjestad-osm-node-540982491",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oranjestad-osm-node-8677634858",
-        "triangles": 3514,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oranjestad-osm-node-952400489",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oranjestad-osm-way-190877206",
-        "triangles": 2882,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
@@ -5504,43 +5504,43 @@
       },
       {
         "venue": "oranjestad-osm-way-491139601",
-        "triangles": 3686,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oranjestad-osm-way-769698096",
-        "triangles": 2594,
+        "triangles": 3294,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oranjestad-osm-way-958543660",
-        "triangles": 3518,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oranjestad-osm-way-959755657",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oranjestad-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oranjestad-recreation",
-        "triangles": 4710,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oranjestad-transit",
-        "triangles": 2698,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

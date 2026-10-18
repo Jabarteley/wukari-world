@@ -5,17 +5,17 @@
   "city": "athens",
   "region": "western-europe",
   "recipeFile": "athens.json",
-  "recipeSha256": "9e350555140fe0e53ec52a7cbfc11727b70f5321abc64c493a3fac2457cbd32d",
+  "recipeSha256": "4ed5261eb441164b47ee5a9198bd7dc36dfdd7f6e2e6e2f00a9153bd40e7bf21",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/athens.json",
-      "sha256": "375d9f7a1041e3a5ffa4ee5911df64b4b8ee5a3725337afc2374f15b5cd7b4fa",
-      "inputSha256": "5fcbe96e1ecdb313804a4764fb107854973e5f5f8a45055cfcbe971ce4a98d64",
+      "sha256": "ed4e0f629695cfaf37b692fd362a18b0270a1423312beab62b75bef8157e9ee7",
+      "inputSha256": "90dc9eb57fae83723b4a698de2b94913b2282d6b62635429c16c3a5734d6c86c",
       "contentSha256": "70b224658612b907631a7560baaf90585a8831594233cb48be37f6a459312150"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,9 +5130,9 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
+    "rejectedCandidateCount": 3,
     "firstCandidateSuccessCount": 23,
     "firstCandidateSuccessRate": 0.92,
     "venues": [
@@ -5141,6 +5141,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5259,7 +5269,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
+            "reason": "crowd[11]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5317,11 +5327,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34760,
+    "utf8Bytes": 34730,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,25 +5401,25 @@
     "estimates": [
       {
         "venue": "athens-airport-athens-airport",
-        "triangles": 5894,
+        "triangles": 4822,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "athens-clinic",
-        "triangles": 3370,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "athens-community-notices",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "athens-community-voting-game",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5426,61 +5431,61 @@
       },
       {
         "venue": "athens-market-game",
-        "triangles": 4694,
+        "triangles": 4642,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "athens-meal-stop",
-        "triangles": 3202,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "athens-osm-node-1008013053",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "athens-osm-node-3565807234",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "athens-osm-node-4729929890",
-        "triangles": 4666,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "athens-osm-node-6506548450",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "athens-osm-node-9385908004",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "athens-osm-relation-1626837",
-        "triangles": 3526,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "athens-osm-relation-2022511",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "athens-osm-node-9385908004",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "athens-osm-relation-1626837",
+        "triangles": 3490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "athens-osm-relation-2022511",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "athens-osm-relation-3568067",
-        "triangles": 4598,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5492,31 +5497,31 @@
       },
       {
         "venue": "athens-osm-way-160307906",
-        "triangles": 4878,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "athens-osm-way-316732250",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "athens-osm-way-319084318",
-        "triangles": 3966,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "athens-osm-way-412135808",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "athens-osm-way-319084318",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "athens-osm-way-412135808",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "athens-osm-way-432559442",
-        "triangles": 3458,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
@@ -5528,13 +5533,13 @@
       },
       {
         "venue": "athens-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "athens-recreation",
-        "triangles": 4710,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },

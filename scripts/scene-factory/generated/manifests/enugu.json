@@ -5,17 +5,17 @@
   "city": "enugu",
   "region": "igbo-southeast",
   "recipeFile": "enugu.json",
-  "recipeSha256": "2f3b02c074217ee3b1274604d58dc3ff1bf2e22d33e026c845be77b636960a97",
+  "recipeSha256": "59e9fe63dff8a09488c0151814671878cb0f9ee3fcb41d9caaf99ac13666f805",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/enugu.json",
-      "sha256": "eba817039ffb757ef0c95c6abb0ef18ab105c33eb0ed29af84a35e71be2abe36",
-      "inputSha256": "46b37796696a0778c1111a79368783d13dbb8d5ad6e40a53131332e177d3b3be",
+      "sha256": "52438902ba675e10cb190e4bc51ebe427e081eb9d85ce95048da51b4a0ab3d64",
+      "inputSha256": "fc8758b6d383d4c83672be7fcca29e337d9d0af40a5f7d7996efc9d4a1490bac",
       "contentSha256": "ff08d158310588960cd06e3647669e8afe7284d95b809c39f20f98bcc2848000"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5095,17 +5095,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 20,
-    "attemptedCandidateCount": 21,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 20,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 19,
-    "firstCandidateSuccessRate": 0.95,
+    "rejectedCandidateCount": 5,
+    "firstCandidateSuccessCount": 17,
+    "firstCandidateSuccessRate": 0.85,
     "venues": [
       {
         "venue": "access-bank-okpara-avenue",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5115,6 +5120,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5232,11 +5242,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5273,6 +5278,21 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 4,
             "outcome": "accepted"
           }
         ]
@@ -5297,7 +5317,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 28541,
+    "utf8Bytes": 28593,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5311,7 +5331,7 @@
     "estimates": [
       {
         "venue": "access-bank-okpara-avenue",
-        "triangles": 2882,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
@@ -5323,7 +5343,7 @@
       },
       {
         "venue": "aguagwa",
-        "triangles": 2882,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
@@ -5335,19 +5355,19 @@
       },
       {
         "venue": "central-mosque-islamic-centre",
-        "triangles": 2882,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ekulu-garden",
-        "triangles": 3758,
+        "triangles": 4738,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "enugu-national-museum-of-unity",
-        "triangles": 3342,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
@@ -5359,25 +5379,25 @@
       },
       {
         "venue": "enugu-state-college-of-education-technical",
-        "triangles": 2462,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ifenzi-beauty-salon",
-        "triangles": 3342,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "institute-of-management-and-technology",
-        "triangles": 3342,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jombos-kitchen",
-        "triangles": 3222,
+        "triangles": 3230,
         "meshes": 13,
         "lights": 3
       },
@@ -5389,31 +5409,31 @@
       },
       {
         "venue": "manuwa-bus-sop",
-        "triangles": 3618,
+        "triangles": 3558,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "national-orthopedic-hospital-enugu",
-        "triangles": 3374,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "niger-foundation-hospital",
-        "triangles": 3402,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nnamdi-azikiwe-stadium",
-        "triangles": 3554,
+        "triangles": 2606,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ogbete-main-market",
-        "triangles": 4526,
+        "triangles": 3538,
         "meshes": 13,
         "lights": 3
       },
@@ -5425,7 +5445,7 @@
       },
       {
         "venue": "wesley-cathedral",
-        "triangles": 3410,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       }

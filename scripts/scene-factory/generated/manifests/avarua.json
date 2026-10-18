@@ -5,17 +5,17 @@
   "city": "avarua",
   "region": "americas-oceania",
   "recipeFile": "avarua.json",
-  "recipeSha256": "4327665263b9dcf425a0c16aeaedf3791b9475902a9158a100f90cd211584b44",
+  "recipeSha256": "fc529cb8b22ba7835e1ef025b5313af6f0286be7a05346e4df4e72f1790c0dc4",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/avarua.json",
-      "sha256": "3e45befd3f7ccb4a285cd9bceea096c2849724bd72f0e0d7343244396b77096c",
-      "inputSha256": "676b79c823172381f1335996722d28f2411f034b3a65af918aaa27a046974a1c",
+      "sha256": "87b2b9c897577726e0ca31e60ebdd98d7c75ee912560bb678648571f9f5886ed",
+      "inputSha256": "46fb3259896e7dacb8280f0455cfd9eed2c139a8d639644953a847ea0b456f82",
       "contentSha256": "5dd3285f09522ededa46663d0c78a4c0f2865b4e922bfa9a71c065fd819a96aa"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5116,9 +5116,9 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 23,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 23,
-    "rejectedCandidateCount": 3,
+    "rejectedCandidateCount": 4,
     "firstCandidateSuccessCount": 20,
     "firstCandidateSuccessRate": 0.8695652173913043,
     "venues": [
@@ -5136,11 +5136,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5150,6 +5145,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "No six-pair crowd allocation fits the validated walk grid"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5159,6 +5159,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5177,11 +5187,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5272,11 +5277,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5313,6 +5313,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5355,7 +5360,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 31723,
+    "utf8Bytes": 31778,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5369,19 +5374,19 @@
     "estimates": [
       {
         "venue": "avarua-airport-avarua-airport",
-        "triangles": 2986,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-clinic",
-        "triangles": 3438,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-community-notices",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5393,115 +5398,115 @@
       },
       {
         "venue": "avarua-community-workshop",
-        "triangles": 2910,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-market-game",
-        "triangles": 3582,
+        "triangles": 3270,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-meal-stop",
-        "triangles": 3202,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-osm-node-12237139801",
-        "triangles": 3202,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-osm-node-2100754933",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "avarua-osm-node-2111683565",
-        "triangles": 2998,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "avarua-osm-node-2148100832",
-        "triangles": 3490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "avarua-osm-node-2187931298",
-        "triangles": 3274,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "avarua-osm-node-6324434485",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "avarua-osm-way-1079320783",
-        "triangles": 3966,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "avarua-osm-way-1079412410",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "avarua-osm-way-1081629061",
-        "triangles": 3518,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "avarua-osm-way-196945531",
-        "triangles": 2882,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "avarua-osm-way-201214783",
-        "triangles": 2998,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "avarua-osm-way-593816781",
-        "triangles": 3610,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "avarua-osm-way-598519609",
-        "triangles": 4878,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "avarua-quiet-reflection",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "avarua-osm-node-2111683565",
+        "triangles": 3458,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "avarua-osm-node-2148100832",
+        "triangles": 2578,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "avarua-osm-node-2187931298",
+        "triangles": 3178,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "avarua-osm-node-6324434485",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "avarua-osm-way-1079320783",
+        "triangles": 3686,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "avarua-osm-way-1079412410",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "avarua-osm-way-1081629061",
+        "triangles": 4430,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "avarua-osm-way-196945531",
+        "triangles": 4666,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "avarua-osm-way-201214783",
+        "triangles": 3978,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "avarua-osm-way-593816781",
+        "triangles": 3934,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "avarua-osm-way-598519609",
+        "triangles": 3966,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "avarua-quiet-reflection",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "avarua-recreation",
-        "triangles": 4710,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-transit",
-        "triangles": 2698,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

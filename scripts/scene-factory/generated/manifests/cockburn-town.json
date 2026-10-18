@@ -5,17 +5,17 @@
   "city": "cockburn-town",
   "region": "americas-oceania",
   "recipeFile": "cockburn-town.json",
-  "recipeSha256": "b4e4faa2c86e74f54a45b7828de90107a5391277391b25e13c1b7ae8f755ea23",
+  "recipeSha256": "17b60e79e6d3305ca9184698b9a4a04921cd16a9246e7192c8267dea31487d23",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/cockburn-town.json",
-      "sha256": "fb25cc054d731d39c4348652958bf81c656c7e5dcbc3d16aafd17fd4bff80a5a",
-      "inputSha256": "386c11528754645666f66c55b9dc3dbcc6311d3f7c4e6d2acf45945d03e67217",
+      "sha256": "45c6a27161838d4edd38be8beafed80f840c18eb28fe02a98bb47d5830edd0fe",
+      "inputSha256": "2bc37ed4268cf12e7be1b82f9ebc2ad49054fe6333b3c1c80ba3475ebac6b69b",
       "contentSha256": "15e890c36420dc07528ac9ae43f76116ca86ac843015b7cec6c8e6773449da56"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5228,7 +5228,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 22530,
+    "utf8Bytes": 22488,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5266,7 +5266,7 @@
       },
       {
         "venue": "cockburn-town-community-workshop",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
@@ -5278,49 +5278,49 @@
       },
       {
         "venue": "cockburn-town-meal-stop",
-        "triangles": 3274,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cockburn-town-osm-node-12828526601",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cockburn-town-osm-node-5662570237",
-        "triangles": 3202,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cockburn-town-osm-way-410322609",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cockburn-town-osm-way-410381421",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cockburn-town-osm-way-411579609",
-        "triangles": 3194,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cockburn-town-osm-way-411904621",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cockburn-town-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5332,7 +5332,7 @@
       },
       {
         "venue": "cockburn-town-transit",
-        "triangles": 4238,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

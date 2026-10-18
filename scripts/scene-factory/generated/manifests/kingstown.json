@@ -5,17 +5,17 @@
   "city": "kingstown",
   "region": "americas-oceania",
   "recipeFile": "kingstown.json",
-  "recipeSha256": "6bf75feb236150aeadfbefe815e289f021a15d76694788572d8db013d884f766",
+  "recipeSha256": "9a686fddb56706c6bd3137a7578a82f5a0530b13402e8f5f32afb3fce9144513",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/kingstown.json",
-      "sha256": "5cd50179412d6db50e9eca79b31598905164159e8af82528a2619c4d5bfc45f5",
-      "inputSha256": "cd2c9cc35e8126c2f0e8db0d0285982adfa83e1f7a43d65104ddfd303fec00e0",
+      "sha256": "76262724f41cc3effc8854dc47e9af75341b968759891f748760f10c4388295e",
+      "inputSha256": "546162ed55094ce95c49dcf4f0fd85023847d8927afad5a6066bf3c892511475",
       "contentSha256": "35b5a8fe3e743e8af1d79424ecd4521ec09b6d551e3ea710ba2a913510a67646"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5159,11 +5159,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5227,6 +5222,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5236,11 +5236,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5304,6 +5299,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34641,
+    "utf8Bytes": 34718,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,19 +5396,19 @@
     "estimates": [
       {
         "venue": "kingstown-airport-kingstown-airport",
-        "triangles": 4114,
+        "triangles": 4174,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingstown-clinic",
-        "triangles": 3402,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingstown-community-notices",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5420,7 +5420,7 @@
       },
       {
         "venue": "kingstown-community-workshop",
-        "triangles": 3370,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
@@ -5432,37 +5432,37 @@
       },
       {
         "venue": "kingstown-meal-stop",
-        "triangles": 3274,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingstown-osm-node-10601836368",
-        "triangles": 2998,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingstown-osm-node-10723229405",
-        "triangles": 3178,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingstown-osm-node-11400861069",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingstown-osm-node-11690643469",
-        "triangles": 2998,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingstown-osm-node-1228341374",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5474,31 +5474,31 @@
       },
       {
         "venue": "kingstown-osm-node-4694400714",
-        "triangles": 2998,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingstown-osm-node-5484802021",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingstown-osm-way-384773635",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingstown-osm-way-385029456",
-        "triangles": 4710,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingstown-osm-way-385029457",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
@@ -5510,7 +5510,7 @@
       },
       {
         "venue": "kingstown-osm-way-386242566",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5522,13 +5522,13 @@
       },
       {
         "venue": "kingstown-osm-way-850584945",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingstown-quiet-reflection",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5540,7 +5540,7 @@
       },
       {
         "venue": "kingstown-transit",
-        "triangles": 4238,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

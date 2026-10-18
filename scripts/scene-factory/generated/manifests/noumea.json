@@ -5,17 +5,17 @@
   "city": "noumea",
   "region": "americas-oceania",
   "recipeFile": "noumea.json",
-  "recipeSha256": "90ce49384e35ac32d5f1ef07c91a73e1380935451b6612f072e6e2a7dd5db3c2",
+  "recipeSha256": "773b59dfe0bdc3548210a3a3008eaa21a30416128f11d1db68cfde4a508b99d5",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/noumea.json",
-      "sha256": "6dac8bde5596962aa3d39174b0ee6bffa9c4d15528d87fe042eeae7dbdded666",
-      "inputSha256": "96b1f5278089e37c5ece530a9f05389ff6a17f0d95be8e3752b4dc4cf6fc1e05",
+      "sha256": "5c3c3142644b875331e94b0992650aa253f2ebc37bc6991109106d12ff4e2db2",
+      "inputSha256": "65ec97ef4dd0499527da0a50d133a04f01686045fcd0fda708fa1609513f7e01",
       "contentSha256": "08ecbcf0a22ae1d9dd7c922cd668038fd283282455930db637a360dc54687795"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5177,6 +5177,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5294,11 +5299,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34668,
+    "utf8Bytes": 34442,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,7 +5391,7 @@
     "estimates": [
       {
         "venue": "noumea-airport-noumea-airport",
-        "triangles": 4238,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
@@ -5409,49 +5409,49 @@
       },
       {
         "venue": "noumea-community-voting-game",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "noumea-community-workshop",
-        "triangles": 2910,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "noumea-market-game",
-        "triangles": 4666,
+        "triangles": 3678,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "noumea-meal-stop",
-        "triangles": 3274,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "noumea-osm-node-1110244565",
-        "triangles": 2578,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "noumea-osm-node-1426723288",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "noumea-osm-node-2512504065",
-        "triangles": 3490,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "noumea-osm-relation-1296182",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5463,7 +5463,7 @@
       },
       {
         "venue": "noumea-osm-way-134363148",
-        "triangles": 4666,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
@@ -5475,7 +5475,7 @@
       },
       {
         "venue": "noumea-osm-way-413771556",
-        "triangles": 3178,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
@@ -5487,49 +5487,49 @@
       },
       {
         "venue": "noumea-osm-way-430727319",
-        "triangles": 2578,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "noumea-osm-way-43894719",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "noumea-osm-way-542503416",
-        "triangles": 4430,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "noumea-osm-way-65069903",
-        "triangles": 2882,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "noumea-osm-way-716990917",
-        "triangles": 3194,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "noumea-osm-way-73813536",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "noumea-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "noumea-recreation",
-        "triangles": 4430,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },

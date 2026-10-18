@@ -5,17 +5,17 @@
   "city": "new-york",
   "region": "americas-oceania",
   "recipeFile": "new-york.json",
-  "recipeSha256": "1f9389bd25b954f5926d1f1f251f6afe9ead1f2254fee7820bec05c416507140",
+  "recipeSha256": "a9598d5923a915d5e6b7d619d9f1d43122d2f6b3c0464bc5450a8f6f72bf4a62",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/new-york.json",
-      "sha256": "ecdd9efabe814232578c1e6042bcd4c9403da4ceb83afd7d57b0833c158bca50",
-      "inputSha256": "5a1e962ff16b4fa09ea32ea57a76750fd31b4e05cba5fc69a3205315d44de912",
+      "sha256": "3d36d4b0757c273bc6bc6e16214741b78389e320f8a65c645fbf1b5ea33a3a8b",
+      "inputSha256": "42476fdb1568b5602691ce7eb475f98e6f4b3a30e10337abbebb05088d15eb0a",
       "contentSha256": "b208f256390d6ce644d66bc4566eab2bb5e017d44cc8191ba41cd2fb5484479b"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "new-york-airport-new-york-airport",
@@ -5168,6 +5168,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34729,
+    "utf8Bytes": 34533,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5392,19 +5397,19 @@
       },
       {
         "venue": "new-york-clinic",
-        "triangles": 3890,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "new-york-community-notices",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "new-york-community-voting-game",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5416,37 +5421,37 @@
       },
       {
         "venue": "new-york-market-game",
-        "triangles": 4694,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "new-york-meal-stop",
-        "triangles": 3274,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "new-york-osm-node-6018127885",
-        "triangles": 2946,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "new-york-osm-relation-4479990",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "new-york-osm-relation-9462533",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "new-york-osm-way-108158013",
-        "triangles": 4878,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5458,13 +5463,13 @@
       },
       {
         "venue": "new-york-osm-way-1564487878",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "new-york-osm-way-167898277",
-        "triangles": 4666,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
@@ -5476,49 +5481,49 @@
       },
       {
         "venue": "new-york-osm-way-245394269",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "new-york-osm-way-246242284",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "new-york-osm-way-250026584",
-        "triangles": 4666,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "new-york-osm-way-284831877",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "new-york-osm-way-419060582",
-        "triangles": 3898,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "new-york-osm-way-527873169",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "new-york-osm-way-246242284",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "new-york-osm-way-250026584",
+        "triangles": 3610,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "new-york-osm-way-284831877",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "new-york-osm-way-419060582",
+        "triangles": 4878,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "new-york-osm-way-527873169",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "new-york-osm-way-604023701",
-        "triangles": 2578,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "new-york-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5530,7 +5535,7 @@
       },
       {
         "venue": "new-york-transit",
-        "triangles": 2986,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "lafia",
   "region": "gulf-guinea",
   "recipeFile": "lafia.json",
-  "recipeSha256": "00e7d268d9f2a1d69d65424f1ff0e0d5103e5ab7935a1951877c121bc173b8d1",
+  "recipeSha256": "a598599c22d1f6fad29e0c3c4655e8d66872cb04ecce86c062da205fdc08f58c",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/lafia.json",
-      "sha256": "c3ffbb97cad85d18af107ddf38562d3804cfb64f2881d36590459189590be175",
-      "inputSha256": "e217dd488cc1ac4dbcc3055ddb2aa70275045acf7b6fbbaec2d8e689b2562cbf",
+      "sha256": "fcc3918e88a3694e74e0fe2deb3e5815fe6a0264e26e270d83d07a9aa9b1db6e",
+      "inputSha256": "9b80e6a69fe18689a09ce9a8ac27db75b6d8e04b0415eb09ca14e560d77fdd62",
       "contentSha256": "776aaa6790b783f4a88d8ab0c74c9745f47506ab035bfeeb3342a56cd490d9da"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5039,11 +5039,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 12,
-    "attemptedCandidateCount": 14,
+    "attemptedCandidateCount": 13,
     "acceptedCandidateCount": 12,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 10,
-    "firstCandidateSuccessRate": 0.8333333333333334,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 11,
+    "firstCandidateSuccessRate": 0.9166666666666666,
     "venues": [
       {
         "venue": "ercc-graceland",
@@ -5051,7 +5051,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
+            "reason": "props[2]: overlapping blocking footprints"
           },
           {
             "candidate": 2,
@@ -5091,11 +5091,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5174,7 +5169,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 17226,
+    "utf8Bytes": 17191,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5194,19 +5189,19 @@
       },
       {
         "venue": "federal-university-of-lafia",
-        "triangles": 3402,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "john-castle-lafia",
-        "triangles": 3342,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lafia-lg-secretariat",
-        "triangles": 2462,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
@@ -5218,13 +5213,13 @@
       },
       {
         "venue": "lafia-new-market",
-        "triangles": 3282,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lafiya-city-stadium",
-        "triangles": 2606,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
@@ -5236,7 +5231,7 @@
       },
       {
         "venue": "nasarawa-state-poly-lafia",
-        "triangles": 3410,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
@@ -5248,7 +5243,7 @@
       },
       {
         "venue": "sauki-hospital-lafia",
-        "triangles": 2882,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },

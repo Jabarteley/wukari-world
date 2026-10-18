@@ -5,17 +5,17 @@
   "city": "dushanbe",
   "region": "south-asia",
   "recipeFile": "dushanbe.json",
-  "recipeSha256": "f1603fc35da8ea1fca199486546186c6e6e4eca5cd73948fd2bed3b415631972",
+  "recipeSha256": "9784071f1f5022a4086cc3febfdf7a19cfc4e456a70fe747467de72797886ac4",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/dushanbe.json",
-      "sha256": "4c9ab57d21a715c73d03870bc0fe68e74a1bacac4dbd7aa874e880b85550ea6b",
-      "inputSha256": "123019b49f6df01eba55f6c6632778c8dcf229b2bd431172f7063f14b87294c4",
+      "sha256": "f872a936d163823e6cae48f192e6470f2126fa748228b4100da8ab7468592bf4",
+      "inputSha256": "e61b6f123f6239e6c9876feba478ba0f91b60b21ac6ba45af14426ce40e96580",
       "contentSha256": "913b80b5086e769df0179bbe12936c52d5aa4f2dff563c72921a9b2382210aba"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5133,8 +5133,8 @@
     "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
     "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "dushanbe-airport-dushanbe-airport",
@@ -5150,11 +5150,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5182,16 +5177,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5210,6 +5195,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5246,6 +5236,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5354,6 +5349,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34508,
+    "utf8Bytes": 34445,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,25 +5401,25 @@
     "estimates": [
       {
         "venue": "dushanbe-airport-dushanbe-airport",
-        "triangles": 2698,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dushanbe-clinic",
-        "triangles": 3402,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dushanbe-community-notices",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dushanbe-community-voting-game",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5437,13 +5437,13 @@
       },
       {
         "venue": "dushanbe-meal-stop",
-        "triangles": 2946,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dushanbe-osm-node-12064585531",
-        "triangles": 3194,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
@@ -5455,43 +5455,43 @@
       },
       {
         "venue": "dushanbe-osm-node-4467243189",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dushanbe-osm-node-5563662637",
-        "triangles": 2946,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dushanbe-osm-node-9655730217",
-        "triangles": 2998,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dushanbe-osm-way-105572713",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dushanbe-osm-way-247152234",
-        "triangles": 3966,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dushanbe-osm-way-27154229",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dushanbe-osm-way-42488771",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5509,25 +5509,25 @@
       },
       {
         "venue": "dushanbe-osm-way-486297646",
-        "triangles": 4598,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dushanbe-osm-way-521097387",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dushanbe-osm-way-574403086",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dushanbe-osm-way-623245028",
-        "triangles": 3610,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
@@ -5539,7 +5539,7 @@
       },
       {
         "venue": "dushanbe-recreation",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },

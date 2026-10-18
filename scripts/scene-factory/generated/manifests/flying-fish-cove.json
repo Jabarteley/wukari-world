@@ -5,17 +5,17 @@
   "city": "flying-fish-cove",
   "region": "americas-oceania",
   "recipeFile": "flying-fish-cove.json",
-  "recipeSha256": "13ca02ef1e2bf23cd34db75312e17cc192e422377159f2e24437692091141b54",
+  "recipeSha256": "a8a44fa967b9c429595f7ff25b9405ef3f39bdb8ad8faf1439f44ee61b51fb16",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/flying-fish-cove.json",
-      "sha256": "a7d9834a7cc322143ca166ab1dd52b56c72df420e7cad8a9d79f0512d531e898",
-      "inputSha256": "a53cc3ff2f3cf32009b020d3522dda906d3045c0c09511965e21fa7172063e00",
+      "sha256": "57f8aef13579986d550d2f6e453459b7c71c63dfd04c890ae5841c715115e449",
+      "inputSha256": "c3edcc43d0125de99c869248278df6ac9623c895af9d9529ef56a4e025a89abc",
       "contentSha256": "ae26c4c8aa6a21805a8f4fa5f83b60a2e7376be5506b7af1fb03a26e0345acd4"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5276,7 +5276,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 26689,
+    "utf8Bytes": 26701,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5290,55 +5290,55 @@
     "estimates": [
       {
         "venue": "flying-fish-cove-airport-flying-fish-cove-airport",
-        "triangles": 2698,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "flying-fish-cove-clinic",
-        "triangles": 2910,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "flying-fish-cove-community-notices",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "flying-fish-cove-community-voting-game",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "flying-fish-cove-community-workshop",
-        "triangles": 3402,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "flying-fish-cove-market-game",
-        "triangles": 4642,
+        "triangles": 3638,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "flying-fish-cove-meal-stop",
-        "triangles": 3178,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "flying-fish-cove-osm-node-11529873274",
-        "triangles": 3178,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "flying-fish-cove-osm-node-4160092423",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5350,19 +5350,19 @@
       },
       {
         "venue": "flying-fish-cove-osm-node-4551940189",
-        "triangles": 3978,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "flying-fish-cove-osm-node-4551940589",
-        "triangles": 3458,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "flying-fish-cove-osm-node-4551940689",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5380,25 +5380,25 @@
       },
       {
         "venue": "flying-fish-cove-osm-way-438454016",
-        "triangles": 3194,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "flying-fish-cove-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "flying-fish-cove-recreation",
-        "triangles": 5214,
+        "triangles": 4934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "flying-fish-cove-transit",
-        "triangles": 2986,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

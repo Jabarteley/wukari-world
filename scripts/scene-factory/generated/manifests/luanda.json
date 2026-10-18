@@ -5,17 +5,17 @@
   "city": "luanda",
   "region": "southern-africa",
   "recipeFile": "luanda.json",
-  "recipeSha256": "f7649dfd1a0633b612eedb3a03d449d6ece27203a442c845c556b3ff90a825cb",
+  "recipeSha256": "aba5d951817f519aa445a117090def1c6be2bd5f25f62393586f4fb3b957e3c3",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/luanda.json",
-      "sha256": "6e4338f10542f1a11219268e74b45d5fb74724558a10c52a9282a4336fc82aee",
-      "inputSha256": "af3337c1f83d5348ee06cdfbff15e99291474aa8b92ad29308fd0dffaccb2bb4",
+      "sha256": "0c432c0879680042708ee03fba3f0affe01d48ab5ffdf95079729ebc3dc299f8",
+      "inputSha256": "f6344eabdff44b9dc51964b43dfb12fc033b917b6c34c847cbcd30348db4f429",
       "contentSha256": "6cc221f300f9912f2d6595dc87c20f77b36c23afa76836a2e54cb1baabfc9e6d"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5129,6 +5129,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5138,6 +5143,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5147,11 +5157,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5296,11 +5301,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5334,7 +5334,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 30507,
+    "utf8Bytes": 30389,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5348,73 +5348,73 @@
     "estimates": [
       {
         "venue": "luanda-agostinho-neto-statue",
-        "triangles": 3978,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "luanda-airport-luanda-airport",
-        "triangles": 4238,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "luanda-citadel-stadium",
-        "triangles": 3526,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "luanda-clinic",
-        "triangles": 3402,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "luanda-community-notices",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "luanda-community-voting-game",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "luanda-community-workshop",
-        "triangles": 2910,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "luanda-franca-ndalu-stadium",
         "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "luanda-clinic",
+        "triangles": 3890,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "luanda-community-notices",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "luanda-community-voting-game",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "luanda-community-workshop",
+        "triangles": 2490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "luanda-franca-ndalu-stadium",
+        "triangles": 2998,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "luanda-iron-palace",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "luanda-luanda-magica-park",
-        "triangles": 3518,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "luanda-maianga-park",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "luanda-market-game",
-        "triangles": 3966,
+        "triangles": 5022,
         "meshes": 13,
         "lights": 3
       },
@@ -5426,13 +5426,13 @@
       },
       {
         "venue": "luanda-military-history-museum",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "luanda-ministries-square",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5444,7 +5444,7 @@
       },
       {
         "venue": "luanda-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5456,19 +5456,19 @@
       },
       {
         "venue": "luanda-science-technology-museum",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "luanda-shopping-fortaleza",
-        "triangles": 3610,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "luanda-telecommunications-museum",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },

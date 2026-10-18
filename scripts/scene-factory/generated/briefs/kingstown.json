@@ -60,7 +60,7 @@
       },
       {
         "path": "src/scene/venue-scenes.ts",
-        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
       },
       {
         "path": "src/scene/venues-campus.ts",
@@ -2053,7 +2053,7 @@
     "home"
   ],
   "digests": {
-    "inputSha256": "cd2c9cc35e8126c2f0e8db0d0285982adfa83e1f7a43d65104ddfd303fec00e0",
+    "inputSha256": "546162ed55094ce95c49dcf4f0fd85023847d8927afad5a6066bf3c892511475",
     "contentSha256": "35b5a8fe3e743e8af1d79424ecd4521ec09b6d551e3ea710ba2a913510a67646"
   }
 }

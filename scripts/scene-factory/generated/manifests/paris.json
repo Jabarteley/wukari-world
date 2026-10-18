@@ -5,17 +5,17 @@
   "city": "paris",
   "region": "western-europe",
   "recipeFile": "paris.json",
-  "recipeSha256": "660cd5c3764365a4e2a3e3af89dd2dc9a5b773037cb81e3e220a0d95d44810ea",
+  "recipeSha256": "de07a3ec1414d065e9577729a54bfe98f6966ae7d868352be7313b0bbb78005f",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/paris.json",
-      "sha256": "36f9b05c1ece3535d4d2380a9a0822d33c82c53e70937b806af6a742b7002f99",
-      "inputSha256": "2c87cd822e901d25a6c8172119907d7d0c9541b7e3f7bd3a115fad507977004e",
+      "sha256": "b2d0292c321a85dd2f3cccf71e4855f205c8a2d8f44aaabf1cdf0e16f6cacd58",
+      "inputSha256": "4fdb45d61ceb8b564732ccd30df08e45467501e9b32364269e578a3703b996d1",
       "contentSha256": "dc6377f68c3cd8802634b4fe5f0132480de6dfc619d0ce3a383db36fb3a4bf05"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "paris-airport-paris-airport",
@@ -5222,6 +5222,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5249,6 +5254,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5321,11 +5331,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34550,
+    "utf8Bytes": 34376,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,13 +5396,13 @@
     "estimates": [
       {
         "venue": "paris-airport-paris-airport",
-        "triangles": 6194,
+        "triangles": 5182,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "paris-clinic",
-        "triangles": 2490,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
@@ -5409,37 +5414,37 @@
       },
       {
         "venue": "paris-community-voting-game",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "paris-community-workshop",
-        "triangles": 3438,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "paris-market-game",
-        "triangles": 2910,
+        "triangles": 4694,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "paris-meal-stop",
-        "triangles": 3178,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "paris-osm-node-1906996216",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "paris-osm-node-2295902532",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5451,91 +5456,91 @@
       },
       {
         "venue": "paris-osm-relation-1223157",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paris-osm-way-111365747",
-        "triangles": 3798,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paris-osm-way-130808774",
-        "triangles": 4614,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paris-osm-way-1415157895",
-        "triangles": 3898,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paris-osm-way-252506849",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paris-osm-way-346302141",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paris-osm-way-365579410",
-        "triangles": 4710,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paris-osm-way-39316077",
-        "triangles": 2578,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paris-osm-way-46173452",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "paris-osm-way-678745793",
-        "triangles": 4666,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paris-osm-way-85301687",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paris-osm-way-976068267",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paris-quiet-reflection",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paris-recreation",
+        "venue": "paris-osm-way-111365747",
         "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "paris-osm-way-130808774",
+        "triangles": 2882,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "paris-osm-way-1415157895",
+        "triangles": 4878,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "paris-osm-way-252506849",
+        "triangles": 3526,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "paris-osm-way-346302141",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "paris-osm-way-365579410",
+        "triangles": 4430,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "paris-osm-way-39316077",
+        "triangles": 3458,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "paris-osm-way-46173452",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "paris-osm-way-678745793",
+        "triangles": 4610,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "paris-osm-way-85301687",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "paris-osm-way-976068267",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "paris-quiet-reflection",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "paris-recreation",
+        "triangles": 4710,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "paris-transit",
-        "triangles": 4238,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

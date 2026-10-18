@@ -5,17 +5,17 @@
   "city": "owerri",
   "region": "igbo-southeast",
   "recipeFile": "owerri.json",
-  "recipeSha256": "bcfd25eb861017f9e475760f90e11077da419667386ec29124e3f5fc589af71b",
+  "recipeSha256": "1d7c60da535eb2ad335953fc2acb1cb578fc5e288aad2a068c6c29d8679a1117",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/owerri.json",
-      "sha256": "475fd79fc587b22f118f153a936441099fbbe79def9bd389f5b8fbd69bce5406",
-      "inputSha256": "2d7a805cb7d67daba4a8d2b09328c2e67b804f059f044ebd8336eb9182d5a258",
+      "sha256": "62228e719e5f061bec5cf9e6130deee1408b1adf69137e5aa3ae1ec3515659a4",
+      "inputSha256": "d8b6ffdae51db1ce4cfbf8b1ffbb63338ebb2e3d306b4fb31fa8b8f2f1d01620",
       "contentSha256": "9228fd84cb8a8d06b4593ba8dc74071147d41f44274d20a52248dd73803068a1"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5337,11 +5337,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5351,6 +5346,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5393,7 +5393,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 37100,
+    "utf8Bytes": 36969,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5407,19 +5407,19 @@
     "estimates": [
       {
         "venue": "akachi-monument",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "assumpta-maria-cathedral",
-        "triangles": 3862,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dan-anyiam-stadium",
-        "triangles": 3518,
+        "triangles": 3554,
         "meshes": 13,
         "lights": 3
       },
@@ -5431,31 +5431,31 @@
       },
       {
         "venue": "fcmb-owerri",
-        "triangles": 3342,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "federal-polytechnic-nekede",
-        "triangles": 3374,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "futo-owerri",
-        "triangles": 2882,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "holy-rosary-hospital-emekuku",
         "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "federal-polytechnic-nekede",
+        "triangles": 3862,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "futo-owerri",
+        "triangles": 3374,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "holy-rosary-hospital-emekuku",
+        "triangles": 3342,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "holy-trinity-world-bank-owerri",
-        "triangles": 2462,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
@@ -5467,43 +5467,43 @@
       },
       {
         "venue": "imo-golf-amusement-center",
-        "triangles": 4458,
+        "triangles": 3826,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "imo-state-central-mosque",
-        "triangles": 3410,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "imo-state-house-of-assembly",
-        "triangles": 2462,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "imo-state-university",
-        "triangles": 2490,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "imo-trade-investment-centre",
-        "triangles": 3374,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "josephs-pot-owerri",
-        "triangles": 3222,
+        "triangles": 3230,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "love-garden-imsu",
-        "triangles": 3758,
+        "triangles": 3826,
         "meshes": 13,
         "lights": 3
       },
@@ -5515,25 +5515,25 @@
       },
       {
         "venue": "national-museum-owerri",
-        "triangles": 3410,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nkwo-emeke-market",
-        "triangles": 4406,
+        "triangles": 4338,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "owerri-central-mosque",
-        "triangles": 3862,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-johns-anglican-owerri",
-        "triangles": 3862,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
@@ -5545,19 +5545,19 @@
       },
       {
         "venue": "uloma-food-market",
-        "triangles": 5014,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "world-bank-market-owerri",
-        "triangles": 3282,
+        "triangles": 5010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zenith-bank-owerri",
-        "triangles": 3410,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "osogbo",
   "region": "yoruba-southwest",
   "recipeFile": "osogbo.json",
-  "recipeSha256": "3b1a25f83851b3e894949b0b2d3c52bd5957d796035c248aaef7bbeb801bfa4b",
+  "recipeSha256": "6224016afbfb524dbd6baba933b0518da71d9acf70fe77eef315e93a9b731273",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/osogbo.json",
-      "sha256": "a91aebe7335187983349cc864c8527913bcbc97d560a50a17d4242f75350cf93",
-      "inputSha256": "84eeb856d63dbf7b793a4b03cf5e6bf12ea24caa1ce6d369702fa439103efd2e",
+      "sha256": "5879c1a59263c77416a82f950e53bd4dc1304220839fdaeec02f5932606ac00d",
+      "inputSha256": "53ab0472178dbf20e293261d1c358f7b1fa1363c9dcaec70a85f37c240a7e095",
       "contentSha256": "6338ff52ba7ed059f190a401530eee89e6954b002ac18f67b6e8359ca04a61b9"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5067,11 +5067,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 16,
-    "attemptedCandidateCount": 18,
+    "attemptedCandidateCount": 22,
     "acceptedCandidateCount": 16,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 14,
-    "firstCandidateSuccessRate": 0.875,
+    "rejectedCandidateCount": 6,
+    "firstCandidateSuccessCount": 12,
+    "firstCandidateSuccessRate": 0.75,
     "venues": [
       {
         "venue": "abegi-anu-bar",
@@ -5096,11 +5096,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5110,6 +5105,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5128,6 +5128,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5137,6 +5142,21 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 4,
             "outcome": "accepted"
           }
         ]
@@ -5200,11 +5220,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5214,6 +5229,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5238,7 +5258,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 22915,
+    "utf8Bytes": 22945,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5252,25 +5272,25 @@
     "estimates": [
       {
         "venue": "abegi-anu-bar",
-        "triangles": 2918,
+        "triangles": 2894,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ayegbaju-market",
-        "triangles": 5666,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "calvary-baptist-church",
-        "triangles": 3862,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "fountain-university",
-        "triangles": 3890,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
@@ -5288,31 +5308,31 @@
       },
       {
         "venue": "lautech-teaching-hospital",
-        "triangles": 2490,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nelson-mandela-freedom-park",
-        "triangles": 4738,
+        "triangles": 4458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "new-orisunbare-market",
-        "triangles": 5014,
+        "triangles": 3282,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "noun-osogbo",
-        "triangles": 3410,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "osogbo-township-stadium",
-        "triangles": 2606,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
@@ -5324,13 +5344,13 @@
       },
       {
         "venue": "osun-osogbo-sacred-grove",
-        "triangles": 3410,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "our-lady-of-fatima-hospital",
-        "triangles": 3862,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
@@ -5342,7 +5362,7 @@
       },
       {
         "venue": "union-baptist-church",
-        "triangles": 3342,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       }

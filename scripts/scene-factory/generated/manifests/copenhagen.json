@@ -5,17 +5,17 @@
   "city": "copenhagen",
   "region": "western-europe",
   "recipeFile": "copenhagen.json",
-  "recipeSha256": "aea1b04d61afb82f8a19f08cb116fe85cf1ba1345da3f5278ba7d95d499f0924",
+  "recipeSha256": "47d12ba09614688753d3672cfe309f6c9b25a707f94a342ad914110604841dea",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/copenhagen.json",
-      "sha256": "1afa3a8772930726345cf434378a5f9e87033e52b4ec4d75049fa0eeb5b1bc56",
-      "inputSha256": "5b371dd601b81113ff393a1145fa3e273e55b5941970d638d3b92cd3107b1d1e",
+      "sha256": "0078b0cd90e55ca2eb26bffe4c94dde364da18b3582471d478823f17f9c1ebef",
+      "inputSha256": "a4359bcd8ad1a69558aef930b7c1f0d0875440ad831d4490926db6e8deb29802",
       "contentSha256": "570ba202011bffc70898f2db51a3ba248938814ec73bb5941352ffcc938c7d01"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5133,8 +5133,8 @@
     "attemptedCandidateCount": 30,
     "acceptedCandidateCount": 25,
     "rejectedCandidateCount": 5,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "firstCandidateSuccessCount": 20,
+    "firstCandidateSuccessRate": 0.8,
     "venues": [
       {
         "venue": "copenhagen-airport-copenhagen-airport",
@@ -5186,6 +5186,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5195,6 +5200,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5276,6 +5286,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5303,6 +5318,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5313,15 +5333,10 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
+            "reason": "crowd[6]: exact target is blocked"
           },
           {
             "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5349,21 +5364,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 3,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 4,
             "outcome": "accepted"
           }
         ]
@@ -5397,7 +5397,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34631,
+    "utf8Bytes": 34621,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5411,19 +5411,19 @@
     "estimates": [
       {
         "venue": "copenhagen-airport-copenhagen-airport",
-        "triangles": 2698,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "copenhagen-clinic",
-        "triangles": 3438,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "copenhagen-community-notices",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5435,55 +5435,55 @@
       },
       {
         "venue": "copenhagen-community-workshop",
-        "triangles": 3438,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "copenhagen-market-game",
-        "triangles": 2726,
+        "triangles": 3782,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "copenhagen-meal-stop",
-        "triangles": 3514,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "copenhagen-osm-node-290001160",
-        "triangles": 2578,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "copenhagen-osm-relation-3003307",
-        "triangles": 2882,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "copenhagen-osm-way-199052235",
-        "triangles": 3194,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "copenhagen-osm-way-204999475",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "copenhagen-osm-way-24517109",
-        "triangles": 3610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "copenhagen-osm-way-246489323",
-        "triangles": 3202,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
@@ -5495,19 +5495,19 @@
       },
       {
         "venue": "copenhagen-osm-way-25568322",
-        "triangles": 3490,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "copenhagen-osm-way-25700603",
-        "triangles": 4598,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "copenhagen-osm-way-27890242",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5519,25 +5519,25 @@
       },
       {
         "venue": "copenhagen-osm-way-391594117",
-        "triangles": 3490,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "copenhagen-osm-way-4218311",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "copenhagen-osm-way-425763096",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "copenhagen-osm-way-425777077",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
@@ -5549,13 +5549,13 @@
       },
       {
         "venue": "copenhagen-recreation",
-        "triangles": 3798,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "copenhagen-transit",
-        "triangles": 3590,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "harare",
   "region": "southern-africa",
   "recipeFile": "harare.json",
-  "recipeSha256": "5fa2a735c999a92f56e31d17f02a8d5f0e73936280848f497abba8771eabb361",
+  "recipeSha256": "5fed21f684e704802aec27154fd54d2c722ef8c1239665f4da5a1e5cfe276989",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/harare.json",
-      "sha256": "73fae57ac3189e8af266fcbbbccbc90add4d924ffea75778ac8d0a6d766e74c6",
-      "inputSha256": "2aeb24ad8839c9b478267ee9438a8b7b87c549c98289b5a3b45b1f536cf81e18",
+      "sha256": "07a5c808a2b34f083a21e85dd49a6e7a6f41f8907c28fe6f9e9c3b8c19c62f5e",
+      "inputSha256": "5aa4a4a7d44655d9668804c307ea9550687969d483c0d7e21c380fdec544eb2a",
       "contentSha256": "143e07f620e43d0ef5db373c5587153ca55c778cbeb2ea37a3f2fe8b7e664ea5"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5109,11 +5109,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 22,
-    "attemptedCandidateCount": 24,
+    "attemptedCandidateCount": 23,
     "acceptedCandidateCount": 22,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 20,
-    "firstCandidateSuccessRate": 0.9090909090909091,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 21,
+    "firstCandidateSuccessRate": 0.9545454545454546,
     "venues": [
       {
         "venue": "harare-african-liberation-museum",
@@ -5219,11 +5219,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5278,6 +5273,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5296,11 +5296,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5334,7 +5329,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 30385,
+    "utf8Bytes": 30398,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5348,37 +5343,37 @@
     "estimates": [
       {
         "venue": "harare-african-liberation-museum",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "harare-airport-harare-airport",
-        "triangles": 3590,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "harare-chiremba-balancing-rocks",
-        "triangles": 3526,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "harare-clinic",
-        "triangles": 3402,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "harare-community-notices",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "harare-community-voting-game",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5396,19 +5391,19 @@
       },
       {
         "venue": "harare-harare-city-library",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "harare-human-sciences-museum",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "harare-market-game",
-        "triangles": 2630,
+        "triangles": 3618,
         "meshes": 13,
         "lights": 3
       },
@@ -5426,19 +5421,19 @@
       },
       {
         "venue": "harare-national-gallery",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "harare-national-sports-stadium",
-        "triangles": 3458,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "harare-queen-victoria-library",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5456,25 +5451,25 @@
       },
       {
         "venue": "harare-reps-theatre",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "harare-rufaro-stadium",
-        "triangles": 3458,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "harare-seven-arts",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "harare-transit",
-        "triangles": 2986,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

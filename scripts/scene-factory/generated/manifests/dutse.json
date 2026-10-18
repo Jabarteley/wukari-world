@@ -5,17 +5,17 @@
   "city": "dutse",
   "region": "sahel-north",
   "recipeFile": "dutse.json",
-  "recipeSha256": "4b13102db6c67593bcb013dbb6c4dc512a0207d31ac1ecac65b51c3303c4abdd",
+  "recipeSha256": "540e08f4cf55657bb3f1c8817a63e804d84d204ba93d1754360d9c2256ca2b73",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/dutse.json",
-      "sha256": "d7881efb1e4bb5b59b8188161aa39ecc4e5b1e82fa0ac204312f99baa3a6e840",
-      "inputSha256": "465a36a67c119a454af2f9d883f5b0573d81e9d1d177f42b1a90a05b5ad2d23f",
+      "sha256": "bc344e08156ada2dfce8b0b1737710eef73b7a3b351f8203d54189ae0ea67ae6",
+      "inputSha256": "7b2e5fcd58d9f358e103ffbf99d9846a575bd02c4bd1a6384b871d7551f4a3a2",
       "contentSha256": "eb2416ede5d441721042f58ad08f52d537f539147101ffe6dc3521878bc0267b"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5074,17 +5074,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 17,
-    "attemptedCandidateCount": 18,
+    "attemptedCandidateCount": 20,
     "acceptedCandidateCount": 17,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 16,
-    "firstCandidateSuccessRate": 0.9411764705882353,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 14,
+    "firstCandidateSuccessRate": 0.8235294117647058,
     "venues": [
       {
         "venue": "central-mosque-galamawa-dutse",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5122,7 +5127,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
+            "reason": "crowd[6]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5162,6 +5167,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5249,7 +5259,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 24391,
+    "utf8Bytes": 24364,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5263,31 +5273,31 @@
     "estimates": [
       {
         "venue": "central-mosque-galamawa-dutse",
-        "triangles": 3374,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "christ-the-king-catholic-church-dutse",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dutse-emirate-museum-park",
-        "triangles": 3888,
+        "triangles": 3608,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dutse-general-hospital",
-        "triangles": 3410,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dutse-museum",
-        "triangles": 3410,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
@@ -5299,67 +5309,67 @@
       },
       {
         "venue": "dutse-ultra-modern-market",
-        "triangles": 3282,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "emir-of-dutse-palace",
-        "triangles": 3410,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gtbank-dutse",
-        "triangles": 3342,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hadiza-nakowa-restaurant-dutse",
-        "triangles": 3222,
+        "triangles": 3206,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jigawa-ministry-of-environment-dutse",
-        "triangles": 2462,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jigawa-state-polytechnic-dutse",
-        "triangles": 3402,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jigawa-state-secretariat-dutse",
-        "triangles": 2462,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laraba-market-dutse",
-        "triangles": 5066,
+        "triangles": 3282,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rasheed-shekoni-hospital-dutse",
-        "triangles": 2910,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sterling-bank-dutse",
-        "triangles": 3410,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yahuza-suya-spot-dutse",
-        "triangles": 3542,
+        "triangles": 2974,
         "meshes": 13,
         "lights": 3
       }

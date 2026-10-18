@@ -5,17 +5,17 @@
   "city": "manama",
   "region": "south-asia",
   "recipeFile": "manama.json",
-  "recipeSha256": "aa785a8422c70ab52286b35afe6a528d80f0f45aa7b2b198ab50b421dad37a58",
+  "recipeSha256": "069a24098c6f7ed11e28c8cb7d6310dfcf6ff4446e937f2bcb4fdfed05aec77a",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/manama.json",
-      "sha256": "467494915ff5f4eb6c707cb25c063be8609e4f323ddfdc1b7fb6ae9db0f2b4ba",
-      "inputSha256": "cbf00a2ded35a783076c8d1f78aff6ff7be0e2e392dfd956484f94264adbf258",
+      "sha256": "7bd27bca32ebd2d7cc008a8f39265f68824100e1eaf1f4c964584c72f8fb37da",
+      "inputSha256": "5fa2b83b011468ab75cede94610e3cae324fede74e8f2ea8bbdcfce4b7f79363",
       "contentSha256": "a59198c1a2fa26f5bb365fd9d4bd0449e440c7f86df8b3507e61854f63ebb7ae"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 31,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 6,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.84,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "manama-airport-manama-airport",
@@ -5177,16 +5177,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5205,6 +5195,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5242,7 +5237,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
+            "reason": "props[2]: overlapping blocking footprints"
           },
           {
             "candidate": 2,
@@ -5336,11 +5331,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5350,6 +5340,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5359,16 +5354,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5402,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34381,
+    "utf8Bytes": 34482,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5416,7 +5401,7 @@
     "estimates": [
       {
         "venue": "manama-airport-manama-airport",
-        "triangles": 3050,
+        "triangles": 4362,
         "meshes": 13,
         "lights": 3
       },
@@ -5434,37 +5419,37 @@
       },
       {
         "venue": "manama-community-voting-game",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "manama-community-workshop",
-        "triangles": 3438,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "manama-market-game",
-        "triangles": 4638,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "manama-meal-stop",
-        "triangles": 3514,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "manama-osm-node-3885140913",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "manama-community-workshop",
+        "triangles": 3370,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "manama-market-game",
+        "triangles": 4694,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "manama-meal-stop",
+        "triangles": 2946,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "manama-osm-node-3885140913",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "manama-osm-node-811103543",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
@@ -5476,91 +5461,91 @@
       },
       {
         "venue": "manama-osm-way-1536562298",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manama-osm-way-174275472",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manama-osm-way-174275928",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manama-osm-way-175197568",
-        "triangles": 4666,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manama-osm-way-28655847",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "manama-osm-way-29253447",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "manama-osm-way-344196655",
-        "triangles": 4598,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "manama-osm-way-488543824",
-        "triangles": 4878,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "manama-osm-way-61402688",
-        "triangles": 3610,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "manama-osm-way-665595615",
         "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "manama-osm-way-673312758",
+        "venue": "manama-osm-way-29253447",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "manama-osm-way-344196655",
+        "triangles": 4878,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "manama-osm-way-488543824",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "manama-osm-way-61402688",
+        "triangles": 4614,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "manama-osm-way-665595615",
         "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "manama-osm-way-673312758",
+        "triangles": 3978,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "manama-osm-way-991874984",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manama-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manama-recreation",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manama-transit",
-        "triangles": 3590,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

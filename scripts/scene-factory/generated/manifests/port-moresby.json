@@ -5,17 +5,17 @@
   "city": "port-moresby",
   "region": "americas-oceania",
   "recipeFile": "port-moresby.json",
-  "recipeSha256": "6c46d6605e21fc8157f379fcf628724d6728089a1a1ac8acf187676c62966f44",
+  "recipeSha256": "df7c92e1dc788b135196dcc7f50e3a8c7cb1c4574d82bf9587beef0db672345d",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/port-moresby.json",
-      "sha256": "f2fae28c01056f0a1d77dd132721b083ef7dddb8956fda6bd220cd558a04c965",
-      "inputSha256": "8b5d1ecd008a957b72628fb2f9249839191de64b711c50c8da6ef1674a6b469e",
+      "sha256": "a08726fe15e15272a65dfc0ffa3215b0bb3e3a4fb3fa50be418259b8f83ff2d9",
+      "inputSha256": "c8cdf63a37b3fc418e4993bc60bedb829fc1590ecafa8ee9b76d81fbb047d871",
       "contentSha256": "bf10c90079a7e68c35a9ac10f6cf8a7a7f27d25d60fc393b982c4d539f8a744d"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "port-moresby-airport-port-moresby-airport",
@@ -5168,11 +5168,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34903,
+    "utf8Bytes": 34990,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,13 +5386,13 @@
     "estimates": [
       {
         "venue": "port-moresby-airport-port-moresby-airport",
-        "triangles": 3530,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-moresby-clinic",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
@@ -5409,37 +5404,37 @@
       },
       {
         "venue": "port-moresby-community-voting-game",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-moresby-community-workshop",
-        "triangles": 2910,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-moresby-market-game",
-        "triangles": 3358,
+        "triangles": 5402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-moresby-meal-stop",
-        "triangles": 3514,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-moresby-osm-node-6038606685",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-moresby-osm-way-1445648071",
-        "triangles": 3798,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
@@ -5457,13 +5452,13 @@
       },
       {
         "venue": "port-moresby-osm-way-1493439301",
-        "triangles": 3202,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-moresby-osm-way-1495472122",
-        "triangles": 3610,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
@@ -5475,55 +5470,55 @@
       },
       {
         "venue": "port-moresby-osm-way-1497930259",
-        "triangles": 3194,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-moresby-osm-way-1497997106",
-        "triangles": 3610,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-moresby-osm-way-25178323",
-        "triangles": 2578,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "port-moresby-osm-way-25178550",
-        "triangles": 4878,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "port-moresby-osm-way-25598649",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "port-moresby-osm-way-25601717",
-        "triangles": 4430,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "port-moresby-osm-way-525253713",
         "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "port-moresby-osm-way-25178550",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "port-moresby-osm-way-25598649",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "port-moresby-osm-way-25601717",
+        "triangles": 3730,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "port-moresby-osm-way-525253713",
+        "triangles": 3458,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "port-moresby-osm-way-615731680",
-        "triangles": 2998,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-moresby-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5535,7 +5530,7 @@
       },
       {
         "venue": "port-moresby-transit",
-        "triangles": 3530,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

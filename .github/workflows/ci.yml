@@ -163,7 +163,7 @@ jobs:
         run: >-
           node --experimental-strip-types --import ./scripts/node-scene-css.ts
           --test --test-concurrency=1
-          src/scene/city-scenes.test.ts src/map3d/geo/atlas.test.ts
+          src/scene/city-scenes.test.ts src/scene/recipe/dynamic-population.test.ts src/map3d/geo/atlas.test.ts
 
       - name: Existing map renderer, water and startup checks
         if: ${{ !cancelled() && steps.build.outcome == 'success' }}

@@ -5,17 +5,17 @@
   "city": "male",
   "region": "americas-oceania",
   "recipeFile": "male.json",
-  "recipeSha256": "080773a4b1f366d70aab195fb75a95562ec17d6a146d03bbefa2a99effde28eb",
+  "recipeSha256": "0b2a1394f6a7d583f67035a7f21a120366e3c139f878c8015235c1e289f2ae82",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/male.json",
-      "sha256": "bb05ed1e0ce5f532b4b4945bab3a38baa81b503d344c1d10278c5bc6d73fb87d",
-      "inputSha256": "f374505127443a3a17581101991c58eb0b5f818085bf001e15a07634b0ccbf67",
+      "sha256": "c17f330460c65d7168d4af6fe506709c89d4129faecbef4437716f2cd1b8e93a",
+      "inputSha256": "56414b65b5eafc9d8147bd14858b8cd6de99cfa3ccbbf7311a12e5f7e9cb7f29",
       "contentSha256": "303af320f9c9fc46f31a292de6d329642898bf60bbf7376db4580a620c83125a"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.88,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "male-airport-male-airport",
@@ -5258,11 +5258,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5282,7 +5277,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
+            "reason": "crowd[8]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5313,11 +5308,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34356,
+    "utf8Bytes": 34419,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,25 +5391,25 @@
     "estimates": [
       {
         "venue": "male-airport-male-airport",
-        "triangles": 3530,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "male-clinic",
-        "triangles": 3370,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "male-community-notices",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "male-community-voting-game",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5431,19 +5421,19 @@
       },
       {
         "venue": "male-market-game",
-        "triangles": 3786,
+        "triangles": 4530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "male-meal-stop",
-        "triangles": 3274,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "male-osm-node-12109909429",
-        "triangles": 3178,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
@@ -5455,13 +5445,13 @@
       },
       {
         "venue": "male-osm-node-6294958141",
-        "triangles": 4878,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "male-osm-node-6398078446",
-        "triangles": 3978,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
@@ -5473,31 +5463,31 @@
       },
       {
         "venue": "male-osm-node-9559425955",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "male-osm-way-116704222",
-        "triangles": 3178,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "male-osm-way-1317929099",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "male-osm-way-151402193",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "male-osm-way-151402193",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "male-osm-way-186667274",
-        "triangles": 3526,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
@@ -5509,25 +5499,25 @@
       },
       {
         "venue": "male-osm-way-306746570",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "male-osm-way-437135029",
-        "triangles": 4710,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "male-osm-way-897444516",
-        "triangles": 3518,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "male-osm-way-959150179",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5539,13 +5529,13 @@
       },
       {
         "venue": "male-recreation",
-        "triangles": 3518,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "male-transit",
-        "triangles": 4238,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

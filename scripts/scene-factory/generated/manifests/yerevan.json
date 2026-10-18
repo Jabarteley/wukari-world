@@ -5,17 +5,17 @@
   "city": "yerevan",
   "region": "western-europe",
   "recipeFile": "yerevan.json",
-  "recipeSha256": "4fdf61952ea77f66c7e1bc8370083dead9b7a06a4d5a1cec20d61519bbba96cc",
+  "recipeSha256": "92bba1c5fb6bf19de8b11829455cf6fb681d30eb7eae823d72a697b4ff52181f",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/yerevan.json",
-      "sha256": "293064cf4bfe5bfa436fee36549627b7783b3f5856148d275b0bae93c16b27e3",
-      "inputSha256": "9b14ab46ba410dbba9ca7a64a818d2de74aff515035860a57dbab8e5e2946a57",
+      "sha256": "f361a01759a5930ca97c2e2bd07ad887c65083a3a7cfa0b07467878a4410adb4",
+      "inputSha256": "94091a5c9f22fa15ae8f3011b3f0849d47d7fe8f3edcbf21a5a95f26c3d0ba98",
       "contentSha256": "99a3f33bb226307d437dbabccc000c1e01aa92bade4be49d27a4c3ce10e7f5a0"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.88,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "yerevan-airport-yerevan-airport",
@@ -5195,11 +5195,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5209,11 +5204,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5241,11 +5231,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5282,6 +5267,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34554,
+    "utf8Bytes": 34627,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,55 +5391,55 @@
     "estimates": [
       {
         "venue": "yerevan-airport-yerevan-airport",
-        "triangles": 2626,
+        "triangles": 3698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yerevan-clinic",
-        "triangles": 3402,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yerevan-community-notices",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yerevan-community-voting-game",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yerevan-community-workshop",
-        "triangles": 3890,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yerevan-market-game",
-        "triangles": 4638,
+        "triangles": 3962,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yerevan-meal-stop",
-        "triangles": 3194,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yerevan-osm-node-11059334139",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yerevan-osm-node-2261309386",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5461,7 +5451,7 @@
       },
       {
         "venue": "yerevan-osm-relation-15349086",
-        "triangles": 4878,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5479,19 +5469,19 @@
       },
       {
         "venue": "yerevan-osm-relation-18398590",
-        "triangles": 3458,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yerevan-osm-way-108255791",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yerevan-osm-way-224162673",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5503,43 +5493,43 @@
       },
       {
         "venue": "yerevan-osm-way-31662730",
-        "triangles": 3934,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yerevan-osm-way-31662997",
-        "triangles": 2998,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yerevan-osm-way-32402461",
-        "triangles": 4430,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yerevan-osm-way-33771226",
-        "triangles": 3610,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yerevan-osm-way-842206349",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yerevan-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yerevan-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },

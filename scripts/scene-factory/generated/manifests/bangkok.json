@@ -5,17 +5,17 @@
   "city": "bangkok",
   "region": "east-asia",
   "recipeFile": "bangkok.json",
-  "recipeSha256": "b3855e89b78535e86793bfff9742bd3072f18ccbb52755b384db13be98c03e40",
+  "recipeSha256": "098578a52cfb477397005ac5c0d174cf237d2adb177b78a473cc56fb7253e964",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/bangkok.json",
-      "sha256": "7b1c03a9e194b968d33cb663a4e1bba93f8b594f79ad230f25aa413b2d1a2bb3",
-      "inputSha256": "cb994fb00061d91981db8340a61caae4bd88857152f5232513cd969ca5931582",
+      "sha256": "979aff6ac98546abf9aab8f1c50065c1e399ca3bbf72fce6ef905a204f734ac3",
+      "inputSha256": "950fe32ad2f5620c102a4be1d9fd4e6bfa8cdb56eca1bf8eda916b4de77a4b07",
       "contentSha256": "9d46c120ee700544384d9979ccc0b30550e2829d5e629b56068b80a10c96791b"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "bangkok-airport-bangkok-airport",
@@ -5159,6 +5159,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5186,11 +5191,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5327,7 +5327,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
+            "reason": "crowd[8]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5367,6 +5367,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34453,
+    "utf8Bytes": 34412,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5402,13 +5407,13 @@
       },
       {
         "venue": "bangkok-clinic",
-        "triangles": 3438,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bangkok-community-notices",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5420,97 +5425,97 @@
       },
       {
         "venue": "bangkok-community-workshop",
-        "triangles": 2490,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bangkok-market-game",
-        "triangles": 4770,
+        "triangles": 2726,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bangkok-meal-stop",
-        "triangles": 3202,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bangkok-osm-node-1641043367",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bangkok-osm-node-1645930798",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bangkok-osm-node-1669417525",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bangkok-osm-node-2962259464",
-        "triangles": 2578,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bangkok-osm-node-6169672727",
         "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "bangkok-osm-relation-20313115",
-        "triangles": 3518,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bangkok-osm-way-1464119566",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bangkok-osm-way-1543169884",
-        "triangles": 4878,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bangkok-osm-way-175314200",
-        "triangles": 3978,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bangkok-osm-way-177938414",
-        "triangles": 3898,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bangkok-osm-way-203011799",
-        "triangles": 3730,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bangkok-osm-way-341749639",
+        "venue": "bangkok-osm-node-1641043367",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "bangkok-osm-node-1645930798",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bangkok-osm-node-1669417525",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bangkok-osm-node-2962259464",
+        "triangles": 3458,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bangkok-osm-node-6169672727",
+        "triangles": 3514,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bangkok-osm-relation-20313115",
+        "triangles": 3730,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bangkok-osm-way-1464119566",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bangkok-osm-way-1543169884",
+        "triangles": 3686,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bangkok-osm-way-175314200",
+        "triangles": 2578,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bangkok-osm-way-177938414",
+        "triangles": 3686,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bangkok-osm-way-203011799",
+        "triangles": 4430,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bangkok-osm-way-341749639",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "bangkok-osm-way-378636213",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5528,19 +5533,19 @@
       },
       {
         "venue": "bangkok-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bangkok-recreation",
-        "triangles": 4430,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bangkok-transit",
-        "triangles": 2986,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

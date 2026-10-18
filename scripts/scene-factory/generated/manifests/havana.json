@@ -5,17 +5,17 @@
   "city": "havana",
   "region": "americas-oceania",
   "recipeFile": "havana.json",
-  "recipeSha256": "4cc46d336dcd37fed6df78a109f35ee90e932fa05bdd0e4dfe3eaa9eea1cf51f",
+  "recipeSha256": "b70d28add1e7ee105bbfe96daa4e0fe29807c63b571ad7b2fe0e60b6e93a8165",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/havana.json",
-      "sha256": "ab14203e22c889a203b1b899e06ccd27d06ead9a0cc7ebef8205a1103984fd27",
-      "inputSha256": "308f3462da0f9277ae792de75d0f707fcb45f581254fdfbe400dc33c7ebf7549",
+      "sha256": "c8d87b92b40020cd97edd0289b14c100dc8e2c51524d6b640cf84ed709b7abba",
+      "inputSha256": "00e3c030eba6952eadb39aae570381586af18810729de22ac8d6f8f98599e541",
       "contentSha256": "b42c5aebef43f76859aa112d53da2e267b4909795d8dbf9c2fa5916f4cf7f7bc"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "havana-airport-havana-airport",
@@ -5249,11 +5249,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5290,11 +5285,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34473,
+    "utf8Bytes": 34600,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,37 +5386,37 @@
     "estimates": [
       {
         "venue": "havana-airport-havana-airport",
-        "triangles": 4238,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "havana-clinic",
-        "triangles": 3438,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "havana-community-notices",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "havana-community-voting-game",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "havana-community-workshop",
         "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "havana-community-notices",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "havana-community-voting-game",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "havana-community-workshop",
+        "triangles": 3890,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "havana-market-game",
-        "triangles": 3618,
+        "triangles": 2942,
         "meshes": 13,
         "lights": 3
       },
@@ -5438,49 +5428,49 @@
       },
       {
         "venue": "havana-osm-node-2199414676",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "havana-osm-node-4157873423",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "havana-osm-node-993692568",
-        "triangles": 3194,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "havana-osm-relation-17595359",
-        "triangles": 3966,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "havana-osm-way-1170872914",
-        "triangles": 2998,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "havana-osm-way-1419495076",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "havana-osm-way-1490900566",
         "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "havana-osm-way-1419495076",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "havana-osm-way-1490900566",
+        "triangles": 3526,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "havana-osm-way-23919819",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
@@ -5492,55 +5482,55 @@
       },
       {
         "venue": "havana-osm-way-257926030",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "havana-osm-way-312320219",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "havana-osm-way-331472906",
-        "triangles": 3898,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "havana-osm-way-379448607",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "havana-osm-way-385503017",
         "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "havana-osm-way-379448607",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "havana-osm-way-385503017",
+        "triangles": 3686,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "havana-osm-way-665673095",
-        "triangles": 3490,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "havana-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "havana-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "havana-transit",
-        "triangles": 3530,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

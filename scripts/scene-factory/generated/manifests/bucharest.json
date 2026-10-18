@@ -5,17 +5,17 @@
   "city": "bucharest",
   "region": "western-europe",
   "recipeFile": "bucharest.json",
-  "recipeSha256": "4c765d6f9c6965bc428c2dea4f952813292baa35f85707b88fce5a1cdda31c40",
+  "recipeSha256": "3cbb179945c6e70b5cbd27455f84e81ff7caf95159b942c485fef28c6f55d27d",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/bucharest.json",
-      "sha256": "6223101df990baa004706f7c410b293354a062e4a2ac9661d4b67648581f9c4b",
-      "inputSha256": "e38a0ba9924e78a8cac203813313dab3b9dc4efc6bf252e8711c89239be479b8",
+      "sha256": "8e4bb27c2b60828cde7bebce9a5960f86f51347c5372f1e0f271c245bb4fc72c",
+      "inputSha256": "3e94287afcc435257f0a310f069bbfb1c37c6fbba76f20073c8665ebb67413d7",
       "contentSha256": "922afb85caa91bd42c4240819c4aa7c8c1c0e7a9a2aae9fd08e91c636f8044a6"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "bucharest-airport-bucharest-airport",
@@ -5177,6 +5177,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5240,11 +5245,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5308,11 +5308,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34471,
+    "utf8Bytes": 34640,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,7 +5391,7 @@
     "estimates": [
       {
         "venue": "bucharest-airport-bucharest-airport",
-        "triangles": 3530,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
@@ -5408,61 +5403,61 @@
       },
       {
         "venue": "bucharest-community-notices",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bucharest-community-voting-game",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bucharest-community-workshop",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bucharest-market-game",
-        "triangles": 4738,
+        "triangles": 3006,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bucharest-meal-stop",
-        "triangles": 3194,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bucharest-osm-node-13348629880",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bucharest-osm-node-7192273754",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bucharest-osm-way-1073541452",
-        "triangles": 3898,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bucharest-osm-way-1227559971",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bucharest-osm-way-13450166",
-        "triangles": 3490,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
@@ -5474,37 +5469,37 @@
       },
       {
         "venue": "bucharest-osm-way-21802163",
-        "triangles": 3518,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bucharest-osm-way-23574618",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bucharest-osm-way-23705733",
         "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "bucharest-osm-way-23574618",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bucharest-osm-way-23705733",
+        "triangles": 3798,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "bucharest-osm-way-240694437",
-        "triangles": 4610,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bucharest-osm-way-46256608",
-        "triangles": 3934,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bucharest-osm-way-497380799",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5516,7 +5511,7 @@
       },
       {
         "venue": "bucharest-osm-way-79128894",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5534,13 +5529,13 @@
       },
       {
         "venue": "bucharest-recreation",
-        "triangles": 3798,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bucharest-transit",
-        "triangles": 3530,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

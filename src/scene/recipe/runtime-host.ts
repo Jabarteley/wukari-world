@@ -36,7 +36,7 @@ export function recipeRuntimeHost(value: ValidatedRecipe, prepared: PreparedCity
       guard() {
         if (!current() || checking) return;
         let pending = false;
-        group.traverse(node => { if (node.userData.characterStatus === 'loading' || node.userData.characterReservedTriangles > 0 || node.userData.characterReservedDrawCalls > 0) pending = true; });
+        group.traverseVisible(node => { if (node.userData.characterStatus === 'loading' || node.userData.characterReservedTriangles > 0 || node.userData.characterReservedDrawCalls > 0) pending = true; });
         if (pending) return;
         checking = true;
         try {

@@ -5,17 +5,17 @@
   "city": "vilnius",
   "region": "western-europe",
   "recipeFile": "vilnius.json",
-  "recipeSha256": "0ff65faf76edaad9e851e0e8dc7e8aef3589a864115dd9a4197d31dc1d37ede2",
+  "recipeSha256": "2715225084d710f993cf32e51c63b85dabf023450abfa3bc2455f12681eaac45",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/vilnius.json",
-      "sha256": "b2aa422fd748d42470b5fe420d13ed499b01ccb35c5a4e376548209767f8ff43",
-      "inputSha256": "121a1866b2bd53fa40f86757c052a5aa3f9e3ad237a6492893bd729b3e3f60c7",
+      "sha256": "6a035ab4548a38d0d3bbad4efe18fb44d15be5141ca3d0cbb51e55136334c7c6",
+      "inputSha256": "fa762857b515f5533fbb653791979b67a62cc08bebc7aab22fc8ed8a3e604cb8",
       "contentSha256": "9e72ca779d60fa7cbaadbcb111135a096589c48f39f5f90339a66ee849ee38f4"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5168,6 +5168,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5276,11 +5281,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34696,
+    "utf8Bytes": 34619,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,73 +5391,73 @@
     "estimates": [
       {
         "venue": "vilnius-airport-vilnius-airport",
-        "triangles": 2698,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vilnius-clinic",
-        "triangles": 3890,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vilnius-community-notices",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "vilnius-community-voting-game",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "vilnius-community-workshop",
-        "triangles": 3370,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "vilnius-market-game",
-        "triangles": 3902,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "vilnius-meal-stop",
-        "triangles": 3178,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "vilnius-osm-node-1758423764",
-        "triangles": 2998,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "vilnius-osm-node-1764384946",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "vilnius-osm-node-267533451",
-        "triangles": 3966,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "vilnius-osm-node-2788684638",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "vilnius-osm-node-2964272255",
+        "venue": "vilnius-community-voting-game",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "vilnius-community-workshop",
+        "triangles": 3890,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "vilnius-market-game",
+        "triangles": 3226,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "vilnius-meal-stop",
+        "triangles": 2946,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "vilnius-osm-node-1758423764",
+        "triangles": 3458,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "vilnius-osm-node-1764384946",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "vilnius-osm-node-267533451",
+        "triangles": 4598,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "vilnius-osm-node-2788684638",
         "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "vilnius-osm-node-2964272255",
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5469,7 +5469,7 @@
       },
       {
         "venue": "vilnius-osm-node-738082549",
-        "triangles": 2998,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5481,49 +5481,49 @@
       },
       {
         "venue": "vilnius-osm-relation-8140496",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "vilnius-osm-way-275916982",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "vilnius-osm-way-38883021",
-        "triangles": 4878,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "vilnius-osm-way-581534617",
-        "triangles": 4430,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "vilnius-osm-way-630196432",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "vilnius-osm-way-877412367",
-        "triangles": 4598,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "vilnius-osm-way-93867305",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "vilnius-osm-way-275916982",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "vilnius-osm-way-38883021",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "vilnius-osm-way-581534617",
+        "triangles": 3798,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "vilnius-osm-way-630196432",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "vilnius-osm-way-877412367",
+        "triangles": 3686,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "vilnius-osm-way-93867305",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "vilnius-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5535,7 +5535,7 @@
       },
       {
         "venue": "vilnius-transit",
-        "triangles": 2698,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

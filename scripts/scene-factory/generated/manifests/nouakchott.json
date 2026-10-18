@@ -5,17 +5,17 @@
   "city": "nouakchott",
   "region": "sahel-francophone",
   "recipeFile": "nouakchott.json",
-  "recipeSha256": "684d03e5f3f385e31de57ea345b5dd6c4c52695f9dfded9e65b206ac0d14dad4",
+  "recipeSha256": "cc4bd8e571c06ca0e932f11df739eef60563d852b68033998170927f12fc5b61",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/nouakchott.json",
-      "sha256": "4d45bc9aadfb415171e00ac7fbeac00696140d3adb9a3d6e87eadc7daf98b5cb",
-      "inputSha256": "01b243651fba0ebd43a982793b97ddcdc2641907a207c11b0e9bf5d94bbcd828",
+      "sha256": "f34a8667fdebcd77c257de486b75dd476c88efc7f38612d3f426c2500c7857c4",
+      "inputSha256": "e839df0ea25dbb9dd3de46425543603b6b400d2d9bda5c3c626057328779043f",
       "contentSha256": "b9b7e7f620347bab0f394b646e29198047000a3b1b48ec271349f08a3d33d6db"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "nouakchott-airport-nouakchott-airport",
@@ -5159,6 +5159,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5213,6 +5218,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5249,11 +5259,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5263,6 +5268,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34730,
+    "utf8Bytes": 34773,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,67 +5401,67 @@
     "estimates": [
       {
         "venue": "nouakchott-airport-nouakchott-airport",
-        "triangles": 3530,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-clinic",
-        "triangles": 2910,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "nouakchott-community-notices",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "nouakchott-community-voting-game",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "nouakchott-community-workshop",
         "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "nouakchott-market-game",
-        "triangles": 4186,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "nouakchott-meal-stop",
-        "triangles": 3514,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "nouakchott-osm-node-4406868798",
+        "venue": "nouakchott-community-notices",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "nouakchott-community-voting-game",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "nouakchott-community-workshop",
+        "triangles": 2910,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "nouakchott-market-game",
+        "triangles": 5242,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "nouakchott-meal-stop",
+        "triangles": 3274,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "nouakchott-osm-node-4406868798",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "nouakchott-osm-node-5171076923",
-        "triangles": 2578,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-osm-node-6555685946",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-osm-node-8696420174",
-        "triangles": 3610,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
@@ -5463,25 +5473,25 @@
       },
       {
         "venue": "nouakchott-osm-node-8708819578",
-        "triangles": 3178,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-osm-way-1276090644",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-osm-way-142062875",
-        "triangles": 3978,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-osm-way-228858570",
-        "triangles": 4878,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5493,43 +5503,43 @@
       },
       {
         "venue": "nouakchott-osm-way-334308412",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-osm-way-428023202",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-osm-way-453601079",
-        "triangles": 3934,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-osm-way-94938496",
-        "triangles": 3686,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-osm-way-94938531",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-recreation",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },

@@ -5,17 +5,17 @@
   "city": "mogadishu",
   "region": "east-africa",
   "recipeFile": "mogadishu.json",
-  "recipeSha256": "067a482bde0c42b4c45205c9c1cca7048306c07d1461c7c6be0057329faea2ce",
+  "recipeSha256": "504497d1db7d4ce8534dbe02c3b95332bf49c5c17aec444ee67a0902ae2edfae",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/mogadishu.json",
-      "sha256": "a34475da619fe7635d16a99634709c2b3593101ac249b0d922041c6e5caa41a8",
-      "inputSha256": "9eea7b4655438a295ab51b52c8b9a463668b61c258120dd2e5c98b03e6dd5447",
+      "sha256": "5ab61fc28cb61f47f90ae0d83332b83c54a5a8f4f8eb313bfffe1f8949105a7f",
+      "inputSha256": "aae31466074e365a399b4745bebc8529290a0ab55a71daffcdb0c5f6615d2c5e",
       "contentSha256": "e58450ce7c52f4b8638189e0ffeda4a0ba0081d5fe357143dee6c00252e77b1e"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 29,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 4,
+    "firstCandidateSuccessCount": 21,
+    "firstCandidateSuccessRate": 0.84,
     "venues": [
       {
         "venue": "mogadishu-airport-mogadishu-airport",
@@ -5186,6 +5186,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5258,6 +5263,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5285,11 +5295,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5326,6 +5331,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5335,6 +5345,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5392,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34562,
+    "utf8Bytes": 34500,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,19 +5406,19 @@
     "estimates": [
       {
         "venue": "mogadishu-airport-mogadishu-airport",
-        "triangles": 3530,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mogadishu-clinic",
-        "triangles": 2910,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mogadishu-community-notices",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5415,7 +5430,7 @@
       },
       {
         "venue": "mogadishu-community-workshop",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
@@ -5439,19 +5454,19 @@
       },
       {
         "venue": "mogadishu-osm-node-9201097499",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mogadishu-osm-node-9201097500",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mogadishu-osm-node-9208024997",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5463,61 +5478,61 @@
       },
       {
         "venue": "mogadishu-osm-way-126234890",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mogadishu-osm-way-1362840018",
-        "triangles": 3194,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mogadishu-osm-way-1371916687",
-        "triangles": 3898,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "mogadishu-osm-way-1373683895",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "mogadishu-osm-way-1373751544",
         "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "mogadishu-osm-way-1373683895",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "mogadishu-osm-way-1373751544",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "mogadishu-osm-way-1373864082",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mogadishu-osm-way-308595147",
-        "triangles": 4666,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mogadishu-osm-way-5057908",
-        "triangles": 3526,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mogadishu-osm-way-609620228",
-        "triangles": 2998,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mogadishu-osm-way-713009128",
-        "triangles": 3686,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5529,7 +5544,7 @@
       },
       {
         "venue": "mogadishu-recreation",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },

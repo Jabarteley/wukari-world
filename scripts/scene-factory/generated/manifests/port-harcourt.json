@@ -5,17 +5,17 @@
   "city": "port-harcourt",
   "region": "niger-delta",
   "recipeFile": "port-harcourt.json",
-  "recipeSha256": "63acdb3874657c245ec1111288a992465ef11d1acb43a89d51311796f05c9c1f",
+  "recipeSha256": "08519ae3752135a405861c1c636c768d506e83fce6f65734d4a37b047ba34962",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/port-harcourt.json",
-      "sha256": "464ac857ebf4d1412160429dbcdef7804ea05c8f142700f1ac605515e286a01c",
-      "inputSha256": "ed796683f5f6819d306c302c8bd930f79e7dc2601f5f2320d565e35a7f693a64",
+      "sha256": "6f586cc6946cf91aae837ea3c73f93e7b2784d6863f8eb6a06119560ce23633b",
+      "inputSha256": "76b764d3c9bdf0f612ce261db01198b21bb2b6f551f7518395aabeb2a0c2a036",
       "contentSha256": "fb5d9677a4d7f2504536c8d128fe091924e343243e7be04730696e5ba1d5d8a4"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5027,11 +5027,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 7,
-    "attemptedCandidateCount": 8,
+    "attemptedCandidateCount": 7,
     "acceptedCandidateCount": 7,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 6,
-    "firstCandidateSuccessRate": 0.8571428571428571,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 7,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "airport",
@@ -5047,11 +5047,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5112,7 +5107,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 9854,
+    "utf8Bytes": 9883,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5126,7 +5121,7 @@
     "estimates": [
       {
         "venue": "airport",
-        "triangles": 2910,
+        "triangles": 3150,
         "meshes": 13,
         "lights": 3
       },
@@ -5138,13 +5133,13 @@
       },
       {
         "venue": "diobu-mosque",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "garden-city-salon",
-        "triangles": 2462,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
@@ -5156,13 +5151,13 @@
       },
       {
         "venue": "ph-polling",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rumuola-savings",
-        "triangles": 2882,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       }

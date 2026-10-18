@@ -5,17 +5,17 @@
   "city": "ibadan",
   "region": "yoruba-southwest",
   "recipeFile": "ibadan.json",
-  "recipeSha256": "1d10203e0512f2c742d913d1a10433bf056d4cb2a0acdef22fbafe6f5c7a04b8",
+  "recipeSha256": "1b10746cca33eb1307b5d53509dc771dfca78ad1e5fc670f53b011c3335a3599",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/ibadan.json",
-      "sha256": "74f1ea878b4e4ced7c1ce95e843c09603e161ea3860046cc36267dedb319a114",
-      "inputSha256": "3103478faaebfb8a00d5763de05438fe2df5ac120362ac3cc646cabe1a46c16b",
+      "sha256": "b5b0394438be9458f68065c4193b27e0014039a05dcad6ff3d211993884d9ba2",
+      "inputSha256": "dd821c978d744746d9837dbd8e9ee5313d87e2103e3fd331d59b7167c9862881",
       "contentSha256": "d4b1ae2b08ecfa216b69275e771c1fa3eda90c9fa1cdc50c724faa4fcacf6093"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5022,22 +5022,17 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 7,
-    "attemptedCandidateCount": 9,
+    "attemptedCandidateCount": 7,
     "acceptedCandidateCount": 7,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 5,
-    "firstCandidateSuccessRate": 0.7142857142857143,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 7,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "dugbe-amala",
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5092,11 +5087,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5112,7 +5102,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 9779,
+    "utf8Bytes": 9819,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5126,43 +5116,43 @@
     "estimates": [
       {
         "venue": "dugbe-amala",
-        "triangles": 3346,
+        "triangles": 3578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ibadan-airport",
-        "triangles": 3962,
+        "triangles": 2710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mapo-polling",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mokola-salon",
-        "triangles": 3374,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "uch",
-        "triangles": 3438,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ui-chapel",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ui-mosque",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       }

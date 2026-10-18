@@ -5,17 +5,17 @@
   "city": "katsina",
   "region": "sahel-north",
   "recipeFile": "katsina.json",
-  "recipeSha256": "aeb6956efd0c0fa0c21e061194a319d9ac19980be6b112ad1ea4c0cc692c48bf",
+  "recipeSha256": "9197a7b50899ec54ef2739841b638f18087f220f9412fedff750d56ed7890527",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/katsina.json",
-      "sha256": "3d53d75709b211b620c65bdac654a6c8c0a36fd29168ff753cd6cc4bec55f6cb",
-      "inputSha256": "011f10db30f7b31e848b29c676d4bfe331d166667ce4061f5dd89f70c00fb485",
+      "sha256": "5a6d0f95996a21bc78532f0fc2452be6fa9758fce177de74dbd37dcc9a9fa729",
+      "inputSha256": "60565525967c7e9f7579a8efdee0182274906b4b39ad8237ed60819b4c2dca17",
       "contentSha256": "ff5756c93e586acb621a15815878591d59d733258e5d76d16ce6760bb864cfb2"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,9 +5130,9 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
+    "rejectedCandidateCount": 3,
     "firstCandidateSuccessCount": 23,
     "firstCandidateSuccessRate": 0.92,
     "venues": [
@@ -5146,6 +5146,11 @@
           },
           {
             "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5191,11 +5196,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5331,6 +5331,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 35593,
+    "utf8Bytes": 35742,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5402,19 +5407,19 @@
       },
       {
         "venue": "central-market-katsina",
-        "triangles": 4334,
+        "triangles": 5010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "central-mosque-katsina",
-        "triangles": 3862,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "central-motor-park-katsina",
-        "triangles": 4474,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
@@ -5426,79 +5431,79 @@
       },
       {
         "venue": "gobarau-minaret",
-        "triangles": 2882,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kano-motor-park-katsina",
-        "triangles": 3558,
+        "triangles": 3618,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kasuwar-kofar-kaura-katsina",
-        "triangles": 3282,
+        "triangles": 5010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "katsina-eye-clinic",
-        "triangles": 2882,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "katsina-lga-council",
-        "triangles": 3374,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "katsina-new-government-house",
-        "triangles": 3374,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "katsina-polo-ground",
-        "triangles": 4738,
+        "triangles": 4458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "katsina-state-house-of-assembly",
-        "triangles": 2882,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "katsina-township-stadium",
-        "triangles": 3486,
+        "triangles": 3554,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kofar-soro-katsina",
-        "triangles": 2882,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lady-m-katsina",
-        "triangles": 3542,
+        "triangles": 3302,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "maryam-park-katsina",
-        "triangles": 3758,
+        "triangles": 3546,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "modoji-central-mosque-katsina",
-        "triangles": 2882,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
@@ -5510,37 +5515,37 @@
       },
       {
         "venue": "national-museum-katsina",
-        "triangles": 3862,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "s-cafe-katsina",
-        "triangles": 3542,
+        "triangles": 3222,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-martin-de-porres-cathedral-katsina",
-        "triangles": 3374,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "uba-katsina",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yusuf-bala-usman-college-katsina",
-        "triangles": 3890,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zenith-bank-katsina",
-        "triangles": 3862,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       }

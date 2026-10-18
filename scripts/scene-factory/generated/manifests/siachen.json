@@ -5,17 +5,17 @@
   "city": "siachen",
   "region": "south-asia",
   "recipeFile": "siachen.json",
-  "recipeSha256": "49657ea3dfe72e039154c5447e4f597274733abfd0ec44d0283c42b7130fd47a",
+  "recipeSha256": "f97b4eb652b32496c1fce04f4cf5a16174a5d0dfd0679b624ff78bdd3641b47b",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/siachen.json",
-      "sha256": "2aea98f37fbcdc6764e444f2396139c9fa667075b5bd07ad5f77215a5ab62068",
-      "inputSha256": "fcf90ca01be2f7e82d099dbcc12dcc3b9963f9db328a9bbbb2ec4e0b8704ec82",
+      "sha256": "52c7e47df328282a35d7d0a4a56c9cc2526d039c5427c304f9c739dfb7824977",
+      "inputSha256": "bea953092326a6bbf54e067f42cb9ec13070fd43e2c409591f9f51867acbb652",
       "contentSha256": "0813db246bc38032dab3ba68d973d8b3852cde5ca961fee57f59ddf46035cb7c"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5025,22 +5025,17 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 10,
-    "attemptedCandidateCount": 13,
+    "attemptedCandidateCount": 11,
     "acceptedCandidateCount": 10,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 8,
-    "firstCandidateSuccessRate": 0.8,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 9,
+    "firstCandidateSuccessRate": 0.9,
     "venues": [
       {
         "venue": "siachen-airport-siachen-airport",
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5068,6 +5063,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5122,16 +5122,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5147,7 +5137,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 14002,
+    "utf8Bytes": 14048,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5161,19 +5151,19 @@
     "estimates": [
       {
         "venue": "siachen-airport-siachen-airport",
-        "triangles": 4872,
+        "triangles": 5112,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "siachen-clinic",
-        "triangles": 3890,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "siachen-community-notices",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5185,37 +5175,37 @@
       },
       {
         "venue": "siachen-community-workshop",
-        "triangles": 3890,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "siachen-market-game",
-        "triangles": 3962,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "siachen-meal-stop",
-        "triangles": 3274,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "siachen-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "siachen-recreation",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "siachen-transit",
-        "triangles": 4238,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

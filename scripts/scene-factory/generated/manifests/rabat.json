@@ -5,17 +5,17 @@
   "city": "rabat",
   "region": "maghreb",
   "recipeFile": "rabat.json",
-  "recipeSha256": "04746f95b97823d89a075fb1cbe2028bc404b2ce014bbfb24a521793a3dd7c65",
+  "recipeSha256": "dd1b2e75b91472b40f002e385baa601cc71bde7f2427af1d32e19db4afc482ab",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/rabat.json",
-      "sha256": "fde6c5acf39664464cdfe260ab227ff706a1fbbaa81d1af64b5b4f7f4e597b25",
-      "inputSha256": "fb59305a144994f4826413c158bbf3cb6f28e37f6d1ba52d14438e243e66c3e9",
+      "sha256": "ed06ca65359d52402e2df0abe2e5b8c81d30c0a24adbebc1638f02572af949eb",
+      "inputSha256": "72892f72fa87fbd16f5bc88f60132c30939a526f4fa4d1f619e722ca8db531eb",
       "contentSha256": "d3dfe2205c75ac9225a14b3b43f00ab61262ffea03320e922e0b5e65caa1846e"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 29,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 4,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "rabat-airport-rabat-airport",
@@ -5168,6 +5168,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5204,6 +5209,21 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 4,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5392,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34150,
+    "utf8Bytes": 34263,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,55 +5406,55 @@
     "estimates": [
       {
         "venue": "rabat-airport-rabat-airport",
-        "triangles": 3530,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rabat-archaeological-museum",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rabat-arribat-center",
-        "triangles": 2882,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rabat-bab-rouah",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rabat-chellah",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "rabat-clinic",
-        "triangles": 3402,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "rabat-community-notices",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "rabat-clinic",
+        "triangles": 3890,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "rabat-community-notices",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "rabat-community-voting-game",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rabat-community-workshop",
-        "triangles": 3890,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
@@ -5446,7 +5466,7 @@
       },
       {
         "venue": "rabat-hassan-tower",
-        "triangles": 3526,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5458,25 +5478,25 @@
       },
       {
         "venue": "rabat-mausoleum-of-mohammed-v",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rabat-meal-stop",
-        "triangles": 3274,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rabat-mega-mall",
-        "triangles": 3934,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rabat-modern-art-museum",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5488,7 +5508,7 @@
       },
       {
         "venue": "rabat-oudayas-museum",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5500,37 +5520,37 @@
       },
       {
         "venue": "rabat-rabat-zoo",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rabat-recreation",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rabat-saint-pierre-cathedral",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rabat-semaphore-platform",
-        "triangles": 4566,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rabat-stade-moulay-el-hassan",
-        "triangles": 3526,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rabat-transit",
-        "triangles": 2698,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

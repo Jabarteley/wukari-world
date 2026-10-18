@@ -5,17 +5,17 @@
   "city": "tokyo",
   "region": "east-asia",
   "recipeFile": "tokyo.json",
-  "recipeSha256": "2c0eb7d1e90a8a274b5b08a282eca143d2352b5fc9a55b399205aadb0adac844",
+  "recipeSha256": "991ae4c51ff37a4c76cfea39d8fa58add81b1d4834018ac5bef8e31d308322bc",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/tokyo.json",
-      "sha256": "43bf4c8c7745fbcd160cc5a79432731bc2b73432011eee28ffe052bde2c7b541",
-      "inputSha256": "b90a8b4fe17aacc50988b599f461163bcd71491c33b8ac5316203fc21917b354",
+      "sha256": "cdb99170eec1caf6ac5b941dd889fd6b7e2b610effd8f87af30e454ca2c47d66",
+      "inputSha256": "101ce3d5592e016b257aebf670e75689181b628631a882c56309d84332c055e3",
       "contentSha256": "28f5a07f47e8c2172b02e42ff43f8215a505b378414d264198e4cd9ee4f5fc73"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,17 +5130,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.88,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "tokyo-airport-tokyo-airport",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5159,11 +5164,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5209,11 +5209,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5223,6 +5218,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5241,11 +5241,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34370,
+    "utf8Bytes": 34247,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,7 +5396,7 @@
     "estimates": [
       {
         "venue": "tokyo-airport-tokyo-airport",
-        "triangles": 3530,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
@@ -5413,73 +5408,73 @@
       },
       {
         "venue": "tokyo-community-notices",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tokyo-community-voting-game",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "tokyo-community-workshop",
-        "triangles": 3370,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tokyo-market-game",
-        "triangles": 4642,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tokyo-meal-stop",
-        "triangles": 3202,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tokyo-osm-node-11964372050",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tokyo-osm-node-1420782236",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tokyo-osm-node-1420785573",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tokyo-osm-node-1420795772",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tokyo-osm-node-7064887959",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tokyo-osm-node-9553352249",
+        "venue": "tokyo-community-voting-game",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "tokyo-community-workshop",
+        "triangles": 2910,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tokyo-market-game",
+        "triangles": 3638,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tokyo-meal-stop",
+        "triangles": 3178,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tokyo-osm-node-11964372050",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tokyo-osm-node-1420782236",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tokyo-osm-node-1420785573",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tokyo-osm-node-1420795772",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tokyo-osm-node-7064887959",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tokyo-osm-node-9553352249",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "tokyo-osm-relation-15635177",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
@@ -5491,19 +5486,19 @@
       },
       {
         "venue": "tokyo-osm-relation-8135061",
-        "triangles": 2578,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tokyo-osm-way-119477713",
-        "triangles": 3490,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tokyo-osm-way-136302688",
-        "triangles": 3898,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
@@ -5515,13 +5510,13 @@
       },
       {
         "venue": "tokyo-osm-way-214703224",
-        "triangles": 4666,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tokyo-osm-way-459589547",
-        "triangles": 4710,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
@@ -5533,19 +5528,19 @@
       },
       {
         "venue": "tokyo-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tokyo-recreation",
-        "triangles": 6498,
+        "triangles": 6778,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tokyo-transit",
-        "triangles": 3530,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

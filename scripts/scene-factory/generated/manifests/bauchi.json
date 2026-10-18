@@ -5,17 +5,17 @@
   "city": "bauchi",
   "region": "sahel-north",
   "recipeFile": "bauchi.json",
-  "recipeSha256": "aa1087fa3a4de29aedd64bffd7aa110b2167bba30159d003ecb047b9a60fcf9a",
+  "recipeSha256": "c14c9dfd7e918e92df61688fe97480b21914eb51b6694ad955e21cca4f9aefd8",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/bauchi.json",
-      "sha256": "5ea30d61190b7aa2245a7f113b21e5e26cf71309a8f59b6c9d7e62b7b5d6170e",
-      "inputSha256": "fb73504547ab0fdbf37396b0ed1920e8b03dbcdea48a3a2c97f1e7956bbd2b9b",
+      "sha256": "0ad955b1882d476f26ff79dd037daa5591e03d4c78be567996efee51434027c6",
+      "inputSha256": "0196b6c12502d965225ecb65e5e6aab1f1e469ca688ba776f339de439eceea50",
       "contentSha256": "8274063541593aecf6809916b36d6d5c1ac043fada820ad7b70994ea9be774c9"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,22 +5130,17 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 32,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 7,
-    "firstCandidateSuccessCount": 20,
-    "firstCandidateSuccessRate": 0.8,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "alhamus-restaurant-bauchi",
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "No six-pair crowd allocation fits the validated walk grid"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5191,21 +5186,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 4,
             "outcome": "accepted"
           }
         ]
@@ -5234,7 +5214,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
+            "reason": "crowd[7]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5256,11 +5236,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5279,11 +5254,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5407,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 35631,
+    "utf8Bytes": 35676,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5421,13 +5391,13 @@
     "estimates": [
       {
         "venue": "alhamus-restaurant-bauchi",
-        "triangles": 3230,
+        "triangles": 3222,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "atbu-stadium-bauchi",
-        "triangles": 3486,
+        "triangles": 3554,
         "meshes": 13,
         "lights": 3
       },
@@ -5439,13 +5409,13 @@
       },
       {
         "venue": "atbu-yelwa-campus-bauchi",
-        "triangles": 2910,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bauchi-central-mosque",
-        "triangles": 3410,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
@@ -5457,115 +5427,115 @@
       },
       {
         "venue": "bauchi-local-government-secretariat",
-        "triangles": 2882,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bauchi-state-secretariat",
-        "triangles": 2462,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bauchi-state-university-bauchi",
-        "triangles": 3410,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "emirs-palace-bauchi",
-        "triangles": 3862,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "federal-polytechnic-bauchi",
-        "triangles": 3342,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "first-bank-bauchi",
-        "triangles": 3410,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "general-hospital-specialist-bauchi",
-        "triangles": 3370,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "gtb-bauchi",
-        "triangles": 3342,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "masallacin-rimi-bauchi",
-        "triangles": 3410,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "methodist-church-bauchi",
         "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "mobil-car-station-bauchi",
-        "triangles": 3618,
+        "venue": "federal-polytechnic-bauchi",
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "muda-lawal-market-bauchi",
-        "triangles": 4194,
+        "venue": "first-bank-bauchi",
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "shadawanka-rock-painting-bauchi",
-        "triangles": 2882,
+        "venue": "general-hospital-specialist-bauchi",
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "shukurah-restaurant-bauchi",
-        "triangles": 3222,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-john-catholic-church-bauchi",
-        "triangles": 2882,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tafawa-balewa-mausoleum-bauchi",
+        "venue": "gtb-bauchi",
         "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "masallacin-rimi-bauchi",
+        "triangles": 3342,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "methodist-church-bauchi",
+        "triangles": 2462,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "mobil-car-station-bauchi",
+        "triangles": 4038,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "muda-lawal-market-bauchi",
+        "triangles": 4938,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "shadawanka-rock-painting-bauchi",
+        "triangles": 2462,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "shukurah-restaurant-bauchi",
+        "triangles": 2974,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-john-catholic-church-bauchi",
+        "triangles": 3342,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tafawa-balewa-mausoleum-bauchi",
+        "triangles": 3374,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "unity-park-bauchi",
-        "triangles": 3546,
+        "triangles": 3758,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yankari-motor-park-bauchi",
-        "triangles": 3558,
+        "triangles": 4266,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yelwa-market-bauchi",
-        "triangles": 3282,
+        "triangles": 5010,
         "meshes": 13,
         "lights": 3
       }

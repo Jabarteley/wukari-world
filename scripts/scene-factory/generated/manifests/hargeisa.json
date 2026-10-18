@@ -5,17 +5,17 @@
   "city": "hargeisa",
   "region": "swahili-coast",
   "recipeFile": "hargeisa.json",
-  "recipeSha256": "0edfbcc15ed314bf671f8f6269b088c4b8f1bd942425e82e90a14d254472ec89",
+  "recipeSha256": "c793b6fe3315447cfa90884275b8f6b31706235ff9c7e21d4ff999304213c5f8",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/hargeisa.json",
-      "sha256": "5fdcfc18b44a367d9f2b7f38b8cc05889b37123f93ee81ba1bab0d7228f40a52",
-      "inputSha256": "2eb35b5ea98908d94a576c27c8f54648919a6f9aed137af135c308a4d4d8a562",
+      "sha256": "d1885e6bb483e5992ff27ee49666b00f5e209439a096af98995e1f10409499a7",
+      "inputSha256": "bba97c2eaa2b4fe4bfa26bcec88e0959a13504fbe59d61216563666d10cec620",
       "contentSha256": "69738d40cfa641edff909a38f1516123cf1e88fa73c29d3b4f5ec03e96efb417"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "hargeisa-airport-hargeisa-airport",
@@ -5186,6 +5186,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5213,6 +5218,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34596,
+    "utf8Bytes": 34438,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5392,109 +5402,109 @@
       },
       {
         "venue": "hargeisa-clinic",
-        "triangles": 2490,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hargeisa-community-notices",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "hargeisa-community-voting-game",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "hargeisa-community-workshop",
-        "triangles": 3370,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "hargeisa-market-game",
-        "triangles": 5498,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "hargeisa-meal-stop",
-        "triangles": 3178,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "hargeisa-osm-node-10225628867",
+        "venue": "hargeisa-community-voting-game",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "hargeisa-osm-node-1138799338",
-        "triangles": 2854,
+        "venue": "hargeisa-community-workshop",
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "hargeisa-osm-node-3593965256",
+        "venue": "hargeisa-market-game",
+        "triangles": 3766,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "hargeisa-meal-stop",
         "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "hargeisa-osm-node-6554383286",
-        "triangles": 2998,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "hargeisa-osm-node-6589200285",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "hargeisa-osm-node-7798002349",
-        "triangles": 3610,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "hargeisa-osm-way-1315022603",
-        "triangles": 3730,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "hargeisa-osm-way-1376931546",
-        "triangles": 4430,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "hargeisa-osm-way-1462275345",
+        "venue": "hargeisa-osm-node-10225628867",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "hargeisa-osm-way-1544987456",
-        "triangles": 4614,
+        "venue": "hargeisa-osm-node-1138799338",
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "hargeisa-osm-way-238835442",
+        "venue": "hargeisa-osm-node-3593965256",
+        "triangles": 3178,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "hargeisa-osm-node-6554383286",
+        "triangles": 3490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "hargeisa-osm-node-6589200285",
         "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "hargeisa-osm-way-353244599",
+        "venue": "hargeisa-osm-node-7798002349",
+        "triangles": 4614,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "hargeisa-osm-way-1315022603",
+        "triangles": 3518,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "hargeisa-osm-way-1376931546",
+        "triangles": 3798,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "hargeisa-osm-way-1462275345",
         "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "hargeisa-osm-way-1544987456",
+        "triangles": 2882,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "hargeisa-osm-way-238835442",
+        "triangles": 3458,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "hargeisa-osm-way-353244599",
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5506,7 +5516,7 @@
       },
       {
         "venue": "hargeisa-osm-way-430366600",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5518,7 +5528,7 @@
       },
       {
         "venue": "hargeisa-quiet-reflection",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5530,7 +5540,7 @@
       },
       {
         "venue": "hargeisa-transit",
-        "triangles": 4010,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

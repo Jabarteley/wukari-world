@@ -5,17 +5,17 @@
   "city": "lokoja",
   "region": "gulf-guinea",
   "recipeFile": "lokoja.json",
-  "recipeSha256": "2ba85898637066eab0ced4c689715084e62501b2c8409b0e754a774a6dd10870",
+  "recipeSha256": "0405c69deca3940c92fc30bd9da0a55c26f6afc75de6885baff8d4adcc8a6c92",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/lokoja.json",
-      "sha256": "694226299e7fbb230b33bb6cbe41d6cab9bb675369a3173f5a673e07b5c4d8db",
-      "inputSha256": "fe4acfa9d58e717c484f48b5bd269560a8d70e00f6624c40ccdd8b378a8bbdaa",
+      "sha256": "f07a3733ea24efd71bf1d76f8a4dc742284ebbfb2e6fca9d46696e774be9ecd6",
+      "inputSha256": "de2b8827dc6b603162c704cb0d0e7aa30abbfa2056f41186e1e0388a884a14fc",
       "contentSha256": "d6de88cce3d33069c1a87a9c66f9c98134181d9cc9d941b8e8a1fb3982c2cea8"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5046,11 +5046,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 13,
-    "attemptedCandidateCount": 14,
+    "attemptedCandidateCount": 13,
     "acceptedCandidateCount": 13,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 12,
-    "firstCandidateSuccessRate": 0.9230769230769231,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 13,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "children-amusement-park",
@@ -5102,11 +5102,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5185,7 +5180,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 18699,
+    "utf8Bytes": 18693,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5199,19 +5194,19 @@
     "estimates": [
       {
         "venue": "children-amusement-park",
-        "triangles": 4178,
+        "triangles": 4458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-medical-centre-lokoja",
-        "triangles": 3370,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-university-lokoja",
-        "triangles": 3438,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
@@ -5223,37 +5218,37 @@
       },
       {
         "venue": "kgirs-lokoja",
-        "triangles": 3374,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kogi-state-specialist-hospital",
-        "triangles": 3410,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lokoja-anglican-church",
-        "triangles": 2462,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lokoja-central-masjid",
-        "triangles": 2462,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lokoja-central-mosque",
-        "triangles": 3374,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lokoja-international-stadium",
-        "triangles": 3554,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
@@ -5265,13 +5260,13 @@
       },
       {
         "venue": "lokoja-old-market",
-        "triangles": 5066,
+        "triangles": 4334,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "maigaris-palace",
-        "triangles": 3410,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       }

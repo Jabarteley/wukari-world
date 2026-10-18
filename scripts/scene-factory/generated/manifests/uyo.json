@@ -5,17 +5,17 @@
   "city": "uyo",
   "region": "niger-delta",
   "recipeFile": "uyo.json",
-  "recipeSha256": "ff70ea701c6ae9e1912267e621a736e19f193c6339e0ca88995832854a2fe034",
+  "recipeSha256": "4c1a9de4da58158f3afc3883eba69e8d304743476b8f795a357dd5d8eec3b182",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/uyo.json",
-      "sha256": "55911b5a0535f3f4fb841d209b64eaa50ab1580a173b28186709f253ccacd50f",
-      "inputSha256": "0701e139e143708065c804c2ffa1cb5380c212fa4fab6c0925c93b60f27c3a8a",
+      "sha256": "8074fa21ca04fa6ab704e08470e102ec3260cba3298c34785e9e96f9754a0465",
+      "inputSha256": "506d7fb5bee28f33e57b051b9b3c00250eb41db51494b859a37f776bc0e781c1",
       "contentSha256": "70b6654769adc1ab109f55cee81871a43c74126fb75a16763fa1dda0d000402e"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5228,7 +5228,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 22678,
+    "utf8Bytes": 22733,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5242,7 +5242,7 @@
     "estimates": [
       {
         "venue": "akpan-andem-market",
-        "triangles": 3286,
+        "triangles": 4274,
         "meshes": 13,
         "lights": 3
       },
@@ -5260,13 +5260,13 @@
       },
       {
         "venue": "akwa-ibom-state-secretariat",
-        "triangles": 3374,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cheeries-fast-food",
-        "triangles": 3206,
+        "triangles": 3230,
         "meshes": 13,
         "lights": 3
       },
@@ -5278,19 +5278,19 @@
       },
       {
         "venue": "godswill-akpabio-stadium",
-        "triangles": 3518,
+        "triangles": 3486,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "national-museum-uyo",
-        "triangles": 2462,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "night-fast-food",
-        "triangles": 3222,
+        "triangles": 3206,
         "meshes": 13,
         "lights": 3
       },
@@ -5302,7 +5302,7 @@
       },
       {
         "venue": "union-bank-uyo",
-        "triangles": 2882,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
@@ -5314,7 +5314,7 @@
       },
       {
         "venue": "university-of-uyo",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
@@ -5326,7 +5326,7 @@
       },
       {
         "venue": "uyo-township-stadium",
-        "triangles": 4006,
+        "triangles": 3026,
         "meshes": 13,
         "lights": 3
       },

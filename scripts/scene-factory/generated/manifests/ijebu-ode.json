@@ -5,17 +5,17 @@
   "city": "ijebu-ode",
   "region": "yoruba-southwest",
   "recipeFile": "ijebu-ode.json",
-  "recipeSha256": "84f9d4af03650243d89e44c293778e4f2129bea68f86d15da170ca88f894b51f",
+  "recipeSha256": "f18efd9105dfd98c94c3d7b7865f8502718c2d105f1775675d8b013dec8c36da",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/ijebu-ode.json",
-      "sha256": "c5c5c6349ad10b737eca45631838f23b7a3a7c640a3c91525fc1e8894e864aa4",
-      "inputSha256": "515850737471daca9804372f00eacdcd435de14629601558da5a17353f2c5c82",
+      "sha256": "4e1201b864e67b6e5e8dec95447e00ff4b880459c12213746d75e6336e51cc73",
+      "inputSha256": "41cd64fe796c1983750eae985a0a5152bc69336b2ebb109e75f5fb20ecd9c117",
       "contentSha256": "1b09b6e270dd7fcaab42ec775384361e5c22bfa1a3c7944c1ec1ca1db33b78d3"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5078,7 +5078,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 8506,
+    "utf8Bytes": 8560,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5092,7 +5092,7 @@
     "estimates": [
       {
         "venue": "ijebu-central-mosque",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5104,25 +5104,25 @@
       },
       {
         "venue": "ijebu-clinic",
-        "triangles": 2910,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ijebu-kitchen",
-        "triangles": 2954,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ijebu-polling",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ijebu-salon",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       }

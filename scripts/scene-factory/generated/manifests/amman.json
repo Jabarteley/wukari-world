@@ -5,17 +5,17 @@
   "city": "amman",
   "region": "south-asia",
   "recipeFile": "amman.json",
-  "recipeSha256": "d00787ac710ad20ce78ea5b8cdf9c83a108b056a2ba0c2188f53a48bccf07377",
+  "recipeSha256": "ce1993fe1c3a9f923bc2b48859f556733d72822113d6841a4dfc07fbe4483752",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/amman.json",
-      "sha256": "2c814c6ef46898a6e51fac29740e161c3cfa70607403eb8b1bb3e0311a83468f",
-      "inputSha256": "397979c8a26e9166494fb669dc5068aba24b5ff625ac2f32ed2125e7ed47b374",
+      "sha256": "650ceb4b493dbd5319f05eb108c01dd751238f74ce83a389bda7b6e622d81d3f",
+      "inputSha256": "80b1227c665712ea3085aa599349d9ad167a4952f150ad707452a9f68eee6dcf",
       "contentSha256": "3df164a2767c2b86dcf1235690f4a4c119ea029b2bc483a8d0842dc20c557cc0"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.88,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "amman-airport-amman-airport",
@@ -5204,6 +5204,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5267,11 +5272,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5308,11 +5308,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5323,7 +5318,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
+            "reason": "crowd[4]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5387,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34378,
+    "utf8Bytes": 34276,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,19 +5396,19 @@
     "estimates": [
       {
         "venue": "amman-airport-amman-airport",
-        "triangles": 2760,
+        "triangles": 2580,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amman-clinic",
-        "triangles": 3370,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amman-community-notices",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5425,13 +5420,13 @@
       },
       {
         "venue": "amman-community-workshop",
-        "triangles": 3438,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amman-market-game",
-        "triangles": 2910,
+        "triangles": 3638,
         "meshes": 13,
         "lights": 3
       },
@@ -5443,25 +5438,25 @@
       },
       {
         "venue": "amman-osm-node-12395982125",
-        "triangles": 3178,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amman-osm-node-13128408649",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amman-osm-node-13391032813",
-        "triangles": 3514,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amman-osm-node-1789652385",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5473,79 +5468,79 @@
       },
       {
         "venue": "amman-osm-node-547993845",
-        "triangles": 3978,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amman-osm-node-6593897285",
-        "triangles": 3978,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amman-osm-way-1532937257",
-        "triangles": 3686,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amman-osm-way-164106288",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "amman-osm-way-200734506",
-        "triangles": 3966,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "amman-osm-way-333946090",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "amman-osm-way-588418001",
-        "triangles": 3686,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "amman-osm-way-695615687",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "amman-osm-way-956954592",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "amman-osm-way-98868798",
-        "triangles": 3490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "amman-quiet-reflection",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "amman-osm-way-200734506",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "amman-osm-way-333946090",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "amman-osm-way-588418001",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "amman-osm-way-695615687",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "amman-osm-way-956954592",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "amman-osm-way-98868798",
+        "triangles": 2998,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "amman-quiet-reflection",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "amman-recreation",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amman-transit",
-        "triangles": 2698,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

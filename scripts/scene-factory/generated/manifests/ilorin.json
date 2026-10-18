@@ -5,17 +5,17 @@
   "city": "ilorin",
   "region": "gulf-guinea",
   "recipeFile": "ilorin.json",
-  "recipeSha256": "074d0913de1cf916caf0771e7d735a8ade97b135c318fa66ddf67f291f84db5a",
+  "recipeSha256": "faaf420e476885b283ef0cbd3f4a78b1dbd0353f1fac3838666241065c3aa801",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/ilorin.json",
-      "sha256": "accb4243611aa9995ce297b9a8a55f44cc58658ca2dcbe18d41d2fbbe536f64b",
-      "inputSha256": "4bef37d1921698cedf7d3cd1b08664bce1fc455ec013834bc212913bcaf09400",
+      "sha256": "ab482cdc2dbdad485f22e3085bc49f84853ad81eb3b08f79dcc6e23088349ef8",
+      "inputSha256": "d760b9869f8c141f6c4891f0b84a3fad4f2f6e80aa79f51c16bd7713160d764e",
       "contentSha256": "7532e87bcecbff893571d9a405ce6ffc5b7887b429a04d3a42bea5a4610bce80"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5074,17 +5074,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 17,
-    "attemptedCandidateCount": 17,
+    "attemptedCandidateCount": 19,
     "acceptedCandidateCount": 17,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 17,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 15,
+    "firstCandidateSuccessRate": 0.8823529411764706,
     "venues": [
       {
         "venue": "al-hikmah-university",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5220,6 +5225,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5244,7 +5254,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 24187,
+    "utf8Bytes": 24156,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5270,13 +5280,13 @@
       },
       {
         "venue": "emirs-palace",
-        "triangles": 2882,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "flower-garden",
-        "triangles": 3758,
+        "triangles": 3826,
         "meshes": 13,
         "lights": 3
       },
@@ -5288,25 +5298,25 @@
       },
       {
         "venue": "ipata-market",
-        "triangles": 4226,
+        "triangles": 5214,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kankatu-central-mosque",
-        "triangles": 2462,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kankatu-market",
-        "triangles": 3282,
+        "triangles": 5010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kwara-government-house",
-        "triangles": 3374,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
@@ -5318,43 +5328,43 @@
       },
       {
         "venue": "oja-oba",
-        "triangles": 5010,
+        "triangles": 5066,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "soludero-bus-terminal",
-        "triangles": 3618,
+        "triangles": 3558,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-james-catholic-church",
-        "triangles": 3862,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "take-beauty-salon",
-        "triangles": 3342,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "uith",
-        "triangles": 3438,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "university-of-ilorin",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zenith-bank-unity-road",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       }

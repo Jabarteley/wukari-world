@@ -5,17 +5,17 @@
   "city": "brades",
   "region": "americas-oceania",
   "recipeFile": "brades.json",
-  "recipeSha256": "a35fd89a2c63f3e6333aa8b68508daad728b99ea55790e88d91e718fc098d240",
+  "recipeSha256": "36656dc2f3085ae93443aec8cfa87116332ebdf7d1607314c35ad1f2d3405e23",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/brades.json",
-      "sha256": "aff932523d8260fff5b638f8aa2c58c801e736f13ec2fc9d1ab1195053693857",
-      "inputSha256": "634b19d7e85901d1922763ebd9be0d10119f5fbcf0da9ba6a3dd00c47687334c",
+      "sha256": "0c63c6d674ea350b9cebb602425374cb2e8c0c0606cc46c955c5d2e3d8f84dcf",
+      "inputSha256": "05c274cf9224160bdfcda23766c20075086bb9e4d414c87e7f5bda83a5cef0de",
       "contentSha256": "247d3fb643883a3ed2ec303eaa25e0f581d62120add00c3fa96b4e8df95f37af"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5095,22 +5095,17 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 20,
-    "attemptedCandidateCount": 23,
+    "attemptedCandidateCount": 22,
     "acceptedCandidateCount": 20,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 17,
-    "firstCandidateSuccessRate": 0.85,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 18,
+    "firstCandidateSuccessRate": 0.9,
     "venues": [
       {
         "venue": "brades-airport-brades-airport",
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5120,11 +5115,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5265,6 +5255,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5307,7 +5302,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 27727,
+    "utf8Bytes": 27603,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5321,91 +5316,91 @@
     "estimates": [
       {
         "venue": "brades-airport-brades-airport",
-        "triangles": 3002,
+        "triangles": 4254,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brades-clinic",
-        "triangles": 3438,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brades-community-notices",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brades-community-voting-game",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brades-community-workshop",
-        "triangles": 2490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brades-market-game",
-        "triangles": 4694,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brades-meal-stop",
-        "triangles": 3514,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brades-osm-node-13341371451",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brades-osm-node-13341390470",
-        "triangles": 3978,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brades-osm-node-13341415105",
-        "triangles": 4430,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brades-osm-node-358226040",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "brades-osm-node-359010199",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brades-osm-way-1470063189",
-        "triangles": 3686,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brades-osm-way-381894081",
+        "venue": "brades-community-voting-game",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "brades-community-workshop",
+        "triangles": 3402,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "brades-market-game",
+        "triangles": 3962,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "brades-meal-stop",
+        "triangles": 3274,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "brades-osm-node-13341371451",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "brades-osm-node-13341390470",
+        "triangles": 2578,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "brades-osm-node-13341415105",
+        "triangles": 3518,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "brades-osm-node-358226040",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "brades-osm-node-359010199",
+        "triangles": 3978,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "brades-osm-way-1470063189",
+        "triangles": 4598,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "brades-osm-way-381894081",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "brades-osm-way-397189233",
-        "triangles": 3178,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
@@ -5417,13 +5412,13 @@
       },
       {
         "venue": "brades-osm-way-525902974",
-        "triangles": 3178,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brades-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },

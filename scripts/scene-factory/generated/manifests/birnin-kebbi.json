@@ -5,17 +5,17 @@
   "city": "birnin-kebbi",
   "region": "sahel-north",
   "recipeFile": "birnin-kebbi.json",
-  "recipeSha256": "1c29f8f77db80a2afd8edeb68148c52c070f765b9c6c8caf55d34fc9d4e0e297",
+  "recipeSha256": "78dc38a66aa57555d3c662098401c069abbc25f30cc5a00424c3240daa366b72",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/birnin-kebbi.json",
-      "sha256": "4a91eae15ef6d1728e2812b65d835d73dfec31cec5dd9bcdbbe4680bcfee6656",
-      "inputSha256": "fd1131e7216b38dbcb2b3ba7335555528ebea144e96340aba0a4808756e8fe17",
+      "sha256": "da92049dcdd3219ba8d76e6ef0d6b168cca95ee32978febe34279bc00a17ee7e",
+      "inputSha256": "0611a2dd6be603c077bb29d06684c92f94f2dfbaa09d71411f1eb352fe8408c8",
       "contentSha256": "f5bf196268c0d1b35c1d132517cc0f494063eaca0859fa580ea7a3f1e11e3910"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5074,9 +5074,9 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 17,
-    "attemptedCandidateCount": 19,
+    "attemptedCandidateCount": 18,
     "acceptedCandidateCount": 17,
-    "rejectedCandidateCount": 2,
+    "rejectedCandidateCount": 1,
     "firstCandidateSuccessCount": 16,
     "firstCandidateSuccessRate": 0.9411764705882353,
     "venues": [
@@ -5202,6 +5202,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5211,16 +5216,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5254,7 +5249,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 24698,
+    "utf8Bytes": 24629,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5286,13 +5281,13 @@
       },
       {
         "venue": "federal-medical-centre-birnin-kebbi",
-        "triangles": 3410,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-university-birnin-kebbi",
-        "triangles": 3890,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
@@ -5304,49 +5299,49 @@
       },
       {
         "venue": "haliru-abdu-stadium-birnin-kebbi",
-        "triangles": 2606,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kebbi-ministry-of-environment-solid-minerals",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kebbi-ministry-of-information-culture",
-        "triangles": 3862,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sir-ahmadu-bello-airport-birnin-kebbi",
-        "triangles": 2514,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sir-yahaya-memorial-hospital-birnin-kebbi",
-        "triangles": 3370,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-dominics-catholic-church-birnin-kebbi",
-        "triangles": 3342,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "waziri-umaru-federal-polytechnic-birnin-kebbi",
         "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "sir-ahmadu-bello-airport-birnin-kebbi",
+        "triangles": 3826,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sir-yahaya-memorial-hospital-birnin-kebbi",
+        "triangles": 2910,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-dominics-catholic-church-birnin-kebbi",
+        "triangles": 2882,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "waziri-umaru-federal-polytechnic-birnin-kebbi",
+        "triangles": 3342,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "yaryara-mini-market-birnin-kebbi",
-        "triangles": 4010,
+        "triangles": 5014,
         "meshes": 13,
         "lights": 3
       },
@@ -5358,7 +5353,7 @@
       },
       {
         "venue": "zaget-mini-market-birnin-kebbi",
-        "triangles": 4010,
+        "triangles": 5010,
         "meshes": 13,
         "lights": 3
       },

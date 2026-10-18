@@ -5,17 +5,17 @@
   "city": "road-town",
   "region": "americas-oceania",
   "recipeFile": "road-town.json",
-  "recipeSha256": "7bb4572c731b6c8eae58ea6252b63f88e7bafb396411d47c3af55ff8ca355a29",
+  "recipeSha256": "0f188b4136e15394bb54d8dea3c74fed5b405c0a9e453392ec2cba964d105493",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/road-town.json",
-      "sha256": "1f4398fe4d5052a6040cebff9498b866a6aea9b8ce1bfcf7aea7ad64d6215f22",
-      "inputSha256": "bd84b1b69be38e63b5770406438cdcde78dd43d1aaadaa47ad4b9c078add7cb3",
+      "sha256": "005e7d4fac723994953d63c889e68dc3ec8a5baa68359d98d1385f40ffe00b45",
+      "inputSha256": "6deb72ddee1a8de5bf4908cb13632c4a5eecd7c2070086ad08c7bd4950047895",
       "contentSha256": "212601df94115bfceff52e5f4864f83a9b38c7ebe82afeea958b4a3a772cbf4b"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5109,11 +5109,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 22,
-    "attemptedCandidateCount": 22,
+    "attemptedCandidateCount": 23,
     "acceptedCandidateCount": 22,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 21,
+    "firstCandidateSuccessRate": 0.9545454545454546,
     "venues": [
       {
         "venue": "road-town-airport-road-town-airport",
@@ -5129,6 +5129,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5324,7 +5329,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 30580,
+    "utf8Bytes": 30640,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5338,7 +5343,7 @@
     "estimates": [
       {
         "venue": "road-town-airport-road-town-airport",
-        "triangles": 4010,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
@@ -5362,31 +5367,31 @@
       },
       {
         "venue": "road-town-community-workshop",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "road-town-market-game",
-        "triangles": 5402,
+        "triangles": 4346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "road-town-meal-stop",
-        "triangles": 3514,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "road-town-osm-node-13623762300",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "road-town-osm-node-13714339195",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5398,43 +5403,43 @@
       },
       {
         "venue": "road-town-osm-node-3985384932",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "road-town-osm-node-4014810501",
-        "triangles": 4666,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "road-town-osm-node-4653554739",
         "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "road-town-osm-node-4736438731",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "road-town-osm-way-25839951",
-        "triangles": 2946,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "road-town-osm-way-398441044",
+        "venue": "road-town-osm-node-4014810501",
         "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "road-town-osm-node-4653554739",
+        "triangles": 3458,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "road-town-osm-node-4736438731",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "road-town-osm-way-25839951",
+        "triangles": 3514,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "road-town-osm-way-398441044",
+        "triangles": 4666,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "road-town-osm-way-398735674",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
@@ -5446,7 +5451,7 @@
       },
       {
         "venue": "road-town-osm-way-521988587",
-        "triangles": 3194,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
@@ -5458,7 +5463,7 @@
       },
       {
         "venue": "road-town-recreation",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },

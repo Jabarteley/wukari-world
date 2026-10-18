@@ -5,17 +5,17 @@
   "city": "akure",
   "region": "yoruba-southwest",
   "recipeFile": "akure.json",
-  "recipeSha256": "ce75ba0a289d00ae245742b452e993372b8cdd6e26167d8022e9ba2a97490708",
+  "recipeSha256": "1ee859334e5902c3d9a92af13830a366db0c9c9ab541a14f3eaaa7e0f127cdee",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/akure.json",
-      "sha256": "5eb800fc3b0c97e6edb037a45617a0a0e2d9893c27901171531a3b8f13168546",
-      "inputSha256": "8f010cafdedf85bb72d38ff4a29334bae3bf6ee1c506dcf69da34103e00b5973",
+      "sha256": "e11c9105eb0b50475cb87f8c2e45ff3c5a9d7e60cfb8b6e7531ba316307b4a11",
+      "inputSha256": "dc29690bf3edcc659f3cf96bb9cad6e9af2674b852e3a8f55698a13d5229c945",
       "contentSha256": "9e763b2c9ef8f42e07004c84333a59f914bf4f17d50663534c6b28c7e73187a1"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5063,14 +5063,19 @@
     "attemptedCandidateCount": 17,
     "acceptedCandidateCount": 15,
     "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 14,
-    "firstCandidateSuccessRate": 0.9333333333333333,
+    "firstCandidateSuccessCount": 13,
+    "firstCandidateSuccessRate": 0.8666666666666667,
     "venues": [
       {
         "venue": "akure-central-mosque",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5080,16 +5085,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5207,6 +5202,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5222,7 +5222,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 21465,
+    "utf8Bytes": 21410,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5236,37 +5236,37 @@
     "estimates": [
       {
         "venue": "akure-central-mosque",
-        "triangles": 3342,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "akure-market",
-        "triangles": 5014,
+        "triangles": 4334,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "akure-sports-stadium",
-        "triangles": 2606,
+        "triangles": 3486,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chicken-republic-akure",
-        "triangles": 3302,
+        "triangles": 3222,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "erekesan-market",
-        "triangles": 5066,
+        "triangles": 4334,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "first-bank-akure",
-        "triangles": 3374,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
@@ -5278,49 +5278,49 @@
       },
       {
         "venue": "futa",
-        "triangles": 3890,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "holy-mary-statue",
-        "triangles": 3342,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "isikan-market",
-        "triangles": 5014,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ministry-of-information",
         "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "ministry-of-justice",
-        "triangles": 3374,
+        "venue": "isikan-market",
+        "triangles": 3282,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "ondo-state-bus-terminal",
-        "triangles": 2974,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ondo-state-library",
+        "venue": "ministry-of-information",
         "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "ministry-of-justice",
+        "triangles": 2462,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ondo-state-bus-terminal",
+        "triangles": 2794,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ondo-state-library",
+        "triangles": 3374,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "st-davids-cathedral",
-        "triangles": 3862,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       }

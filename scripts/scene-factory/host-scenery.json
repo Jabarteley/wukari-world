@@ -4832,7 +4832,7 @@
     },
     {
       "path": "src/scene/recipe/runtime-host.ts",
-      "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+      "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
     },
     {
       "path": "src/scene/recipe/sample/client.ts",
@@ -4844,7 +4844,7 @@
     },
     {
       "path": "src/scene/venue-scenes.ts",
-      "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
     },
     {
       "path": "src/scene/venues-campus.ts",

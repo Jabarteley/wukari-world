@@ -5,17 +5,17 @@
   "city": "macau",
   "region": "east-asia",
   "recipeFile": "macau.json",
-  "recipeSha256": "f5a3d101e5ac30d70dc60375f47a5f02ace59d45b2d957bf9fbd921deafc3e0f",
+  "recipeSha256": "8f2c5ee6c7406e3509aa8cd750bcad56e28132b94d68c1338816cd461e1b5c63",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/macau.json",
-      "sha256": "97dfeee4d63162c232ca2d491adffd0d6dcab464a3e72e7a9edf70a4b6f36fd3",
-      "inputSha256": "b6c563549e68509182ae71864b585dd8741486a0cc878a7ed1287e19de98ebc0",
+      "sha256": "a79f37c486403a3e92302ac1576731784fdc3622e15d3aa634ca0abe9d7e399d",
+      "inputSha256": "b3a5d96adf076a5325e394cac0945b4b571fc70af6b0b6047f859173a8ce4af2",
       "contentSha256": "39378afc15b83f29dbe79490a77665c2a4b378d61c8446865e622297189e0f1d"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "macau-airport-macau-airport",
@@ -5177,6 +5177,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5195,11 +5200,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5227,6 +5227,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5335,6 +5340,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5362,11 +5372,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34304,
+    "utf8Bytes": 34459,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,7 +5401,7 @@
     "estimates": [
       {
         "venue": "macau-airport-macau-airport",
-        "triangles": 4238,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
@@ -5408,25 +5413,25 @@
       },
       {
         "venue": "macau-community-notices",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "macau-community-voting-game",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "macau-community-workshop",
-        "triangles": 3438,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "macau-market-game",
-        "triangles": 3366,
+        "triangles": 5098,
         "meshes": 13,
         "lights": 3
       },
@@ -5438,7 +5443,7 @@
       },
       {
         "venue": "macau-osm-relation-20002113",
-        "triangles": 3966,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
@@ -5450,31 +5455,31 @@
       },
       {
         "venue": "macau-osm-way-163732917",
-        "triangles": 3490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "macau-osm-way-172301929",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "macau-osm-way-206823798",
-        "triangles": 4614,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "macau-osm-way-244820723",
         "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "macau-osm-way-172301929",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "macau-osm-way-206823798",
+        "triangles": 2882,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "macau-osm-way-244820723",
+        "triangles": 3526,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "macau-osm-way-244930722",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
@@ -5486,31 +5491,31 @@
       },
       {
         "venue": "macau-osm-way-306158878",
-        "triangles": 4610,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "macau-osm-way-322642517",
-        "triangles": 4710,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "macau-osm-way-330083075",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "macau-osm-way-330769741",
-        "triangles": 3966,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "macau-osm-way-346331627",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5522,13 +5527,13 @@
       },
       {
         "venue": "macau-osm-way-580160817",
-        "triangles": 3686,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "macau-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5540,7 +5545,7 @@
       },
       {
         "venue": "macau-transit",
-        "triangles": 4010,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

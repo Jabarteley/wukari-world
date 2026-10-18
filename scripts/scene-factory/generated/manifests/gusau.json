@@ -5,17 +5,17 @@
   "city": "gusau",
   "region": "sahel-north",
   "recipeFile": "gusau.json",
-  "recipeSha256": "d94aae35b8cc9406394edfcdcca58a156b85a4cc395c8261c5de37fdb6354411",
+  "recipeSha256": "37fe31c61d29fcb6d2980e817a7ccc51ceefe9c0adcd04290bb4dc6e0a1a8ce3",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/gusau.json",
-      "sha256": "f88e4d8b54857efcc8bb90ce9922ca189f712fa74d3a9a91155714c8100873c3",
-      "inputSha256": "0496e38432905cc9974c5b5efe140eac50146ddb2f5e1fbffcbdb1ad2c6a5447",
+      "sha256": "d9953d52bdc2f1945eed0f4485ea996df427cf0249401af6f8167d5e219c125a",
+      "inputSha256": "7a818977479b10c2c0b021c41e36929ee27d26d67320a789256859b9b50daed9",
       "contentSha256": "65d00b4f9983bebb3c664d5f8aab2db98cc6ce5bc79b357758a58f7e455ea7d9"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5060,27 +5060,17 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 15,
-    "attemptedCandidateCount": 17,
+    "attemptedCandidateCount": 15,
     "acceptedCandidateCount": 15,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 14,
-    "firstCandidateSuccessRate": 0.9333333333333333,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 15,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "daula-hospital-gusau",
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5222,7 +5212,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 21763,
+    "utf8Bytes": 21703,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5236,7 +5226,7 @@
     "estimates": [
       {
         "venue": "daula-hospital-gusau",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
@@ -5248,37 +5238,37 @@
       },
       {
         "venue": "federal-medical-centre-gusau",
-        "triangles": 3374,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "first-baptist-church-gusau",
-        "triangles": 2462,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gusau-amusement-park",
-        "triangles": 4458,
+        "triangles": 3546,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gusau-central-market",
-        "triangles": 5770,
+        "triangles": 4038,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gusau-yam-market",
-        "triangles": 5010,
+        "triangles": 4334,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "huda-university-gusau",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
@@ -5290,37 +5280,37 @@
       },
       {
         "venue": "sardauna-memorial-stadium-gusau",
-        "triangles": 4006,
+        "triangles": 3026,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yariman-bakura-specialist-hospital-gusau",
-        "triangles": 3370,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zamfara-ministry-of-environment-solid-minerals",
-        "triangles": 3410,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zamfara-ministry-of-information-culture-tourism",
-        "triangles": 3410,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zamfara-state-gis-gusau",
-        "triangles": 2882,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zamfara-state-library-gusau",
-        "triangles": 3410,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       }

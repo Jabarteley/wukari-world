@@ -5,17 +5,17 @@
   "city": "pyongyang",
   "region": "east-asia",
   "recipeFile": "pyongyang.json",
-  "recipeSha256": "1adfd32f60bd1b11186408f81aa4d5643a5fbd76f0648123bc75775ec77a5a7e",
+  "recipeSha256": "fdc14f5cb500a62dbad4e7260ff3557de9cffe6307c5a132c991d8f0c17baae4",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/pyongyang.json",
-      "sha256": "280ff6d698e32151524e51bc64237aeabd1d9a6dfaf9a51bddda2517383ae266",
-      "inputSha256": "57350c0036963a41dfa5c27f0f2f2905635e7d2aa6e5e3f574bca31f6c175c4b",
+      "sha256": "be4df4eafdead3aaf37c19f4d3a67ede724a767fc6b02d200ca27cc218da87e1",
+      "inputSha256": "68e4443c14f95a181de1968ed608d32036b39111d0a8adb24fadc4620bf3567a",
       "contentSha256": "31107f5466414239c0080fe763319fb708bc8fd0204fb26bdfb4823b89dcde4f"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "pyongyang-airport-pyongyang-airport",
@@ -5285,6 +5285,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34509,
+    "utf8Bytes": 34609,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5398,61 +5403,61 @@
       },
       {
         "venue": "pyongyang-community-notices",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pyongyang-community-voting-game",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pyongyang-community-workshop",
-        "triangles": 3370,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pyongyang-market-game",
-        "triangles": 4346,
+        "triangles": 5090,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pyongyang-meal-stop",
-        "triangles": 3202,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pyongyang-osm-node-3090689020",
-        "triangles": 3274,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pyongyang-osm-relation-8310581",
-        "triangles": 3274,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pyongyang-osm-way-1105308903",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pyongyang-osm-way-1112393994",
-        "triangles": 3458,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pyongyang-osm-way-184410022",
-        "triangles": 2578,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5464,25 +5469,25 @@
       },
       {
         "venue": "pyongyang-osm-way-300349055",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pyongyang-osm-way-403889844",
-        "triangles": 4598,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pyongyang-osm-way-42416605",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pyongyang-osm-way-427620999",
-        "triangles": 3686,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
@@ -5494,25 +5499,25 @@
       },
       {
         "venue": "pyongyang-osm-way-518025824",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pyongyang-osm-way-722791910",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pyongyang-osm-way-879112285",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pyongyang-osm-way-974980487",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5524,13 +5529,13 @@
       },
       {
         "venue": "pyongyang-recreation",
-        "triangles": 4430,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pyongyang-transit",
-        "triangles": 2986,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

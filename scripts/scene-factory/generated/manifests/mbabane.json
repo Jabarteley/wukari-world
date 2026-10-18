@@ -5,17 +5,17 @@
   "city": "mbabane",
   "region": "southern-africa",
   "recipeFile": "mbabane.json",
-  "recipeSha256": "0370f54c762e4cbda6ffd3bea74e1c70bc3019c08c99c1cd3da148b05e812fe3",
+  "recipeSha256": "55ee787f71147e804f05f37bd3f1046c4d630f02d217baa811523b368c5ca69a",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/mbabane.json",
-      "sha256": "0428440bc69a13e7ecf3c873f821ed1d5f01b933d959389d0b8c9c706ffbdc97",
-      "inputSha256": "06d5539936df8c4fc51c58bbf80e27e007a59bc6ad8e3bb4b6e5ad5941874047",
+      "sha256": "6c6909269f352bf23aaa5f8434570800aecdc3763c0a465261b7f93476477732",
+      "inputSha256": "98d570134ffced5c797dddca68277f0b8c1c68f084153ea660b393abcf839d9c",
       "contentSha256": "cb537d60d42832514270eb2f832eacd0dfac2875742ef822992e8f3c03f35b16"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5199,6 +5199,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5298,11 +5303,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5345,7 +5345,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 31840,
+    "utf8Bytes": 31698,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5365,85 +5365,85 @@
       },
       {
         "venue": "mbabane-baylor-childrens-clinic",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mbabane-clinic",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mbabane-community-notices",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mbabane-community-voting-game",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mbabane-community-workshop",
-        "triangles": 3402,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mbabane-corner-plaza",
-        "triangles": 4610,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mbabane-gobholo-cave",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mbabane-market-game",
-        "triangles": 3478,
+        "triangles": 3166,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mbabane-mbabane-clinic",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mbabane-mbabane-shopping-mall",
-        "triangles": 4666,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mbabane-meal-stop",
-        "triangles": 3274,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mbabane-mvithiza-waterfall",
-        "triangles": 3458,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mbabane-national-library",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mbabane-ngubhela-cave",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5455,13 +5455,13 @@
       },
       {
         "venue": "mbabane-recreation",
-        "triangles": 4430,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mbabane-sibebe-cave",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5473,25 +5473,25 @@
       },
       {
         "venue": "mbabane-sifundzani-library",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mbabane-sina-rock",
-        "triangles": 2578,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mbabane-swazi-plaza",
-        "triangles": 4614,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mbabane-transit",
-        "triangles": 3530,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

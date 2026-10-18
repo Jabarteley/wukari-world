@@ -5,17 +5,17 @@
   "city": "maiduguri",
   "region": "sahel-north",
   "recipeFile": "maiduguri.json",
-  "recipeSha256": "fdc5f4b89a8853017529603fbff9a0fb77b31b12f3f592923da33c45e0ecede6",
+  "recipeSha256": "e5cd3452536daa164d1f9b623b97a9ddddef800af223d5b627bd678c60db419d",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/maiduguri.json",
-      "sha256": "f7083bc896d2f6aec637f233a2d79a685327c592b1a24226e097dcf560f07b9e",
-      "inputSha256": "90c0c57a98079482d232c68c03f3e7d5feae73f92cd590afa363573f72e12e8c",
+      "sha256": "acdac83ff1735b9ea4a8af94685d84c17094b219e16bae1e52c963bf56e71f40",
+      "inputSha256": "ea54d71e2fdf872e304f7d05d1084c4c6c60a1e396f6b471e76fcc76027ed460",
       "contentSha256": "e44f14442e030addaed4f6d34af83d8962250b53c5b437e618b934e88eaa40c2"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5095,11 +5095,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 20,
-    "attemptedCandidateCount": 20,
+    "attemptedCandidateCount": 23,
     "acceptedCandidateCount": 20,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 20,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 18,
+    "firstCandidateSuccessRate": 0.9,
     "venues": [
       {
         "venue": "access-bank-maiduguri",
@@ -5241,6 +5241,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5268,6 +5278,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5292,7 +5307,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 28639,
+    "utf8Bytes": 28612,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5306,19 +5321,19 @@
     "estimates": [
       {
         "venue": "access-bank-maiduguri",
-        "triangles": 2462,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "adamawa-sunshine-motor-park",
-        "triangles": 3618,
+        "triangles": 2726,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "al-ansar-university",
-        "triangles": 3438,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
@@ -5336,7 +5351,7 @@
       },
       {
         "venue": "borno-house-of-assembly",
-        "triangles": 2462,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
@@ -5348,43 +5363,43 @@
       },
       {
         "venue": "el-kanemi-stadium",
-        "triangles": 3486,
+        "triangles": 3026,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gamboru-market",
-        "triangles": 4954,
+        "triangles": 5266,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hannas-restaurant",
-        "triangles": 3230,
+        "triangles": 3206,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kasuwan-shanu",
-        "triangles": 3282,
+        "triangles": 4334,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kayat-restaurant",
-        "triangles": 2974,
+        "triangles": 3222,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "maiduguri-central-mosque",
-        "triangles": 3410,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "maiduguri-international-park",
-        "triangles": 4458,
+        "triangles": 3758,
         "meshes": 13,
         "lights": 3
       },
@@ -5396,13 +5411,13 @@
       },
       {
         "venue": "shehu-of-borno-palace",
-        "triangles": 3342,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-patricks-cathedral-maiduguri",
-        "triangles": 2462,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
@@ -5414,13 +5429,13 @@
       },
       {
         "venue": "umth-maiduguri",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "university-of-maiduguri",
-        "triangles": 3862,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       }

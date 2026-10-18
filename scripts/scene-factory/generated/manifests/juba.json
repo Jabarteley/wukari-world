@@ -5,17 +5,17 @@
   "city": "juba",
   "region": "east-africa",
   "recipeFile": "juba.json",
-  "recipeSha256": "cc1b365c33d232da24bb55ee37d0edc8442429bd4f1ab4a27655fe91e6411e6d",
+  "recipeSha256": "3936b26c5e70416807d0904fb94de5e0e6479c2fc48610fb7afff5dfe1325f2b",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/juba.json",
-      "sha256": "81d15e4dbe8390eff08ece91303acfb4c789b84a611c85e0380bf95be31ca5a1",
-      "inputSha256": "3ca208dd0b72d37001708b5988062de31d1ba73ae7f66b90ffde073dc3c0763d",
+      "sha256": "948a8dd7aacb9a6b150733bc8f73607b1e55d87967520477235bc101c050be70",
+      "inputSha256": "5d874394ce60e7d00f78162a058b5af0f2f5c40ac1c993b075a8ca4480e491e0",
       "contentSha256": "24c41bfcb1921c90855d600433ead310e38a322b3bffcb9605b05757ce49fc78"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5133,8 +5133,8 @@
     "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
     "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "juba-airport-juba-airport",
@@ -5186,6 +5186,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "No six-pair crowd allocation fits the validated walk grid"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5249,6 +5254,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5339,16 +5349,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34168,
+    "utf8Bytes": 34180,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,13 +5396,13 @@
     "estimates": [
       {
         "venue": "juba-airport-juba-airport",
-        "triangles": 3530,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "juba-clinic",
-        "triangles": 2910,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
@@ -5414,13 +5414,13 @@
       },
       {
         "venue": "juba-community-voting-game",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "juba-community-workshop",
-        "triangles": 3402,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
@@ -5432,13 +5432,13 @@
       },
       {
         "venue": "juba-meal-stop",
-        "triangles": 3202,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "juba-osm-node-11847004207",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
@@ -5450,31 +5450,31 @@
       },
       {
         "venue": "juba-osm-node-3453472489",
-        "triangles": 3274,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "juba-osm-node-3713157073",
-        "triangles": 4878,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "juba-osm-node-3830429174",
-        "triangles": 3274,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "juba-osm-node-5719627126",
-        "triangles": 3978,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "juba-osm-node-5765453653",
-        "triangles": 3526,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
@@ -5498,37 +5498,37 @@
       },
       {
         "venue": "juba-osm-node-8003564619",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "juba-osm-relation-2893806",
-        "triangles": 3458,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "juba-osm-way-320299511",
-        "triangles": 4614,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "juba-osm-way-786546062",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "juba-osm-way-822146512",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "juba-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5540,7 +5540,7 @@
       },
       {
         "venue": "juba-transit",
-        "triangles": 2986,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "dar-es-salaam",
   "region": "swahili-coast",
   "recipeFile": "dar-es-salaam.json",
-  "recipeSha256": "72171c283be9458c47979f7dbb369ce9b095f68ebf390effbc9bf671d57aeb98",
+  "recipeSha256": "10adf1d86111875566357f36eab996484fc0b90ea4eac721a0ee43e87a9dcccd",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/dar-es-salaam.json",
-      "sha256": "c2e44eb2660fac2086bb5ea5a17b9d355d05bbadd9db72aa264333a65887166e",
-      "inputSha256": "b4268c6f20b280c1f6f5198a55b9041f031e1018e96c0b4162b5289691770322",
+      "sha256": "d0405e9c9419e6dd65fb1689e34401548c9a965269406893922b7bb63fc912d6",
+      "inputSha256": "8984d6282b5e244348a7aac73e23f852cc6e7b7d4586d4f9a40799d2de1eec59",
       "contentSha256": "e7597717595abdd55561039eff3bcb2cb13ed48fa363aadcaff3325af8403df0"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5116,9 +5116,9 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 23,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 23,
-    "rejectedCandidateCount": 3,
+    "rejectedCandidateCount": 5,
     "firstCandidateSuccessCount": 20,
     "firstCandidateSuccessRate": 0.8695652173913043,
     "venues": [
@@ -5127,11 +5127,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5150,6 +5145,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5168,11 +5168,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5272,11 +5267,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5331,6 +5321,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5340,6 +5335,21 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 4,
             "outcome": "accepted"
           }
         ]
@@ -5355,7 +5365,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 32014,
+    "utf8Bytes": 32001,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5369,37 +5379,37 @@
     "estimates": [
       {
         "venue": "dar-es-salaam-airport-dar-es-salaam-airport",
-        "triangles": 3530,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-ardhi-university",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-askari-monument",
-        "triangles": 3490,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-botanical-garden",
-        "triangles": 4430,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-clinic",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-community-notices",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5411,25 +5421,25 @@
       },
       {
         "venue": "dar-es-salaam-community-workshop",
-        "triangles": 3438,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-kenyatta-grounds",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-leaders-club",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-market-game",
-        "triangles": 5194,
+        "triangles": 5506,
         "meshes": 13,
         "lights": 3
       },
@@ -5441,19 +5451,19 @@
       },
       {
         "venue": "dar-es-salaam-mkapa-stadium",
-        "triangles": 2998,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-mlimani-city",
-        "triangles": 4610,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-nafasi-art-space",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5465,7 +5475,7 @@
       },
       {
         "venue": "dar-es-salaam-open-university",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5495,13 +5505,13 @@
       },
       {
         "venue": "dar-es-salaam-uhuru-stadium",
-        "triangles": 2578,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-village-museum",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       }

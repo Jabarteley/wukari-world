@@ -5,17 +5,17 @@
   "city": "stockholm",
   "region": "western-europe",
   "recipeFile": "stockholm.json",
-  "recipeSha256": "1796af0858c6ff96789c35281a0f6755a99ab3bb315f92d19045e256ad0864c0",
+  "recipeSha256": "c53bfcbf66f25ea9718b08c1a7335184041175ee369b8520c278776b125138e4",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/stockholm.json",
-      "sha256": "ce623b46a141817d695d947f51d5589d3e25a08e4b1473fd050359b77740cb0c",
-      "inputSha256": "759984b34d8c8cabafda852977f187902aa055bf6a57dfcc003eac13ce879302",
+      "sha256": "f4a5e8ced02b22e09530a4e5568bb666e1ae529a1f461531e640980dac9c44c1",
+      "inputSha256": "4138714c4db03eab2d4119400ea557717268a6c3d9b3127995fffe2c7285c584",
       "contentSha256": "75ba60d9e32743543ea1d1012e8e55787e2d427dfc15a67cc31bc5a021d165b0"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5133,8 +5133,8 @@
     "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
     "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "stockholm-airport-stockholm-airport",
@@ -5294,11 +5294,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5344,6 +5339,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5362,11 +5367,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34591,
+    "utf8Bytes": 34433,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,37 +5396,37 @@
     "estimates": [
       {
         "venue": "stockholm-airport-stockholm-airport",
-        "triangles": 2986,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "stockholm-clinic",
-        "triangles": 3890,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "stockholm-community-notices",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "stockholm-community-voting-game",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "stockholm-community-workshop",
         "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "stockholm-community-notices",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "stockholm-community-voting-game",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "stockholm-community-workshop",
+        "triangles": 3438,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "stockholm-market-game",
-        "triangles": 4802,
+        "triangles": 3070,
         "meshes": 13,
         "lights": 3
       },
@@ -5438,19 +5438,19 @@
       },
       {
         "venue": "stockholm-osm-node-1314052",
-        "triangles": 3686,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "stockholm-osm-node-5094765075",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "stockholm-osm-node-6673446413",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5462,43 +5462,43 @@
       },
       {
         "venue": "stockholm-osm-way-1103013221",
-        "triangles": 3610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "stockholm-osm-way-130648288",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "stockholm-osm-way-133975840",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "stockholm-osm-way-161917128",
-        "triangles": 2946,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "stockholm-osm-way-174125986",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "stockholm-osm-way-133975840",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "stockholm-osm-way-161917128",
+        "triangles": 3194,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "stockholm-osm-way-174125986",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "stockholm-osm-way-221105651",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "stockholm-osm-way-345758266",
-        "triangles": 4430,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
@@ -5510,31 +5510,31 @@
       },
       {
         "venue": "stockholm-osm-way-374377103",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "stockholm-osm-way-499678529",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "stockholm-osm-way-6616471",
-        "triangles": 4614,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "stockholm-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "stockholm-recreation",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },

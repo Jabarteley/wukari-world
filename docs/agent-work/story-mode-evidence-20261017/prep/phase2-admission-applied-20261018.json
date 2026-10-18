@@ -1,0 +1,47 @@
+{
+  "schema": "story-phase2-admission-applied-v1",
+  "observedAtUtc": "2026-10-18T22:57:51.958711+00:00",
+  "sourceBase": "4b8505053d64f34f4ecff08a58587f294318648d",
+  "authorization": {
+    "action": "Apply this narrow fix (Recommended)",
+    "scope": [
+      "src/scene/ambient/layer.ts",
+      "src/scene/venue-scenes.ts"
+    ],
+    "originalBriefException": "Exact sealed admission patch only"
+  },
+  "patch": {
+    "path": "docs/agent-work/story-mode-evidence-20261017/prep/phase2-admission-protected-candidate-20261018.patch",
+    "sha256": "c0d007781d977d9c88aa81e35e2ad39197b1c81c8dc4885eb5e654a4f8c17e49",
+    "gitApplyCheckExit": 0,
+    "gitApplyExit": 0
+  },
+  "currentSource": {
+    "src/scene/ambient/layer.ts": "97756470eae716f4505370c5b41c19a2881e8fcea6feb3a069838e77c8f560ec",
+    "src/scene/venue-scenes.ts": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da",
+    "src/scene/recipe/runtime-host.ts": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0",
+    "src/scene/recipe/dynamic-population.test.ts": "63948b645d47cf79854031eff17015b4a1380fd16c04a31eec587ee1d07cd362",
+    ".github/workflows/ci.yml": "3a9473b0133caca299aae52a5cf21546e9fc04e645899b5897673484ef18e459"
+  },
+  "verification": {
+    "gitDiffCheckExit": 0,
+    "priorCandidateReceipt": "docs/agent-work/story-mode-evidence-20261017/prep/phase2-admission-cpu-20261018.json",
+    "candidateCpuSubmissions": 3130,
+    "candidateWholeHostDrawMaximum": 56,
+    "candidateExternalDrawReservation": 3,
+    "candidateLimitation": "Actual CPU geometry with renderer/DOM/image descriptor stubs. Candidate evidence predates live source application."
+  },
+  "unchangedGuards": [
+    "60 host draws",
+    "87000 total triangles",
+    "final runtime refusal guard",
+    "other protected house/model/performance files"
+  ],
+  "pending": [
+    "integrated current-source tests and typecheck",
+    "canonical host/source witness refresh",
+    "new exact-source hosted CI and byte gates",
+    "corrected-artifact browser acceptance",
+    "Phase2 PR merge/release/public adoption"
+  ]
+}

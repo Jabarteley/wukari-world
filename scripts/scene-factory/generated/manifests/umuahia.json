@@ -5,17 +5,17 @@
   "city": "umuahia",
   "region": "igbo-southeast",
   "recipeFile": "umuahia.json",
-  "recipeSha256": "e3ea7a547d562ff16829bea3602803d730ed708a09964e53d1b50ea8fe0f279b",
+  "recipeSha256": "2572ba88a93ba73a6f64befaf21eb254f9090acce232399aa6405534b1713914",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/umuahia.json",
-      "sha256": "0839880d3518442a04e30e535394f1a7c008574a74767b2a93b2c7dd21829913",
-      "inputSha256": "396ea7f559ae627781ff62e1f1d54c35ead157d4ad0cc4b4da998f89b2376260",
+      "sha256": "db70b48f908f2c4ab31d856ff743557069b1e132eff9bfd7b477aea802eeb345",
+      "inputSha256": "69cfcd266460f769148a3ae9e6cfb169c8dafe5c00887518aa2024242ebc1697",
       "contentSha256": "0ddf65c0e8275103a32d033500dbfaa1d38c8009680b424e554841ddb05e94d1"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5116,11 +5116,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 23,
-    "attemptedCandidateCount": 23,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 23,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 4,
+    "firstCandidateSuccessCount": 19,
+    "firstCandidateSuccessRate": 0.8260869565217391,
     "venues": [
       {
         "venue": "abia-state-government-house",
@@ -5172,6 +5172,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5190,6 +5195,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5244,6 +5254,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5307,6 +5322,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5340,7 +5360,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 33007,
+    "utf8Bytes": 33028,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5354,19 +5374,19 @@
     "estimates": [
       {
         "venue": "abia-state-government-house",
-        "triangles": 3342,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "abia-state-house-of-assembly",
-        "triangles": 2462,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "abia-state-secretariat",
-        "triangles": 3374,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
@@ -5378,7 +5398,7 @@
       },
       {
         "venue": "all-saints-cathedral-umuahia",
-        "triangles": 3342,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
@@ -5390,43 +5410,43 @@
       },
       {
         "venue": "college-of-nursing-amachara",
-        "triangles": 2882,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "college-of-nursing-umuahia",
-        "triangles": 3374,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "de-native-restaurant-umuahia",
-        "triangles": 3230,
+        "triangles": 3222,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "fmc-umuahia",
-        "triangles": 2490,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "living-faith-church-umuahia",
-        "triangles": 3862,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lux-mundi-university",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "national-gallery-art-museum-umuahia",
-        "triangles": 2462,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
@@ -5438,13 +5458,13 @@
       },
       {
         "venue": "ojukwu-bunker",
-        "triangles": 2462,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "old-umuahia-train-station",
-        "triangles": 3558,
+        "triangles": 3618,
         "meshes": 13,
         "lights": 3
       },
@@ -5456,13 +5476,13 @@
       },
       {
         "venue": "township-stadium-umuahia",
-        "triangles": 4006,
+        "triangles": 3026,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ubani-modern-market",
-        "triangles": 5014,
+        "triangles": 4334,
         "meshes": 13,
         "lights": 3
       },
@@ -5474,13 +5494,13 @@
       },
       {
         "venue": "umuahia-ibeku-station",
-        "triangles": 3558,
+        "triangles": 3618,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "umuchukwu-microfinance-bank",
-        "triangles": 3862,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },

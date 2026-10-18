@@ -5,17 +5,17 @@
   "city": "maputo",
   "region": "swahili-coast",
   "recipeFile": "maputo.json",
-  "recipeSha256": "a0d4b7c2524f93c6d3f313c3210d43be0e8918c28d88e86d1f5f1c48640d89c5",
+  "recipeSha256": "c3154bee4c366f43fdfa35e25bc99a124353ebe2dc0994e7f98f18f16d755fc8",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/maputo.json",
-      "sha256": "087b20a5ae4e50d987f02dbacc94d887a284606aa5626a26351314bdb6d47b5f",
-      "inputSha256": "24e1da856ea1fa9c066f170b7e6e1e8e42ed30ec63ceaa928b5d0027e26a9fdc",
+      "sha256": "e339726a24d369dc6f1c654b64463db9f528f09bb8b473b2e5cda38fb308523b",
+      "inputSha256": "db0ef2f29e78b1a4e26cf622f8b9212124d39eec04944f0e899d73ffed44d3c2",
       "contentSha256": "2e19569ccbb3cfc209caccd131b422488b295a7b3852d13dd3d784f4bbb5f728"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5109,11 +5109,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 22,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 23,
     "acceptedCandidateCount": 22,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 19,
-    "firstCandidateSuccessRate": 0.8636363636363636,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 21,
+    "firstCandidateSuccessRate": 0.9545454545454546,
     "venues": [
       {
         "venue": "maputo-airport-maputo-airport",
@@ -5156,11 +5156,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5251,11 +5246,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5311,7 +5301,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
+            "reason": "crowd[8]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5339,7 +5329,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 30307,
+    "utf8Bytes": 30366,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5353,19 +5343,19 @@
     "estimates": [
       {
         "venue": "maputo-airport-maputo-airport",
-        "triangles": 4010,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "maputo-clinic",
-        "triangles": 3890,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "maputo-community-notices",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5377,13 +5367,13 @@
       },
       {
         "venue": "maputo-community-workshop",
-        "triangles": 2490,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "maputo-costa-do-sol-stadium",
-        "triangles": 2998,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
@@ -5395,13 +5385,13 @@
       },
       {
         "venue": "maputo-fish-market",
-        "triangles": 4610,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "maputo-fishing-museum",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5419,61 +5409,61 @@
       },
       {
         "venue": "maputo-mafalala-museum",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "maputo-market-game",
-        "triangles": 3070,
+        "triangles": 5114,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "maputo-maxaquene-stadium",
-        "triangles": 3490,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "maputo-meal-stop",
-        "triangles": 2946,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "maputo-national-art-museum",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "maputo-natural-history-museum",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "maputo-quiet-reflection",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "maputo-natural-history-museum",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "maputo-quiet-reflection",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "maputo-recreation",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "maputo-revolution-museum",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "maputo-scala-cinema",
-        "triangles": 3490,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },

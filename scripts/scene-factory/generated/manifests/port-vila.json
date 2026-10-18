@@ -5,17 +5,17 @@
   "city": "port-vila",
   "region": "americas-oceania",
   "recipeFile": "port-vila.json",
-  "recipeSha256": "3c56db0ce345b47c22858a13c0a28600fb5b97bf16e2c8388b7a6879adc1bcd8",
+  "recipeSha256": "dac5360bf9066966b4fa968bdfebbfb44526e1578daff528a5f3d0d1bc3c8ac4",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/port-vila.json",
-      "sha256": "0ce20d9df5da808745199f8cca2cdc95248606dd7bf0faba47c3c9596d512e49",
-      "inputSha256": "7b55b604ec01679edaf33c181d30850f628b0809510bbebc899fcef2fae58954",
+      "sha256": "4876b7435c446718883a982eb103942c691de971d0463fdd86bf88dd1248953a",
+      "inputSha256": "c789529ee5d8cbd0e1857d76256881bdd8b17f85ec30f58e00f4b0a93761a06e",
       "contentSha256": "1147740d7912c8c6e06451c50eadc036395c8d48ac975ef727c4fe7b5a936882"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5159,6 +5159,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5177,11 +5182,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5209,6 +5209,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5308,11 +5313,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34711,
+    "utf8Bytes": 34715,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5402,13 +5402,13 @@
       },
       {
         "venue": "port-vila-clinic",
-        "triangles": 3890,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-vila-community-notices",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5420,43 +5420,43 @@
       },
       {
         "venue": "port-vila-community-workshop",
-        "triangles": 3438,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-vila-market-game",
-        "triangles": 3358,
+        "triangles": 4346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-vila-meal-stop",
-        "triangles": 3178,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-vila-osm-node-10297629756",
-        "triangles": 3194,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-vila-osm-node-1208562570",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-vila-osm-node-5341017574",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-vila-osm-node-6283844727",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5468,19 +5468,19 @@
       },
       {
         "venue": "port-vila-osm-node-6536259685",
-        "triangles": 2946,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-vila-osm-way-105052376",
-        "triangles": 4666,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-vila-osm-way-164077407",
-        "triangles": 3458,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
@@ -5498,31 +5498,31 @@
       },
       {
         "venue": "port-vila-osm-way-331209807",
-        "triangles": 3458,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-vila-osm-way-332907165",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-vila-osm-way-41958385",
-        "triangles": 3898,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-vila-osm-way-424853171",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-vila-osm-way-864040553",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
@@ -5534,13 +5534,13 @@
       },
       {
         "venue": "port-vila-recreation",
-        "triangles": 4430,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-vila-transit",
-        "triangles": 3530,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "damascus",
   "region": "south-asia",
   "recipeFile": "damascus.json",
-  "recipeSha256": "b044496d32856bbe6eed2a680c673bdaa2da41907c226c6c62c467e33b7be4ed",
+  "recipeSha256": "a7bc0ffd007f485aaa90ec75dbc40cfb720cbcbaeb76d091a55442596e48a3e2",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/damascus.json",
-      "sha256": "5404ed459100be373d559b53d1f3d0a3977f8c2f1060dcb54aeb11797154a209",
-      "inputSha256": "bd82efb84266752b720093a09b0a55d45c57ea0816cc48ed791337360c25b766",
+      "sha256": "5f8310a745e9cfc9a7e57cd4cb9f4ddcf25e86c127242ddfa50f087be9f6e7fa",
+      "inputSha256": "41e70976feb6f88e4b798a87862e630e06f3426b6aac1fa28b153f31c44a7803",
       "contentSha256": "6dab525563d661dc9f33ca6592d7bfb7e827380398dd79325cbc2a6f8b992985"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "damascus-airport-damascus-airport",
@@ -5258,11 +5258,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34639,
+    "utf8Bytes": 34465,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5397,49 +5392,49 @@
       },
       {
         "venue": "damascus-clinic",
-        "triangles": 2910,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-community-notices",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-community-voting-game",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-community-workshop",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-market-game",
-        "triangles": 4638,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-meal-stop",
-        "triangles": 3194,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-osm-node-1246877089",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-osm-node-12989783743",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5451,25 +5446,25 @@
       },
       {
         "venue": "damascus-osm-node-3245444438",
-        "triangles": 2882,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-osm-node-354573941",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-osm-relation-16920636",
-        "triangles": 2998,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-osm-relation-4614118",
-        "triangles": 3898,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
@@ -5481,13 +5476,13 @@
       },
       {
         "venue": "damascus-osm-way-1120153082",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-osm-way-1121497973",
-        "triangles": 2998,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
@@ -5511,31 +5506,31 @@
       },
       {
         "venue": "damascus-osm-way-351273248",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "damascus-osm-way-5057870",
-        "triangles": 3490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "damascus-quiet-reflection",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "damascus-osm-way-5057870",
+        "triangles": 3526,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "damascus-quiet-reflection",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "damascus-recreation",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-transit",
-        "triangles": 3530,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

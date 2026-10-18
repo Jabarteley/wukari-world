@@ -5,17 +5,17 @@
   "city": "honiara",
   "region": "americas-oceania",
   "recipeFile": "honiara.json",
-  "recipeSha256": "77825bf569197c258943385d4efa698ca0179cf7b0e81f7c08e268ffbcaa1810",
+  "recipeSha256": "2236cacf9007c9c1e08b347cc86b91851db979a953f9d1738804d673b0b61c98",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/honiara.json",
-      "sha256": "1b7cac8860851d0cf740461e77ec010682e55f02d636cef72c9a4e0145eb95ff",
-      "inputSha256": "997dd49e21730f2af568a9bef3f1628904207d3cfb6ef1fbef2498d2d63a5b8c",
+      "sha256": "b30e58c9d2c5f105dbb7e35cc42a932246d8585fd368cbbbaea1345aa05dc76c",
+      "inputSha256": "98c9e6f2e5797ee12076d73f58c030c5445fd6aefeecf484cae96b2d86c0a28c",
       "contentSha256": "891aedee2dd93152bd618842e160ae77317a70a02c2d98cc15378590707b59df"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5197,6 +5197,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5206,11 +5211,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5361,7 +5361,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 33122,
+    "utf8Bytes": 33072,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5375,43 +5375,43 @@
     "estimates": [
       {
         "venue": "honiara-airport-honiara-airport",
-        "triangles": 2986,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "honiara-clinic",
-        "triangles": 3402,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "honiara-community-notices",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "honiara-community-voting-game",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "honiara-community-voting-game",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "honiara-community-workshop",
-        "triangles": 3370,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "honiara-market-game",
-        "triangles": 3606,
+        "triangles": 4350,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "honiara-meal-stop",
-        "triangles": 3514,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
@@ -5423,43 +5423,43 @@
       },
       {
         "venue": "honiara-osm-node-1958123256",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "honiara-osm-node-1958123258",
-        "triangles": 2946,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "honiara-osm-node-1958150211",
-        "triangles": 4878,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "honiara-osm-node-4959354922",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "honiara-osm-node-5489888721",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "honiara-osm-node-5591435621",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "honiara-osm-node-5834144885",
-        "triangles": 2578,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
@@ -5471,13 +5471,13 @@
       },
       {
         "venue": "honiara-osm-way-1204579380",
-        "triangles": 3490,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "honiara-osm-way-1370454204",
-        "triangles": 3966,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
@@ -5489,31 +5489,31 @@
       },
       {
         "venue": "honiara-osm-way-730970960",
-        "triangles": 4610,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "honiara-osm-way-730970978",
-        "triangles": 3966,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "honiara-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "honiara-recreation",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "honiara-transit",
-        "triangles": 4010,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

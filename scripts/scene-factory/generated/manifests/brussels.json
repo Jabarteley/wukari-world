@@ -5,17 +5,17 @@
   "city": "brussels",
   "region": "western-europe",
   "recipeFile": "brussels.json",
-  "recipeSha256": "befd42b0131a9dde0c46db522a9da568ab56af1b4f46ad245a616bd1506f9b13",
+  "recipeSha256": "cc9eb1e182ce827b821e1f9e56f91a960c6b5ec4466a90647416e230a3060b82",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/brussels.json",
-      "sha256": "808d0b382b2cb0ca8e0e88b4cc00216304261c42035fea75ddc22505aa4a37f6",
-      "inputSha256": "bfbbaa53aa3a726b40d63b0ad82d5ef5fe3bd1d9550bf3a1030bd6f45e1b1554",
+      "sha256": "daf274dd778a7595ff3d452d3e1f3718bb11fc9e4ca80edc56356a9a1013cafe",
+      "inputSha256": "903c46e99b192cf06c91b3c9a316bb47b00f85b16affdcf5704e590dbc19c301",
       "contentSha256": "dd8ad365b812b5db8817e9b3b2491e6b96b570589c71c3949ad68fefb7e2c36e"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "brussels-airport-brussels-airport",
@@ -5150,6 +5150,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5213,6 +5218,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34626,
+    "utf8Bytes": 34648,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,85 +5396,85 @@
     "estimates": [
       {
         "venue": "brussels-airport-brussels-airport",
-        "triangles": 4410,
+        "triangles": 4650,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brussels-clinic",
-        "triangles": 3890,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brussels-community-notices",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brussels-community-voting-game",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brussels-community-workshop",
         "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "brussels-community-notices",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "brussels-community-voting-game",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "brussels-community-workshop",
+        "triangles": 2490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "brussels-market-game",
-        "triangles": 3962,
+        "triangles": 3638,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brussels-meal-stop",
-        "triangles": 3514,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brussels-osm-node-1757391933",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brussels-osm-node-267878387",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brussels-osm-node-4388790239",
         "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "brussels-osm-node-1757391933",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "brussels-osm-node-267878387",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "brussels-osm-node-4388790239",
+        "triangles": 3514,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "brussels-osm-relation-13298038",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brussels-osm-relation-13366042",
-        "triangles": 4878,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brussels-osm-relation-16610859",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brussels-osm-relation-1990637",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5476,61 +5486,61 @@
       },
       {
         "venue": "brussels-osm-way-109862564",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brussels-osm-way-1360711774",
-        "triangles": 3686,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brussels-osm-way-23872736",
-        "triangles": 3526,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brussels-osm-way-253875451",
         "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "brussels-osm-way-253875451",
+        "triangles": 2998,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "brussels-osm-way-33149531",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brussels-osm-way-346514126",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brussels-osm-way-810195284",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brussels-quiet-reflection",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "brussels-quiet-reflection",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "brussels-recreation",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brussels-transit",
-        "triangles": 3530,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

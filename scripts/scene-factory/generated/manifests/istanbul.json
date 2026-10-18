@@ -5,17 +5,17 @@
   "city": "istanbul",
   "region": "western-europe",
   "recipeFile": "istanbul.json",
-  "recipeSha256": "4871a1d3cf67dfddc32d25a1cdc947b21669e84a3d40129ff6624000221c7384",
+  "recipeSha256": "3e696ba559c9ad22267538819e288205fee5c819cece5a2295fdd8c1f8f07c03",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/istanbul.json",
-      "sha256": "8b3176ee2f295cdbcd3fe3bb7b5759c229e606a90909939bd0cce7fe9c9795ee",
-      "inputSha256": "a8da00423be51e82f0ae01093c735f2428a11c9f079443fd7c96f6f2efd3fd25",
+      "sha256": "6db0e73ebe57f14c8c812dfad4d880ec4711ced13bd136da16b45c00540ac1bb",
+      "inputSha256": "a44cfad4914b18d513b783851b9af5d515a02e1f555e6b9a5cbea7e65a7e9af4",
       "contentSha256": "3dcf5bc3f097ad7e647aa8678058bcf0512938d50b536f67762667635a87e564"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "istanbul-airport-istanbul-airport",
@@ -5267,6 +5267,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5348,6 +5353,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34629,
+    "utf8Bytes": 34681,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,7 +5396,7 @@
     "estimates": [
       {
         "venue": "istanbul-airport-istanbul-airport",
-        "triangles": 2986,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
@@ -5398,49 +5408,49 @@
       },
       {
         "venue": "istanbul-community-notices",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "istanbul-community-voting-game",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "istanbul-community-workshop",
-        "triangles": 2910,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "istanbul-market-game",
-        "triangles": 3874,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "istanbul-meal-stop",
-        "triangles": 3202,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "istanbul-osm-node-4735960522",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "istanbul-community-workshop",
+        "triangles": 3890,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "istanbul-market-game",
+        "triangles": 4618,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "istanbul-meal-stop",
+        "triangles": 3194,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "istanbul-osm-node-4735960522",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "istanbul-osm-relation-9948513",
-        "triangles": 4430,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "istanbul-osm-way-1015392049",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5452,43 +5462,43 @@
       },
       {
         "venue": "istanbul-osm-way-1365047639",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "istanbul-osm-way-1491971480",
-        "triangles": 3966,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "istanbul-osm-way-159932934",
-        "triangles": 3526,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "istanbul-osm-way-342828509",
         "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "istanbul-osm-way-342828509",
+        "triangles": 3490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "istanbul-osm-way-388925021",
-        "triangles": 4610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "istanbul-osm-way-401781146",
-        "triangles": 3934,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "istanbul-osm-way-475513360",
-        "triangles": 3686,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5506,25 +5516,25 @@
       },
       {
         "venue": "istanbul-osm-way-969480621",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "istanbul-osm-way-989152604",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "istanbul-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "istanbul-recreation",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },

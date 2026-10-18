@@ -5,17 +5,17 @@
   "city": "addis-ababa",
   "region": "east-africa",
   "recipeFile": "addis-ababa.json",
-  "recipeSha256": "9fd93111ded19d061b5d82498e15d3518ab45ad22e10d45e42d27d3b5d72360f",
+  "recipeSha256": "04b48fc67d71a9e868a1d056d29780bbcca2c05f64c8d44e7a9ec51fc6998b52",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/addis-ababa.json",
-      "sha256": "b1af761c223416877adf4fb0dfa8aace482e5faf13b398b40593a392496f6646",
-      "inputSha256": "5ed072eb6ad8ba2cc923cc7a70b6a517227c889287f945467a6ae4f35b1b8abb",
+      "sha256": "7eabb26a5d0030212dadc0ded83e44d9dfe862a69449e2ea7260e4ca319a51cb",
+      "inputSha256": "2e233e52f5590bcb8b4fd7e8d5eaac60ee3b6160ad53bb4387f80f59addd0a05",
       "contentSha256": "6c8cfd382ad33b29c5859fff3a656c9f1caeda15e7aea03d5ef5296476905471"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5116,9 +5116,9 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 23,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 23,
-    "rejectedCandidateCount": 2,
+    "rejectedCandidateCount": 3,
     "firstCandidateSuccessCount": 21,
     "firstCandidateSuccessRate": 0.9130434782608695,
     "venues": [
@@ -5172,11 +5172,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5249,11 +5244,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5326,6 +5316,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5335,6 +5330,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5350,7 +5355,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 32005,
+    "utf8Bytes": 31908,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5364,139 +5369,139 @@
     "estimates": [
       {
         "venue": "addis-ababa-abebe-bikila-stadium",
-        "triangles": 3526,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "addis-ababa-addis-ababa-stadium",
         "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "addis-ababa-addis-ababa-stadium",
+        "triangles": 3490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "addis-ababa-adwa-victory-memorial-museum",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "addis-ababa-airport-addis-ababa-airport",
-        "triangles": 4238,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "addis-ababa-anwar-grand-mosque",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "addis-ababa-clinic",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "addis-ababa-community-notices",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "addis-ababa-community-voting-game",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "addis-ababa-community-workshop",
-        "triangles": 3370,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "addis-ababa-dembel-city-center",
-        "triangles": 4614,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "addis-ababa-garad-city-center",
-        "triangles": 4666,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "addis-ababa-golf-club",
-        "triangles": 3586,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "addis-ababa-market-game",
-        "triangles": 4042,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "addis-ababa-meal-stop",
-        "triangles": 3202,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "addis-ababa-medhane-alem-church",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "addis-ababa-national-museum-of-ethiopia",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "addis-ababa-palais-du-jubile",
+        "venue": "addis-ababa-community-voting-game",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "addis-ababa-community-workshop",
+        "triangles": 3438,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "addis-ababa-dembel-city-center",
+        "triangles": 3610,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "addis-ababa-garad-city-center",
+        "triangles": 2882,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "addis-ababa-golf-club",
+        "triangles": 4286,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "addis-ababa-market-game",
+        "triangles": 5098,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "addis-ababa-meal-stop",
+        "triangles": 3194,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "addis-ababa-medhane-alem-church",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "addis-ababa-national-museum-of-ethiopia",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "addis-ababa-palais-du-jubile",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "addis-ababa-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "addis-ababa-rakan-shopping-center",
-        "triangles": 3934,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "addis-ababa-recreation",
-        "triangles": 4430,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "addis-ababa-st-marys-university-college",
-        "triangles": 4878,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "addis-ababa-transit",
-        "triangles": 4238,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "addis-ababa-unity-park",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       }

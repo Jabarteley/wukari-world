@@ -5,17 +5,17 @@
   "city": "ljubljana",
   "region": "western-europe",
   "recipeFile": "ljubljana.json",
-  "recipeSha256": "f868939a17ddbf6750ab8da3e93e4b4eedd660c72f0f1b51d49c289d2052ae09",
+  "recipeSha256": "211b8aeef31db8ac4d4e2397eaed1cdd8d4309848e0a1b2b3ab5fcc878c45941",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/ljubljana.json",
-      "sha256": "9619a16f0b5081c7b1095ab2460dbc2d83020123e0ae73f45a1d25d657b03b49",
-      "inputSha256": "9900842dd62b138e1cbcdceddd086b111f4cfb2ed3c9805da8f052ea378468b7",
+      "sha256": "c8994e1990af94f330b4d0de0022451ccfeaf9c424029008bd0fbbdf9c8e9406",
+      "inputSha256": "99285c635de1291070ffcd1a67a8a7f2343def1099f51036db714440f2087338",
       "contentSha256": "4773560c2a61218026ba65f5f3bc6a8f39755386738cf8eb4a7b9cf021224a05"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "ljubljana-airport-ljubljana-airport",
@@ -5168,6 +5168,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5259,7 +5264,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
+            "reason": "crowd[6]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5377,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34664,
+    "utf8Bytes": 34690,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5397,43 +5402,43 @@
       },
       {
         "venue": "ljubljana-clinic",
-        "triangles": 3890,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ljubljana-community-notices",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ljubljana-community-voting-game",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ljubljana-community-workshop",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ljubljana-market-game",
-        "triangles": 4058,
+        "triangles": 4126,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ljubljana-meal-stop",
-        "triangles": 3274,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ljubljana-osm-node-14208096624",
-        "triangles": 3686,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5445,7 +5450,7 @@
       },
       {
         "venue": "ljubljana-osm-relation-13216937",
-        "triangles": 4710,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
@@ -5457,85 +5462,85 @@
       },
       {
         "venue": "ljubljana-osm-way-106674045",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ljubljana-osm-way-1119457186",
-        "triangles": 2578,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ljubljana-osm-way-122905766",
-        "triangles": 3514,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ljubljana-osm-way-1561472443",
-        "triangles": 4598,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ljubljana-osm-way-166770310",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ljubljana-osm-way-173167317",
-        "triangles": 2998,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ljubljana-osm-way-200914350",
-        "triangles": 3730,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ljubljana-osm-way-23057646",
-        "triangles": 2882,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ljubljana-osm-way-23061342",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ljubljana-osm-way-244860591",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ljubljana-osm-way-301226113",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "ljubljana-quiet-reflection",
+        "venue": "ljubljana-osm-way-1119457186",
+        "triangles": 3490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ljubljana-osm-way-122905766",
+        "triangles": 3202,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ljubljana-osm-way-1561472443",
+        "triangles": 3966,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ljubljana-osm-way-166770310",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ljubljana-osm-way-173167317",
+        "triangles": 3490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ljubljana-osm-way-200914350",
+        "triangles": 3518,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ljubljana-osm-way-23057646",
+        "triangles": 3934,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ljubljana-osm-way-23061342",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ljubljana-osm-way-244860591",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ljubljana-osm-way-301226113",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "ljubljana-quiet-reflection",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "ljubljana-recreation",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ljubljana-transit",
-        "triangles": 3590,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

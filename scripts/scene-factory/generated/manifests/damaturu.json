@@ -5,17 +5,17 @@
   "city": "damaturu",
   "region": "sahel-north",
   "recipeFile": "damaturu.json",
-  "recipeSha256": "8b8bc6eff2af505c8ef590d3e6befb283d9aee86681bd5b8130b340d89516034",
+  "recipeSha256": "01e2e070f85352245fe7a0e3d2c508f120ee658071d192f7e22c2ad3478fb663",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/damaturu.json",
-      "sha256": "305171900bc056cf13a9f05054d783a5bf922f132c18081358b64641c93e2aac",
-      "inputSha256": "47f2ac2d25c6f6f6fe9b43c5bdcf976c6c64da2f878e3064acc59064f4600da4",
+      "sha256": "14d8722520942518548f46a47fb21b39084b168787d78dfa8dcbe84009703537",
+      "inputSha256": "97f36ac2361c8cbdd0be586bb1dbed2024623976e76f5f1361b59348100a47fc",
       "contentSha256": "bc549781cfc9f470fcde1fa7187573804a1d0e27a3c67766a75442ac14c565b8"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5046,22 +5046,17 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 13,
-    "attemptedCandidateCount": 17,
+    "attemptedCandidateCount": 16,
     "acceptedCandidateCount": 13,
-    "rejectedCandidateCount": 4,
-    "firstCandidateSuccessCount": 9,
-    "firstCandidateSuccessRate": 0.6923076923076923,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 11,
+    "firstCandidateSuccessRate": 0.8461538461538461,
     "venues": [
       {
         "venue": "august-27-stadium",
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5080,6 +5075,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "No six-pair crowd allocation fits the validated walk grid"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5107,11 +5107,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5139,11 +5134,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5154,10 +5144,15 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
+            "reason": "props[2]: overlapping blocking footprints"
           },
           {
             "candidate": 2,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5200,7 +5195,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 18713,
+    "utf8Bytes": 18773,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5220,7 +5215,7 @@
       },
       {
         "venue": "bayan-tasha-market",
-        "triangles": 4010,
+        "triangles": 5014,
         "meshes": 13,
         "lights": 3
       },
@@ -5232,61 +5227,61 @@
       },
       {
         "venue": "damaturu-modern-market",
-        "triangles": 2814,
+        "triangles": 3126,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-polytechnic-damaturu",
-        "triangles": 3374,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "general-sani-abacha-specialist-hospital",
-        "triangles": 3890,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "national-museum-damaturu",
-        "triangles": 3862,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-marys-catholic-church-damaturu",
-        "triangles": 3862,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "state-teaching-hospital-damaturu",
-        "triangles": 3862,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "yobe-islamic-centre",
-        "triangles": 2462,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "yobe-line-motor-park",
-        "triangles": 3558,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "yobe-state-house-of-assembly",
         "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "state-teaching-hospital-damaturu",
+        "triangles": 2462,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "yobe-islamic-centre",
+        "triangles": 3410,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "yobe-line-motor-park",
+        "triangles": 3618,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "yobe-state-house-of-assembly",
+        "triangles": 3374,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "yobe-state-university",
-        "triangles": 3370,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       }

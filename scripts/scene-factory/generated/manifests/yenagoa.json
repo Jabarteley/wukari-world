@@ -5,17 +5,17 @@
   "city": "yenagoa",
   "region": "niger-delta",
   "recipeFile": "yenagoa.json",
-  "recipeSha256": "c101776e9d8ed247e2db946730b62bd8a28d8bb87031b5b560de8b27583d53f1",
+  "recipeSha256": "abebe9348d9292182732bb904e0b2d9436cda1f07f160c3778661dcbe570fe43",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/yenagoa.json",
-      "sha256": "187b5d19d6045c78845422e0039e872c3d673ef981b2b3e3ffa208d92656b738",
-      "inputSha256": "0863a7e56218f97bd8e3b4903d46c8a56fa6fac5e6e6f039ae3f595a5063a74c",
+      "sha256": "0dd0a5889266d77ef8251e724d1e7cca949b75f5398b1d582c2a7f2f8b7504d7",
+      "inputSha256": "23054cfcaa6fcd7a992228e018bc057df37f1079a55faacf43a18caeb3deee2f",
       "contentSha256": "ae093f175a83f1cbd131d2291c3de3455221065e2eedf84dd6e6946b53493600"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5151,11 +5151,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 28,
-    "attemptedCandidateCount": 31,
+    "attemptedCandidateCount": 30,
     "acceptedCandidateCount": 28,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 0.8928571428571429,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 26,
+    "firstCandidateSuccessRate": 0.9285714285714286,
     "venues": [
       {
         "venue": "alamieyesiegha-castle",
@@ -5225,11 +5225,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5257,6 +5252,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5284,6 +5284,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5374,11 +5379,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5406,11 +5406,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5435,7 +5430,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 39916,
+    "utf8Bytes": 39973,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5449,7 +5444,7 @@
     "estimates": [
       {
         "venue": "alamieyesiegha-castle",
-        "triangles": 3342,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
@@ -5461,7 +5456,7 @@
       },
       {
         "venue": "bayelsa-state-high-court",
-        "triangles": 2462,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
@@ -5473,25 +5468,25 @@
       },
       {
         "venue": "braids-salon-yenagoa",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "crunchies-yenagoa",
-        "triangles": 3542,
+        "triangles": 3230,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "diete-koki-memorial-hospital",
-        "triangles": 3862,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ekeki-central-mosque",
-        "triangles": 3410,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
@@ -5503,43 +5498,43 @@
       },
       {
         "venue": "first-bank-yenagoa",
-        "triangles": 3410,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gabriel-okara-cultural-centre",
-        "triangles": 3410,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "igbogene-field",
-        "triangles": 3826,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "institute-of-science-technology-yenagoa",
         "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "may-exclusive-paradise-yenagoa",
+        "venue": "igbogene-field",
+        "triangles": 4738,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "institute-of-science-technology-yenagoa",
         "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "may-exclusive-paradise-yenagoa",
+        "triangles": 3342,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "melford-okilo-memorial-hospital",
-        "triangles": 2910,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "national-museum-yenagoa",
-        "triangles": 3410,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
@@ -5551,67 +5546,67 @@
       },
       {
         "venue": "opolo-mosque-yenagoa",
-        "triangles": 2882,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "opolo-motor-park",
-        "triangles": 4038,
+        "triangles": 3618,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pepperoni-yenagoa",
-        "triangles": 2974,
+        "triangles": 3206,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "samson-siasia-stadium",
-        "triangles": 4006,
+        "triangles": 3486,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-johns-catholic-yenagoa",
-        "triangles": 3862,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-lukes-anglican-yenagoa",
-        "triangles": 3862,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-patrick-catholic-yenagoa",
-        "triangles": 2882,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "swale-market-yenagoa",
-        "triangles": 5066,
+        "triangles": 5010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "uba-bank-yenagoa",
-        "triangles": 2882,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "university-of-africa-toru-orua",
-        "triangles": 3890,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zenith-bank-yenagoa",
-        "triangles": 3862,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       }

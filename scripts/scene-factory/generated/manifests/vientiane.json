@@ -5,17 +5,17 @@
   "city": "vientiane",
   "region": "east-asia",
   "recipeFile": "vientiane.json",
-  "recipeSha256": "0dab82122d15e0136316261d1133bbe1e30f3bca360611894b7dd8d21c055363",
+  "recipeSha256": "118b07cdcbe958a74c34bddc63c89ef367379b854302e8d170520149ea23ace5",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/vientiane.json",
-      "sha256": "6befd1ebfab19fa8b436c92f292b69a3038f4155dda79f1fb644ef7174dff124",
-      "inputSha256": "ea4892f3b5e2781ce789a4d50f4d2fb7076cc62fbf42fbb1e6635a0f66ea3846",
+      "sha256": "fcd17777054fef2f2883ce13e4f393bb57b9fed529784769a480c54398a64041",
+      "inputSha256": "894c03513b1bff3144c49494f659b69ca246575da50f22cd2104524343d94acd",
       "contentSha256": "3616b8d34ecd9c115a8e8f2fc6ffb151a0980951ded69a15fa4957f8c12ebc48"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 29,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 4,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "vientiane-airport-vientiane-airport",
@@ -5159,6 +5159,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5213,6 +5223,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5249,6 +5264,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5392,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34520,
+    "utf8Bytes": 34347,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,49 +5406,49 @@
     "estimates": [
       {
         "venue": "vientiane-airport-vientiane-airport",
-        "triangles": 3804,
+        "triangles": 3624,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vientiane-clinic",
-        "triangles": 3402,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vientiane-community-notices",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vientiane-community-voting-game",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vientiane-community-workshop",
-        "triangles": 3890,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vientiane-market-game",
-        "triangles": 4638,
+        "triangles": 3638,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vientiane-meal-stop",
-        "triangles": 3178,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vientiane-osm-node-11486599694",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5440,25 +5460,25 @@
       },
       {
         "venue": "vientiane-osm-node-2244979473",
-        "triangles": 2578,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vientiane-osm-node-2340078795",
-        "triangles": 4614,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vientiane-osm-node-3645511715",
-        "triangles": 3194,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vientiane-osm-node-4384724640",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5470,31 +5490,31 @@
       },
       {
         "venue": "vientiane-osm-node-523575544",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "vientiane-osm-node-524296626",
-        "triangles": 3178,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "vientiane-osm-node-6978079256",
-        "triangles": 3966,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "vientiane-osm-way-41566774",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "vientiane-osm-node-524296626",
+        "triangles": 3514,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "vientiane-osm-node-6978079256",
+        "triangles": 4598,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "vientiane-osm-way-41566774",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "vientiane-osm-way-42389632",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5506,13 +5526,13 @@
       },
       {
         "venue": "vientiane-osm-way-613407768",
-        "triangles": 3490,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vientiane-osm-way-665451513",
-        "triangles": 2578,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
@@ -5524,7 +5544,7 @@
       },
       {
         "venue": "vientiane-recreation",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },

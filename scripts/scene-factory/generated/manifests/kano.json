@@ -5,17 +5,17 @@
   "city": "kano",
   "region": "sahel-north",
   "recipeFile": "kano.json",
-  "recipeSha256": "22ebb48a7c8aa0f084406c056c99c7a93bd7e4f216ce6df694fd415021443149",
+  "recipeSha256": "1d152ab7dc7881cb2df3cb59007f8104887075e8787aff70a8f0237f02ba5d39",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/kano.json",
-      "sha256": "afae43db775dbbeb5474fd142d5e12485642c49b296a3e85c973b9ccab04c525",
-      "inputSha256": "60d2927db357515051e6b1a571e24bab0e40da5b6ae02f79bd14e20a33b30184",
+      "sha256": "71ce38483b20dfe4d380ac21be981f11e1116714a4f3bf0f144dde90af8f9827",
+      "inputSha256": "3f9cd663878f9d6e3ae2436d516ef45b47b4c6440175d5f7381ab1fdd0201843",
       "contentSha256": "a43042624694345de7c79edc794584b1a1516ca8e149743aac63af1c58ef079f"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5092,7 +5092,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 8584,
+    "utf8Bytes": 8592,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5112,31 +5112,31 @@
       },
       {
         "venue": "community-polling",
-        "triangles": 2882,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "nassarawa-clinic",
-        "triangles": 3402,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "nassarawa-kitchen",
-        "triangles": 3206,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "nassarawa-salon",
         "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "nassarawa-clinic",
+        "triangles": 3370,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "nassarawa-kitchen",
+        "triangles": 3230,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "nassarawa-salon",
+        "triangles": 3410,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "nassarawa-savings",
-        "triangles": 3342,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       }

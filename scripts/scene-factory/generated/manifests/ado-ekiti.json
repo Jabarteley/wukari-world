@@ -5,17 +5,17 @@
   "city": "ado-ekiti",
   "region": "yoruba-southwest",
   "recipeFile": "ado-ekiti.json",
-  "recipeSha256": "019428215deda019895a071c4570cedde5905be8884f7e22410bc8e40683d4d6",
+  "recipeSha256": "7f918f9cbce42c5b3da36c7db1f764ec6b8882ab1b8a7684c2b447157c4d7298",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/ado-ekiti.json",
-      "sha256": "07f1bc03bc6fbdb2049216cae7804158b548a0d39c96fa17003aba1a2b483592",
-      "inputSha256": "d4bd344dba3b735542de986d0c7c631f398dc067a3c544850395be4160d80141",
+      "sha256": "6c6a5bac18d8807783232facd34663a20fb61c74105d23b9a14e700267729b11",
+      "inputSha256": "53140c84f0d25ec3d52756b1a2f5897b11bb9ffb1018f8ef2013d3e0b2499ca2",
       "contentSha256": "5d418d950accc9935782c24c44ffeacaddd828114fb03e9f337d5310e4274efd"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5046,11 +5046,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 13,
-    "attemptedCandidateCount": 14,
+    "attemptedCandidateCount": 17,
     "acceptedCandidateCount": 13,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 12,
-    "firstCandidateSuccessRate": 0.9230769230769231,
+    "rejectedCandidateCount": 4,
+    "firstCandidateSuccessCount": 11,
+    "firstCandidateSuccessRate": 0.8461538461538461,
     "venues": [
       {
         "venue": "afe-babalola-university",
@@ -5058,10 +5058,15 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
+            "reason": "crowd[0]: exact target is blocked"
           },
           {
             "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5134,6 +5139,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5185,7 +5200,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 18770,
+    "utf8Bytes": 18776,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5199,19 +5214,19 @@
     "estimates": [
       {
         "venue": "afe-babalola-university",
-        "triangles": 2910,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "afe-babalola-university-teaching-hospital",
-        "triangles": 2490,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ansarudeen-mosque",
-        "triangles": 3410,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
@@ -5223,7 +5238,7 @@
       },
       {
         "venue": "bisi-market",
-        "triangles": 5462,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
@@ -5235,13 +5250,13 @@
       },
       {
         "venue": "ekiti-state-government-territory",
-        "triangles": 2462,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ekiti-state-house-of-assembly",
-        "triangles": 3862,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
@@ -5253,25 +5268,25 @@
       },
       {
         "venue": "ekiti-state-university",
-        "triangles": 2882,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-polytechnic-ado-ekiti",
-        "triangles": 2882,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-patrick-cathedral",
-        "triangles": 3374,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "wema-bank-ado",
-        "triangles": 3862,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       }

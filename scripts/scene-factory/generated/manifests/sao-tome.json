@@ -5,17 +5,17 @@
   "city": "sao-tome",
   "region": "gulf-guinea",
   "recipeFile": "sao-tome.json",
-  "recipeSha256": "89f97a25ec068b09a624a5c076fe5ccad7b089e2db1870c07408aaed8d109978",
+  "recipeSha256": "2521b0ed9adc581027cf7d63cbfad534fc0c676c6282e81e513a10dd89320d68",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/sao-tome.json",
-      "sha256": "ffea7053455db0d7ff72f0f2d125988cd9b792ea67d3d22967a53b7c0854bd8b",
-      "inputSha256": "a0dce38a27d1b27add01760af6eddc12c7e6f0c3c211e9abd1b63d198fc1bbff",
+      "sha256": "909c38ec8cc6f6fbad0e6e6b37a886a1296436946d6fc1809590dc6397033fe0",
+      "inputSha256": "802f3abe69c3cf5ea568208c8f9bc1e993319eccf0ebb85acf174abae09e1c3d",
       "contentSha256": "878a8fdd6d6f27915fa9179bf8352838e7bd8cc63a0ae162f36fe31fc0571328"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5123,22 +5123,17 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 24,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 24,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.9166666666666666,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.9583333333333334,
     "venues": [
       {
         "venue": "sao-tome-airport-sao-tome-airport",
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5256,11 +5251,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5288,6 +5278,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5366,7 +5361,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 33223,
+    "utf8Bytes": 33145,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5380,13 +5375,13 @@
     "estimates": [
       {
         "venue": "sao-tome-airport-sao-tome-airport",
-        "triangles": 4238,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sao-tome-clinic",
-        "triangles": 2490,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
@@ -5404,97 +5399,97 @@
       },
       {
         "venue": "sao-tome-community-workshop",
-        "triangles": 3890,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sao-tome-market-game",
-        "triangles": 3914,
+        "triangles": 4970,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sao-tome-meal-stop",
-        "triangles": 3202,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sao-tome-osm-node-12343335801",
-        "triangles": 3178,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sao-tome-osm-node-12875245959",
-        "triangles": 3178,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sao-tome-osm-node-1600956613",
-        "triangles": 3526,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sao-tome-osm-node-2401213448",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sao-tome-osm-node-5414397476",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sao-tome-osm-node-938537793",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sao-tome-osm-way-1126943996",
-        "triangles": 4430,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sao-tome-osm-way-1126988143",
         "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "sao-tome-osm-way-1311130312",
-        "triangles": 3610,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sao-tome-osm-way-1387886871",
-        "triangles": 3610,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sao-tome-osm-way-206543431",
-        "triangles": 3798,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sao-tome-osm-way-224647304",
+        "venue": "sao-tome-osm-node-2401213448",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "sao-tome-osm-node-5414397476",
+        "triangles": 3526,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sao-tome-osm-node-938537793",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sao-tome-osm-way-1126943996",
+        "triangles": 3730,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sao-tome-osm-way-1126988143",
+        "triangles": 3490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sao-tome-osm-way-1311130312",
+        "triangles": 2882,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sao-tome-osm-way-1387886871",
+        "triangles": 3934,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sao-tome-osm-way-206543431",
+        "triangles": 3730,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sao-tome-osm-way-224647304",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "sao-tome-osm-way-231363988",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5506,7 +5501,7 @@
       },
       {
         "venue": "sao-tome-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },

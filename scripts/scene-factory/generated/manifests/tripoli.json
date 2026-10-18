@@ -5,17 +5,17 @@
   "city": "tripoli",
   "region": "maghreb",
   "recipeFile": "tripoli.json",
-  "recipeSha256": "1342929d2dc6cdad3326b3bd7f12afe577d2ff1e553380d29c497506fdd32596",
+  "recipeSha256": "b9defc8e938430b553e0051a98af6e5499ae2c6b87b25e0e3ee568a634cb138a",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/tripoli.json",
-      "sha256": "51bcfff891a0782296251f5d21d63ddf16c4d327b1e96526a26aa611d781ebbd",
-      "inputSha256": "7e6cf3554bf60d0139d2870445fe517492189e24df07cac3ec1a2ad8a73cdfde",
+      "sha256": "a17436cc72b03c4ae490b4ff5dd762a698d17c13690345e8edf8081eaa82ba56",
+      "inputSha256": "8cd15f1432bef2deb952184caf73379fd2d2201ac8aa4f39f3aa68c9d897e850",
       "contentSha256": "709debd78f5ccf626df03dbbd139182b948abf77b29daf3ae70b984b3f77ba6f"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5109,11 +5109,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 22,
-    "attemptedCandidateCount": 23,
+    "attemptedCandidateCount": 24,
     "acceptedCandidateCount": 22,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.9545454545454546,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 20,
+    "firstCandidateSuccessRate": 0.9090909090909091,
     "venues": [
       {
         "venue": "tripoli-abu-salem-market",
@@ -5138,6 +5138,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5192,11 +5197,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5287,6 +5287,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5329,7 +5334,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 30236,
+    "utf8Bytes": 30397,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5343,31 +5348,31 @@
     "estimates": [
       {
         "venue": "tripoli-abu-salem-market",
-        "triangles": 3934,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tripoli-airport-mitiga-international-airport",
-        "triangles": 2638,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tripoli-clinic",
-        "triangles": 3402,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tripoli-community-notices",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tripoli-community-voting-game",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5379,97 +5384,97 @@
       },
       {
         "venue": "tripoli-emerald-mall",
-        "triangles": 2882,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tripoli-international-stadium",
-        "triangles": 3526,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tripoli-libyan-museum",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tripoli-marcus-aurelius-arch",
-        "triangles": 3526,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tripoli-market-game",
-        "triangles": 4642,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tripoli-meal-stop",
-        "triangles": 3202,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tripoli-nadee-al-ulaa",
-        "triangles": 4710,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tripoli-qirqareesh-hospital",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tripoli-quiet-reflection",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "tripoli-marcus-aurelius-arch",
+        "triangles": 3490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tripoli-market-game",
+        "triangles": 4638,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tripoli-meal-stop",
+        "triangles": 3274,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tripoli-nadee-al-ulaa",
+        "triangles": 3730,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tripoli-qirqareesh-hospital",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tripoli-quiet-reflection",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "tripoli-recreation",
-        "triangles": 3518,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tripoli-red-castle",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tripoli-sea-fishing-institute",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tripoli-sultan-mall",
-        "triangles": 4610,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tripoli-transit",
-        "triangles": 2986,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tripoli-tripoli-commercial-center",
-        "triangles": 4610,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tripoli-university-campus-b",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       }

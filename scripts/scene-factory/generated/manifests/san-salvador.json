@@ -5,17 +5,17 @@
   "city": "san-salvador",
   "region": "americas-oceania",
   "recipeFile": "san-salvador.json",
-  "recipeSha256": "2367044adb1a2a1009a36c1d1e7acd089882d32eddd994ed0b6ef6ba8029a55a",
+  "recipeSha256": "8c1c4640984604e8ec1fdeb6f2d472d302f497685fe1542892683f0abb6cf2e0",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/san-salvador.json",
-      "sha256": "90dc2dedab711b3b4e589912b44f95adc1ae901097ad2cd0c365d45d7ac63671",
-      "inputSha256": "93422e483c4500ba085b399687c0e45ec6b7cad09acfb5e0c3472b679863d2b3",
+      "sha256": "59461f069f8deba97c904ff1e3095830f6c2904f45181d05498942d0df59db8b",
+      "inputSha256": "9e1dd800c992a535e43b0399712020999752adc5a93b81f328910a554bb64881",
       "contentSha256": "694a0bb0420b3853152d1797d97e96eb916ab334ff0f539b98d8459417a43cf5"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "san-salvador-airport-san-salvador-airport",
@@ -5159,6 +5159,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5312,11 +5317,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5353,6 +5353,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34877,
+    "utf8Bytes": 34982,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,37 +5396,37 @@
     "estimates": [
       {
         "venue": "san-salvador-airport-san-salvador-airport",
-        "triangles": 3530,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-salvador-clinic",
-        "triangles": 3438,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-salvador-community-notices",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-salvador-community-voting-game",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-salvador-community-workshop",
-        "triangles": 2910,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-salvador-market-game",
-        "triangles": 4930,
+        "triangles": 4618,
         "meshes": 13,
         "lights": 3
       },
@@ -5433,13 +5438,13 @@
       },
       {
         "venue": "san-salvador-osm-node-3838426270",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-salvador-osm-node-4236378091",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5451,7 +5456,7 @@
       },
       {
         "venue": "san-salvador-osm-node-7439633333",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5463,13 +5468,13 @@
       },
       {
         "venue": "san-salvador-osm-relation-6195189",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-salvador-osm-relation-8166884",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5481,55 +5486,55 @@
       },
       {
         "venue": "san-salvador-osm-way-138475747",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-salvador-osm-way-1546142604",
-        "triangles": 3978,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-salvador-osm-way-1546379365",
-        "triangles": 3458,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-salvador-osm-way-196615967",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-salvador-osm-way-199426776",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-salvador-osm-way-373925847",
-        "triangles": 4610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-salvador-osm-way-38045211",
-        "triangles": 3610,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-salvador-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-salvador-recreation",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },

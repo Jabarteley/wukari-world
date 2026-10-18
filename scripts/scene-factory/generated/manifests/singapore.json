@@ -5,17 +5,17 @@
   "city": "singapore",
   "region": "east-asia",
   "recipeFile": "singapore.json",
-  "recipeSha256": "b45ff2308a1ecc53e88cf07c9ca6667cdaebc068a8353500de585651c050d4e7",
+  "recipeSha256": "c965897052d7d06e18f529ffcd07aa963ee41c21a0da2bffc449eccb5fef6d63",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/singapore.json",
-      "sha256": "5895a1a84961c985c1dd7a618222b72e261012cb108c17e0332699c027036abb",
-      "inputSha256": "803ad0d783debbe7b04b83396759953ee87e9a92d283e9776770cc5f7a1661a7",
+      "sha256": "9a840fde584c610bb2e475292c7f5de471bfcd5b89c511ad4ba4d83a5fbc0117",
+      "inputSha256": "25a6040ca14e1e4053aa6cb9984dac7f78402382f9871573dc2192d763417c73",
       "contentSha256": "61de63ff344c0c7ec3a1d2dc823a56a01ddbc68908de26fdddbf8a1378ef913e"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5372,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34535,
+    "utf8Bytes": 34373,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5392,25 +5392,25 @@
       },
       {
         "venue": "singapore-clinic",
-        "triangles": 2910,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "singapore-community-notices",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "singapore-community-voting-game",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "singapore-community-workshop",
-        "triangles": 3438,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
@@ -5422,7 +5422,7 @@
       },
       {
         "venue": "singapore-meal-stop",
-        "triangles": 3514,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
@@ -5434,13 +5434,13 @@
       },
       {
         "venue": "singapore-osm-relation-2535118",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "singapore-osm-way-115105262",
-        "triangles": 3966,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
@@ -5458,7 +5458,7 @@
       },
       {
         "venue": "singapore-osm-way-175550316",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
@@ -5470,19 +5470,19 @@
       },
       {
         "venue": "singapore-osm-way-262885931",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "singapore-osm-way-33175767",
-        "triangles": 3798,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "singapore-osm-way-34583847",
-        "triangles": 4878,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5500,37 +5500,37 @@
       },
       {
         "venue": "singapore-osm-way-677411847",
-        "triangles": 3490,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "singapore-osm-way-74715098",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "singapore-osm-way-890591248",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "singapore-quiet-reflection",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "singapore-osm-way-890591248",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "singapore-quiet-reflection",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "singapore-recreation",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "singapore-transit",
-        "triangles": 3530,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "amsterdam",
   "region": "western-europe",
   "recipeFile": "amsterdam.json",
-  "recipeSha256": "b149357407f26f8ab7375365978d84d28ac3e77282af7232238dd0cccf51ffc2",
+  "recipeSha256": "5c9916029c48ce85ae8ca3422beb8b867504de36e2bbd6efc221ed82559abf59",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/amsterdam.json",
-      "sha256": "6abb73d04437095e5423854b2bd20f128d2b8a435e5ac315fa441ad517eeb204",
-      "inputSha256": "b20aacd64a3cd421723f57be2744adfec20a5f1d8dd0573da40e1cff30225545",
+      "sha256": "1134947fdbb2ec141066e71d2bb14348c2942740d2fc91001b2682c5264590c7",
+      "inputSha256": "5d6e15db4b831546227e1a816d048cb2ab2157dfd82575c93655c39e9a6b23b5",
       "contentSha256": "fd51aeca981c4cacd1dec32f200191742c3185ad7b7e4f6a0edd17dd93d5000e"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "amsterdam-airport-amsterdam-airport",
@@ -5330,11 +5330,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5353,11 +5348,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34746,
+    "utf8Bytes": 34683,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,43 +5386,43 @@
     "estimates": [
       {
         "venue": "amsterdam-airport-amsterdam-airport",
-        "triangles": 4238,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amsterdam-clinic",
-        "triangles": 3438,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amsterdam-community-notices",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amsterdam-community-voting-game",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amsterdam-community-workshop",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amsterdam-market-game",
-        "triangles": 4350,
+        "triangles": 3294,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amsterdam-meal-stop",
-        "triangles": 3178,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
@@ -5444,13 +5434,13 @@
       },
       {
         "venue": "amsterdam-osm-node-2881763865",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amsterdam-osm-node-3136758579",
-        "triangles": 3526,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5462,13 +5452,13 @@
       },
       {
         "venue": "amsterdam-osm-relation-3711947",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amsterdam-osm-way-122547925",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5480,67 +5470,67 @@
       },
       {
         "venue": "amsterdam-osm-way-26401769",
-        "triangles": 3898,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amsterdam-osm-way-284901861",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "amsterdam-osm-way-392300651",
-        "triangles": 4710,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "amsterdam-osm-way-482698293",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "amsterdam-osm-way-55191054",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "amsterdam-osm-way-673001166",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "amsterdam-osm-way-725091517",
-        "triangles": 2882,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "amsterdam-osm-way-943490220",
-        "triangles": 3518,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "amsterdam-quiet-reflection",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "amsterdam-osm-way-392300651",
+        "triangles": 3518,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "amsterdam-osm-way-482698293",
+        "triangles": 2578,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "amsterdam-osm-way-55191054",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "amsterdam-osm-way-673001166",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "amsterdam-osm-way-725091517",
+        "triangles": 3610,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "amsterdam-osm-way-943490220",
+        "triangles": 4710,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "amsterdam-quiet-reflection",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "amsterdam-recreation",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "amsterdam-transit",
-        "triangles": 4010,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "gaborone",
   "region": "southern-africa",
   "recipeFile": "gaborone.json",
-  "recipeSha256": "a67e8101f85739da071ebe8f92c8a804e4fa65bc7351d9fb8a85fd9633b731d8",
+  "recipeSha256": "b2d127106ff9070813d65eb5b31479954965576498654c5906e1450fe6a91933",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/gaborone.json",
-      "sha256": "9544f0bb5661df741e92d6d314801b9ba25ae18b6f5a584ac7a6c9d424ff4d39",
-      "inputSha256": "9b7196fb4f944288c9a1c2dede445ca44551fdbf496003f140a49979d0d12b83",
+      "sha256": "270e3a835076da17f7ff8cf38909fd46e0c5297f5a89de9ec5811e7b0c7da401",
+      "inputSha256": "819f8a4607fda7df0567147badf35a99ab106d1e7189b8c9e339789254bbafc8",
       "contentSha256": "fe89541fed7986c9d61aa1e2812376d1042518f46694b3e07cc445464f12c5f6"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5109,11 +5109,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 22,
-    "attemptedCandidateCount": 22,
+    "attemptedCandidateCount": 24,
     "acceptedCandidateCount": 22,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 20,
+    "firstCandidateSuccessRate": 0.9090909090909091,
     "venues": [
       {
         "venue": "gaborone-airport-gaborone-airport",
@@ -5237,6 +5237,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5255,6 +5260,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5324,7 +5334,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 30515,
+    "utf8Bytes": 30618,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5338,19 +5348,19 @@
     "estimates": [
       {
         "venue": "gaborone-airport-gaborone-airport",
-        "triangles": 2986,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-airport-junction-shopping-center",
-        "triangles": 4610,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-botho-university",
-        "triangles": 3966,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5374,19 +5384,19 @@
       },
       {
         "venue": "gaborone-community-voting-game",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-community-workshop",
-        "triangles": 3370,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-gaborone-technical-college",
-        "triangles": 3686,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5398,43 +5408,43 @@
       },
       {
         "venue": "gaborone-market-game",
-        "triangles": 3962,
+        "triangles": 4642,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-meal-stop",
-        "triangles": 2946,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-mokolodi-reptile-park",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-philatelic-museum",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-rail-park-mall",
-        "triangles": 3610,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-recreation",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
@@ -5446,25 +5456,25 @@
       },
       {
         "venue": "gaborone-three-dikgosi-monument",
-        "triangles": 3506,
+        "triangles": 4454,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-transit",
-        "triangles": 4010,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-ub-indoor-sports-center",
-        "triangles": 2998,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-university-stadium",
-        "triangles": 3526,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       }

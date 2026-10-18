@@ -5,17 +5,17 @@
   "city": "asaba",
   "region": "niger-delta",
   "recipeFile": "asaba.json",
-  "recipeSha256": "7cf4fdbb42e6973affdf1bf1c85b0cd585c000c6192d43b9f8f01bd56fb93091",
+  "recipeSha256": "492565a7122e236b63d3224b2483bff4c8e4868be3134a53dd068afc8e9c46c1",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/asaba.json",
-      "sha256": "f3cfbc520fd26099d0c0d6639765c54e6bc2114798882e720d798c1ac3b47306",
-      "inputSha256": "03ada8f4f3f9b87e81b5234d84fd69ee2dea6f19e5bfc3ffc5f6859f3552b971",
+      "sha256": "d92fe1bf6bb12b21f6f5f35bc72413d8ed582fedc136f691605616d53a35205c",
+      "inputSha256": "1306c92ef43e0c1e6690361d5952a1dbb941fcc5ce28104edb5b940ea4494bbe",
       "contentSha256": "aaed02b6d4ca3196af5160c2dd1dcd4beac0e445897646e3ccec58ff209eaa85"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5122,6 +5122,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5131,11 +5136,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5169,7 +5169,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 17267,
+    "utf8Bytes": 17224,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5183,7 +5183,7 @@
     "estimates": [
       {
         "venue": "asaba-international-airport",
-        "triangles": 3842,
+        "triangles": 2590,
         "meshes": 13,
         "lights": 3
       },
@@ -5195,61 +5195,61 @@
       },
       {
         "venue": "federal-college-of-education-technical-asaba",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-medical-centre-asaba",
-        "triangles": 3410,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-secretariat-complex-asaba",
-        "triangles": 3374,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "first-empire-bar",
-        "triangles": 2918,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "government-hospital-ibusa",
-        "triangles": 3370,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "holy-family-catholic-church-asaba",
-        "triangles": 3342,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "national-museum-asaba",
-        "triangles": 3374,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ogbeogonogo-modern-market",
-        "triangles": 5010,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "pokaribs-native-kitchen",
         "triangles": 3230,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "government-hospital-ibusa",
+        "triangles": 3890,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "holy-family-catholic-church-asaba",
+        "triangles": 3862,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "national-museum-asaba",
+        "triangles": 2882,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ogbeogonogo-modern-market",
+        "triangles": 3282,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "pokaribs-native-kitchen",
+        "triangles": 3206,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "stephen-keshi-stadium",
-        "triangles": 3026,
+        "triangles": 2606,
         "meshes": 13,
         "lights": 3
       }

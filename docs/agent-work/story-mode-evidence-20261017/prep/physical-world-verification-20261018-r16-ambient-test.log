@@ -1,0 +1,25 @@
+file:///Users/anthonyakpan/work/joinallworld-story/src/scene/recipe/pack.ts:14
+  if (!value) throw new Error(`Recipe: ${message}`);
+                    ^
+
+Error: Recipe: decoded atlas dimensions differ
+    at requireRecipe (file:///Users/anthonyakpan/work/joinallworld-story/src/scene/recipe/pack.ts:14:21)
+    at Object.beforeRoot (file:///Users/anthonyakpan/work/joinallworld-story/src/scene/recipe/prepare.ts:153:9)
+    at async Promise.all (index 0)
+
+Node.js v24.14.1
+✖ src/scene/ambient/layer.test.ts (3725.474958ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3731.2965
+
+✖ failing tests:
+
+test at src/scene/ambient/layer.test.ts:1:1
+✖ src/scene/ambient/layer.test.ts (3725.474958ms)
+  'test failed'

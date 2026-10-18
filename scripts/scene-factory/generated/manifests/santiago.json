@@ -5,17 +5,17 @@
   "city": "santiago",
   "region": "americas-oceania",
   "recipeFile": "santiago.json",
-  "recipeSha256": "fb9971e3bc02818dc8433889ae044310b42ab8373228dfe698e17e1fe5afd311",
+  "recipeSha256": "92f5dcfcc70b28e0d709d2d9422db1610e63d22c72c5c7715a735b5709c77260",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/santiago.json",
-      "sha256": "407b974680480081374878b6d2cf7a030de0b116b7ddda1c14a7c23c68048822",
-      "inputSha256": "fef79c7850c334a13722c9bd7fbe9b0448abb3aa208021c01bd7a44bfc18866e",
+      "sha256": "30646505cfdd712ef8f964cc325b1fd5999b3c52ca84f4effc8e29209a5adc6d",
+      "inputSha256": "7df788394083349385a1cf05ca06716b3925e9e0e8f792fe708e641aedcb20ea",
       "contentSha256": "36e98eeecdaf26d893c7efe7938a40684bdfa3b9d06ee22366492462669650d2"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "santiago-airport-santiago-airport",
@@ -5249,6 +5249,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34829,
+    "utf8Bytes": 34632,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,7 +5396,7 @@
     "estimates": [
       {
         "venue": "santiago-airport-santiago-airport",
-        "triangles": 4072,
+        "triangles": 3832,
         "meshes": 13,
         "lights": 3
       },
@@ -5398,37 +5408,37 @@
       },
       {
         "venue": "santiago-community-notices",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-community-voting-game",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-community-workshop",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-market-game",
-        "triangles": 3962,
+        "triangles": 4638,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-meal-stop",
-        "triangles": 3274,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-osm-node-3372723745",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5440,7 +5450,7 @@
       },
       {
         "venue": "santiago-osm-node-7009112985",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5458,49 +5468,49 @@
       },
       {
         "venue": "santiago-osm-way-1494357523",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-osm-way-193760181",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-osm-way-195112800",
-        "triangles": 4710,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-osm-way-229040812",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-osm-way-236844639",
-        "triangles": 3458,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-osm-way-259812380",
-        "triangles": 3518,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-osm-way-38622709",
-        "triangles": 3490,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-osm-way-446732086",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5524,13 +5534,13 @@
       },
       {
         "venue": "santiago-recreation",
-        "triangles": 4430,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-transit",
-        "triangles": 4010,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "colombo",
   "region": "south-asia",
   "recipeFile": "colombo.json",
-  "recipeSha256": "33085ef275f3ca50404a96557721dd133e37c60aaf82457985bc8937cddd2dbe",
+  "recipeSha256": "7e20179c95f470d834f24773d63bb1e8cd5dea7db0a07872ceffa9779f9d6eb0",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/colombo.json",
-      "sha256": "513fec6e9c20ac973a7ff43e54c352c65727f10b9f7414866f89818b615fa574",
-      "inputSha256": "486323b9c4b9d2a4605eb1ada3e89c32864683a3049e5681c6901392a1703936",
+      "sha256": "d875c53054755e3ec336025a33f0d431294423071ba0a6a1b648d294bd1ec884",
+      "inputSha256": "73927f6da52aeaad8b94aa95844c7ab82bc69f54674152f3f8d601b73c159e4d",
       "contentSha256": "99fb2e5126d5976dba349765b57b9707cc6cb5665de1eed3c1cabfe955936052"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "15323eae0967ca4e17b374a20855d25476b9fa9ac89186adddac2cf4f189c9ba",
+      "sha256": "3521f854861155f2bfe11f512223a90645221e3e095517625a552fc3e94fcec6",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4847,7 +4847,7 @@
         },
         {
           "path": "src/scene/recipe/runtime-host.ts",
-          "sha256": "2062d85bc350e0f2fe66148d748ef21c71e2bb5705d1d0129bb263c4253bfcd4"
+          "sha256": "9274f27c3ae95af573d231f5e9dc7f84487718fe2592d5c5193dbbaa759f61e0"
         },
         {
           "path": "src/scene/recipe/sample/client.ts",
@@ -4859,7 +4859,7 @@
         },
         {
           "path": "src/scene/venue-scenes.ts",
-          "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+          "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
         },
         {
           "path": "src/scene/venues-campus.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "colombo-airport-colombo-airport",
@@ -5204,11 +5204,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5236,6 +5231,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5299,11 +5299,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34540,
+    "utf8Bytes": 34471,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,37 +5391,37 @@
     "estimates": [
       {
         "venue": "colombo-airport-colombo-airport",
-        "triangles": 2986,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "colombo-clinic",
-        "triangles": 3402,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "colombo-community-notices",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "colombo-community-voting-game",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "colombo-community-voting-game",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "colombo-community-workshop",
-        "triangles": 2910,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "colombo-market-game",
-        "triangles": 4638,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
@@ -5438,31 +5433,31 @@
       },
       {
         "venue": "colombo-osm-node-1252487341",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "colombo-osm-node-618557052",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "colombo-osm-way-1023143295",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "colombo-osm-way-102650989",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "colombo-osm-way-193287676",
-        "triangles": 4598,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5480,37 +5475,37 @@
       },
       {
         "venue": "colombo-osm-way-303909847",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "colombo-osm-way-441724047",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "colombo-osm-way-441724047",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "colombo-osm-way-48893708",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "colombo-osm-way-51193146",
-        "triangles": 3526,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "colombo-osm-way-51208063",
-        "triangles": 3978,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "colombo-osm-way-665919418",
-        "triangles": 2578,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
@@ -5522,25 +5517,25 @@
       },
       {
         "venue": "colombo-osm-way-98391431",
-        "triangles": 3686,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "colombo-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "colombo-recreation",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "colombo-transit",
-        "triangles": 2698,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

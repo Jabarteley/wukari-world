@@ -102,7 +102,7 @@ export const canReply = (post: VisiblePost, rel: Relation): boolean => canSee(po
  * host allows public media (an owner decision: there is no automatic scanning of what a picture shows, docs/CHAT-PICTURES.md).
  */
 export function allowedVisibility(want: unknown, { adult, media, publicMedia, crew }: { adult: boolean; media: boolean; publicMedia: boolean; crew: boolean }): Visibility | Refusal {
-  const vis = VISIBILITIES.find((v) => v === want) ?? (adult && !media ? 'public' : 'friends')
+  const vis = VISIBILITIES.find((v) => v === want) ?? (adult && (!media || publicMedia) ? 'public' : 'friends')
   if (vis === 'crew' && !crew) return no('invalid_crew', 'Choose one of your crews to post to.')
   if (!adult && (vis === 'public' || vis === 'city')) return no('friends_only', 'Until you are confirmed as 18 or older, your posts go to friends and crews only.')
   if (media && !publicMedia && (vis === 'public' || vis === 'city')) return no('media_friends_only', 'Photos and clips go to friends and crews for now.')

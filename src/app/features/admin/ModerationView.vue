@@ -7,6 +7,8 @@ import { absolute, relative } from './adminModel.ts'
 import { recordDone } from './adminUi.ts'
 import { CANNED, age, counts, queue, step } from './moderationModel.ts'
 import type { Item, Kind, PictureRow, Reports, ShopRow } from './moderationModel.ts'
+import FeedDecisions from './FeedDecisions.vue'
+import PromoteAdmin from './PromoteAdmin.vue'
 
 const emit = defineEmits<{ player: [id: string] }>()
 const api = useAdmin()
@@ -143,6 +145,8 @@ const KINDS = [['all', 'All'], ['report', 'Reports'], ['shop', 'Shops'], ['pictu
         <p v-for="a in content.announcements" :key="a.id" class="adm-line"><span>Notice “{{ a.text }}” by {{ a.by.name }}</span><button class="adm-btn" @click="remove({ kind: 'announcement', id: a.id })">Remove</button></p>
         <p v-for="r in content.radio" :key="r.id" class="adm-line"><span>Shout-out “{{ r.title }}” by {{ r.by.name }}</span><button class="adm-btn" @click="remove({ kind: 'radio', id: r.id, venue: r.venue })">Remove</button></p>
         <p v-if="!content.ads.length && !content.announcements.length && !content.radio.length" class="adm-muted">Nothing live in {{ city }}.</p></template></div>
+    <FeedDecisions @player="(id) => emit('player', id)" />
+    <PromoteAdmin @player="(id) => emit('player', id)" />
     <div v-if="admin.me?.tools.length" class="adm-card"><h3>Tools from other features</h3><p v-for="tool in admin.me.tools" :key="tool.id" class="adm-sub">{{ tool.title }} ({{ tool.kind }})</p></div>
   </section>
 </template>

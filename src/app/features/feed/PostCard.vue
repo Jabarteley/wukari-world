@@ -71,7 +71,7 @@ async function dropReply(n: number): Promise<void> {
     <p v-if="post.kind === 'moment' && post.body" class="feed-moment">{{ post.body }}</p>
     <p v-else-if="post.body" class="feed-body">{{ post.body }}</p>
     <img v-if="post.media && (post.media.type === 'jpeg' || post.media.type === 'png' || post.media.type === 'webp')" class="feed-media" :src="mediaUrl(post.media.hash)" :width="post.media.w" :height="post.media.h" alt="" loading="lazy">
-    <video v-else-if="post.media" class="feed-media" :src="mediaUrl(post.media.hash)" controls playsinline preload="metadata" />
+    <video v-else-if="post.media" class="feed-media" :src="mediaUrl(post.media.hash)" :poster="post.poster ? mediaUrl(post.poster) : undefined" controls playsinline preload="metadata" />
     <button v-if="post.event" type="button" class="feed-embed" @click="emit('event', post.event.id)">
       <small>{{ post.event.phase === 'live' ? 'Happening now' : new Date(post.event.start).toLocaleString(undefined, { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) }}</small>
       <b>{{ post.event.title }}</b>

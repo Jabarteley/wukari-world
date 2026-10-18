@@ -78,6 +78,7 @@ for (const [name, change] of [
   ['static assets included as Worker modules', config => { config.find_additional_modules = true; }],
   ['old Worker identity', config => { config.name = 'allworld'; }],
   ['old namespace binding', config => { config.durable_objects.bindings[0].script_name = 'allworld'; }],
+  ['another bucket', config => { config.r2_buckets[0].bucket_name = 'elsewhere'; }],
   ['apex route', config => { config.routes = ['joinallworld.com/*']; }],
   ['build hook', config => { config.build = { command: 'unreviewed' }; }],
   ['preview exposure', config => { config.preview_urls = true; }],

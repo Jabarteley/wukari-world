@@ -1,6 +1,7 @@
 /**
  * OWNER: agents (calls with house agents, docs/CALLS.md "Calls with AI characters")
- * CALLS WITH HOUSE AGENTS: the routes the phone's call screen uses, under /api/agents/call/. Registered with the agent routes (server/routes/agents.ts), so every write needs an
+ * CALLS WITH HOUSE AGENTS AND RESIDENTS (`resident.<city>.<key>`, server/residents/, since 18 October 2026): the routes the phone's call screen uses, under /api/agents/call/.
+ * A resident answers through its own direct answer (resident.ts answerDirect); asleep, the call does not start and the game says so. Registered with the agent routes (server/routes/agents.ts), so every write needs an
  * Origin that names this host and the anti-forgery token of the session cookie, and every route is about the signed-in session's own call.
  *
  *   GET  /api/agents/call/config      { ok, enabled, stt: { default, gateway, model }, minutes: { player, left, total }, maxRecordSeconds, breakMinutes, cast: [the AI characters standing in a place now] }
@@ -27,6 +28,7 @@ import { castOf } from './cast.ts';
 import { createCallLedger, type CallLedger, type Limits, type Stored } from './call-limits.ts';
 import * as say from './lines.ts';
 import { agentInfo, houseService } from './runner.ts';
+import { residentService } from '../residents/resident.ts';
 
 const NO_STORE = { 'Cache-Control': 'no-store' };
 export const DEFAULTS = Object.freeze({ on: true, playerMinutes: 20, totalMinutes: 300, breakMinutes: 10, stt: 'browser', gatewayStt: true });
@@ -70,8 +72,15 @@ export function callRoutes(ctx: RouteContext, guard: (request: RouteRequest, bod
   const who = (request: RouteRequest): Promise<{ id: string; name: string }> => ctx.store.read((db) => { const session = request.requireSession(db); return { id: session.publicId, name: session.name }; });
   const rate = (id: string, kind: string, n: number): void => { if (!ctx.allow(`agentcall:${kind}:${id}`, n, 60000)) throw ctx.fail(429, 'rate_limited'); };
   const enabled = (): void => { if (!callSettings(ctx).on) throw Object.assign(ctx.fail(503, 'calls_off'), { reason: 'Calls with AI characters are off for now. You can still write to them.' }); };
-  const specOf = (agent: string) => { const info = agentInfo(agent); return info ? castOf(info.city).find((entry) => `house.${info.city}.${entry.key}` === agent) ?? null : null; };
-  const agentOf = (value: unknown): string => { if (typeof value !== 'string' || !agentInfo(value)) throw ctx.fail(400, 'invalid_agent'); return value; };
+  /** Who can be called: a house agent of the cast, or a resident of an open city. Lines use the voice only. */
+  const specOf = (agent: string): { name: string; voice: 'pidgin' | 'plain'; city: string; resident: boolean } | null => {
+    const info = agentInfo(agent);
+    if (info) { const spec = castOf(info.city).find((entry) => `house.${info.city}.${entry.key}` === agent); return spec ? { name: spec.name, voice: spec.voice, city: info.city, resident: false } : null; }
+    if (!agent.startsWith('resident.')) return null;
+    const where = residentService(ctx).whereIs(agent);
+    return where ? { name: where.name, voice: 'plain', city: where.city, resident: true } : null;
+  };
+  const agentOf = (value: unknown): string => { if (typeof value !== 'string' || value.length > 120 || !specOf(value)) throw ctx.fail(400, 'invalid_agent'); return value; };
   const callOf = (value: unknown): string => { if (typeof value !== 'string' || value.length < 8 || value.length > 80) throw ctx.fail(400, 'invalid_call'); return value; };
   const gone = (): Error => Object.assign(ctx.fail(410, 'call_ended'), { reason: 'The call has ended.' });
   const secondsLeft = (id: string): number => Math.max(0, callSettings(ctx).playerMinutes * 60 - ledger.secondsUsed(id));
@@ -91,8 +100,10 @@ export function callRoutes(ctx: RouteContext, guard: (request: RouteRequest, bod
       const agent = agentOf(body.agent), spec = specOf(agent), me = await who(request);
       rate(me.id, 'start', 10);
       if (!spec) throw ctx.fail(400, 'invalid_agent');
-      const started = await ledger.start(me.id, agent), s = callSettings(ctx);
       const base = { ok: true, name: spec.name, ai: true, voiceSeed: voiceSeedOf(agent), voice: spec.voice };
+      // A resident who is asleep does not pick up: no minutes are used.
+      if (spec.resident && residentService(ctx).whereIs(agent)?.awake === false) return { body: { ...base, text: `${spec.name.split(' ')[0]} is asleep now. Try again in the morning, their time.` }, headers: NO_STORE };
+      const started = await ledger.start(me.id, agent), s = callSettings(ctx);
       if (!started.ok) return { body: { ...base, over: started.over, text: say.callBusy(spec, `${agent}|${me.id}|${Math.floor(ctx.now() / 3600000)}`) }, headers: NO_STORE };
       return { body: { ...base, call: started.call, leftSeconds: started.leftSeconds, stt: { default: s.stt, gateway: s.gatewayStt && router.hasKey('gateway') }, breakMinutes: s.breakMinutes }, headers: NO_STORE };
     },
@@ -131,8 +142,8 @@ export function callRoutes(ctx: RouteContext, guard: (request: RouteRequest, bod
       if (!text) throw ctx.fail(400, 'invalid_text');
       const found = ledger.find(me.id, call);
       if (!found) throw gone();
-      const spec = specOf(found.agent), info = agentInfo(found.agent);
-      if (!spec || !info) throw gone();
+      const spec = specOf(found.agent);
+      if (!spec) throw gone();
       const touched = ledger.touch(call);
       if (!touched) throw gone();
       const seed = `${found.agent}|${me.id}|${ctx.now()}`, voiceSeed = voiceSeedOf(found.agent);
@@ -140,9 +151,9 @@ export function callRoutes(ctx: RouteContext, guard: (request: RouteRequest, bod
       // The limit: the agent says it will call back, and the call is over.
       if (touched.over) return out(say.callBack(spec, seed), { over: touched.over });
       // Before any agent or model sees the line: the game answers words of danger, and a sincere "are you an AI?".
-      if (crisisWords(text)) return out(helpText(countryOfCity(info.city)), { help: true });
+      if (crisisWords(text)) return out(helpText(countryOfCity(spec.city)), { help: true });
       if (asksIfAi(text)) return out(aiAnswer([spec.name]));
-      const answered = await houseService(ctx).answerCall(found.agent, me, text);
+      const answered = spec.resident ? await residentService(ctx).answerDirect(found.agent, me, text) : await houseService(ctx).answerCall(found.agent, me, text);
       return out(answered?.text ?? say.fallback(spec, seed));
     },
     'POST /api/agents/call/end': async (request) => {

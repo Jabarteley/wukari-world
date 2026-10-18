@@ -443,3 +443,29 @@ test('the Prayers page can name a generated resident, and prayers by rule are fe
   await off.run(30 * 60, 5);
   assert.equal(off.prayed.length, 0);
 });
+
+test('a person writes or calls a resident directly: an answer in character that follows the conversation and says where she stands; asleep she says so; in shadow nobody answers', async () => {
+  await loadCityContent('london');
+  const t = rig({ cities: ['london'], settings: { residentDeepPerDay: 0 }, start: DAY0 + 11 * HOUR });
+  await t.run(30, 2);
+  const standing = [...t.present.entries()].find(([id]) => id.startsWith('resident.london.'));
+  assert.ok(standing, 'a resident stands somewhere in the day');
+  const [id] = standing;
+  const before = t.calls.length;
+  const answer = await t.runner.answerDirect(id, { id: 'p-1', name: 'Ada' }, 'Where can I find you today?', [{ me: false, text: 'Hello there' }, { me: true, text: 'Good morning, Ada.' }]);
+  assert.ok(answer && !answer.asleep && answer.text.length > 0, 'an answer');
+  assert.equal(t.calls.length, before + 1, 'one model call');
+  const prompt = t.calls.at(-1)!.messages.map((m) => m.content).join('\n');
+  assert.match(prompt, /talking with you on the phone/);
+  assert.match(prompt, /Earlier:/);
+  assert.match(prompt, /Good morning, Ada\./);
+  assert.match(prompt, /you are at .+ now and they are welcome to come/);
+  assert.equal(t.runner.whereIs(id)?.awake, true);
+  assert.equal(await t.runner.answerDirect('resident.london.nobody', { id: 'p-1', name: 'Ada' }, 'Hello'), null, 'no such resident');
+  t.clock.t = DAY0 + 27 * HOUR; // 03:00 the next night: everyone is in bed
+  const night = await t.runner.answerDirect(id, { id: 'p-1', name: 'Ada' }, 'Are you up?');
+  assert.ok(night?.asleep, 'asleep at night');
+  assert.match(night!.text, /asleep/);
+  t.settings['residentShadow'] = true;
+  assert.equal(await t.runner.answerDirect(id, { id: 'p-1', name: 'Ada' }, 'Hello'), null, 'in shadow nobody answers');
+});

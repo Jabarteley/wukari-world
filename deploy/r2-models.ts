@@ -1,5 +1,5 @@
 /**
- * Players' model files on the Worker host: the R2 bucket `allworld-models` (binding MODELS in wrangler.jsonc), one object per
+ * Players' model files on the Worker host: the R2 bucket `allworld` (binding MODELS in wrangler.jsonc), one object per
  * model named `glb/<sha256>`. The Node host keeps files instead (server/spaces/model-files.ts); both answer to ModelStore.
  */
 import type { ModelStore } from '../server/types.ts';

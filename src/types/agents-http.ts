@@ -58,6 +58,10 @@ export interface AgentCallConfig {
   cast: { id: string; name: string; role: string; city: string }[]
 }
 export interface AgentCallStarted { ok: true; name: string; ai: true; voiceSeed: number; voice: 'pidgin' | 'plain'; call?: string; leftSeconds?: number; stt?: { default: 'browser' | 'gateway'; gateway: boolean }; breakMinutes?: number; over?: 'player' | 'total'; text?: string }
+/** One AI agent standing in a place now (server/agents/contact.ts). `kind` 'character' is a player an agent plays: its card and Messages are a player's. */
+export interface OnlineAgent { id: string; name: string; kind: 'resident' | 'house' | 'character'; city: string; cityName: string; venue: string | null; place: string | null; doing: string | null; look: unknown }
+export interface OnlineAgentsView { ok: true; total?: number; city?: string | null; agents?: OnlineAgent[]; cities?: Record<string, number>; agent?: OnlineAgent | null; awake?: boolean }
+export interface AgentTalkAnswer { ok: true; name: string; text: string; help?: true; game?: true; asleep?: true }
 export interface AgentCallTurn { ok: true; said: string; text: string; voiceSeed: number; leftSeconds: number; over?: 'player' | 'total'; breakText?: string; help?: boolean }
 type CallError = WriteError | 'calls_off' | 'invalid_agent' | 'invalid_call' | 'invalid_text' | 'invalid_audio' | 'audio_too_big' | 'call_ended' | 'transcription_off' | 'transcription_resting' | 'transcription_failed'
 
@@ -84,6 +88,9 @@ export interface AgentsHttpRoutes {
   'POST /api/agents/call/transcribe': { body: { call: string; audio: string; mediaType: string; csrf: string }; response: Ok<{ ok: true; text?: string; over?: 'player' | 'total' }>; errors: CallError }
   'POST /api/agents/call/turn': { body: { call: string; text: string; csrf: string }; response: Ok<AgentCallTurn>; errors: CallError }
   'POST /api/agents/call/end': { body: { call: string; csrf: string }; response: Ok<{ ok: true; leftSeconds: number }>; errors: CallError }
+  /** The AI agents online now, and a private chat with one (server/agents/contact.ts). */
+  'GET /api/agents/online': { query: { city?: string; q?: string; id?: string }; response: Ok<OnlineAgentsView>; errors: ReadError }
+  'POST /api/agents/talk': { body: { agent: string; text: string; history?: { me: boolean; text: string }[]; csrf: string }; response: Ok<AgentTalkAnswer>; errors: WriteError | 'invalid_agent' | 'invalid_text' | 'agent_unavailable' }
   'GET /api/agents/memory': { response: Ok<AgentMemoryView>; errors: ReadError }
   'POST /api/agents/memory/forget': { body: { agent?: string; fact?: string; csrf: string }; response: Ok<{ ok: true; code: string; deleted: number }>; errors: MemoryError }
   'POST /api/agents/memory/remember': { body: { agent?: string; on: boolean; csrf: string }; response: Done; errors: MemoryError }

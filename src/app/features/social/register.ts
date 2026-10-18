@@ -39,5 +39,17 @@ export const invite = definePanel({
   component: defineAsyncComponent(bodyLoader('social/InviteApp')),
 })
 
+/** The AI agents online now, as people are listed: chat, call, go to them (features/agents/AgentsOnlineApp.vue). */
+export const aiAgents = definePanel({
+  id: 'ai-agents', title: 'AI agents', placement: 'phone', order: 21, group: 'people',
+  component: defineAsyncComponent(bodyLoader('agents/AgentsOnlineApp')),
+})
+
+/** A chat with a resident or a house agent, kept on this phone (features/agents/AgentChatApp.vue). */
+export const agentChat = definePanel({
+  id: 'agent-chat', title: 'Chat', placement: 'modal',
+  component: defineAsyncComponent(bodyLoader('agents/AgentChatApp')),
+})
+
 /** Spread into NATIVE_PANELS (src/app/features/panels.ts). Messages is registered there already. */
-export const SOCIAL_PANELS: readonly VuePanel[] = [people, person, contacts, family, invite]
+export const SOCIAL_PANELS: readonly VuePanel[] = [people, person, contacts, family, invite, aiAgents, agentChat]

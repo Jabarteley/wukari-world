@@ -890,18 +890,28 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
   const callsOf = (who: Resident): string[] => who.name.toLowerCase().split(/\s+/).filter((word) => word.length >= 3 && !TITLES.has(word));
   const isNamed = (who: Resident, body: string): boolean => { const lower = body.toLowerCase(), words = new Set(lower.split(/[^\p{L}\p{N}]+/u)), name = who.name.toLowerCase(); return (name.includes(' ') ? lower.includes(name) : words.has(name)) || callsOf(who).some((word) => words.has(word)); };
   const TRADE = /\d|₦|naira|\b(?:price|prices|cost|pay|buy|sell|sale|discount|cheap|offer|owe|loan|lend|money|cash|send)\b/i;
-  async function replyTo(state: Live, from: { id: string; name: string }, body: string): Promise<void> {
+  /**
+   * The words of one answer to a person, in character, never said anywhere yet. `direct`: the person wrote or spoke to the resident on their own (a private chat or a
+   * call, contact.ts), so a few earlier lines of that conversation may come with it, and the resident says where it is when asked to meet.
+   */
+  async function compose(state: Live, from: { id: string; name: string }, body: string, direct: { history: readonly { me: boolean; text: string }[] } | null = null): Promise<string> {
     const t = ctx.now(), life = lifeOf(state.who, t), day = dayOf(state.who, t);
-    if ((day.replies ?? 0) >= MAX_REPLIES) return;
+    const seed = hash(`${state.id}|${from.id}|${Math.floor(t / 60000)}`), written = (): string => (state.who.generated ? ruleLine(personaOf(state.who), 'greet', `${state.id}|${seed}`) : null) ?? WRITTEN[seed % WRITTEN.length]!;
+    if ((day.replies ?? 0) >= MAX_REPLIES) return written();
     noteTalker(life, from.id, lifeDay(state.who, t));
     day.replies = (day.replies ?? 0) + 1; persist();
-    const intent = intentOf(body, state.who.work.role, false), seed = hash(`${state.id}|${from.id}|${Math.floor(t / 60000)}`);
+    const intent = intentOf(body, state.who.work.role, false);
     let text: string | null = null;
     // A resident does not trade yet: no price, no offer, no promise. The haggle belongs to the house sellers (server/house/haggle.ts).
     if (TRADE.test(body) || intent === 'prices' || intent === 'offer' || intent === 'pressure') text = NOT_TRADING;
     else if (intent === 'bye') text = GOODBYE;
     else if (!overBudget()) {
-      const messages = [{ role: 'system' as const, content: system(state.who, false) }, { role: 'user' as const, content: `${from.name.slice(0, 24)} says to you: "${body.slice(0, 200)}"\nAnswer in one or two short sentences (under ${LINE_MAX} characters), as yourself, in plain text only. Do not mention prices or numbers, and do not ask for money, contact details or to meet anywhere else.` }];
+      const here = state.where ? state.where.split(':') : null, place = here && here[1] ? `${venueLabel(here[1], state.who.city)}, ${cityRules(state.who.city)?.name ?? state.who.city}` : null;
+      const before = direct ? direct.history.slice(-6).map((line) => `${line.me ? 'You said' : `${from.name.slice(0, 24)} said`}: "${line.text.slice(0, 200)}"`).join('\n') : '';
+      const ask = direct
+        ? `${from.name.slice(0, 24)} is talking with you on the phone.${before ? `\nEarlier:\n${before}` : ''}\nNow they say: "${body.slice(0, 200)}"\nAnswer in one or two short sentences (under ${LINE_MAX} characters), as yourself, in plain text only. Do not mention prices or numbers, and do not ask for money or contact details.${place ? ` If they want to meet, you are at ${place} now and they are welcome to come.` : ''}`
+        : `${from.name.slice(0, 24)} says to you: "${body.slice(0, 200)}"\nAnswer in one or two short sentences (under ${LINE_MAX} characters), as yourself, in plain text only. Do not mention prices or numbers, and do not ask for money, contact details or to meet anywhere else.`;
+      const messages = [{ role: 'system' as const, content: system(state.who, false) }, { role: 'user' as const, content: ask }];
       for (let attempt = 0; attempt < 2 && text === null; attempt++) {
         let answer: AskResult;
         try { answer = await callModel({ purpose: 'resident', messages: attempt === 0 ? messages : [...messages, { role: 'user', content: RETRY_TALK }], maxTokens: REPLY_TOKENS, playerId: `p_${sha256Hex(`allworld-house-v1|${from.id}`).slice(0, 32)}`, carriesPlayerWords: true, timeoutMs: 8000, ...preferOf(life, state.id) }); }
@@ -913,8 +923,24 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
         else { day.replySlips = (day.replySlips ?? 0) + 1; if (attempt === 0) day.replyRetries = (day.replyRetries ?? 0) + 1; }
       }
     }
-    await speak(state, text ?? (state.who.generated ? ruleLine(personaOf(state.who), 'greet', `${state.id}|${seed}`) : null) ?? WRITTEN[seed % WRITTEN.length]!);
     persist();
+    return text ?? written();
+  }
+  async function replyTo(state: Live, from: { id: string; name: string }, body: string): Promise<void> {
+    await speak(state, await compose(state, from, body));
+  }
+  /** A resident's answer to a person who wrote or called it directly (contact.ts): null for no such resident or residents switched off or in shadow. Asleep, it says so. */
+  async function answerDirect(id: string, from: { id: string; name: string }, body: string, history: readonly { me: boolean; text: string }[] = []): Promise<{ text: string; asleep: boolean; name: string; city: string } | null> {
+    const s = settings();
+    rosterNow();
+    const who = byId.get(id);
+    if (!who || !s.on || s.shadow || hooks.retired?.(id)) return null;
+    await ready();
+    const state = liveOf(who), base = { name: who.name, city: who.city };
+    if (asleepAt(who, ctx.now())) return { ...base, asleep: true, text: `${who.name.split(' ')[0]} is asleep now. Try again in the morning, their time.` };
+    if (state.replying) return { ...base, asleep: false, text: 'One moment, I am still answering someone.' };
+    state.replying = true;
+    try { return { ...base, asleep: false, text: await compose(state, from, body.slice(0, 300), { history }) }; } finally { state.replying = false; }
   }
 
   let stepped = 0;
@@ -979,7 +1005,9 @@ export function residentsOf(ctx: RouteContext, deps: ResidentDeps = {}) {
   }
 
   return {
-    tick, ready, settings, line: onLine, report, hooks,
+    tick, ready, settings, line: onLine, report, hooks, answerDirect,
+    /** Where a resident stands now and whether it is awake (contact.ts): null for no such resident. */
+    whereIs: (id: string): { name: string; city: string; where: string | null; awake: boolean; doing: string | null } | null => { rosterNow(); const who = byId.get(id); if (!who) return null; const state = liveOf(who); return { name: who.name, city: who.city, where: state.presentAt?.room ?? null, awake: !asleepAt(who, ctx.now()), doing: who.doing ?? null }; },
     /** For bonds.ts: who stands where and is awake, the model each was given, and one budgeted model call. */
     presence: (): { id: string; city: string; where: string | null; awake: boolean }[] => rosterNow().map((who) => { const state = liveOf(who); return { id: state.id, city: who.city, where: state.where, awake: state.asleep === false }; }),
     modelOf: (id: string): string | null => { const who = whoIs(id); if (!who) return null; return modelFor(lifeOf(who, ctx.now()), id); },

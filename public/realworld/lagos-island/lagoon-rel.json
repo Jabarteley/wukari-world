@@ -1,0 +1,267 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-10-18T04:25:51Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "relation",
+  "id": 2116203,
+  "members": [
+    {
+      "type": "way",
+      "ref": 377948576,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 317564471,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 158039931,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 158039858,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 4174131,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 158039881,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 4174092,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 328454746,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 13769163,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 743160021,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 785734052,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 246839399,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 743159998,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 246839396,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 218590463,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 158039865,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 294559015,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 294559014,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 1433751670,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 1447365245,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 1433751671,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 375256198,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 785691815,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 670030391,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 328450969,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 743160024,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 743160022,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 158052982,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 158052978,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 158052997,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 353218686,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 671588537,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 743160023,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 743160020,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 743160014,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 743160012,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 743160013,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 743160019,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 743160018,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 743160016,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 743160017,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 743160015,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 293105237,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 796421393,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 796421394,
+      "role": "inner"
+    },
+    {
+      "type": "way",
+      "ref": 1433754085,
+      "role": "inner"
+    }
+  ],
+  "tags": {
+    "GNS:dsg_code": "LGN",
+    "GNS:dsg_string": "lagoon",
+    "GNS:id": "-2017360",
+    "is_in:country": "Nigeria",
+    "name": "Lagos Lagoon",
+    "name:ar": "بحيرة لاغوس",
+    "name:de": "Lagune von Lagos",
+    "name:en": "Lagos Lagoon",
+    "name:eo": "Lagosa Laguno",
+    "name:es": "Laguna de Lagos",
+    "name:fr": "Lagune de Lagos",
+    "name:pt": "Lagoa de Lagos",
+    "name:sw": "Wangwa wa Lagos",
+    "natural": "water",
+    "type": "multipolygon",
+    "water": "lagoon",
+    "wikidata": "Q499414"
+  }
+}
+
+  ]
+}

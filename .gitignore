@@ -14,3 +14,6 @@ dist-maps/
 
 # Downloaded source data for scripts/geo
 .cache/
+
+# CC0 textures for the realworld prototype: scripts/realworld/fetch-textures.ts
+/public/realworld/textures/

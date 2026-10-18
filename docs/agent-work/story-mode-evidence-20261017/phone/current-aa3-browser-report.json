@@ -1,0 +1,136 @@
+{
+  "status": "PASS: finite remaining post-travel browser gate",
+  "source": {
+    "revision": "aa3c30d860bb5bd338e2e7c63f8296a574821164",
+    "verification": "Integration owner independently verified exact HEAD and all11 pinned Phase1 source hashes before starting unchanged task QA launcher; no source edits or hot reload during this run."
+  },
+  "browser": {
+    "name": "Chrome",
+    "id": "3",
+    "hostTab": "460562338",
+    "helperTab": "460562341",
+    "nairobiTab": "460562344",
+    "method": "Documented CUA browser APIs only; no native desktop input or unlock",
+    "originalIab": "Direct API returned Browser is not available: iab",
+    "recovery": "Integration-owned temporary local resume routes set existing disposable guest cookies. Returned ok; navigated to app root. No new character or gameplay/progress rewrite, no credential values inspected."
+  },
+  "actors": {
+    "host": {
+      "name": "Story Host Kano",
+      "origin": "http://127.0.0.1:5351",
+      "location": "Kawo Motor Park, Kaduna",
+      "before": {
+        "mode": "story",
+        "kadunaChapter": 0,
+        "kadunaMissions": 0,
+        "kadunaVenues": 1,
+        "openCities": 275,
+        "kanoChapter": 4
+      },
+      "after": {
+        "mode": "story",
+        "kadunaChapter": 0,
+        "kadunaMissions": 0,
+        "kadunaVenues": 1,
+        "openCities": 275,
+        "kanoChapter": 4
+      }
+    },
+    "helper": {
+      "name": "Story Helper Lagos",
+      "origin": "http://localhost:5351",
+      "location": "Freedom Park, Lagos",
+      "chapter": 0,
+      "missions": 0,
+      "venues": 0,
+      "openCities": 1,
+      "keepsakes": 2,
+      "kano": "Story locked",
+      "countryMap": {
+        "scope": "37 Nigerian states",
+        "open": 1,
+        "storyLocked": 36
+      }
+    },
+    "nairobi": {
+      "name": "Story Nairobi Start",
+      "origin": "http://nairobi.localhost:5351",
+      "location": "Uhuru Park",
+      "chapter": 0,
+      "missions": 3,
+      "venues": 2,
+      "openCities": 1,
+      "signature": "City tables",
+      "observedAction": "Open Tables opened local free Chess Starter table at Uhuru Park; no new game played during this finite run."
+    }
+  },
+  "orderedSteps": [
+    {
+      "step": 1,
+      "result": "Recovered the actual saved host after earlier Kano completion and actual6000naira bus arrival in Kaduna; UI shows KanoChapter4 and KadunaChapter0."
+    },
+    {
+      "step": 2,
+      "action": "Story to Free",
+      "elapsedMs": 281,
+      "passUnder300": true,
+      "confirmed": "Free Roam is on; 284 of284cities; Kaduna0missions/1venue unchanged."
+    },
+    {
+      "step": 3,
+      "result": "Free Kaduna map19of19places open; GiwaHospital selected with normal enabled Go action. No new travel performed."
+    },
+    {
+      "step": 4,
+      "action": "Free to Story",
+      "elapsedMs": 287,
+      "passUnder300": true,
+      "confirmed": "Story Path is on;275of284cities; KadunaChapter0/0missions/1venue unchanged."
+    },
+    {
+      "step": 5,
+      "result": "Restored Story Kaduna map3of19places open; GiwaHospital is Locked, opensChapter2Belong, Storypathlocked action; UI Citychapters retainsKanoChapter4."
+    },
+    {
+      "step": 6,
+      "result": "Recovered helper remains0/0/1 with2KanoRoots keepsakes; Kano cardStorylocked and countrycount37states1open36Storylocked."
+    },
+    {
+      "step": 7,
+      "result": "Recovered Nairobi retains distinct3missions/2venues and Citytables; directlocaltableentry works."
+    }
+  ],
+  "timingMethod": "Date.now immediately before documented Playwright click, through awaited rendered region.innerText confirmation; warm local browser, includes automation overhead. Screenshots captured afterward confirm displayed state. Not a display-frame presentation timestamp or production/physical-device benchmark.",
+  "savedStateCorroboration": {
+    "source": "Independent read-only inspection by integration owner after reversal; separate from UI evidence",
+    "facts": "Host cityKaduna/fromKano/locationkawo-motor-park, modestory/startkano. Kano retains6 distinct mission receipts,6venues and original second-answerRoots receipt; Kaduna0missions/1Kawoarrivalvenue. No save write or new travel used."
+  },
+  "responsive": {
+    "hostStory320": {
+      "innerWidth": 320,
+      "innerHeight": 740,
+      "documentScrollWidth": 320
+    },
+    "hostStory390": {
+      "innerWidth": 390,
+      "innerHeight": 844,
+      "documentScrollWidth": 390
+    },
+    "helper390": {
+      "innerWidth": 390,
+      "innerHeight": 844,
+      "documentScrollWidth": 390
+    },
+    "observations": "No whole-document horizontal overflow. At320 mode buttons stack and content scrolls vertically. Map weather/count subtitle ellipsizes at both widths; full19/19 and3/19count labels were read through rendered DOM. Horizontal filter-chip scrollers are intentional.",
+    "visualReview": "Reviewed Story/Free mode controls, maps, progress and lock cards at their captured320/390widths. No screenshot native-width cropping or horizontally clipped controls.320cards stack and verticalscroll is required; map filter chips are intentionalhorizontal scrollers and weather/countsubtitle ellipsizes."
+  },
+  "captureMethod": "Default screenshot API returned JPEG; no file was saved under a false PNG extension. Used supported Chrome CDP Page.captureScreenshot formatpng. Raw returned PNG bytes saved without resizing, cropping, compositing or pixel edits. PNG header widths/heights and SHA256 recorded in manifest.",
+  "limits": [
+    "Earlier actual tales/co-op/bargain/chess acceptance remains historical and is not recast as newly played on this revision. This run verifies the finite remaining mode pair, preserved state and current UI surfaces.",
+    "Current UI Citychapters exposes KanoChapter4, not its6/6counts;6/6is separately corroborated by integration owner from existing saved state.",
+    "No physical-device, production, deployment, external-service or new-gameplay coverage claimed."
+  ],
+  "manualClockActions": 0,
+  "sourceOrGitEdits": 0,
+  "completion": "UI paused; temporaryviewport reset. All17PNGs visuallyreviewed, dimensionsandSHA256rechecked offline. Browser/source/serverownership returned tointegration; no furtherUIactions."
+}

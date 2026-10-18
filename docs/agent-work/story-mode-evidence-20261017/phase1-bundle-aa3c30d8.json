@@ -1,0 +1,107 @@
+{
+  "sourceSha": "aa3c30d860bb5bd338e2e7c63f8296a574821164",
+  "cities": 284,
+  "startup": {
+    "raw": 613955,
+    "gzip": 222658,
+    "brotli": 195413
+  },
+  "firstPaint": {
+    "raw": 90568,
+    "gzip": 35260,
+    "brotli": 35368
+  },
+  "budgetBasis": {
+    "raw": "JavaScript",
+    "gzip": "JavaScript",
+    "brotli": "HTML, CSS and JavaScript"
+  },
+  "checks": [
+    {
+      "budget": "LOADING_RAW",
+      "measured": 90568,
+      "detail": "first-paint JavaScript",
+      "status": "ok"
+    },
+    {
+      "budget": "LOADING_GZIP",
+      "measured": 35260,
+      "detail": "first-paint JavaScript",
+      "status": "ok"
+    },
+    {
+      "budget": "FIRST_PAINT_BROTLI",
+      "measured": 35368,
+      "detail": "5 files: index.html, stylesheet and JavaScript",
+      "status": "ok"
+    },
+    {
+      "budget": "STARTUP_RAW",
+      "measured": 613955,
+      "detail": "largest over 284 cities (lagos)",
+      "status": "ok"
+    },
+    {
+      "budget": "STARTUP_GZIP",
+      "measured": 222658,
+      "detail": "largest over 284 cities (lagos)",
+      "status": "ok"
+    },
+    {
+      "budget": "STARTUP_BROTLI",
+      "measured": 195413,
+      "detail": "largest over 284 cities (lagos)",
+      "status": "ok"
+    },
+    {
+      "budget": "SCENE_HOST_RAW",
+      "measured": 188923,
+      "detail": "shared scene chunk (world-adapter)",
+      "status": "ok"
+    },
+    {
+      "budget": "SCENE_HOST_GZIP",
+      "measured": 70908,
+      "detail": "shared scene chunk (world-adapter)",
+      "status": "ok"
+    },
+    {
+      "budget": "BASE_BODY_BROTLI",
+      "measured": null,
+      "detail": "no file matches /(^|\\/)base-body[^/]*\\.(glb|gltf|bin)$/",
+      "status": "not measured"
+    },
+    {
+      "budget": "CLIP_PACK_BROTLI",
+      "measured": null,
+      "detail": "no file matches /(^|\\/)clip-pack[^/]*\\.(glb|gltf|bin|json)$/",
+      "status": "not measured"
+    },
+    {
+      "budget": "WARDROBE_ITEM_BROTLI",
+      "measured": null,
+      "detail": "no file matches /(^|\\/)wardrobe\\/[^/]+\\.(glb|gltf)$/",
+      "status": "not measured"
+    },
+    {
+      "budget": "STREET_TILE_BROTLI",
+      "measured": null,
+      "detail": "no file matches /(^|\\/)(street-)?tiles?\\/[^/]+\\.(glb|gltf|bin)$/",
+      "status": "not measured"
+    }
+  ],
+  "nativeInventory": "Not in this JS-only artifact; checked separately in CI39083947965",
+  "sceneHost": {
+    "raw": 188923,
+    "gzip": 70908,
+    "brotli": 61459
+  },
+  "storyChunk": "assets/story-ui-295ded0.js",
+  "storyChunkBytes": {
+    "raw": 20188,
+    "gzip": 6624,
+    "brotli": 5736
+  },
+  "storyScreensInStartup": false,
+  "storyScreensInSceneHost": false
+}

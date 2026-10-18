@@ -94,16 +94,18 @@ export function drawLite(ctx: Ctx, def: LiteGameV1, snapshot: readonly number[] 
     }
   })
   ctx.restore()
-  // Header: seconds left at the right, your hearts and score at the left.
+  // Just under the field (the screen's own bar sits over the top of the canvas): seconds left at the right, your hearts and score at the left.
+  const below = oy + def.arena.h * scale + 14
+  const hud = below + 8 <= height ? below : Math.max(top / 2, oy - 14)
   ctx.textBaseline = 'middle'; ctx.font = '700 14px system-ui, sans-serif'
   ctx.textAlign = 'right'; ctx.fillStyle = '#ffffff'
-  ctx.fillText(`${view.seconds}s`, width - pad, top / 2)
+  ctx.fillText(`${view.seconds}s`, width - pad, hud)
   const me = mySeat != null ? view.players[mySeat] : undefined
   const who = me ?? view.players.slice().sort((a, b) => b.score - a.score)[0]
   if (who) {
     ctx.fillStyle = '#ff5a6e'
-    for (let h = 0; h < Math.min(9, who.lives); h++) heart(ctx, pad + 7 + h * 15, top / 2, 5)
+    for (let h = 0; h < Math.min(9, who.lives); h++) heart(ctx, pad + 7 + h * 15, hud, 5)
     ctx.fillStyle = '#ffffff'; ctx.textAlign = 'left'
-    ctx.fillText(String(who.score), pad + 7 + Math.min(9, who.lives) * 15 + 6, top / 2)
+    ctx.fillText(String(who.score), pad + 7 + Math.min(9, who.lives) * 15 + 6, hud)
   }
 }

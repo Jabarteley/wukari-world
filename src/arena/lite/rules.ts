@@ -201,7 +201,8 @@ const lite: RealtimeRules<LiteState, LiteInput, number[]> = {
   id: 'lite',
   label: 'Made by players',
   hz: 15,
-  seats: { min: 1, max: LITE_LIMITS.seats },
+  // Two at least: a practice game always has a computer player to beat.
+  seats: { min: 2, max: LITE_LIMITS.seats },
   // The values are the live list of playable definitions (built-ins and imported ones); cleanArenaOptions reads it at call time.
   options: { game: { label: 'Game', values: IDS, default: LITE_EXAMPLES[0]!.id, names: NAMES } },
   start: startState,

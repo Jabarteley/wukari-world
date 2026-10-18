@@ -80,7 +80,7 @@ onMounted(() => { if (props.intent.kind !== 'join') void load() })
 </template>
 
 <style scoped>
-.lg { display: grid; gap: 12px; align-content: start; padding-bottom: 12px; }
+.lg { display: grid; gap: 12px; align-content: start; padding: 68px 10px 12px; overflow-y: auto; max-height: 100%; box-sizing: border-box; }
 .lg-small { margin: 0; font-size: 12px; color: var(--c-muted); }
 .lg-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .lg-pick { width: 100%; min-height: 56px; display: grid; gap: 2px; text-align: left; padding: 10px 14px; border: 2px solid #2b2233; border-radius: 14px; background: #f3efe8; color: #2b2233; font: inherit; cursor: pointer; touch-action: manipulation; }

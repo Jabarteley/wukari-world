@@ -11,14 +11,15 @@
  * Text passes the game's text filter with contacts refused (server/moderation/text.ts) and the sender's mute (ctx.checks.muted).
  * Portable: no Node imports.
  */
-import { FEED, SKILLS, allowedVisibility, canReply, canSee, cleanBody, cleanCode, cleanCrewName, cleanHandle, cleanLine, codeFrom, colourOk, eventPhase, eventTiming, handleRefusal, rank, rewardOf, starsOf, ratingText, followersText } from '../../src/feed/model.ts'
+import { FEED, SKILLS, COMMUNITY_KINDS, isCommunityKind, sizeOf, allowedVisibility, canReply, canSee, cleanBody, cleanCode, cleanCrewName, cleanHandle, cleanLine, codeFrom, colourOk, eventPhase, eventTiming, handleRefusal, rank, rewardOf, starsOf, ratingText, followersText } from '../../src/feed/model.ts'
 import type { FeedTab, Relation, Skill, Visibility } from '../../src/feed/model.ts'
 import type { CrewView, Draft, EventView, FeedMe, FeedPage, FeedPerson, FeedPlace, GigView, InboxLine, NewsLine, PostView, ProfileView, ReplyView, Suggestion, WorkView, FeedMedia } from '../../src/types/feed.ts'
 import { screenText } from '../moderation/text.ts'
 import { agentWords } from '../moderation/agent-words.ts'
 import { friendsIn } from '../social/founder.ts'
 import { lagosTime } from '../../src/game/clock.ts'
-import { cityName } from '../../src/game/cities/registry.ts'
+import { cityName, cityCatalogue, cityCatalogueEntry } from '../../src/game/cities/registry.ts'
+import { roomLinkPath } from '../../src/places/model.ts'
 import { feedOf, peekFeed } from './data.ts'
 import type { AuthorRecord, CrewRecord, DecisionRecord, EventRecord, FeedCollection, GigRecord, PostRecord, Reply, ReportRecord } from './data.ts'
 import type { Db, RouteContext, SessionRecord } from '../types.ts'
@@ -137,9 +138,25 @@ function buildService(ctx: RouteContext) {
       canReply: canReply(post, rel), ...(rel.self ? { mine: true as const } : {}), ...(post.hidden ? { hidden: true as const } : {}), ...(post.ai ? { ai: true as const } : {}),
     }
   }
+  /** The community's 3D world: its group's room, and (for members) the room link, when the founder made one and its link is on. */
+  function worldOf(db: Db, c: CrewRecord, mine: boolean): CrewView['world'] {
+    if (!c.conv) return undefined
+    const conv = (db as unknown as { social?: { convs?: Record<string, { kind?: string; members?: string[]; room?: { link?: { key?: string } } }> } }).social?.convs?.[c.conv]
+    if (!conv || conv.kind !== 'group') return undefined
+    const key = conv.room?.link?.key
+    return { room: c.conv, builders: (conv.members ?? []).length, ...(mine && typeof key === 'string' ? { link: roomLinkPath(c.conv, key) } : {}) }
+  }
   function crewView(db: Db, f: FeedCollection, c: CrewRecord, viewer: string | null): CrewView {
-    const mine = Boolean(viewer && c.members.includes(viewer))
-    return { id: c.id, name: c.name, colour: c.colour, about: c.about, at: c.at, owner: person(db, f, c.owner, viewer), members: c.members.filter((m) => !blocked(m, viewer ?? '')).map((m) => person(db, f, m, viewer)), size: c.members.length, mine, owned: viewer === c.owner, ...(mine ? { code: c.code } : {}) }
+    const mine = Boolean(viewer && c.members.includes(viewer)), shown = c.members.filter((m) => !blocked(m, viewer ?? ''))
+    const mod = Boolean(viewer && (viewer === c.owner || c.mods?.includes(viewer)))
+    const world = worldOf(db, c, mine)
+    const ordered = c.kind && c.kind !== 'crew' ? [c.owner, ...(c.mods ?? []), ...shown] : shown
+    const people = ordered.filter((m, i, all) => all.indexOf(m) === i && !blocked(m, viewer ?? '')).slice(0, FEED.community.shown)
+    return { id: c.id, name: c.name, colour: c.colour, about: c.about, at: c.at, owner: person(db, f, c.owner, viewer),
+      members: people.map((m) => person(db, f, m, viewer)),
+      size: c.members.length, cap: sizeOf(c.kind), mine, owned: viewer === c.owner, mod, kind: c.kind ?? 'crew', kindLabel: COMMUNITY_KINDS.find(([k]) => k === (c.kind ?? 'crew'))?.[1] ?? 'A crew of friends',
+      ...(c.place ? { place: c.place } : {}), open: c.open === 1, mods: (c.mods ?? []).map((m) => person(db, f, m, viewer)), ...(c.cover ? { cover: c.cover } : {}),
+      ...(world ? { world } : {}), ...(mine || c.open ? { code: c.code } : {}) }
   }
   function eventView(db: Db, f: FeedCollection, e: EventRecord, viewer: string | null): EventView {
     const me = viewer && e.going.includes(viewer) ? 'going' : viewer && e.maybe.includes(viewer) ? 'maybe' : null
@@ -528,36 +545,50 @@ function buildService(ctx: RouteContext) {
     if ((a.crews ?? []).length >= FEED.crew.perPlayer) return no('too_many', `You are in ${FEED.crew.perPlayer} crews, the most you can be in.`)
     if (d.crews >= FEED.crew.createPerDay) return no('daily_limit', 'You have made enough crews today.')
     const colour = colourOk(body.colour) ? body.colour : 'gold'
-    const crew: CrewRecord = { id: newId(f, 'c'), name, colour, about, owner: id, members: [id], code: randomCode((c) => Object.hasOwn(f.codes, c)), at: now() }
+    const kind = isCommunityKind(body.kind) ? body.kind : 'crew'
+    if (kind !== 'crew' && !adult(db, id) && !aiOf(db, id)) return no('adults_only', 'Starting a community is for players confirmed as 18 or older. You can start a crew of friends.')
+    // A real place from the catalogue (bringing in a city or a state the game knows), or one the founder imagined.
+    let place: CrewRecord['place'] | undefined
+    const real = cityCatalogueEntry(body.city)
+    if (real) place = { city: real.id, state: real.state.name, ...(real.countryName ? { country: real.countryName } : {}), real: 1 }
+    else if (typeof body.state === 'string') { const st = cityCatalogue().find((x) => x.state.id === body.state); if (st) place = { state: st.state.name, ...(st.countryName ? { country: st.countryName } : {}), real: 1 } }
+    if (!place && typeof body.placeName === 'string') { const pn = cleanLine(body.placeName, 40); if (pn) { const bad = screened(pn, 'The place'); if (bad) return bad; place = { name: pn } } }
+    let cover: string | undefined
+    if (typeof body.cover === 'string' && body.cover) { const m = (a.media ?? []).find((x) => x.hash === body.cover && x.use === 'post' && x.type !== 'webm' && x.type !== 'mp4'); if (m) { cover = m.hash; a.media = (a.media ?? []).filter((x) => x !== m) } }
+    const crew: CrewRecord = { id: newId(f, 'c'), name, colour, about, owner: id, members: [id], code: randomCode((c) => Object.hasOwn(f.codes, c)), at: now(), ...(kind !== 'crew' ? { kind } : {}), ...(place ? { place } : {}), ...(body.open === true && kind !== 'crew' ? { open: 1 as const } : {}), ...(cover ? { cover } : {}) }
     f.crews[crew.id] = crew; f.codes[crew.code] = { k: 'crew', id: crew.id }
     ;(a.crews ??= []).push(crew.id); d.crews += 1
+    if (kind !== 'crew') { const home = place?.city ?? lifePlace(session).city, lists = (f.cities[home] ??= { posts: [], events: [], gigs: [] }); const list = (lists.communities ??= []); list.push(crew.id); if (list.length > 500) list.splice(0, list.length - 500) }
     return { ok: true, crew: crewView(db, f, crew, id) }
   }
   function joinCrew(db: Db, session: SessionRecord, body: Record<string, unknown>): { ok: true; crew: CrewView; push: Push } | Refused {
-    const id = session.publicId, f = feedOf(ctx, db), c = cleanCode(body.code), hit = c ? f.codes[c] : undefined, crew = hit?.k === 'crew' ? f.crews[hit.id] : undefined
-    if (!crew || crew.banned) return no('unknown_code', 'That crew link was not found.')
+    const id = session.publicId, f = feedOf(ctx, db), c = cleanCode(body.code), hit = c ? f.codes[c] : undefined
+    const byId = typeof body.id === 'string' ? f.crews[body.id] : undefined
+    const crew = hit?.k === 'crew' ? f.crews[hit.id] : byId?.open ? byId : undefined
+    if (!crew || crew.banned) return no('unknown_code', 'That link was not found.')
     if (crew.members.includes(id)) return { ok: true, crew: crewView(db, f, crew, id), push: [] }
     if (crew.kicked?.[id] && now() - crew.kicked[id]! < 7 * 86400000) return no('not_allowed', 'You were asked to leave this crew. You can come back after a week.')
     if (crew.members.some((m) => blocked(m, id))) return no('not_allowed', 'You cannot join this crew.')
-    if (crew.members.length >= FEED.crew.size) return no('crew_full', `This crew has ${FEED.crew.size} people, the most it can hold.`)
+    if (crew.members.length >= sizeOf(crew.kind)) return no('crew_full', `It has ${sizeOf(crew.kind)} members, the most it can hold.`)
     const a = author(f, db, id)
     if ((a.crews ?? []).length >= FEED.crew.perPlayer) return no('too_many', `You are in ${FEED.crew.perPlayer} crews, the most you can be in.`)
     crew.members.push(id); (a.crews ??= []).push(crew.id)
     const push: Push = []
-    for (const m of crew.members) if (m !== id) tell(db, f, m, { kind: 'crew', text: `${nameOf(db, f, id)} joined ${crew.name}`, from: person(db, f, id, m) }, push)
+    for (const m of crew.kind && crew.kind !== 'crew' ? [crew.owner, ...(crew.mods ?? [])] : crew.members) if (m !== id) tell(db, f, m, { kind: 'crew', text: `${nameOf(db, f, id)} joined ${crew.name}`, from: person(db, f, id, m) }, push)
     return { ok: true, crew: crewView(db, f, crew, id), push }
   }
   function leaveCrew(db: Db, session: SessionRecord, body: Record<string, unknown>): { ok: true } | Refused {
     const id = session.publicId, f = peekFeed(db), crew = f && typeof body.id === 'string' ? f.crews[body.id] : undefined
     const target = typeof body.member === 'string' ? body.member : id
     if (!f || !crew || !crew.members.includes(target)) return no('unknown_crew', 'That crew was not found.')
-    if (target !== id && crew.owner !== id) return no('not_owner', 'Only the crew\'s founder can ask someone to leave.')
+    if (target !== id && crew.owner !== id && !(crew.mods?.includes(id) && target !== crew.owner && !crew.mods.includes(target))) return no('not_owner', 'Only the founder or a moderator can ask someone to leave.')
     removeFromCrew(f, crew, target)
     if (target !== id) (crew.kicked ??= {})[target] = now()
     return { ok: true }
   }
   function removeFromCrew(f: FeedCollection, crew: CrewRecord, id: string): void {
     crew.members = crew.members.filter((m) => m !== id)
+    if (crew.mods) crew.mods = crew.mods.filter((m) => m !== id)
     const a = f.authors[id]; if (a?.crews) a.crews = a.crews.filter((c) => c !== crew.id)
     if (!crew.members.length) { delete f.codes[crew.code]; delete f.crews[crew.id]; return }
     if (crew.owner === id) crew.owner = crew.members[0]!
@@ -565,6 +596,35 @@ function buildService(ctx: RouteContext) {
   function crew(db: Db, viewer: string | null, idValue: unknown): { ok: true; crew: CrewView } | Refused {
     const f = peekFeed(db), c = f && typeof idValue === 'string' ? f.crews[idValue] : undefined
     return f && c ? { ok: true, crew: crewView(db, f, c, viewer) } : no('unknown_crew', 'That crew was not found.')
+  }
+
+  /** Open communities of a city (where a community's real place is, or its founder lives), newest first; `kind` narrows them. */
+  function discover(db: Db, viewer: string | null, city: string, kind: string | null): { ok: true; communities: CrewView[] } {
+    const f = peekFeed(db)
+    if (!f) return { ok: true, communities: [] }
+    const list = (f.cities[city]?.communities ?? []).slice().reverse().map((k) => f.crews[k]).filter((c): c is CrewRecord => Boolean(c) && !c!.banned && c!.open === 1 && (!kind || c!.kind === kind) && !blocked(viewer ?? '', c!.owner))
+    return { ok: true, communities: list.slice(0, FEED.community.directory).map((c) => crewView(db, f, c, viewer)) }
+  }
+  /** The founder names or removes a moderator (a member). */
+  function setMod(db: Db, session: SessionRecord, body: Record<string, unknown>): { ok: true; crew: CrewView } | Refused {
+    const id = session.publicId, f = peekFeed(db), crew = f && typeof body.id === 'string' ? f.crews[body.id] : undefined, member = typeof body.member === 'string' ? body.member : ''
+    if (!f || !crew || crew.owner !== id) return no('not_owner', 'Only the founder names moderators.')
+    if (!crew.members.includes(member) || member === id) return no('not_member', 'Choose a member.')
+    const mods = (crew.mods ?? []).filter((m) => m !== member)
+    if (body.on !== false) { if (mods.length >= FEED.community.mods) return no('too_many', `A community has at most ${FEED.community.mods} moderators.`); mods.push(member) }
+    crew.mods = mods
+    return { ok: true, crew: crewView(db, f, crew, id) }
+  }
+  /** Give the community its world: a group chat its founder made (and owns), whose room is the 3D world. Its link lets members in. */
+  function attachWorld(db: Db, session: SessionRecord, body: Record<string, unknown>): { ok: true; crew: CrewView } | Refused {
+    const id = session.publicId, f = peekFeed(db), crew = f && typeof body.id === 'string' ? f.crews[body.id] : undefined
+    if (!f || !crew || crew.owner !== id) return no('not_owner', 'Only the founder gives the community its world.')
+    const conv = typeof body.conv === 'string' ? body.conv : ''
+    const group = (db as unknown as { social?: { convs?: Record<string, { kind?: string; owner?: string }> } }).social?.convs?.[conv]
+    if (!/^g\.\d{1,15}$/.test(conv) || !group || group.kind !== 'group' || group.owner !== id) return no('not_your_group', 'Choose a group chat you created.')
+    if (Object.values(f.crews).some((c) => c !== crew && c.conv === conv)) return no('group_taken', 'That group already belongs to another community.')
+    crew.conv = conv
+    return { ok: true, crew: crewView(db, f, crew, id) }
   }
 
   // ---- events ---------------------------------------------------------------------------------------------------------------------
@@ -896,7 +956,7 @@ function buildService(ctx: RouteContext) {
 
   return {
     publicMedia, mediaOn, takeTrash, read, thread, me, seen, profile, code, resolve, editProfile, setHandle, createPost, removePost, react, reply, removeReply,
-    noteMedia, mediaAllowed, portraitOf, snapshot, decide, undo, decisions, purge, follow, suggestions, createCrew, joinCrew, leaveCrew, crew, createEvent, rsvp, cancelEvent, events, event, remind,
+    noteMedia, mediaAllowed, portraitOf, snapshot, decide, undo, decisions, purge, follow, suggestions, createCrew, joinCrew, leaveCrew, crew, discover, setMod, attachWorld, createEvent, rsvp, cancelEvent, events, event, remind,
     createGig, gigAct, gigs, vouch, noteMoment, dropDraft, report, queue, moderate, profileView, crewView, eventView,
     peek: peekFeed,
   }
@@ -934,6 +994,7 @@ export function forgetFeedPlayers(db: Db, ids: ReadonlySet<string>): void {
   }
   for (const c of Object.values(f.crews)) {
     c.members = strip(c.members)
+    if (c.mods) c.mods = strip(c.mods)
     if (c.kicked) for (const id of ids) delete c.kicked[id]
     if (!c.members.length) { delete f.codes[c.code]; delete f.crews[c.id] } else if (ids.has(c.owner)) c.owner = c.members[0]!
   }

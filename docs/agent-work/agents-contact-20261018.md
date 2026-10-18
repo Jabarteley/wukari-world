@@ -7,8 +7,8 @@
 - **Model / effort:** claude-opus-5-5 / default
 - **Thread:** local T3 Code thread, 2026-10-18
 - **UTC updated:** see checkpoint history
-- **Status:** `verified-local`
-- **Work state:** `implementation`
+- **Status:** `complete`
+- **Work state:** `deployment`
 
 ## Goal and boundaries
 
@@ -46,12 +46,12 @@
 
 ### Immediate resume steps
 
-1. Read this record; continue on branch `claude/agents-contact`.
+1. Nothing to resume. Possible next steps: clickable venue props and shop goods (needs ids on baked meshes), the AI agents in the People list of a venue.
 
 ## Release state
 
 - **Local implementation:** `verified-local`
-- **Deployment:** `not-requested`
+- **Deployment:** `verified` — live `547ebe3ed` (release run 39134735925, with the Spaces 3D R2 merge); continuity ok for both identities; smoke PASS, 295 checks.
 - **Release gate:** typecheck, build, tests, Worker smoke checks (server changed), short browser check.
 - **References:** `docs/RESIDENTS.md`, `docs/CALLS.md`, `server/house/call-routes.ts`
 
@@ -61,3 +61,4 @@
 |---|---|---|---|---|
 | 2026-10-18T20:30:00Z | active | Record created; design done | this file | implement |
 | 2026-10-18T22:40:00Z | verified-local | Implemented and checked (see Done) | tests above, browser pass | merge, release |
+| 2026-10-18T14:45:00Z | complete | Live as 547ebe3ed | health, continuity, smoke PASS 295 | none |

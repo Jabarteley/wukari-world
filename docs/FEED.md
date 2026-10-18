@@ -67,6 +67,20 @@ When the gist records a public line that names someone (an election, a shop, a w
 posted for it, marked, at most three a day. Once a Lagos week, a person who posted, went to an event or finished a gig gets a recap draft
 ("My week on Allworld: 5 posts, 2 events (…), 1 gig done. Mostly around Yaba Market.").
 
+## Communities: your own city, state, estate, campus or club
+
+The Communities app (it was Crews) starts any of: a crew of friends (20), or a city, a state, a neighbourhood or estate, a campus, a club
+or another community (up to 1,000 members, adults to found one). A community is based on a real city or state of the game's world
+catalogue (bringing in any of its places, with its state and country), on a place someone imagines, or on no place. It is open (listed in
+Discover for its city, joined in one tap) or by link only (`/c/<code>`, previewed in WhatsApp). The founder names up to 11 moderators,
+who remove members and help build.
+
+**Its 3D world and group chat.** One tap makes a group chat the founder owns, switches its room's link on and gives it to the community
+(`POST /api/feed/crews/world`, which checks the group is the founder's own). That room is the community's world: the group's members
+(the founder and the friends they add, at most 12) build it with AI Spaces (docs/SPACES.md and SPACES-3D.md): describe it, import a
+Space Plan, place their own models, give it a script and games. Every other member walks in through the room's link as a visitor, talks
+and joins voice there; the link is shown only to members. In Lite the world is its room panel; "Step into the 3D world" walks it.
+
 ## Crews, plans and gigs
 
 - **Crews**: up to 20, a name, a colour, a wall only members read, one join link `/c/<code>` (a page with Open Graph tags; the game opens

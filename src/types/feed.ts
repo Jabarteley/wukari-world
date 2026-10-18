@@ -67,9 +67,14 @@ export interface WorkView {
 }
 export interface CrewView {
   id: string; name: string; colour: string; about: string; at: number
-  owner: FeedPerson; members: FeedPerson[]; size: number
-  mine: boolean; owned: boolean
-  /** Only for members: the join link's code. */
+  owner: FeedPerson; members: FeedPerson[]; size: number; cap: number
+  mine: boolean; owned: boolean; mod: boolean
+  kind: import('../feed/model.ts').CommunityKind; kindLabel: string
+  place?: { city?: string; state?: string; country?: string; name?: string; real?: 1 }
+  open: boolean; mods: FeedPerson[]; cover?: string
+  /** The 3D world: its group's room; `link` (members only) is the room's address /r/… */
+  world?: { room: string; builders: number; link?: string }
+  /** For members (and anyone, when the community is open): the join link's code. */
   code?: string
 }
 export interface EventView {
@@ -126,8 +131,11 @@ export interface FeedHttpRoutes {
   'POST /api/feed/follow': { body: { id: string; on?: boolean }; response: Done<{ profile: ProfileView }>; errors: E }
   'GET /api/feed/suggestions': { response: Ok<{ ok: true; people: Suggestion[] }>; errors: E }
   'POST /api/feed/vouch': { body: { id: string; skill: string; on?: boolean }; response: Done<{ profile: ProfileView }>; errors: E }
-  'POST /api/feed/crews': { body: { name: string; colour?: string; about?: string }; response: Done<{ crew: CrewView }>; errors: E }
-  'POST /api/feed/crews/join': { body: { code: string }; response: Done<{ crew: CrewView }>; errors: E }
+  'GET /api/feed/communities': { query: { city?: string; kind?: string }; response: Ok<{ ok: true; communities: CrewView[] }>; errors: E }
+  'POST /api/feed/crews/mod': { body: { id: string; member: string; on?: boolean }; response: Done<{ crew: CrewView }>; errors: E }
+  'POST /api/feed/crews/world': { body: { id: string; conv: string }; response: Done<{ crew: CrewView }>; errors: E }
+  'POST /api/feed/crews': { body: { name: string; colour?: string; about?: string; kind?: string; city?: string; state?: string; placeName?: string; open?: boolean; cover?: string }; response: Done<{ crew: CrewView }>; errors: E }
+  'POST /api/feed/crews/join': { body: { code?: string; id?: string }; response: Done<{ crew: CrewView }>; errors: E }
   'POST /api/feed/crews/leave': { body: { id: string; member?: string }; response: Done; errors: E }
   'GET /api/feed/crews/one': { query: { id: string }; response: Done<{ crew: CrewView }>; errors: E }
   'GET /api/feed/events': { query: { city?: string }; response: Ok<{ ok: true; events: EventView[]; mine: EventView[] }>; errors: E }

@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: Kano: a fresh Nassarawa guest chooses Nassarawa, works and eats locally
+ok 1 - Kano: a fresh Nassarawa guest chooses Nassarawa, works and eats locally
+  ---
+  duration_ms: 73.910958
+  type: 'test'
+  ...
+# Subtest: Lagos–Kano flights preserve the travelling character and both homes
+ok 2 - Lagos–Kano flights preserve the travelling character and both homes
+  ---
+  duration_ms: 28.206333
+  type: 'test'
+  ...
+# Subtest: Kano keeps the planned train closed, opens its roads and flights, and offers neighbourhood keke without okada
+ok 3 - Kano keeps the planned train closed, opens its roads and flights, and offers neighbourhood keke without okada
+  ---
+  duration_ms: 7.690208
+  type: 'test'
+  ...
+# Subtest: nairobi: flight from Lagos, a meal at the real café, saved reload and the homeward flight keep the original home
+ok 4 - nairobi: flight from Lagos, a meal at the real café, saved reload and the homeward flight keep the original home
+  ---
+  duration_ms: 58.698625
+  type: 'test'
+  ...
+# Subtest: fresh stand-ins reproduce full empty slices with independent containers
+ok 5 - fresh stand-ins reproduce full empty slices with independent containers
+  ---
+  duration_ms: 35.086875
+  type: 'test'
+  ...
+# Subtest: only exact empty progression data can bypass the authored sanitizer
+ok 6 - only exact empty progression data can bypass the authored sanitizer
+  ---
+  duration_ms: 0.737125
+  type: 'test'
+  ...
+# Subtest: disabled full and browser Story projections agree without changing saved receipts
+ok 7 - disabled full and browser Story projections agree without changing saved receipts
+  ---
+  duration_ms: 18.869875
+  type: 'test'
+  ...
+# Subtest: the ladder is ordered and a completed collection cannot skip earlier chapters
+ok 8 - the ladder is ordered and a completed collection cannot skip earlier chapters
+  ---
+  duration_ms: 0.702875
+  type: 'test'
+  ...
+# Subtest: chapter four needs the collection and either Roots help or eight authored mission occurrences
+ok 9 - chapter four needs the collection and either Roots help or eight authored mission occurrences
+  ---
+  duration_ms: 0.097375
+  type: 'test'
+  ...
+# Subtest: a canonical collection completed before tracking began immediately grandfathers a veteran city
+ok 10 - a canonical collection completed before tracking began immediately grandfathers a veteran city
+  ---
+  duration_ms: 0.429792
+  type: 'test'
+  ...
+# Subtest: free roam returns before city and venue gates inspect lazy world data
+ok 11 - free roam returns before city and venue gates inspect lazy world data
+  ---
+  duration_ms: 0.068875
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 519.7015

@@ -1,0 +1,17 @@
+{
+  "review": "Observer and proxy read before execution; external observer correction reviewed before one reload.",
+  "observer": "Capture-phase trusted event records source and target before app handler; observes pressed states and matching successful announcement, then2rAF;3s bounded timeout and overlapping-input failure; no application state read/write.",
+  "proxy": "Fixed127.0.0.1:5351upstream; forwards cookies/HTTP/WebSocket; rewrites exact measurementOrigin/Referer; external same-origin observer obeys unchanged script-src. MeasurementHTML maps exactws/wss5351 endpoint to5353. No upstream source or CSP changed.",
+  "caveats": [
+    "Proxy origin separate localStorage",
+    "Observer adds overhead",
+    "2rAF not actual paint proof",
+    "Hardcoded revision label checked against actual9d1b405module",
+    "Original5351pair315/293retained"
+  ],
+  "coldDiagnostic": {
+    "classification": "Preexisting nonfatal cold-snapshot diagnostic; no new functional failure demonstrated in this unit.",
+    "evidence": "Observed error-level console stack timestamp2026-10-18T05:04:47.244Z. Current lifeCities.ts addQualified calls add(value) before extracting prefix; same function body inspected at9eab3816. registry.ts wholeIndexFor in lenient browser mode calls console.error(error) once and returns false; subsequent add(prefix) continues. Existing actor loaded connected/Saved and completed the ordered pair. This does not claim the diagnostic is fixed.",
+    "fullLog": "current-8a941302-instrumented-cold-errors.json"
+  }
+}

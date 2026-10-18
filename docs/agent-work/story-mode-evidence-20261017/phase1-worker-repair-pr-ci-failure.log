@@ -1,0 +1,357 @@
+build-and-smoke-fast	Run npm run test:smoke	﻿2026-10-18T05:21:45.1629011Z ##[group]Run npm run test:smoke
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:45.1629327Z ^[[36;1mnpm run test:smoke^[[0m
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:45.1665221Z shell: /usr/bin/bash -e {0}
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:45.1665491Z env:
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:45.1665713Z   NODE_OPTIONS: --max-old-space-size=8192
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:45.1666003Z ##[endgroup]
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:45.2623118Z
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:45.2623792Z > joinallworld@0.1.0 test:smoke
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:45.2624647Z > node --experimental-strip-types --test --test-concurrency=1 src/app/entry.test.ts server/release.test.ts src/types/protocol.test.ts
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:45.2625150Z
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:45.4494420Z ✖ JavaScript is limited to the service worker, release shims and exact reviewed tooling (34.57707ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:45.4497365Z ✔ the two release shims only point at the TypeScript they stand for (0.840549ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:45.4500325Z ✔ every file in public/ is an asset the release package admits (no dot-file, no map, no manifest, no xml) (19.482352ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:45.4502720Z ✔ the Worker config is the one the release package fixes, and the Worker exports its Durable Object (0.857245ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:45.4505226Z ✔ the default build config emits no source map (maps are opt-in, SOURCEMAPS=1, into dist-maps/) (0.318369ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6908095Z ✔ the first download paints without the game shell, rules engine or city content; the startup closure reads them through the browser system set (1.407841ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6910659Z ✔ the shared shell does not statically import a city venue or regular catalogue (0.35856ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6912847Z ✔ the shared shell does not statically import the world city network (catalogue rows, land components, routes) (0.627364ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6921887Z ✔ each generated catalogue row has one checked-in Node and Worker loader (1.705048ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6923635Z ✔ Three.js, maps, scene hosts, campus world, models and telemetry SDKs remain separate from both entry and shell (3.08564ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6930771Z ✔ the eager JavaScript does not grow and contains only the loading screen and Vue (6.436078ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6933031Z ℹ assets/vue-8608fe1.js 81273 raw 30920 gzip; assets/preload-helper-86ad5cf.js 1260 raw 698 gzip; assets/app-9d1b405.js 8035 raw 3644 gzip; total 90568 raw 35262 gzip
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6935486Z ✔ automatic game startup, including one selected city, stays within the original first-load budget (5075.371564ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6936931Z ℹ lagos automatic startup: 613919 raw 222616 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6937922Z ℹ ibadan automatic startup: 584489 raw 214539 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6938914Z ℹ abuja automatic startup: 597527 raw 215951 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6939989Z ℹ port-harcourt automatic startup: 587252 raw 215584 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6942025Z ℹ abeokuta automatic startup: 573839 raw 211626 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6943035Z ℹ ota automatic startup: 572456 raw 210982 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6944063Z ℹ ijebu-ode automatic startup: 573131 raw 211250 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6945098Z ℹ sagamu automatic startup: 574855 raw 211970 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6946048Z ℹ kano automatic startup: 598731 raw 216085 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6947018Z ℹ enugu automatic startup: 588340 raw 215954 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6948042Z ℹ benin-city automatic startup: 589318 raw 216000 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6949073Z ℹ calabar automatic startup: 591428 raw 216938 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6950076Z ℹ uyo automatic startup: 586197 raw 214991 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6951060Z ℹ umuahia automatic startup: 592758 raw 216084 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6951957Z ℹ owerri automatic startup: 594275 raw 216340 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6952799Z ℹ yenagoa automatic startup: 594721 raw 216255 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6982295Z ℹ awka automatic startup: 591832 raw 216182 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6983006Z ℹ kaduna automatic startup: 588975 raw 215522 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6983900Z ℹ maiduguri automatic startup: 589316 raw 215405 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6985195Z ℹ gombe automatic startup: 588734 raw 215504 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6985959Z ℹ yola automatic startup: 588785 raw 215484 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6986711Z ℹ ilorin automatic startup: 587704 raw 215444 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6987466Z ℹ minna automatic startup: 585034 raw 215007 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6988232Z ℹ osogbo automatic startup: 586690 raw 215111 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6989003Z ℹ damaturu automatic startup: 584435 raw 214499 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6989793Z ℹ jalingo automatic startup: 584716 raw 214459 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6990428Z ℹ akure automatic startup: 586709 raw 215062 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6991377Z ℹ ado-ekiti automatic startup: 584581 raw 214647 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6992170Z ℹ asaba automatic startup: 584752 raw 215002 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6992731Z ℹ lokoja automatic startup: 583887 raw 214475 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6993163Z ℹ jos automatic startup: 591482 raw 216330 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6993613Z ℹ lafia automatic startup: 583883 raw 214421 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6994225Z ℹ katsina automatic startup: 592757 raw 215995 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6994676Z ℹ sokoto automatic startup: 590857 raw 215919 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6995154Z ℹ birnin-kebbi automatic startup: 589526 raw 215685 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6995718Z ℹ gusau automatic startup: 586939 raw 214931 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6996145Z ℹ dutse automatic startup: 588150 raw 215452 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6996665Z ℹ bauchi automatic startup: 593262 raw 216107 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6997356Z ℹ makurdi automatic startup: 585722 raw 214795 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6997880Z ℹ abakaliki automatic startup: 585404 raw 214973 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6998556Z ℹ accra automatic startup: 585182 raw 215797 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.6999346Z ℹ algiers automatic startup: 585487 raw 215944 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7000123Z ℹ lome automatic startup: 584890 raw 215781 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7000923Z ℹ nairobi automatic startup: 585313 raw 215789 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7001928Z ℹ yaounde automatic startup: 585059 raw 215803 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7002750Z ℹ abidjan automatic startup: 585210 raw 215901 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7003608Z ℹ addis-ababa automatic startup: 584986 raw 215669 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7004494Z ℹ cape-town automatic startup: 585490 raw 215912 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7005310Z ℹ cotonou automatic startup: 585284 raw 215941 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7006091Z ℹ dakar automatic startup: 585408 raw 215957 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7006866Z ℹ cairo automatic startup: 585934 raw 216027 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7007636Z ℹ rabat automatic startup: 585589 raw 215936 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7008409Z ℹ kigali automatic startup: 585967 raw 215958 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7009212Z ℹ kampala automatic startup: 584720 raw 215730 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7010012Z ℹ lusaka automatic startup: 585444 raw 215833 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7010862Z ℹ gaborone automatic startup: 584341 raw 215459 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7030697Z ℹ harare automatic startup: 584672 raw 215587 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7031422Z ℹ luanda automatic startup: 584810 raw 215686 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7032241Z ℹ maputo automatic startup: 584801 raw 215585 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7032987Z ℹ windhoek automatic startup: 585489 raw 215743 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7033534Z ℹ bamako automatic startup: 584410 raw 215560 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7033992Z ℹ lilongwe automatic startup: 585259 raw 215536 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7034448Z ℹ maseru automatic startup: 584708 raw 215584 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7034922Z ℹ ouagadougou automatic startup: 586284 raw 215955 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7035499Z ℹ tripoli automatic startup: 585062 raw 215632 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7036277Z ℹ brazzaville automatic startup: 586512 raw 215732 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7037131Z ℹ dar-es-salaam automatic startup: 584912 raw 215638 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7038107Z ℹ libreville automatic startup: 585419 raw 215823 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7038899Z ℹ mbabane automatic startup: 584964 raw 215533 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7039454Z ℹ tunis automatic startup: 585956 raw 215592 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7040073Z ℹ antananarivo automatic startup: 585799 raw 215567 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7040862Z ℹ bujumbura automatic startup: 585411 raw 215494 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7041849Z ℹ ndjamena automatic startup: 585401 raw 215444 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7042719Z ℹ kinshasa automatic startup: 586001 raw 215581 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7043519Z ℹ apia automatic startup: 585372 raw 215355 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7044331Z ℹ bogota automatic startup: 586082 raw 215704 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7045194Z ℹ buenos-aires automatic startup: 586322 raw 215694 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7046039Z ℹ dubai automatic startup: 585622 raw 215501 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7046913Z ℹ mexico-city automatic startup: 586233 raw 215660 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7048047Z ℹ santiago automatic startup: 586404 raw 215759 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7048895Z ℹ suva automatic startup: 585002 raw 215326 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7049709Z ℹ lima automatic startup: 585935 raw 215572 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7050617Z ℹ auckland automatic startup: 585816 raw 215562 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7052524Z ℹ dublin automatic startup: 585515 raw 215456 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7053410Z ℹ rome automatic startup: 585720 raw 215564 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7054410Z ℹ wellington automatic startup: 585892 raw 215527 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7055241Z ℹ asmara automatic startup: 585210 raw 215292 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7056078Z ℹ bangui automatic startup: 584712 raw 215250 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7056872Z ℹ bissau automatic startup: 585528 raw 215435 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7057751Z ℹ conakry automatic startup: 585421 raw 215443 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7058638Z ℹ djibouti automatic startup: 585291 raw 215375 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7059526Z ℹ khartoum automatic startup: 585462 raw 215509 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7060357Z ℹ malabo automatic startup: 585139 raw 215366 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7061353Z ℹ mogadishu automatic startup: 585527 raw 215447 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7062219Z ℹ monrovia automatic startup: 585414 raw 215392 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7063051Z ℹ moroni automatic startup: 585373 raw 215389 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7063881Z ℹ niamey automatic startup: 585453 raw 215466 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7064728Z ℹ nouakchott automatic startup: 585211 raw 215387 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7065593Z ℹ port-louis automatic startup: 585695 raw 215491 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7066456Z ℹ praia automatic startup: 585439 raw 215441 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7067309Z ℹ sao-tome automatic startup: 585103 raw 215390 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7068150Z ℹ victoria automatic startup: 585376 raw 215436 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7069018Z ℹ amman automatic startup: 585286 raw 215454 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7069873Z ℹ ashgabat automatic startup: 585745 raw 215452 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7070721Z ℹ asuncion automatic startup: 586035 raw 215610 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7071708Z ℹ baku automatic startup: 585539 raw 215550 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7072521Z ℹ beirut automatic startup: 585483 raw 215486 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7073368Z ℹ belgrade automatic startup: 586240 raw 215737 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7074225Z ℹ bishkek automatic startup: 585773 raw 215648 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7075103Z ℹ bratislava automatic startup: 585895 raw 215620 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7075934Z ℹ bsb automatic startup: 585857 raw 215521 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7076774Z ℹ bucharest automatic startup: 585878 raw 215604 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7077654Z ℹ budapest automatic startup: 585959 raw 215662 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7078743Z ℹ caracas automatic startup: 586071 raw 215647 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7079607Z ℹ chisinau automatic startup: 585944 raw 215599 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7080453Z ℹ colombo automatic startup: 585817 raw 215577 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7081367Z ℹ dili automatic startup: 585251 raw 215392 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7082192Z ℹ doha automatic startup: 585675 raw 215500 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7083021Z ℹ dushanbe automatic startup: 585565 raw 215512 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7083885Z ℹ georgetown automatic startup: 585399 raw 215365 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7084826Z ℹ guatemala-city automatic startup: 585934 raw 215517 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7085710Z ℹ havana automatic startup: 585873 raw 215578 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7086532Z ℹ honiara automatic startup: 584887 raw 215216 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7087396Z ℹ kathmandu automatic startup: 585632 raw 215519 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7088246Z ℹ koror automatic startup: 584798 raw 215236 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7089137Z ℹ kuala-lumpur automatic startup: 586002 raw 215609 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7090260Z ℹ kuwait-city automatic startup: 585447 raw 215467 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7091112Z ℹ la-paz automatic startup: 585835 raw 215580 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7092096Z ℹ larnaca automatic startup: 585532 raw 215471 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7092955Z ℹ ljubljana automatic startup: 585713 raw 215504 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7093855Z ℹ luxembourg automatic startup: 585650 raw 215447 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7094705Z ℹ majuro automatic startup: 583915 raw 215111 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7095537Z ℹ managua automatic startup: 586295 raw 215712 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7096497Z ℹ manama automatic startup: 585661 raw 215507 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7142354Z ℹ minsk automatic startup: 586479 raw 215845 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7156508Z ℹ montevideo automatic startup: 586085 raw 215636 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7157547Z ℹ muscat automatic startup: 585466 raw 215469 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7158575Z ℹ nukualofa automatic startup: 585326 raw 215356 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7159631Z ℹ phnom-penh automatic startup: 585699 raw 215397 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7160622Z ℹ podgorica automatic startup: 585597 raw 215461 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7161795Z ℹ port-au-prince automatic startup: 585821 raw 215523 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7162774Z ℹ quito automatic startup: 585495 raw 215450 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7163623Z ℹ reykjavik automatic startup: 585475 raw 215502 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7164481Z ℹ riga automatic startup: 585498 raw 215483 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7165341Z ℹ riyadh automatic startup: 585499 raw 215364 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7166204Z ℹ san-jose automatic startup: 585965 raw 215546 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7167077Z ℹ san-salvador automatic startup: 586261 raw 215655 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7168060Z ℹ santo-domingo automatic startup: 586399 raw 215654 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7168996Z ℹ sarajevo automatic startup: 585870 raw 215555 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7169904Z ℹ skopje automatic startup: 585755 raw 215626 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7170752Z ℹ sofia automatic startup: 586100 raw 215718 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7171679Z ℹ tallinn automatic startup: 585637 raw 215509 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7172507Z ℹ tarawa automatic startup: 585205 raw 215332 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7173332Z ℹ tashkent automatic startup: 585957 raw 215615 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7174196Z ℹ tbilisi automatic startup: 585948 raw 215521 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7175059Z ℹ tegucigalpa automatic startup: 585991 raw 215537 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7175812Z ℹ tirana automatic startup: 585617 raw 215499 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7176684Z ℹ ulaanbaatar automatic startup: 586091 raw 215664 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7177531Z ℹ valletta automatic startup: 585741 raw 215505 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7178325Z ℹ vientiane automatic startup: 585408 raw 215379 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7179398Z ℹ vilnius automatic startup: 586015 raw 215549 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7180177Z ℹ yerevan automatic startup: 585644 raw 215456 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7180938Z ℹ zagreb automatic startup: 585699 raw 215548 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7181864Z ℹ freetown automatic startup: 585223 raw 215347 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7182647Z ℹ juba automatic startup: 584834 raw 215258 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7183462Z ℹ serekunda automatic startup: 585615 raw 215437 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7184316Z ℹ almaty automatic startup: 585782 raw 215598 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7185142Z ℹ bangkok automatic startup: 585750 raw 215536 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7185911Z ℹ belize-city automatic startup: 585656 raw 215416 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7186660Z ℹ copenhagen automatic startup: 585428 raw 215476 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7187372Z ℹ damascus automatic startup: 585772 raw 215509 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7188039Z ℹ dhaka automatic startup: 585908 raw 215571 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7188718Z ℹ kabul automatic startup: 585583 raw 215525 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7189771Z ℹ kingston automatic startup: 585687 raw 215466 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7190518Z ℹ lisbon automatic startup: 585832 raw 215587 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7191430Z ℹ nassau automatic startup: 585567 raw 215443 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7192221Z ℹ panama-city automatic startup: 585900 raw 215544 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7193097Z ℹ paramaribo automatic startup: 585655 raw 215423 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7193957Z ℹ port-vila automatic startup: 585275 raw 215379 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7194783Z ℹ prague automatic startup: 585614 raw 215578 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7195552Z ℹ sanaa automatic startup: 585643 raw 215494 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7196320Z ℹ vienna automatic startup: 585473 raw 215452 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7197113Z ℹ yangon automatic startup: 585559 raw 215467 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7197996Z ℹ andorra-la-vella automatic startup: 585834 raw 215484 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7198872Z ℹ basseterre automatic startup: 585578 raw 215398 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7199700Z ℹ brasilia automatic startup: 585937 raw 215559 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7200520Z ℹ bridgetown automatic startup: 585788 raw 215517 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7201525Z ℹ castries automatic startup: 585422 raw 215408 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7202360Z ℹ delhi automatic startup: 585525 raw 215498 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7203219Z ℹ kingstown automatic startup: 585244 raw 215333 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7204089Z ℹ lahore automatic startup: 585513 raw 215433 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7204967Z ℹ london automatic startup: 585529 raw 215434 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7205851Z ℹ madrid automatic startup: 585967 raw 215512 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7206804Z ℹ port-moresby automatic startup: 585437 raw 215405 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7207826Z ℹ port-of-spain automatic startup: 585667 raw 215459 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7208794Z ℹ roseau automatic startup: 585227 raw 215321 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7209738Z ℹ sao-paulo automatic startup: 586265 raw 215678 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7210718Z ℹ st-georges automatic startup: 585571 raw 215424 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7211642Z ℹ thimphu automatic startup: 585458 raw 215401 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7212388Z ℹ tokyo automatic startup: 585610 raw 215545 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7213148Z ℹ vaduz automatic startup: 585381 raw 215368 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7214077Z ℹ warsaw automatic startup: 585674 raw 215568 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7215041Z ℹ amsterdam automatic startup: 585588 raw 215460 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7216007Z ℹ athens automatic startup: 586230 raw 215778 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7216804Z ℹ baghdad automatic startup: 585892 raw 215550 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7217730Z ℹ berlin automatic startup: 585753 raw 215585 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7218644Z ℹ brussels automatic startup: 585604 raw 215491 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7219862Z ℹ istanbul automatic startup: 585665 raw 215563 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7220839Z ℹ moscow automatic startup: 586570 raw 215859 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7221918Z ℹ pyongyang automatic startup: 585922 raw 215539 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7222861Z ℹ tehran automatic startup: 586020 raw 215626 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7223510Z ℹ zurich automatic startup: 585470 raw 215456 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7224330Z ℹ ho-chi-minh-city automatic startup: 586002 raw 215473 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7225142Z ℹ manila automatic startup: 585792 raw 215546 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7225957Z ℹ new-york automatic startup: 585831 raw 215597 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7226704Z ℹ oslo automatic startup: 585235 raw 215381 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7227503Z ℹ sydney automatic startup: 585581 raw 215468 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7228353Z ℹ tel-aviv-yafo automatic startup: 585660 raw 215570 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7229150Z ℹ kyiv automatic startup: 586248 raw 215817 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7229895Z ℹ male automatic startup: 585325 raw 215394 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7230967Z ℹ palikir automatic startup: 583209 raw 214945 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7231967Z ℹ ramallah automatic startup: 585553 raw 215506 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7232724Z ℹ singapore automatic startup: 585606 raw 215516 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7233527Z ℹ st-johns automatic startup: 585652 raw 215486 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7234354Z ℹ toronto automatic startup: 585713 raw 215513 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7235176Z ℹ yaren automatic startup: 582863 raw 214896 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7235956Z ℹ jakarta automatic startup: 585602 raw 215446 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7236787Z ℹ san-marino automatic startup: 585590 raw 215397 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7237591Z ℹ seoul automatic startup: 585550 raw 215532 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7238352Z ℹ helsinki automatic startup: 585654 raw 215503 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7239148Z ℹ monaco automatic startup: 585653 raw 215413 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7239951Z ℹ stockholm automatic startup: 585375 raw 215430 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7240738Z ℹ paris automatic startup: 585809 raw 215559 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7241713Z ℹ funafuti automatic startup: 582013 raw 214753 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7242558Z ℹ shanghai automatic startup: 585795 raw 215505 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7243472Z ℹ vatican-city automatic startup: 583206 raw 214946 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7244387Z ℹ cockburn-town automatic startup: 582398 raw 214795 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7245241Z ℹ douglas automatic startup: 585177 raw 215351 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7246068Z ℹ garapan automatic startup: 584846 raw 215343 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7246882Z ℹ george-town automatic startup: 584225 raw 215202 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7247633Z ℹ gustavia automatic startup: 584252 raw 215175 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7248420Z ℹ kyrenia automatic startup: 585460 raw 215463 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7249300Z ℹ laayoune automatic startup: 585355 raw 215347 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7250200Z ℹ macau automatic startup: 586407 raw 215867 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7251072Z ℹ mariehamn automatic startup: 585518 raw 215456 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7252072Z ℹ noumea automatic startup: 585312 raw 215423 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7252901Z ℹ pago-pago automatic startup: 583030 raw 214929 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7253740Z ℹ papeete automatic startup: 585296 raw 215409 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7254634Z ℹ philipsburg automatic startup: 585621 raw 215469 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7255507Z ℹ pristina automatic startup: 585541 raw 215515 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7256396Z ℹ st-peter-port automatic startup: 585452 raw 215436 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7257297Z ℹ stanley automatic startup: 582692 raw 214858 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7258152Z ℹ taipei automatic startup: 585730 raw 215653 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7259321Z ℹ the-valley automatic startup: 583558 raw 215097 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7260213Z ℹ torshavn automatic startup: 584943 raw 215334 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7261085Z ℹ willemstad automatic startup: 585494 raw 215514 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7262194Z ℹ alofi automatic startup: 582536 raw 214776 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7263110Z ℹ avarua automatic startup: 584453 raw 215214 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7263949Z ℹ charlotte-amalie automatic startup: 585883 raw 215517 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7264913Z ℹ flying-fish-cove automatic startup: 582573 raw 214739 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7265806Z ℹ hagatna automatic startup: 585529 raw 215422 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7266658Z ℹ hamilton automatic startup: 585749 raw 215491 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7267479Z ℹ hargeisa automatic startup: 585136 raw 215320 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7268300Z ℹ hong-kong automatic startup: 585833 raw 215546 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7269121Z ℹ kingston-nf automatic startup: 583352 raw 214976 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7269994Z ℹ marigot automatic startup: 583823 raw 215150 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7271069Z ℹ nuuk automatic startup: 584088 raw 215116 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7272089Z ℹ oranjestad automatic startup: 585489 raw 215467 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7272926Z ℹ road-town automatic startup: 584505 raw 215248 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7273749Z ℹ san-juan automatic startup: 586000 raw 215553 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7274589Z ℹ brades automatic startup: 583306 raw 214985 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7275424Z ℹ villa-las-estrellas automatic startup: 581214 raw 214539 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7276228Z ℹ jamestown automatic startup: 582882 raw 214924 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7276986Z ℹ mata-utu automatic startup: 583088 raw 215007 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7277708Z ℹ st-helier automatic startup: 585291 raw 215395 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7278500Z ℹ adamstown automatic startup: 580953 raw 214500 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7279215Z ℹ cove automatic startup: 578779 raw 213926 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7279892Z ℹ grytviken automatic startup: 580098 raw 214365 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7280728Z ℹ port-aux-francais automatic startup: 581199 raw 214601 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7281852Z ℹ saint-pierre automatic startup: 584020 raw 215074 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7282708Z ℹ siachen automatic startup: 578781 raw 213917 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7283572Z ℹ west-island automatic startup: 580713 raw 214449 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7284332Z ℹ ashmore automatic startup: 578826 raw 213931 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:50.7285138Z ℹ chagos automatic startup: 579081 raw 214139 gzip bytes
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.0882986Z ✔ every registered route is typed, and every typed route is registered (21.775817ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.1365166Z ✔ every frame type the server accepts or sends is typed (55.197312ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.1402760Z ✔ the Cloudflare Worker runs the shared registries: the same routes and frames, plus what the types say only it does (3.5289ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.2513158Z ✔ only a trusted interactive-teaching host adds the ephemeral display capability to life and action snapshots (110.273656ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6092084Z ✔ core, social, civic and support answers carry exactly the typed keys (358.89945ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6372712Z ℹ tests 17
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6373171Z ℹ suites 0
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6373523Z ℹ pass 16
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6373786Z ℹ fail 1
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6373999Z ℹ cancelled 0
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6374228Z ℹ skipped 0
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6374442Z ℹ todo 0
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6374695Z ℹ duration_ms 7341.52376
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6403943Z
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6404696Z ✖ failing tests:
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6404958Z
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6405156Z test at server/release.test.ts:25:1
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6405854Z ✖ JavaScript is limited to the service worker, release shims and exact reviewed tooling (34.57707ms)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6406480Z   AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6407269Z   + actual - expected
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6407522Z   ... Skipped lines
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6407741Z
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6407926Z     [
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6408159Z       'deploy/cloudflare-worker.js',
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6408464Z       'deploy/cloudflare.test.mjs',
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6408951Z       'docs/agent-work/native-character-release-evidence-20261016/native-height-probe.mjs',
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6409584Z       'docs/agent-work/native-character-release-evidence-20261016/native-probe.mjs',
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6409982Z   ...
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6410465Z       'docs/agent-work/native-character-release-evidence-20261016/neighbourhood-player-ownership-probe.mjs',
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6411335Z   +   'docs/agent-work/story-mode-evidence-20261017/phone/phase1-mode-timing-observer.js',
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6412011Z   +   'docs/agent-work/story-mode-evidence-20261017/phone/phase1-mode-timing-proxy.mjs',
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6412528Z       'public/sw.js',
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6412968Z       'scripts/check-joinallworld-source.mjs',
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6413763Z       'scripts/check-workflows.mjs',
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6414285Z       'scripts/city/check-land-components.mjs',
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6414849Z       'scripts/guard-joinallworld-package.mjs',
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6415286Z
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6415837Z       at TestContext.<anonymous> (file:///home/runner/work/joinallworld/joinallworld/server/release.test.ts:27:10)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6416407Z       at Test.runInAsyncScope (node:async_hooks:227:14)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6416800Z       at Test.run (node:internal/test_runner/test:1402:25)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6417186Z       at Test.start (node:internal/test_runner/test:1262:17)
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6417652Z       at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6418068Z     generatedMessage: true,
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6418326Z     code: 'ERR_ASSERTION',
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6425618Z     actual: [ 'deploy/cloudflare-worker.js', 'deploy/cloudflare.test.mjs', 'docs/agent-work/native-character-release-evidence-20261016/native-height-probe.mjs', 'docs/agent-work/native-character-release-evidence-20261016/native-probe.mjs', 'docs/agent-work/native-character-release-evidence-20261016/native-scenes-probe.mjs', 'docs/agent-work/native-character-release-evidence-20261016/native-street-probe.mjs', 'docs/agent-work/native-character-release-evidence-20261016/native-world-motion-probe.mjs', 'docs/agent-work/native-character-release-evidence-20261016/neighbourhood-player-ownership-probe.mjs', 'docs/agent-work/story-mode-evidence-20261017/phone/phase1-mode-timing-observer.js', 'docs/agent-work/story-mode-evidence-20261017/phone/phase1-mode-timing-proxy.mjs', 'public/sw.js', 'scripts/check-joinallworld-source.mjs', 'scripts/check-workflows.mjs', 'scripts/city/check-land-components.mjs', 'scripts/guard-joinallworld-package.mjs', 'scripts/guard-joinallworld-package.test.mjs', 'scripts/living-world-browser-qa.mjs', 'scripts/native-character-assets.mjs', 'scripts/native-character-policy.mjs', 'scripts/package-joinallworld.mjs', 'src/scene/character-lab/runtime/action-support.js', 'src/scene/character-lab/runtime/characters.js', 'src/scene/character-lab/runtime/foot-planting.js', 'src/scene/character-lab/runtime/foreground-characters.mjs', 'src/scene/character-lab/runtime/gait-cloth.js', 'src/scene/character-lab/runtime/knee-alignment.js', 'src/scene/character-lab/runtime/look-recipe-adapter.mjs', 'src/scene/character-lab/runtime/rig-motion-world.js', 'src/scene/character-lab/runtime/rig-motion.js', 'src/scene/character-lab/runtime/seated-contact.js', 'src/scene/character-lab/runtime/seated-drape.js', 'src/scene/character-lab/runtime/selected-profile.mjs', 'world/tooling/index_resource_witness.mjs' ],
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6440466Z     expected: [ 'deploy/cloudflare-worker.js', 'deploy/cloudflare.test.mjs', 'docs/agent-work/native-character-release-evidence-20261016/native-height-probe.mjs', 'docs/agent-work/native-character-release-evidence-20261016/native-probe.mjs', 'docs/agent-work/native-character-release-evidence-20261016/native-scenes-probe.mjs', 'docs/agent-work/native-character-release-evidence-20261016/native-street-probe.mjs', 'docs/agent-work/native-character-release-evidence-20261016/native-world-motion-probe.mjs', 'docs/agent-work/native-character-release-evidence-20261016/neighbourhood-player-ownership-probe.mjs', 'public/sw.js', 'scripts/check-joinallworld-source.mjs', 'scripts/check-workflows.mjs', 'scripts/city/check-land-components.mjs', 'scripts/guard-joinallworld-package.mjs', 'scripts/guard-joinallworld-package.test.mjs', 'scripts/living-world-browser-qa.mjs', 'scripts/native-character-assets.mjs', 'scripts/native-character-policy.mjs', 'scripts/package-joinallworld.mjs', 'src/scene/character-lab/runtime/action-support.js', 'src/scene/character-lab/runtime/characters.js', 'src/scene/character-lab/runtime/foot-planting.js', 'src/scene/character-lab/runtime/foreground-characters.mjs', 'src/scene/character-lab/runtime/gait-cloth.js', 'src/scene/character-lab/runtime/knee-alignment.js', 'src/scene/character-lab/runtime/look-recipe-adapter.mjs', 'src/scene/character-lab/runtime/rig-motion-world.js', 'src/scene/character-lab/runtime/rig-motion.js', 'src/scene/character-lab/runtime/seated-contact.js', 'src/scene/character-lab/runtime/seated-drape.js', 'src/scene/character-lab/runtime/selected-profile.mjs', 'world/tooling/index_resource_witness.mjs' ],
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6446710Z     operator: 'deepStrictEqual',
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6446969Z     diff: 'simple'
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6447174Z   }
+build-and-smoke-fast	Run npm run test:smoke	2026-10-18T05:21:52.6528906Z ##[error]Process completed with exit code 1.

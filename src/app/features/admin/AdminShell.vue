@@ -118,7 +118,7 @@ const blurSoon = (): void => { setTimeout(() => { open.value = false }, 150) }
         </div>
       </header>
       <main class="adm-main" tabindex="-1">
-        <DashboardView v-if="ui.route.view === 'dashboard'" @player="go('players', $event)" />
+        <DashboardView v-if="ui.route.view === 'dashboard'" @player="go('players', $event)" @tests="ui.playersFilter = 'test'; go('players')" />
         <PlayersView v-else-if="ui.route.view === 'players'" :player="ui.route.player" :tab="ui.route.tab" @open="go('players', $event)" @back="go('players')" @tab="go('players', ui.route.player, $event)" />
         <AnnounceView v-else-if="ui.route.view === 'announce'" />
         <WorldView v-else-if="ui.route.view === 'world'" />

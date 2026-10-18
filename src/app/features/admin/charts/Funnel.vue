@@ -6,12 +6,15 @@ export interface FunnelRow { id: string; label: string; count: number | null; ex
 const props = defineProps<{ title: string; rows: readonly FunnelRow[] }>()
 const top = computed(() => Math.max(1, ...props.rows.map((row) => row.count ?? 0)))
 const first = computed(() => props.rows.find((row) => row.count !== null)?.count ?? 0)
-const text = (row: FunnelRow): string => (row.count === null ? 'not measured' : `${row.count.toLocaleString('en-GB')}${first.value > 0 && row.count !== first.value ? ` · ${Math.round((row.count / first.value) * 100)}%` : ''}`)
+// The share of the first step. A later step can exceed the first (steps are counted on the day they happen, not for the same people), and
+// then "over 100%" is misleading: it is shown as "all" with the reason in the row's title.
+const text = (row: FunnelRow): string => (row.count === null ? 'not measured' : `${row.count.toLocaleString('en-GB')}${first.value > 0 && row.count !== first.value ? (row.count > first.value ? ' · all' : ` · ${Math.round((row.count / first.value) * 100)}%`) : ''}`)
+const hint = (row: FunnelRow): string => (row.count !== null && first.value > 0 && row.count > first.value ? `${row.note} More than the first step today: steps are counted on the day they happen, so a player who pressed Play yesterday can arrive today.` : row.note)
 </script>
 
 <template>
   <div class="adm-funnel" role="group" :aria-label="title">
-    <p v-for="row in rows" :key="row.id" class="adm-funnel-row" :title="row.note">
+    <p v-for="row in rows" :key="row.id" class="adm-funnel-row" :title="hint(row)">
       <span class="adm-funnel-name">{{ row.label }}</span>
       <span class="adm-funnel-bar" aria-hidden="true"><i :style="{ width: !row.count ? '0%' : `${Math.max(2, Math.round((row.count / top) * 100))}%` }" /></span>
       <span class="adm-funnel-n" :class="{ off: row.count === null }">{{ text(row) }}</span>

@@ -35,6 +35,7 @@
  */
 import { lagosTime } from '../src/game/clock.ts';
 import { RECONNECT_GRACE_MS } from './social/presence.ts';
+import { isProbeSession } from './protocol.ts';
 import type { PulseFrame } from '../src/types/protocol.ts';
 import type { Db, RouteContext, WsConnection } from './types.ts';
 
@@ -201,6 +202,8 @@ function build(ctx: RouteContext): PulseService {
           for (const id of todo) {
             const session = ctx.core?.sessionByPublicId(db, id);
             if (!session || session.visitDay === day) continue;
+            // A release check's probe (protocol.ts) is not a visit: it is marked as counted and adds nothing.
+            if (isProbeSession(session)) { session.visitDay = day; continue; }
             // An agent-driven character is a visit of the agents, counted apart (`aiVisits`): the people's numbers stay people's.
             if (session.agent?.char === true || (session.agent?.at !== undefined && ctx.now() - session.agent.at < 6 * 3600000)) { session.visitDay = day; stored['aiVisits'] = (isCount(stored['aiVisits']) ? stored['aiVisits'] : 0) + 1; continue; }
             session.visitDay = day;

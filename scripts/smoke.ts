@@ -5,8 +5,9 @@
  *   node --experimental-strip-types scripts/smoke.ts [origin]        (default http://127.0.0.1:5173)
  *   npm run smoke -- https://example.org
  *
- * Read-only apart from ONE guest session named "Zz Test" (and the one harmless action it takes), about a hundred requests in all,
- * well under every rate limit. In order:
+ * Read-only apart from guest sessions named "Zz Test" and "Zz City N" (and the one harmless action the first takes), about a hundred requests
+ * in all, well under every rate limit. Every session is made with `probe: true`: the server keeps it fifteen minutes at most, counts it in no
+ * number about people, and the admin can remove any that remain (Players → Test). In order:
  *   1. /api/health answers ok with a build id (printed)
  *   2. the page loads with its security headers, and every asset it references (and every script those import) answers 200
  *      with the right content type
@@ -59,7 +60,8 @@ async function json<T>(path: string, body?: unknown): Promise<{ status: number; 
 
 async function createGuest(name: string): Promise<{ cookie: string; session: { id: string; name: string } }> {
   requests++;
-  const created = await fetch(new URL('/api/session', `${origin}/`), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name }) });
+  // `probe: true`: the server marks the session as a release check's (server/protocol.ts): short-lived, counted nowhere, removable from the admin.
+  const created = await fetch(new URL('/api/session', `${origin}/`), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, probe: true }) });
   if (created.status !== 200) fail(`POST /api/session answered ${created.status} ${await created.text()}`);
   const nextCookie = (created.headers.get('set-cookie') ?? '').split(';')[0] ?? '';
   if (!nextCookie) fail('POST /api/session set no cookie');

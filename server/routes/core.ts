@@ -20,7 +20,7 @@ import type { LifeState } from '../../src/types/life.ts';
 import type { ActionRequest, CityId, IceServerConfig, LifeResponse, PublicSession } from '../../src/types/protocol.ts';
 import type { ActionOutcome, CommandOptions, Db, MuteVerdict, RouteContext, RouteHandler, RouteKey, RouteRequest, SessionRecord } from '../types.ts';
 import { hasAction } from '../../src/game/registry.ts';
-import { validateName, validateActionPayload, publicSession, isSharedAddress, VOICE_RADIUS, STUN_ONLY_CONFIG, validateVoiceConfig } from '../protocol.ts';
+import { validateName, validateActionPayload, publicSession, isSharedAddress, VOICE_RADIUS, STUN_ONLY_CONFIG, validateVoiceConfig, PROBE_TTL_MS, ttlFor } from '../protocol.ts';
 import { companionConfig } from '../companion/gateway.ts';
 import { routerOf } from '../models/service.ts';
 import { MAX_RECEIPTS, boundedFingerprint } from './once.ts';
@@ -175,14 +175,16 @@ export default function coreRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
           // EVERY PLACE IS TAKEN: the visitor is asked to wait (the page says so and tries again). Nobody who has a session is affected.
           if (Object.keys(db.sessions).length >= config.maxActiveSessions) throw Object.assign(fail(503, 'device_capacity'), { retryAfter: 30, reason: 'The world is full right now. Your place is not lost: try again in a moment.' });
           const { secret, publicId } = core.newIdentity();
-          current = db.sessions[secret] = { secret, publicId, name, expiresAt: now() + config.sessionTtlMs, cities: {}, actions: {}, ...(body.onboarding === true ? { onboarding: true as const } : {}) };
+          // `probe: true`: a release check's session (scripts/smoke.ts), not a person — short-lived and left out of every count (protocol.ts).
+          const probe = body.probe === true;
+          current = db.sessions[secret] = { secret, publicId, name, expiresAt: now() + (probe ? Math.min(config.sessionTtlMs, PROBE_TTL_MS) : config.sessionTtlMs), cities: {}, actions: {}, ...(body.onboarding === true ? { onboarding: true as const } : {}), ...(probe ? { probe: true as const } : {}) };
           // A browser signed in to an account that has no character yet: this new session is that character (server/accounts/service.ts).
           // (If that account's own character came back from the archive instead, the caller is an existing player: `created` stays false.)
           const fresh = current.publicId;
           current = ctx.checks?.adoptSession?.(db, request.binding, current) ?? current;
           created = current.publicId === fresh;
         }
-        current.expiresAt = now() + config.sessionTtlMs;
+        current.expiresAt = now() + ttlFor(current, config.sessionTtlMs);
         // A muted player keeps their session — it is renewed here like any other — but cannot put a
         // name in front of other players: a different name is refused, and the SAME name is not
         // written or announced again either.

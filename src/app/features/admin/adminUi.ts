@@ -26,7 +26,8 @@ export const hashOf = (route: Route): string => `#/${route.view}${route.player ?
 export interface Toast { id: number; kind: 'ok' | 'error' | 'info'; text: string }
 export interface Done { id: number; at: number; text: string; ok: boolean; undo?: { label: string; run: () => Promise<{ ok: boolean; text: string }> }; undone?: boolean }
 
-export const ui = reactive<{ toasts: Toast[]; done: Done[]; drawer: boolean; help: boolean; recent: string[]; route: Route; crumb: string }>({ toasts: [], done: [], drawer: false, help: false, recent: [], route: { view: 'dashboard', player: null, tab: null }, crumb: '' })
+/** `playersFilter`: a saved filter another screen asks the Players list to open with (taken once, on arrival). */
+export const ui = reactive<{ toasts: Toast[]; done: Done[]; drawer: boolean; help: boolean; recent: string[]; route: Route; crumb: string; playersFilter: string | null }>({ toasts: [], done: [], drawer: false, help: false, recent: [], route: { view: 'dashboard', player: null, tab: null }, crumb: '', playersFilter: null })
 let seq = 0
 export function toast(text: string, kind: Toast['kind'] = 'ok'): void {
   const made: Toast = { id: ++seq, kind, text }

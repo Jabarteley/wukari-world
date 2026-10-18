@@ -19,6 +19,16 @@ type VenueState = Parameters<typeof occupiesVenue>[0];
 
 export const MAX_PAYLOAD_BYTES = 2048;
 export const SESSION_TTL_MS = 30 * 86400000;
+/**
+ * PROBE SESSIONS: the release check (scripts/smoke.ts) makes one guest per open city on every release. They are not people. A session
+ * created with `probe: true` is marked so; the names the check has always used mark the ones made before the flag existed. A probe
+ * lives at most PROBE_TTL_MS however often it is renewed, is left out of every count of people, and the admin can remove them in one go.
+ */
+export const PROBE_TTL_MS = 15 * 60000;
+export const PROBE_NAME = /^Zz (Test|City \d+)$/;
+export const isProbeSession = (session: Partial<Pick<SessionRecord, 'name' | 'probe'>> | null | undefined): boolean => Boolean(session) && (session!.probe === true || PROBE_NAME.test(session!.name ?? ''));
+/** The lifetime a renewal gives this session: the host's, or PROBE_TTL_MS for a probe. */
+export const ttlFor = (session: Partial<Pick<SessionRecord, 'name' | 'probe'>>, ttlMs: number): number => (isProbeSession(session) ? Math.min(ttlMs, PROBE_TTL_MS) : ttlMs);
 export const ACTION_WINDOW_MS = 86400000;
 export const MAX_VOICE_MEMBERS = 8;
 export const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -200,8 +210,9 @@ export function renewResolved(found: { session: SessionRecord; device?: AccountD
  * `slackMs`: leave the record as it is unless renewing gains at least this much. The session is live either way — only
  * the stored expiry is up to `slackMs` short of a full `ttlMs`, which a slack far below the lifetime never shows.
  */
-export function renewSession(session: Pick<SessionRecord, 'expiresAt'> | null | undefined, now: number, ttlMs = SESSION_TTL_MS, slackMs = 0): boolean {
+export function renewSession(session: (Pick<SessionRecord, 'expiresAt'> & Partial<Pick<SessionRecord, 'name' | 'probe'>>) | null | undefined, now: number, ttlMs = SESSION_TTL_MS, slackMs = 0): boolean {
   if (!session || !Number.isFinite(session.expiresAt) || session.expiresAt <= now) return false;
+  ttlMs = ttlFor(session, ttlMs);
   if (slackMs <= 0 || now + ttlMs - session.expiresAt >= slackMs) session.expiresAt = now + ttlMs;
   return true;
 }

@@ -4,6 +4,24 @@ This integration is in progress. The final asset index, fleet generation and acc
 
 The scene factory prepares deterministic city recipe data and measured GLBs offline. Runtime loading remains lazy: speculative neighbor warming imports generated city data modules and streams their exact GLBs into the browser HTTP cache without preparing or decoding a scene.
 
+## Regional kit inputs
+
+`scripts/scene-factory/kit-inputs.json` identifies fourteen real regional GLBs and their measurement reports under `scripts/scene-factory/inputs/kits/`. Each contains twenty physical prop classes, at most 1,460 triangles per prop. The current kits are 140,641 to 141,446 bytes Brotli, below the unchanged 300,000-byte limit.
+
+The current regional variation changes textile colours in three atlas cells. Geometry and the other material cells are shared. These are art palettes, not evidence of local architectural forms. Component renders and palette contact sheets are accepted for inspection inside the game; actual phone composition and the city landmark fleet remain separate gates.
+
+Rebuild one kit with installed Node dependencies, Blender and `cwebp`:
+
+```sh
+node --experimental-strip-types scripts/scene-factory/assets.ts build \
+  --kind kit --id gulf-guinea \
+  --style scripts/scene-factory/styles/gulf-guinea.json \
+  --out /tmp/gulf-guinea.glb --report /tmp/gulf-guinea.json \
+  --blender /path/to/blender
+```
+
+The command uses two Blender threads and validates actual packed geometry, its embedded 1K WebP atlas and byte limits before writing outputs. `assets.ts self-test` exercises malformed documents, hierarchy and provenance refusals without generating assets. Source input files are offline regeneration inputs; they are not production public URLs or an approved full-fleet asset index.
+
 ## Inputs and compiler
 
 `scripts/scene-factory/facts.ts` extracts a `CityBriefV1` from an exact city ID and explicit region ID. Each public venue is classified as `preserve-authored`, `target-recipe`, or `exclude-home`. Source URLs, licences and file hashes are copied where present; unknown provenance stays unknown.
@@ -47,7 +65,7 @@ The compiler, runtime contract and installer have focused fixture coverage. The 
 Production remains blocked on:
 
 - an approved `asset-index.json` with the final regional kits, city heroes and placement selections;
-- independent realism acceptance for the kit and hero fleet, including the unresolved cloth, material and repeated-form concerns in current samples;
+- actual phone composition and material acceptance for the regional kits, plus source-bound landmark forms and independent review of the hero fleet;
 - one real 284-city build followed by a mutation-free check and exact inventory review;
 - hosted bundle and download-budget evidence for the generated lazy modules and registry;
 - browser journeys proving authored-scene precedence, linked-city prefetch behavior, first-load retry, disposal and representative phone performance.

@@ -1,0 +1,32 @@
+{
+  "id": "swahili-coast",
+  "sourceUrls": [
+    "https://www.openstreetmap.org/node/7615449194"
+  ],
+  "palette": [
+    "#eee3cc",
+    "#765944",
+    "#4e8065",
+    "#327f8a",
+    "#71a5b3",
+    "#d7a54c",
+    "#8a8b87",
+    "#304146"
+  ],
+  "roof": "gable",
+  "canopyHeight": 2.5,
+  "provenance": {
+    "referenceCity": "dar-es-salaam",
+    "referenceFeature": "Kariakoo Market Cooperation",
+    "sourcePath": "src/game/cities/dar-es-salaam/places.ts",
+    "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual identity only; no source geometry copied",
+    "sourceScope": "Mapped place identity and activity context only; does not substantiate palette, roof, dimensions or a region-wide architecture claim",
+    "verification": "Read repository source snapshot; live OSM element not independently re-fetched",
+    "artDirectionStatus": "proposal",
+    "artDirectionRationale": "A distinct readable palette for procedural props; roof is a gameplay canopy choice",
+    "unknowns": [
+      "Regional coverage and city overrides need integration review",
+      "Colour and roof selection have no measured reference basis"
+    ]
+  }
+}

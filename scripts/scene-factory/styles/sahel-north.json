@@ -1,0 +1,32 @@
+{
+  "id": "sahel-north",
+  "sourceUrls": [
+    "https://www.openstreetmap.org/node/2938797598"
+  ],
+  "palette": [
+    "#dec69d",
+    "#886448",
+    "#75804b",
+    "#a14e3a",
+    "#57778b",
+    "#c99543",
+    "#8b8580",
+    "#3c3432"
+  ],
+  "roof": "flat",
+  "canopyHeight": 2.1,
+  "provenance": {
+    "referenceCity": "kano",
+    "referenceFeature": "Dala Hill",
+    "sourcePath": "src/game/cities/kano/landmarks.ts",
+    "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual identity only; no source geometry copied",
+    "sourceScope": "Mapped place identity and activity context only; does not substantiate palette, roof, dimensions or a region-wide architecture claim",
+    "verification": "Read repository source snapshot; live OSM element not independently re-fetched",
+    "artDirectionStatus": "proposal",
+    "artDirectionRationale": "Ochre and muted blue contrast is proposed art direction; Dala Hill is a geographic anchor, not evidence of flat roofs.",
+    "unknowns": [
+      "Regional coverage and city overrides need integration review",
+      "Colour and roof selection have no measured reference basis"
+    ]
+  }
+}

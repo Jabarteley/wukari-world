@@ -1,0 +1,32 @@
+{
+  "id": "east-asia",
+  "sourceUrls": [
+    "https://www.openstreetmap.org/relation/2658286"
+  ],
+  "palette": [
+    "#e8e0ce",
+    "#695044",
+    "#507357",
+    "#a6473e",
+    "#5f929f",
+    "#cda14d",
+    "#747b81",
+    "#292e35"
+  ],
+  "roof": "gable",
+  "canopyHeight": 2.2,
+  "provenance": {
+    "referenceCity": "tokyo",
+    "referenceFeature": "Shakujii Park",
+    "sourcePath": "src/game/cities/tokyo/places.ts",
+    "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual identity only; no source geometry copied",
+    "sourceScope": "Mapped place identity and activity context only; does not substantiate palette, roof, dimensions or a region-wide architecture claim",
+    "verification": "Read repository source snapshot; live OSM element not independently re-fetched",
+    "artDirectionStatus": "proposal",
+    "artDirectionRationale": "A distinct readable palette for procedural props; roof is a gameplay canopy choice",
+    "unknowns": [
+      "Regional coverage and city overrides need integration review",
+      "Colour and roof selection have no measured reference basis"
+    ]
+  }
+}

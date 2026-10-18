@@ -1,0 +1,37 @@
+{
+  "id": "americas-oceania",
+  "sourceUrls": [
+    "https://www.openstreetmap.org/way/17499261",
+    "https://www.openstreetmap.org/node/357640969"
+  ],
+  "palette": [
+    "#e2dfd0",
+    "#7d6650",
+    "#557957",
+    "#557f99",
+    "#6b9da5",
+    "#d1ab4d",
+    "#7d888d",
+    "#303941"
+  ],
+  "roof": "gable",
+  "canopyHeight": 2.35,
+  "provenance": {
+    "referenceCity": "sydney",
+    "referenceFeature": "Hurstville Oval",
+    "sourcePath": "src/game/cities/sydney/places.ts",
+    "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual identity only; no source geometry copied",
+    "sourceScope": "Mapped place identity and activity context only; does not substantiate palette, roof, dimensions or a region-wide architecture claim",
+    "verification": "Read repository source snapshot; live OSM element not independently re-fetched",
+    "artDirectionStatus": "proposal",
+    "artDirectionRationale": "Provisional shared technical kit only. Americas and Oceania should split or gain city overrides before any cultural style claim.",
+    "unknowns": [
+      "Regional coverage and city overrides need integration review",
+      "Colour and roof selection have no measured reference basis"
+    ],
+    "additionalSourcePaths": [
+      "src/game/cities/new-york/places.ts"
+    ],
+    "additionalReference": "Proctor-Hopson Circle, New York inventory"
+  }
+}

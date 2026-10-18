@@ -1,0 +1,430 @@
+{
+  "schema": "allworld-regional-kit-source-checkpoint",
+  "version": 1,
+  "scope": "Reproducible offline source and fourteen processed kit inputs; runtime world activation and city landmark fleet remain open.",
+  "sourceHeadBeforeCheckpoint": "d743f42773bcfa2d1997e7a511d1478790f92a5d",
+  "reproductionFiles": [
+    {
+      "path": "scripts/scene-factory/assets.ts",
+      "bytes": 41526,
+      "sha256": "c928abc1d662215079a369013c2cb9eaed648bbadaed3400dbee2ba92c899d30"
+    },
+    {
+      "path": "scripts/scene-factory/blender/construction.py",
+      "bytes": 39044,
+      "sha256": "d6a72c38e2caf8d807f4a2d7da73c9b4d820914660eb35303d3dad5c55b955d4"
+    },
+    {
+      "path": "scripts/scene-factory/blender/kit.py",
+      "bytes": 12002,
+      "sha256": "ed5aa3dbe74deb1dd80563784aa8b5dc776fd1729f82005024d9f16a6caa38c3"
+    },
+    {
+      "path": "scripts/scene-factory/blender/shared.py",
+      "bytes": 5033,
+      "sha256": "2d558cfed345e2189ca18a318d3510c8c69ad7162e6bad1ef554c987aa475694"
+    },
+    {
+      "path": "scripts/scene-factory/blender/market_sample.py",
+      "bytes": 1626,
+      "sha256": "6d0bfcbf587888c93f915d0b70d208ffb18292859f2b7dd2d31f3322441e9b6e"
+    },
+    {
+      "path": "scripts/scene-factory/blender/hero.py",
+      "bytes": 41939,
+      "sha256": "ea9c40a54a41a692aaef96db6ad329bbd5a30b89fb4df5057c8f9bb7a3d1ef56"
+    },
+    {
+      "path": "scripts/scene-factory/kit-inputs.json",
+      "bytes": 2616,
+      "sha256": "85d6704c517e2170c09232f099eb757177e5a35828145dd110e823568e150375"
+    },
+    {
+      "path": "scripts/scene-factory/styles/README.md",
+      "bytes": 1455,
+      "sha256": "e6112d8c40b39da187bb683033f031f382093975679ae64cc4446c9bbbcac06c"
+    },
+    {
+      "path": "scripts/scene-factory/styles/americas-oceania.json",
+      "bytes": 1369,
+      "sha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+    },
+    {
+      "path": "scripts/scene-factory/styles/east-africa.json",
+      "bytes": 1134,
+      "sha256": "f601c6dd6761e42d3430bc70ff17d3aded24774a040bb41cce79bb16e6b400a3"
+    },
+    {
+      "path": "scripts/scene-factory/styles/east-asia.json",
+      "bytes": 1110,
+      "sha256": "99276357f2bf43bef2935e7db6b661a64a739e1d451f1d45c662ea3b5bbf6b56"
+    },
+    {
+      "path": "scripts/scene-factory/styles/gulf-guinea.json",
+      "bytes": 1111,
+      "sha256": "2fdffb74f7375d9e1754151b92a51e85d0f902aaa4e0c8a647b3a33364eccaa9"
+    },
+    {
+      "path": "scripts/scene-factory/styles/igbo-southeast.json",
+      "bytes": 1142,
+      "sha256": "e521f5975c9ebb265348861734083b151b3fb45cee72a594cea4548a3ff36a4e"
+    },
+    {
+      "path": "scripts/scene-factory/styles/maghreb.json",
+      "bytes": 1115,
+      "sha256": "189a200c8072f08ef007dd677f11ee9e18bcaf27d97305da02fefba240ef0633"
+    },
+    {
+      "path": "scripts/scene-factory/styles/niger-delta.json",
+      "bytes": 1135,
+      "sha256": "1902dd85951c318abbc7c314dd156b4b99571d7c04678c0b6d3eb727b98a78a4"
+    },
+    {
+      "path": "scripts/scene-factory/styles/sahel-francophone.json",
+      "bytes": 1117,
+      "sha256": "b72986c35ea5cc9b735e39261dba1208a3c62e668ecfc9928cfbe75dfa02d146"
+    },
+    {
+      "path": "scripts/scene-factory/styles/sahel-north.json",
+      "bytes": 1143,
+      "sha256": "841610ddb65f0adc85cdf982569f93afa1e49f617d77f89f3911c0d2de1a83f4"
+    },
+    {
+      "path": "scripts/scene-factory/styles/south-asia.json",
+      "bytes": 1121,
+      "sha256": "64cbc90bfc05b51139a91eabe0f981c4f47d02ed2689be22193361f6b66af12d"
+    },
+    {
+      "path": "scripts/scene-factory/styles/southern-africa.json",
+      "bytes": 1124,
+      "sha256": "5c70b0ac4457ed4bbc33f60d3b022c2c69fb229a06c76f3d1957b73b32767af3"
+    },
+    {
+      "path": "scripts/scene-factory/styles/swahili-coast.json",
+      "bytes": 1143,
+      "sha256": "25ea3f7a02195f54183a5305029384bb7477246b319ad54b540ffac7f712b0c3"
+    },
+    {
+      "path": "scripts/scene-factory/styles/western-europe.json",
+      "bytes": 1193,
+      "sha256": "18e3b0f4dbb88519df26d3d51faa4960b3f4646b58f92cf029cf1a50cbcc6d9c"
+    },
+    {
+      "path": "scripts/scene-factory/styles/yoruba-southwest.json",
+      "bytes": 1122,
+      "sha256": "6bca7f81e5a0566559c88554f069e4e0f246ddca068d86b1efc31b249d7c8ee5"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/niger-delta.glb",
+      "bytes": 279544,
+      "sha256": "f07892f853a19d32d5b8f6f63efa54417293474866248234a753da8aaaf5bd3e"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/niger-delta.json",
+      "bytes": 9678,
+      "sha256": "2baceaa073ff83aa5c17bb6e332a5789d149717a1c233efc31844138e445ff1d"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/yoruba-southwest.glb",
+      "bytes": 279500,
+      "sha256": "760ca364fc233d764bb61c4e4f5f4d32c94ed70ea42180a73febb9c11fbca398"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/yoruba-southwest.json",
+      "bytes": 9688,
+      "sha256": "f0e9666ca40e631e64c1eafd4d4be5ba3adfa845900f223d1a9e1873e5dd5354"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/sahel-north.glb",
+      "bytes": 279464,
+      "sha256": "cf16365a5ec797b15b125a67ebd88ae0252070903cbd5bbb76e2423af62ca421"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/sahel-north.json",
+      "bytes": 9678,
+      "sha256": "2259dd0280771387ef7b579a4a333fa00d01d1085bc53cb0a108d3c452f2ff9e"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/igbo-southeast.glb",
+      "bytes": 279512,
+      "sha256": "cda5c0690fcfc64ef6d9d0bcf8a3f5b8c89fc964f266420b33ec8a634de2a821"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/igbo-southeast.json",
+      "bytes": 9684,
+      "sha256": "cb54459a39d43a0772ebdd65372c1ee9a43fe5338f575c8cfa8c1e0c553710eb"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/gulf-guinea.glb",
+      "bytes": 279388,
+      "sha256": "a1d8e205700feccbed0a08f03b4cfdab8293b23fa3c8eb30bff477a00375e20d"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/gulf-guinea.json",
+      "bytes": 9678,
+      "sha256": "e8569bd6db429d4cbd558f9175d4721648e121ea93d98f6ef610a0292f154d59"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/sahel-francophone.glb",
+      "bytes": 278880,
+      "sha256": "fd1f3bc2000977b92ab9f03f1eebd10041f52cc6175a027d9b81fc67b7c6af18"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/sahel-francophone.json",
+      "bytes": 9690,
+      "sha256": "0ad9fce2b6fe78fae5dbd18793e57e005faef3cb51b88ac17f1f0993f514b8d3"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/east-africa.glb",
+      "bytes": 279392,
+      "sha256": "117d7f16a2117f062f7695c9023bee5ecdcb0cbd4fcc909e53157d91b99857b9"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/east-africa.json",
+      "bytes": 9678,
+      "sha256": "f938084b01fe1f22d7261c725b7239877765b07cb747e90daaed06ff4a1ad687"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/swahili-coast.glb",
+      "bytes": 279516,
+      "sha256": "10c7071129529325ca5624e28d87531969a15d5f9ddbae770359a7c3aabc2f77"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/swahili-coast.json",
+      "bytes": 9682,
+      "sha256": "c331d7dcb3ee5b031eeb1cc6e393fc021f18d43ea90493b4cf12130c763babf3"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/southern-africa.glb",
+      "bytes": 279344,
+      "sha256": "b8cceecbad03b22722a0d280dda190958af18af800caab89cc7ef93f6e9b5ef1"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/southern-africa.json",
+      "bytes": 9686,
+      "sha256": "128f0b8c594f59be3ea9b20ee1b0c34a98a7cb8e07fd0f762293392f906f12c6"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/maghreb.glb",
+      "bytes": 279520,
+      "sha256": "5ab024dba61f357fe008e922b0ec65ed5e0ba7c43c450c5377222bf2d664c29a"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/maghreb.json",
+      "bytes": 9670,
+      "sha256": "c43324ca42ade2e0ab96ce9a6a42f2556cc7ea6ddae03a09e16479a7caa6de22"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/western-europe.glb",
+      "bytes": 279336,
+      "sha256": "9de49008743f57fb991999538842c9d69c6f63a5bf0bb0123ad39c470166dbb3"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/western-europe.json",
+      "bytes": 9684,
+      "sha256": "ea0b8f65ebc82f597dd8155b6756ce02f9d516d15514116dc6b3ae584016257c"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/east-asia.glb",
+      "bytes": 279444,
+      "sha256": "af5df981cca514ac73bb2e19ebc7be2988fca33bb23a8743358ae461a1f94231"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/east-asia.json",
+      "bytes": 9674,
+      "sha256": "42cf2b67618d494b6130bc62665d33e539a6105d36e19eac663cb78a97a184f2"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/south-asia.glb",
+      "bytes": 279572,
+      "sha256": "5a136db20681c346b6c08a1d199f364d1f2489d0f9f58f49a71b7bf836bf54b8"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/south-asia.json",
+      "bytes": 9676,
+      "sha256": "22e7f6458238db946fb92b965d8bf8c0dccdb4e08ae1804eaf88e2c1e0702663"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/americas-oceania.glb",
+      "bytes": 279528,
+      "sha256": "2b0faa8010a93a951bd1a03cbf5d6aa77677b89b4aab12e67877bf48fa139407"
+    },
+    {
+      "path": "scripts/scene-factory/inputs/kits/americas-oceania.json",
+      "bytes": 9688,
+      "sha256": "4a1b42deb411ce3f089240c18dbba0665422486c1527b1c8871240af2c6bfa5e"
+    }
+  ],
+  "kitSourceAggregateSha256": "68bc52bcb9c76a96b5a18987401ae33e50d9844447929c0e6d8d32cf0014f152",
+  "allFourteenReportSourceAndStylePinsMatch": true,
+  "counts": {
+    "kits": 14,
+    "partsPerKit": 20,
+    "trianglesPerKit": 16888,
+    "maximumPartTriangles": 1460,
+    "processedGlbBytes": 3911940,
+    "totalBrotliBytes": 1975137,
+    "minimumBrotliBytes": 140641,
+    "maximumBrotliBytes": 141446
+  },
+  "validation": {
+    "allFourteenRealGlbReportPairsValidated": true,
+    "source": "Local real-kit host audit and first-pass production build receipts retained in the task evidence directory.",
+    "selfTest": {
+      "command": "NODE_OPTIONS='--max-old-space-size=512 --max-semi-space-size=16' GOMAXPROCS=2 node --experimental-strip-types scripts/agent-slot.ts heavy --wait-ms 0 -- node --experimental-strip-types scripts/scene-factory/assets.ts self-test",
+      "attempts": 1,
+      "exitCode": 0,
+      "terminalOutput": "Synthetic validation passed: direct and quantized-wrapper geometry with unchanged packed/BIN hashes, 13 hierarchy refusals, 10 malformed documents, corrupt compression, 8 invalid provenance records; no asset files written.",
+      "sourceChecks": [
+        {
+          "path": "scripts/scene-factory/assets.ts",
+          "sha256Before": "c928abc1d662215079a369013c2cb9eaed648bbadaed3400dbee2ba92c899d30",
+          "sha256After": "c928abc1d662215079a369013c2cb9eaed648bbadaed3400dbee2ba92c899d30"
+        }
+      ],
+      "log": {
+        "path": "docs/agent-work/story-mode-evidence-20261017/prep/physical-kit-validator-focused-20261018.log",
+        "bytes": 262,
+        "sha256": "93ca46be0de461f8d94cc0ddf39b1075877582c2f929bba7ae41c7c7c8d113c0",
+        "gitTracked": false
+      }
+    }
+  },
+  "contactSheet": {
+    "path": "docs/agent-work/story-mode-evidence-20261017/prep/regional-physical-kits-14-20261018/contact-sheet.png",
+    "bytes": 1113761,
+    "sha256": "8f8ef79ead961a37df0561632db260fff23748c94e6c1bd33bb06fc27c47f216"
+  },
+  "independentPaletteReview": {
+    "originalTaskLocalReportSha256": "556f0e81ce9cd24ec5d13eaa7322a341079c6f1f5c8b78297ba01a65ec09da3f",
+    "scope": "Actual labelled fourteen-cell contact sheet inspected, followed by native 512 px Americas/Oceania, Western Europe and Sahel Francophone views for closer checks of similar hues, darker folds and textile/timber separation. All fourteen image payloads and contact-sheet/contact-manifest hashes and sizes verified before final decision.",
+    "viewingLimit": "The tool displayed the 2048x2240 contact sheet resized to 1504x1645; the three closer views were displayed at their native 512 px size. Other region judgments use the labelled contact-sheet pixels.",
+    "verdict": "All fourteen regions accepted for runtime inspection within the palette-legibility and material-regression scope; no concrete blocker.",
+    "regions": [
+      {
+        "region": "niger-delta",
+        "verdict": "accept-for-runtime",
+        "observation": "Teal, yellow and blue remain clearly separated; folded bands and the darker right-side shadow remain visible.",
+        "imageSha256": "8260ce0fb8c032e1dab5007d5f04321690f7fc27b7e87e227423d0d78b6223fc",
+        "origin": "new final-decoded candidate",
+        "concreteBlocker": null
+      },
+      {
+        "region": "yoruba-southwest",
+        "verdict": "accept-for-runtime",
+        "observation": "Warm red, bright yellow and blue give clear bundle-to-bundle contrast without visible saturation washout.",
+        "imageSha256": "27f938c05e764a49813efe8d91b21bdb1fd23d5708a2dd5d48eccb196f72c110",
+        "origin": "new final-decoded candidate",
+        "concreteBlocker": null
+      },
+      {
+        "region": "sahel-north",
+        "verdict": "accept-for-runtime",
+        "observation": "Muted rust, ochre and slate blue remain distinct from one another and from the wood counter.",
+        "imageSha256": "2815fafdbd5551ec5b4dc85143c312dcd752b5e4ee587fec77a3a9d0e9b9ddb1",
+        "origin": "new final-decoded candidate",
+        "concreteBlocker": null
+      },
+      {
+        "region": "igbo-southeast",
+        "verdict": "accept-for-runtime",
+        "observation": "Dark red, warm yellow and blue remain readable, including darker fold bands on the red stock.",
+        "imageSha256": "a9ea66b278c0c3c0fbe6917e3383ca0096d4073d1cc718165cd18785a03ae7aa",
+        "origin": "new final-decoded candidate",
+        "concreteBlocker": null
+      },
+      {
+        "region": "gulf-guinea",
+        "verdict": "accept-for-runtime",
+        "observation": "The reused pilot retains its readable muted red, mustard and blue bundles.",
+        "imageSha256": "c1412d0148e3158ed66b7af4ef906171b9b3979531928706fac69aaa4c6cff63",
+        "origin": "reused exact accepted pilot",
+        "concreteBlocker": null
+      },
+      {
+        "region": "sahel-francophone",
+        "verdict": "accept-for-runtime",
+        "observation": "Teal, orange-ochre and blue retain fold and edge separation. Native-size inspection confirms the middle textile stays distinct from the timber.",
+        "imageSha256": "781dc61e6f7769c7f58ad207115dbb729ed0b4781b9bf9ba8397090a13d58017",
+        "origin": "new final-decoded candidate",
+        "concreteBlocker": null
+      },
+      {
+        "region": "east-africa",
+        "verdict": "accept-for-runtime",
+        "observation": "Warm red, yellow and blue remain visibly separate with the same fold shading.",
+        "imageSha256": "ff16ea38478f6b5619b24c275d4349b6f40aba08e972b2bd0b7f3b186be53992",
+        "origin": "new final-decoded candidate",
+        "concreteBlocker": null
+      },
+      {
+        "region": "swahili-coast",
+        "verdict": "accept-for-runtime",
+        "observation": "The reused pilot retains clear teal, ochre-yellow and light-blue stock; no new regression is visible.",
+        "imageSha256": "1ba9dbb5f2b67e9574cac22f951d2cc8289bc38cd86a0ad2ec9d0be25343779a",
+        "origin": "reused exact accepted pilot",
+        "concreteBlocker": null
+      },
+      {
+        "region": "southern-africa",
+        "verdict": "accept-for-runtime",
+        "observation": "Muted warm red, yellow and cyan-blue remain legible against the counter.",
+        "imageSha256": "82c64975fbb4f03680d47b5308388d6d277951f191deb3554354650083aec699",
+        "origin": "new final-decoded candidate",
+        "concreteBlocker": null
+      },
+      {
+        "region": "maghreb",
+        "verdict": "accept-for-runtime",
+        "observation": "Teal, orange-ochre and pale blue retain useful colour separation and readable folds.",
+        "imageSha256": "9baa018f9fe966c5024d5dab1dc76a6a3a74788492ba56e315e6e0e1ece23e23",
+        "origin": "new final-decoded candidate",
+        "concreteBlocker": null
+      },
+      {
+        "region": "western-europe",
+        "verdict": "accept-for-runtime",
+        "observation": "The darker plum, muted ochre and slate blue are lower saturation but remain distinct. Native-size inspection confirms that folds and edges are not lost in the dark left bundle.",
+        "imageSha256": "481bc7cf0f4fb5169094d74f90690867972bd03f2aa7561b19385813de3c647d",
+        "origin": "new final-decoded candidate",
+        "concreteBlocker": null
+      },
+      {
+        "region": "east-asia",
+        "verdict": "accept-for-runtime",
+        "observation": "Red, yellow and teal-blue have clear contrast and preserve the fold bands.",
+        "imageSha256": "956811a28f4c4564fd6b84034786cb03b1a58b6460d107d39f4e5a6815bfac0b",
+        "origin": "new final-decoded candidate",
+        "concreteBlocker": null
+      },
+      {
+        "region": "south-asia",
+        "verdict": "accept-for-runtime",
+        "observation": "Orange-red, golden yellow and cyan-blue remain distinct, with visible darker fold bands.",
+        "imageSha256": "7359efc07db266afeba1e45f93cbd8b3004f74bbec2f8875dabad4d80b3604dc",
+        "origin": "new final-decoded candidate",
+        "concreteBlocker": null
+      },
+      {
+        "region": "americas-oceania",
+        "verdict": "accept-for-runtime",
+        "observation": "The left blue and right cyan share a colour family but remain separated by the yellow stock and differ in value/hue. Native-size inspection confirms both blue bundles retain visible folds and edges.",
+        "imageSha256": "89eadf52b296e953992f82281af784229cc429e87b7978ec42c8db5b908dfcf1",
+        "origin": "new final-decoded candidate",
+        "concreteBlocker": null
+      }
+    ]
+  },
+  "localFullProofManifest": {
+    "sha256": "d628bb8daf35f76e30b993dff1440312013aa68c400757096fcc30e587897241",
+    "payloads": 135,
+    "bytes": 6556154,
+    "boundary": "Full raw diagnostic/render/reproduction history is retained locally and is not required by the kit build CLI."
+  },
+  "limitations": [
+    "All regions share physical geometry; textile colour changes are art direction, not local architecture evidence.",
+    "The whole 20-part kit is not placed in one scene; the 15000-triangle scenery limit remains unchanged.",
+    "No generated runtime city registry, public asset outputs or full-fleet asset index is activated by this checkpoint.",
+    "Actual compact phone geometry, city landmark forms and complete phase acceptance remain separate gates."
+  ]
+}

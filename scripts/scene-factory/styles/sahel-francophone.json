@@ -1,0 +1,32 @@
+{
+  "id": "sahel-francophone",
+  "sourceUrls": [
+    "https://www.openstreetmap.org/way/201954582"
+  ],
+  "palette": [
+    "#e0c294",
+    "#8b5c42",
+    "#788049",
+    "#357d82",
+    "#5e89a0",
+    "#c8833a",
+    "#8b8173",
+    "#3b3430"
+  ],
+  "roof": "flat",
+  "canopyHeight": 2.15,
+  "provenance": {
+    "referenceCity": "bamako",
+    "referenceFeature": "Grand Marché",
+    "sourcePath": "src/game/cities/bamako/places.ts",
+    "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual identity only; no source geometry copied",
+    "sourceScope": "Mapped place identity and activity context only; does not substantiate palette, roof, dimensions or a region-wide architecture claim",
+    "verification": "Read repository source snapshot; live OSM element not independently re-fetched",
+    "artDirectionStatus": "proposal",
+    "artDirectionRationale": "A distinct readable palette for procedural props; roof is a gameplay canopy choice",
+    "unknowns": [
+      "Regional coverage and city overrides need integration review",
+      "Colour and roof selection have no measured reference basis"
+    ]
+  }
+}

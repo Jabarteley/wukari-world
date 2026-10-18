@@ -1,0 +1,32 @@
+{
+  "id": "western-europe",
+  "sourceUrls": [
+    "https://www.openstreetmap.org/relation/6697690"
+  ],
+  "palette": [
+    "#e0d9c7",
+    "#76614e",
+    "#526c4e",
+    "#775258",
+    "#637d8c",
+    "#bc9650",
+    "#777d82",
+    "#30343b"
+  ],
+  "roof": "gable",
+  "canopyHeight": 2.3,
+  "provenance": {
+    "referenceCity": "paris",
+    "referenceFeature": "Parc de Versailles",
+    "sourcePath": "src/game/cities/paris/places.ts",
+    "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual identity only; no source geometry copied",
+    "sourceScope": "Mapped place identity and activity context only; does not substantiate palette, roof, dimensions or a region-wide architecture claim",
+    "verification": "Read repository source snapshot; live OSM element not independently re-fetched",
+    "artDirectionStatus": "proposal",
+    "artDirectionRationale": "Warm stone and slate-like neutral contrast is a proposal; regional slot includes more than western Europe in the inventory and needs city-level exceptions.",
+    "unknowns": [
+      "Regional coverage and city overrides need integration review",
+      "Colour and roof selection have no measured reference basis"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "id": "southern-africa",
+  "sourceUrls": [
+    "https://www.openstreetmap.org/way/44948367"
+  ],
+  "palette": [
+    "#e4dfd1",
+    "#75624d",
+    "#5e7755",
+    "#a7624d",
+    "#598997",
+    "#d0af58",
+    "#7c858a",
+    "#303b40"
+  ],
+  "roof": "gable",
+  "canopyHeight": 2.35,
+  "provenance": {
+    "referenceCity": "cape-town",
+    "referenceFeature": "Green Point Park",
+    "sourcePath": "src/game/cities/cape-town/places.ts",
+    "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual identity only; no source geometry copied",
+    "sourceScope": "Mapped place identity and activity context only; does not substantiate palette, roof, dimensions or a region-wide architecture claim",
+    "verification": "Read repository source snapshot; live OSM element not independently re-fetched",
+    "artDirectionStatus": "proposal",
+    "artDirectionRationale": "A distinct readable palette for procedural props; roof is a gameplay canopy choice",
+    "unknowns": [
+      "Regional coverage and city overrides need integration review",
+      "Colour and roof selection have no measured reference basis"
+    ]
+  }
+}

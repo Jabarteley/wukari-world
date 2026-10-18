@@ -5,7 +5,7 @@
 - **Work ID:** `story-mode-20261017`
 - **Owner:** Story programme integration
 - **Thread:** `01a14bf1-fd6d-7de1-9770-a0c22f5d554a`
-- **UTC updated:** `2026-10-18T07:44:41.042200+00:00`
+- **UTC updated:** `2026-10-18T08:06:14Z`
 - **Status:** `active`
 - **Work state:** `implementation`
 
@@ -26,9 +26,9 @@ Deliver four independently reviewed and released phases of Story Mode for `kroma
 ## Repository state
 
 - **Base:** Phase1 PR35 merged as `678b6bbe50900561d712ebe35f4932e48227d3b5`; exact combined CI39101841081 and protected release39102769792 passed, followed by active public health and unauthenticated320/390 browser proof. This is historical delivery evidence, not a claim that later main releases remain on678b6bbe.
-- **Branch:** `story/phase2-scenes`. Current integration head `e71542c7b3fba11b25cb5fb91079c154bd1feefe` includes fresh main `b53284599ec94584600b78ff3043fea7e6748c4d`. Pushed catalogue source `b4878e1e1d10e124e79f2d46535130c3b8c3a18f` passes CI39107653763; newer upstream integration still needs exact CI. No Phase2 PR/release yet. Future runtime, offline factories, package/prefetch and sample helpers remain unstaged.
+- **Branch:** `story/phase2-scenes`. Current integration head `56390dcda00e929fb63f288b58bfd719d9903036` includes fresh main `b30473a51e3f0ea20a8022e6c8e865d178a7adc1`, including the upstream Spaces phase4 and phase5 changes. Pushed catalogue source `b4878e1e1d10e124e79f2d46535130c3b8c3a18f` passes CI39107653763; the newer combined revision needs fresh CI. No Phase2 PR/release yet. Future runtime, offline factories, package/prefetch and sample helpers remain unstaged.
 - **Initial dirty status:** clean.
-- **Resources:** Existing5351 static QA exec11040,Node512, still serves the verified8a941302 artifact with saved actors/clock unchanged. New read-only5354 catalogue fixture exec59892 serves exactgreenb487hostedartifact outsideclone; no gameplay state. All asset generation/decode/render/analysis processes are terminal, and the serial slot is available for the explicitly assigned preview helper check. Runtime-preview source is being prepared; no5355server/browser/canonical amendment yet. Alternate browser automation approval is pending; no process/profile launched. Protected listeners/Desktop checkout untouched.
+- **Resources:** Existing5351 static QA exec11040, Node512, still serves the verified8a941302 artifact with saved actors/clock unchanged. Read-only5354 catalogue fixture exec59892 serves exact green b487 hosted artifact outside the clone; no gameplay state. The user explicitly approved isolated Playwright on a separate temporary Chrome profile; one operator now owns catalogue/browser evidence. Runtime sample source and2/2 helper tests are reviewed. Calibration-only5355 launch is assigned with the heavy lock retained for its whole lifetime. The first launch refused Node24's704MiB total heap and exited1 before listening; one conservative retry adds16MiB semi-space while retaining512MiB old-space and the640MiB total guard. No canonical measurement amendment or bulk generation is approved. Protected listeners/Desktop checkout untouched.
 
 
 ## Acceptance tracker
@@ -593,3 +593,12 @@ The heavy slot is free. Root is restarting only the task QA preview fromea762506
 
 - Independent V5 review accepts allfiveprops andMakola onlyas coherentcandidatesforactualruntimecomposition. Productionrealism remainsunapproved: regularhighcontrastwoodbands, genericrepeatedproduceclusters andsimplifiedcanopytones require actualcamera/nativeactors/texturefiltering judgement. Review10707f6f23fbafe65caffbbad75ab85af669a6f137cda73f1c5865f0947680f6 verified10images againstmanifest. No isolatedsamplepass authorizesbulk.
 - Runtime-source owner has prepared calibration/fullhost diagnostics andnewfocusedvalidation/disposal checks; Nodehelper isunderindependentsourcecorrection. Existingcanonicalhostbook andaudithelpers remainunchanged. Helpertestonly receivesnextslot aftersourcefreeze, no5355launchuntilparentinspection. No alternateUItoolwhilehumanquestionpending.
+
+
+## Browser fallback and upstream integration 2026-10-18T08:06:14Z
+
+- The user explicitly approved isolated Playwright after the native tool reported the Mac locked. One task-owned temporary Chrome profile/process is authorized for local catalogue and runtime checks. Existing user profiles, tabs and5351 game actors/clock are excluded. Browser evidence must retain the exact served artifact; b487 catalogue proof is separate from the combined source revision.
+- Upstream Spaces phase4 main251438a1 and phase5 mainb30473a5 were integrated cleanly through f86c7ea1 and56390dcd. Their sandbox, WebSocket, physics, scripts and UI source are preserved without edits. New combined CI is required before any release conclusion. Only the catalogue checkpoint and draft factory documentation are being pushed; unfinished runtime, package integration and future assets remain unstaged.
+- The actual-renderer sample is reviewed source with2/2 focused helper tests. The calibration server uses the real unchanged ground/sky and records actual renderer submissions before any numeric host allowance is adopted. Startup/HTTP proof is a separate finite unit from browser calibration. The first resource guard refusal is retained; the retry reduces young-generation heap without raising limits.
+- V5 is accepted only as a candidate for runtime composition. Production realism, the other15 kit classes, production generator generalization and bulk generation remain open. External factory spend remainsUS$0; assistant usage/cost is unavailable.
+- Next: exact combined catalogue CI, actual320/390 catalogue journey, then actual outer-host calibration, refreshed34-signature host measurements and the real V5 Accra scene with12 native residents.

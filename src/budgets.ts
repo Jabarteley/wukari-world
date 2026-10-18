@@ -243,6 +243,22 @@ export const PHONE_SCENE_DRAW_CALLS: Budget = {
   why: 'Everything visible at once on a phone, the same limit venue scenes already keep.',
 }
 
+export const CITY_SCENE_RECIPES_BYTES: Budget = {
+  value: 120_000, unit: 'raw bytes', limit: 'max', status: 'current',
+  enforcedIn: 'src/scene/recipe/contract.ts, scripts/scene-factory/scenes.ts, scripts/download-budget.ts',
+  why: 'One city fetches its compact recipes and measured dependencies in a separate lazy entry.',
+}
+export const SCENE_KIT_BROTLI: Budget = {
+  value: 300_000, unit: 'brotli bytes', limit: 'max', status: 'current',
+  enforcedIn: 'scripts/scene-factory/assets.ts, scripts/download-budget.ts',
+  why: 'One regional prop kit is shared by cities in that region and fetched on demand.',
+}
+export const HERO_BROTLI: Budget = {
+  value: 60_000, unit: 'brotli bytes', limit: 'max', status: 'current',
+  enforcedIn: 'scripts/scene-factory/assets.ts, scripts/download-budget.ts',
+  why: 'One city landmark is a bounded optional dependency of that city scene pack.',
+}
+
 export const BUDGETS = {
   SCENE_SCENERY_TRIANGLES, SCENE_CHARACTER_TRIANGLES, SCENE_TRIANGLES, SCENE_DRAW_CALLS, SCENE_SCENERY_MESHES, SCENE_LIGHTS,
   NATIVE_FULL_BODY_TRIANGLES, CANONICAL_FULL_BODY_TRIANGLES, CANONICAL_LOD_BODY_TRIANGLES,
@@ -251,6 +267,7 @@ export const BUDGETS = {
   STARTUP_RAW, STARTUP_GZIP, LOADING_RAW, LOADING_GZIP, SCENE_HOST_RAW, SCENE_HOST_GZIP,
   FIRST_PAINT_BROTLI, STARTUP_BROTLI, BASE_BODY_BROTLI, CLIP_PACK_BROTLI, WARDROBE_ITEM_BROTLI, WARDROBE_ITEM_TRIANGLES, WARDROBE_ITEM_TEXTURE_PX,
   STREET_TILE_BROTLI, STREET_TILE_TRIANGLES, PHONE_SCENE_DRAW_CALLS,
+  CITY_SCENE_RECIPES_BYTES, SCENE_KIT_BROTLI, HERO_BROTLI,
 } as const satisfies Record<string, Budget>
 
 export type BudgetName = keyof typeof BUDGETS

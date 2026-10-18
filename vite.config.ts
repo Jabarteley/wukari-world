@@ -291,6 +291,8 @@ export default defineConfig({
     const recipeCity = id.match(/\/src\/scene\/recipe\/cities\/([a-z0-9-]+)\.ts$/)
     if (recipeCity) return `recipe-city-${recipeCity[1]}`
     if (/\/src\/scene\/recipe\//.test(id)) return 'scene-recipes'
+    // The game and the independent inspector share this same host. Keep its existing byte boundary intact when both are entries.
+    if (/\/src\/(?:campus\/unilag\/world-adapter|scene\/venue-scenes|venue-world)\.ts$/.test(id)) return 'world-adapter'
     if (id === CITY_INDEX_ID) return 'city-index'
     if (/\/src\/game\/wardrobe\//.test(id)) return undefined
     // The stake rules are read by the server and by the Tables app only (the browser's growth system leaves 'tables.server' out): leave them to the import graph, never the engine.
@@ -396,8 +398,8 @@ export default defineConfig({
     // Small modules every page uses, shared by the lazy panels and each needing no more than Vue and the engine: kept in the engine chunk
     // (already in the first download) instead of one file apiece, which would each carry its own header and lose what the others share when compressed.
     if (/\/src\/(geo\/frame|campus\/unilag\/(slices|volunteer)|app\/ui\/format|app\/features\/(commerce\/connectionReturn|account\/(accountLite|accountTrack)|hud\/coachModel|sim\/settingsModel|tour\/tourState|neighbourhood\/cityWalkState))\.ts$/.test(id)) return 'engine'
-    // The small shared pieces the game shell itself uses (buttons, sheet, skeleton rows, glyph text, the calls loader and the growth store): one file in the first download instead of six, each of which would carry its own header and lose what the others share when compressed. Lazy panels import them from here.
-    if (/\/src\/app\/(ui\/(BaseButton|BaseSheet|SkeletonRows)\.vue)(\?|$)/.test(id)) return 'shell-kit'
+    // The shell's existing buttons, sheets and glyph helpers share one download across the game and the inspector.
+    if (/\/src\/app\/(?:ui\/(?:BaseButton|BaseSheet|SkeletonRows|GameIcon)\.vue|features\/kit\/GlyphText\.vue)(\?|$)/.test(id) || /\/src\/(?:ui\/(?:dom|icon-map|phone\/icons)|app\/features\/kit\/glyphText)\.ts$/.test(id)) return 'shell-kit'
     // Reading a world-feed answer into a city's money and the short money form (docs/CURRENCY.md): only the lazy feed module, the top bar's count-up and the civic boards use them; the writer (money.ts) is in the engine.
     if (/\/src\/game\/money-feed\.ts$/.test(id)) return undefined
     // The constitution's numbers and words (offices, quorums, levers): read only by the Politics screens, which are fetched on demand, and by the server.

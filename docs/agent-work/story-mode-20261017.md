@@ -5,7 +5,7 @@
 - **Work ID:** `story-mode-20261017`
 - **Owner:** Story programme integration
 - **Thread:** `01a14bf1-fd6d-7de1-9770-a0c22f5d554a`
-- **UTC updated:** `2026-10-18T06:32:00Z`
+- **UTC updated:** `2026-10-18T07:16:26Z`
 - **Status:** `active`
 - **Work state:** `implementation`
 
@@ -25,17 +25,18 @@ Deliver four independently reviewed and released phases of Story Mode for `kroma
 
 ## Repository state
 
-- **Base:** `c42aeee66e0fbc60e85cb808d8d2ec263a7ac4d4`; primary Phase1 merged as `377300fab8039d551638540047091b7c31609dbc`. Current pushed repair runtime `8a94130206815cf8905e7a48402a6e82a7c70f37` passes CI39094348275, normal typecheck5/0, focused fresh-slice/Story/journey11/11 and exact release Worker5/5. Original runtime `ea76250649a728172d623e80b8fb22112f570e0a` retains full city/scene15/15,284-city graph and browser evidence at its named source. Current built repair responsive/browser retention and isolated trusted-event timing confirmation pass at their stated scopes; PR/release remain pending.
-- **Branch:** `story/phase2-scenes`, from main21a34d8d6ee75d91ac037b7400ca1ce9ddc66d61 after completed Phase1 fix-forward delivery
+- **Base:** Phase1 PR35 merged as `678b6bbe50900561d712ebe35f4932e48227d3b5`; exact combined CI39101841081 and protected release39102769792 passed, followed by active public health and unauthenticated320/390 browser proof. This is historical delivery evidence, not a claim that later main releases remain on678b6bbe.
+- **Branch:** `story/phase2-scenes`. Current integration head `cb1b0d7afe5b4cd064d88c79aec54287efe256c9` includes fresh main `e113e7d285591ac7f33f067f5c7aa365ccfd5652` (Spaces3D phase3 PR38). Catalogue checkpoint07b5a958 and prior main mergef857ea00 are pushed; the reviewed bundle-boundary correction is the next checkpoint. No Phase2 PR/release yet.
 - **Initial dirty status:** clean.
-- **Resources:** Task-only static Node QA5351 is active as exec11040, heap512MiB, serving the verified8a941302 CI bundle directly. Existing saved actors/progress and clock retained. Earlier Vite5351/API5352 exec54611 is terminal143; no5352 listener. All local heavy/compiler/test/artifact sessions are terminal; generation is held during browser confirmation. Protected listeners and Desktop checkout untouched. Future factory files remain unstaged.
+- **Resources:** Task-only static Node QA5351 remains exec11040, heap512MiB, serving the verified8a941302 CI bundle directly. Saved actors, progress and clock are retained; do not overwrite dist or stop this preview. Protected listeners and Desktop checkout remain untouched. Serial V3 sample generation/decode/render/comparison sessions are terminal0 with heavy slot returned; only producer packaging remains. All compiler/test/artifact analysis sessions are terminal. Future runtime/factory files remain unstaged pending actual asset approval and full integration.
+
 
 ## Acceptance tracker
 
 | Phase | Required outcome and proof | Implementation | CI / merge / release | Next action |
 |---|---|---|---|---|
 | 1 Core | Reversible per-character free/story switch; permanent receipt-derived ladder and city tally in both modes; all four city doors and venue gate; map locks; city signatures; friends-only verified co-op with isolated helper pass, quotas, expiry, keepsake and solo path; erasure; 320/390px actual journeys | Accepted at recorded source/browser scopes; full city/scene15/15, local typecheck5/0, combined Worker5/5 and host/Spaces70/70; responsive retained journeys and bounded trusted-event timing pass | PR34 merged377300fa; fix-forward PR35 merged678b6bbe; combined CI39101841081 and protected release39102769792 pass; public health adopted678b6bbe and unauthenticated landing320/390 passes | Complete; keep5351 preview unchanged, preserve separate inherited-admin internal_error observation |
-| 2 Scenes | Validated distinct recipes for every non-authored venue; Blender regional kits and sourced heroes; lazy packs; regeneration/check/contact sheets; Accra/Nairobi/Tokyo/Paris phone journeys and cold-load measurements | Pure contract/input tooling, final kit/hero and actual CPU Accra prototype reviewed; no runtime wiring | Pending | Start delivery branch after phase1 release; implement real compiler and host composition |
+| 2 Scenes | Validated distinct recipes for every non-authored venue; Blender regional kits and sourced heroes; lazy packs; regeneration/check/contact sheets; Accra/Nairobi/Tokyo/Paris phone journeys and cold-load measurements | Catalogue and runtime/compiler/installer source implemented; focused installer49/49, runtime37/37, download7/7. Strict per-venue host audit284cities/6423targets/34actual representatives; realistic sample under review, production284assets missing | Catalogue CI39105024146 rejected unchanged startup cap; corrected chunk boundary ready for next hosted measurement | Push bounded catalogue correction; approve realistic assets, install/check actual world, typecheck/full suites/browser/CI |
 | 3 Talk | Filtered per-city/per-NPC banks and sourced beta phrasebooks; deterministic greet/hours/directions; capped safe live path; cost/zero-call ledger and three-city browser evidence | Pure bank/draft tooling and beta phrase inputs reviewed; no runtime wiring | Pending | Implement factory execution and adapters outside owned house/model paths |
 | 4 Realism | Recipe sky/material/lighting pass and mapped-street chapter3 entry; phone budgets and full return journey | Queued | Pending | Coordinate allowed seam after phase2 |
 
@@ -60,15 +61,15 @@ No phase is accepted from a worker report, passing build or release receipt alon
 
 ## Immediate resume steps
 
-1. Current repair8a941302 passes CI39094348275, exact artifact download budgets, neutral Worker5/5 and typecheck5/0. Built app confirmation now proves retained progress, locks, helper keepsakes, distinct Nairobi content and no horizontal overflow at320/390. Instrumented trusted-event timing is26.3/24.2ms; original automation-inclusive315/293ms is preserved.
-2. Independently inspect the finite browser report/native PNG metadata, curate only repair evidence and this record, then create the bounded repair PR, require current PR CI and merge normally.
-3. Release exact new main through the protected workflow, verify active health/build and actual public page, then branch Phase2 from fresh main. Keep future scene/talk files out of the repair.
+1. Commit/push only the reviewed catalogue build-boundary and additive download-budget changes, this record and exact diagnostic evidence. Dispatch hosted CI on the exact pushed head; inspect emitted graph and unchanged startup/host caps. Keep5351 and its artifact untouched.
+2. Independently review the final V3 sample pixels after producer handback. Folded stock is the only new realism acceptance target; hanging cloth is accepted at sample level, while materials, canopy, produce and the rest of the kit still require review. Do not restart bulk from old approvals.
+3. Integrate actual approved asset index and explicit hero venue mapping with the safe installer, package commands/prebuild and idle prefetch; generate/check284actualcity packs before normal typecheck/full city-scene/hosted/browser acceptance. All Phase3/4 delivery gates remain open.
 
 ## Release state
 
-- **Local implementation:** Story core, reversible switch, authoritative capability, map locks and lazy co-op UI implemented. Focused checks116/116 before the disabled-view refinement; its focused checks28/28. Actual co-op and travel passed. PR34 merged377300fa with successful current CI39091668137. Protected release39092396438 rejected startup before deployment; bounded journey-index repair and active live acceptance pending.
-- **Deployment:** protected release39092396438 failed before deployment for377300fa. Live remains9eab3816; Story setting defaultfalse.
-- **Gate:** all four tracker rows remain open.
+- **Local implementation:** Phase1 accepted at its recorded source/browser scopes. Phase2 catalogue source is committed; new runtime and offline factories remain uncommitted until real assets and complete integration can be checked. Educational mission coverage is an explicit open acceptance requirement, with a bounded source-content audit assigned.
+- **Deployment:** Phase1 protected release39102769792 succeeded and active health adopted678b6bbe. Later upstream main includes its own releases; re-read live state before any future deployment. Story remains off by default. No Phase2 deployment or settings mutation.
+- **Gate:** Phase1 complete. Phase2, Phase3 and Phase4 remain open; no source-only or sample result substitutes for actual fleet, browser and live proof.
 
 ## Checkpoint history
 
@@ -525,3 +526,22 @@ The heavy slot is free. Root is restarting only the task QA preview fromea762506
 - Runtime asset URLs are content-addressed as/assets/scene-factory/kits/<region>-<fullSHA256>.glb andheroes/<city>-<fullSHA256>.glb. Both compiler and strict runtime parser must use these exact URLs because existing hosts cache asset URLs immutably for a year. No unversioned shipped compatibility is required.
 - World compiler requires a reviewed explicit hero venue in its asset index and a measured host-scenery input; no arbitrary first-target placement or provisional estimate is accepted in production. Full generation remains held pending realistic assets and runtime support measurement.
 - Next: commit/push only this catalogue checkpoint and recorded Phase1 delivery evidence, run hosted CI, inspect exact emitted startup/host bytes and catalogue artifact; continue disjoint runtime/generator/sample implementation.
+
+
+## Exact catalogue artifact diagnosis 2026-10-18T07:04:33.882580+00:00
+
+- Pushed catalogue checkpoint07b5a958, then integrated fresh main7d219e3f admin/probe classification repair through f857ea00463194091266ba9b199d180d8fd64f31. EarlierCI39104923363 was superseded. CurrentCI39105024146 passes policy/typecheck/build but correctly fails fixed startupBrotli195600 at195882,282bytes over. Raw613996/gzip222807 pass. Failure log retained locally, SHA245a2d5aa00f137e2bacd4a14af36994f95bfcb75fdb32b4334edc3a573d6644. No PR/release.
+- Downloaded actual42,165,843-byte hostedartifact12128710120 outside the clone, leaving5351/dist untouched. Comparison with8a preview shows automatic shared UI extraction into a newdom chunk, adding a compression boundary. The apparent host10529raw/3748gzip excludes a new venue-world shared chunk; full scene closure remains1190418raw/352905gzip, versus old1191115raw/352884gzip. No dramatic host-size reduction is claimed.
+- Parent applies a coherent build boundary: existing host entry/venue-world/venue-scenes stay in world-adapter, preserving the old named scene-host budget scope. Existing shell glyph/DOM helpers and components share shell-kit, all already in startup. Catalogue/factory implementation remains lazy outside game startup/engine/host. Exact savings require a new hosted build; no cap change or source guard weakening. Artifact upload explicitly includes the requested hidden Vite manifest only from its fixed listed path.
+- Runtimefirstcity proof passes23/23 with realMeshopt, exacttransforms/UVs,12native residents, navigation/contact, retry/disposal atNode512. Fleet/browser gates remain open. Hostsignatureaudit covers284cities/6423targets in18kinds with34actualrepresentatives,149preservedauthoredpublicvenues and284excludedhomes;0failure/missingtableID. Globalestimate64.73percent drift andperkindbuka28.33/market29.94 require strict pervenue measuredhost input. Dynamic-marker pervenue worst drift7.63percent passes15percent target at this stated fixture layer. Audit04be41ad5808886835cd54664068c31305958b13caf421f41aa679725965f0c5.
+- Pervenuecontract/layout now has one runtime writer; compiler/toolscallers separate. Installer source only; focused32/32 worldcompiler acceptance precedes these new amendments. SampleV2 cloth3276hero/1232stall remains independently reviewed, all bulk generation held. ExternalspendUS$0.
+
+
+## Catalogue correction checkpoint 2026-10-18T07:16:26Z
+
+- Integrated fresh maine113e7d285591ac7f33f067f5c7aa365ccfd5652 throughcb1b0d7a without conflicts or protected-owner edits. Its Rapier dependency is recorded in the upstream lock; task-local dependency reinstall is deferred until asset-tool resource handback. Hosted CI performs npmci on the exact lock.
+- Independent source review accepts the existing shell helpers and world-adapter grouping for hosted measurement: no identified reverse runtime edge, eager account/scene initialization or source-level TDZ. Exact emitted cycles, startup bytes and runtime remain unverified until the next artifact. Hidden manifest upload stays restricted to explicitdist paths.
+- Additive budgets enforce120000raw bytes per emitted lazy city pack,300000Brotli per regional kit and60000Brotli per hero. Existing caps and legacy metric semantics are unchanged. Focused download checks7/7 pass in495.832917ms; separate compressible120001raw negative proves raw checking. Exact prior hosted comparison and focused log are retained beside this record.
+- Final per-venue runtime checks37/37 and compiler/installer checks49/49 pass. Canonical host measurements cover284cities/6423venues using34actual support signatures, not6423renders: host-scenery.json SHA147805aa16d306813b6423666e02ceba90cfb2be40621c3a00c1cf07f7072318,1175sourcepins freshly verified. Real Accra admits12native residents,pending0/errors0,total63012tri/24draw. Production assets/index,284install, normal typecheck and full fleet/visual proof remain open.
+- V2 hanging cloth accepted at its bounded pixel scope; folded stock rejected. Actual V2 ray diagnosis proves a structural post cast-shadow contribution to its diagonal patch. V3 retains the sun/materials and accepted hanging cloth, changing folded stock only:3492hero triangles/58392raw/32247Brotli,1448stall triangles. All19other kit parts and the upper hero compare equal at the stated raw/decoded geometry and UV layer. Producer final packaging and independent pixels remain pending; no bulk approval.
+- Next executable step: publish this finite catalogue correction, run hosted CI and inspect its actual bytes/graph; review packaged V3 and continue integration. External factory spendUS$0; assistant usage cost unavailable.

@@ -85,3 +85,18 @@ test('a budget that is exceeded is reported over', () => {
   assert.equal(byName.WARDROBE_ITEM_BROTLI?.status, 'over', 'an item is the largest of its files')
   assert.ok((byName.WARDROBE_ITEM_BROTLI?.measured ?? 0) > 60_000)
 })
+
+test('scene packs enforce raw city bytes even for compressible text, and separate kit and hero Brotli caps', () => {
+  const digest = 'a'.repeat(64)
+  const dist = build({
+    'assets/recipe-city-accra-abcdef0.js': bytes('x'.repeat(120_001)),
+    [`assets/scene-factory/kits/gulf-guinea-${digest}.glb`]: noise(300_001),
+    [`assets/scene-factory/heroes/accra-${digest}.glb`]: noise(60_001),
+  })
+  const measured = Object.fromEntries(checks(dist).map(item => [item.budget, item]))
+  assert.equal(measured.CITY_SCENE_RECIPES_BYTES?.measured, 120_001)
+  assert.equal(measured.CITY_SCENE_RECIPES_BYTES?.status, 'over')
+  assert.equal(measured.SCENE_KIT_BROTLI?.status, 'over')
+  assert.equal(measured.HERO_BROTLI?.status, 'over')
+  assert.equal(measured.STARTUP_BROTLI?.status, 'ok', 'lazy scene packs do not enter startup')
+});

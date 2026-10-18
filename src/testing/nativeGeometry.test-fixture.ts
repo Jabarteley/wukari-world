@@ -94,7 +94,9 @@ export async function awaitNativeSceneGeometry(scene: { group: Object3D, walk: {
   const seen = new Set<Promise<unknown>>()
   const errors: string[] = []
   let idle = 0
-  for (let cycle = 0; cycle < 32 && idle < 2; cycle += 1) {
+  const deadline = Date.now() + 10_000
+  while (idle < 2) {
+    if (Date.now() >= deadline) throw new Error(`${label}: native geometry readiness timed out`)
     const tasks: Promise<unknown>[] = []
     scene.group.traverse(node => {
       const ready = node.userData.ready
@@ -109,7 +111,9 @@ export async function awaitNativeSceneGeometry(scene: { group: Object3D, walk: {
       const refresh = scene.group.userData.refreshCharacterCosts
       if (typeof refresh === 'function') refresh()
     } else {
-      idle += 1
+      let pending = false
+      scene.group.traverse(node => { if (node.userData.characterStatus === 'loading') pending = true })
+      idle = pending ? 0 : idle + 1
       await pause()
     }
   }

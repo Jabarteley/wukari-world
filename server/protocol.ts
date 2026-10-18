@@ -26,9 +26,14 @@ export const SESSION_TTL_MS = 30 * 86400000;
  */
 export const PROBE_TTL_MS = 15 * 60000;
 export const PROBE_NAME = /^Zz (Test|City \d+)$/;
-export const isProbeSession = (session: Partial<Pick<SessionRecord, 'name' | 'probe'>> | null | undefined): boolean => Boolean(session) && (session!.probe === true || PROBE_NAME.test(session!.name ?? ''));
-/** The lifetime a renewal gives this session: the host's, or PROBE_TTL_MS for a probe. */
-export const ttlFor = (session: Partial<Pick<SessionRecord, 'name' | 'probe'>>, ttlMs: number): number => (isProbeSession(session) ? Math.min(ttlMs, PROBE_TTL_MS) : ttlMs);
+/**
+ * The release continuity check's two identities (Allworld-notes release-continuity.mjs): kept across a deploy, so they keep the host's
+ * lifetime, but they are not people either — counted nowhere and listed with the probes.
+ */
+export const CHECK_NAME = /^Release Check [AB]$/;
+export const isProbeSession = (session: Partial<Pick<SessionRecord, 'name' | 'probe'>> | null | undefined): boolean => Boolean(session) && (session!.probe === true || PROBE_NAME.test(session!.name ?? '') || CHECK_NAME.test(session!.name ?? ''));
+/** The lifetime a renewal gives this session: the host's, or PROBE_TTL_MS for a smoke probe (never for a continuity identity). */
+export const ttlFor = (session: Partial<Pick<SessionRecord, 'name' | 'probe'>>, ttlMs: number): number => (session.probe === true || PROBE_NAME.test(session.name ?? '') ? Math.min(ttlMs, PROBE_TTL_MS) : ttlMs);
 export const ACTION_WINDOW_MS = 86400000;
 export const MAX_VOICE_MEMBERS = 8;
 export const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;

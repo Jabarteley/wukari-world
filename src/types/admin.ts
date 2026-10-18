@@ -15,7 +15,8 @@ export interface AdminMe extends ApiEnvelope { admin: true; level: 'root' | 'adm
 export interface PlayerRow { id: string; name: string; kind: 'guest' | 'account' | 'test'; city: string | null; cityName: string | null; online: boolean; cash: number; lastSeen: number; since: number; flags: string[]; admin: boolean }
 /** `hidden`: probe sessions this answer left out (0 under `filter=test`). */
 export interface PlayersPage extends ApiEnvelope { rows: PlayerRow[]; total: number; page: number; pageSize: number; scanned: number; hidden: number }
-export interface TestSessions extends ApiEnvelope { count: number; live: number; sample: string[]; batch: number }
+/** `count`: removable probe sessions; `kept`: release continuity identities used in the last three days, which removal leaves alone. */
+export interface TestSessions extends ApiEnvelope { count: number; live: number; kept: number; sample: string[]; batch: number }
 export interface AuditView { n: number; at: number; admin: string; adminName: string; action: string; target: string; targetName: string; params: Record<string, string | number | boolean | null>; summary: string; reason: string; amount?: number }
 export interface ActionDone extends ApiEnvelope { ok: true; code: string; summary: string; before?: number; after?: number; applied?: number; clamped?: boolean; line: number; duplicate?: true }
 export interface ConfirmNeeded extends ApiEnvelope { ok: false; code: 'confirmation_required'; token: string; expiresAt: number; summary: string; players?: number; total?: number }

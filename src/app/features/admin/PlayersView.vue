@@ -125,8 +125,8 @@ async function sendBulk(): Promise<void> {
     <p v-if="error" class="adm-error" role="alert">{{ error }} <button class="adm-btn" @click="search">Try again</button></p>
     <div v-if="filter === 'test'" class="adm-card adm-testdata" role="region" aria-label="Test sessions">
       <h3>Test sessions</h3>
-      <p>These are the release check's sessions (<code>Zz Test</code>, <code>Zz City 12</code>…), made on every release to load each city once. They are not people: the dashboard, the growth numbers, the world's visit count and every other list here leave them out, and new ones expire fifteen minutes after the check ends.</p>
-      <p v-if="tests" class="adm-sub">{{ tests.count.toLocaleString('en-GB') }} stored · {{ tests.live.toLocaleString('en-GB') }} still live<template v-if="tests.sample.length"> · for example {{ tests.sample.join(', ') }}</template></p>
+      <p>These are the release checks' sessions: <code>Zz Test</code> and <code>Zz City 12</code> load each city once per release, and <code>Release Check A</code> and <code>B</code> prove that players keep their money across a deploy. They are not people: the dashboard, the growth numbers, the world's visit count and every other list here leave them out. New smoke sessions expire fifteen minutes after the check ends.</p>
+      <p v-if="tests" class="adm-sub">{{ tests.count.toLocaleString('en-GB') }} can be removed, {{ tests.live.toLocaleString('en-GB') }} of them still live<template v-if="tests.sample.length">, for example {{ tests.sample.join(', ') }}</template>.<template v-if="tests.kept"> {{ tests.kept }} release-check identit{{ tests.kept === 1 ? 'y is' : 'ies are' }} kept because the next deploy reads {{ tests.kept === 1 ? 'it' : 'them' }}.</template></p>
       <div class="adm-row">
         <button v-if="admin.me?.level === 'root'" class="adm-btn danger" :disabled="removing || !tests || !tests.count" @click="removeTests">{{ removing ? 'Removing…' : tests?.count ? `Remove all ${tests.count.toLocaleString('en-GB')} test sessions` : 'Nothing to remove' }}</button>
         <span v-else class="adm-sub">Only the root admin can remove them.</span>

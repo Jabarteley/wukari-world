@@ -186,6 +186,12 @@ class AssetStore {
     if (!this.textures.has(url)) this.textures.set(url, new THREE.TextureLoader().loadAsync(url).then(texture => { texture.colorSpace = THREE.SRGBColorSpace; texture.flipY = false; texture.anisotropy = 2; this.readyTextures.set(url, texture); return texture; }).catch(error => { this.textures.delete(url); throw error; }));
     return this.textures.get(url);
   }
+  /** The three objects the cached files share between bodies (and between renderers). */
+  gpuObjects() {
+    const out = new Set(this.readyTextures.values());
+    for (const entry of this.entries.values()) for (const mesh of entry.value ? meshesIn(entry.value.scene) : []) { out.add(mesh.geometry); for (const material of materialList(mesh)) for (const value of Object.values(material)) if (value?.isTexture) out.add(value); }
+    return out;
+  }
   stats() { return { loadedBytes: this.bytes, cachedAssets: this.entries.size, leasedAssets: [...this.entries.values()].filter(e => e.refs > 0).length, estimatedDecodedBytes: [...this.entries.values()].reduce((sum, e) => sum + (e.memory?.decodedBytes || 0), 0) }; }
 }
 
@@ -256,7 +262,7 @@ function clampedDiffuse(shader) {
   shader.fragmentShader = shader.fragmentShader.replace('#include <map_fragment>', '#include <map_fragment>\n\tdiffuseColor.rgb = min( diffuseColor.rgb, vec3( 1.0 ) );');
 }
 
-const eyeCorrections = new WeakMap();
+const eyeCorrections = new WeakMap(), eyeCorrected = new Set();
 function naturalEyeTexture(original, id) {
   if (!original?.image || !['brown', 'brown-light'].includes(id)) return original;
   if (eyeCorrections.has(original)) return eyeCorrections.get(original);
@@ -272,7 +278,7 @@ function naturalEyeTexture(original, id) {
   }
   context.putImageData(pixels, 0, 0);
   const texture = new THREE.CanvasTexture(canvas); texture.colorSpace = THREE.SRGBColorSpace; texture.flipY = original.flipY; texture.anisotropy = 2;
-  eyeCorrections.set(original, texture); return texture;
+  eyeCorrections.set(original, texture); eyeCorrected.add(texture); return texture;
 }
 
 function roleOf(material) {
@@ -746,5 +752,5 @@ export async function createCharacterSystem({ scene, catalogUrl = '/models/catal
     const result = yield* appearanceSteps(look, sliced); if (!result.ok) { actor.dispose(); throw new Error(result.reason); }
     return actor;
   }
-  return { catalog, clips: clips.map(clip => ({ name: clip.name, duration: clip.duration })), motionMetadata, preload, spawn: value=>driveAsync(spawnSteps(value)), spawnSync: value=>driveSync(spawnSteps(value)), spawnSliced: (value, pause, load=false)=>driveSliced(spawnSteps(value, true), pause, load), update: dt => actors.forEach(actor => actor.update(dt)), stats: () => ({ actorCount: actors.size, ...store.stats() }), dispose: () => { actors.forEach(actor => actor.dispose()); store.release(animationUrl); } };
+  return { catalog, clips: clips.map(clip => ({ name: clip.name, duration: clip.duration })), motionMetadata, preload, spawn: value=>driveAsync(spawnSteps(value)), spawnSync: value=>driveSync(spawnSteps(value)), spawnSliced: (value, pause, load=false)=>driveSliced(spawnSteps(value, true), pause, load), update: dt => actors.forEach(actor => actor.update(dt)), stats: () => ({ actorCount: actors.size, ...store.stats() }), releaseGpu: () => { for (const value of [...store.gpuObjects(), ...eyeCorrected]) value.dispose(); }, dispose: () => { actors.forEach(actor => actor.dispose()); store.release(animationUrl); } };
 }

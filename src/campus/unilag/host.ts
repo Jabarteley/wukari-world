@@ -14,6 +14,7 @@ import { ANCHORS, ENTRANCE } from './layout.ts';
 import { CAMPUS_MAP } from './map.generated.ts';
 import { NPC_WORD, npcAria, npcTitle } from '../../ui/npc-mark.ts';
 import type { Kit } from '../../scene/kit.ts';
+import { releaseSharedGpu } from '../../scene/shared-gpu.ts';
 
 export interface WalkResult { ok: boolean; code?: string; reason?: string }
 export interface SpotRequest { id: string; open: boolean }
@@ -495,7 +496,7 @@ export function createCampusHost(container: HTMLElement, {
       controlCleanups.forEach((remove) => remove());
       canvas.removeEventListener('pointerdown', pointerDown); canvas.removeEventListener('pointermove', pointerMove);
       canvas.removeEventListener('pointerup', pointerUp); canvas.removeEventListener('pointercancel', pointerUp); canvas.removeEventListener('wheel', wheel);
-      campus.dispose(); shuttle.dispose(); kit.dispose(); renderer.dispose();
+      campus.dispose(); shuttle.dispose(); kit.dispose(); if (!providedRenderer) releaseSharedGpu(); renderer.dispose();
       if (!providedRenderer) { try { renderer.forceContextLoss?.(); } catch { /* the context is already gone */ } }
       canvas.remove(); tagLayer.remove(); miniMap.remove(); zoneLabel.remove(); controls.remove(); attribution.remove();
       container.classList.remove('campus-host'); container.style.removeProperty('--campus-top'); container.style.removeProperty('--campus-bottom');

@@ -10,6 +10,7 @@ import { createCharacterSystem } from './runtime/characters.js';
 import { profile } from './runtime/selected-profile.mjs';
 import { NATIVE_FULL_BODY_TRIANGLES } from '../../budgets.ts';
 import { bakeSliceSpent, nextBakeSlice } from '../body/bake-slicer.ts';
+import { onReleaseSharedGpu } from '../shared-gpu.ts';
 
 // No hidden canonical actor or dimensions. This converts source metres into existing world units.
 const WORLD_UNITS_PER_METRE = 1.4;
@@ -35,7 +36,7 @@ function getSystem(): Promise<NativeSystem> {
   return systemTask ??= createCharacterSystem({ scene: staging, ...profile,
     footPlantingEnabled: profile.footPlanting, kneeAlignmentEnabled: profile.kneeAlignment,
     seatedContactEnabled: true, groundHeight: () => 0,
-  }).then(value => system = value).catch(error => { systemTask = undefined; throw error; });
+  }).then(value => { system = value; onReleaseSharedGpu(() => value.releaseGpu()); return value; }).catch(error => { systemTask = undefined; throw error; });
 }
 /** The recipe the world dresses a look in (the Fight screen reaches it here, so the modules shared with the first download keep their chunk grouping). */
 export function recipeForLook(look: unknown, seed: unknown) { return nativeRecipeForLook(look, seed); }

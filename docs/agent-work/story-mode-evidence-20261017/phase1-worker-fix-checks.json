@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-18T03:37:33.323002+00:00",
-  "status": "compact-repair-verified-locally-hosted-byte-check-pending",
+  "updatedAt": "2026-10-18T05:09:25.531804+00:00",
+  "status": "runtime-ci-worker-byte-and-responsive-browser-confirmation-pass-pr-pending",
   "baseSha": "377300fab8039d551638540047091b7c31609dbc",
   "branch": "codex/story-core-worker-startup-fix",
   "source": {
@@ -62,6 +62,53 @@
     "prCiRun": 39091668137
   },
   "hostedCi": {
+    "version": 1,
+    "observedAt": "2026-10-18T03:56:16.647667+00:00",
+    "ciRun": 39094348275,
+    "sourceSha": "8a94130206815cf8905e7a48402a6e82a7c70f37",
+    "conclusion": "success",
+    "workflowEvent": "workflow_dispatch",
+    "url": "https://github.com/kromate/joinallworld/actions/runs/39094348275",
+    "requiredJobs": {
+      "release-policy": "success",
+      "typecheck-fast": "success",
+      "build-and-smoke-fast": "success"
+    },
+    "optionalFullJobs": "skipped as explicitly requested",
+    "localActualArtifactDownloadCheck": "pass; conflicts/errors/extras/overBudget all0",
+    "bytes": {
+      "LOADING_RAW": 90568,
+      "LOADING_GZIP": 35262,
+      "FIRST_PAINT_BROTLI": 35369,
+      "STARTUP_RAW": 613919,
+      "STARTUP_GZIP": 222616,
+      "STARTUP_BROTLI": 195433,
+      "SCENE_HOST_RAW": 188939,
+      "SCENE_HOST_GZIP": 70896
+    },
+    "artifact": {
+      "artifactId": 12123099843,
+      "archiveSha256": "0d80b3eaa8dbf41c4acd41943075aee14f8da3a1bb309037c68e3e5fc8489a19",
+      "archiveBytes": 42122069,
+      "githubRegisteredDigestMatches": true,
+      "filesInstalled": 2665,
+      "installedPayloadAggregateSha256": "ac71a7fcc04b3fff7b1d7024962e59115baf6dadf05a368f76fd7955c4f994a5",
+      "everyCopiedFileHashVerified": true,
+      "manifestIncluded": false
+    },
+    "localApplicationBuild": false,
+    "liveRelease": "pending follow-up PR/merge/protected release"
+  },
+  "repairPr": null,
+  "release": null,
+  "activeLiveBuild": null,
+  "sourceFilesSha256": {
+    "src/game/journeys.ts": "1b84aded1b1f21a60febb77664bab729f37bc45abaeef9a24cfbeb93868bf11c",
+    "src/game/progression-slices.ts": "2a6cc46c68a180fbc606bbec7171a9d7d3a39e27287cbc64f2cc9876b1adff17",
+    ".github/workflows/ci.yml": "848a701e145838b75253e76bf457a1477ac8e7b76cf0e57ea6ba850129071e5b"
+  },
+  "byteRepair": "Inline two single-caller fresh-slice assignment helpers without changing validation, tracking timestamps or fresh object construction. Preserve all caps. Extend existing bundle evidence upload to the fix branch prefix.",
+  "rejectedHostedCi": {
     "run": 39093791469,
     "sourceSha": "ccd5d2bd2dc0b10c0ca1b4b2f194dd75d9b1b13b",
     "conclusion": "failure",
@@ -77,13 +124,39 @@
     },
     "log": "phase1-worker-fix-ci-failure.log"
   },
-  "repairPr": null,
-  "release": null,
-  "activeLiveBuild": null,
-  "sourceFilesSha256": {
-    "src/game/journeys.ts": "1b84aded1b1f21a60febb77664bab729f37bc45abaeef9a24cfbeb93868bf11c",
-    "src/game/progression-slices.ts": "2a6cc46c68a180fbc606bbec7171a9d7d3a39e27287cbc64f2cc9876b1adff17",
-    ".github/workflows/ci.yml": "848a701e145838b75253e76bf457a1477ac8e7b76cf0e57ea6ba850129071e5b"
-  },
-  "byteRepair": "Inline two single-caller fresh-slice assignment helpers without changing validation, tracking timestamps or fresh object construction. Preserve all caps. Extend existing bundle evidence upload to the fix branch prefix."
+  "browserConfirmation": {
+    "sourceSha": "8a94130206815cf8905e7a48402a6e82a7c70f37",
+    "module": "/assets/app-9d1b405.js",
+    "unmodifiedOrigin": "http://127.0.0.1:5351/",
+    "report": "phone/current-8a941302-browser-report.json",
+    "nativeCaptures": 8,
+    "nativeCaptureBytes": 604280,
+    "allNativeDimensionsAndHashesVerified": true,
+    "viewports": [
+      [
+        390,
+        844
+      ],
+      [
+        320,
+        740
+      ]
+    ],
+    "overflowObserved": false,
+    "retention": "Kano chapter4; current-city0missions/2venues;275/284/275 open cities; helper two keepsakes and1city; Nairobi distinct tables",
+    "unmodifiedAutomationInclusiveMs": [
+      315,
+      293
+    ],
+    "instrumentedReport": "phone/current-8a941302-instrumented-report.json",
+    "instrumentedOrigin": "http://127.0.0.1:5353/",
+    "trustedEventToSuccessfulDomPlusTwoAnimationFramesMs": [
+      26.300000190734863,
+      24.200000047683716
+    ],
+    "methodLimit": "Instrumented desktop Chrome, not actual paint, physical-phone or an uninstrumented-origin latency claim.",
+    "preexistingColdDiagnostic": "Qualified visited key triggers nonfatal city-index console diagnostic, unchanged at9eab3816; preserved full stack in phone/current-8a941302-instrumented-cold-errors.json.",
+    "sourceReview": "phone/current-8a941302-source-review.md",
+    "proxyReview": "phone/current-8a941302-instrumented-proxy-review.json"
+  }
 }

@@ -5,15 +5,16 @@
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useAdmin } from './useAdmin.ts'
 import { absolute, bytes, naira, relative, uptime } from './adminModel.ts'
-import { accountsPerDay, field, fillTone, lastDays, percent, returnCell, returning, series, shortDate, sizeTone, sourceLabel, tileChange } from './dashboardModel.ts'
-import type { DayRow, ReturnsRead } from './dashboardModel.ts'
+import { accountsPerDay, attentionOf, field, fillTone, lastDays, percent, returnCell, returning, series, shortDate, sizeTone, sourceLabel, trendOf } from './dashboardModel.ts'
+import type { Attention, DayRow, ReturnsRead } from './dashboardModel.ts'
+import type { TestSessions } from '../../../types/admin.ts'
 import Spark from './charts/Spark.vue'
 import Trend from './charts/Trend.vue'
 import Funnel from './charts/Funnel.vue'
 import type { FunnelRow } from './charts/Funnel.vue'
 import { recordDone } from './adminUi.ts'
 
-const emit = defineEmits<{ player: [id: string]; tests: [] }>()
+const emit = defineEmits<{ player: [id: string]; tests: []; view: [view: Attention['view']] }>()
 const api = useAdmin()
 interface Dash {
   asOf: number; online: { value: number; cities: Record<string, number> }; cities: Record<string, { new: number; seen: number }>; yesterday: { new: number; active: number; sessions: number }; today: { sessions: number }
@@ -35,6 +36,9 @@ interface Eco {
 }
 const dash = ref<Dash | null>(null), hist = ref<Hist | null>(null), eco = ref<Eco | null>(null), error = ref(''), busy = ref(false)
 const span = ref<'today' | 'week'>('week'), now = ref(Date.now())
+// The stored test sessions: one walk over the sessions, so read when the page opens and on Refresh, not every minute.
+const tests = ref<TestSessions | null>(null)
+async function loadTests(): Promise<void> { const r = await api.get<TestSessions>('/api/admin/test-sessions'); if (r.ok) tests.value = r.data }
 async function load(fresh = false): Promise<void> {
   busy.value = true
   const [d, h] = await Promise.all([api.get<Dash>('/api/admin/dashboard', fresh ? { fresh: 1 } : {}), api.get<Hist>('/api/admin/history', { days: 30 })])
@@ -47,7 +51,7 @@ async function economy(fresh = false): Promise<void> {
   if (reply.ok) eco.value = reply.data; else error.value = reply.error.reason
 }
 let timer: ReturnType<typeof setInterval> | undefined, ticks = 0
-onMounted(() => { void load(); void economy(); timer = setInterval(() => { now.value = Date.now(); ticks += 1; if (ticks % 6 === 0) void load(); if (ticks % 60 === 0) void economy() }, 10000) })
+onMounted(() => { void load(); void economy(); void loadTests(); timer = setInterval(() => { now.value = Date.now(); ticks += 1; if (ticks % 6 === 0) void load(); if (ticks % 60 === 0) void economy() }, 10000) })
 onBeforeUnmount(() => clearInterval(timer))
 
 const days = computed(() => hist.value?.days ?? [])
@@ -68,7 +72,6 @@ const funnel = computed(() => hist.value?.funnel[span.value])
 // Guests, less the release check's probe sessions once the economy walk has counted them (the fast count cannot tell them apart).
 const guests = computed(() => Math.max(0, (dash.value?.accounts.guests ?? 0) - (eco.value?.probes ?? 0)))
 const probes = computed(() => eco.value?.probes ?? 0)
-const tileNote = (text: string | null): string => (text ? text.charAt(0).toUpperCase() + text.slice(1) + '.' : 'No earlier day to compare with.')
 /** The state of a fill in words, so it is never colour alone. */
 const toneWord = (tone: 'ok' | 'warn' | 'bad'): string => (tone === 'bad' ? ' · near the limit' : tone === 'warn' ? ' · filling up' : '')
 // The cities table shows the busiest few by default: with ~284 open cities the full list is a stream, not an overview.
@@ -83,22 +86,33 @@ async function testGuide(): Promise<void> {
   guideTest.value = !reply.ok ? reply.error.reason : reply.data.ok ? `The guide answered in ${reply.data.ms} ms (${reply.data.model}).` : `The guide did not answer: ${reply.data.error} (${reply.data.ms} ms).`
   recordDone(guideTest.value, reply.ok && reply.data.ok === true)
 }
+const attention = computed<Attention[]>(() => (dash.value ? attentionOf({ reports: dash.value.reports.open, problems: dash.value.reports.problems.open, sessions: dash.value.capacity.sessions, sockets: dash.value.capacity.sockets, tests: tests.value?.count ?? 0, emailOff: dash.value.mail.email.off, pushOff: dash.value.mail.push.off }) : []))
+function act(item: Attention): void { if (item.filter === 'test') emit('tests'); else emit('view', item.view) }
+const trends = computed(() => (dash.value ? { seen: trendOf(dash.value.players.activeToday, dash.value.yesterday.active), new: trendOf(dash.value.players.newToday, dash.value.yesterday.new) } : null))
+const ARROW = { up: '▲', down: '▼', flat: '■', none: '' } as const
 const asOf = computed(() => (dash.value ? `as of ${absolute(dash.value.asOf)}, ${relative(dash.value.asOf, now.value)}` : ''))
 </script>
 
 <template>
   <section class="adm-dash" aria-label="Dashboard">
     <div class="adm-row adm-between">
-      <p class="adm-muted" role="status">{{ asOf || 'Loading…' }}<template v-if="dash"> · refreshes every minute · build {{ dash.build }}, up {{ uptime(dash.uptimeMs) }}</template></p>
-      <button class="adm-btn" :disabled="busy" @click="load(true); economy(true)">{{ busy ? 'Refreshing…' : 'Refresh now' }}</button>
+      <p class="adm-status" role="status"><i class="adm-live" aria-hidden="true" />{{ asOf ? `Live ${asOf}` : 'Loading…' }}<template v-if="dash"><span class="adm-hide-sm"> · refreshes every minute · up {{ uptime(dash.uptimeMs) }} · </span><code class="adm-hide-sm">{{ dash.build }}</code></template></p>
+      <button class="adm-btn" :disabled="busy" @click="load(true); economy(true); loadTests()">{{ busy ? 'Refreshing…' : 'Refresh now' }}</button>
     </div>
     <p v-if="error" class="adm-error" role="alert">The dashboard could not be read: {{ error }} <button class="adm-btn" @click="load(true)">Try again</button></p>
     <div v-if="!dash && !error" class="adm-stats adm-skeleton" aria-busy="true" aria-label="Loading the overview"><div v-for="n in 6" :key="n" class="adm-stat" /></div>
     <template v-if="dash">
+      <section class="adm-attention" :class="{ calm: !attention.length }" aria-labelledby="adm-attention-h">
+        <h2 id="adm-attention-h">{{ attention.length ? 'Needs your attention' : 'Nothing needs you right now' }}</h2>
+        <p v-if="!attention.length" class="adm-sub">No reports waiting, capacity is comfortable, and mail and push are on.</p>
+        <ul v-else>
+          <li v-for="item in attention" :key="item.id" :class="`is-${item.tone}`"><span>{{ item.text }}</span><button type="button" class="adm-btn" @click="act(item)">{{ item.action }}</button></li>
+        </ul>
+      </section>
       <section class="adm-stats" aria-label="Today at a glance">
         <div class="adm-stat"><h2>Online now</h2><p class="adm-big">{{ dash.online.value.toLocaleString('en-GB') }}</p><Spark :values="peakSeries" :labels="twoLabels" name="Busiest moment of each day" /><p class="adm-sub">Exact, live. Trend: the busiest moment of each day.</p></div>
-        <div class="adm-stat"><h2>Players today</h2><p class="adm-big">{{ dash.players.activeToday.toLocaleString('en-GB') }}</p><Spark :values="seenSeries" :labels="twoLabels" name="Players seen each day" /><p class="adm-sub">{{ tileNote(tileChange([dash.yesterday.active, dash.players.activeToday])) }}</p></div>
-        <div class="adm-stat"><h2>New today</h2><p class="adm-big">{{ dash.players.newToday.toLocaleString('en-GB') }}</p><Spark :values="newSeries" :labels="twoLabels" name="New players each day" color="#2563eb" /><p class="adm-sub">{{ tileNote(tileChange([dash.yesterday.new, dash.players.newToday])) }}</p></div>
+        <div class="adm-stat"><h2>Players today</h2><p class="adm-big">{{ dash.players.activeToday.toLocaleString('en-GB') }}</p><Spark :values="seenSeries" :labels="twoLabels" name="Players seen each day" /><p v-if="trends" class="adm-trend" :class="`is-${trends.seen.dir}`"><span aria-hidden="true">{{ ARROW[trends.seen.dir] }}</span> {{ trends.seen.text }}</p></div>
+        <div class="adm-stat"><h2>New today</h2><p class="adm-big">{{ dash.players.newToday.toLocaleString('en-GB') }}</p><Spark :values="newSeries" :labels="twoLabels" name="New players each day" color="#2563eb" /><p v-if="trends" class="adm-trend" :class="`is-${trends.new.dir}`"><span aria-hidden="true">{{ ARROW[trends.new.dir] }}</span> {{ trends.new.text }}</p></div>
         <div class="adm-stat"><h2>Signed up / guests</h2><p class="adm-big">{{ dash.accounts.accounts.toLocaleString('en-GB') }} <small>/ {{ guests.toLocaleString('en-GB') }}</small></p><Spark :values="accSeries" :labels="twoLabels" name="Accounts" color="#7c3aed" /><p class="adm-sub">{{ percent(dash.accounts.accounts, dash.accounts.accounts + guests) }}% have an account. Guests approximate<template v-if="probes">, {{ probes.toLocaleString('en-GB') }} test sessions left out</template>.</p></div>
         <div class="adm-stat"><h2>Back in 7 days</h2><p class="adm-big">{{ returningNow.toLocaleString('en-GB') }}</p><Spark :values="seenSeries" :labels="twoLabels" name="Players seen each day" color="#b45309" /><p class="adm-sub">Seen this week, not new this week. Approximate.</p></div>
         <div class="adm-stat"><h2>Open reports</h2><p class="adm-big" :class="{ 'tone-warn': dash.reports.open > 0 }">{{ dash.reports.open.toLocaleString('en-GB') }}</p><p class="adm-sub">{{ dash.reports.problems.open }} problem reports open, {{ dash.businesses.open }} stalls open.</p></div>

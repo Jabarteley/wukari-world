@@ -39,3 +39,28 @@ export interface ReturnsRead { bySource: (ReturnRowRead & { source: string; medi
 export const returnCell = (cell: ReturnCellRow): string => (cell.rate === null ? 'too early' : `${cell.rate}% (${cell.returned} of ${cell.lives})`)
 /** "tiktok / paid / test1": a campaign as the owner wrote it. */
 export const sourceLabel = (row: { source: string; medium: string; campaign: string }): string => `${row.source} / ${row.medium} / ${row.campaign}`
+
+/** Today against yesterday as a chip: the direction, the change in words, and whether up is good for this number. */
+export interface Trend { dir: 'up' | 'down' | 'flat' | 'none'; text: string }
+export function trendOf(now: number, before: number | null | undefined): Trend {
+  if (typeof before !== 'number' || !Number.isFinite(before)) return { dir: 'none', text: 'no day before to compare' }
+  const diff = now - before
+  if (diff === 0) return { dir: 'flat', text: 'same as yesterday' }
+  const share = before > 0 ? ` (${diff > 0 ? '+' : '−'}${Math.round((Math.abs(diff) / before) * 100)}%)` : ''
+  return { dir: diff > 0 ? 'up' : 'down', text: `${diff > 0 ? '+' : '−'}${Math.abs(diff).toLocaleString('en-GB')}${share} vs yesterday` }
+}
+/** Something on the dashboard that wants an admin's attention, with where to go about it. */
+export interface Attention { id: string; tone: 'warn' | 'bad' | 'info'; text: string; action: string; view: 'moderation' | 'players' | 'world'; filter?: string }
+export function attentionOf(input: { reports: number; problems: number; sessions: { held: number; most: number }; sockets: { open: number; most: number }; tests: number; emailOff: boolean; pushOff: boolean }): Attention[] {
+  const out: Attention[] = []
+  if (input.reports > 0) out.push({ id: 'reports', tone: 'warn', text: `${input.reports} player report${input.reports === 1 ? '' : 's'} waiting for a decision`, action: 'Open moderation', view: 'moderation' })
+  if (input.problems > 0) out.push({ id: 'problems', tone: 'info', text: `${input.problems} problem report${input.problems === 1 ? '' : 's'} from players still open`, action: 'Open moderation', view: 'moderation' })
+  for (const [id, label, used, most] of [['sessions', 'Device sessions', input.sessions.held, input.sessions.most], ['sockets', 'Live connections', input.sockets.open, input.sockets.most]] as const) {
+    const tone = fillTone(used, most)
+    if (tone !== 'ok') out.push({ id, tone: tone === 'bad' ? 'bad' : 'warn', text: `${label} are ${percent(used, most)}% full (${used.toLocaleString('en-GB')} of ${most.toLocaleString('en-GB')})`, action: 'See World tools', view: 'world' })
+  }
+  if (input.tests > 0) out.push({ id: 'tests', tone: 'info', text: `${input.tests.toLocaleString('en-GB')} test session${input.tests === 1 ? '' : 's'} from release checks can be removed`, action: 'Review test sessions', view: 'players', filter: 'test' })
+  if (input.emailOff) out.push({ id: 'email', tone: 'info', text: 'E-mail sending is switched off', action: 'Open World tools', view: 'world' })
+  if (input.pushOff) out.push({ id: 'push', tone: 'info', text: 'Push notifications are switched off', action: 'Open World tools', view: 'world' })
+  return out
+}

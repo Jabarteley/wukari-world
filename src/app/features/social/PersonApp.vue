@@ -2,11 +2,13 @@
 // The person card ('person', opened from a card): an NPC's quote and timed interactions, or a
 // player's Chat, Add friend, interactions, Ask to be my Bae, Send money, Block and Report.
 // Every disabled control says why. All names and text are rendered as text.
-import { computed } from 'vue'
+import { computed, defineAsyncComponent } from 'vue'
 import { useApp } from '../../state/app.ts'
 import NpcCard from './NpcCard.vue'
 import PlayerCard from './PlayerCard.vue'
 import { personTarget } from './personModel.ts'
+// Their handle, bio, posts and work (src/app/features/feed): fetched when a player's card opens.
+const FeedPersonCard = defineAsyncComponent(() => import('../feed/FeedPersonCard.vue'))
 
 const props = defineProps<{ params?: unknown }>()
 const { game } = useApp()
@@ -19,6 +21,6 @@ const player = computed(() => (target.value?.kind === 'player' ? target.value.id
 
 <template>
   <NpcCard v-if="npc" :id="npc" />
-  <PlayerCard v-else-if="player" :id="player" :form="asked.gift === true ? 'money' : undefined" />
+  <template v-else-if="player"><PlayerCard :id="player" :form="asked.gift === true ? 'money' : undefined" /><FeedPersonCard :id="player" /></template>
   <p v-else class="ui-error">Nobody selected.</p>
 </template>

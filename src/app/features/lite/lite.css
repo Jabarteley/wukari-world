@@ -1,0 +1,17 @@
+/* Allworld Lite: the social apps full screen, no scene. Above the page, under sheets and the phone (SheetHost). */
+.lite-shell{position:fixed;inset:0;z-index:5;display:grid;grid-template-rows:auto auto 1fr auto;background:var(--c-bg,#f3f0e7);color:var(--c-ink)}
+.lite-top{display:flex;align-items:center;gap:8px;padding:calc(env(safe-area-inset-top,0px) + 8px) 12px 8px;background:#174c36;color:#fff}
+.lite-top b{font-size:18px;letter-spacing:-.01em}
+.lite-grow{flex:1}
+.lite-chip{border:0;border-radius:999px;background:#ffffff22;color:#fff;font:650 13px var(--font);padding:8px 12px;cursor:pointer}
+.lite-chip.is-world{background:#f2b134;color:#193126}
+.lite-note{margin:0;padding:8px 12px;background:#fff8e6;font-size:13px}
+.lite-main{overflow:auto;-webkit-overflow-scrolling:touch;padding:12px;min-height:0}
+.lite-main>*{max-width:720px;margin-inline:auto}
+.lite-tabs{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--c-line);background:#fff;padding-bottom:env(safe-area-inset-bottom,0px)}
+.lite-tabs button{position:relative;border:0;background:none;color:var(--c-muted);font:650 13px var(--font);min-height:54px;cursor:pointer}
+.lite-tabs button.is-on{color:var(--c-ink);box-shadow:inset 0 3px 0 #174c36}
+.lite-dot{position:absolute;top:6px;margin-left:4px;display:inline-grid;place-items:center;min-width:17px;height:17px;border-radius:9px;background:#c0392b;color:#fff;font-size:10px;padding:0 4px}
+body.is-lite .life-sidebar,body.is-lite .life-bottom [data-slot="main"],body.is-lite .life-nav,body.is-lite .life-wordmark,body.is-lite .hud-bar{display:none!important}
+body.is-lite .life-bottom{z-index:6;bottom:64px}
+@media(min-width:900px){.lite-main{padding:20px}}

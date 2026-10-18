@@ -62,6 +62,8 @@ export type AllworldServer = http.Server & {
   telemetry: ServerTelemetry
   /** The one shutdown order (see below). */
   flush(): Promise<void>
+  /** The route context, for tests that call a module's check directly (a gist moment). */
+  context: RouteContext
 }
 type ServerTelemetry = ReturnType<typeof createServerTelemetry>;
 /** A ws WebSocket once the host has authenticated it: the socket plus the fields of WsConnection (the host sets the first ones on upgrade, the socket modules the rest on open). */

@@ -41,6 +41,10 @@ const PlacePanel = defineAsyncComponent(() => import('./features/places/PlacePan
 import CallsHost from './features/calls/CallsHost.vue'
 import PingHost from './features/ping/PingHost.vue'
 import ScenePane from './scene/ScenePane.vue'
+import { lite, liteWhy } from './state/lite.ts'
+import { bodyLoader } from './state/panelBody.ts'
+// Allworld Lite (state/lite.ts): no scene, the social apps full screen. Fetched only when Lite is on.
+const LiteShell = defineAsyncComponent(bodyLoader('lite/LiteShell'))
 import MapPane from './scene/MapPane.vue'
 
 const { game, ready, shell, api, community, scene, command, connect, quickStart, startLife, switchCity, menu, landing, showMapLayer } = useApp()
@@ -165,8 +169,9 @@ watch(game.snapshotPhase, (phase, before) => { if (phase === 'unavailable' && be
 </script>
 
 <template>
-  <ScenePane v-if="snapshotAvailable" :top="topCover" :rows="hudRows" :bottom="() => bottom" :hidden="mode === 'map'" />
-  <MapPane v-if="snapshotAvailable" />
+  <ScenePane v-if="snapshotAvailable && !lite" :top="topCover" :rows="hudRows" :bottom="() => bottom" :hidden="mode === 'map'" />
+  <MapPane v-if="snapshotAvailable && !lite" />
+  <LiteShell v-if="snapshotAvailable && lite" :host="PanelHost" :venue="VenuePanel" :place="PlacePanel" :why="liteWhy" />
   <div id="life-overlay" ref="root" class="life-ui" :class="{ 'has-coach': ui.coaching, 'is-resuming': !ready, 'is-guest': snapshotAvailable && Boolean(game.view.value.onboarding?.guest), 'is-clean': ui.clean, 'is-tray-open': ui.trayOpen, 'is-expanded': ui.expanded && mode === 'venue' }" :data-mode="mode">
     <p class="life-wordmark" aria-label="Allworld"><i aria-hidden="true"><GameIcon name="globe" :size="19" /></i><span><b>Allworld</b></span></p>
     <HudBar v-if="snapshotAvailable" />

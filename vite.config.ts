@@ -395,8 +395,9 @@ export default defineConfig({
     if (/\/src\/app\/features\/hud\/(OnlinePill\.vue|usePulse\.ts|onlinePillModel\.ts)/.test(id)) return 'online-pill'
     // Capability-gated Story screens share one lazy download and a single preload entry.
     if (/\/src\/app\/features\/story\/[^/]+\.vue(?:\?|$)/.test(id)) return 'story-ui'
-    // State shared by the entry and game shell, plus its small eager helpers: one existing startup boundary rather than separate files.
-    if (/\/src\/app\/(state\/(app|updateNotice)|features\/(account\/(accountOpen|shownOnce|useAccountLite)|calls\/(callsLoader|agentCallState)|growth\/(shareInvite|touchOfferModel)))\.ts$/.test(id)) return 'app-runtime'
+    // State and helpers already fetched with the game shell share one startup chunk. updateNotice stays with the first-paint graph:
+    // grouping that entry dependency here would promote the complete game-state dependency closure before the player starts.
+    if (/\/src\/app\/(state\/app|features\/(account\/(accountOpen|shownOnce|useAccountLite)|calls\/(callsLoader|agentCallState)|growth\/(shareInvite|touchOfferModel)))\.ts$/.test(id)) return 'app-runtime'
     // Small modules every page uses, shared by the lazy panels and each needing no more than Vue and the engine: kept in the engine chunk
     // (already in the first download) instead of one file apiece, which would each carry its own header and lose what the others share when compressed.
     if (/\/src\/(geo\/frame|campus\/unilag\/(slices|volunteer)|app\/ui\/format|app\/features\/(commerce\/connectionReturn|account\/(accountLite|accountTrack)|hud\/coachModel|sim\/settingsModel|tour\/tourState|neighbourhood\/cityWalkState))\.ts$/.test(id)) return 'engine'

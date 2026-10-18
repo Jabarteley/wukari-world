@@ -18,9 +18,11 @@ import { createLife } from './life.ts';
 
 /** The host is handed a renderer and a container; these are the narrow stand-ins the tests drive it with (there is no WebGL or DOM under node). */
 type StubRenderer = THREE.WebGLRenderer & { calls: { render: number } };
+const drawnRoots = new WeakMap<THREE.WebGLRenderer, () => THREE.Scene>();
+const worldRoots = new WeakMap<TestWorld, () => THREE.Scene | undefined>();
 function stubRenderer(): StubRenderer {
   const calls = { render: 0 };
-  return { calls, shadowMap: {}, domElement: { remove() {} }, setPixelRatio() {}, setClearColor() {}, setSize() {}, dispose() {}, render() { calls.render += 1; } } as unknown as StubRenderer;
+  return { calls, shadowMap: {}, domElement: { remove() {} }, setPixelRatio() {}, setClearColor() {}, setSize() {}, dispose() {}, render(scene: THREE.Scene) { calls.render += 1; drawnRoots.set(this as unknown as THREE.WebGLRenderer, () => scene); } } as unknown as StubRenderer;
 }
 interface StubContainer { appendChild(): void; getBoundingClientRect: () => { width: number; height: number; left?: number; top?: number } }
 const container: StubContainer = { appendChild() {}, getBoundingClientRect: () => ({ width: 390, height: 844 }) };
@@ -30,24 +32,58 @@ function makeWorld(host: StubContainer, options: VenueWorldOptions): TestWorld {
   const currentDocument = browser.document as { createElement?: typeof nativeTestDocument.createElement } | undefined;
   if (currentDocument === nativeTestDocument) delete browser.document;
   const world = createVenueWorld(host as unknown as HTMLElement, options) as unknown as TestWorld;
+  const renderer = options.renderer as THREE.WebGLRenderer | undefined;
+  worldRoots.set(world, () => renderer ? drawnRoots.get(renderer)?.() : undefined);
   if (!currentDocument || currentDocument === nativeTestDocument) browser.document = nativeTestDocument;
   else if (!currentDocument.createElement) currentDocument.createElement = nativeTestDocument.createElement;
   return world;
 }
-interface NativeFrameDrain { flushNative(): number; nativeQueued(): number }
+interface NativeFrameDrain { flushNative(): number; nativeQueued(): number; flushMotion?(): number; motionQueued?(): number }
+type ReadyState = { status: 'pending' | 'fulfilled' | 'rejected'; error?: string };
+const readyPromises = new WeakMap<object, ReadyState>();
+function nativeReadiness(world: TestWorld): { ready: boolean; detail: string } {
+  const root = worldRoots.get(world)?.();
+  if (!root) return { ready: false, detail: 'no rendered scene root yet' };
+  let loading = 0, pending = 0;
+  const errors: string[] = [];
+  root.traverse((node) => {
+    const data = node.userData as { characterStatus?: unknown; characterError?: unknown; ready?: unknown };
+    if (data.characterStatus === 'loading') loading += 1;
+    if (data.characterStatus === 'error') errors.push(`${node.name || node.uuid}: ${String(data.characterError ?? 'native character failed')}`);
+    const candidate = data.ready;
+    if (!candidate || (typeof candidate !== 'object' && typeof candidate !== 'function')
+      || typeof (candidate as PromiseLike<unknown>).then !== 'function') return;
+    let state = readyPromises.get(candidate);
+    if (!state) {
+      state = { status: 'pending' };
+      readyPromises.set(candidate, state);
+      Promise.resolve(candidate).then(
+        () => { state!.status = 'fulfilled'; },
+        (error: unknown) => { state!.status = 'rejected'; state!.error = String(error); },
+      );
+    }
+    if (state.status === 'pending') pending += 1;
+    if (state.status === 'rejected') errors.push(`${node.name || node.uuid}: ${state.error ?? 'native ready promise rejected'}`);
+  });
+  if (errors.length) assert.fail(`native character readiness failed: ${errors.join('; ')}`);
+  return { ready: loading === 0 && pending === 0, detail: `${loading} loading roots, ${pending} pending ready promises` };
+}
 async function settleNative(world: TestWorld, ready: () => boolean = () => true, frames?: NativeFrameDrain): Promise<number> {
   let previous = -1, stable = 0;
   for (let attempt = 0; attempt < 100; attempt += 1) {
     frames?.flushNative();
+    frames?.flushMotion?.();
     await new Promise<void>((resolve) => setTimeout(resolve, 10));
     frames?.flushNative();
+    frames?.flushMotion?.();
     const count = world.diagnostics().renderCount;
-    stable = ready() && (frames?.nativeQueued() ?? 0) === 0 && count === previous ? stable + 1 : 0;
+    const native = nativeReadiness(world);
+    stable = ready() && native.ready && (frames?.nativeQueued() ?? 0) === 0 && (!frames?.flushMotion || (!world.diagnostics().loop.running && frames.motionQueued?.() === 0)) && count === previous ? stable + 1 : 0;
     if (stable >= 3) return count;
     previous = count;
   }
   const diagnostics = world.diagnostics();
-  assert.fail(`native scene readiness did not settle (${diagnostics.renderCount} renders, ${diagnostics.crowd} crowd, tags ${diagnostics.tags.map((tag) => `${tag.kind}:${tag.id}`).join(', ')})`);
+  assert.fail(`native scene readiness did not settle (${nativeReadiness(world).detail}; ${diagnostics.renderCount} renders, ${diagnostics.crowd} crowd, tags ${diagnostics.tags.map((tag) => `${tag.kind}:${tag.id}`).join(', ')})`);
 }
 
 type FrameTask = { id: number; callback: FrameRequestCallback; native: boolean };
@@ -69,7 +105,7 @@ function installFrameScheduler() {
     return ready.length;
   };
   return {
-    flushNative: () => flush(true), nativeQueued: () => queue.filter(task => task.native).length,
+    flushNative: () => flush(true), flushMotion: () => flush(false), nativeQueued: () => queue.filter(task => task.native).length,
     motionQueued: () => queue.filter(task => !task.native).length,
     nativeRequests: () => nativeRequests,
     restore() { globalThis.requestAnimationFrame = original.raf; globalThis.cancelAnimationFrame = original.caf; },
@@ -132,10 +168,12 @@ test('idle venue performs zero renders after native readiness; each host change 
   const errors = t.mock.method(console, 'error', () => {});
   let timers = 0;
   const frames = installFrameScheduler(), originalInterval = globalThis.setInterval;
+  let ownedWorld: TestWorld | undefined;
   globalThis.setInterval = ((...args: Parameters<typeof setInterval>) => { timers += 1; return originalInterval(...args); }) as typeof setInterval;
   try {
     const renderer = stubRenderer();
     const world = makeWorld(container, { location: 'park', renderer });
+    ownedWorld = world;
     const afterCreate = await settleNative(world, () => true, frames);
     assert.ok(afterCreate >= 1, 'the first venue and its native actors rendered');
     assert.equal(renderer.calls.render, afterCreate);
@@ -157,8 +195,7 @@ test('idle venue performs zero renders after native readiness; each host change 
     await new Promise(resolve => setTimeout(resolve, 60));
     assert.equal(world.diagnostics().renderCount, baseline);
     assert.deepEqual([frames.nativeRequests(), frames.nativeQueued(), frames.motionQueued()], [nativeAtRest, 0, 0], 'readiness leaves no frame work behind');
-    world.dispose();
-  } finally { frames.restore(); globalThis.setInterval = originalInterval; }
+  } finally { ownedWorld?.dispose(); frames.restore(); globalThis.setInterval = originalInterval; }
 });
 
 const NOON = Date.UTC(2026, 0, 5, 11), MIDNIGHT = Date.UTC(2026, 0, 5, 23, 30);
@@ -168,10 +205,13 @@ const people = (count: number) => Array.from({ length: count }, (_, i) => (i % 2
 test('an idle venue with a crowd renders zero frames; the crowd, the player and the lighting each cost one frame when they change', async () => {
   let timers = 0;
   const frames = installFrameScheduler(), originalInterval = globalThis.setInterval;
+  const originalRect = container.getBoundingClientRect;
+  let ownedWorld: TestWorld | undefined;
   globalThis.setInterval = ((...args: Parameters<typeof setInterval>) => { timers += 1; return originalInterval(...args); }) as typeof setInterval;
   try {
     const renderer = stubRenderer();
     const world = makeWorld(container, { location: 'park', renderer });
+    ownedWorld = world;
     const count = () => world.diagnostics().renderCount;
     let baseline = await settleNative(world, () => true, frames);
     assert.ok(baseline >= 1);
@@ -220,7 +260,7 @@ test('an idle venue with a crowd renders zero frames; the crowd, the player and 
     assert.equal(count(), baseline + 1); assert.notDeepEqual([world.diagnostics().tags[0]!.x, world.diagnostics().tags[0]!.y], [before.x, before.y]);
     container.getBoundingClientRect = () => ({ width: 390, height: 844 });
     world.dispose();
-  } finally { frames.restore(); globalThis.setInterval = originalInterval; }
+  } finally { ownedWorld?.dispose(); container.getBoundingClientRect = originalRect; frames.restore(); globalThis.setInterval = originalInterval; }
 });
 
 test('leaving a venue disposes its scene; home shows the player’s avatar and guests under its clock lighting', async () => {
@@ -229,9 +269,13 @@ test('leaving a venue disposes its scene; home shows the player’s avatar and g
     if (!live.has(this)) { live.add(this); this.addEventListener('dispose', () => live.delete(this)); }
     return setIndex.apply(this, args);
   };
+  let ownedWorld: TestWorld | undefined;
+  let worldDisposed = false;
+  const disposeWorld = () => { if (!worldDisposed && ownedWorld) { worldDisposed = true; ownedWorld.dispose(); } };
   try {
     const renderer = stubRenderer();
     const world = makeWorld(container, { location: 'park', renderer });
+    ownedWorld = world;
     world.setPlayer({ seed: PLAYER, name: 'Ada' });
     world.setCrowd(people(3));
     await settleNative(world, () => world.diagnostics().tags.filter((tag) => tag.kind !== 'table').length === 4);
@@ -257,9 +301,9 @@ test('leaving a venue disposes its scene; home shows the player’s avatar and g
     assert.equal(world.diagnostics().renderCount, drawn, 'home is idle too');
     world.setState({ ...state, spot: 'bedroom' });
     assert.equal(world.diagnostics().renderCount, drawn + 1, 'walking to the bed: one frame');
-    world.dispose();
+    disposeWorld();
     assert.equal(live.size, 0, 'the host disposes every scene it still holds');
-  } finally { THREE.BufferGeometry.prototype.setIndex = setIndex; }
+  } finally { disposeWorld(); THREE.BufferGeometry.prototype.setIndex = setIndex; }
 });
 
 test('a supplied scene without a lighting preset restores host defaults after an outdoor venue', () => {
@@ -330,7 +374,7 @@ function motionBench({ width = 1280, height = 800, location = 'park' } = {}) {
   browser.matchMedia = (query: string) => ({ matches: reduce && /reduced-motion/.test(query) });
   const listeners = new Map<string, (event: unknown) => void>();
   const canvas = { style: {}, addEventListener(type: string, fn: (event: unknown) => void) { listeners.set(type, fn); }, removeEventListener(type: string) { listeners.delete(type); }, setPointerCapture() {}, releasePointerCapture() {}, remove() {} };
-  const renderer = { calls: 0, shadowMap: {}, domElement: canvas, setPixelRatio() {}, setClearColor() {}, setSize() {}, dispose() {}, render(this: { calls: number }) { this.calls += 1; } } as unknown as THREE.WebGLRenderer & { calls: number };
+  const renderer = { calls: 0, shadowMap: {}, domElement: canvas, setPixelRatio() {}, setClearColor() {}, setSize() {}, dispose() {}, render(this: { calls: number }, scene: THREE.Scene) { this.calls += 1; drawnRoots.set(this as unknown as THREE.WebGLRenderer, () => scene); } } as unknown as THREE.WebGLRenderer & { calls: number };
   const spots: SceneSpotRequest[] = [], tagged: SceneTag[] = [], moves: AvatarPosition[] = [];
   const world = makeWorld({ appendChild() {}, getBoundingClientRect: () => ({ width, height, left: 0, top: 0 }) }, { location, renderer, onSpot: (spot) => spots.push(spot), onTag: (tag) => tagged.push(tag), onMove: (at) => moves.push(at) });
   return {

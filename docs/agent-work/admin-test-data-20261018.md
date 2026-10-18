@@ -6,8 +6,8 @@
 - **Owner:** Claude Fable 5.1 (T3 Code thread, owner's Mac)
 - **Model / effort:** `claude-fable-5-1 / default`
 - **Thread:** local
-- **UTC updated:** `2026-10-18T07:50:00Z`
-- **Status:** `active`
+- **UTC updated:** `2026-10-18T08:06:00Z`
+- **Status:** `complete`
 - **Work state:** `deployment`
 
 ## Goal and boundaries
@@ -64,3 +64,4 @@
 | 2026-10-18T05:40:00Z | verified-local | Probe sessions, removal tool, admin UI polish | admin.test.ts probe test pass; typecheck clean; screenshots | check:fast, commit, deploy |
 | 2026-10-18T07:15:00Z | complete | Merged main 21a34d8d6, pushed 7d219e3f4, deployed | CI 39104401505; live health; smoke PASS | owner presses Remove all once |
 | 2026-10-18T07:50:00Z | active | Dashboard redesign after the owner asked for design-skill guidance: overview as one stats slab (2/3/6 columns), h2 section headings, table captions and scopes, meters with words not colour alone, cities capped at 12 with Show all, skip link, tabular numerals, columns dropped on narrow screens so no table scrolls sideways | typecheck clean; admin unit tests 19/19; CDP screenshots at 1400/820/390 (host-local /tmp/adm-dash2-*.png, /tmp/adm-dash3-phone.png); overflow probe at 390: scrollWidth 390 | check:fast, push, CI, deploy |
+| 2026-10-18T08:06:00Z | complete | Dashboard redesign live as 251438a1e (reached main via PR #39's merge; deployed by wrangler, and by GitHub run 39109081984) | CI 39109079541 success; live health 251438a1e; smoke PASS 15 | owner presses Remove all once |

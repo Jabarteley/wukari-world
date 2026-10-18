@@ -18,6 +18,7 @@ const hint = (row: FunnelRow): string => (row.count !== null && first.value > 0 
       <span class="adm-funnel-name">{{ row.label }}</span>
       <span class="adm-funnel-bar" aria-hidden="true"><i :style="{ width: !row.count ? '0%' : `${Math.max(2, Math.round((row.count / top) * 100))}%` }" /></span>
       <span class="adm-funnel-n" :class="{ off: row.count === null }">{{ text(row) }}</span>
+      <span class="adm-sr">{{ hint(row) }}</span>
     </p>
   </div>
 </template>

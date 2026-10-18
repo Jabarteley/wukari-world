@@ -84,10 +84,13 @@ onBeforeUnmount(() => { window.removeEventListener('keydown', keys, true); windo
 async function leave(): Promise<void> { if (props.account) { await props.account.signOut() } else emit('close') }
 const done = computed(() => ui.done)
 const blurSoon = (): void => { setTimeout(() => { open.value = false }, 150) }
+/** The skip link: focus the main region (keyboard users pass the rail and the header). */
+const skip = (): void => { globalThis.document?.getElementById('adm-main')?.focus() }
 </script>
 
 <template>
   <div class="adm" :class="`is-${mode}`" role="application" aria-label="Admin">
+    <a class="adm-skip" href="#adm-main" @click.prevent="skip">Skip to content</a>
     <aside class="adm-side" aria-label="Admin sections">
       <b class="adm-brand">Allworld admin</b>
       <nav>
@@ -117,7 +120,7 @@ const blurSoon = (): void => { setTimeout(() => { open.value = false }, 150) }
           <button v-if="!page" type="button" class="adm-iconbtn adm-close" aria-label="Close admin" @click="emit('close')">Close</button>
         </div>
       </header>
-      <main class="adm-main" tabindex="-1">
+      <main id="adm-main" class="adm-main" tabindex="-1">
         <DashboardView v-if="ui.route.view === 'dashboard'" @player="go('players', $event)" @tests="ui.playersFilter = 'test'; go('players')" />
         <PlayersView v-else-if="ui.route.view === 'players'" :player="ui.route.player" :tab="ui.route.tab" @open="go('players', $event)" @back="go('players')" @tab="go('players', ui.route.player, $event)" />
         <AnnounceView v-else-if="ui.route.view === 'announce'" />

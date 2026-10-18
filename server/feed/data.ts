@@ -57,7 +57,20 @@ export interface AuthorRecord {
   /** The Lagos week whose recap draft was made (made once, even if dropped). */
   recapWeek?: number
 }
-export interface CrewRecord { id: string; name: string; colour: string; about: string; owner: string; members: string[]; code: string; at: number; kicked?: Record<string, number>; /** Removed by moderation: no page, no joining; members keep their wall. */ banned?: 1 }
+export interface CrewRecord {
+  id: string; name: string; colour: string; about: string; owner: string; members: string[]; code: string; at: number; kicked?: Record<string, number>; /** Removed by moderation: no page, no joining; members keep their wall. */ banned?: 1
+  /** A community (absent: a crew of friends). */
+  kind?: import('../../src/feed/model.ts').CommunityKind
+  /** Where it is: a real city or state of the catalogue (`real`), or a place someone imagined (`name` only). */
+  place?: { city?: string; state?: string; country?: string; name?: string; real?: 1 }
+  /** Listed in the Discover directory, anyone may join without the link. */
+  open?: 1
+  /** Moderators besides the founder: they edit, remove members and build the world. */
+  mods?: string[]
+  /** Its world: a group chat the founder made, whose room is the community's 3D world (docs/SPACES-3D.md). */
+  conv?: string
+  cover?: string
+}
 export interface EventRecord {
   id: string; by: string; title: string; about: string; city: string; venue?: string; label: string
   start: number; end: number; cap: number; going: string[]; maybe: string[]; cohosts: string[]; code: string; at: number; post?: string; gone?: 1
@@ -79,7 +92,7 @@ export interface DecisionRecord {
   /** The reviewer saw a picture (a photo, a clip's poster or a portrait). */
   saw?: 'text' | 'image'
 }
-export interface CityLists { posts: string[]; events: string[]; gigs: string[] }
+export interface CityLists { posts: string[]; events: string[]; gigs: string[]; communities?: string[] }
 export interface FeedCollection {
   v: 1; seq: number; world: string[]; reports: ReportRecord[]
   /** Media hashes whose bytes the heartbeat deletes (erasure puts them here). */

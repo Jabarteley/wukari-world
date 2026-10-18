@@ -364,3 +364,34 @@ test('contacts: hashes only, blinded with a secret, matched only both ways; noth
   for (let i = 0; i < 3; i++) await post('/api/feed/contacts/match', { hashes: [E] }, ada);
   assert.equal((await post('/api/feed/contacts/match', { hashes: [E] }, ada)).code, 'rate_limited');
 });
+
+test('communities: a city based on a real place, open to join from Discover, moderators, 1,000 members, and a group as its 3D world', async (t) => {
+  const { f, get, post, player } = await setup(t);
+  const ada = await player('Ada'), bola = await player('Bola'), chi = await player('Chi'), kid = await player('Kid', { adult: false });
+  assert.equal((await post('/api/feed/crews', { name: 'Ikeja Peeps', kind: 'city', city: 'lagos' }, kid)).code, 'adults_only');
+  const made = await post('/api/feed/crews', { name: 'Ikeja Peeps', kind: 'city', city: 'lagos', open: true, about: 'Everyone in Ikeja' }, ada);
+  assert.equal(made.ok, true, JSON.stringify(made));
+  assert.deepEqual([made.crew.kind, made.crew.cap, made.crew.place.real, made.crew.place.state, made.crew.open], ['city', 1000, 1, 'Lagos State', true]);
+  const imagined = await post('/api/feed/crews', { name: 'Wakanda Ville', kind: 'state', placeName: 'Wakanda', open: true }, ada);
+  assert.deepEqual(imagined.crew.place, { name: 'Wakanda' });
+  const found = await get('/api/feed/communities?city=lagos', chi);
+  assert.deepEqual(found.communities.map((c: Json) => c.name).sort(), ['Ikeja Peeps', 'Wakanda Ville']);
+  assert.equal((await get('/api/feed/communities?city=lagos&kind=state', chi)).communities.length, 1);
+  assert.equal((await post('/api/feed/crews/join', { id: made.crew.id }, chi)).crew.size, 2, 'an open community joins in one tap');
+  await post('/api/feed/crews/join', { id: made.crew.id }, bola);
+  assert.equal((await post('/api/feed/crews/mod', { id: made.crew.id, member: bola.id }, chi)).code, 'not_owner');
+  assert.equal((await post('/api/feed/crews/mod', { id: made.crew.id, member: bola.id }, ada)).crew.mods[0].id, bola.id);
+  assert.equal((await post('/api/feed/crews/leave', { id: made.crew.id, member: chi.id }, bola)).ok, true, 'a moderator removes a member');
+  assert.equal((await post('/api/feed/crews/leave', { id: made.crew.id, member: ada.id }, bola)).code, 'not_owner', 'not the founder');
+  // The world: a group the founder made, with its room link on.
+  const group = await post('/api/social/groups', { name: 'Ikeja Peeps world', members: [], clientId: f.id() }, ada);
+  assert.equal(group.code, 'created', JSON.stringify(group));
+  assert.equal((await post('/api/feed/crews/world', { id: made.crew.id, conv: group.conv.id }, bola)).code, 'not_owner');
+  const bolaGroup = await post('/api/social/groups', { name: 'Not hers', members: [], clientId: f.id() }, bola);
+  assert.equal((await post('/api/feed/crews/world', { id: made.crew.id, conv: bolaGroup.conv.id }, ada)).code, 'not_your_group');
+  await post('/api/places/room/link', { id: group.conv.id, on: true }, ada);
+  const attached = await post('/api/feed/crews/world', { id: made.crew.id, conv: group.conv.id }, ada); assert.equal(attached.ok, true, JSON.stringify(attached)); const world = attached.crew.world;
+  assert.equal(world.room, group.conv.id); assert.match(world.link, /^\/r\/\d+-[A-Za-z0-9_-]{22}$/);
+  assert.match((await get(`/api/feed/crews/one?id=${made.crew.id}`, bola)).crew.world.link, /^\/r\//, 'members get the way in');
+  assert.equal((await get(`/api/feed/crews/one?id=${made.crew.id}`, chi)).crew.world.link, undefined, 'a non-member does not');
+});

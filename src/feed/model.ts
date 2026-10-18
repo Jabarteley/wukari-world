@@ -15,7 +15,8 @@ export const FEED = Object.freeze({
   repliesKept: 100, authorPosts: 300, cityPosts: 300, worldPosts: 400, drafts: 10, draftMs: 7 * 86400000,
   inbox: 50, follows: 300, reports: 500, reportsToHide: 2, page: 20,
   media: { pending: 6, pendingMs: 3600000, photoBytes: 250000, portraitBytes: 160000, clipBytes: 4_000_000, clipMs: 15500 },
-  crew: { size: 20, nameMin: 3, nameMax: 24, about: 160, perPlayer: 10, createPerDay: 3 },
+  crew: { size: 20, nameMin: 3, nameMax: 24, about: 160, perPlayer: 30, createPerDay: 3 },
+  community: { size: 1000, mods: 11, shown: 24, directory: 60 },
   event: { title: 60, about: 280, aheadMs: 60 * 86400000, longestMs: 12 * 3600000, cap: 200, perDay: 3, upcoming: 60, cohosts: 3 },
   gig: { title: 60, about: 280, rewardMax: 50000, perDay: 3, applicants: 30, open: 80, review: 60 },
   codeLength: 6, suggestions: 10, aiMomentsPerDay: 3,
@@ -66,6 +67,11 @@ export function cleanCrewName(value: unknown): string | null {
   const text = typeof value === 'string' ? value.normalize('NFC').replace(/\s+/g, ' ').trim() : ''
   return text.length >= FEED.crew.nameMin && text.length <= FEED.crew.nameMax && /^[\p{L}\p{N}][\p{L}\p{N} '’&.-]*$/u.test(text) && /\p{L}/u.test(text) ? text : null
 }
+/** What a community is (docs/FEED.md, "Communities"). A crew is a small circle of friends; the others hold up to 1,000 members. */
+export const COMMUNITY_KINDS = Object.freeze([['crew', 'A crew of friends'], ['city', 'A city'], ['state', 'A state'], ['area', 'A neighbourhood or estate'], ['campus', 'A school or campus'], ['club', 'A club or fan base'], ['community', 'Another community']] as const)
+export type CommunityKind = typeof COMMUNITY_KINDS[number][0]
+export const isCommunityKind = (v: unknown): v is CommunityKind => COMMUNITY_KINDS.some(([k]) => k === v)
+export const sizeOf = (kind: CommunityKind | undefined): number => (!kind || kind === 'crew' ? FEED.crew.size : FEED.community.size)
 export const colourOk = (value: unknown): value is string => typeof value === 'string' && COLOURS.some((c) => c.id === value)
 
 // ---- visibility -----------------------------------------------------------------------------------------------------------------

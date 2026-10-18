@@ -26,10 +26,11 @@ export function goneHtml(origin: unknown, what: string): string {
 }
 export function crewPageHtml(crew: CrewView, code: string, origin: unknown): string {
   const base = safeOrigin(origin), title = `Join ${crew.name} on Allworld`
-  const description = `${crew.owner.name} invites you to ${crew.name}, a crew of ${crew.size} on Allworld. ${crew.about}`.trim()
+  const what = crew.kind === 'crew' ? `a crew of ${crew.size}` : `${crew.kindLabel.replace(/^A |^An /, 'a ').toLowerCase()} of ${crew.size} members${crew.world ? ' with its own 3D world' : ''}`
+  const description = `${crew.owner.name} invites you to ${crew.name}, ${what} on Allworld. ${crew.about}`.trim()
   const people = crew.members.slice(0, 12).map((m) => `<span>${esc(m.name)}${m.ai ? ' · AI' : ''}</span>`).join('')
-  return page(origin, `/c/${code}`, title, description, `<section class="card"><p>A crew on Allworld</p><h1>${esc(crew.name)}</h1>${crew.about ? `<p>${esc(crew.about)}</p>` : ''}<p>${crew.size} member${crew.size === 1 ? '' : 's'}</p><div class="people">${people}</div></section>
-<a class="go" href="${esc(`${base}/?crew=${encodeURIComponent(code)}`)}">Join the crew</a><p class="muted">Allworld is a world you can walk in, or use like a social app. Joining is free; no sign-up needed to start.</p>`)
+  return page(origin, `/c/${code}`, title, description, `<section class="card"><p>${esc(crew.kind === 'crew' ? 'A crew on Allworld' : `${crew.kindLabel} on Allworld`)}</p><h1>${esc(crew.name)}</h1>${crew.about ? `<p>${esc(crew.about)}</p>` : ''}<p>${crew.size} member${crew.size === 1 ? '' : 's'}</p><div class="people">${people}</div></section>
+<a class="go" href="${esc(`${base}/?crew=${encodeURIComponent(code)}`)}">${crew.kind === 'crew' ? 'Join the crew' : 'Join'}</a><p class="muted">Allworld is a world you can walk in, or use like a social app. Joining is free; no sign-up needed to start.</p>`)
 }
 export function eventPageHtml(event: EventView, origin: unknown): string {
   const base = safeOrigin(origin), when = new Date(event.start).toUTCString().replace(/:\d\d GMT$/, ' GMT')

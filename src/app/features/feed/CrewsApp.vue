@@ -1,51 +1,87 @@
 <script setup lang="ts">
-// Crews (docs/FEED.md): small groups of up to 20 with a name, a colour, a wall only members read, and one link that brings a friend straight
-// in. The unit people join, before any global graph. A crew link (/c/<code>) previews in WhatsApp and lands a stranger in the crew.
+// Communities (docs/FEED.md, "Communities"): a crew of friends, or your own city, state, estate, campus, club or any community, based on
+// a real place of the world map or on one you imagined. Each has a wall only members read, one join link that previews in WhatsApp
+// (/c/<code>), moderators, and, once its founder makes it, a 3D world: a group chat whose room is built with AI Spaces (design it by
+// describing it, import a Space Plan, your own models, scripts and games), entered by every member through the room's link.
 import '../../../ui/controls.css'
 import '../../../ui/panels/social.css'
 import './feed.css'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import PlayerAvatar from '../social/PlayerAvatar.vue'
 import PostCard from './PostCard.vue'
-import { feedApi } from './feedApi.ts'
+import { feedApi, mediaUrl, uploadMedia } from './feedApi.ts'
+import { encodePhoto } from './feedMedia.ts'
 import { shareLink, whatsappUrl } from './feedShare.ts'
-import { COLOURS, FEED, cleanCode } from '../../../feed/model.ts'
+import { COLOURS, COMMUNITY_KINDS, FEED, cleanCode } from '../../../feed/model.ts'
+import type { CommunityKind } from '../../../feed/model.ts'
+import { cityCatalogue } from '../../../game/cities/registry.ts'
+import { enterByLink, enterRoom } from '../places/placesStore.ts'
 import type { CrewView, PostView } from '../../../types/feed.ts'
 
 const props = defineProps<{ params?: { code?: string; crew?: string } | null }>()
 const { game, shell } = useApp()
 const api = feedApi((path, options) => game.fetchJson(path, options))
-const crews = ref<CrewView[]>([]), current = ref<CrewView | null>(null), wall = ref<PostView[]>([]), preview = ref<CrewView | null>(null)
-const name = ref(''), about = ref(''), colour = ref(COLOURS[0]?.id ?? 'gold'), code = ref(props.params?.code ?? ''), text = ref(''), busy = ref(false), now = ref(Date.now())
+type Tab = 'mine' | 'discover' | 'start'
+const tab = ref<Tab>('mine')
+const crews = ref<CrewView[]>([]), found = ref<CrewView[]>([]), current = ref<CrewView | null>(null), wall = ref<PostView[]>([]), preview = ref<CrewView | null>(null)
+const code = ref(props.params?.code ?? ''), text = ref(''), busy = ref(false), now = ref(Date.now()), kindFilter = ref('')
+const form = ref({ name: '', about: '', colour: COLOURS[0]?.id ?? 'gold', kind: 'crew' as CommunityKind, where: 'real' as 'real' | 'imagined' | 'none', city: '', placeName: '', open: true, cover: '' })
+const search = ref('')
+type Answer = { ok: boolean; crew?: CrewView; reason?: string }
+const send = (path: string, body: object): Promise<Answer> => game.fetchJson<Answer>(path, { method: 'POST', body }).catch((e: unknown) => ({ ok: false, reason: (e as { reason?: string }).reason }))
 const toast = (t: string, tone?: 'error'): void => game.toast(t, tone === 'error' ? 'error' : 'info')
 const hex = (id: string): string => COLOURS.find((c) => c.id === id)?.hex ?? '#d4a017'
+const places = computed(() => { const q = search.value.trim().toLowerCase(); return cityCatalogue().filter((c) => !q || c.name.toLowerCase().includes(q) || c.state.name.toLowerCase().includes(q) || (c.countryName ?? '').toLowerCase().includes(q)).slice(0, 40) })
+const placeLine = (c: CrewView): string => c.place ? [c.place.name ?? '', c.place.city ? (cityCatalogue().find((x) => x.id === c.place?.city)?.name ?? '') : '', c.place.state ?? '', c.place.country ?? ''].filter(Boolean).filter((v, i, a) => a.indexOf(v) === i).join(', ') : ''
+
 async function load(): Promise<void> {
   const r = await api.me()
   if (r.ok) crews.value = r.crews
   if (props.params?.crew) { const c = crews.value.find((x) => x.id === props.params?.crew); if (c) await openCrew(c) }
-  if (props.params?.code) await look()
+  if (props.params?.code && !preview.value) await look()
+}
+async function discover(): Promise<void> {
+  const r = await game.fetchJson<{ ok: boolean; communities: CrewView[] }>(`/api/feed/communities?city=${encodeURIComponent(game.view.value.cityId)}${kindFilter.value ? `&kind=${kindFilter.value}` : ''}`).catch(() => null)
+  if (r?.ok) found.value = r.communities
 }
 onMounted(load)
+watch(tab, (t) => { if (t === 'discover') void discover() })
+watch(kindFilter, () => { void discover() })
+watch(() => game.view.value.connected, (on, was) => { if (on && !was) void load() })
+
 async function look(): Promise<void> {
-  const c = cleanCode(code.value); if (!c) { toast('A crew code is six letters.', 'error'); return }
+  const c = cleanCode(code.value); if (!c) { toast('A code is six letters.', 'error'); return }
   const r = await api.code(c)
-  if (r.ok && r.kind === 'crew' && r.crew) preview.value = r.crew; else toast(r.ok ? 'That code is not a crew.' : r.reason, 'error')
+  if (r.ok && r.kind === 'crew' && r.crew) preview.value = r.crew; else toast(r.ok ? 'That code is not a community.' : r.reason, 'error')
 }
-async function join(): Promise<void> {
-  const c = cleanCode(code.value); if (!c) return
-  busy.value = true; const r = await api.joinCrew(c); busy.value = false
-  if (!r.ok) { toast(r.reason, 'error'); return }
+async function join(byId?: string): Promise<void> {
+  busy.value = true
+  const r: Answer = byId ? await send('/api/feed/crews/join', { id: byId }) : await api.joinCrew(cleanCode(code.value) ?? '')
+  busy.value = false
+  if (!r.ok || !r.crew) { toast(r.reason || 'That did not go through.', 'error'); return }
   preview.value = null; code.value = ''; toast(`You joined ${r.crew.name}.`); await load(); await openCrew(r.crew)
 }
+async function cover(event: Event): Promise<void> {
+  const file = (event.target as HTMLInputElement).files?.[0]; (event.target as HTMLInputElement).value = ''
+  if (!file) return
+  const blob = await encodePhoto(file); if (!blob) { toast('That photo could not be used.', 'error'); return }
+  const r = await uploadMedia(blob, 'post'); if (r.ok) form.value.cover = r.media.hash; else toast(r.reason, 'error')
+}
 async function create(): Promise<void> {
-  busy.value = true; const r = await api.createCrew({ name: name.value, colour: colour.value, about: about.value }); busy.value = false
-  if (!r.ok) { toast(r.reason, 'error'); return }
-  name.value = ''; about.value = ''; await load(); await openCrew(r.crew); toast('Your crew is ready. Share the link.')
+  const v = form.value
+  busy.value = true
+  const r = await send('/api/feed/crews', { name: v.name, about: v.about, colour: v.colour, kind: v.kind, open: v.kind !== 'crew' && v.open, ...(v.cover ? { cover: v.cover } : {}), ...(v.kind !== 'crew' && v.where === 'real' && v.city ? { city: v.city } : {}), ...(v.kind !== 'crew' && v.where === 'imagined' && v.placeName ? { placeName: v.placeName } : {}) })
+  busy.value = false
+  if (!r.ok || !r.crew) { toast(r.reason ?? 'That did not go through.', 'error'); return }
+  form.value = { ...form.value, name: '', about: '', placeName: '', cover: '' }
+  await load(); await openCrew(r.crew)
+  toast(r.crew.kind === 'crew' ? 'Your crew is ready. Share the link.' : 'Your community is ready. Give it its 3D world, then invite people.')
 }
 async function openCrew(c: CrewView): Promise<void> {
-  current.value = c
-  const r = await api.crewWall(c.id); if (r.ok) wall.value = r.posts
+  const again = await api.crew(c.id); current.value = again.ok ? again.crew : c
+  const r = await api.crewWall(c.id); wall.value = r.ok ? r.posts : []
+  tab.value = 'mine'
 }
 async function post(): Promise<void> {
   if (!current.value || !text.value.trim()) return
@@ -55,65 +91,141 @@ async function post(): Promise<void> {
 }
 async function leave(member?: string): Promise<void> {
   if (!current.value) return
-  if (!confirm(member ? 'Ask them to leave the crew? They cannot rejoin for a week.' : 'Leave this crew?')) return
+  if (!confirm(member ? 'Ask them to leave? They cannot rejoin for a week.' : 'Leave this community?')) return
   const r = await api.leaveCrew(current.value.id, member)
   if (!r.ok) { toast(r.reason, 'error'); return }
-  if (!member) { current.value = null; await load() } else { const again = await api.crew(current.value.id); if (again.ok) current.value = again.crew }
+  if (!member) { current.value = null; await load() } else await openCrew(current.value)
+}
+async function mod(member: string, on: boolean): Promise<void> {
+  if (!current.value) return
+  const r = await send('/api/feed/crews/mod', { id: current.value.id, member, on })
+  if (r.ok && r.crew) current.value = r.crew; else toast(r.reason ?? 'That did not go through.', 'error')
+}
+/** The world: a group chat the founder owns (its room is the 3D place), its link switched on, then given to the community. */
+async function makeWorld(): Promise<void> {
+  const c = current.value; if (!c) return
+  busy.value = true
+  try {
+    const group = await game.fetchJson<{ ok: boolean; conv?: { id: string }; reason?: string }>('/api/social/groups', { method: 'POST', body: { name: c.name.slice(0, 40), members: [], clientId: `${Date.now()}:${crypto.randomUUID()}` } })
+    if (!group.ok || !group.conv) { toast(group.reason ?? 'The group could not be made.', 'error'); return }
+    const link = await game.fetchJson<{ ok: boolean; reason?: string }>('/api/places/room/link', { method: 'POST', body: { id: group.conv.id, on: true } })
+    if (!link.ok) { toast(link.reason ?? 'The world\'s link could not be switched on.', 'error'); return }
+    const done = await game.fetchJson<{ ok: boolean; crew?: CrewView; reason?: string }>('/api/feed/crews/world', { method: 'POST', body: { id: c.id, conv: group.conv.id } })
+    if (!done.ok || !done.crew) { toast(done.reason ?? 'That did not go through.', 'error'); return }
+    current.value = done.crew
+    toast('Its world is ready. Open it and use Build → Design with AI, or paste a plan to import one.')
+  } catch (e) { toast((e as { reason?: string }).reason ?? 'That did not go through.', 'error') } finally { busy.value = false }
+}
+async function enterWorld(): Promise<void> {
+  const c = current.value; if (!c?.world) return
+  // A builder (in the world's group) goes in as a member, who can build; everyone else through the room's link, as a visitor.
+  const ok = c.mod && (await enterRoom(c.world.room))
+  if (ok) { shell.closeSheet(); return }
+  const token = c.world.link?.slice(3)
+  if (!token) { toast('Ask the founder to switch the world\'s link on.', 'error'); return }
+  const r = await enterByLink(token)
+  if (r.ok) shell.closeSheet(); else toast(r.reason, 'error')
 }
 const link = computed(() => (current.value?.code ? `/c/${current.value.code}` : ''))
-async function share(): Promise<void> { if (current.value && (await shareLink(link.value, `Join ${current.value.name}, my crew on Allworld`)) === 'copied') toast('Link copied.') }
-const hangOut = (): void => { shell.open('places') }
+async function share(): Promise<void> { if (current.value && (await shareLink(link.value, `Join ${current.value.name} on Allworld`)) === 'copied') toast('Link copied.') }
+const big = computed(() => Boolean(current.value && current.value.kind !== 'crew'))
 </script>
 
 <template>
-  <section class="feed" aria-label="Crews" data-feed="crews">
+  <section class="feed" aria-label="Communities" data-feed="crews">
     <template v-if="current">
-      <button type="button" class="feed-pill" @click="current = null">← All crews</button>
+      <button type="button" class="feed-pill" @click="current = null">← All communities</button>
       <div class="feed-card">
-        <div class="feed-head"><span class="feed-crew-chip"><i :style="{ background: hex(current.colour) }" />{{ current.name }}</span><span class="feed-note">{{ current.size }} / {{ FEED.crew.size }}</span></div>
+        <img v-if="current.cover" class="feed-media" :src="mediaUrl(current.cover)" alt="">
+        <div class="feed-head"><span class="feed-crew-chip"><i :style="{ background: hex(current.colour) }" />{{ current.name }}</span><span class="feed-note">{{ current.kindLabel }} · {{ current.size }} / {{ current.cap }}{{ current.open ? ' · open to all' : ' · by link' }}</span></div>
+        <p v-if="placeLine(current)" class="feed-note">{{ current.place?.real ? 'Based on' : 'An imagined place:' }} {{ placeLine(current) }}</p>
         <p v-if="current.about" class="feed-body">{{ current.about }}</p>
         <div class="feed-strip" style="margin-top:8px">
           <button v-for="m in current.members" :key="m.id" type="button" class="feed-person" @click="shell.open('person', { player: m.id, name: m.name })">
-            <PlayerAvatar :name="m.name" :seed="m.id" /><b>{{ m.name }}</b><small v-if="m.id === current.owner.id">Founder</small><small v-if="m.ai">AI-played</small>
-            <span v-if="current.owned && m.id !== current.owner.id" class="feed-pill" role="button" @click.stop="leave(m.id)">Remove</span>
+            <PlayerAvatar :name="m.name" :seed="m.id" /><b>{{ m.name }}</b><small v-if="m.id === current.owner.id">Founder</small><small v-else-if="current.mods.some((x) => x.id === m.id)">Moderator</small><small v-if="m.ai">AI-played</small>
+            <span v-if="current.owned && m.id !== current.owner.id && big" class="feed-pill" role="button" @click.stop="mod(m.id, !current.mods.some((x) => x.id === m.id))">{{ current.mods.some((x) => x.id === m.id) ? 'Not mod' : 'Make mod' }}</span>
+            <span v-if="current.mod && m.id !== current.owner.id && m.id !== game.view.value.session?.id" class="feed-pill" role="button" @click.stop="leave(m.id)">Remove</span>
           </button>
         </div>
+        <p v-if="current.size > current.members.length" class="feed-note">and {{ current.size - current.members.length }} more</p>
         <div class="feed-row" style="margin-top:8px">
           <button type="button" class="social-btn is-primary" @click="share">Invite with the link</button>
-          <a class="feed-pill" :href="whatsappUrl(link, `Join ${current.name}, my crew on Allworld`)" target="_blank" rel="noopener">WhatsApp</a>
-          <button type="button" class="feed-pill" @click="hangOut">Hang out in a room</button>
+          <a class="feed-pill" :href="whatsappUrl(link, `Join ${current.name} on Allworld`)" target="_blank" rel="noopener">WhatsApp</a>
           <button type="button" class="feed-pill" @click="leave()">Leave</button>
         </div>
       </div>
+
+      <div class="feed-card feed-form" data-feed="world">
+        <b>Its 3D world</b>
+        <template v-if="current.world">
+          <p class="feed-note">A place to meet and build together. {{ current.world.builders }} {{ current.world.builders === 1 ? 'builder' : 'builders' }} shape it with AI Spaces: describe it, import a Space Plan, add your own models, scripts and games. Everyone else walks in as a visitor.</p>
+          <div class="feed-row"><button type="button" class="social-btn is-primary" :disabled="busy" @click="enterWorld">Enter the world</button><button v-if="current.mod" type="button" class="feed-pill" @click="shell.open('messages')">Its group chat</button></div>
+          <p v-if="current.owned" class="feed-note">To let a moderator build, add them to the world's group chat (they must be your friend).</p>
+        </template>
+        <template v-else-if="current.owned">
+          <p class="feed-note">Give {{ current.name }} its own place: a group chat for the builders, and a room everyone can walk into, built in 3D.</p>
+          <button type="button" class="social-btn is-primary" :disabled="busy" @click="makeWorld">Create its world and group chat</button>
+        </template>
+        <p v-else class="feed-note">The founder has not made its world yet.</p>
+      </div>
+
       <form class="feed-card feed-compose" @submit.prevent="post">
-        <textarea v-model="text" :maxlength="FEED.body" placeholder="Say something to the crew" aria-label="Post to the crew" />
-        <button type="submit" class="social-btn is-primary" :disabled="busy || !text.trim()">Post to the crew</button>
+        <textarea v-model="text" :maxlength="FEED.body" :placeholder="`Say something to ${current.name}`" aria-label="Post to the community" />
+        <button type="submit" class="social-btn is-primary" :disabled="busy || !text.trim()">Post</button>
       </form>
       <p v-if="!wall.length" class="feed-note">The wall is empty. Only members see it.</p>
       <PostCard v-for="p in wall" :key="p.id" :post="p" :api="api" :now="now" @changed="(x) => (wall = wall.map((q) => (q.id === x.id ? x : q)))" @removed="(id) => (wall = wall.filter((q) => q.id !== id))" @person="(id, n) => shell.open('person', { player: id, name: n })" @toast="toast" />
     </template>
 
     <template v-else>
-      <p class="social-note">A crew is your people: up to {{ FEED.crew.size }}, one link to join, a wall only you see.</p>
-      <ul v-if="crews.length" class="social-list">
-        <li v-for="c in crews" :key="c.id" class="social-row">
-          <span class="feed-crew-chip"><i :style="{ background: hex(c.colour) }" />{{ c.name }}</span>
-          <div><small>{{ c.size }} member{{ c.size === 1 ? '' : 's' }}</small></div>
-          <span class="social-actions"><button type="button" class="social-btn" @click="openCrew(c)">Open</button></span>
-        </li>
-      </ul>
-      <form class="feed-card feed-form" @submit.prevent="preview ? join() : look()">
-        <b>Join a crew</b>
-        <label>Code<input v-model="code" maxlength="8" placeholder="ABCDEF" autocapitalize="characters"></label>
-        <div v-if="preview" class="feed-embed"><b>{{ preview.name }}</b><small>{{ preview.size }} members · founded by {{ preview.owner.name }}</small><small v-if="preview.about">{{ preview.about }}</small></div>
-        <button type="submit" class="social-btn is-primary" :disabled="busy || !code.trim()">{{ preview ? `Join ${preview.name}` : 'Look it up' }}</button>
-      </form>
-      <form class="feed-card feed-form" @submit.prevent="create">
-        <b>Start a crew</b>
-        <label>Name<input v-model="name" :maxlength="FEED.crew.nameMax" placeholder="Yaba Ballers"></label>
-        <label>About<input v-model="about" :maxlength="FEED.crew.about" placeholder="Football on Saturdays"></label>
-        <label>Colour<select v-model="colour"><option v-for="c in COLOURS" :key="c.id" :value="c.id">{{ c.label }}</option></select></label>
-        <button type="submit" class="social-btn" :disabled="busy || name.trim().length < FEED.crew.nameMin">Start the crew</button>
+      <nav class="feed-tabs"><button type="button" :class="{ 'is-on': tab === 'mine' }" @click="tab = 'mine'">Mine</button><button type="button" :class="{ 'is-on': tab === 'discover' }" @click="tab = 'discover'">Discover</button><button type="button" :class="{ 'is-on': tab === 'start' }" @click="tab = 'start'">Start one</button></nav>
+
+      <template v-if="tab === 'mine'">
+        <p class="social-note">Your crews and communities: your city, your state, your estate, your campus, your club.</p>
+        <ul v-if="crews.length" class="social-list">
+          <li v-for="c in crews" :key="c.id" class="social-row">
+            <span class="feed-crew-chip"><i :style="{ background: hex(c.colour) }" />{{ c.name }}</span>
+            <div><small>{{ c.kindLabel }} · {{ c.size }} member{{ c.size === 1 ? '' : 's' }}{{ c.world ? ' · has a 3D world' : '' }}</small></div>
+            <span class="social-actions"><button type="button" class="social-btn" @click="openCrew(c)">Open</button></span>
+          </li>
+        </ul>
+        <form class="feed-card feed-form" @submit.prevent="preview ? join() : look()">
+          <b>Join with a code</b>
+          <label>Code<input v-model="code" maxlength="8" placeholder="ABCDEF" autocapitalize="characters"></label>
+          <div v-if="preview" class="feed-embed"><b>{{ preview.name }}</b><small>{{ preview.kindLabel }} · {{ preview.size }} members · founded by {{ preview.owner.name }}</small><small v-if="preview.about">{{ preview.about }}</small></div>
+          <button type="submit" class="social-btn is-primary" :disabled="busy || !code.trim()">{{ preview ? `Join ${preview.name}` : 'Look it up' }}</button>
+        </form>
+      </template>
+
+      <template v-else-if="tab === 'discover'">
+        <p class="social-note">Communities around your city that anyone can join.</p>
+        <select v-model="kindFilter" aria-label="Kind"><option value="">Every kind</option><option v-for="[id, label] in COMMUNITY_KINDS.filter(([k]) => k !== 'crew')" :key="id" :value="id">{{ label }}</option></select>
+        <p v-if="!found.length" class="feed-note">None yet. Start the first.</p>
+        <div v-for="c in found" :key="c.id" class="feed-card">
+          <div class="feed-head"><div class="feed-who"><b>{{ c.name }}</b><small>{{ c.kindLabel }}<template v-if="placeLine(c)"> · {{ placeLine(c) }}</template> · {{ c.size }} members{{ c.world ? ' · 3D world' : '' }}</small></div>
+            <button v-if="!c.mine" type="button" class="social-btn is-primary" :disabled="busy" @click="join(c.id)">Join</button><button v-else type="button" class="social-btn" @click="openCrew(c)">Open</button></div>
+          <p v-if="c.about" class="feed-body">{{ c.about }}</p>
+        </div>
+      </template>
+
+      <form v-else class="feed-card feed-form" @submit.prevent="create">
+        <b>Start a community</b>
+        <label>What is it<select v-model="form.kind"><option v-for="[id, label] in COMMUNITY_KINDS" :key="id" :value="id">{{ label }}</option></select></label>
+        <label>Name<input v-model="form.name" :maxlength="FEED.crew.nameMax" :placeholder="form.kind === 'crew' ? 'Yaba Ballers' : form.kind === 'city' ? 'Ikeja Peeps' : form.kind === 'state' ? 'Oyo Connect' : 'Name it'"></label>
+        <label>About<input v-model="form.about" :maxlength="FEED.crew.about" placeholder="What brings people together"></label>
+        <template v-if="form.kind !== 'crew'">
+          <div class="feed-row"><label class="feed-row"><input v-model="form.where" type="radio" value="real"> A real place</label><label class="feed-row"><input v-model="form.where" type="radio" value="imagined"> A place I imagine</label><label class="feed-row"><input v-model="form.where" type="radio" value="none"> No place</label></div>
+          <template v-if="form.where === 'real'">
+            <label>Find the city<input v-model="search" placeholder="Ibadan, Accra, Nairobi, London…"></label>
+            <select v-model="form.city" aria-label="City"><option value="">Choose…</option><option v-for="c in places" :key="c.id" :value="c.id">{{ c.name }}, {{ c.state.name }}{{ c.countryName ? `, ${c.countryName}` : '' }}</option></select>
+          </template>
+          <label v-else-if="form.where === 'imagined'">Its name<input v-model="form.placeName" maxlength="40" placeholder="New Eko City"></label>
+          <label class="feed-row"><input v-model="form.open" type="checkbox"> Anyone can find and join it (otherwise by link only)</label>
+          <label class="feed-pill">{{ form.cover ? 'Change the cover' : 'Add a cover photo' }}<input type="file" accept="image/*" hidden @change="cover"></label>
+        </template>
+        <label>Colour<select v-model="form.colour"><option v-for="c in COLOURS" :key="c.id" :value="c.id">{{ c.label }}</option></select></label>
+        <p class="feed-note">{{ form.kind === 'crew' ? `A crew holds ${FEED.crew.size} friends.` : `A community holds up to ${FEED.community.size} members. You can give it a 3D world and a group chat next.` }}</p>
+        <button type="submit" class="social-btn is-primary" :disabled="busy || form.name.trim().length < FEED.crew.nameMin">Start it</button>
       </form>
     </template>
   </section>

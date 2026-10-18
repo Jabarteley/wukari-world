@@ -35,3 +35,11 @@ test('the example plan is valid and fits a two-room house', () => {
   assert.equal(plan.items.length, raw.items.length)
   assert.deepEqual(fitSpacePlan(plan, tierPlot('bq'), { repair: false }).problems, [])
 })
+
+test('the lite-game reference example is a valid lite game', async () => {
+  const { readLite } = await import('../arena/lite/schema.ts')
+  const text = readFileSync(join(root, 'skills/allworld-spaces/reference/lite-game.md'), 'utf8')
+  const json = /```json\n([\s\S]*?)\n```/.exec(text)?.[1]
+  assert.ok(json)
+  assert.deepEqual(readLite(JSON.parse(json)).problems, [])
+})

@@ -36,4 +36,11 @@ const import_space: ToolDefinition = {
   async run(c, args) { return route(c, '/api/spaces/apply', { ...where(args), requestId: `${c.ctx.now()}:${c.ctx.randomId()}` }); },
 };
 
-export const SPACE_TOOLS: readonly ToolDefinition[] = Object.freeze([check_space, import_space]);
+const import_game: ToolDefinition = {
+  name: 'import_game', readOnly: false,
+  description: 'Import a lite game (docs/SPACES.md "Lite games": { schema: "allworld-lite", version: 1, title, seats, arena, controls, player, entities, rules, palette? }). It is checked, its names pass the text filter, and it becomes playable at once by the one lite engine: open a room with the arena tools (game "lite", option game = the id this answers) and share its code. Answers the id, or every problem in words.',
+  inputSchema: obj({ def: { type: JT.object, additionalProperties: true } }, ['def']),
+  async run(c, args) { return route(c, '/api/spaces/games', { def: isRecord(args.def) ? args.def : {} }); },
+};
+
+export const SPACE_TOOLS: readonly ToolDefinition[] = Object.freeze([check_space, import_space, import_game]);

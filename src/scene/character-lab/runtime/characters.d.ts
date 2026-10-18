@@ -39,6 +39,8 @@ export interface NativeSystem {
   spawnSliced(options: NativeSpawn, pause?: () => Promise<void> | null | undefined, load?: boolean): Promise<NativeActor>;
   update(dt:number):void;
   stats():Record<string,number>;
+  /** Dispose the cached files' geometries and textures on every renderer (they upload again when next drawn): see scene/shared-gpu.ts. */
+  releaseGpu():void;
   dispose():void;
 }
 export function createCharacterSystem(options: Record<string, unknown> & {scene:Group}): Promise<NativeSystem>;

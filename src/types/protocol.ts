@@ -756,7 +756,7 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/story/help', 'POST /api/story/help', 'POST /api/story/help/join', 'POST /api/story/help/answer',
   'POST /api/story/help/seat', 'POST /api/story/help/errand', 'POST /api/story/help/end',
   'GET /api/story/signature', 'POST /api/story/signature',
-  'GET /api/spaces/status', 'POST /api/spaces/design', 'POST /api/spaces/check', 'POST /api/spaces/apply',
+  'GET /api/spaces/status', 'POST /api/spaces/design', 'POST /api/spaces/check', 'POST /api/spaces/apply', 'GET /api/spaces/host', 'POST /api/spaces/host', 'GET /api/spaces/games', 'GET /api/spaces/game', 'POST /api/spaces/games',
   'POST /api/arena/clip',
   'GET /api/world/pray',
   'POST /api/world/pray',

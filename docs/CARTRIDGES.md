@@ -277,3 +277,51 @@ Every cartridge gets real game controllers through the browser's Gamepad API, fr
 - **Football's camera** (`src/arena/football-3d.ts`) is chosen by the screen's shape: a tall phone sees the pitch end-on from behind its own goal, high, looking up the pitch (your side always attacks up the screen, the same turn of the stick the 2D view uses, `viewRotation`); a wide one sees it from the side (your side attacks to the right). The tall view keeps the pitch's length, where the play is, along the tall screen and the ball inside the band between the bars and the thumb pad (`framing`, tested by projecting the ball for both teams and for the ball near each goal). A goal cuts to a low camera behind the goal line (`behindGoal`), replays the last second of the play from the frames the view kept at 0.62 speed, and then shows the scorer; a shoot-out is seen from behind the shooter (`penaltyCam`), the same for everyone, and the deciding kick slows down. `globalThis.allworldFootballCamera = 'side' | 'end'` forces one camera, for comparing them in screenshots.
 - **Football's HUD** is `drawFootballHud` in `football-draw.ts`, drawn on the transparent 2D canvas over the 3D one: the banners, the carrier's arrow and charge ring, team-coloured name tags (positions the view projects), the shoot-out's score row, its aim mark and its dive arrows; with no WebGL, or if the models fail, `drawFootball` and `drawShootout2D` draw everything in 2D.
 - **Football's players** are Kenney's blocky people (no skeleton: the clips move their joints), shaded by giving them normals so the one light shades them like the rest. They ship without a goalkeeper dive, so the dive is a roll of the whole body toward the side named; a slide tackle lays the body back. Team 0 wears the green model and team 1 the yellow one, with a ring in the team's colour under each and a tag in the team's colour above (drawn by the 2D HUD from the positions the view projects, so the text stays crisp and costs no draw call).
+
+## Player-made games
+
+Anyone, or Claude with the Allworld skill (`skills/allworld-spaces/`), can add a real-time game by a reviewed pull request. The worked
+example is **Coconut Dodge**, `src/arena/examples/coconut.ts` with its tests in `src/arena/examples/coconut.test.ts`: 2 to 4 players
+dodge falling coconuts, 3 lives, last one standing wins. Every place it meets the contract is marked `CONTRACT:` in the file. It is an
+example, not a live game: it is not in the registry.
+
+### The pull-request path, step by step
+
+1. **Copy the template.** Copy `src/arena/examples/coconut.ts` to `src/arena/<id>.ts` and `coconut.test.ts` to `src/arena/<id>.test.ts`
+   (fix the import paths). Change the id (2-16 lower-case letters), the label, the rules, the bot and the snapshot into your game.
+   Keep it pure: whole numbers, no clock, no I/O, randomness only from `rng`.
+2. **Write the screen.** A lazy Vue component, `src/app/features/arena/<Id>Game.vue`, modelled on `FightGame.vue`. It draws from a
+   `src/arena/<id>-draw.ts` module that only reads snapshots, and the replay view (`src/arena/replay-view.ts`) draws from the same
+   module, so a replay and a clip look like the live match.
+3. **Add the entry and the registry line.** One `defineCartridge({...})` in `src/arena/cartridges.ts` (the test file has a sample
+   entry), one line in `src/arena/registry.ts`, and a card in `src/arena/catalog.ts` whose title and blurb match the entry.
+4. **Run the checks** until they are green:
+   ```
+   node --experimental-strip-types --test src/arena/<id>.test.ts src/arena/cartridge.test.ts
+   npm run typecheck
+   npm run build && npm run cartridge:check
+   ```
+5. **Open a pull request** to `kromate/joinallworld` with the Cartridge template. Say in it, one line each: the manifest (entry chunk,
+   lazy chunks, every asset), the `rev`, the venues, the modes (live or planned) and the licence of every asset (with the NOTICE.md
+   line for anything CC BY).
+
+### What the owner checks
+
+The [review rules](#review-rules) above apply in full. The ones a player-made game most often trips on:
+
+- **Licences.** Every asset is CC0, CC BY, MIT or your own, listed in the manifest; every CC BY credit line is also in `NOTICE.md`.
+- **Size.** At most 1,500,000 bytes brotli for the lazy chunks and assets together; the first download never grows.
+- **Server-owned, deterministic rules.** Every decision is in `step`, `outcome` and `bot`; the same seed and inputs give the same
+  match, and the test replays one exactly.
+- **Randomness only from `rng`.** No `Math.random`, `Date.now` or anything else that differs between two runs.
+- **The AI mark.** A seat played by an AI agent is always shown as AI; a bot never passes itself off as a person.
+- **Game naira only, nothing that reads as betting.** No real money, no odds, no "bet", "gamble" or "earn"; stakes are only what the
+  host offers. A cartridge reports results; it never moves money.
+- **No fees.** Nothing to pay to play, to unlock or to win.
+
+### The instant path: lite games
+
+Many small games need no code at all. A **lite game** is a declarative description of the game, data only, that one fixed engine,
+already reviewed and live, plays for everyone; it can be imported in the game the same day, with no pull request. It is described in
+[SPACES.md](SPACES.md) under "Lite games". Use it whenever it can express your game; open a cartridge pull request only for what it
+cannot.

@@ -113,6 +113,7 @@ import type { LifeState } from './types/life.ts';
 import { inputMode, readFacts } from './ui/inputMode.ts';
 import { NPC_WORD, addNpcWord, npcAria, npcTitle } from './ui/npc-mark.ts';
 import { createShaderWarmup } from './scene/shader-warmup.ts';
+import { releaseSharedGpu } from './scene/shared-gpu.ts';
 
 type RenderBenchmark = import('./scene/render-benchmark.ts').RenderBenchmark;
 type RenderMeasurement = ReturnType<typeof import('./scene/render-benchmark.ts')['observeRenders']>;
@@ -1736,6 +1737,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
       sky.dispose(); ground.dispose();
       kit.dispose();
       lights.dispose();
+      if (!providedRenderer) releaseSharedGpu();
       renderer.dispose();
       // dispose() frees what the renderer made but keeps the WebGL context: a browser holds only so many, and takes the oldest away
       // (which may be one still on screen) when a scene too many has been opened. A renderer made here gives its context back.

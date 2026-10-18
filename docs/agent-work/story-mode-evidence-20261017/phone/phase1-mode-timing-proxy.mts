@@ -1,12 +1,14 @@
 import http from 'node:http';
 import { readFileSync } from 'node:fs';
+import { stripTypeScriptTypes } from 'node:module';
+import type { Duplex } from 'node:stream';
 
 const target = { hostname: '127.0.0.1', port: 5351 };
 const origin = 'http://127.0.0.1:5353';
 const upstreamOrigin = 'http://127.0.0.1:5351';
-const observer = readFileSync(new URL('./phase1-mode-timing-observer.js', import.meta.url), 'utf8');
-const sockets = new Set();
-function headersOf(request) {
+const observer = stripTypeScriptTypes(readFileSync(new URL('./phase1-mode-timing-observer.ts', import.meta.url), 'utf8'), { mode: 'strip' });
+const sockets = new Set<Duplex>();
+function headersOf(request: http.IncomingMessage): http.IncomingHttpHeaders {
   return {
     ...request.headers,
     host: '127.0.0.1:5351',
@@ -23,14 +25,18 @@ const server = http.createServer((request, response) => {
   const upstream = http.request({ ...target, method: request.method, path: request.url, headers: headersOf(request) }, incoming => {
     const isHtml = request.method === 'GET' && incoming.statusCode === 200 && String(incoming.headers['content-type']).includes('text/html');
     if (!isHtml) { response.writeHead(incoming.statusCode ?? 502, incoming.headers); incoming.pipe(response); return; }
-    const chunks = [];
-    incoming.on('data', chunk => chunks.push(chunk));
+    const chunks: Buffer[] = [];
+    incoming.on('data', (chunk: Buffer) => chunks.push(chunk));
     incoming.on('end', () => {
       const html = Buffer.concat(chunks).toString('utf8');
       if (!html.includes('</body>') || incoming.headers['content-encoding']) { response.writeHead(502); response.end('Measurement HTML unavailable'); return; }
       const body = Buffer.from(html.replace('</body>', '<script src="/__story-qa-timing.js"></script></body>'));
-      const headers = { ...incoming.headers, 'content-length': body.length, 'cache-control': 'no-store' };
-      if (headers['content-security-policy']) headers['content-security-policy'] = headers['content-security-policy'].replaceAll('ws://127.0.0.1:5351', 'ws://127.0.0.1:5353').replaceAll('wss://127.0.0.1:5351', 'wss://127.0.0.1:5353');
+      const policy = incoming.headers['content-security-policy'];
+      const headers: http.OutgoingHttpHeaders = { ...incoming.headers, 'content-length': body.length, 'cache-control': 'no-store' };
+      if (policy) {
+        if (Array.isArray(policy)) throw new TypeError('Measurement CSP header must be singular');
+        headers['content-security-policy'] = policy.replaceAll('ws://127.0.0.1:5351', 'ws://127.0.0.1:5353').replaceAll('wss://127.0.0.1:5351', 'wss://127.0.0.1:5353');
+      }
       delete headers['transfer-encoding']; delete headers.etag;
       response.writeHead(incoming.statusCode ?? 200, headers); response.end(body);
     });
@@ -57,5 +63,5 @@ server.on('upgrade', (request, socket, head) => {
 });
 server.on('connection', socket => { sockets.add(socket); socket.on('close', () => sockets.delete(socket)); });
 server.listen(5353, '127.0.0.1', () => process.stdout.write('Passive mode timing proxy ready on5353; unchanged preview5351 remains upstream.\n'));
-function stop() { for (const socket of sockets) socket.destroy(); server.close(() => process.exit(0)); }
+function stop(): void { for (const socket of sockets) socket.destroy(); server.close(() => process.exit(0)); }
 process.on('SIGINT', stop); process.on('SIGTERM', stop);

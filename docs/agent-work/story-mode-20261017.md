@@ -5,7 +5,7 @@
 - **Work ID:** `story-mode-20261017`
 - **Owner:** Story programme integration
 - **Thread:** `01a14bf1-fd6d-7de1-9770-a0c22f5d554a`
-- **UTC updated:** `2026-10-18T05:09:43.244390+00:00`
+- **UTC updated:** `2026-10-18T05:31:24.926716+00:00`
 - **Status:** `active`
 - **Work state:** `implementation`
 
@@ -33,7 +33,7 @@ Deliver four independently reviewed and released phases of Story Mode for `kroma
 
 | Phase | Required outcome and proof | Implementation | CI / merge / release | Next action |
 |---|---|---|---|---|
-| 1 Core | Reversible per-character free/story switch; permanent receipt-derived ladder and city tally in both modes; all four city doors and venue gate; map locks; city signatures; friends-only verified co-op with isolated helper pass, quotas, expiry, keepsake and solo path; erasure; 320/390px actual journeys | Implemented; local typecheck 5/0, full city/scene suites 15/15, snapshot gates 63/63 and merged erasure checks 4/4 pass | PR34 merged377300fa; PR CI39091668137 success; release39092396438 failed before deploy | Reproduce/fixWorker startup on bounded follow-up PR, rerun release and live verification |
+| 1 Core | Reversible per-character free/story switch; permanent receipt-derived ladder and city tally in both modes; all four city doors and venue gate; map locks; city signatures; friends-only verified co-op with isolated helper pass, quotas, expiry, keepsake and solo path; erasure; 320/390px actual journeys | Implemented; local typecheck 5/0, full city/scene suites 15/15, snapshot gates 63/63 and merged erasure checks 4/4 pass | PR34 merged377300fa; PR CI39091668137 success; release39092396438 failed before deploy | Repair implemented; PR35/current CI39099658897 pending, then protected release/live verification |
 | 2 Scenes | Validated distinct recipes for every non-authored venue; Blender regional kits and sourced heroes; lazy packs; regeneration/check/contact sheets; Accra/Nairobi/Tokyo/Paris phone journeys and cold-load measurements | Pure contract/input tooling, final kit/hero and actual CPU Accra prototype reviewed; no runtime wiring | Pending | Start delivery branch after phase1 release; implement real compiler and host composition |
 | 3 Talk | Filtered per-city/per-NPC banks and sourced beta phrasebooks; deterministic greet/hours/directions; capped safe live path; cost/zero-call ledger and three-city browser evidence | Pure bank/draft tooling and beta phrase inputs reviewed; no runtime wiring | Pending | Implement factory execution and adapters outside owned house/model paths |
 | 4 Realism | Recipe sky/material/lighting pass and mapped-street chapter3 entry; phone budgets and full return journey | Queued | Pending | Coordinate allowed seam after phase2 |
@@ -441,3 +441,24 @@ The heavy slot is free. Root is restarting only the task QA preview fromea762506
 - A cold-origin console diagnostic involvingkano:racecourse is preserved with its full stack. Source inspection shows the qualified-key reader unchanged atlive9eab3816; the lenient registry logs once then continues with the valid city prefix. No new functional failure was demonstrated. It remains a separate preexisting issue.
 - Factory prep resumes serial headless asset validation/prototypes while the repair proceeds through PR/release. Aggregate external spend remainsUS$0; no future factory sources or outputs enter this repair.
 - Next executable step: commit only current repair evidence and own record, push normally, open/attach the bounded fix-forward PR, await its required current checks, merge, release exact main and verify the active public build.5351 remains available for the owner.
+
+
+## Integration checkpoint 2026-10-18T05:13:31.134401+00:00
+
+- Fix-forward PR35 is open and attached: https://github.com/kromate/joinallworld/pull/35. Exact head5576f5685a3c77e0c0d0033fbf610cdc3cfee599 adds only curated evidence to reviewed runtime8a941302. Current PR CI39099658897 is running. No unrelated factory sources or outputs were staged. Ordinary push preserved history; freshly fetched origin/main remains377300fa.
+- Task-only measurement proxy5353 is terminal0 after its one accepted pair. Owner preview5351 remains running unchanged. Serial asset prototypes own the heavy slot; factory CLI preparation has disjoint new-file ownership. No production mutation has occurred.
+- Next executable step: wait for current PR checks, merge only exact reviewed head, dispatch protected release for new main, verify live health/build and read-only public page, then checkpoint Phase1 and branch Phase2.
+
+
+## Integration checkpoint 2026-10-18T05:26:45.297306+00:00
+
+- PR35 CI39099658897 completed with one smoke failure. Build, download caps and typecheck pass, and emitted application module remainsapp-9d1b405.js. The unchanged release source-inventory guard rejected the two new observational QA helpers because they used JavaScript extensions. This is a task tooling mistake, not a new runtime or byte failure.
+- Converting the two helper sources to TypeScript with proper types and native type stripping for the served browser observer. The release guard, whitelist and all budgets remain unchanged. Original browser observations and helper source are pinned to5576f568; the app runtime is unchanged.
+- Full rejected log retained with its hash in phase1-worker-fix-checks.json. No merge or deployment. Next: focused tool typecheck/source smoke, push the bounded conversion, require fresh PR CI and continue the protected release.
+
+
+## Integration checkpoint 2026-10-18T05:31:24.926716+00:00
+
+- The two observational tools now use typed.ts/.mts sources; the proxy strips observer types through Node before serving the unchanged external JavaScript endpoint. Strict isolated tool typecheck and proxy/stripped-observer syntax checks pass. Independent review found no blocking semantic change. App runtime, fixed endpoints/CSP policy, release guard and budgets are unchanged. Historical measured samples remain bound to original helper revision5576f568.
+- All five unchanged release-source tests pass from an exact candidate Git-index export. The working clone also contains five untracked future prototype reproduction helpers, which the filesystem inventory sees; those remain untouched and outside this PR. The export tests the actual candidate rather than hiding or changing the guard.
+- Next: push only the conversion and its acceptance record, require fresh PR35 CI, merge/release exact reviewed source and verify the active live build. The owner preview5351 is still running; all prototype assets remain excluded.

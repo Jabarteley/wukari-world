@@ -1,13 +1,38 @@
 (() => {
   'use strict';
+  type ModeLabel = 'Free Roam' | 'Story Path';
+  type Outcome = 'successful-dom-plus-two-animation-frames' | 'overlapping-input' | 'invalid-trusted-event-time-origin' | 'timeout';
+  interface PendingSample {
+    section: Element;
+    from: ModeLabel;
+    to: ModeLabel;
+    start: number;
+    trusted: boolean;
+    timeout?: ReturnType<typeof setTimeout>;
+    domObservedAt?: number;
+  }
+  interface CompletedSample {
+    from: ModeLabel;
+    to: ModeLabel;
+    outcome: Outcome;
+    trusted: boolean;
+    eventTimeStamp: number;
+    timeOrigin: number;
+    domObservedAt: number | null;
+    completedAt: number;
+    elapsedMs: number;
+    visibility: DocumentVisibilityState;
+    successfulAnnouncement: string | null;
+    pressed: { label: string | null; pressed: string | null }[];
+  }
   const sourceRevision = '8a94130206815cf8905e7a48402a6e82a7c70f37';
-  const samples = [];
-  let pending = null;
+  const samples: CompletedSample[] = [];
+  let pending: PendingSample | null = null;
   const output = document.createElement('output');
   output.id = 'story-qa-mode-timings';
   output.hidden = true;
   document.body.append(output);
-  function publish() {
+  function publish(): void {
     if (!output.isConnected) document.body.append(output);
     output.textContent = JSON.stringify({
       sourceRevision,
@@ -17,7 +42,7 @@
       samples,
     });
   }
-  function finish(outcome) {
+  function finish(outcome: Outcome): void {
     const sample = pending;
     if (!sample) return;
     pending = null;
@@ -40,7 +65,7 @@
     });
     publish();
   }
-  function observe() {
+  function observe(): void {
     if (!output.isConnected) publish();
     const sample = pending;
     if (!sample || sample.domObservedAt !== undefined) return;
@@ -63,13 +88,15 @@
     const section = button.closest('.story-mode');
     const to = button.querySelector('b')?.textContent?.trim();
     const from = section?.querySelector('.story-mode-options button[aria-pressed="true"] b')?.textContent?.trim();
-    if (!section || !['Free Roam', 'Story Path'].includes(to) || !['Free Roam', 'Story Path'].includes(from) || to === from) return;
-    pending = { section, from, to, start: event.timeStamp, trusted: event.isTrusted };
+    const isModeLabel = (value: string | undefined): value is ModeLabel => value === 'Free Roam' || value === 'Story Path';
+    if (!section || !isModeLabel(to) || !isModeLabel(from) || to === from) return;
+    const sample: PendingSample = { section, from, to, start: event.timeStamp, trusted: event.isTrusted };
+    pending = sample;
     if (!event.isTrusted || !Number.isFinite(event.timeStamp) || event.timeStamp <= 0 || event.timeStamp > performance.now()) {
       finish('invalid-trusted-event-time-origin');
       return;
     }
-    pending.timeout = setTimeout(() => finish('timeout'), 3000);
+    sample.timeout = setTimeout(() => finish('timeout'), 3000);
     publish();
   }, true);
   publish();

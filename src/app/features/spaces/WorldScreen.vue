@@ -9,6 +9,8 @@ import { modelBytes, scriptSave, worldRead, worldSave, type ModelView, type Plac
 import { scriptNames, SCRIPT, TEMPLATES } from '../../../spaces/script.ts'
 import type { Placement } from '../../../spaces/layout.ts'
 import type { Engine, View } from '../../../spaces/world/engine.ts'
+import { fillLine } from '../../../spaces/script.ts'
+import type { Together } from '../../../spaces/world/together.ts'
 
 const props = defineProps<{ where: WorldWhere }>()
 const emit = defineEmits<{ close: [] }>()
@@ -43,6 +45,16 @@ const score = ref<number | null>(null)
 const scriptError = ref('')
 const scriptBusy = ref(false)
 let saidTimer = 0
+/** Phase 5: together. Who is here, who hosts (moves the models and runs the script), and what to tell the others next. */
+const here = ref(1)
+const hosting = ref(true)
+let together: Together | null = null
+let tickTimer = 0
+let pendingSay: number[] | undefined, pendingScore: number | undefined
+const peerNames = new Map<string, string>()
+const peerPoses = new Map<string, { name: string; p: number[] }>()
+const order = (): string[] => layout.value.map((p) => p.k)
+function showSaid(text: string): void { said.value = text; clearTimeout(saidTimer); saidTimer = window.setTimeout(() => { said.value = '' }, 4000) }
 const linesOf = (): string[] => lines.value.split('\n').map((l) => l.trim()).filter(Boolean).slice(0, SCRIPT.lines)
 const namesOf = (): Map<string, string> => scriptNames(layout.value)
 function startScript(source: { code: string; lines: string[] } | null): void {
@@ -72,18 +84,66 @@ onMounted(async () => {
     picked(key) { selected.value = key; engine?.highlight(key) },
     tapped(at) { if (choosing.value) add(choosing.value, at); else if (picked.value) move(at) },
     physics(state) { physicsOn.value = state === 'on' },
-    said(text) { said.value = text; clearTimeout(saidTimer); saidTimer = window.setTimeout(() => { said.value = '' }, 4000) },
-    scored(value) { score.value = value },
+    said(text, line, values) { showSaid(text); if (hosting.value) pendingSay = [line, ...values] },
+    scored(value) { score.value = value; if (hosting.value) pendingScore = value },
     scriptProblem(message, stopped) { scriptError.value = stopped ? message : `Your code: ${message}` },
   })
   loading.value = false
+  startTogether()
   if (answer.world.script) {
     code.value = answer.world.script.code
     lines.value = answer.world.script.lines.join('\n')
     startScript(answer.world.script)
   }
 })
-onBeforeUnmount(() => { gone = true; engine?.dispose(); engine = null })
+onBeforeUnmount(() => { gone = true; clearInterval(tickTimer); together?.leave(); together = null; engine?.dispose(); engine = null })
+
+/** Join the space live: others are drawn where they are, and the host's models, score and lines reach everyone. */
+async function startTogether(): Promise<void> {
+  const [{ joinTogether, SPACE_HZ }] = await Promise.all([import('../../../spaces/world/together.ts')])
+  if (gone) return
+  together = joinTogether(props.where, {
+    room(frame) {
+      // Someone new: the host tells them where everything is and the score.
+      if (frame.host === frame.you && frame.members.length > here.value) { engine?.resendModels(); if (score.value !== null) pendingScore = score.value }
+      here.value = frame.members.length
+      peerNames.clear()
+      for (const m of frame.members) if (m.id !== frame.you) peerNames.set(m.id, m.name)
+      for (const id of [...peerPoses.keys()]) if (!peerNames.has(id)) peerPoses.delete(id)
+      engine?.setPeers(peerPoses)
+      const host = frame.host === frame.you
+      if (host !== hosting.value) {
+        hosting.value = host
+        engine?.setAuthority(host)
+        // The host runs the space's script for everyone; the others see what it does.
+        if (host) startScript(world.value?.script ?? null)
+        else engine?.runScript(null, namesOf())
+      }
+    },
+    peer(frame) {
+      const name = peerNames.get(frame.id)
+      if (name) { peerPoses.set(frame.id, { name, p: frame.p }); engine?.setPeers(peerPoses) }
+      if (hosting.value) return
+      if (frame.o) engine?.followModels(order(), frame.o)
+      if (typeof frame.s === 'number') score.value = frame.s
+      const lines = world.value?.script?.lines ?? []
+      if (frame.say && lines[frame.say[0] ?? -1] !== undefined) showSaid(fillLine(lines[frame.say[0]!]!, frame.say.slice(1)))
+    },
+    problem(reason) { note.value = reason },
+  })
+  tickTimer = window.setInterval(() => {
+    if (!engine || !together) return
+    const tick: { p: number[]; o?: number[][]; s?: number; say?: number[] } = { p: engine.pose() }
+    if (hosting.value) {
+      const moved = engine.movedModels(order())
+      if (moved.length) tick.o = moved
+      if (pendingScore !== undefined) tick.s = pendingScore
+      if (pendingSay) tick.say = pendingSay
+      pendingScore = undefined; pendingSay = undefined
+    }
+    together.send(tick)
+  }, 1000 / SPACE_HZ)
+}
 
 function leave(): void {
   if (dirty.value && !globalThis.confirm?.('Leave without saving where your models stand?')) return
@@ -202,10 +262,11 @@ const round = (v: number): number => Math.round(v * 100) / 100
         </div>
         <div v-if="physicsOn && !editing" class="ws-acts" role="group" aria-label="Actions">
           <button type="button" class="ws-pill" @click="jump">Jump</button>
-          <button type="button" class="ws-pill" :class="{ 'is-on': holding }" :aria-pressed="holding" @click="grab">{{ holding ? 'Put down' : 'Pick up' }}</button>
+          <button v-if="hosting" type="button" class="ws-pill" :class="{ 'is-on': holding }" :aria-pressed="holding" @click="grab">{{ holding ? 'Put down' : 'Pick up' }}</button>
           <button v-if="holding" type="button" class="ws-pill" @click="throwIt">Throw</button>
         </div>
         <p v-if="score !== null" class="ws-score" role="status">Score {{ score }}</p>
+        <p v-if="here > 1" class="ws-here" role="status">{{ here }} here</p>
         <p v-if="said" class="ws-said" role="status">{{ said }}</p>
         <button v-if="world.canEdit && world.scripts && !editing" type="button" class="ws-pill ws-code" :class="{ 'is-on': coding }" :aria-pressed="coding" @click="coding = !coding">Code</button>
         <section v-if="coding" class="ws-panel ws-coder" aria-label="This space's code">
@@ -287,6 +348,7 @@ const round = (v: number): number => Math.round(v * 100) / 100
 .ws-wide:disabled { opacity: 0.5; }
 .ws-hint { margin: 0; font-size: 12px; color: #4a5560; }
 .ws-score { position: absolute; top: calc(max(8px, env(safe-area-inset-top)) + 52px); right: 12px; margin: 0; padding: 6px 12px; border-radius: 14px; background: rgba(20, 24, 28, 0.7); color: #fff; font: 700 15px var(--font); }
+.ws-here { position: absolute; top: calc(max(8px, env(safe-area-inset-top)) + 52px); left: 12px; margin: 0; padding: 6px 12px; border-radius: 14px; background: rgba(20, 24, 28, 0.7); color: #fff; font: 600 14px var(--font); }
 .ws-said { position: absolute; left: 50%; top: 32%; transform: translateX(-50%); max-width: 80vw; margin: 0; padding: 10px 16px; border-radius: 16px; background: rgba(255, 255, 255, 0.92); color: #14181c; font: 600 16px var(--font); text-align: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25); }
 .ws-code { position: absolute; right: 12px; top: calc(max(8px, env(safe-area-inset-top)) + 96px); }
 .ws-coder { top: calc(max(8px, env(safe-area-inset-top)) + 148px); bottom: auto; max-height: calc(100vh - 340px); width: min(340px, calc(100vw - 24px)); }

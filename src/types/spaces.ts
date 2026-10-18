@@ -42,3 +42,13 @@ export interface SpacesHttpRoutes {
   'POST /api/spaces/world/layout': { body: { target: SpaceTarget; id?: string; models: Omit<PlacedModel, 'name' | 'size' | 'triangles'>[] }; response: Ok<{ ok: true; code: 'saved'; placed: number; triangles: number } | Refused>; errors: E }
   'POST /api/spaces/apply': { body: Where & { plan: PackedPlan | SpacePlanV1; requestId: string }; response: Ok<{ ok: true; code: 'applied'; placed: number; spent: number; problems: SpaceProblem[] } | Refused>; errors: E | 'invalid_request_id' }
 }
+
+// Together in a space (server/ws/spaces.ts, docs/SPACES-3D.md phase 5). `p` is [x, y, z, yaw]; `o` rows are [index, x, y, z, qx, qy, qz, qw]
+// by the placement's index in the space's layout; `say` is [line index, …numbers].
+export interface SpaceJoinFrame { type: 'space-join'; target: SpaceTarget; host?: string; id?: string }
+export interface SpaceTickFrame { type: 'space-tick'; p: number[]; o?: number[][]; s?: number; say?: number[] }
+export interface SpaceLeaveFrame { type: 'space-leave' }
+export type SpaceClientFrame = SpaceJoinFrame | SpaceTickFrame | SpaceLeaveFrame
+export interface SpaceRoomFrame { type: 'space-room'; key: string; you: string; host: string | null; members: { id: string; name: string }[] }
+export interface SpacePeerFrame { type: 'space-peer'; id: string; p: number[]; o?: number[][]; s?: number; say?: number[] }
+export type SpaceServerFrame = SpaceRoomFrame | SpacePeerFrame

@@ -69,3 +69,15 @@ numbers or blocked words). A line may hold up to four numbers, written `{1}` to 
 its own policy: no network, no pictures, no frames. It runs in a worker that is stopped when one step takes longer than 300 ms, so an
 endless loop stops only the script. Every move it asks for is checked before it happens: only the space's own models, only within
 60 metres of the plot, only known sounds. It never sees the player's account, money or messages.
+
+## Together (phase 5)
+
+Everyone who opens the same space in 3D is in it together (at most 16). Each sees the others walk about, with their names; the space's
+models move the same for everyone. One device is the **host**: the owner of a home when they are in it, otherwise whoever came in
+first, and the next one when they leave. The host runs the space's script and its physics and sends where the models are, the score
+and any line the script shows; the others follow. Only the host can pick up and throw loose models. A newcomer is told where
+everything is at once.
+
+Each device sends one small tick at most six times a second, and only when something changed (`server/ws/spaces.ts`; every player
+has 600 socket frames a minute in all). Nothing of this is stored: when the last person leaves, the space starts from its saved
+layout again.

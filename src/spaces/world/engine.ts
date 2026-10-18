@@ -27,7 +27,7 @@ export interface EngineEvents {
   /** Physics is running (or could not start: the walker then keeps to the floor plan). */
   physics?(state: 'on' | 'off'): void
   /** A running script showed one of the space's lines, set the score, or stopped / reported an error. */
-  said?(text: string): void
+  said?(text: string, line: number, values: number[]): void
   scored?(value: number): void
   scriptProblem?(message: string, stopped: boolean): void
 }
@@ -47,6 +47,18 @@ export interface Engine {
   highlight(key: string | null): void
   /** Run a space's script (stopping the one before); null stops it. `names` are the models' names by placement key. */
   runScript(script: SpaceScript | null, names: ReadonlyMap<string, string>): void
+  /** Together (phase 5): whether this device moves the models (the host), or follows the host's. */
+  setAuthority(host: boolean): void
+  /** Where the walker is: [x, y, z, yaw]. */
+  pose(): number[]
+  /** Send every model again on the next tick (someone new came in). */
+  resendModels(): void
+  /** The models that moved since the last call: [index in the layout, x, y, z, qx, qy, qz, qw]. */
+  movedModels(order: readonly string[]): number[][]
+  /** The host's models: put each where the host has it. */
+  followModels(order: readonly string[], rows: readonly number[][]): void
+  /** The other people here, by id: their name and where they are. */
+  setPeers(peers: ReadonlyMap<string, { name: string; p: number[] }>): void
   /** A point a step in front of the walker, on its floor: where a newly chosen model appears. */
   inFront(): { x: number; z: number; floor: number }
   dispose(): void
@@ -209,6 +221,21 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
       camera.lookAt(camTarget)
     }
     script?.tick(dt)
+    // Other people glide to where they last said they were; the host's models glide to where the host has them.
+    const k = Math.min(1, dt * 10)
+    for (const peer of peers.values()) {
+      const [x = 0, y = 0, z = 0, yaw = 0] = peer.target
+      peer.group.position.lerp(new THREE.Vector3(x, y, z), k)
+      peer.group.rotation.y += (((yaw - peer.group.rotation.y + Math.PI * 3) % (Math.PI * 2)) - Math.PI) * k
+      peer.group.visible = Math.round(peer.group.position.y / WORLD.storey) <= walker.floor || outdoorsAt(walker.x, walker.z)
+    }
+    if (!authority) for (const [key, want] of following) {
+      const object = space.modelObject(key)
+      if (!object) continue
+      object.position.lerp(want.p, k)
+      object.quaternion.slerp(want.q, k)
+      physics?.moveModel(key, object)
+    }
     if (physics) {
       eyeAt.set(walker.x, walker.y + WALKER.eye, walker.z)
       lookAt.set(-Math.sin(walker.yaw) * Math.cos(walker.pitch), Math.sin(walker.pitch), -Math.cos(walker.yaw) * Math.cos(walker.pitch))
@@ -218,6 +245,26 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
   }
   // The space's script (phase 4): it runs in the sandbox; what it asks for is checked (src/spaces/script.ts) and applied here.
   let script: ScriptRunner | null = null, scriptRun = 0
+  // Together: the host moves the models; everyone else follows them. Other people are drawn as walkers with their names.
+  let authority = true
+  const lastSentPose = new Map<string, string>()
+  const peers = new Map<string, { group: InstanceType<typeof THREE.Group>; target: number[]; label: InstanceType<typeof THREE.Sprite> }>()
+  const following = new Map<string, { p: InstanceType<typeof THREE.Vector3>; q: InstanceType<typeof THREE.Quaternion> }>()
+  const shirtOf = (id: string): string => `hsl(${[...id].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 360, 7)}, 55%, 45%)`
+  const nameTag = (name: string): InstanceType<typeof THREE.Sprite> => {
+    const canvas = document.createElement('canvas'); canvas.width = 256; canvas.height = 64
+    const g = canvas.getContext('2d')!
+    g.fillStyle = 'rgba(20,24,28,0.7)'; g.beginPath(); g.roundRect(4, 8, 248, 48, 24); g.fill()
+    g.fillStyle = '#fff'; g.font = '600 28px system-ui, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'
+    g.fillText(name.slice(0, 18), 128, 33)
+    const texture = new THREE.CanvasTexture(canvas)
+    texture.colorSpace = THREE.SRGBColorSpace
+    const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, depthTest: false }))
+    sprite.scale.set(1.2, 0.3, 1)
+    sprite.position.y = 2.05
+    sprite.renderOrder = 10
+    return sprite
+  }
   let scriptNames: ReadonlyMap<string, string> = new Map()
   const byName = (name: string): InstanceType<typeof THREE.Object3D> | undefined => {
     for (const [key, n] of scriptNames) if (n === name) return space.modelObject(key)
@@ -225,7 +272,7 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
   }
   const tinted = new WeakSet<InstanceType<typeof THREE.Object3D>>()
   const applyOp = (op: ScriptOp): void => {
-    if (op.op === 'say') { events.said?.(op.text); return }
+    if (op.op === 'say') { events.said?.(op.text, op.line, op.values); return }
     if (op.op === 'score') { events.scored?.(op.value); return }
     if (op.op === 'sound') { playSound(op.name); return }
     const object = byName(op.name)
@@ -264,6 +311,8 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
     if (!physics) return
     const objects = space.modelObjects()
     const keyed = (o: InstanceType<typeof THREE.Object3D>) => ({ key: String(o.userData['key']), object: o })
+    // A guest's device does not move loose models itself: they follow the host's, so every one of them is held where it is told.
+    if (!authority) { physics.setModels(objects.map(keyed), []); return }
     physics.setModels(objects.filter((o) => !o.userData['loose']).map(keyed), objects.filter((o) => o.userData['loose']).map(keyed))
   }
   let closed = false
@@ -311,6 +360,55 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
         }
       })
     },
+    setAuthority(host) {
+      if (host === authority) return
+      authority = host
+      following.clear()
+      syncModels()
+    },
+    resendModels() { lastSentPose.clear() },
+    pose: () => [walker.x, walker.y, walker.z, walker.yaw].map((v) => Math.round(v * 100) / 100),
+    movedModels(order) {
+      const rows: number[][] = []
+      order.forEach((key, i) => {
+        const o = space.modelObject(key)
+        if (!o) return
+        const row = [i, o.position.x, o.position.y, o.position.z, o.quaternion.x, o.quaternion.y, o.quaternion.z, o.quaternion.w].map((v, j) => (j === 0 ? v : Math.round(v * 1000) / 1000))
+        const text = row.join()
+        if (lastSentPose.get(key) === text) return
+        lastSentPose.set(key, text)
+        rows.push(row)
+      })
+      return rows.slice(0, 40)
+    },
+    followModels(order, rows) {
+      for (const [i, x, y, z, qx, qy, qz, qw] of rows) {
+        const key = order[i ?? -1]
+        if (!key) continue
+        following.set(key, { p: new THREE.Vector3(x, y, z), q: new THREE.Quaternion(qx, qy, qz, qw).normalize() })
+      }
+    },
+    setPeers(next) {
+      for (const [id, peer] of peers) if (!next.has(id)) { look.scene.remove(peer.group); disposeGroup(peer.group); peers.delete(id) }
+      for (const [id, { name, p }] of next) {
+        let peer = peers.get(id)
+        if (!peer) {
+          const group = new THREE.Group()
+          const shirtMat = new THREE.MeshStandardMaterial({ color: shirtOf(id), roughness: 0.8 })
+          const t = new THREE.Mesh(torso.geometry, shirtMat), h = new THREE.Mesh(head.geometry, skin)
+          t.position.y = 0.95; h.position.y = 1.6; t.castShadow = h.castShadow = true
+          t.userData['shirt'] = true
+          const label = nameTag(name)
+          group.add(t, h, label)
+          const [x = 0, y = 0, z = 0] = p
+          group.position.set(x, y, z)
+          look.scene.add(group)
+          peer = { group, target: p, label }
+          peers.set(id, peer)
+        }
+        peer.target = p
+      }
+    },
     runScript(next, names) {
       script?.stop()
       script = null
@@ -324,6 +422,8 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
       closed = true
       script?.stop()
       script = null
+      for (const peer of peers.values()) disposeGroup(peer.group)
+      peers.clear()
       physics?.dispose()
       physics = null
       cancelAnimationFrame(frame)
@@ -335,5 +435,16 @@ export function startEngine(canvas: HTMLCanvasElement, input: SpaceInput & { mod
       torso.geometry.dispose(); head.geometry.dispose(); skin.dispose(); shirt.dispose()
       look.dispose()
     },
+  }
+}
+
+/** Free a peer's walker: its own shirt and its name tag (the body's shapes and the skin are shared, and freed with the walker's own). */
+function disposeGroup(group: InstanceType<typeof THREE.Group>): void {
+  for (const child of group.children) {
+    if ((child as InstanceType<typeof THREE.Sprite>).isSprite) {
+      const material = (child as InstanceType<typeof THREE.Sprite>).material
+      material.map?.dispose()
+      material.dispose()
+    } else if (child.userData['shirt']) ((child as InstanceType<typeof THREE.Mesh>).material as InstanceType<typeof THREE.Material>).dispose()
   }
 }

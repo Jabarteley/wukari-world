@@ -169,6 +169,8 @@ export function pageHeaders(facts: RequestFacts): Record<string, string> {
 }
 
 /** Headers every JSON answer carries (a route may still set Cache-Control, Set-Cookie and Retry-After). */
+/** Cache-Control for bytes a route hands over (RouteResult.file): private always; `immutable` for content named by its own hash (a player's model). */
+export const fileCache = (cache: 'no-store' | 'immutable' | undefined): string => (cache === 'immutable' ? 'private, max-age=604800, immutable' : cache ?? 'private, max-age=300');
 export function apiHeaders(facts: RequestFacts): Record<string, string> {
   return { 'Content-Type': 'application/json', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', 'Cross-Origin-Resource-Policy': 'same-origin', ...hsts(facts) };
 }

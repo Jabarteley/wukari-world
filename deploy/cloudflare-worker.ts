@@ -78,7 +78,8 @@ import '../src/game/dilemma-pack.ts'; // installs the kit of work dilemmas and p
 import '../src/game/routines/pack.ts'; // installs the routines of the regulars: who is at their venue at what hour
 import '../src/game/home-plan.ts';
 import { readTelemetryConfig } from '../server/telemetry/config.ts';
-import { appHeaders, apiHeaders, pageHeaders, inlineScriptHashes, telemetryOrigins, factsOfUrl } from '../server/security-headers.ts';
+import { createR2Models, type R2Models } from './r2-models.ts';
+import { appHeaders, apiHeaders, fileCache, pageHeaders, inlineScriptHashes, telemetryOrigins, factsOfUrl } from '../server/security-headers.ts';
 import telemetryRoutes from '../server/telemetry/routes.ts';
 import { capacityConfig, type CapacityConfig, envReader, outboundFetch, sessionArchiver, lifeAuthority, lifeAnnouncer, routeHeaders, pageFor, cleanOrigin, cleanHost, absolutePreviewImage, validOperatorToken, bearerToken, accountsConfig, founderEmailHash, sessionCookie, isStrictOrigin, presentedSession, mayBind, addressBucket } from '../server/host-context.ts';
 import { openRouteOf } from '../server/agents/oauth-routes.ts';
@@ -127,6 +128,27 @@ async function rawBodyOf(request: Request, limit: number, kind: 'json' | 'form' 
   if (!request.headers.get('content-type')?.startsWith(kind === 'form' ? 'application/x-www-form-urlencoded' : 'application/json')) throw protocolError(415, kind === 'form' ? 'form_required' : 'json_required');
   const reader = request.body?.getReader();
   if (!reader) throw protocolError(400, 'invalid_json');
+  let size = 0;
+  const chunks: Uint8Array[] = [];
+  while (true) {
+    const chunk = await reader.read();
+    if (chunk.done) break;
+    size += chunk.value.byteLength;
+    if (size > limit) { await reader.cancel(); throw protocolError(413, 'body_too_large'); }
+    chunks.push(chunk.value);
+  }
+  const bytes = new Uint8Array(size);
+  let offset = 0;
+  for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.length; }
+  return bytes;
+}
+/** An upload's bytes as they are (a player's model), when its content type is one of `types`. */
+async function binaryBodyOf(request: Request, limit: number, types: readonly string[]): Promise<Uint8Array<ArrayBuffer>> {
+  const type = (request.headers.get('content-type') ?? '').split(';')[0]?.trim().toLowerCase() ?? '';
+  if (!types.includes(type)) throw protocolError(415, 'type_not_accepted');
+  if (Number(request.headers.get('content-length')) > limit) throw protocolError(413, 'body_too_large');
+  const reader = request.body?.getReader();
+  if (!reader) return new Uint8Array(0);
   let size = 0;
   const chunks: Uint8Array[] = [];
   while (true) {
@@ -266,6 +288,8 @@ export interface WorkerEnv {
   REVERSE_GEAR_ISSUANCE?: string
   JOINALLWORLD: DurableObjectNamespace
   ASSETS: Fetcher
+  /** Players' 3D models (deploy/r2-models.ts), the R2 bucket `allworld-models`; unset: uploads are refused as not ready. */
+  MODELS?: R2Models
   BUILD_ID?: string
   PUBLIC_ORIGIN?: string
   GOALMATIC_COMMERCE_API_URL?: string
@@ -416,7 +440,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
     const open = (): HostSocket[] => [...this.held.all].filter(ws => ws.readyState === 1);
     const openOf = (id: string): HostSocket[] => [...this.held.byPlayer.get(id) ?? []].filter(ws => ws.readyState === 1);
     const context: RouteContext = this.context = {
-      store: this.store, images: this.images, showcaseImages: this.showcaseImages, voices: this.voices, shards: this.shards, now, fail: protocolError, collection, publicSession, cityIds: registeredCityIds(), telemetry: this.telemetry,
+      store: this.store, images: this.images, showcaseImages: this.showcaseImages, voices: this.voices, models: env.MODELS ? createR2Models(env.MODELS) : null, shards: this.shards, now, fail: protocolError, collection, publicSession, cityIds: registeredCityIds(), telemetry: this.telemetry,
       ...(env.INTERACTIVE_TEACHING_STARTS === '1' ? { interactiveTeachingStarts: true } : {}),
       reverseGearIssuance: env.REVERSE_GEAR_ISSUANCE === '1',
       randomId: () => crypto.randomUUID(),
@@ -708,7 +732,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
       const request: WorkerRequest = { method: raw.method, path: url.pathname, query: url.searchParams, ip, secret, cookie: secret, binding: mayBind(presentedSession(raw.headers.get('cookie')), true), params: {}, raw,
         strictOrigin: isStrictOrigin(raw.headers.get('origin'), url.host, raw.headers.get('sec-fetch-site'), overHttps(url)),
         moderator: () => moderator, json: (limit?: number) => bodyOf(raw, limit).then(body => (request.body = body)),
-        rawBody: (limit: number, kind?: 'json' | 'form') => rawBodyOf(raw, limit, kind), header: (name: string) => raw.headers.get(name),
+        rawBody: (limit: number, kind?: 'json' | 'form') => rawBodyOf(raw, limit, kind), binaryBody: (limit: number, types: readonly string[]) => binaryBodyOf(raw, limit, types), header: (name: string) => raw.headers.get(name),
         session: (db, options = {}) => { const s = this.session(request, db, options.renew); if (s) request.publicId = s.publicId; return s; },
         requireSession: (db, options = {}) => { const s = request.session(db, options); if (!s) throw protocolError(401, 'device_session_required'); return s; } };
       if (url.pathname === '/socket') return await this.upgrade(raw, request);
@@ -731,7 +755,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
       if (result.file && status < 300) {
         // Bytes a route hands over as they are (a chat picture): private to the caller, never sniffed, shown in the page.
         this.telemetry.http({ method: raw.method, route: route.key, status, ms: performance.now() - at.began, publicId: request.publicId });
-        return new Response(result.file.bytes, { status, headers: headersOf({ 'content-type': result.file.type, 'cache-control': result.file.cache ?? 'private, max-age=300', 'x-content-type-options': 'nosniff', 'content-disposition': 'inline', 'cross-origin-resource-policy': 'same-origin' }) });
+        return new Response(result.file.bytes, { status, headers: headersOf({ 'content-type': result.file.type, 'cache-control': fileCache(result.file.cache), 'x-content-type-options': 'nosniff', 'content-disposition': 'inline', 'cross-origin-resource-policy': 'same-origin' }) });
       }
       this.telemetry.http({ method: raw.method, route: route.key, status, ms: performance.now() - at.began, publicId: request.publicId, body: result.body, action: { type: request.body?.['type'], code: (result.body as { code?: unknown } | undefined)?.code } });
       const plain = result.bare !== true && result.body && typeof result.body === 'object' && !Array.isArray(result.body);

@@ -5,17 +5,17 @@
   "city": "benin-city",
   "region": "niger-delta",
   "recipeFile": "benin-city.json",
-  "recipeSha256": "e8acb02ce21e41df512a699386ac47591d208c5b1e2149163a0b4d1e992fc12d",
+  "recipeSha256": "d28544b81808a72a426a0c40b0e22829784397ff7c8d87e28ceea16c136dfb15",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/benin-city.json",
-      "sha256": "fe6edc6e7556872a16f1c5e2333d38a879c5607ea104bb457baee888630346d0",
-      "inputSha256": "83c52feceb41c99be8cc4bb87720920bc5210b9795fbdaf640f04f9876abb2da",
+      "sha256": "08174d1b0c5672e6a69e64d4f9f44c046de8f13c9d0d6af5812a9c8be5fe4f96",
+      "inputSha256": "22e7fd6446b6d84d493ca0563fa8a373548e6211e48673b4881aebe0eb54f683",
       "contentSha256": "b3efb28643831e293424408118b29d8e35c06a3e4b0e75576e16fd693c0bad13"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5095,11 +5095,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 20,
-    "attemptedCandidateCount": 20,
+    "attemptedCandidateCount": 21,
     "acceptedCandidateCount": 20,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 20,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 19,
+    "firstCandidateSuccessRate": 0.95,
     "venues": [
       {
         "venue": "baptist-college-theology",
@@ -5205,6 +5205,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5292,7 +5297,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 28471,
+    "utf8Bytes": 28513,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5312,19 +5317,19 @@
       },
       {
         "venue": "benin-airport",
-        "triangles": 3014,
+        "triangles": 3618,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "benin-city-national-museum",
-        "triangles": 3342,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "benin-moat",
-        "triangles": 3374,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
@@ -5336,43 +5341,43 @@
       },
       {
         "venue": "central-mosque",
-        "triangles": 3410,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chicken-republic",
-        "triangles": 2974,
+        "triangles": 3230,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "edo-line",
-        "triangles": 4266,
+        "triangles": 3558,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "edo-state-sport-council",
-        "triangles": 3026,
+        "triangles": 3486,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "eweka-primary-polling",
-        "triangles": 2462,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "igun-street",
-        "triangles": 3638,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lily-hospital",
-        "triangles": 3402,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
@@ -5384,7 +5389,7 @@
       },
       {
         "venue": "oba-palace",
-        "triangles": 3374,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
@@ -5402,25 +5407,25 @@
       },
       {
         "venue": "samuel-ogbemudia-stadium",
-        "triangles": 3554,
+        "triangles": 2606,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-monicas-church",
-        "triangles": 2882,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "valkel-salon",
-        "triangles": 3410,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zenith-bank",
-        "triangles": 2882,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       }

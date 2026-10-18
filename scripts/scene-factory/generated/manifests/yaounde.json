@@ -5,17 +5,17 @@
   "city": "yaounde",
   "region": "gulf-guinea",
   "recipeFile": "yaounde.json",
-  "recipeSha256": "1ef8d1468096939732f5afdfe561a0510467340c55f144e2f0bc24405c6960e8",
+  "recipeSha256": "da4f9d4aabd3c93d5f9065b1ad578b77ae225c69126aa3653aa04a77d4253e6f",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/yaounde.json",
-      "sha256": "a46e03ecdd70ecbc6982f9ebc06a118b7211c6158ddd095343a43f9e3e776a02",
-      "inputSha256": "2a52161c50042b63b324d2ba8c79de74703c25f1b73931e6be496edb546e9436",
+      "sha256": "7522d2a723d38008045101d79fa0449cd6e1b7bc05a59e758b8b7cf02e0d12b5",
+      "inputSha256": "c295cb0faf0a5c538edc2292dbaf787003806f8122ebc52d061e836e18f9539a",
       "contentSha256": "2edb9bf03bba6ead2f7d6f6f4474886c12112d85cead260a32e36ae459f85d8e"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5253,6 +5253,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5280,11 +5285,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5345,7 +5345,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 31700,
+    "utf8Bytes": 31675,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5365,79 +5365,79 @@
       },
       {
         "venue": "yaounde-basilique-marie-reine-des-apotres",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaounde-blackitude-museum",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaounde-charles-atangana",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "yaounde-clinic",
-        "triangles": 3402,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "yaounde-community-notices",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "yaounde-community-voting-game",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "yaounde-clinic",
+        "triangles": 3438,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "yaounde-community-notices",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "yaounde-community-voting-game",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "yaounde-community-workshop",
-        "triangles": 3890,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaounde-grande-mosquee-d-odza",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaounde-iric",
-        "triangles": 3686,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaounde-jardin-botanique",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaounde-marche-de-mvog-mbi",
-        "triangles": 4610,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "yaounde-marche-de-nkol-eton",
         "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "yaounde-marche-de-nkol-eton",
+        "triangles": 2882,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "yaounde-market-game",
-        "triangles": 4802,
+        "triangles": 5114,
         "meshes": 13,
         "lights": 3
       },
@@ -5449,49 +5449,49 @@
       },
       {
         "venue": "yaounde-musee-national",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaounde-palais-des-congres",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaounde-playce-yaounde",
-        "triangles": 4614,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaounde-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaounde-recreation",
-        "triangles": 4430,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaounde-rocher",
-        "triangles": 3374,
+        "triangles": 3654,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaounde-stade-ahmadou-ahidjo",
-        "triangles": 3526,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaounde-transit",
-        "triangles": 3590,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

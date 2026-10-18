@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import type { Object3D } from 'three'
 import { preloadCanonicalBodies } from '../scene/body/skinned.ts'
 import { preloadNativeStaticLod } from '../scene/body/native-static-lod.ts'
+import { imageHeaderBitmap, recipeGeometryCanvas } from '../scene/recipe/image-header-fixture.ts'
 
 const root = fileURLToPath(new URL('../../', import.meta.url))
 const origin = 'http://native-geometry.localhost/'
@@ -30,15 +31,7 @@ class GeometryImage {
 
 function geometryCanvas(tag: string) {
   if (tag !== 'canvas') throw new Error(`Unexpected geometry-test element ${tag}`)
-  return {
-    width: 1,
-    height: 1,
-    getContext: () => ({
-      drawImage() {},
-      getImageData: () => ({ data: new Uint8ClampedArray([128, 128, 128, 255]) }),
-      putImageData() {},
-    }),
-  }
+  return recipeGeometryCanvas()
 }
 
 /** Install local-asset and image-decoding substitutes for geometry-only Node tests. */
@@ -64,7 +57,7 @@ export function installNativeGeometryEnvironment(): () => void {
       }
       return originalFetch.call(globalThis, input, init)
     }),
-    replaceGlobal('createImageBitmap', async () => ({ width: 1, height: 1, close() {} })),
+    replaceGlobal('createImageBitmap', imageHeaderBitmap),
     replaceGlobal('document', {
       createElementNS(_namespace: string, tag: string) { return tag === 'img' ? new GeometryImage() : geometryCanvas(tag) },
       createElement: geometryCanvas,

@@ -5,17 +5,17 @@
   "city": "nouakchott",
   "region": "sahel-francophone",
   "recipeFile": "nouakchott.json",
-  "recipeSha256": "ceefd171734cfdac1cbb820d18d1ced907db0809c66d53f0324816364db2f797",
+  "recipeSha256": "684d03e5f3f385e31de57ea345b5dd6c4c52695f9dfded9e65b206ac0d14dad4",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/nouakchott.json",
-      "sha256": "096d555aa950e07eb164210baafdd62fda122b4e8f703e08564d697e8795fd7d",
-      "inputSha256": "23a75c465ccd8a4ca83fc6a3ce88f53072ca14e0092b061c5b64bd49b4ad8eb0",
+      "sha256": "4d45bc9aadfb415171e00ac7fbeac00696140d3adb9a3d6e87eadc7daf98b5cb",
+      "inputSha256": "01b243651fba0ebd43a982793b97ddcdc2641907a207c11b0e9bf5d94bbcd828",
       "contentSha256": "b9b7e7f620347bab0f394b646e29198047000a3b1b48ec271349f08a3d33d6db"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 29,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 4,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.88,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "nouakchott-airport-nouakchott-airport",
@@ -5150,16 +5150,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5250,11 +5240,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5264,6 +5249,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,11 +5362,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5392,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34661,
+    "utf8Bytes": 34730,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5412,25 +5397,25 @@
       },
       {
         "venue": "nouakchott-clinic",
-        "triangles": 3402,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-community-notices",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-community-voting-game",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-community-workshop",
-        "triangles": 2490,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
@@ -5442,25 +5427,25 @@
       },
       {
         "venue": "nouakchott-meal-stop",
-        "triangles": 3274,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-osm-node-4406868798",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-osm-node-5171076923",
-        "triangles": 3526,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-osm-node-6555685946",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5478,25 +5463,25 @@
       },
       {
         "venue": "nouakchott-osm-node-8708819578",
-        "triangles": 3202,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-osm-way-1276090644",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-osm-way-142062875",
-        "triangles": 2578,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-osm-way-228858570",
-        "triangles": 4598,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
@@ -5514,7 +5499,7 @@
       },
       {
         "venue": "nouakchott-osm-way-428023202",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5526,31 +5511,31 @@
       },
       {
         "venue": "nouakchott-osm-way-94938496",
-        "triangles": 4878,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-osm-way-94938531",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-recreation",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nouakchott-transit",
-        "triangles": 3590,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

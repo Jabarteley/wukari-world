@@ -5,17 +5,17 @@
   "city": "monrovia",
   "region": "gulf-guinea",
   "recipeFile": "monrovia.json",
-  "recipeSha256": "f07b5f99232d5319fe5b26526b19c3e3c9c6cfdeb48348d66ac9c4fcccfb9b10",
+  "recipeSha256": "22f06bd7dfd7829aad923711578980d05679e29a60109aca186f5a85d957c5ad",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/monrovia.json",
-      "sha256": "ccf6b0515d34ac4f8ba5d1f6fc345a16562ea8a2816910020bac7d0c3125b361",
-      "inputSha256": "b7096e2890d08aae5adb8dcf42e795e3a2e198ea4df5051e9d1cb655d45fc40d",
+      "sha256": "bfe49447221eedd0fb612bcf54c22af3c6ccf9258df043701a32e24b8c8885e3",
+      "inputSha256": "6f2087958fe1ddb4db0ed08284458a3575d4eda55cea1d3019187dbdce466054",
       "contentSha256": "66fa116a935b987dd6db32e77ea7e31ce96596b73084305bb998eb646928fdee"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,17 +5130,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 29,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 4,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "monrovia-airport-monrovia-airport",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5177,6 +5182,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5330,6 +5345,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5392,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34619,
+    "utf8Bytes": 34592,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,37 +5406,37 @@
     "estimates": [
       {
         "venue": "monrovia-airport-monrovia-airport",
-        "triangles": 3530,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "monrovia-clinic",
-        "triangles": 2490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "monrovia-community-notices",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "monrovia-community-voting-game",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "monrovia-community-workshop",
         "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "monrovia-community-notices",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "monrovia-community-voting-game",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "monrovia-community-workshop",
+        "triangles": 3438,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "monrovia-market-game",
-        "triangles": 3962,
+        "triangles": 4638,
         "meshes": 13,
         "lights": 3
       },
@@ -5434,31 +5454,31 @@
       },
       {
         "venue": "monrovia-osm-node-1730515734",
-        "triangles": 3458,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "monrovia-osm-node-2812532381",
-        "triangles": 4666,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "monrovia-osm-node-3708503058",
-        "triangles": 3194,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "monrovia-osm-node-7695068489",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "monrovia-osm-node-8470144258",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5470,61 +5490,61 @@
       },
       {
         "venue": "monrovia-osm-node-8999008284",
-        "triangles": 3510,
+        "triangles": 3442,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "monrovia-osm-way-143040548",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "monrovia-osm-way-143040550",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "monrovia-osm-way-143040586",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "monrovia-osm-way-157273329",
-        "triangles": 2998,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "monrovia-osm-way-295839261",
-        "triangles": 3898,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "monrovia-osm-way-299926349",
-        "triangles": 3966,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "monrovia-osm-way-784173574",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "monrovia-osm-way-143040586",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "monrovia-osm-way-157273329",
+        "triangles": 3458,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "monrovia-osm-way-295839261",
+        "triangles": 3686,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "monrovia-osm-way-299926349",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "monrovia-osm-way-784173574",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "monrovia-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "monrovia-recreation",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },

@@ -5,17 +5,17 @@
   "city": "kuwait-city",
   "region": "south-asia",
   "recipeFile": "kuwait-city.json",
-  "recipeSha256": "045ce81c062325af19ccbd1aacad45aaa29fb202b5e6c5ba0ad95e87a0b1651c",
+  "recipeSha256": "2f0fb405a1c661cf00384aa8cea5509aaf44e026b6e0965649472b4414779867",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/kuwait-city.json",
-      "sha256": "680f531945d72d3e4134bb7734eb0fb805dbbdcbcbf194797341707ade1c9197",
-      "inputSha256": "18cc744862dbb8e9d3a9b0f081c13810997eae4bbdfaf6dde5d6eed4d2f03947",
+      "sha256": "16df49eac7811b23dc75191c286fec346ac14ad8f961be47ba80c9e18c643556",
+      "inputSha256": "2ce384eb2c8b479945bbdc5edecb09afbe7e6869f80f445c8653760a276111cc",
       "contentSha256": "f3e17481c007ddd293bd68d281943233414484dbabe72d0f8aecf9c54d38d1f5"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,17 +5130,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "kuwait-city-airport-kuwait-city-airport",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5276,6 +5281,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5330,11 +5340,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34699,
+    "utf8Bytes": 34695,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5397,7 +5402,7 @@
       },
       {
         "venue": "kuwait-city-clinic",
-        "triangles": 3890,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
@@ -5409,7 +5414,7 @@
       },
       {
         "venue": "kuwait-city-community-voting-game",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5421,13 +5426,13 @@
       },
       {
         "venue": "kuwait-city-market-game",
-        "triangles": 2910,
+        "triangles": 4694,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kuwait-city-meal-stop",
-        "triangles": 3178,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
@@ -5439,79 +5444,79 @@
       },
       {
         "venue": "kuwait-city-osm-node-10211965934",
-        "triangles": 3686,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kuwait-city-osm-node-14177476101",
-        "triangles": 2946,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kuwait-city-osm-node-4365886397",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kuwait-city-osm-node-5284460222",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kuwait-city-osm-way-1456434409",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kuwait-city-osm-way-159761965",
-        "triangles": 2998,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kuwait-city-osm-way-336814876",
         "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "kuwait-city-osm-way-360268449",
+        "venue": "kuwait-city-osm-node-14177476101",
+        "triangles": 3202,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kuwait-city-osm-node-4365886397",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "kuwait-city-osm-way-456447601",
-        "triangles": 4614,
+        "venue": "kuwait-city-osm-node-5284460222",
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "kuwait-city-osm-way-457096707",
-        "triangles": 4610,
+        "venue": "kuwait-city-osm-way-1456434409",
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "kuwait-city-osm-way-47393892",
-        "triangles": 2998,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kuwait-city-osm-way-616859990",
+        "venue": "kuwait-city-osm-way-159761965",
         "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "kuwait-city-osm-way-336814876",
+        "triangles": 3686,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kuwait-city-osm-way-360268449",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kuwait-city-osm-way-456447601",
+        "triangles": 3610,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kuwait-city-osm-way-457096707",
+        "triangles": 4666,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kuwait-city-osm-way-47393892",
+        "triangles": 2578,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kuwait-city-osm-way-616859990",
+        "triangles": 2998,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "kuwait-city-osm-way-627399824",
-        "triangles": 5130,
+        "triangles": 5618,
         "meshes": 13,
         "lights": 3
       },
@@ -5523,19 +5528,19 @@
       },
       {
         "venue": "kuwait-city-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kuwait-city-recreation",
-        "triangles": 4710,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kuwait-city-transit",
-        "triangles": 2698,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

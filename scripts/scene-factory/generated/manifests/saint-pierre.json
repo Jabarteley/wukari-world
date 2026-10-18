@@ -5,17 +5,17 @@
   "city": "saint-pierre",
   "region": "americas-oceania",
   "recipeFile": "saint-pierre.json",
-  "recipeSha256": "b911307bfd5d4b36dc1830789af2301499421b1b434e8041a121b9733631cfc6",
+  "recipeSha256": "598c864aac9dbabb79d1ca6c869993082b28e1a303f440250ef773f3518fddba",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/saint-pierre.json",
-      "sha256": "584dc4b8680dc334dea3231e52ac70800b1ce5c7b47a8a8151604fb3916e39a8",
-      "inputSha256": "c4ba88578a421ee8dc1dea992e46aefe85b8e2ad84500801eedad272f3aa615d",
+      "sha256": "00e4db1907e335eb2e5ba44d2ffc924e6e40828fdb73a26f367e4fb791ef8c5e",
+      "inputSha256": "73b1fbbc3890f99ff9d2bb0137f8dc807b0fc61c6aa1d7bb1b35a3e8154675f8",
       "contentSha256": "74c414962c56d1b5b3a1106945c47f31aee4fe882b19fb3bbefedf27c601a0f9"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5102,11 +5102,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 21,
-    "attemptedCandidateCount": 22,
+    "attemptedCandidateCount": 21,
     "acceptedCandidateCount": 21,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 20,
-    "firstCandidateSuccessRate": 0.9523809523809523,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 21,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "saint-pierre-airport-saint-pierre-airport",
@@ -5284,11 +5284,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5313,7 +5308,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 29407,
+    "utf8Bytes": 29288,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5327,13 +5322,13 @@
     "estimates": [
       {
         "venue": "saint-pierre-airport-saint-pierre-airport",
-        "triangles": 3932,
+        "triangles": 2620,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "saint-pierre-clinic",
-        "triangles": 2490,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
@@ -5345,19 +5340,19 @@
       },
       {
         "venue": "saint-pierre-community-voting-game",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "saint-pierre-community-workshop",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "saint-pierre-market-game",
-        "triangles": 4638,
+        "triangles": 4642,
         "meshes": 13,
         "lights": 3
       },
@@ -5369,25 +5364,25 @@
       },
       {
         "venue": "saint-pierre-osm-node-4513534690",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "saint-pierre-osm-node-5624753621",
-        "triangles": 3978,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "saint-pierre-osm-node-5624754821",
-        "triangles": 3194,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "saint-pierre-osm-node-6761993666",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5399,7 +5394,7 @@
       },
       {
         "venue": "saint-pierre-osm-node-6763941639",
-        "triangles": 3178,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
@@ -5411,7 +5406,7 @@
       },
       {
         "venue": "saint-pierre-osm-way-220420801",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5423,13 +5418,13 @@
       },
       {
         "venue": "saint-pierre-osm-way-220421609",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "saint-pierre-osm-way-220427315",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5441,13 +5436,13 @@
       },
       {
         "venue": "saint-pierre-recreation",
-        "triangles": 3518,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "saint-pierre-transit",
-        "triangles": 4010,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

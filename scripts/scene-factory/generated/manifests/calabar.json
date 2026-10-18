@@ -5,17 +5,17 @@
   "city": "calabar",
   "region": "niger-delta",
   "recipeFile": "calabar.json",
-  "recipeSha256": "fc3ee7b428e73b40a249496c8b13ccb86983f466c2b77738c1480961a700e466",
+  "recipeSha256": "ad399ef71c48bcaecf43ba584b03c89fdc880ad0fe96aca7045d379f7865cd45",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/calabar.json",
-      "sha256": "59bee9229cdf50e82b895adf4ff354ab4ecf4abce7b445965f28ba7992c84d4c",
-      "inputSha256": "50c0519f4e480a385debeab9e337d4b5754550ffabd1aefaed8fc1923127c7da",
+      "sha256": "6bddeeedb9cff228322528bf009c9e6e22d672881bf722da3ab5f9b5c0b501d7",
+      "inputSha256": "7cd0f170446de72a5ff6cbc623c677958d501d5512af26b0733d49147157d38a",
       "contentSha256": "4a9f878d968f66347f14c1dc46d87cfb2becf67db9981ad3c3a4cd9ef2709f90"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5074,11 +5074,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 17,
-    "attemptedCandidateCount": 18,
+    "attemptedCandidateCount": 17,
     "acceptedCandidateCount": 17,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 16,
-    "firstCandidateSuccessRate": 0.9411764705882353,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 17,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "apostolic-church-calabar",
@@ -5175,11 +5175,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5249,7 +5244,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 24317,
+    "utf8Bytes": 24285,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5263,13 +5258,13 @@
     "estimates": [
       {
         "venue": "apostolic-church-calabar",
-        "triangles": 3374,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bassey-duke-statue",
-        "triangles": 2882,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
@@ -5281,19 +5276,19 @@
       },
       {
         "venue": "calabar-municipal-hq",
-        "triangles": 3374,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chef-green-local-cuisine-hub",
-        "triangles": 3302,
+        "triangles": 3542,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "first-bank-calabar",
-        "triangles": 3374,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
@@ -5305,7 +5300,7 @@
       },
       {
         "venue": "national-museum-calabar",
-        "triangles": 2882,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
@@ -5317,13 +5312,13 @@
       },
       {
         "venue": "navy-reference-hospital",
-        "triangles": 3342,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "polaris-bank-calabar",
-        "triangles": 3410,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
@@ -5335,19 +5330,19 @@
       },
       {
         "venue": "slave-history-museum",
-        "triangles": 3862,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ucth-calabar",
-        "triangles": 2490,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "uj-esuene-stadium",
-        "triangles": 3554,
+        "triangles": 4006,
         "meshes": 13,
         "lights": 3
       },
@@ -5359,7 +5354,7 @@
       },
       {
         "venue": "watt-market",
-        "triangles": 4770,
+        "triangles": 5758,
         "meshes": 13,
         "lights": 3
       }

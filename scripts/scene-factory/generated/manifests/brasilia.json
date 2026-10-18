@@ -5,17 +5,17 @@
   "city": "brasilia",
   "region": "americas-oceania",
   "recipeFile": "brasilia.json",
-  "recipeSha256": "fdcf6240f3b1d0d4730f66dd8b1ed9176ecbf77f23920fbdb58144daf3ca451b",
+  "recipeSha256": "7d609084c2a083ea64955b6aac3817e363ea23c54ef0c055cfa2e3830976b5d2",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/brasilia.json",
-      "sha256": "c5b8e39cfd4f2c8b1c0378c33870254319a8d53c10e1ff2e7111d8402b9bbd21",
-      "inputSha256": "b4ee55ccf97c8ff52250388faa890909ea4edba7c81f723b4592b8e93c333ad1",
+      "sha256": "232471f567c278663a090c6caafe66eee7ea75edaf1b71b3bdc773868ae0aaa6",
+      "inputSha256": "a2377580e6d22fcdf07b7e6405490294a178f0c1a2a0f8a6aabb8d389bf3d133",
       "contentSha256": "23580af9fb1e89b59cfbec481ec0ac51fa7ddaf8a4c35e809b93efb59443d5cb"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "brasilia-airport-brasilia-airport",
@@ -5258,6 +5258,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5321,6 +5326,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34655,
+    "utf8Bytes": 34771,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,13 +5396,13 @@
     "estimates": [
       {
         "venue": "brasilia-airport-brasilia-airport",
-        "triangles": 2986,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brasilia-clinic",
-        "triangles": 3890,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
@@ -5404,13 +5414,13 @@
       },
       {
         "venue": "brasilia-community-voting-game",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brasilia-community-workshop",
-        "triangles": 3890,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
@@ -5422,25 +5432,25 @@
       },
       {
         "venue": "brasilia-meal-stop",
-        "triangles": 3202,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brasilia-osm-node-2673931012",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brasilia-osm-node-5496838926",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brasilia-osm-way-141496566",
-        "triangles": 4878,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
@@ -5452,43 +5462,43 @@
       },
       {
         "venue": "brasilia-osm-way-18140049",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brasilia-osm-way-202664538",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brasilia-osm-way-242250854",
-        "triangles": 2998,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brasilia-osm-way-382528304",
-        "triangles": 2578,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brasilia-osm-way-41573440",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brasilia-osm-way-41573825",
-        "triangles": 3798,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brasilia-osm-way-424628555",
-        "triangles": 3526,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
@@ -5500,37 +5510,37 @@
       },
       {
         "venue": "brasilia-osm-way-480025603",
-        "triangles": 3686,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "brasilia-osm-way-739637976",
         "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "brasilia-osm-way-739637976",
+        "triangles": 4598,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "brasilia-osm-way-84830646",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brasilia-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brasilia-recreation",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brasilia-transit",
-        "triangles": 4010,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

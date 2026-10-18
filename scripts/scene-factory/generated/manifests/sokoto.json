@@ -5,17 +5,17 @@
   "city": "sokoto",
   "region": "sahel-north",
   "recipeFile": "sokoto.json",
-  "recipeSha256": "d5c29492000562102a598490813588ebe9d3efa15716993b954fc1a7fa8f8558",
+  "recipeSha256": "a213fe38e3ce75301375be5cdc81db22ae99aa2e6013ea1cf016fa27c72731af",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/sokoto.json",
-      "sha256": "cd06a9971529f702120b629be32a9a7df0d37b75db3fc123abdd597647bbbab2",
-      "inputSha256": "a7e93b7ef89976c2aaa12b13d3678ff53bcb62fb181a85315e59bfda3baae028",
+      "sha256": "05c01e6118c4a9ba902a168d9095422aaa7d6c8ae9cbea386bf54b43d526737c",
+      "inputSha256": "c43b27ef97449ce95581fa2b6a514a0be3917e363d1d27a0dda4f5d536782054",
       "contentSha256": "d83d70ea74b9549922c526bea8291d0d4140baa1823b67ebfe7f6727ca0be53b"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5095,11 +5095,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 20,
-    "attemptedCandidateCount": 20,
+    "attemptedCandidateCount": 22,
     "acceptedCandidateCount": 20,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 20,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 18,
+    "firstCandidateSuccessRate": 0.9,
     "venues": [
       {
         "venue": "central-market-sokoto",
@@ -5115,6 +5115,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5142,6 +5147,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5292,7 +5302,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 28526,
+    "utf8Bytes": 28578,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5306,13 +5316,13 @@
     "estimates": [
       {
         "venue": "central-market-sokoto",
-        "triangles": 3282,
+        "triangles": 5014,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cross-country-motor-park-sokoto",
-        "triangles": 3582,
+        "triangles": 4654,
         "meshes": 13,
         "lights": 3
       },
@@ -5324,25 +5334,25 @@
       },
       {
         "venue": "gamji-college-of-nursing-sokoto",
-        "triangles": 2490,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gt-bank-sokoto",
-        "triangles": 3342,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "holy-family-cathedral-sokoto",
-        "triangles": 3410,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "karra-cattle-market-sokoto",
-        "triangles": 4334,
+        "triangles": 5066,
         "meshes": 13,
         "lights": 3
       },
@@ -5354,31 +5364,31 @@
       },
       {
         "venue": "masallacin-nana-aisha-sokoto",
-        "triangles": 3862,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "mountain-of-fire-sokoto",
-        "triangles": 3410,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "noma-children-hospital-sokoto",
         "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "mountain-of-fire-sokoto",
+        "triangles": 2882,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "noma-children-hospital-sokoto",
+        "triangles": 3862,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "shanghai-bakers-sokoto",
-        "triangles": 3302,
+        "triangles": 2974,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "shehu-mosque-sokoto",
-        "triangles": 3862,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
@@ -5396,13 +5406,13 @@
       },
       {
         "venue": "sokoto-sultanate-council",
-        "triangles": 3862,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "specialist-hospital-sokoto",
-        "triangles": 3370,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
@@ -5414,7 +5424,7 @@
       },
       {
         "venue": "uthman-dan-fodio-tomb-sokoto",
-        "triangles": 3410,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },

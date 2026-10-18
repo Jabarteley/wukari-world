@@ -5,17 +5,17 @@
   "city": "mexico-city",
   "region": "americas-oceania",
   "recipeFile": "mexico-city.json",
-  "recipeSha256": "4b0a86103b5c1bd5c1adc323aa84577ceb32074263ae7934115f40a2b682a125",
+  "recipeSha256": "8562c9060ff232d0b2d95387a206f3675c1bc9572ef8c6a1b06c36e96d0cf2ee",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/mexico-city.json",
-      "sha256": "84696f01f90bf12739b0930e4567392982e5e3931c200e05c72eb7d9ae69c01e",
-      "inputSha256": "02dade9b8a1a5a55109d4a5e94b03e8d29e74cab95107f05ed8b5bef11969176",
+      "sha256": "98be81d09918aa6033233cb3233ac6da16a69c7e025bb67ecf82ada6d4c9f8a2",
+      "inputSha256": "7aa4a50033ff88a28dd907c6b86f759af6fd96d32dfe0eb4793aedb684567b2c",
       "contentSha256": "7cecc90ef5c31c67822917ed253b7bac24c1f559905db29b017ba95cfbbfbd19"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "mexico-city-airport-mexico-city-airport",
@@ -5150,11 +5150,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5353,11 +5348,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34934,
+    "utf8Bytes": 34908,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,61 +5386,61 @@
     "estimates": [
       {
         "venue": "mexico-city-airport-mexico-city-airport",
-        "triangles": 4238,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mexico-city-clinic",
-        "triangles": 2490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "mexico-city-community-notices",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "mexico-city-community-voting-game",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "mexico-city-community-workshop",
         "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "mexico-city-community-notices",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "mexico-city-community-voting-game",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "mexico-city-community-workshop",
+        "triangles": 3438,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "mexico-city-market-game",
-        "triangles": 3318,
+        "triangles": 4738,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mexico-city-meal-stop",
-        "triangles": 3514,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mexico-city-osm-node-739036171",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mexico-city-osm-way-1173762984",
-        "triangles": 2578,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mexico-city-osm-way-120733641",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5468,61 +5458,61 @@
       },
       {
         "venue": "mexico-city-osm-way-168081622",
-        "triangles": 3978,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mexico-city-osm-way-175507039",
-        "triangles": 3966,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "mexico-city-osm-way-199148896",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "mexico-city-osm-way-25103113",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "mexico-city-osm-way-25337335",
-        "triangles": 2578,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "mexico-city-osm-way-28932424",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "mexico-city-osm-way-290432518",
         "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "mexico-city-osm-way-199148896",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "mexico-city-osm-way-25103113",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "mexico-city-osm-way-25337335",
+        "triangles": 3458,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "mexico-city-osm-way-28932424",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "mexico-city-osm-way-290432518",
+        "triangles": 3686,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "mexico-city-osm-way-30291947",
-        "triangles": 3610,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mexico-city-osm-way-526045165",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mexico-city-osm-way-970515008",
-        "triangles": 3966,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
@@ -5534,13 +5524,13 @@
       },
       {
         "venue": "mexico-city-recreation",
-        "triangles": 4710,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mexico-city-transit",
-        "triangles": 4010,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

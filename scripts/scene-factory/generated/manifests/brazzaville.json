@@ -5,17 +5,17 @@
   "city": "brazzaville",
   "region": "gulf-guinea",
   "recipeFile": "brazzaville.json",
-  "recipeSha256": "93fe29d4ade596d763ede97a8f2c9b734b8439f522e4619dd4f353524d88d0fb",
+  "recipeSha256": "82231eb1acf4e77fa6b29b99f70a421854e1950586d2ae2391659b0888e5b7f2",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/brazzaville.json",
-      "sha256": "1a25c222dd1bfd277b4c5f029c0c2c1ca7864250f1ba985f04c12bb28a12e879",
-      "inputSha256": "8d752051b79914e23b30df520dc29891b578e02596670b120d1058e5e72eb289",
+      "sha256": "8af2221aff95800c606e351fd81b83a67f5b876989a88f86811cea99f2bd4786",
+      "inputSha256": "cd186a9bd7741f165bf44f83c1eb96cf81f4d9270f79a1a5ea42251c52cee347",
       "contentSha256": "e76bf0b21da7ae558d39dca788bc5a64f209ecbbb96b2df710755a91f7013973"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5182,6 +5182,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5218,11 +5223,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5332,7 +5332,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
+            "reason": "crowd[11]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5414,7 +5414,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 37346,
+    "utf8Bytes": 37420,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5428,43 +5428,43 @@
     "estimates": [
       {
         "venue": "brazzaville-airport-brazzaville-airport",
-        "triangles": 4238,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-arts-and-crafts",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-brazza-mall",
-        "triangles": 3934,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-brazza-memorial",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-clinic",
-        "triangles": 3438,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-community-notices",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-community-voting-game",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5476,43 +5476,43 @@
       },
       {
         "venue": "brazzaville-congo-gallery",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-felix-eboue-stadium",
-        "triangles": 3526,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-grand-fleuve",
-        "triangles": 3610,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-isg-university",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-marien-ngouabi-esplanade",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-market-game",
-        "triangles": 3774,
+        "triangles": 5194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-massamba-debat-stadium",
-        "triangles": 2578,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
@@ -5530,25 +5530,25 @@
       },
       {
         "venue": "brazzaville-moukondo-market",
-        "triangles": 3934,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-national-library",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-nkombo-market",
-        "triangles": 4610,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-palais-des-congres",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5560,31 +5560,31 @@
       },
       {
         "venue": "brazzaville-protestant-university",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-sacre-coeur",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "brazzaville-transit",
-        "triangles": 3530,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

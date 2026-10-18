@@ -5,17 +5,17 @@
   "city": "garapan",
   "region": "americas-oceania",
   "recipeFile": "garapan.json",
-  "recipeSha256": "d765d6e44c9c715b0e1999052d348543bf2c7897410590744b986cc39e0cfa81",
+  "recipeSha256": "43b1ae9938f5135d70fe4fbc6dfd652359f7e1d4b9778aaa84bc8a0c897962c8",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/garapan.json",
-      "sha256": "6f0d300544dcad43589a4b3e11078c147c7f27c598a34ec577318366cade96f1",
-      "inputSha256": "061f8bb9958edd5b5ad9369e30159fbbce268570e830917c5fdb47de133a5dd0",
+      "sha256": "357e345047e6a457f69d9e72d5241ab8b0721dea4b38c5ba790b0971e5da5912",
+      "inputSha256": "d07229cf9e32661d2a703571456525071b7cbc4201addfc828f3f8def9e6bfec",
       "contentSha256": "e32ad6344ee7b99b47c4439a8cbc887aaf5a0e7d0831453644761817b9aa6257"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5123,11 +5123,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 24,
-    "attemptedCandidateCount": 24,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 24,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.9583333333333334,
     "venues": [
       {
         "venue": "garapan-airport-garapan-airport",
@@ -5323,6 +5323,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5356,7 +5361,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 33137,
+    "utf8Bytes": 33206,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5370,7 +5375,7 @@
     "estimates": [
       {
         "venue": "garapan-airport-garapan-airport",
-        "triangles": 2986,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
@@ -5382,7 +5387,7 @@
       },
       {
         "venue": "garapan-community-notices",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5394,37 +5399,37 @@
       },
       {
         "venue": "garapan-community-workshop",
-        "triangles": 3402,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "garapan-market-game",
-        "triangles": 3098,
+        "triangles": 3774,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "garapan-meal-stop",
-        "triangles": 3194,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "garapan-osm-node-10666101305",
-        "triangles": 3458,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "garapan-osm-node-1306225992",
-        "triangles": 3610,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "garapan-osm-node-1306235400",
-        "triangles": 2578,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5442,49 +5447,49 @@
       },
       {
         "venue": "garapan-osm-node-2894726822",
-        "triangles": 2998,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "garapan-osm-node-358021658",
-        "triangles": 4710,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "garapan-osm-node-5526308198",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "garapan-osm-way-1111959454",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "garapan-osm-way-165351798",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "garapan-osm-way-257214501",
-        "triangles": 3610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "garapan-osm-way-345101524",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "garapan-osm-way-469267324",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
@@ -5502,7 +5507,7 @@
       },
       {
         "venue": "garapan-recreation",
-        "triangles": 3518,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },

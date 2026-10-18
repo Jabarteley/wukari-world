@@ -5,17 +5,17 @@
   "city": "port-au-prince",
   "region": "americas-oceania",
   "recipeFile": "port-au-prince.json",
-  "recipeSha256": "5d4f0783ce491978fe476677bfa8660843df2c1a026e98c93626d24c8c345ae9",
+  "recipeSha256": "53afcf454eed32ba2450d78b45aa388c986274a2d70a6615a4605084c44e85d4",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/port-au-prince.json",
-      "sha256": "e73a04b9ff53092a2c3182716d9daf73bc9b2d94b889a6205734ff35d71687d7",
-      "inputSha256": "cc0b154c5fcb76a994c31ba462e872808ec2ae4c6dae31e4308845681ddae77b",
+      "sha256": "f9bd2679a0089c3be24af08a6a32b8acfced2c43d86cc3bda19c4251a73aff90",
+      "inputSha256": "b552b65c24dac190c044c9ffbca815fa56d6bb12ea91cf1a06f208c393121ea1",
       "contentSha256": "96791dc7414b53d76052e312c2522b3a5a35d4a3f52dfaabf1b7fd7c7360134b"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.88,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "port-au-prince-airport-port-au-prince-airport",
@@ -5177,11 +5177,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5201,7 +5196,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
+            "reason": "crowd[11]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5340,6 +5335,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5358,11 +5358,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 35020,
+    "utf8Bytes": 34962,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,55 +5396,55 @@
     "estimates": [
       {
         "venue": "port-au-prince-airport-port-au-prince-airport",
-        "triangles": 4010,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-au-prince-clinic",
-        "triangles": 3890,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-au-prince-community-notices",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "port-au-prince-community-voting-game",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "port-au-prince-community-voting-game",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "port-au-prince-community-workshop",
-        "triangles": 3890,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-au-prince-market-game",
-        "triangles": 3478,
+        "triangles": 3166,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-au-prince-meal-stop",
-        "triangles": 3514,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-au-prince-osm-node-1323785127",
-        "triangles": 4666,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-au-prince-osm-node-1584933011",
-        "triangles": 3178,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
@@ -5461,43 +5456,43 @@
       },
       {
         "venue": "port-au-prince-osm-node-2753138714",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-au-prince-osm-node-4217575341",
-        "triangles": 3610,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-au-prince-osm-node-4842345826",
-        "triangles": 2998,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-au-prince-osm-node-6356671168",
-        "triangles": 3966,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-au-prince-osm-node-883450377",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-au-prince-osm-relation-13545105",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-au-prince-osm-way-27937322",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5509,43 +5504,43 @@
       },
       {
         "venue": "port-au-prince-osm-way-380648401",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "port-au-prince-osm-way-48215560",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "port-au-prince-osm-way-48215560",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "port-au-prince-osm-way-48277658",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-au-prince-osm-way-48279480",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-au-prince-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-au-prince-recreation",
-        "triangles": 4430,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-au-prince-transit",
-        "triangles": 4238,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

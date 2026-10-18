@@ -5,17 +5,17 @@
   "city": "taipei",
   "region": "east-asia",
   "recipeFile": "taipei.json",
-  "recipeSha256": "f7da93c0772266da50a9f1c21c762bdddc2ebd315ab03b94824fd6d83812f8d9",
+  "recipeSha256": "a3604bc50eeb6f25ca081af3fb9faa8738f0dc98b73bd0470ec6321ffad50f8e",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/taipei.json",
-      "sha256": "df046049a689c98dea782f20a58bec6e0d4b01672863224672ffcce3c7052330",
-      "inputSha256": "8fe2bb69ffa14a9d4855dc1dae55762975d269a8d4c9ca2379a48f9e5afab4f7",
+      "sha256": "273aae80e4bcdb6414d096e010306405be04dd62c9a990451e08f7aeb12b6c4b",
+      "inputSha256": "717508ccac34e0e27d881e16600fc8c93359d3ee8244c846122f5b4f26771f2f",
       "contentSha256": "1c81e5c9beada1d04d51b010bc624560124a1e68fcbb76dffa477c3559d73e95"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "taipei-airport-taipei-airport",
@@ -5186,11 +5186,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34374,
+    "utf8Bytes": 34353,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,7 +5386,7 @@
     "estimates": [
       {
         "venue": "taipei-airport-taipei-airport",
-        "triangles": 4010,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
@@ -5403,13 +5398,13 @@
       },
       {
         "venue": "taipei-community-notices",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "taipei-community-voting-game",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5427,7 +5422,7 @@
       },
       {
         "venue": "taipei-meal-stop",
-        "triangles": 3274,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
@@ -5445,19 +5440,19 @@
       },
       {
         "venue": "taipei-osm-node-4199791991",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "taipei-osm-relation-4612518",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "taipei-osm-way-1197004281",
-        "triangles": 4666,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
@@ -5469,31 +5464,31 @@
       },
       {
         "venue": "taipei-osm-way-261330789",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "taipei-osm-way-263590699",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "taipei-osm-way-287104550",
-        "triangles": 3966,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "taipei-osm-way-354534871",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "taipei-osm-way-385941045",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
@@ -5505,37 +5500,37 @@
       },
       {
         "venue": "taipei-osm-way-456206409",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "taipei-osm-way-619916134",
-        "triangles": 3798,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "taipei-osm-way-773559279",
-        "triangles": 3458,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "taipei-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "taipei-recreation",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "taipei-transit",
-        "triangles": 3530,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

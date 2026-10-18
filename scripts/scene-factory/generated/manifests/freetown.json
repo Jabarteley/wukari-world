@@ -5,17 +5,17 @@
   "city": "freetown",
   "region": "gulf-guinea",
   "recipeFile": "freetown.json",
-  "recipeSha256": "7deec79d140649cc041012cdbcb9cca04db9812ac37a39034dd0048dbbbbe68d",
+  "recipeSha256": "e05fca0d9fec5958b0ea062852fe01952cb73073bfd66729d82daa4c319ae8fa",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/freetown.json",
-      "sha256": "8d1ab0137c09e1f5564fd842ca2d569439b97467a99f0b99a4e5e73f2622736c",
-      "inputSha256": "1f577261a0f370726983c20a04617fc510c5e58435bf873d463509a5feb774ef",
+      "sha256": "3f354a48d88f17b033d7ad319178bd5143491350d0a1a5507e37e941c97f0e68",
+      "inputSha256": "844f99e30809e61e448b5bf962416b4b9dce6405466ea7e0f52c0fe3d2f62df1",
       "contentSha256": "6be37f01916aa6bb123ac3b95178e8f7115fd0bccb77cc8144e761a0f6f8395b"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5276,6 +5276,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5348,11 +5353,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34544,
+    "utf8Bytes": 34490,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,55 +5391,55 @@
     "estimates": [
       {
         "venue": "freetown-airport-freetown-airport",
-        "triangles": 4238,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "freetown-clinic",
-        "triangles": 3370,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "freetown-community-notices",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "freetown-community-voting-game",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "freetown-community-workshop",
         "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "freetown-community-notices",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "freetown-community-voting-game",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "freetown-community-workshop",
+        "triangles": 2490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "freetown-market-game",
-        "triangles": 3174,
+        "triangles": 4906,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "freetown-meal-stop",
-        "triangles": 2946,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "freetown-osm-node-11174916109",
-        "triangles": 3934,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "freetown-osm-node-11556711498",
-        "triangles": 3202,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
@@ -5451,43 +5451,43 @@
       },
       {
         "venue": "freetown-osm-node-3563419693",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "freetown-osm-node-3563419694",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "freetown-osm-node-3715252412",
-        "triangles": 3934,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "freetown-osm-node-6019513088",
-        "triangles": 3194,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "freetown-osm-way-1428236844",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "freetown-osm-way-177518788",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "freetown-osm-way-177518789",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5499,7 +5499,7 @@
       },
       {
         "venue": "freetown-osm-way-307686732",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5511,19 +5511,19 @@
       },
       {
         "venue": "freetown-osm-way-328985318",
-        "triangles": 3686,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "freetown-osm-way-797018443",
-        "triangles": 3686,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "freetown-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5535,7 +5535,7 @@
       },
       {
         "venue": "freetown-transit",
-        "triangles": 4010,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

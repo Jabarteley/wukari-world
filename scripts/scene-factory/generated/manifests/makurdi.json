@@ -5,17 +5,17 @@
   "city": "makurdi",
   "region": "gulf-guinea",
   "recipeFile": "makurdi.json",
-  "recipeSha256": "df0198cf0d8d946f2269d1695204c68af1fc54620f97a9b9caf1231f86a50523",
+  "recipeSha256": "c4d1b7642d89a41b9d68c23a14499a4aa69b18031c286d723b5e436eb2fea7e4",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/makurdi.json",
-      "sha256": "9d92b3325033ed890adfbbe3b0337093899e9b280644beab467b130902b810f6",
-      "inputSha256": "1fd3e014dd704819e997bd65780b79ace085feb5c40146c2791f5e910c5e2eed",
+      "sha256": "2596b8525871d1de87380f642ebd2d2dcd39459bf7c61327db8668e26b5d9fbc",
+      "inputSha256": "cf5656e2e34662a15b899b85f08751812ea3bb6fe224a7fd9f2b664be68ef7ec",
       "contentSha256": "d0dcdd9cbcd8bd4235a2b8ff5269534e387affc77db2f997d20096030ab28881"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5053,11 +5053,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 14,
-    "attemptedCandidateCount": 14,
+    "attemptedCandidateCount": 16,
     "acceptedCandidateCount": 14,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 14,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 13,
+    "firstCandidateSuccessRate": 0.9285714285714286,
     "venues": [
       {
         "venue": "aper-aku-stadium",
@@ -5100,6 +5100,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5196,7 +5206,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 20087,
+    "utf8Bytes": 20074,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5228,67 +5238,67 @@
       },
       {
         "venue": "bsu-teaching-hospital",
-        "triangles": 3370,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dajo-pottery",
-        "triangles": 3198,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-medical-centre-makurdi",
-        "triangles": 3374,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "first-baptist-church-makurdi",
-        "triangles": 3410,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "golden-plate-restaurant",
-        "triangles": 3542,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "makurdi-central-mosque",
         "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "first-baptist-church-makurdi",
+        "triangles": 2462,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "golden-plate-restaurant",
+        "triangles": 3230,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "makurdi-central-mosque",
+        "triangles": 3342,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "north-bank-market",
-        "triangles": 4334,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "our-lady-of-perpetual-help-cathedral",
-        "triangles": 2462,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "university-of-agriculture-makurdi",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "wurukum-market",
-        "triangles": 3282,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zion-microfinance-bank",
-        "triangles": 2462,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "st-johns",
   "region": "americas-oceania",
   "recipeFile": "st-johns.json",
-  "recipeSha256": "8306322792a5dac722e0ee59ed52f0bfacb37899b1bea09cc3ec1e2e9743324b",
+  "recipeSha256": "b221d7b91592c2f0be947c94139aa99b425fef31dee2f22113043c4968005919",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/st-johns.json",
-      "sha256": "2ca63dfc4be1cb667c81fe6810ca455d8ad5d001ed1196031651857aeecb3bbc",
-      "inputSha256": "a9845756c1e68ebade1ca375aad5267e79d14a7b4efc46110ad13d6efe2f3962",
+      "sha256": "ce39587c6c70115f5546cc78ec63e51169fd8988e801de255ea6b7454b338458",
+      "inputSha256": "e43b4ff5fb16fe5155f5ebc751b358e4c47400bc80d54356b22572d10c7d3966",
       "contentSha256": "e142db10c7b5024dcff314556c47e789c3160044567c69be1864128bbb29be13"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,9 +5130,9 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
+    "rejectedCandidateCount": 2,
     "firstCandidateSuccessCount": 24,
     "firstCandidateSuccessRate": 0.96,
     "venues": [
@@ -5258,6 +5258,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5276,11 +5286,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34710,
+    "utf8Bytes": 34648,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,13 +5396,13 @@
     "estimates": [
       {
         "venue": "st-johns-airport-st-johns-airport",
-        "triangles": 2698,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-johns-clinic",
-        "triangles": 3438,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
@@ -5415,13 +5420,13 @@
       },
       {
         "venue": "st-johns-community-workshop",
-        "triangles": 2490,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-johns-market-game",
-        "triangles": 3562,
+        "triangles": 4618,
         "meshes": 13,
         "lights": 3
       },
@@ -5433,49 +5438,49 @@
       },
       {
         "venue": "st-johns-osm-node-10243462034",
-        "triangles": 2946,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-johns-osm-node-1264199603",
-        "triangles": 3978,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-johns-osm-node-13459831357",
-        "triangles": 3966,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-johns-osm-node-4709905915",
-        "triangles": 2946,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-johns-osm-node-8761557614",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-johns-osm-relation-5964183",
         "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "st-johns-osm-node-4709905915",
+        "triangles": 3274,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-johns-osm-node-8761557614",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-johns-osm-relation-5964183",
+        "triangles": 3686,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "st-johns-osm-way-1031834593",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-johns-osm-way-1245381574",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5487,43 +5492,43 @@
       },
       {
         "venue": "st-johns-osm-way-182023855",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-johns-osm-way-19881453",
-        "triangles": 2578,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-johns-osm-way-19881528",
-        "triangles": 3490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-johns-osm-way-347984242",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "st-johns-osm-way-19881453",
+        "triangles": 2998,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-johns-osm-way-19881528",
+        "triangles": 3978,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-johns-osm-way-347984242",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "st-johns-osm-way-459204144",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-johns-osm-way-555984831",
-        "triangles": 4710,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-johns-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5535,7 +5540,7 @@
       },
       {
         "venue": "st-johns-transit",
-        "triangles": 2698,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

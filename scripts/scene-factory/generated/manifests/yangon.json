@@ -5,17 +5,17 @@
   "city": "yangon",
   "region": "south-asia",
   "recipeFile": "yangon.json",
-  "recipeSha256": "7c03ef4a6e5dae8a09caa1dc48e49a125fcc5bd06a113e9f9cd869b6457e5635",
+  "recipeSha256": "9b45189bd5f64395f5fc9ac7b3793f774ac7d5e551c999403cef9672e741c960",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/yangon.json",
-      "sha256": "64724f85653ae624e8e32eb9b5fb5af929f3ad20208d6a26f14c9eca323cddaf",
-      "inputSha256": "53ed66e1b53b505f7cdc06f4b42738ae83ab1d19e7afaf760574b40f3ccfa1a3",
+      "sha256": "715c05d4bb35e21fcfaaf5385f6273df18c5b9fac3ed538ff23b7172385a3a50",
+      "inputSha256": "0ea56b9da570c02d0570cbe4442ef7e1d8e76d47fd04fec4f8dbea7ab2f3106d",
       "contentSha256": "74d03ec43235ed1dfc6754fc3cb6bb3f18c6060953705a2bf87f1b6c8c5245e3"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 29,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 4,
+    "firstCandidateSuccessCount": 21,
+    "firstCandidateSuccessRate": 0.84,
     "venues": [
       {
         "venue": "yangon-airport-yangon-airport",
@@ -5159,6 +5159,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5213,6 +5218,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5303,6 +5313,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5357,6 +5372,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5392,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34319,
+    "utf8Bytes": 34448,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,73 +5406,73 @@
     "estimates": [
       {
         "venue": "yangon-airport-yangon-airport",
-        "triangles": 4010,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-clinic",
-        "triangles": 3402,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-community-notices",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-community-voting-game",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-community-workshop",
-        "triangles": 3438,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-market-game",
-        "triangles": 3678,
+        "triangles": 5410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-meal-stop",
-        "triangles": 3194,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-osm-node-2107705043",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-osm-node-3546535083",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-osm-node-5442063565",
-        "triangles": 2946,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-osm-relation-2409874",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-osm-relation-5805151",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5476,61 +5496,61 @@
       },
       {
         "venue": "yangon-osm-way-220311909",
-        "triangles": 3686,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-osm-way-374243908",
-        "triangles": 4430,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-osm-way-378356321",
-        "triangles": 3686,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-osm-way-383504429",
-        "triangles": 3686,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-osm-way-407771515",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-osm-way-463340150",
-        "triangles": 2998,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-osm-way-480039800",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-recreation",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yangon-transit",
-        "triangles": 2698,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "mariehamn",
   "region": "western-europe",
   "recipeFile": "mariehamn.json",
-  "recipeSha256": "f62951a4c5addf4acfc1adae8b89c19a44d126dcf35e1ffaaafccf03822116a8",
+  "recipeSha256": "d698c74de0a5a1ad09a2637a9f24ddb6b72706c63523a7e082073d4576432a3a",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/mariehamn.json",
-      "sha256": "321b6d89585b46f030aaea2da20669d31389caa273da1140054364596e37cce2",
-      "inputSha256": "62873ae4154c4156123ceaec1a534e5009138f597bae8da8eeecd2074792be76",
+      "sha256": "7e948928c580c7a29cf82059093ca038d9a28ecdd7efa20e6324394d67a1bbac",
+      "inputSha256": "85b583a1ece2caccd6575795efb9da791b4be92918a436dcef89957c2d0bcb15",
       "contentSha256": "5433cbf5915c8cc8ecd13b8d3ac4a9f549c7837a897bbad040ac39040598da68"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,17 +5130,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "mariehamn-airport-mariehamn-airport",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5186,11 +5191,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5299,11 +5299,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34623,
+    "utf8Bytes": 34568,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,13 +5391,13 @@
     "estimates": [
       {
         "venue": "mariehamn-airport-mariehamn-airport",
-        "triangles": 3530,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mariehamn-clinic",
-        "triangles": 3370,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
@@ -5414,25 +5409,25 @@
       },
       {
         "venue": "mariehamn-community-voting-game",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mariehamn-community-workshop",
-        "triangles": 3890,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mariehamn-market-game",
-        "triangles": 3318,
+        "triangles": 4738,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mariehamn-meal-stop",
-        "triangles": 2946,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
@@ -5444,7 +5439,7 @@
       },
       {
         "venue": "mariehamn-osm-node-1804271293",
-        "triangles": 2578,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
@@ -5456,37 +5451,37 @@
       },
       {
         "venue": "mariehamn-osm-node-3669569440",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mariehamn-osm-node-5095859130",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mariehamn-osm-node-9299613331",
-        "triangles": 3966,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mariehamn-osm-way-1173832356",
-        "triangles": 3490,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mariehamn-osm-way-165234934",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mariehamn-osm-way-169355118",
-        "triangles": 4610,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
@@ -5498,37 +5493,37 @@
       },
       {
         "venue": "mariehamn-osm-way-306321868",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mariehamn-osm-way-493148135",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mariehamn-osm-way-494277380",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mariehamn-osm-way-496249920",
-        "triangles": 3202,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mariehamn-osm-way-527070540",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mariehamn-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },

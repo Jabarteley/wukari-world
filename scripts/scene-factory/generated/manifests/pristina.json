@@ -5,17 +5,17 @@
   "city": "pristina",
   "region": "western-europe",
   "recipeFile": "pristina.json",
-  "recipeSha256": "85d82d1364d047cff701b12729cc46e373cb4ee4e177a414c97d0673446a18d9",
+  "recipeSha256": "c5593d3b911bee89d6d1340065a8c2ea3c506fc3e5aae02053e17caaa781c725",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/pristina.json",
-      "sha256": "1c6af29cb0742cbbc3e2a4e1e5536e8f696b858ae03204aec9da8883b2ba0700",
-      "inputSha256": "74ab172c6ecdc53036d3cf88b99d480913fa67ac6e7a301b370baa1d2c6a6deb",
+      "sha256": "6ad6d10a08895d3b8680a6ae89ee6c767c301f521dfe033304ad5f567a271cdd",
+      "inputSha256": "46e6dc7cbe9af688e1aec2e9a9ea82086332f32563529dc9efab70ad8dec316b",
       "contentSha256": "541bd40099ae1163901207c049be38962c2647cf2476f15cd061fa454b1fccfa"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "pristina-airport-pristina-airport",
@@ -5177,6 +5177,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34538,
+    "utf8Bytes": 34612,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,13 +5391,13 @@
     "estimates": [
       {
         "venue": "pristina-airport-pristina-airport",
-        "triangles": 2992,
+        "triangles": 4064,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pristina-clinic",
-        "triangles": 3370,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
@@ -5404,31 +5409,31 @@
       },
       {
         "venue": "pristina-community-voting-game",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pristina-community-workshop",
-        "triangles": 3438,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pristina-market-game",
-        "triangles": 3962,
+        "triangles": 4642,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pristina-meal-stop",
-        "triangles": 3194,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pristina-osm-node-13027856754",
-        "triangles": 3514,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
@@ -5440,55 +5445,55 @@
       },
       {
         "venue": "pristina-osm-node-14039469490",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pristina-osm-node-2163812393",
-        "triangles": 4878,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pristina-osm-node-2583709127",
-        "triangles": 3202,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pristina-osm-node-4492345889",
-        "triangles": 3526,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "pristina-osm-node-4888253784",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "pristina-osm-node-5072893824",
         "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "pristina-osm-node-4888253784",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "pristina-osm-node-5072893824",
+        "triangles": 3526,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "pristina-osm-node-6205211786",
-        "triangles": 2998,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pristina-osm-way-1444311509",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pristina-osm-way-206457190",
-        "triangles": 3518,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
@@ -5500,19 +5505,19 @@
       },
       {
         "venue": "pristina-osm-way-457642563",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pristina-osm-way-571273561",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pristina-osm-way-617002897",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5524,13 +5529,13 @@
       },
       {
         "venue": "pristina-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pristina-transit",
-        "triangles": 2698,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

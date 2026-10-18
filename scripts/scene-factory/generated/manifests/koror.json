@@ -5,17 +5,17 @@
   "city": "koror",
   "region": "americas-oceania",
   "recipeFile": "koror.json",
-  "recipeSha256": "19e9506d6c19c20a166a04556f8c488f421a44c9d4c81ca7fdf2daef518bad35",
+  "recipeSha256": "51eff1becb68b9e2b332b85abde838f1d9e9fb43a2f59cc98da21d0475a3be75",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/koror.json",
-      "sha256": "aad64c8e01dd00d3d6b63c5f08fc8d3d07205397d309e5720f96dea50ede18bb",
-      "inputSha256": "2fc427496fea34863f730c11d8a66503500b1d23483acea3a4d3710b25b42aa6",
+      "sha256": "43ec6e3865a1a35546a7308be13777385800ab064523ba0386ca64be256f3685",
+      "inputSha256": "9058342f84619acc38148eafc797abef9393855af184a340e4c01f27c5819697",
       "contentSha256": "330f55dd00608d86ea812c28849eca7404a66137ba7a78b0cb4d2eaa5d866bd8"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5123,11 +5123,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 24,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 24,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.9583333333333334,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.9166666666666666,
     "venues": [
       {
         "venue": "koror-airport-koror-airport",
@@ -5161,6 +5161,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5170,11 +5175,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5301,6 +5301,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5361,7 +5366,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 33001,
+    "utf8Bytes": 33021,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5375,7 +5380,7 @@
     "estimates": [
       {
         "venue": "koror-airport-koror-airport",
-        "triangles": 3996,
+        "triangles": 5248,
         "meshes": 13,
         "lights": 3
       },
@@ -5387,7 +5392,7 @@
       },
       {
         "venue": "koror-community-notices",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5405,7 +5410,7 @@
       },
       {
         "venue": "koror-market-game",
-        "triangles": 2910,
+        "triangles": 3962,
         "meshes": 13,
         "lights": 3
       },
@@ -5423,13 +5428,13 @@
       },
       {
         "venue": "koror-osm-node-1384146475",
-        "triangles": 2946,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "koror-osm-node-357256713",
-        "triangles": 4710,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
@@ -5441,25 +5446,25 @@
       },
       {
         "venue": "koror-osm-node-4031085076",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "koror-osm-node-4080475589",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "koror-osm-node-6257235485",
-        "triangles": 2998,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "koror-osm-node-6257235586",
-        "triangles": 3526,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5477,13 +5482,13 @@
       },
       {
         "venue": "koror-osm-way-35783457",
-        "triangles": 2998,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "koror-osm-way-436679166",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5495,13 +5500,13 @@
       },
       {
         "venue": "koror-osm-way-441805822",
-        "triangles": 3610,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "koror-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },

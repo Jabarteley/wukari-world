@@ -5,17 +5,17 @@
   "city": "helsinki",
   "region": "western-europe",
   "recipeFile": "helsinki.json",
-  "recipeSha256": "b7c779339fce034c0e3614ccf50836bc9980e0888470af0796ccd3e6ae4fc563",
+  "recipeSha256": "3f5fd40ac179a9ed489242276e01222ccac6439808f1115a411a7c0a0a4ac75f",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/helsinki.json",
-      "sha256": "892574b294017b4f37d301a2460659f7c9507b328a5412d1f06f259b64c3c31c",
-      "inputSha256": "059297eb722f3929743781dabed77c4cde3ea5fb33365e620388192a610eba52",
+      "sha256": "9a5ff5e08ee2d6d622dfa4109e1ba867d48cd6d5cd604943e9a80067938ea78b",
+      "inputSha256": "da8f6bba691090dab20661db23b0ed6c37c5d25eef8f9ae2aa17fb6291817548",
       "contentSha256": "e36e77bf496ee8bd43270dee0a5b8fb9a28908e3d478dc907938964e73c3489e"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "helsinki-airport-helsinki-airport",
@@ -5168,6 +5168,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34463,
+    "utf8Bytes": 34431,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5392,55 +5397,55 @@
       },
       {
         "venue": "helsinki-clinic",
-        "triangles": 2910,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "helsinki-community-notices",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "helsinki-community-voting-game",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "helsinki-community-workshop",
-        "triangles": 3890,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "helsinki-market-game",
-        "triangles": 3638,
+        "triangles": 4642,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "helsinki-meal-stop",
-        "triangles": 3178,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "helsinki-osm-node-9712397575",
-        "triangles": 2946,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "helsinki-osm-way-115770414",
-        "triangles": 3966,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "helsinki-osm-way-123034962",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5464,13 +5469,13 @@
       },
       {
         "venue": "helsinki-osm-way-240369113",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "helsinki-osm-way-320921828",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5482,55 +5487,55 @@
       },
       {
         "venue": "helsinki-osm-way-404325219",
-        "triangles": 5214,
+        "triangles": 4934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "helsinki-osm-way-4254163",
-        "triangles": 3458,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "helsinki-osm-way-58253939",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "helsinki-osm-way-852039737",
-        "triangles": 3610,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "helsinki-osm-way-91765309",
-        "triangles": 4666,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "helsinki-osm-way-985184377",
-        "triangles": 3966,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "helsinki-quiet-reflection",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "helsinki-recreation",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "helsinki-transit",
-        "triangles": 4010,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

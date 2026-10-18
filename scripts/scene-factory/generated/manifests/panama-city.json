@@ -5,17 +5,17 @@
   "city": "panama-city",
   "region": "americas-oceania",
   "recipeFile": "panama-city.json",
-  "recipeSha256": "02cc48e2028b81744a38e76eec600c3b3e489f6c5d72c935239d8807bf8b504f",
+  "recipeSha256": "4c1c7d7d0811c889d9a2521e1d1d9eef1564b3190346c0fc4c95007e83ba421f",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/panama-city.json",
-      "sha256": "653943d602f73eba6f0037021670fd398c919ec6716c273f7fdb9f4b3fc3e26e",
-      "inputSha256": "5effa9c576d67d47e2cc7d99aaef8c626886fb773d7d30645f3d337a4339bf35",
+      "sha256": "63c3f97e36c765cad2606210447414041eb7afbb3f83ceca51a41d53a115438d",
+      "inputSha256": "b732aa5a5bb0b752247c889b98aca7568223e7d97b360db03169892cbc44de6e",
       "contentSha256": "4177f79486e1c29ab4f152983ab2d9d3035fdbbc74cf54e100ae51fd29ed484f"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "panama-city-airport-panama-city-airport",
@@ -5204,11 +5204,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34808,
+    "utf8Bytes": 34876,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,55 +5386,55 @@
     "estimates": [
       {
         "venue": "panama-city-airport-panama-city-airport",
-        "triangles": 4326,
+        "triangles": 3254,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "panama-city-clinic",
-        "triangles": 3890,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "panama-city-community-notices",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "panama-city-community-voting-game",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "panama-city-community-workshop",
-        "triangles": 3370,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "panama-city-market-game",
-        "triangles": 3638,
+        "triangles": 4694,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "panama-city-meal-stop",
-        "triangles": 2946,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "panama-city-osm-node-2845942117",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "panama-city-osm-node-3882111329",
-        "triangles": 3274,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
@@ -5451,91 +5446,91 @@
       },
       {
         "venue": "panama-city-osm-relation-11719090",
-        "triangles": 4710,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "panama-city-osm-way-1053821129",
-        "triangles": 3898,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "panama-city-osm-way-140348509",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "panama-city-osm-way-146820184",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "panama-city-osm-way-179079739",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "panama-city-osm-way-180003519",
-        "triangles": 3526,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "panama-city-osm-way-383814377",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "panama-city-osm-way-387387459",
-        "triangles": 4878,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "panama-city-osm-way-550798044",
-        "triangles": 3978,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "panama-city-osm-way-570814678",
         "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "panama-city-osm-way-697812340",
-        "triangles": 3518,
+        "venue": "panama-city-osm-way-140348509",
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "panama-city-osm-way-74450873",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "panama-city-quiet-reflection",
+        "venue": "panama-city-osm-way-146820184",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "panama-city-osm-way-179079739",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "panama-city-osm-way-180003519",
+        "triangles": 2578,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "panama-city-osm-way-383814377",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "panama-city-osm-way-387387459",
+        "triangles": 4598,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "panama-city-osm-way-550798044",
+        "triangles": 3526,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "panama-city-osm-way-570814678",
+        "triangles": 4598,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "panama-city-osm-way-697812340",
+        "triangles": 3730,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "panama-city-osm-way-74450873",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "panama-city-quiet-reflection",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "panama-city-recreation",
-        "triangles": 3518,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "panama-city-transit",
-        "triangles": 2986,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

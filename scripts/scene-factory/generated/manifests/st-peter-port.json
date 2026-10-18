@@ -5,17 +5,17 @@
   "city": "st-peter-port",
   "region": "western-europe",
   "recipeFile": "st-peter-port.json",
-  "recipeSha256": "92ac03591035aa8d066d16dab04100c34177148d70ab253c9683083d07bbfcdc",
+  "recipeSha256": "8bb9cc8d29b12ded4543d04d1bbba2a64ca2afebaeaa6b5a7547868076931fc2",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/st-peter-port.json",
-      "sha256": "78d45a5d994c84d0e769ae8e287bd9ff94cb1f0b3816498064b29477d4219934",
-      "inputSha256": "5c4204a8bb084d5cb494c6256e3305ae4b201798e489c5ebe43bf10d5403a256",
+      "sha256": "d5554aee1139e7273936e326889ec031c41dbd04213c7cb493fddf425fd90fbb",
+      "inputSha256": "a2c746c64566ec8df9f63d7c8fc0b90764cd0a72631b92bf3f61328b12d43af2",
       "contentSha256": "0ca37f1930cb99d55761d2efbedd068bb5d44c4d8863b7cb9da38fa1757823ed"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5150,11 +5150,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5164,11 +5159,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5250,6 +5240,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5277,6 +5272,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34837,
+    "utf8Bytes": 34804,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,19 +5396,19 @@
     "estimates": [
       {
         "venue": "st-peter-port-airport-st-peter-port-airport",
-        "triangles": 3530,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-peter-port-clinic",
-        "triangles": 3438,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-peter-port-community-notices",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5420,13 +5420,13 @@
       },
       {
         "venue": "st-peter-port-community-workshop",
-        "triangles": 3438,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-peter-port-market-game",
-        "triangles": 2990,
+        "triangles": 2678,
         "meshes": 13,
         "lights": 3
       },
@@ -5438,73 +5438,73 @@
       },
       {
         "venue": "st-peter-port-osm-node-13544152092",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-peter-port-osm-node-1552743655",
-        "triangles": 3194,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-peter-port-osm-node-2512811018",
-        "triangles": 3178,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-peter-port-osm-node-277523228",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-peter-port-osm-node-6504570133",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-peter-port-osm-node-6669704986",
-        "triangles": 2578,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-peter-port-osm-node-6699211785",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-peter-port-osm-way-115109408",
-        "triangles": 3490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-peter-port-osm-way-243103087",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-peter-port-osm-way-440654796",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-peter-port-osm-way-522604715",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "st-peter-port-osm-node-6504570133",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-peter-port-osm-node-6669704986",
+        "triangles": 3526,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-peter-port-osm-node-6699211785",
+        "triangles": 2998,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-peter-port-osm-way-115109408",
+        "triangles": 3526,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-peter-port-osm-way-243103087",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-peter-port-osm-way-440654796",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-peter-port-osm-way-522604715",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "st-peter-port-osm-way-552204319",
-        "triangles": 3798,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
@@ -5516,25 +5516,25 @@
       },
       {
         "venue": "st-peter-port-osm-way-80438718",
-        "triangles": 3798,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-peter-port-osm-way-913686540",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-peter-port-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-peter-port-recreation",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },

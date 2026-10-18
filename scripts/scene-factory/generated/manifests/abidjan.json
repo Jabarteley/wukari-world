@@ -5,17 +5,17 @@
   "city": "abidjan",
   "region": "gulf-guinea",
   "recipeFile": "abidjan.json",
-  "recipeSha256": "aa680fb82fc1da762e3d141901183dff7bb4ace37507993b9a8a8183d89cf293",
+  "recipeSha256": "30079bc84b90d1ea319a0356069002666a6aa5e16be46dc5ec75304fee1576b8",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/abidjan.json",
-      "sha256": "056984af3241ead36063cc8588208b455742a96a71f49f43168c29081e4fef5d",
-      "inputSha256": "c626520b38b58fcd3a03ad1ed7a7abbce6e0a269443139748b91057014e10290",
+      "sha256": "92a81b37f47d58ce47ba983bd4a9d45c4d5738427312379d408d03b60047abe4",
+      "inputSha256": "791fa022fadc4a275c716bb6261955be37b49602f317ee29858e4414d7c0e44f",
       "contentSha256": "e101738f8ff96efbd3b2db7db4c135fed6de3938425977fda9bcb00b7291608d"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5116,11 +5116,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 23,
-    "attemptedCandidateCount": 23,
+    "attemptedCandidateCount": 24,
     "acceptedCandidateCount": 23,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.9565217391304348,
     "venues": [
       {
         "venue": "abidjan-airport-abidjan-airport",
@@ -5298,6 +5298,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5340,7 +5345,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 31911,
+    "utf8Bytes": 31800,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5354,19 +5359,19 @@
     "estimates": [
       {
         "venue": "abidjan-airport-abidjan-airport",
-        "triangles": 4010,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "abidjan-banco-national-park",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "abidjan-cap-nord",
-        "triangles": 3610,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
@@ -5390,7 +5395,7 @@
       },
       {
         "venue": "abidjan-community-workshop",
-        "triangles": 3370,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
@@ -5402,55 +5407,55 @@
       },
       {
         "venue": "abidjan-meal-stop",
-        "triangles": 2946,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "abidjan-mosquee-aboubakar-sidik",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "abidjan-musee-des-civilisations",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "abidjan-orcaland",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "abidjan-palais-de-la-culture",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "abidjan-place-de-la-republique",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "abidjan-playce-marcory",
-        "triangles": 4666,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "abidjan-polygone",
-        "triangles": 4666,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "abidjan-quiet-reflection",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5462,7 +5467,7 @@
       },
       {
         "venue": "abidjan-stade-felix-houphouet-boigny",
-        "triangles": 3490,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
@@ -5480,13 +5485,13 @@
       },
       {
         "venue": "abidjan-transit",
-        "triangles": 2698,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "abidjan-universite-nangui-abrogoua",
-        "triangles": 3898,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       }

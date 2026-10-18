@@ -5,17 +5,17 @@
   "city": "budapest",
   "region": "western-europe",
   "recipeFile": "budapest.json",
-  "recipeSha256": "656e1425b1a5a69faee63cf3f60e543fb1334f1111fb719b67207cb8f0be802d",
+  "recipeSha256": "2a32ce5cca83c433d13d6beddd27e61b877bb07e221f39558c9456131626a5fd",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/budapest.json",
-      "sha256": "badc56d5c83aca651e0d69ee37e7798c9bb1690f0f05287bc64f349bd006d419",
-      "inputSha256": "97cf3ecf20b84ac9f1664c2cfcf60d9e73d594d3cdde37ba6f7118b430b49253",
+      "sha256": "dd9a82154bb2a2fcea73cbc0a27b07fc6104dad01262586810e30de727360f66",
+      "inputSha256": "df8ffa40f4c3f08b33349b809c68a0cd93c7bd16703213d7713c23ef2b1552b0",
       "contentSha256": "2465794ca6141668e1b26c781e3829635e1d71a1f4ad44598ba71bad9da1f007"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,17 +5130,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "budapest-airport-budapest-airport",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5213,6 +5218,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5276,11 +5291,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34597,
+    "utf8Bytes": 34695,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5397,43 +5407,43 @@
       },
       {
         "venue": "budapest-clinic",
-        "triangles": 2910,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "budapest-community-notices",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "budapest-community-voting-game",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "budapest-community-workshop",
-        "triangles": 3438,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "budapest-market-game",
-        "triangles": 3502,
+        "triangles": 4246,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "budapest-meal-stop",
-        "triangles": 3194,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "budapest-osm-node-1996688188",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5445,7 +5455,7 @@
       },
       {
         "venue": "budapest-osm-relation-17929549",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5457,13 +5467,13 @@
       },
       {
         "venue": "budapest-osm-way-106940773",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "budapest-osm-way-115967431",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5481,61 +5491,61 @@
       },
       {
         "venue": "budapest-osm-way-178875079",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "budapest-osm-way-24254652",
-        "triangles": 3934,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "budapest-osm-way-246472477",
-        "triangles": 4598,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "budapest-osm-way-26763446",
-        "triangles": 2882,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "budapest-osm-way-353853403",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "budapest-osm-way-376863655",
-        "triangles": 3978,
+        "venue": "budapest-osm-way-24254652",
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "budapest-osm-way-742639578",
-        "triangles": 3798,
+        "venue": "budapest-osm-way-246472477",
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "budapest-quiet-reflection",
+        "venue": "budapest-osm-way-26763446",
+        "triangles": 4614,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "budapest-osm-way-353853403",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "budapest-osm-way-376863655",
+        "triangles": 3458,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "budapest-osm-way-742639578",
+        "triangles": 4430,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "budapest-quiet-reflection",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "budapest-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "budapest-transit",
-        "triangles": 4010,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "rome",
   "region": "western-europe",
   "recipeFile": "rome.json",
-  "recipeSha256": "2b54c64e14ff9544e6fd9c29a78cb5d8a98cd7f8e0cdd503fafc5a5bfef95250",
+  "recipeSha256": "65d5962f2e2a6ce6ec08e19e86489ca3c7e70dda7657fc3d058a0d0fbb860683",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/rome.json",
-      "sha256": "99314890b2945081cb5e36f6e1ffe1657e1b664934aa87a849c6c8c76602d214",
-      "inputSha256": "510f6904b4254126e43436ff810bf6098d67256a4df0fbda93dd0d3641bb863f",
+      "sha256": "2740246688e9e33423b94001c3d4a3264c6e28a4ecf4648d7b097a05ea2adf12",
+      "inputSha256": "0599c258a07aa551d580c907a6bf05ae3df015548ef7dc1fb7547227f8200de2",
       "contentSha256": "792f04405131d1cbc553df64ba649af383bd3fbaf5d9acc02f96384a9ba830bc"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "rome-airport-rome-airport",
@@ -5159,6 +5159,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5231,6 +5236,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5267,11 +5277,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5308,6 +5313,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34530,
+    "utf8Bytes": 34397,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,19 +5401,19 @@
     "estimates": [
       {
         "venue": "rome-airport-rome-airport",
-        "triangles": 4238,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rome-clinic",
-        "triangles": 3890,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rome-community-notices",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5415,61 +5425,61 @@
       },
       {
         "venue": "rome-community-workshop",
-        "triangles": 3438,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rome-market-game",
-        "triangles": 4738,
+        "triangles": 5050,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rome-meal-stop",
-        "triangles": 3274,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rome-osm-node-1172691363",
-        "triangles": 3178,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rome-osm-node-618491090",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rome-osm-node-8413119694",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rome-osm-relation-11558912",
-        "triangles": 4430,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rome-osm-relation-1517075",
-        "triangles": 4878,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rome-osm-relation-17854343",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rome-osm-relation-1876703",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5481,13 +5491,13 @@
       },
       {
         "venue": "rome-osm-relation-6533345",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rome-osm-way-23951383",
-        "triangles": 3526,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
@@ -5499,13 +5509,13 @@
       },
       {
         "venue": "rome-osm-way-370461335",
-        "triangles": 3686,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rome-osm-way-499070475",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5523,19 +5533,19 @@
       },
       {
         "venue": "rome-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rome-recreation",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rome-transit",
-        "triangles": 4010,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "bishkek",
   "region": "south-asia",
   "recipeFile": "bishkek.json",
-  "recipeSha256": "018003d1f6f168a38b4fea27a673b4185232f96019b722428550e043c7f58cd7",
+  "recipeSha256": "942027fc317343d7dfc625e0e85837e03f47101aa1243507fcad0934bc50f0f7",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/bishkek.json",
-      "sha256": "87eb605e8b6c67bb80a12b0501c364ee7a043642ccce7b3026ee4af146660cd6",
-      "inputSha256": "598318f2de8d5cb4de5adabdbfbbe206e1d7fb96d1f47f01d9cf4a4a07e4205e",
+      "sha256": "635a97a5e0c03b7eb94038ecde91f61bc2ff0d0259bdc4157f728694cb192930",
+      "inputSha256": "3a1753d3281b080cd8f5b85eac333e094ed0daaca5c40c25ae4e922be582d676",
       "contentSha256": "c1e488b9b44f65496e138074662ad64dce9281a0eb93e81226818843dbb39bed"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,27 +5130,17 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "bishkek-airport-bishkek-airport",
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34469,
+    "utf8Bytes": 34412,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5402,7 +5392,7 @@
       },
       {
         "venue": "bishkek-clinic",
-        "triangles": 3402,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
@@ -5414,7 +5404,7 @@
       },
       {
         "venue": "bishkek-community-voting-game",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5432,7 +5422,7 @@
       },
       {
         "venue": "bishkek-meal-stop",
-        "triangles": 3202,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
@@ -5444,13 +5434,13 @@
       },
       {
         "venue": "bishkek-osm-node-11865797560",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bishkek-osm-node-1224398024",
-        "triangles": 3202,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
@@ -5462,7 +5452,7 @@
       },
       {
         "venue": "bishkek-osm-node-4085389965",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5474,37 +5464,37 @@
       },
       {
         "venue": "bishkek-osm-node-9805150731",
-        "triangles": 3178,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bishkek-osm-relation-4775068",
-        "triangles": 3934,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bishkek-osm-way-1025447782",
-        "triangles": 3490,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bishkek-osm-way-1448008187",
-        "triangles": 3610,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bishkek-osm-way-165833844",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bishkek-osm-way-25487169",
-        "triangles": 2578,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
@@ -5516,19 +5506,19 @@
       },
       {
         "venue": "bishkek-osm-way-49130695",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bishkek-osm-way-769141527",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bishkek-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5540,7 +5530,7 @@
       },
       {
         "venue": "bishkek-transit",
-        "triangles": 4010,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

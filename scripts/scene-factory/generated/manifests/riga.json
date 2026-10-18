@@ -5,17 +5,17 @@
   "city": "riga",
   "region": "western-europe",
   "recipeFile": "riga.json",
-  "recipeSha256": "3ba8c0a22cc6b34134da7f2f613041ec7b0a69885e1c2bc26d8dbdf5515c8b61",
+  "recipeSha256": "61157a98d7f8bcb5b9dae2dc8a07b7cb871f06a42e4e2095f26816e5db56a52a",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/riga.json",
-      "sha256": "1b3625c7d1998e33a63dc72ff1dab6ea5792fb4fb9bd6efeffd910f027b394a2",
-      "inputSha256": "38b22c1f1d3ed64a5e8fd5d8666f49649f75f0c84f42e67019ceadc0364f4539",
+      "sha256": "8be8b3bac88d77e80505bdf02c25c074cdac790666c8619080e42aafab13fdbf",
+      "inputSha256": "4857f8c8a0d7d82ff36bdd79000e0ad92c566def3d8388915d847e5d95e73f8e",
       "contentSha256": "668d50cbcded1a639bf4c6a9d28ed12d60243f96ee1194c03722e313ef907938"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 31,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 6,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.84,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "riga-airport-riga-airport",
@@ -5159,6 +5159,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5231,11 +5236,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5245,11 +5245,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5286,6 +5281,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5295,16 +5295,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5314,6 +5304,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5359,16 +5354,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5402,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34371,
+    "utf8Bytes": 34367,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5416,31 +5401,31 @@
     "estimates": [
       {
         "venue": "riga-airport-riga-airport",
-        "triangles": 4010,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riga-clinic",
-        "triangles": 3438,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riga-community-notices",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riga-community-voting-game",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riga-community-workshop",
-        "triangles": 3890,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
@@ -5458,7 +5443,7 @@
       },
       {
         "venue": "riga-osm-node-5257943276",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5470,73 +5455,73 @@
       },
       {
         "venue": "riga-osm-way-104407997",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riga-osm-way-1309603872",
-        "triangles": 4710,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riga-osm-way-153019384",
-        "triangles": 2578,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riga-osm-way-25867450",
-        "triangles": 2882,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riga-osm-way-37953112",
-        "triangles": 3934,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riga-osm-way-380059745",
-        "triangles": 4598,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riga-osm-way-38247112",
-        "triangles": 3978,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riga-osm-way-385118270",
-        "triangles": 3966,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riga-osm-way-406039559",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riga-osm-way-4469063",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riga-osm-way-476926467",
-        "triangles": 3526,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riga-osm-way-479748207",
-        "triangles": 3686,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5554,13 +5539,13 @@
       },
       {
         "venue": "riga-recreation",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riga-transit",
-        "triangles": 2986,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

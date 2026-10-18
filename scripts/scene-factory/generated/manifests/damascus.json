@@ -5,17 +5,17 @@
   "city": "damascus",
   "region": "south-asia",
   "recipeFile": "damascus.json",
-  "recipeSha256": "b1d02a3b48af2f1d402cf93fa660ee7d9e0843e4bb1d0bd1a5fe56de198a1b78",
+  "recipeSha256": "b044496d32856bbe6eed2a680c673bdaa2da41907c226c6c62c467e33b7be4ed",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/damascus.json",
-      "sha256": "b6a31863145eb7ce97a7ebf355ae9da04d02e5fa5557d4705b0297bc9c89f061",
-      "inputSha256": "f6f4f0c1ac23feb8ed64d4cd4771a62fe17465acaeab3da9b48ed2da878ab5e3",
+      "sha256": "5404ed459100be373d559b53d1f3d0a3977f8c2f1060dcb54aeb11797154a209",
+      "inputSha256": "bd82efb84266752b720093a09b0a55d45c57ea0816cc48ed791337360c25b766",
       "contentSha256": "6dab525563d661dc9f33ca6592d7bfb7e827380398dd79325cbc2a6f8b992985"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5258,6 +5258,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5285,11 +5290,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34541,
+    "utf8Bytes": 34639,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,25 +5391,25 @@
     "estimates": [
       {
         "venue": "damascus-airport-damascus-airport",
-        "triangles": 4076,
+        "triangles": 5148,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-clinic",
-        "triangles": 3402,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-community-notices",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-community-voting-game",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5421,13 +5421,13 @@
       },
       {
         "venue": "damascus-market-game",
-        "triangles": 3638,
+        "triangles": 4638,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-meal-stop",
-        "triangles": 3514,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
@@ -5439,13 +5439,13 @@
       },
       {
         "venue": "damascus-osm-node-12989783743",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-osm-node-13386461392",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5457,61 +5457,61 @@
       },
       {
         "venue": "damascus-osm-node-354573941",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "damascus-osm-relation-16920636",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "damascus-osm-relation-4614118",
-        "triangles": 4598,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "damascus-osm-way-106775196",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "damascus-osm-way-1120153082",
+        "venue": "damascus-osm-relation-16920636",
+        "triangles": 2998,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "damascus-osm-relation-4614118",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "damascus-osm-way-106775196",
         "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "damascus-osm-way-1120153082",
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-osm-way-1121497973",
-        "triangles": 2578,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-osm-way-1486782802",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-osm-way-166614282",
-        "triangles": 4610,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-osm-way-28869028",
-        "triangles": 4710,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damascus-osm-way-351273248",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5523,7 +5523,7 @@
       },
       {
         "venue": "damascus-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5535,7 +5535,7 @@
       },
       {
         "venue": "damascus-transit",
-        "triangles": 2698,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

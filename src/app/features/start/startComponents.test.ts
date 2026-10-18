@@ -74,14 +74,16 @@ test('the first screen: full-screen creator with the welcome, the quick characte
   assert.ok(words.includes('Welcome to Allworld') && words.includes('A digital world you can live in'))
   assert.ok(words.includes('Step 1 of 5 · You'))
   const presets = [
-    'Street: Fade hair, Hoodie outfit',
-    'Owambe: Gele hair, Owambe outfit',
-    'Office: Bun hair, Office outfit',
-    'Sporty: Low cut hair, Jersey outfit',
-    'Chill: Braids hair, Casual outfit',
+    ['street', 'Street: Short 01, Casual suit 02'],
+    ['office', 'Office: Ponytail 01, Formal suit with tie'],
+    ['chill', 'Chill: Braid 01, Casual suit 01'],
+    ['evening', 'Evening: Short 02, Worksuit 01'],
   ]
   assert.equal((html.match(/data-qs-preset=/g) ?? []).length, presets.length)
-  for (const accessibleName of presets) assert.match(html, new RegExp(`aria-label="${accessibleName}"`))
+  for (const [id, accessibleName] of presets) {
+    assert.match(html, new RegExp(`data-qs-preset="${id}"`))
+    assert.match(html, new RegExp(`aria-label="${accessibleName}"`))
+  }
   assert.match(html, /role="group" aria-label="Body"/)
   assert.ok(words.includes('Surprise me') && words.includes('Your name'))
   assert.match(html, /<input[^>]*name="name"[^>]*minlength="3"[^>]*maxlength="24"[^>]*autocomplete="nickname"/)
@@ -181,9 +183,9 @@ test('the first screen offers play now, sign up and log in only on a server with
     const html = await render('QuickStartApp', { params: { reason: 'new', creator: true } })
     assert.match(html, /<div class="cr-choices" data-cr-choices>/)
     assert.match(html, /<button[^>]*data-key="play-now"[^>]*>Play now<\/button>/)
-    assert.match(html, /<button[^>]*data-key="sign-up"[^>]*>Sign up free<span> — keep your character<\/span><\/button>/)
-    assert.match(html, /<button[^>]*data-key="sign-in"[^>]*>I already have an account · Log in<\/button>/)
-    assert.ok(text(html).includes('Play now needs no password or e-mail.'))
+    assert.match(html, /<button[^>]*data-key="sign-up"[^>]*>Sign up free<span> to keep your character<\/span><\/button>/)
+    assert.match(html, /<button[^>]*data-key="sign-in"[^>]*>Already have an account\? Log in<\/button>/)
+    assert.ok(text(html).includes('Play now needs no password or email.'))
     // Signed in already: the choices step aside.
     Object.assign(lite.state, { account: { email: 'ada@example.com', provider: 'password', createdAt: 0, devices: 1 } })
     assert.ok(!(await render('QuickStartApp', { params: { reason: 'new', creator: true } })).includes('data-cr-choices'))
@@ -250,17 +252,20 @@ test('a life that finished: its Sim is ready, with a way to edit the look', asyn
   await resetCreator()
 })
 
-test('the look editor: tabs, the open tab\'s options, locked styles say where they are sold, colours are free', async () => {
+test('the look editor: native appearance controls, locked styles say where they are sold, colours are editable', async () => {
   const { starterWardrobe } = await load<{ starterWardrobe: () => unknown }>('/src/app/features/start/lookModel.ts')
   const look = app.game.state.value.onboarding.look
   const html = await render('LookEditor', { look, owned: starterWardrobe() })
   const words = text(html)
-  assert.match(html, /role="tablist" aria-label="What to change"/)
-  for (const tab of ['Body', 'Hair', 'Outfit', 'Colours', 'Extras']) assert.ok(words.includes(tab))
-  assert.ok(words.includes('Body type') && words.includes('Skin tone') && words.includes('Face shape') && words.includes('Expression'))
-  assert.equal((html.match(/data-look="skin"/g) ?? []).length, 7)
-  assert.match(html, /aria-label="Skin tone: Light brown"/)
-  assert.match(html, /<button[^>]*role="tab"[^>]*aria-selected="true"/)
+  assert.match(html, /class="look-editor native-look-editor"/)
+  for (const group of ['Body', 'Hair', 'Outfit', 'Shoes', 'Colours', 'Eyes and complexion', 'Hands', 'Expression']) {
+    assert.match(html, new RegExp(`<legend[^>]*>${group}</legend>`), `native editor exposes ${group}`)
+  }
+  assert.match(html, /<input[^>]*type="color"/)
+  assert.match(html, /aria-label="Height"/)
+  assert.match(html, /aria-label="Expression strength"/)
+  assert.ok(words.includes('Detailed body controls') && words.includes('Detailed face controls'))
+  assert.match(html, /title="Buy in the Boutique"/)
 })
 
 test('the canonical character stage starts loading with its controls and no alternate figure', async () => {

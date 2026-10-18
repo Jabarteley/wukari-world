@@ -5,17 +5,17 @@
   "city": "jalingo",
   "region": "sahel-north",
   "recipeFile": "jalingo.json",
-  "recipeSha256": "9f58fa000abc300225f8cc580b2635213eaf1ac1bd1fe6a277ae3b27e5b08aa6",
+  "recipeSha256": "0a35857ee0397a281b6b0fb83cf3d39ee926617bb452c67e4446e5824cd40065",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/jalingo.json",
-      "sha256": "84b3d75e14b1d624e451e17ddbfd0833b9d9e61a1f3bc9da548494a466796dd3",
-      "inputSha256": "c97143886ba7fea68f369b713de735c27334ead2cf96f18fec9bad376abd1194",
+      "sha256": "55fa213c1f612e18e9df7344cbb70922d25f942fed404dbfbc6870dc5fe65f04",
+      "inputSha256": "b5a38fa050dcdc0ebedf5b99f14227b3ac89feb3a098b477c4771f20dbd5c170",
       "contentSha256": "ada983c87f707fdda4c65e38c37c2f28e08a469a1e30d23700b570cf9be3f944"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5046,11 +5046,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 13,
-    "attemptedCandidateCount": 13,
+    "attemptedCandidateCount": 14,
     "acceptedCandidateCount": 13,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 13,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 12,
+    "firstCandidateSuccessRate": 0.9230769230769231,
     "venues": [
       {
         "venue": "bando-market",
@@ -5084,6 +5084,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5180,7 +5185,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 18700,
+    "utf8Bytes": 18720,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5194,31 +5199,31 @@
     "estimates": [
       {
         "venue": "bando-market",
-        "triangles": 3066,
+        "triangles": 4122,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "central-mosque-sabo-gari",
-        "triangles": 3374,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "college-of-education-jalingo",
-        "triangles": 2490,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-medical-centre-jalingo",
-        "triangles": 3862,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "government-house-mosque-jalingo",
-        "triangles": 3342,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
@@ -5236,19 +5241,19 @@
       },
       {
         "venue": "nana-aishat-central-mosque",
-        "triangles": 2882,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "our-lady-queen-of-peace-cathedral",
-        "triangles": 3342,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rafin-sanyi-rock",
-        "triangles": 2462,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
@@ -5260,13 +5265,13 @@
       },
       {
         "venue": "st-peters-catholic-church-jalingo",
-        "triangles": 3342,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "taraba-state-civil-service",
-        "triangles": 3342,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       }

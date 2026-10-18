@@ -5,17 +5,17 @@
   "city": "san-marino",
   "region": "western-europe",
   "recipeFile": "san-marino.json",
-  "recipeSha256": "a55f453184ae7cf94e4d2df5c16800cf8345b59f3965902328b0ef250deaf80d",
+  "recipeSha256": "69d58a12a131b7be6564788369552bf5696d3b32ec2b8f3938033f0575a97bc4",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/san-marino.json",
-      "sha256": "993e10ebef5901ebadc86e8f782f5ea967c59369117854411ce4e6f55dfbd47c",
-      "inputSha256": "44f8f381e8da98dfba95dec0e94a70093f90539cc944fb46a39d7d66ec466c03",
+      "sha256": "d666e0eb587758d151239b91552645cf53fae9068bee7faecfc34e64791dc3fb",
+      "inputSha256": "22a89009eee1c8d40720bb2ce1d62ccf1c929a255a968214562275c02c7fa59c",
       "contentSha256": "2ea76611e1b4d5975589aeda4393ef7ff33870b45a9ecbb58927aeebc29305e4"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,27 +5130,17 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 30,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 5,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.84,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "san-marino-airport-san-marino-airport",
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5206,7 +5196,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
+            "reason": "crowd[5]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5255,11 +5245,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5368,11 +5353,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5397,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34685,
+    "utf8Bytes": 34686,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5417,115 +5397,115 @@
       },
       {
         "venue": "san-marino-clinic",
-        "triangles": 3370,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-marino-community-notices",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-marino-community-voting-game",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-marino-community-workshop",
-        "triangles": 3438,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-marino-market-game",
-        "triangles": 3318,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-marino-meal-stop",
-        "triangles": 2946,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-marino-osm-node-10718518174",
-        "triangles": 3178,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-marino-osm-node-11495475848",
-        "triangles": 3686,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-marino-osm-node-12903309263",
-        "triangles": 3194,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-marino-osm-node-5840181047",
-        "triangles": 4878,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-marino-osm-node-7194430374",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-marino-osm-way-228380042",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-marino-osm-way-32476612",
-        "triangles": 4614,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-marino-osm-way-364803296",
-        "triangles": 3526,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-marino-osm-way-59305144",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-marino-osm-way-59316453",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-marino-osm-way-59329675",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-marino-osm-way-59329686",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "san-marino-osm-way-59965584",
+        "venue": "san-marino-community-workshop",
+        "triangles": 3402,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-marino-market-game",
+        "triangles": 3994,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-marino-meal-stop",
+        "triangles": 3202,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-marino-osm-node-10718518174",
+        "triangles": 2946,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-marino-osm-node-11495475848",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-marino-osm-node-12903309263",
+        "triangles": 3274,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-marino-osm-node-5840181047",
+        "triangles": 3966,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-marino-osm-node-7194430374",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-marino-osm-way-228380042",
         "triangles": 3490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-marino-osm-way-32476612",
+        "triangles": 3610,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-marino-osm-way-364803296",
+        "triangles": 2578,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-marino-osm-way-59305144",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-marino-osm-way-59316453",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-marino-osm-way-59329675",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-marino-osm-way-59329686",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-marino-osm-way-59965584",
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5537,25 +5517,25 @@
       },
       {
         "venue": "san-marino-osm-way-770859631",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-marino-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-marino-recreation",
-        "triangles": 4710,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-marino-transit",
-        "triangles": 4238,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

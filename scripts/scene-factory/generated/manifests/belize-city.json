@@ -5,17 +5,17 @@
   "city": "belize-city",
   "region": "americas-oceania",
   "recipeFile": "belize-city.json",
-  "recipeSha256": "1f747fe465a44ea29fea61f5efad4262911d537c24fa6d0a3bbd48a4ff0b6a39",
+  "recipeSha256": "bc0f8e9dc7f057571e0388a406be9e1c8cd44edfe86681221169bbb1a4a22db7",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/belize-city.json",
-      "sha256": "eb7b94714a57068b4af79cb371aec4faaea9dbc280ee12b39075bc70cb5331be",
-      "inputSha256": "92e9f36aade20bb6c2ad800f6bd6a1ab758497418b78b03a8ae3665c413aa592",
+      "sha256": "44c59c850b7fabea3032f88478f0241aaca95c37e7f19c5ff2c3c082e244a72e",
+      "inputSha256": "cdc02960219f85ea3d61c11eb5a65aa6faecccdc85bee325209d36e87081632d",
       "contentSha256": "2dd4e755b0c3ee86135162ef6ff3d8b2ad336ac63460911c48d75a6bf4f1f9f0"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5141,6 +5141,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5240,11 +5245,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5255,7 +5255,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
+            "reason": "crowd[0]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5322,6 +5322,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5331,11 +5336,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34793,
+    "utf8Bytes": 34777,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,49 +5401,49 @@
     "estimates": [
       {
         "venue": "belize-city-airport-belize-city-airport",
-        "triangles": 2698,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belize-city-clinic",
-        "triangles": 2910,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belize-city-community-notices",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belize-city-community-voting-game",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belize-city-community-workshop",
-        "triangles": 3402,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belize-city-market-game",
-        "triangles": 3830,
+        "triangles": 3762,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belize-city-meal-stop",
-        "triangles": 3274,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belize-city-osm-node-12596381963",
-        "triangles": 3202,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
@@ -5455,67 +5455,67 @@
       },
       {
         "venue": "belize-city-osm-relation-8504547",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belize-city-osm-way-1015283263",
-        "triangles": 3490,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belize-city-osm-way-1119389631",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belize-city-osm-way-113653382",
-        "triangles": 3798,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "belize-city-osm-way-259179297",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "belize-city-osm-way-259180757",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "belize-city-osm-way-295702030",
-        "triangles": 3898,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "belize-city-osm-way-295702032",
-        "triangles": 3898,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "belize-city-osm-way-375230999",
         "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "belize-city-osm-way-259179297",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "belize-city-osm-way-259180757",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "belize-city-osm-way-295702030",
+        "triangles": 3966,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "belize-city-osm-way-295702032",
+        "triangles": 4878,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "belize-city-osm-way-375230999",
+        "triangles": 3730,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "belize-city-osm-way-375289101",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belize-city-osm-way-376017484",
-        "triangles": 3178,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
@@ -5533,7 +5533,7 @@
       },
       {
         "venue": "belize-city-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5545,7 +5545,7 @@
       },
       {
         "venue": "belize-city-transit",
-        "triangles": 4236,
+        "triangles": 2696,
         "meshes": 12,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "avarua",
   "region": "americas-oceania",
   "recipeFile": "avarua.json",
-  "recipeSha256": "ccc15be85d27cdbba37d62e14ed73a61c072d1a75c16b04eb5d8002f1ea81aff",
+  "recipeSha256": "4327665263b9dcf425a0c16aeaedf3791b9475902a9158a100f90cd211584b44",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/avarua.json",
-      "sha256": "952d8c88de8084579d9ae10777112c50cdd10bd7d2be88f4a57e9bed5c16eba8",
-      "inputSha256": "35a374d3badfcb1094a7c02d3356dbc7ab9c498d556764dd79efa2486d93f705",
+      "sha256": "3e45befd3f7ccb4a285cd9bceea096c2849724bd72f0e0d7343244396b77096c",
+      "inputSha256": "676b79c823172381f1335996722d28f2411f034b3a65af918aaa27a046974a1c",
       "contentSha256": "5dd3285f09522ededa46663d0c78a4c0f2865b4e922bfa9a71c065fd819a96aa"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5116,11 +5116,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 23,
-    "attemptedCandidateCount": 24,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 23,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.9565217391304348,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 20,
+    "firstCandidateSuccessRate": 0.8695652173913043,
     "venues": [
       {
         "venue": "avarua-airport-avarua-airport",
@@ -5136,6 +5136,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5172,6 +5177,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5262,6 +5272,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5325,11 +5340,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5345,7 +5355,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 31803,
+    "utf8Bytes": 31723,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5359,55 +5369,55 @@
     "estimates": [
       {
         "venue": "avarua-airport-avarua-airport",
-        "triangles": 4010,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-clinic",
-        "triangles": 3402,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-community-notices",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-community-voting-game",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-community-workshop",
-        "triangles": 3402,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-market-game",
-        "triangles": 4326,
+        "triangles": 3582,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-meal-stop",
-        "triangles": 3274,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-osm-node-12237139801",
-        "triangles": 3194,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-osm-node-2100754933",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5419,49 +5429,49 @@
       },
       {
         "venue": "avarua-osm-node-2148100832",
-        "triangles": 2998,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-osm-node-2187931298",
-        "triangles": 3202,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-osm-node-6324434485",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-osm-way-1079320783",
-        "triangles": 4598,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-osm-way-1079412410",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-osm-way-1081629061",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-osm-way-196945531",
-        "triangles": 4610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-osm-way-201214783",
-        "triangles": 3978,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
@@ -5473,7 +5483,7 @@
       },
       {
         "venue": "avarua-osm-way-598519609",
-        "triangles": 4598,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
@@ -5485,13 +5495,13 @@
       },
       {
         "venue": "avarua-recreation",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "avarua-transit",
-        "triangles": 2986,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

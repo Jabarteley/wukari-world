@@ -5,17 +5,17 @@
   "city": "gombe",
   "region": "sahel-north",
   "recipeFile": "gombe.json",
-  "recipeSha256": "3ac762864e419911eb1aa960d026ab95e6331d5eb6e013bad8b72e4040c772b2",
+  "recipeSha256": "7542f0047b3c816a4b81e03bb86ea235a18594a128b4e9e9f058a9fb168b089f",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/gombe.json",
-      "sha256": "f39b7abc6756a1e79878f356134082d9104c828efce5cebbed5e7336f2ba3175",
-      "inputSha256": "2406d0baee78f108d23768b3234703313e2603ec9aea623975952e394e8a961f",
+      "sha256": "36386918ff5856c27cbf43bec374866db6b6489b3a9b40894f9a5af644c2583b",
+      "inputSha256": "d6ba5f27e291a5606769bb339add1e4e573cad5df0bd840b0a9905f55d27df0a",
       "contentSha256": "22dfaeebdc0f5ce7f84a700fff077e0d67eb49e67e3137913924662089b120ad"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5115,6 +5115,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5124,11 +5129,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5165,6 +5165,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5247,7 +5252,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
+            "reason": "crowd[5]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5278,11 +5283,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5307,7 +5307,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 28487,
+    "utf8Bytes": 28614,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5327,7 +5327,7 @@
       },
       {
         "venue": "botanical-garden-gombe",
-        "triangles": 3758,
+        "triangles": 3546,
         "meshes": 13,
         "lights": 3
       },
@@ -5339,19 +5339,19 @@
       },
       {
         "venue": "catholic-church-gombe",
-        "triangles": 2882,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "central-mosque-emir-palace",
-        "triangles": 3342,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dados-eatery",
-        "triangles": 2974,
+        "triangles": 3206,
         "meshes": 13,
         "lights": 3
       },
@@ -5363,43 +5363,43 @@
       },
       {
         "venue": "federal-teaching-hospital-gombe",
-        "triangles": 3862,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "first-bank-gombe",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gombe-line-bus-station",
-        "triangles": 3162,
+        "triangles": 4474,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gombe-state-university",
-        "triangles": 3402,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gombe-treasury-house",
-        "triangles": 2882,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gtbank-gombe",
-        "triangles": 3342,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "inec-hq-gombe",
-        "triangles": 2462,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
@@ -5417,19 +5417,19 @@
       },
       {
         "venue": "pantami-stadium",
-        "triangles": 3026,
+        "triangles": 3486,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "shiloh-baptist-church-malan-inna",
-        "triangles": 3374,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "specialist-hospital-gombe",
-        "triangles": 3890,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },

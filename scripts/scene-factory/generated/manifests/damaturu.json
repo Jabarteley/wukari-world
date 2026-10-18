@@ -5,17 +5,17 @@
   "city": "damaturu",
   "region": "sahel-north",
   "recipeFile": "damaturu.json",
-  "recipeSha256": "68628049e4478b2f88158b9972fec9487182bb54a1780786e9eaa2029fb81194",
+  "recipeSha256": "8b8bc6eff2af505c8ef590d3e6befb283d9aee86681bd5b8130b340d89516034",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/damaturu.json",
-      "sha256": "fcce174a9fbf06146e9d7b3b2e47249fb37dfe010fa14a4bd43b4f48a26932ae",
-      "inputSha256": "d95196072011ed9dde7cc7dbb9f87d4ac415deed2c6b1ea097310da96addbd9b",
+      "sha256": "305171900bc056cf13a9f05054d783a5bf922f132c18081358b64641c93e2aac",
+      "inputSha256": "47f2ac2d25c6f6f6fe9b43c5bdcf976c6c64da2f878e3064acc59064f4600da4",
       "contentSha256": "bc549781cfc9f470fcde1fa7187573804a1d0e27a3c67766a75442ac14c565b8"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5046,17 +5046,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 13,
-    "attemptedCandidateCount": 13,
+    "attemptedCandidateCount": 17,
     "acceptedCandidateCount": 13,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 13,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 4,
+    "firstCandidateSuccessCount": 9,
+    "firstCandidateSuccessRate": 0.6923076923076923,
     "venues": [
       {
         "venue": "august-27-stadium",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5102,6 +5107,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5129,6 +5139,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5138,6 +5153,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5180,7 +5200,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 18737,
+    "utf8Bytes": 18713,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5194,25 +5214,25 @@
     "estimates": [
       {
         "venue": "august-27-stadium",
-        "triangles": 3486,
+        "triangles": 4006,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bayan-tasha-market",
-        "triangles": 4334,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damaturu-central-mosque",
-        "triangles": 3862,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "damaturu-modern-market",
-        "triangles": 3126,
+        "triangles": 2814,
         "meshes": 13,
         "lights": 3
       },
@@ -5224,49 +5244,49 @@
       },
       {
         "venue": "general-sani-abacha-specialist-hospital",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "national-museum-damaturu",
-        "triangles": 2882,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-marys-catholic-church-damaturu",
-        "triangles": 2462,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "state-teaching-hospital-damaturu",
-        "triangles": 2882,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "yobe-islamic-centre",
-        "triangles": 3342,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "yobe-line-motor-park",
-        "triangles": 3014,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "yobe-state-house-of-assembly",
         "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "st-marys-catholic-church-damaturu",
+        "triangles": 3862,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "state-teaching-hospital-damaturu",
+        "triangles": 3862,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "yobe-islamic-centre",
+        "triangles": 2462,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "yobe-line-motor-park",
+        "triangles": 3558,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "yobe-state-house-of-assembly",
+        "triangles": 3342,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "yobe-state-university",
-        "triangles": 2490,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       }

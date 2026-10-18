@@ -5,17 +5,17 @@
   "city": "quito",
   "region": "americas-oceania",
   "recipeFile": "quito.json",
-  "recipeSha256": "82362e0a79e34a8936823461aa24d5bce3fb7d71b06633166c881370e98725ed",
+  "recipeSha256": "0a0fabdef310f5052266719d3c36f03d7a5aef10a97a24d6c1cd1d67a315a104",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/quito.json",
-      "sha256": "07339ff3803160e57b862368d1764e5fe5fcad42fd9075abe488770183e4ac1e",
-      "inputSha256": "769a5d6cf5ccf8896c98532fafff2e6ebca2520c8173f1d4b309bac30ea30b65",
+      "sha256": "51a20b90b820a27ed0241fa38b6bc305373a065c4e986a1cec78602ffddaa3bd",
+      "inputSha256": "7e086865ac4a06a3d22f41e674972fc8234ac2e9134101f6020968b5924a7712",
       "contentSha256": "721f3939ad504d03a7c6ce7f7ce858c81ac825001fb1b3b7556d9aefdc5dd54c"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "quito-airport-quito-airport",
@@ -5231,6 +5231,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34439,
+    "utf8Bytes": 34419,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5392,7 +5397,7 @@
       },
       {
         "venue": "quito-clinic",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
@@ -5404,37 +5409,37 @@
       },
       {
         "venue": "quito-community-voting-game",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "quito-community-workshop",
-        "triangles": 3370,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "quito-market-game",
-        "triangles": 4178,
+        "triangles": 3190,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "quito-meal-stop",
-        "triangles": 2946,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "quito-osm-node-2137276238",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "quito-osm-node-6124047644",
-        "triangles": 2946,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
@@ -5446,31 +5451,31 @@
       },
       {
         "venue": "quito-osm-relation-4104543",
-        "triangles": 3490,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "quito-osm-way-1077119324",
-        "triangles": 3490,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "quito-osm-way-1090509480",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "quito-osm-way-161111197",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "quito-osm-way-24680928",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
@@ -5482,7 +5487,7 @@
       },
       {
         "venue": "quito-osm-way-31152844",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5494,43 +5499,43 @@
       },
       {
         "venue": "quito-osm-way-341560247",
-        "triangles": 3898,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "quito-osm-way-463806835",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "quito-osm-way-63058770",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "quito-osm-way-673325435",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "quito-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "quito-recreation",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "quito-transit",
-        "triangles": 2698,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

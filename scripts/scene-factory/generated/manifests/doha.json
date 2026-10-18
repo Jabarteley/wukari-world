@@ -5,17 +5,17 @@
   "city": "doha",
   "region": "south-asia",
   "recipeFile": "doha.json",
-  "recipeSha256": "b69aff7a55b51ccf8fb41d14b800e2d1a327425b546b0a8ba56f95d7e0d2e562",
+  "recipeSha256": "cd7e4b9e18fcd7c8672e997b8c31da9c2f994580bc22370bc5ca099090ce2f28",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/doha.json",
-      "sha256": "04bc6cb5d0b7baecfa045af0f83256dd05f07472406c0e2349f2c93259a370ed",
-      "inputSha256": "3537cf13248980c81b36e07644f69fc73de3eefc6b05b6440d5d9d3f680a385a",
+      "sha256": "2f14e99c6be17b1dd38db4c12a57c43ca7013062e98ce31c8967121adbd84f6a",
+      "inputSha256": "13e488d2cae5093ae60107a523e354a84d7c2547c0b2599b5406d1d36126978c",
       "contentSha256": "88d171e0f27edf8a2ea5d5ef90950413999d7679ac8b60d6428699b8ecb0e773"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 30,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 5,
+    "firstCandidateSuccessCount": 20,
+    "firstCandidateSuccessRate": 0.8,
     "venues": [
       {
         "venue": "doha-airport-doha-airport",
@@ -5204,11 +5204,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5227,6 +5222,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5245,6 +5245,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5254,6 +5259,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5263,6 +5273,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5335,6 +5350,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5397,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34279,
+    "utf8Bytes": 34257,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5397,103 +5417,103 @@
       },
       {
         "venue": "doha-clinic",
-        "triangles": 3370,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "doha-community-notices",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "doha-community-voting-game",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "doha-community-workshop",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "doha-market-game",
-        "triangles": 3638,
+        "triangles": 4642,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "doha-meal-stop",
-        "triangles": 3274,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "doha-osm-node-13278587089",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "doha-osm-node-3424940793",
-        "triangles": 4666,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "doha-osm-node-6785101974",
-        "triangles": 3514,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "doha-osm-relation-10664399",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "doha-osm-relation-13338453",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "doha-osm-node-3424940793",
+        "triangles": 4614,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "doha-osm-node-6785101974",
+        "triangles": 3178,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "doha-osm-relation-10664399",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "doha-osm-relation-13338453",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "doha-osm-way-103002122",
-        "triangles": 4610,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "doha-osm-way-154525758",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "doha-osm-way-154923131",
-        "triangles": 3458,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "doha-osm-way-155039774",
-        "triangles": 3978,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "doha-osm-way-238026555",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "doha-osm-way-239171216",
-        "triangles": 3978,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
@@ -5505,13 +5525,13 @@
       },
       {
         "venue": "doha-osm-way-684144291",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "doha-osm-way-684407873",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5523,7 +5543,7 @@
       },
       {
         "venue": "doha-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5535,7 +5555,7 @@
       },
       {
         "venue": "doha-transit",
-        "triangles": 2698,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

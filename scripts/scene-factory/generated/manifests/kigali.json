@@ -5,17 +5,17 @@
   "city": "kigali",
   "region": "east-africa",
   "recipeFile": "kigali.json",
-  "recipeSha256": "6cb0f2abb7fb478873f1e5599dbe8e1a8f86c174efc6d9960e526888e38e72a3",
+  "recipeSha256": "ccb90cf844f6caf72e5509efa9f70b01e3142c225a324e44f87469ba9fd40fc9",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/kigali.json",
-      "sha256": "19c1e7751f36d5a7abff2a4a162d37683218d32b457d38836ca744faab5b90ea",
-      "inputSha256": "dd0fcbafbd896cf0db36813480a57debd8e03d753ece5d89c10f8e885ccdf80f",
+      "sha256": "1546cde25832a432e67cd9ea7748c8a780fddd780533a67d86563efbf5709d57",
+      "inputSha256": "ad4678a2ee653a2740214055d68ee90b001a7577b5b8592a2c79b241b0829485",
       "contentSha256": "849cdc7c1e6855eb849090e88dc01c3e0b447cd5c99ea0b665ef78fab1ae5956"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5137,11 +5137,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 26,
-    "attemptedCandidateCount": 29,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 26,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.9230769230769231,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 0.9615384615384616,
     "venues": [
       {
         "venue": "kigali-airport-kigali-airport",
@@ -5256,16 +5256,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5320,11 +5310,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5388,6 +5373,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5403,7 +5393,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 35934,
+    "utf8Bytes": 35824,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5417,127 +5407,127 @@
     "estimates": [
       {
         "venue": "kigali-airport-kigali-airport",
-        "triangles": 4238,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kigali-amahoro-stadium",
-        "triangles": 3490,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kigali-bk-arena",
-        "triangles": 2578,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kigali-campaign-against-genocide-museum",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kigali-centre-culturel-islamique",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kigali-clinic",
-        "triangles": 2910,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kigali-college-of-science-and-technology",
-        "triangles": 4598,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kigali-community-notices",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kigali-community-voting-game",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kigali-community-workshop",
-        "triangles": 3890,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kigali-convention-centre",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kigali-genocide-memorial",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kigali-kandt-house-museum",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kigali-kigali-golf-course",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kigali-kigali-heights",
-        "triangles": 3610,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kigali-market-game",
-        "triangles": 4842,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kigali-meal-stop",
-        "triangles": 3274,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kigali-nyamirambo-womens-centre",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kigali-nyandungu-wetland-park",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "kigali-community-voting-game",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kigali-community-workshop",
+        "triangles": 3438,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kigali-convention-centre",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kigali-genocide-memorial",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kigali-kandt-house-museum",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kigali-kigali-golf-course",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kigali-kigali-heights",
+        "triangles": 4614,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kigali-market-game",
+        "triangles": 3786,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kigali-meal-stop",
+        "triangles": 3202,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kigali-nyamirambo-womens-centre",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kigali-nyandungu-wetland-park",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "kigali-parliament",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kigali-pele-stadium",
-        "triangles": 2998,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5549,25 +5539,25 @@
       },
       {
         "venue": "kigali-recreation",
-        "triangles": 4710,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kigali-transit",
-        "triangles": 2986,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kigali-union-trade-centre",
-        "triangles": 4666,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kigali-university-of-global-health-equity",
-        "triangles": 4598,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       }

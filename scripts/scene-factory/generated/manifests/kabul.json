@@ -5,17 +5,17 @@
   "city": "kabul",
   "region": "south-asia",
   "recipeFile": "kabul.json",
-  "recipeSha256": "40163385183a7b9957f7f364ceda980dbce19769879e696e54f03751f63d362f",
+  "recipeSha256": "0a32f08322560f8d828056bcf165955dedade2c298cac3a5988771d2fe75376d",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/kabul.json",
-      "sha256": "2dd6f403050b88a529226cc0237d3a617240195116dacd1c926a0a3fec03facc",
-      "inputSha256": "c63b2503dd7a31d9b1ccc687a4b92a402f054776606472d2041387b2f4610f1a",
+      "sha256": "605b47ae521feb7e9a0a810c378f41e57b5253049953329f5bbaeeb6ef3737e2",
+      "inputSha256": "edf5c53d11b105975fb6e115d4cd434beccc8e5e7be0bcc48968744808c758fa",
       "contentSha256": "940a906bcc93e982eba61d724cddcdbc1c04ce4aedb5a28b009c170a907aee21"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5141,11 +5141,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5191,11 +5186,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5205,6 +5195,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5232,6 +5227,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34352,
+    "utf8Bytes": 34375,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,19 +5396,19 @@
     "estimates": [
       {
         "venue": "kabul-airport-kabul-airport",
-        "triangles": 4238,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kabul-clinic",
-        "triangles": 3438,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kabul-community-notices",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5426,31 +5426,31 @@
       },
       {
         "venue": "kabul-market-game",
-        "triangles": 3942,
+        "triangles": 4930,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kabul-meal-stop",
-        "triangles": 3194,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kabul-osm-node-13597152438",
-        "triangles": 3274,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kabul-osm-node-2551955816",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kabul-osm-node-7965537558",
-        "triangles": 2946,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
@@ -5468,79 +5468,79 @@
       },
       {
         "venue": "kabul-osm-way-199353387",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kabul-osm-way-199999770",
-        "triangles": 3898,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kabul-osm-way-200364379",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kabul-osm-way-201198534",
-        "triangles": 4430,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kabul-osm-way-560456603",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kabul-osm-way-710563825",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kabul-osm-way-772243563",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kabul-osm-way-793260749",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kabul-osm-way-864540700",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kabul-osm-way-991169055",
         "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "kabul-quiet-reflection",
+        "venue": "kabul-osm-way-200364379",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kabul-osm-way-201198534",
+        "triangles": 3518,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kabul-osm-way-560456603",
+        "triangles": 2998,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kabul-osm-way-710563825",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kabul-osm-way-772243563",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "kabul-osm-way-793260749",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kabul-osm-way-864540700",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kabul-osm-way-991169055",
+        "triangles": 3686,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kabul-quiet-reflection",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "kabul-recreation",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kabul-transit",
-        "triangles": 2698,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

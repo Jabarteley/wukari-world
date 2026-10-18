@@ -5,17 +5,17 @@
   "city": "uyo",
   "region": "niger-delta",
   "recipeFile": "uyo.json",
-  "recipeSha256": "3dacbc1684a785d1fbeb5ef558490b1aeb65d3f62586d77959193f12914f75c5",
+  "recipeSha256": "ff70ea701c6ae9e1912267e621a736e19f193c6339e0ca88995832854a2fe034",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/uyo.json",
-      "sha256": "0af355a2c8bad83bc24f44dcf7f98e47505c97296d60dcd717b808f1a7d01c66",
-      "inputSha256": "7705d45ba365da69e00b20d4ea68462c387a87d79e05864e741c77c628ba5119",
+      "sha256": "55911b5a0535f3f4fb841d209b64eaa50ab1580a173b28186709f253ccacd50f",
+      "inputSha256": "0701e139e143708065c804c2ffa1cb5380c212fa4fab6c0925c93b60f27c3a8a",
       "contentSha256": "70b6654769adc1ab109f55cee81871a43c74126fb75a16763fa1dda0d000402e"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5067,11 +5067,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 16,
-    "attemptedCandidateCount": 18,
+    "attemptedCandidateCount": 16,
     "acceptedCandidateCount": 16,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 15,
-    "firstCandidateSuccessRate": 0.9375,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 16,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "akpan-andem-market",
@@ -5141,16 +5141,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5238,7 +5228,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 22697,
+    "utf8Bytes": 22678,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5252,49 +5242,49 @@
     "estimates": [
       {
         "venue": "akpan-andem-market",
-        "triangles": 4274,
+        "triangles": 3286,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "aktc-park",
-        "triangles": 4266,
+        "triangles": 4038,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "akwa-ibom-house-of-assembly",
-        "triangles": 3374,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "akwa-ibom-state-secretariat",
-        "triangles": 3342,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "cheeries-fast-food",
-        "triangles": 3542,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "full-life-christian-centre",
         "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "akwa-ibom-state-secretariat",
+        "triangles": 3374,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "cheeries-fast-food",
+        "triangles": 3206,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "full-life-christian-centre",
+        "triangles": 3342,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "godswill-akpabio-stadium",
-        "triangles": 3486,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "national-museum-uyo",
-        "triangles": 3862,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
@@ -5312,37 +5302,37 @@
       },
       {
         "venue": "union-bank-uyo",
-        "triangles": 3410,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "unity-park-uyo",
-        "triangles": 3826,
+        "triangles": 4738,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "university-of-uyo",
-        "triangles": 2490,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "uuth-uyo",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "uyo-township-stadium",
-        "triangles": 3554,
+        "triangles": 4006,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zenith-bank-uyo",
-        "triangles": 3410,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       }

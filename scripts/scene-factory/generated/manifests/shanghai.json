@@ -5,17 +5,17 @@
   "city": "shanghai",
   "region": "east-asia",
   "recipeFile": "shanghai.json",
-  "recipeSha256": "312c396f9a0be57b4edcf808d0bf5e7480f74ec09bd2da3ef849e0d4ee2338ce",
+  "recipeSha256": "0b4d3b6985a93f0eaa1ef25c270461b3097e63410dd601dab4a55b3ae0907788",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/shanghai.json",
-      "sha256": "d147e722077e02e0c34b9e4432b0b09a198727936d503f30983411bcbe32f8a0",
-      "inputSha256": "5ed0a42d015c5439654926e38d0acb694e26431ecdd4810900fab7bcb2ed0808",
+      "sha256": "9da61db2fbbb826fec36c24259a12621e76f665509c1a29b4804978ed6325cba",
+      "inputSha256": "354b3e696917cde2c7d3b09ba8aa4c500b2f9f81fe97f4ade105241c2d843ee2",
       "contentSha256": "d5b84f494240b98c8e3110ad463caac59539bd5e62d5b010a64abe2945532793"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "shanghai-airport-shanghai-airport",
@@ -5159,6 +5159,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5285,6 +5290,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34569,
+    "utf8Bytes": 34446,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,19 +5396,19 @@
     "estimates": [
       {
         "venue": "shanghai-airport-shanghai-airport",
-        "triangles": 2986,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "shanghai-clinic",
-        "triangles": 3438,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "shanghai-community-notices",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5410,19 +5420,19 @@
       },
       {
         "venue": "shanghai-community-workshop",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "shanghai-market-game",
-        "triangles": 3198,
+        "triangles": 4930,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "shanghai-meal-stop",
-        "triangles": 2946,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
@@ -5434,19 +5444,19 @@
       },
       {
         "venue": "shanghai-osm-relation-18781565",
-        "triangles": 4598,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "shanghai-osm-relation-5390610",
         "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "shanghai-osm-relation-5390610",
+        "triangles": 3686,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "shanghai-osm-way-1363229598",
-        "triangles": 4666,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
@@ -5458,19 +5468,19 @@
       },
       {
         "venue": "shanghai-osm-way-183944730",
-        "triangles": 3798,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "shanghai-osm-way-192206043",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "shanghai-osm-way-24448592",
-        "triangles": 3978,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5488,13 +5498,13 @@
       },
       {
         "venue": "shanghai-osm-way-404699628",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "shanghai-osm-way-462007561",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5506,31 +5516,31 @@
       },
       {
         "venue": "shanghai-osm-way-51051520",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "shanghai-osm-way-712187766",
-        "triangles": 3730,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "shanghai-quiet-reflection",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "shanghai-recreation",
         "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "shanghai-quiet-reflection",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "shanghai-recreation",
+        "triangles": 3798,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "shanghai-transit",
-        "triangles": 3530,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

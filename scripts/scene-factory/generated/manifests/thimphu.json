@@ -5,17 +5,17 @@
   "city": "thimphu",
   "region": "south-asia",
   "recipeFile": "thimphu.json",
-  "recipeSha256": "752381fefdd60b71f774f5c95946184b65ab724c9e451987042e9951909dd807",
+  "recipeSha256": "0c42402780e7d8758b6eb1ca4b122408f2b9c8d6f8c7be41ae96eaefa9914690",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/thimphu.json",
-      "sha256": "ec17796a57881e59a3255d3b33400de318ce35f884ab23e5e8eaa62757575df5",
-      "inputSha256": "c21f06d31373bfff843535e5aeb6d05d1877ed23bbbb297d6c659f964d0d11ca",
+      "sha256": "f460c99c34934d050b124e46ec524662da99e66ec18f492805967c4a53b8ad20",
+      "inputSha256": "e2e150878fb3918a63e1463f58cb99da455752cede75a5ae11ada8c5ae870be9",
       "contentSha256": "2cd02e5b97170f23da213261f1be00e41acb369f2891805e83b6052b74740840"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "thimphu-airport-thimphu-airport",
@@ -5213,11 +5213,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5263,11 +5258,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5277,6 +5267,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34383,
+    "utf8Bytes": 34468,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,31 +5391,31 @@
     "estimates": [
       {
         "venue": "thimphu-airport-thimphu-airport",
-        "triangles": 4238,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "thimphu-clinic",
-        "triangles": 3438,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "thimphu-community-notices",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "thimphu-community-voting-game",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "thimphu-community-workshop",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
@@ -5438,19 +5433,19 @@
       },
       {
         "venue": "thimphu-osm-node-10308083192",
-        "triangles": 4666,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "thimphu-osm-node-10756662149",
-        "triangles": 3202,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "thimphu-osm-node-11933012275",
-        "triangles": 3178,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
@@ -5462,49 +5457,49 @@
       },
       {
         "venue": "thimphu-osm-node-6161406390",
-        "triangles": 3898,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "thimphu-osm-relation-2532733",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "thimphu-osm-way-1380032231",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "thimphu-osm-way-1380056477",
-        "triangles": 3798,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "thimphu-osm-way-187025042",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "thimphu-osm-way-217728797",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "thimphu-osm-way-369953190",
-        "triangles": 2578,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "thimphu-osm-way-431787600",
-        "triangles": 3898,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
@@ -5516,25 +5511,25 @@
       },
       {
         "venue": "thimphu-osm-way-541766925",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "thimphu-osm-way-663910123",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "thimphu-quiet-reflection",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "thimphu-osm-way-663910123",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "thimphu-quiet-reflection",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "thimphu-recreation",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },

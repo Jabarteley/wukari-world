@@ -5,17 +5,17 @@
   "city": "hong-kong",
   "region": "east-asia",
   "recipeFile": "hong-kong.json",
-  "recipeSha256": "887c23ffef30d25f3924b97693062f7c6046af126e4e62386e34f72e84b83cfb",
+  "recipeSha256": "036e5ced67d8548db7d5c721a3277876f9b1f6452758b6abc63bc8785cd19ac4",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/hong-kong.json",
-      "sha256": "dc5b6a64e7f70c9af85ff16c2495eb614371afdc9b1e3d06b3808be2e421df7b",
-      "inputSha256": "650f32768e249b74536d0319737ca66edbce1fbed6738c5cd1abefff993529b1",
+      "sha256": "295f80e79235579029412e9296bb477fafc1a08d5a8fbf36be1ae6e4ca285dc4",
+      "inputSha256": "f6d2e0e3371e4be46faa8d87d134e76864f76538e430bab803002400b3ae3a79",
       "contentSha256": "d1e29d1eec9ef48bd12068803c480b4a676d2a82fb7c4df5d231cb9e432ddfdd"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5177,6 +5177,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5294,11 +5299,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34623,
+    "utf8Bytes": 34541,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,7 +5391,7 @@
     "estimates": [
       {
         "venue": "hong-kong-airport-hong-kong-airport",
-        "triangles": 3590,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
@@ -5403,25 +5403,25 @@
       },
       {
         "venue": "hong-kong-community-notices",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hong-kong-community-voting-game",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hong-kong-community-workshop",
-        "triangles": 3438,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hong-kong-market-game",
-        "triangles": 3198,
+        "triangles": 3942,
         "meshes": 13,
         "lights": 3
       },
@@ -5433,31 +5433,31 @@
       },
       {
         "venue": "hong-kong-osm-node-3890530477",
-        "triangles": 2578,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hong-kong-osm-node-8266367332",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hong-kong-osm-relation-11953382",
-        "triangles": 3610,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hong-kong-osm-relation-12917211",
-        "triangles": 4710,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hong-kong-osm-way-125447650",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
@@ -5469,49 +5469,49 @@
       },
       {
         "venue": "hong-kong-osm-way-158053530",
-        "triangles": 3490,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hong-kong-osm-way-169542419",
-        "triangles": 2998,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hong-kong-osm-way-186138931",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hong-kong-osm-way-205759235",
-        "triangles": 4598,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hong-kong-osm-way-322429617",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "hong-kong-osm-way-445060456",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "hong-kong-osm-way-445060456",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "hong-kong-osm-way-457242085",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hong-kong-osm-way-587740480",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5529,13 +5529,13 @@
       },
       {
         "venue": "hong-kong-recreation",
-        "triangles": 4710,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hong-kong-transit",
-        "triangles": 4010,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

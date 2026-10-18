@@ -5,17 +5,17 @@
   "city": "stanley",
   "region": "americas-oceania",
   "recipeFile": "stanley.json",
-  "recipeSha256": "699e6e84bda8a0bad97f48827bdab32a476bcbac08e89ca8a4f7b8455eb9a939",
+  "recipeSha256": "85de99a49f6dc10f680262ae202562d130f55d74e533390b6344fb16e25c219e",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/stanley.json",
-      "sha256": "6c0a0339a67b29f80feb68b11403e5e05c0a778c207475d869e9e534c42d080e",
-      "inputSha256": "9b4258105fd5377dda7545cbec7a4c1a37a6307c56ec62b7afb038ee9e1909b7",
+      "sha256": "fa764e4573844a10b85b4c32cd3f4a2906e2d7583f74ed73c089b9a412edf4be",
+      "inputSha256": "321c7e86439b2dd24a80ad4d1e90f66a49b69817025caa6890410e682f769711",
       "contentSha256": "d0423089d3051c8b9f7dc091e0360a8d53209545e9164e7b84556321defccbeb"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5081,22 +5081,17 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 18,
-    "attemptedCandidateCount": 22,
+    "attemptedCandidateCount": 19,
     "acceptedCandidateCount": 18,
-    "rejectedCandidateCount": 4,
-    "firstCandidateSuccessCount": 14,
-    "firstCandidateSuccessRate": 0.7777777777777778,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 17,
+    "firstCandidateSuccessRate": 0.9444444444444444,
     "venues": [
       {
         "venue": "stanley-airport-stanley-airport",
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5133,11 +5128,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5156,11 +5146,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5206,6 +5191,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5242,11 +5232,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5280,7 +5265,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 24988,
+    "utf8Bytes": 24924,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5300,61 +5285,61 @@
       },
       {
         "venue": "stanley-clinic",
-        "triangles": 3402,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "stanley-community-notices",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "stanley-community-voting-game",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "stanley-community-workshop",
-        "triangles": 3438,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "stanley-market-game",
-        "triangles": 3962,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "stanley-meal-stop",
-        "triangles": 3178,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "stanley-osm-node-10095786051",
-        "triangles": 3194,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "stanley-osm-node-135001622",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "stanley-community-workshop",
+        "triangles": 3890,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "stanley-market-game",
+        "triangles": 2910,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "stanley-meal-stop",
+        "triangles": 3514,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "stanley-osm-node-10095786051",
+        "triangles": 3202,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "stanley-osm-node-135001622",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "stanley-osm-node-1791574651",
-        "triangles": 2578,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "stanley-osm-node-9563237706",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5372,31 +5357,31 @@
       },
       {
         "venue": "stanley-osm-way-323534124",
-        "triangles": 3514,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "stanley-osm-way-942254769",
-        "triangles": 3686,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "stanley-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "stanley-recreation",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "stanley-transit",
-        "triangles": 3530,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

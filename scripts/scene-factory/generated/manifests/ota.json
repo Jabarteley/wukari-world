@@ -5,17 +5,17 @@
   "city": "ota",
   "region": "yoruba-southwest",
   "recipeFile": "ota.json",
-  "recipeSha256": "1fb61b33c4979425835860d0906aebc136daa516b141ec60a5e2e8003dc6776e",
+  "recipeSha256": "fb1cedebf261cc15832a4b8717ad73eb01fce42c33488f4f5bffbaf73bfc395a",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/ota.json",
-      "sha256": "ff003acaaefc4916a253e9b602b6223d881781f165b9735f36d767a044091ece",
-      "inputSha256": "9ddf26548c89725da07a06bc4a885a213d4736b7e45d9b2cae1838b1dc30b066",
+      "sha256": "3a1d0da8f67f8e433e22da339837424974ac133aae08777ba0fd01270b6eb2e3",
+      "inputSha256": "65d050e32c3bfe41e9582868c5dd3ee95325b22d849954fd60881ee89810bfdb",
       "contentSha256": "16565fa82b2b05052d8cb943b0417fdd3ea498c94ea44826ad97f96fa24d3be9"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5078,7 +5078,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 8420,
+    "utf8Bytes": 8378,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5092,37 +5092,37 @@
     "estimates": [
       {
         "venue": "canaanland-worship",
-        "triangles": 2880,
+        "triangles": 3340,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ota-border-kitchen",
-        "triangles": 3230,
+        "triangles": 2974,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ota-community-clinic",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ota-polling",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ota-salon",
-        "triangles": 3410,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sango-mosque",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       }

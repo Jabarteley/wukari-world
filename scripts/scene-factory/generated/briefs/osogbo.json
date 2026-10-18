@@ -53,7 +53,7 @@
       },
       {
         "path": "src/scene/city-scenes.ts",
-        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
       },
       {
         "path": "src/scene/venue-scenes.ts",
@@ -1434,7 +1434,7 @@
     "home"
   ],
   "digests": {
-    "inputSha256": "a5b01378abe24b31324c273a379bdf34f55b11d2f9d38de8a3fd364721c9facf",
+    "inputSha256": "84eeb856d63dbf7b793a4b03cf5e6bf12ea24caa1ce6d369702fa439103efd2e",
     "contentSha256": "6338ff52ba7ed059f190a401530eee89e6954b002ac18f67b6e8359ca04a61b9"
   }
 }

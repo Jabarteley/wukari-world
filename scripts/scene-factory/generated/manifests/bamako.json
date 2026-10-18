@@ -5,17 +5,17 @@
   "city": "bamako",
   "region": "sahel-francophone",
   "recipeFile": "bamako.json",
-  "recipeSha256": "2facf79f5f5ac86fb02ef79cd1d80854438b83f01ca76fb7223e09c5ede96296",
+  "recipeSha256": "4cf935183b37cb111cf81c1aebc36dac04785ab3b21e9d9e0b43700a15134487",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/bamako.json",
-      "sha256": "8935e3930e19a01149ab918ba491c71aa0ddee42f2f0a544247667baf3493f10",
-      "inputSha256": "b4bdd78d2d5059afc7fc2114c4948fe86029345fcee411c493e2a6436bb0f0e3",
+      "sha256": "795483861603e21941b645bfa61c9de1a828321650075b9deb2d6cad55353b16",
+      "inputSha256": "152ddd111df3e97c202e36e4e864c40d169b1a4a9b20ac8024e7aa0d9b4f828b",
       "contentSha256": "8d4d87d24dea4879dfe8e7a2b043ed33baa0da704680d1c04ac979996cf65bad"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5102,11 +5102,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 21,
-    "attemptedCandidateCount": 24,
+    "attemptedCandidateCount": 23,
     "acceptedCandidateCount": 21,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 20,
-    "firstCandidateSuccessRate": 0.9523809523809523,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 19,
+    "firstCandidateSuccessRate": 0.9047619047619048,
     "venues": [
       {
         "venue": "bamako-african-photography-house",
@@ -5149,21 +5149,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 4,
             "outcome": "accepted"
           }
         ]
@@ -5173,6 +5158,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "No six-pair crowd allocation fits the validated walk grid"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5299,6 +5289,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5323,7 +5318,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 29079,
+    "utf8Bytes": 29040,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5337,61 +5332,61 @@
     "estimates": [
       {
         "venue": "bamako-african-photography-house",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bamako-airport-bamako-airport",
-        "triangles": 2986,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bamako-clinic",
-        "triangles": 3402,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bamako-community-notices",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bamako-community-voting-game",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bamako-community-workshop",
         "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "bamako-community-notices",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bamako-community-voting-game",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bamako-community-workshop",
+        "triangles": 3438,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "bamako-faculty-administration",
-        "triangles": 3686,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bamako-faculty-medicine",
-        "triangles": 4878,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bamako-march-aux-fruits",
-        "triangles": 4610,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bamako-march-de-djelibougou",
-        "triangles": 3610,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
@@ -5403,7 +5398,7 @@
       },
       {
         "venue": "bamako-march-de-medine",
-        "triangles": 4666,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
@@ -5415,49 +5410,49 @@
       },
       {
         "venue": "bamako-meal-stop",
-        "triangles": 3514,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bamako-muso-kunda",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bamako-park-happy-hour",
-        "triangles": 3518,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bamako-point-g-petroglyphs",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bamako-quiet-reflection",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "bamako-quiet-reflection",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "bamako-recreation",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bamako-stadium-mamadou-konate",
-        "triangles": 2998,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bamako-transit",
-        "triangles": 3530,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

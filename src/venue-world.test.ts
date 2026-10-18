@@ -34,17 +34,46 @@ function makeWorld(host: StubContainer, options: VenueWorldOptions): TestWorld {
   else if (!currentDocument.createElement) currentDocument.createElement = nativeTestDocument.createElement;
   return world;
 }
-async function settleNative(world: TestWorld, ready: () => boolean = () => true): Promise<number> {
+interface NativeFrameDrain { flushNative(): number; nativeQueued(): number }
+async function settleNative(world: TestWorld, ready: () => boolean = () => true, frames?: NativeFrameDrain): Promise<number> {
   let previous = -1, stable = 0;
   for (let attempt = 0; attempt < 100; attempt += 1) {
+    frames?.flushNative();
     await new Promise<void>((resolve) => setTimeout(resolve, 10));
+    frames?.flushNative();
     const count = world.diagnostics().renderCount;
-    stable = ready() && count === previous ? stable + 1 : 0;
+    stable = ready() && (frames?.nativeQueued() ?? 0) === 0 && count === previous ? stable + 1 : 0;
     if (stable >= 3) return count;
     previous = count;
   }
   const diagnostics = world.diagnostics();
   assert.fail(`native scene readiness did not settle (${diagnostics.renderCount} renders, ${diagnostics.crowd} crowd, tags ${diagnostics.tags.map((tag) => `${tag.kind}:${tag.id}`).join(', ')})`);
+}
+
+type FrameTask = { id: number; callback: FrameRequestCallback; native: boolean };
+const nativeFrameCaller = (): boolean => /\/scene\/(?:body\/bake-slicer|shader-warmup)\.ts\b/.test(new Error().stack ?? '');
+function installFrameScheduler() {
+  const original = { raf: globalThis.requestAnimationFrame, caf: globalThis.cancelAnimationFrame };
+  let nextId = 0, time = performance.now(), queue: FrameTask[] = [], nativeRequests = 0;
+  globalThis.requestAnimationFrame = (callback) => {
+    const native = nativeFrameCaller(), id = ++nextId;
+    if (native) nativeRequests += 1;
+    queue.push({ id, callback, native });
+    return id;
+  };
+  globalThis.cancelAnimationFrame = (id) => { queue = queue.filter(task => task.id !== id); };
+  const flush = (native: boolean): number => {
+    const ready = queue.filter(task => task.native === native);
+    queue = queue.filter(task => task.native !== native);
+    if (ready.length) { time += 16; ready.forEach(task => task.callback(time)); }
+    return ready.length;
+  };
+  return {
+    flushNative: () => flush(true), nativeQueued: () => queue.filter(task => task.native).length,
+    motionQueued: () => queue.filter(task => !task.native).length,
+    nativeRequests: () => nativeRequests,
+    restore() { globalThis.requestAnimationFrame = original.raf; globalThis.cancelAnimationFrame = original.caf; },
+  };
 }
 function testHome({ blocked = false, solids = () => [] as number[][], update = () => false }: { blocked?: boolean; solids?: () => number[][]; update?: HostScene['update'] } = {}): HostScene {
   const group = new THREE.Group(), avatar = new THREE.Group();
@@ -101,34 +130,35 @@ test('third-person camera solids follow stable identity changes without re-enter
 
 test('idle venue performs zero renders after native readiness; each host change draws one immediate frame', async (t) => {
   const errors = t.mock.method(console, 'error', () => {});
-  let frames = 0, timers = 0;
-  const original = { raf: globalThis.requestAnimationFrame, interval: globalThis.setInterval };
-  globalThis.requestAnimationFrame = () => { frames += 1; return 0; };
-  globalThis.setInterval = ((...args: Parameters<typeof setInterval>) => { timers += 1; return original.interval(...args); }) as typeof setInterval;
+  let timers = 0;
+  const frames = installFrameScheduler(), originalInterval = globalThis.setInterval;
+  globalThis.setInterval = ((...args: Parameters<typeof setInterval>) => { timers += 1; return originalInterval(...args); }) as typeof setInterval;
   try {
     const renderer = stubRenderer();
     const world = makeWorld(container, { location: 'park', renderer });
-    const afterCreate = await settleNative(world);
+    const afterCreate = await settleNative(world, () => true, frames);
     assert.ok(afterCreate >= 1, 'the first venue and its native actors rendered');
     assert.equal(renderer.calls.render, afterCreate);
-    assert.equal(frames, 0, 'no requestAnimationFrame'); assert.equal(timers, 0, 'no interval timers');
+    assert.deepEqual([frames.motionQueued(), frames.nativeQueued(), timers], [0, 0, 0], 'native preparation settled without a motion loop or interval timer');
     world.setLocation('park'); assert.equal(world.diagnostics().renderCount, afterCreate, 'same venue: nothing to draw');
     world.setState({ location: 'park', estate: { city: 'lagos' }, home: { items: [{ id: 'test-chair', itemId: 'plastic-chair', x: 3, y: 3, rot: 0 }] } }); assert.equal(world.diagnostics().renderCount, afterCreate, 'static scene ignores state');
     let baseline = afterCreate;
     world.setLocation('home'); assert.equal(world.diagnostics().renderCount, baseline + 1, 'the host draws the new scene immediately');
     assert.ok(world.diagnostics().objects.some(item => item.id === 'test-chair'), 'the Home scene builds the real furniture');
     assert.equal(errors.mock.callCount(), 0, 'the scene must not silently recover from a build error');
-    baseline = await settleNative(world);
+    baseline = await settleNative(world, () => true, frames);
     world.setLocation('library'); assert.equal(world.diagnostics().renderCount, baseline + 1);
-    baseline = await settleNative(world);
+    baseline = await settleNative(world, () => true, frames);
     world.setLocation('park'); assert.equal(world.diagnostics().renderCount, baseline + 1);
-    baseline = await settleNative(world);
+    baseline = await settleNative(world, () => true, frames);
     world.resize(); world.update(); assert.equal(world.diagnostics().renderCount, baseline + 2);
-    baseline = await settleNative(world);
+    baseline = await settleNative(world, () => true, frames);
+    const nativeAtRest = frames.nativeRequests();
     await new Promise(resolve => setTimeout(resolve, 60));
-    assert.equal(world.diagnostics().renderCount, baseline); assert.equal(frames, 0);
+    assert.equal(world.diagnostics().renderCount, baseline);
+    assert.deepEqual([frames.nativeRequests(), frames.nativeQueued(), frames.motionQueued()], [nativeAtRest, 0, 0], 'readiness leaves no frame work behind');
     world.dispose();
-  } finally { globalThis.requestAnimationFrame = original.raf; globalThis.setInterval = original.interval; }
+  } finally { frames.restore(); globalThis.setInterval = originalInterval; }
 });
 
 const NOON = Date.UTC(2026, 0, 5, 11), MIDNIGHT = Date.UTC(2026, 0, 5, 23, 30);
@@ -136,25 +166,24 @@ const PLAYER = '11111111-2222-4333-8444-555555555555';
 const people = (count: number) => Array.from({ length: count }, (_, i) => (i % 2 ? { id: `npc:n${i}`, name: `Local ${i}`, kind: 'npc', seed: `n${i}` } : { id: `0000000${i}-2222-4333-8444-555555555555`, name: `Player ${i}`, kind: 'player', seed: `p${i}` }));
 
 test('an idle venue with a crowd renders zero frames; the crowd, the player and the lighting each cost one frame when they change', async () => {
-  let frames = 0, timers = 0;
-  const original = { raf: globalThis.requestAnimationFrame, interval: globalThis.setInterval };
-  globalThis.requestAnimationFrame = () => { frames += 1; return 0; };
-  globalThis.setInterval = ((...args: Parameters<typeof setInterval>) => { timers += 1; return original.interval(...args); }) as typeof setInterval;
+  let timers = 0;
+  const frames = installFrameScheduler(), originalInterval = globalThis.setInterval;
+  globalThis.setInterval = ((...args: Parameters<typeof setInterval>) => { timers += 1; return originalInterval(...args); }) as typeof setInterval;
   try {
     const renderer = stubRenderer();
     const world = makeWorld(container, { location: 'park', renderer });
     const count = () => world.diagnostics().renderCount;
-    let baseline = await settleNative(world);
+    let baseline = await settleNative(world, () => true, frames);
     assert.ok(baseline >= 1);
     assert.deepEqual(world.diagnostics().lighting, { hemi: LIGHTING.outdoor.day.hemi[2], sun: LIGHTING.outdoor.day.sun[1], sky: LIGHTING.outdoor.day.hemi[0] }, 'the host applied the scene’s own lighting preset');
     world.setPlayer({ look: { body: 'woman', hair: 'afro' }, seed: PLAYER, name: 'Ada' });
     assert.equal(count(), baseline + 1, 'the avatar changed: one immediate frame');
-    baseline = await settleNative(world);
+    baseline = await settleNative(world, () => true, frames);
     world.setPlayer({ look: { body: 'woman', hair: 'afro' }, seed: PLAYER, name: 'Ada' });
     assert.equal(count(), baseline, 'the same player again: nothing to draw');
     assert.equal(world.setCrowd(people(4)), true);
     assert.equal(count(), baseline + 1, 'a crowd arrived: one immediate frame');
-    baseline = await settleNative(world, () => world.diagnostics().tags.filter((tag) => tag.kind !== 'table').length === 5);
+    baseline = await settleNative(world, () => world.diagnostics().tags.filter((tag) => tag.kind !== 'table').length === 5, frames);
     const tags = world.diagnostics().tags;
     assert.deepEqual(tags.filter((tag) => tag.kind !== 'table').map((tag) => [tag.kind, tag.marker]), [['self', 'crown'], ['player', 'tag'], ['npc', 'dot'], ['player', 'tag'], ['npc', 'dot']]);
     // The park's game tables stand in the scene and are named (part of the scene, like its spots: they cost no frame of their own).
@@ -167,15 +196,15 @@ test('an idle venue with a crowd renders zero frames; the crowd, the player and 
     for (let i = 0; i < 25; i++) { assert.equal(world.setCrowd(people(4)), false); world.setState({ location: 'park', spot: 'amphitheatre', t: NOON + i * 1000, name: 'Ada' }); }
     await new Promise((resolve) => setTimeout(resolve, 150));
     assert.equal(count(), baseline, 'idle with a ready crowd: zero renders');
-    assert.equal(renderer.calls.render, baseline); assert.equal(frames, 0); assert.equal(timers, 0);
+    assert.equal(renderer.calls.render, baseline); assert.deepEqual([frames.nativeQueued(), frames.motionQueued(), timers], [0, 0, 0]);
     // The crowd is capped, and a changed crowd costs exactly one frame.
     assert.equal(world.setCrowd(people(40)), true);
     const people_ = (list: ShownTag[]) => list.filter((tag) => tag.kind !== 'table');
     assert.equal(count(), baseline + 1);
-    baseline = await settleNative(world, () => people_(world.diagnostics().tags).length === MAX_CROWD + 1);
+    baseline = await settleNative(world, () => people_(world.diagnostics().tags).length === MAX_CROWD + 1, frames);
     assert.equal(world.diagnostics().crowd, MAX_CROWD);
     world.setCrowd([]); assert.equal(count(), baseline + 1); assert.equal(people_(world.diagnostics().tags).length, 1);
-    baseline = await settleNative(world);
+    baseline = await settleNative(world, () => true, frames);
     // Night falls: the scene reports a change, and the host re-reads its lighting and background.
     const day = world.diagnostics().background;
     world.setState({ location: 'park', spot: 'amphitheatre', t: MIDNIGHT, name: 'Ada' });
@@ -191,7 +220,7 @@ test('an idle venue with a crowd renders zero frames; the crowd, the player and 
     assert.equal(count(), baseline + 1); assert.notDeepEqual([world.diagnostics().tags[0]!.x, world.diagnostics().tags[0]!.y], [before.x, before.y]);
     container.getBoundingClientRect = () => ({ width: 390, height: 844 });
     world.dispose();
-  } finally { globalThis.requestAnimationFrame = original.raf; globalThis.setInterval = original.interval; }
+  } finally { frames.restore(); globalThis.setInterval = originalInterval; }
 });
 
 test('leaving a venue disposes its scene; home shows the player’s avatar and guests under its clock lighting', async () => {
@@ -267,17 +296,19 @@ test('HUD insets re-centre the scene with one frame per change, never by themsel
   world.dispose();
 });
 
-test('only the motion loop and its gate (frame-gate.ts) may name a frame callback; no scene, map or shell source holds an interval', async () => {
+test('only the motion loop owns recurring frames; finite native preparation and the sample readiness harness may request bounded frames', async () => {
   const files = ['src/venue-world.ts', 'src/world-map.ts', 'src/city-map.ts', 'src/app/App.vue', 'src/app/state/app.ts', 'src/app/scene/ScenePane.vue', 'src/app/scene/MapPane.vue', 'src/client.ts',
     ...(await readdir('src/scene', { recursive: true, withFileTypes: true })).filter(entry => entry.isFile()).map(entry => `${entry.parentPath}/${entry.name}`)];
-  const withLoop = [];
+  const finite = new Set(['src/scene/body/bake-slicer.ts', 'src/scene/shader-warmup.ts', 'src/scene/recipe/sample/client.ts']);
+  const withLoop: string[] = [], withFiniteFrames: string[] = [];
   for (const file of files) {
     if (file.endsWith('.test.js') || file.endsWith('.test.ts')) continue;
     const code = (await readFile(file, 'utf8')).replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, '');
     assert.doesNotMatch(code, /setAnimationLoop|setInterval/, file);
-    if (/requestAnimationFrame/.test(code)) withLoop.push(file);
+    if (/requestAnimationFrame/.test(code)) (finite.has(file) ? withFiniteFrames : withLoop).push(file);
   }
-  assert.deepEqual(withLoop, ['src/scene/frame-gate.ts', 'src/scene/motion-loop.ts'], 'the one frame loop lives in motion-loop.ts (which cannot idle); frame-gate.ts only holds or skips the frames it asks for');
+  assert.deepEqual(withLoop.sort(), ['src/scene/frame-gate.ts', 'src/scene/motion-loop.ts'], 'the recurring frame loop remains confined to motion-loop and its gate');
+  assert.deepEqual(withFiniteFrames.sort(), [...finite].sort(), 'the explicit finite-frame allowlist stays narrow and reviewable');
 });
 
 // ---- motion: frames only while something moves ------------------------------------------------
@@ -285,13 +316,13 @@ test('only the motion loop and its gate (frame-gate.ts) may name a frame callbac
 /** A browser's frame callback, a window and a document, all driven by hand. */
 function motionBench({ width = 1280, height = 800, location = 'park' } = {}) {
   const original = { raf: globalThis.requestAnimationFrame, caf: globalThis.cancelAnimationFrame, window: browser.window, document: browser.document, matchMedia: browser.matchMedia };
-  let queue: ((time: number) => void)[] = [], time = 5000, reduce = false;
+  let queue: FrameTask[] = [], nextFrameId = 0, time = 5000, reduce = false;
   const originalClock = Object.getOwnPropertyDescriptor(globalThis.performance, 'now');
   // wake() and the simulated RAF must share a clock; real suite duration must not alter the first step.
   Object.defineProperty(globalThis.performance, 'now', { configurable: true, value: () => time });
   const docListeners = new Map<string, () => void>();
-  globalThis.requestAnimationFrame = (fn) => { queue.push(fn); return queue.length; };
-  globalThis.cancelAnimationFrame = () => { queue = []; };
+  globalThis.requestAnimationFrame = (callback) => { const task = { id: ++nextFrameId, callback, native: nativeFrameCaller() }; queue.push(task); return task.id; };
+  globalThis.cancelAnimationFrame = (id) => { queue = queue.filter(task => task.id !== id); };
   const win = new EventTarget();
   const fakeDocument = { visibilityState: 'visible', addEventListener: (type: string, fn: () => void) => docListeners.set(type, fn), removeEventListener: (type: string) => docListeners.delete(type) };
   browser.window = win;
@@ -304,9 +335,11 @@ function motionBench({ width = 1280, height = 800, location = 'park' } = {}) {
   const world = makeWorld({ appendChild() {}, getBoundingClientRect: () => ({ width, height, left: 0, top: 0 }) }, { location, renderer, onSpot: (spot) => spots.push(spot), onTag: (tag) => tagged.push(tag), onMove: (at) => moves.push(at) });
   return {
     world, renderer, spots, tagged, moves, listeners,
-    /** Run up to `count` frames 16 ms apart; returns how many ran (fewer when the loop stopped itself). */
-    pump(count = 1) { let ran = 0; for (let i = 0; i < count; i++) { const fns = queue; queue = []; if (!fns.length) break; time += 16; fns.forEach((fn) => fn(time)); ran += 1; } return ran; },
-    queued: () => queue.length,
+    /** Run up to `count` browser frames; finite native preparation runs too but is not counted as motion. */
+    pump(count = 1) { let ran = 0; for (let i = 0; i < count; i++) { const tasks = queue; queue = []; if (!tasks.length) break; time += 16; tasks.forEach(task => task.callback(time)); if (tasks.some(task => !task.native)) ran += 1; } return ran; },
+    queued: () => queue.filter(task => !task.native).length,
+    flushNative() { const tasks = queue.filter(task => task.native); queue = queue.filter(task => !task.native); if (tasks.length) { time += 16; tasks.forEach(task => task.callback(time)); } return tasks.length; },
+    nativeQueued: () => queue.filter(task => task.native).length,
     key: (action: string, mode = 'venue', jog = false) => win.dispatchEvent(new CustomEvent('jaw:key', { detail: { action, mode, jog } })),
     keyUp: (action: string) => win.dispatchEvent(new CustomEvent('jaw:key-up', { detail: { action } })),
     send: (type: string, props: Record<string, unknown> = {}) => listeners.get(type)?.({ pointerId: 1, button: 0, detail: 1, clientX: 0, clientY: 0, preventDefault() {}, stopImmediatePropagation() {}, ...props }),
@@ -324,7 +357,7 @@ test('RELEASE GATE: idle → zero frames; walking → frames; after arrival → 
   try {
     const { world } = bench;
     world.setState(PARK);
-    await settleNative(world);
+    await settleNative(world, () => true, bench);
     const idle = world.diagnostics();
     assert.deepEqual([idle.loop.running, idle.loop.frames, bench.queued()], [false, 0, 0], 'idle: no loop, nothing scheduled');
     assert.equal(idle.avatar.moving, false);
@@ -508,7 +541,7 @@ test('spots and walking stay coherent: taps walk first, the panel walks instead 
     const { world } = bench;
     world.setState(PARK);
     world.setCrowd([{ id: 'npc:n1', name: 'Mama', kind: 'npc', seed: 'n1', spot: 'drinks' }]);
-    await settleNative(world, () => world.diagnostics().people.some((person) => person.id === 'npc:n1'));
+    await settleNative(world, () => world.diagnostics().people.some((person) => person.id === 'npc:n1'), bench);
     const spot = (id: string) => world.diagnostics().spots.find((item) => item.id === id)!;
     const spawn = world.diagnostics().avatar;
     assert.ok(spawn.z > 10 && Math.abs(spawn.x) < 1, 'the avatar appears at the entrance, not at the selected spot');
@@ -967,7 +1000,7 @@ test('game tables can be walked up to: a tap walks there and opens it on arrival
   try {
     const { world } = bench;
     world.setState(PARK);
-    await settleNative(world);
+    await settleNative(world, () => true, bench);
     const things = () => world.diagnostics().things, avatar = () => world.diagnostics().avatar;
     assert.deepEqual(things().map((thing) => [thing.id, thing.kind, thing.at]), [['table:park-bench', 'table', false], ['table:park-ayo', 'table', false], ['table:park-goal', 'table', false], ['table:park-chess', 'table', false]]);
     const table = things()[0]!;

@@ -5,17 +5,17 @@
   "city": "london",
   "region": "western-europe",
   "recipeFile": "london.json",
-  "recipeSha256": "49cc44d56e674a8366349afbbf82769dce43b7e39b5817a70d73902dddea0e8c",
+  "recipeSha256": "d93a60f38a85b0fe976be75e8394eb82dbcd1c2a4b40123b04beb8304b71249f",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/london.json",
-      "sha256": "7a11b12f9882dea341a3b34bf170b776df99f9f54282e312decdb580682a7d04",
-      "inputSha256": "a9e258b41a0d2e3d3ae2d784918bb14e9f88b8bb74da736b450b8c2616126ee7",
+      "sha256": "fd6f072cc0cfd7de7cc098d9007cc52d9aa21c652266fda3cbf413a33841d24f",
+      "inputSha256": "6bd87cb04f5d6f89fad443597939020f4042f18f6de9a5bab474d24163f15cf1",
       "contentSha256": "b564a4ef80f4ee78e8066e6e05c3fffb82bdc0fb731ba22900e3b7aebb2e25e2"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "london-airport-london-airport",
@@ -5178,7 +5178,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
+            "reason": "crowd[2]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5218,11 +5218,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34345,
+    "utf8Bytes": 34491,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,61 +5391,61 @@
     "estimates": [
       {
         "venue": "london-airport-london-airport",
-        "triangles": 3530,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "london-clinic",
-        "triangles": 3438,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "london-community-notices",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "london-community-voting-game",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "london-community-workshop",
-        "triangles": 3438,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "london-market-game",
-        "triangles": 3966,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "london-meal-stop",
-        "triangles": 3178,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "london-osm-node-266577545",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "london-osm-node-5656298167",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "london-community-workshop",
+        "triangles": 3402,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "london-market-game",
+        "triangles": 3290,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "london-meal-stop",
+        "triangles": 3514,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "london-osm-node-266577545",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "london-osm-node-5656298167",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "london-osm-relation-6617493",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5462,55 +5457,55 @@
       },
       {
         "venue": "london-osm-way-18934744",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "london-osm-way-24437604",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "london-osm-way-24663862",
-        "triangles": 4614,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "london-osm-way-350349593",
         "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "london-osm-way-350349593",
+        "triangles": 3610,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "london-osm-way-35279471",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "london-osm-way-35597911",
-        "triangles": 3686,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "london-osm-way-663055373",
-        "triangles": 3490,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "london-osm-way-707957524",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "london-osm-way-7848020",
-        "triangles": 3966,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
@@ -5522,7 +5517,7 @@
       },
       {
         "venue": "london-osm-way-81349520",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5534,13 +5529,13 @@
       },
       {
         "venue": "london-recreation",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "london-transit",
-        "triangles": 4238,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

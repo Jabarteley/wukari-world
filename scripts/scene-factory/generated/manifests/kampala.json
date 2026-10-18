@@ -5,17 +5,17 @@
   "city": "kampala",
   "region": "east-africa",
   "recipeFile": "kampala.json",
-  "recipeSha256": "3c4bd468e70bfad0eeb567f3cae563c4f8ea9674132a735709a967dc8cc5d35e",
+  "recipeSha256": "c41dc3d7d6f1a037da0ed94bcb418b04d4516d9cb6a898046ecdc3abd5e0c103",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/kampala.json",
-      "sha256": "7cd4bcf2691e26567e27abe9861b1c2aebf6642c1f0cdbb13a8dfad8250f69bc",
-      "inputSha256": "5705ff4fb2f759ac96d1879473738bc4af2f52ca7856922a2671f48deb2f4d49",
+      "sha256": "4375834e30867b23ca250b333cde1dff60a5fd35407fbf06b58c45f41b31a24f",
+      "inputSha256": "3e5239e98ee090e9151c6cd30f82be250733b5ac09c4cbd953cb6f6002c3e5da",
       "contentSha256": "022600676b3c62ee70532ae39a05200e496edca7629efe0e3baeb3bfa5401690"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5112,8 +5112,8 @@
     "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 22,
     "rejectedCandidateCount": 4,
-    "firstCandidateSuccessCount": 19,
-    "firstCandidateSuccessRate": 0.8636363636363636,
+    "firstCandidateSuccessCount": 18,
+    "firstCandidateSuccessRate": 0.8181818181818182,
     "venues": [
       {
         "venue": "kampala-airport-kampala-airport",
@@ -5147,6 +5147,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5184,15 +5189,10 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
+            "reason": "crowd[10]: exact target is blocked"
           },
           {
             "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5221,7 +5221,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
+            "reason": "crowd[8]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5288,6 +5288,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5315,11 +5320,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5344,7 +5344,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 30346,
+    "utf8Bytes": 30355,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5358,109 +5358,109 @@
     "estimates": [
       {
         "venue": "kampala-airport-kampala-airport",
-        "triangles": 2986,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kampala-bahai-house-of-worship",
-        "triangles": 4566,
+        "triangles": 3586,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kampala-clinic",
-        "triangles": 2490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kampala-community-notices",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kampala-community-voting-game",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kampala-community-workshop",
         "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "kampala-fort-lugard",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kampala-garden-city",
-        "triangles": 3934,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kampala-kasubi-royal-tombs",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kampala-market-game",
-        "triangles": 3358,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kampala-meal-stop",
-        "triangles": 3514,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kampala-national-library",
+        "venue": "kampala-community-notices",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "kampala-oasis-mall",
-        "triangles": 4614,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kampala-quiet-reflection",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kampala-recreation",
-        "triangles": 3730,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kampala-royal-palace-of-buganda",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kampala-rubaga-cathedral",
+        "venue": "kampala-community-voting-game",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "kampala-community-workshop",
+        "triangles": 3370,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kampala-fort-lugard",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kampala-garden-city",
+        "triangles": 4666,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kampala-kasubi-royal-tombs",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kampala-market-game",
+        "triangles": 5402,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kampala-meal-stop",
+        "triangles": 3202,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kampala-national-library",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kampala-oasis-mall",
+        "triangles": 2882,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kampala-quiet-reflection",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kampala-recreation",
+        "triangles": 4710,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kampala-royal-palace-of-buganda",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kampala-rubaga-cathedral",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "kampala-transit",
-        "triangles": 2698,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
@@ -5472,19 +5472,19 @@
       },
       {
         "venue": "kampala-victoria-university",
-        "triangles": 3966,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kampala-wankulukuku-stadium",
-        "triangles": 3526,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kampala-wonder-world",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       }

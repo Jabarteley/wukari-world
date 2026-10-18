@@ -5,17 +5,17 @@
   "city": "tunis",
   "region": "maghreb",
   "recipeFile": "tunis.json",
-  "recipeSha256": "63e2d782a71bc5d0b9e79e12dbdaa91fb316a0b05390b0612539f81a0d7c5848",
+  "recipeSha256": "7ff78a69a2964b436edb60207018cc0eb99e20221fd0e833857ab183a3a10599",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/tunis.json",
-      "sha256": "73d92b799478914d13b60982e0856b6c9107be75f5dd0b2543afc30f34a76420",
-      "inputSha256": "8a375e617a91f04e7c0e073df299dc8e6e3b17543f479076b74f0fdbe0595028",
+      "sha256": "cf73d3aeb2168e52eff3142b611f40bce8b0fdc0df5a319748e7f3051ffdce83",
+      "inputSha256": "ddc50398d94402738fbfc1d0e5d6fa0876571f376babfcd8fd419d1dc70a049a",
       "contentSha256": "7d8b31f99a7a33ca836542a3250106ccf823bb13bb59fec651a8a665e7a43280"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 29,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 4,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "tunis-airport-tunis-airport",
@@ -5168,6 +5168,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5195,11 +5200,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5335,6 +5335,21 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 4,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5392,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34308,
+    "utf8Bytes": 34356,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,55 +5406,55 @@
     "estimates": [
       {
         "venue": "tunis-airport-tunis-airport",
-        "triangles": 3590,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tunis-clinic",
-        "triangles": 3438,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tunis-community-notices",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tunis-community-voting-game",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tunis-community-workshop",
-        "triangles": 3370,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tunis-market-game",
-        "triangles": 3190,
+        "triangles": 4178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tunis-meal-stop",
-        "triangles": 3178,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tunis-osm-node-483108304",
-        "triangles": 4878,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tunis-osm-node-5669470129",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5451,19 +5466,19 @@
       },
       {
         "venue": "tunis-osm-relation-1431423",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tunis-osm-relation-2401476",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "tunis-osm-relation-2401476",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "tunis-osm-relation-5405848",
-        "triangles": 3458,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
@@ -5475,7 +5490,7 @@
       },
       {
         "venue": "tunis-osm-way-105588055",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5487,31 +5502,31 @@
       },
       {
         "venue": "tunis-osm-way-179953386",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tunis-osm-way-180268053",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tunis-osm-way-34573429",
-        "triangles": 3490,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tunis-osm-way-95134307",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tunis-osm-way-95199308",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },

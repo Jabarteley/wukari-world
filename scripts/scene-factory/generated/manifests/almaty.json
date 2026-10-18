@@ -5,17 +5,17 @@
   "city": "almaty",
   "region": "south-asia",
   "recipeFile": "almaty.json",
-  "recipeSha256": "64decaa68a753286253ab6addeb0d5b26c4193a1edf95d3048fb591a8017385c",
+  "recipeSha256": "a8ef9661f86f39cb2b4834a8b72e5a88dc15c1d90c605e3e78b823a62204d354",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/almaty.json",
-      "sha256": "c2f31612f9736c7e8b9c731e8bc422b025401542a2bfa72ad2ad613014db045f",
-      "inputSha256": "367e0d4c7bde0a588f993b69490e5263a2293248da228c3f11b53ca6000c300a",
+      "sha256": "9e2aca7af30fcba4fd4f7391f27ed477bdce54040660be207ea548b6ddbc8768",
+      "inputSha256": "bf097a464bd8d07271e69f2d51f697f904b99ce786a5b95af90c3a86f96eb41f",
       "contentSha256": "c3c875c142e45fa59db2361e4c46528f81e3ad0c4fa2fcde09cd868649b0acfa"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 29,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 4,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.84,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "almaty-airport-almaty-airport",
@@ -5159,6 +5159,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5168,11 +5173,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5209,11 +5209,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5277,11 +5272,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5309,6 +5299,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5363,11 +5358,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5392,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34462,
+    "utf8Bytes": 34412,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5406,19 +5396,19 @@
     "estimates": [
       {
         "venue": "almaty-airport-almaty-airport",
-        "triangles": 3590,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "almaty-clinic",
-        "triangles": 2910,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "almaty-community-notices",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5430,13 +5420,13 @@
       },
       {
         "venue": "almaty-community-workshop",
-        "triangles": 3370,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "almaty-market-game",
-        "triangles": 3942,
+        "triangles": 3874,
         "meshes": 13,
         "lights": 3
       },
@@ -5448,7 +5438,7 @@
       },
       {
         "venue": "almaty-osm-node-10713558763",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5460,43 +5450,43 @@
       },
       {
         "venue": "almaty-osm-node-13691030944",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "almaty-osm-relation-10082036",
-        "triangles": 3458,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "almaty-osm-relation-3048271",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "almaty-osm-way-1084732338",
-        "triangles": 2998,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "almaty-osm-way-1389306295",
-        "triangles": 3898,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "almaty-osm-way-1456509345",
-        "triangles": 2998,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "almaty-osm-way-207798752",
-        "triangles": 4614,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
@@ -5508,19 +5498,19 @@
       },
       {
         "venue": "almaty-osm-way-231104375",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "almaty-osm-way-286610625",
-        "triangles": 3686,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "almaty-osm-way-389067729",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5532,25 +5522,25 @@
       },
       {
         "venue": "almaty-osm-way-50459830",
-        "triangles": 4610,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "almaty-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "almaty-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "almaty-transit",
-        "triangles": 4238,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

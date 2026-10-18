@@ -5,17 +5,17 @@
   "city": "marigot",
   "region": "americas-oceania",
   "recipeFile": "marigot.json",
-  "recipeSha256": "d7a34271230a07c83d4acc321c17668b1880cd38242bfecfbabfa94a51493e24",
+  "recipeSha256": "69319ef14c6981261a6f08f31c264abdef7f028f5e3035c1dcd8996ae06b4a43",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/marigot.json",
-      "sha256": "355d0215fd42bd6e663cd23108fed9f2bf2d9ea04a768d36f1c151357e7b7597",
-      "inputSha256": "919da9167980f656150480b22ea2db6d301bd64077b0fc03bbf10eeef82b371c",
+      "sha256": "a14a0961ac94b1309684d751cb61837cc3159aef91913361d32bc36d3a4848e5",
+      "inputSha256": "ba67d64836ffe6afa677f742a1ddd70fdbeca4cfd39e948fccbf13f064a88a05",
       "contentSha256": "c7bfd8b77cde84b759d3097f1479582ae2da855af108fa126e81f4dc606c2c17"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5095,11 +5095,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 20,
-    "attemptedCandidateCount": 21,
+    "attemptedCandidateCount": 20,
     "acceptedCandidateCount": 20,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 19,
-    "firstCandidateSuccessRate": 0.95,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 20,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "marigot-airport-marigot-airport",
@@ -5187,11 +5187,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5297,7 +5292,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 27658,
+    "utf8Bytes": 27690,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5311,19 +5306,19 @@
     "estimates": [
       {
         "venue": "marigot-airport-marigot-airport",
-        "triangles": 4498,
+        "triangles": 4258,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "marigot-clinic",
-        "triangles": 3402,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "marigot-community-notices",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5335,43 +5330,43 @@
       },
       {
         "venue": "marigot-community-workshop",
-        "triangles": 2490,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "marigot-market-game",
-        "triangles": 3638,
+        "triangles": 4638,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "marigot-meal-stop",
-        "triangles": 3178,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "marigot-osm-node-14181701799",
-        "triangles": 3526,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "marigot-osm-node-3276974411",
-        "triangles": 2998,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "marigot-osm-node-3324470538",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "marigot-osm-node-3375689678",
-        "triangles": 4614,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
@@ -5383,13 +5378,13 @@
       },
       {
         "venue": "marigot-osm-node-542412470",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "marigot-osm-relation-9565439",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5401,31 +5396,31 @@
       },
       {
         "venue": "marigot-osm-way-366902209",
-        "triangles": 3610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "marigot-osm-way-399788872",
-        "triangles": 2946,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "marigot-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "marigot-recreation",
-        "triangles": 3518,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "marigot-transit",
-        "triangles": 2698,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

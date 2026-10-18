@@ -5,17 +5,17 @@
   "city": "montevideo",
   "region": "americas-oceania",
   "recipeFile": "montevideo.json",
-  "recipeSha256": "8927cbe9ff76c2f5418b67d9986ffe10d5f5cc5847051741dc0f46812c07d0af",
+  "recipeSha256": "d14719bb020c788f642e37981c1f69a629747c1650bf5cf0ee37f98f4eb4ea37",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/montevideo.json",
-      "sha256": "4d528ef4a1c35a3ec245e77373ae2cd5c09079f302c0bb0a83f09d1aaa8306f7",
-      "inputSha256": "96a174be99c4b2fc2f60b393c115ee13f85637e5c258feea67964efea3bf8233",
+      "sha256": "957549ca93f145689a63634a5c0cbfdc9c632eee2d16a9b0450e3a3d5e663675",
+      "inputSha256": "40a57b96b1d44dd2fa592f532661f1e48b1af9215281873c8a3c0f4a54c48091",
       "contentSha256": "73447611bc9b44879b954e69a869176c31f63e032b466e6df7f59eb845a90e75"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 30,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 5,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.84,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "montevideo-airport-montevideo-airport",
@@ -5258,11 +5258,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5272,11 +5267,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5286,6 +5276,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5313,11 +5308,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5363,16 +5353,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5397,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34801,
+    "utf8Bytes": 34782,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5411,31 +5391,31 @@
     "estimates": [
       {
         "venue": "montevideo-airport-montevideo-airport",
-        "triangles": 3590,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "montevideo-clinic",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "montevideo-community-notices",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "montevideo-community-voting-game",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "montevideo-community-workshop",
-        "triangles": 3370,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
@@ -5447,91 +5427,91 @@
       },
       {
         "venue": "montevideo-meal-stop",
-        "triangles": 3178,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "montevideo-osm-node-11285163368",
-        "triangles": 3686,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "montevideo-osm-node-2623629243",
-        "triangles": 4878,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "montevideo-osm-node-5978898986",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "montevideo-osm-relation-16865136",
-        "triangles": 4614,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "montevideo-osm-relation-19405788",
-        "triangles": 4598,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "montevideo-osm-way-179188519",
-        "triangles": 2578,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "montevideo-osm-way-180467229",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "montevideo-osm-way-203747760",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "montevideo-osm-way-205235002",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "montevideo-osm-way-243734894",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "montevideo-osm-way-283022176",
-        "triangles": 3490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "montevideo-osm-way-37519468",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "montevideo-osm-relation-16865136",
+        "triangles": 3934,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "montevideo-osm-relation-19405788",
+        "triangles": 3686,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "montevideo-osm-way-179188519",
+        "triangles": 3978,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "montevideo-osm-way-180467229",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "montevideo-osm-way-203747760",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "montevideo-osm-way-205235002",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "montevideo-osm-way-243734894",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "montevideo-osm-way-283022176",
+        "triangles": 3458,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "montevideo-osm-way-37519468",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "montevideo-osm-way-37663273",
-        "triangles": 3526,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "montevideo-osm-way-734281143",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5543,13 +5523,13 @@
       },
       {
         "venue": "montevideo-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "montevideo-recreation",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },

@@ -5,17 +5,17 @@
   "city": "santiago",
   "region": "americas-oceania",
   "recipeFile": "santiago.json",
-  "recipeSha256": "47c0a9dee0f13dd8f738822a6246e2dced426efb445f7db93cc7cdf398d0a1f9",
+  "recipeSha256": "fb9971e3bc02818dc8433889ae044310b42ab8373228dfe698e17e1fe5afd311",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/santiago.json",
-      "sha256": "5fc27078766a932ac2e9992943bebc2fe9094b787b98cad2c3d1dc2fbfcea384",
-      "inputSha256": "d343ffe416a627a67301c099540e9111f6bd8c33f152c39539dc826c0fe3b84d",
+      "sha256": "407b974680480081374878b6d2cf7a030de0b116b7ddda1c14a7c23c68048822",
+      "inputSha256": "fef79c7850c334a13722c9bd7fbe9b0448abb3aa208021c01bd7a44bfc18866e",
       "contentSha256": "36e98eeecdaf26d893c7efe7938a40684bdfa3b9d06ee22366492462669650d2"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "santiago-airport-santiago-airport",
@@ -5159,11 +5159,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34719,
+    "utf8Bytes": 34829,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,49 +5386,49 @@
     "estimates": [
       {
         "venue": "santiago-airport-santiago-airport",
-        "triangles": 2580,
+        "triangles": 4072,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-clinic",
-        "triangles": 3890,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-community-notices",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-community-voting-game",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-community-workshop",
-        "triangles": 2490,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-market-game",
-        "triangles": 4694,
+        "triangles": 3962,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-meal-stop",
-        "triangles": 3194,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-osm-node-3372723745",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5445,37 +5440,37 @@
       },
       {
         "venue": "santiago-osm-node-7009112985",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "santiago-osm-relation-9951085",
-        "triangles": 3490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "santiago-osm-way-103593737",
-        "triangles": 4598,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "santiago-osm-way-1494357523",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "santiago-osm-way-193760181",
+        "venue": "santiago-osm-relation-9951085",
+        "triangles": 2578,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "santiago-osm-way-103593737",
+        "triangles": 4878,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "santiago-osm-way-1494357523",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "santiago-osm-way-193760181",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "santiago-osm-way-195112800",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
@@ -5487,7 +5482,7 @@
       },
       {
         "venue": "santiago-osm-way-236844639",
-        "triangles": 3526,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5499,31 +5494,31 @@
       },
       {
         "venue": "santiago-osm-way-38622709",
-        "triangles": 3458,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-osm-way-446732086",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-osm-way-450296536",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-osm-way-570065671",
-        "triangles": 4878,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santiago-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5535,7 +5530,7 @@
       },
       {
         "venue": "santiago-transit",
-        "triangles": 4238,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

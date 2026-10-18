@@ -5,17 +5,17 @@
   "city": "gusau",
   "region": "sahel-north",
   "recipeFile": "gusau.json",
-  "recipeSha256": "e5a9b8b40293c813a5aacad5b8ee748b2a5a8641bf7a859889845f4dff5e5a34",
+  "recipeSha256": "d94aae35b8cc9406394edfcdcca58a156b85a4cc395c8261c5de37fdb6354411",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/gusau.json",
-      "sha256": "b2350f9defa862cb96353836486562f825d3de8462d1e6c0a93ebc3709a0beb3",
-      "inputSha256": "dfcabbc6160ccf5e7a6ceaa6c8a56ba9a0ef0e9107aa7b7a294a80c0de7358ba",
+      "sha256": "f88e4d8b54857efcc8bb90ce9922ca189f712fa74d3a9a91155714c8100873c3",
+      "inputSha256": "0496e38432905cc9974c5b5efe140eac50146ddb2f5e1fbffcbdb1ad2c6a5447",
       "contentSha256": "65d00b4f9983bebb3c664d5f8aab2db98cc6ce5bc79b357758a58f7e455ea7d9"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5060,17 +5060,27 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 15,
-    "attemptedCandidateCount": 15,
+    "attemptedCandidateCount": 17,
     "acceptedCandidateCount": 15,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 15,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 14,
+    "firstCandidateSuccessRate": 0.9333333333333333,
     "venues": [
       {
         "venue": "daula-hospital-gusau",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5212,7 +5222,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 21597,
+    "utf8Bytes": 21763,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5226,19 +5236,19 @@
     "estimates": [
       {
         "venue": "daula-hospital-gusau",
-        "triangles": 2462,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-college-of-education-technical-gusau",
-        "triangles": 3374,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-medical-centre-gusau",
-        "triangles": 3342,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
@@ -5256,49 +5266,49 @@
       },
       {
         "venue": "gusau-central-market",
-        "triangles": 4714,
+        "triangles": 5770,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gusau-yam-market",
-        "triangles": 5014,
+        "triangles": 5010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "huda-university-gusau",
-        "triangles": 2490,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "our-lady-of-fatima-church-gusau",
-        "triangles": 3374,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sardauna-memorial-stadium-gusau",
-        "triangles": 3486,
+        "triangles": 4006,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yariman-bakura-specialist-hospital-gusau",
-        "triangles": 3438,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zamfara-ministry-of-environment-solid-minerals",
-        "triangles": 3862,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zamfara-ministry-of-information-culture-tourism",
-        "triangles": 3862,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },

@@ -5,17 +5,17 @@
   "city": "bridgetown",
   "region": "americas-oceania",
   "recipeFile": "bridgetown.json",
-  "recipeSha256": "8c48772a0e9e31e88ae73e87048afcdc7e2a90b4965361eb6b040cc6b0dd6c6e",
+  "recipeSha256": "ef1f19c79c4ab0aab8e189817aa4a4c864ff7b1e3fb86ede8b312d6579e21ede",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/bridgetown.json",
-      "sha256": "ff39a6b4b444f09da63cb8895f2b3299959229e1127d8195c90892ac670ead9d",
-      "inputSha256": "014849f8c1dbe01ea54e286acd9b4e68645b8af537c97887a6e7577c549c825d",
+      "sha256": "c5be5d65c8f47b0258dab03f443f29b131918f464ba4dbc768282a3145c61568",
+      "inputSha256": "5c1c6ce9149939be17f8c600ab7e9668e0d7454f770ef02b6718bbeb962b23b9",
       "contentSha256": "0f02eb7795fe3ce2d2364872e7e1c5ace30e600e2e6878c7e6cf5d0973c0418d"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 29,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 4,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "bridgetown-airport-bridgetown-airport",
@@ -5150,6 +5150,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5177,6 +5182,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5195,6 +5205,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5357,11 +5377,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5392,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34837,
+    "utf8Bytes": 34658,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,7 +5406,7 @@
     "estimates": [
       {
         "venue": "bridgetown-airport-bridgetown-airport",
-        "triangles": 3590,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
@@ -5403,7 +5418,7 @@
       },
       {
         "venue": "bridgetown-community-notices",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5415,43 +5430,43 @@
       },
       {
         "venue": "bridgetown-community-workshop",
-        "triangles": 3402,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bridgetown-market-game",
-        "triangles": 4694,
+        "triangles": 4638,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bridgetown-meal-stop",
-        "triangles": 3514,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bridgetown-osm-node-11686666569",
-        "triangles": 2946,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bridgetown-osm-node-13686266671",
-        "triangles": 3458,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bridgetown-osm-node-8393535458",
-        "triangles": 3178,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bridgetown-osm-way-1042768231",
-        "triangles": 4598,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
@@ -5463,19 +5478,19 @@
       },
       {
         "venue": "bridgetown-osm-way-1432859122",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bridgetown-osm-way-255443003",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bridgetown-osm-way-37935746",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
@@ -5487,19 +5502,19 @@
       },
       {
         "venue": "bridgetown-osm-way-385052120",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bridgetown-osm-way-440434642",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bridgetown-osm-way-480461489",
-        "triangles": 3898,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
@@ -5511,31 +5526,31 @@
       },
       {
         "venue": "bridgetown-osm-way-864190108",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bridgetown-osm-way-93917192",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bridgetown-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bridgetown-recreation",
-        "triangles": 5214,
+        "triangles": 4934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bridgetown-transit",
-        "triangles": 2986,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "tashkent",
   "region": "south-asia",
   "recipeFile": "tashkent.json",
-  "recipeSha256": "77f894c630c7bc4258665785fc8d789c02dc14af354e40313186229181f0dced",
+  "recipeSha256": "7b6432e68a5f8d00937f08f413a1abb779796a21286b811d3d5dfc67c3b01454",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/tashkent.json",
-      "sha256": "19a9eed11425b2a77263ad15f3990379db66113f9fa292c6d026cd07bc732cbc",
-      "inputSha256": "16e43b28288f7da1722cdde8e55d6e7c996957da08914d2225b426219e2a3056",
+      "sha256": "5d4926028dfbb36f301d39b13249927715526a7b3968b70483d89aad87647180",
+      "inputSha256": "93504d2b0a5fc4b9241174ef6df43e728fecb2ffa862bd08b3b001471d5379f8",
       "contentSha256": "1ef57fd6fbed9bb764542e286d984894e73a4cfc14e8621288121b75302594ae"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 30,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 5,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.84,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "tashkent-airport-tashkent-airport",
@@ -5177,11 +5177,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5209,11 +5204,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5331,16 +5321,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5368,11 +5348,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5397,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34533,
+    "utf8Bytes": 34457,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5417,7 +5392,7 @@
       },
       {
         "venue": "tashkent-clinic",
-        "triangles": 2490,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
@@ -5435,97 +5410,97 @@
       },
       {
         "venue": "tashkent-community-workshop",
-        "triangles": 3438,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tashkent-market-game",
-        "triangles": 4086,
+        "triangles": 3030,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tashkent-meal-stop",
-        "triangles": 3514,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tashkent-osm-node-4246680743",
-        "triangles": 3202,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tashkent-osm-node-4792118722",
-        "triangles": 3274,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tashkent-osm-relation-2712835",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tashkent-osm-relation-6805138",
-        "triangles": 3490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tashkent-osm-relation-9423158",
-        "triangles": 4598,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tashkent-osm-way-107158839",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tashkent-osm-way-1213517675",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tashkent-osm-way-143446111",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tashkent-osm-way-173258737",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tashkent-osm-way-325125766",
         "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "tashkent-osm-relation-9423158",
+        "triangles": 4878,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tashkent-osm-way-107158839",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tashkent-osm-way-1213517675",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tashkent-osm-way-143446111",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tashkent-osm-way-173258737",
+        "triangles": 2998,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tashkent-osm-way-325125766",
+        "triangles": 2578,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "tashkent-osm-way-394577950",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tashkent-osm-way-749136173",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tashkent-osm-way-89407157",
-        "triangles": 4598,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
@@ -5537,25 +5512,25 @@
       },
       {
         "venue": "tashkent-osm-way-982206779",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tashkent-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tashkent-recreation",
-        "triangles": 4710,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tashkent-transit",
-        "triangles": 4238,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

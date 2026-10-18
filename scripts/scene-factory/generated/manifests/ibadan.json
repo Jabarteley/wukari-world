@@ -5,17 +5,17 @@
   "city": "ibadan",
   "region": "yoruba-southwest",
   "recipeFile": "ibadan.json",
-  "recipeSha256": "d05a62bced8d5418d58f265eaaea2ebe0a6da6a710ad4fae054d804dae65c839",
+  "recipeSha256": "1d10203e0512f2c742d913d1a10433bf056d4cb2a0acdef22fbafe6f5c7a04b8",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/ibadan.json",
-      "sha256": "8e68151d6f154d2b4bafae3c30d2ccbf180f42fab502cafc7fc4c1f3e6031cf6",
-      "inputSha256": "b3ea31d24bd1cc4a23fdcf1b007244b5d857d91feb3a1afacad3aea362bcded8",
+      "sha256": "74f1ea878b4e4ced7c1ce95e843c09603e161ea3860046cc36267dedb319a114",
+      "inputSha256": "3103478faaebfb8a00d5763de05438fe2df5ac120362ac3cc646cabe1a46c16b",
       "contentSha256": "d4b1ae2b08ecfa216b69275e771c1fa3eda90c9fa1cdc50c724faa4fcacf6093"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5022,17 +5022,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 7,
-    "attemptedCandidateCount": 7,
+    "attemptedCandidateCount": 9,
     "acceptedCandidateCount": 7,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 7,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 5,
+    "firstCandidateSuccessRate": 0.7142857142857143,
     "venues": [
       {
         "venue": "dugbe-amala",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5087,6 +5092,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5102,7 +5112,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 9793,
+    "utf8Bytes": 9779,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5116,13 +5126,13 @@
     "estimates": [
       {
         "venue": "dugbe-amala",
-        "triangles": 3914,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ibadan-airport",
-        "triangles": 4022,
+        "triangles": 3962,
         "meshes": 13,
         "lights": 3
       },
@@ -5134,25 +5144,25 @@
       },
       {
         "venue": "mokola-salon",
-        "triangles": 2882,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "uch",
-        "triangles": 3402,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ui-chapel",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ui-mosque",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       }

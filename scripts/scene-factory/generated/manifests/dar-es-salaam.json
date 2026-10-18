@@ -5,17 +5,17 @@
   "city": "dar-es-salaam",
   "region": "swahili-coast",
   "recipeFile": "dar-es-salaam.json",
-  "recipeSha256": "061685bb73db8e91f9730a63dbcee3479ed7ef1ea86eb9382c8f9f46f6b7d624",
+  "recipeSha256": "72171c283be9458c47979f7dbb369ce9b095f68ebf390effbc9bf671d57aeb98",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/dar-es-salaam.json",
-      "sha256": "6ca283caf7f33affdd2f2194a8b027d9970e64cd8e95a04488f0f439a552a3fc",
-      "inputSha256": "189b8302efeeeaff50a71e4de9627aeb6f59ca35bfae823e7a87da78001f24ea",
+      "sha256": "c2e44eb2660fac2086bb5ea5a17b9d355d05bbadd9db72aa264333a65887166e",
+      "inputSha256": "b4268c6f20b280c1f6f5198a55b9041f031e1018e96c0b4162b5289691770322",
       "contentSha256": "e7597717595abdd55561039eff3bcb2cb13ed48fa363aadcaff3325af8403df0"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5116,17 +5116,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 23,
-    "attemptedCandidateCount": 23,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 23,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 20,
+    "firstCandidateSuccessRate": 0.8695652173913043,
     "venues": [
       {
         "venue": "dar-es-salaam-airport-dar-es-salaam-airport",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5163,6 +5168,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5262,6 +5272,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5340,7 +5355,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 31992,
+    "utf8Bytes": 32014,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5354,79 +5369,79 @@
     "estimates": [
       {
         "venue": "dar-es-salaam-airport-dar-es-salaam-airport",
-        "triangles": 4010,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-ardhi-university",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-askari-monument",
-        "triangles": 3526,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-botanical-garden",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-clinic",
-        "triangles": 2490,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-community-notices",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-community-voting-game",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-community-workshop",
-        "triangles": 3890,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-kenyatta-grounds",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-leaders-club",
-        "triangles": 3518,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-market-game",
-        "triangles": 3462,
+        "triangles": 5194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-meal-stop",
-        "triangles": 2946,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-mkapa-stadium",
-        "triangles": 3490,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
@@ -5438,55 +5453,55 @@
       },
       {
         "venue": "dar-es-salaam-nafasi-art-space",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-national-museum",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-open-university",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-quiet-reflection",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-recreation",
-        "triangles": 3518,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-tandale-market",
-        "triangles": 3934,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-transit",
-        "triangles": 3530,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-uhuru-stadium",
-        "triangles": 2998,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dar-es-salaam-village-museum",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       }

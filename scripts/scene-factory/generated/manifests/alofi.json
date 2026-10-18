@@ -5,17 +5,17 @@
   "city": "alofi",
   "region": "americas-oceania",
   "recipeFile": "alofi.json",
-  "recipeSha256": "97e6a0003b0a81694d1a036a093cfb9537332610dc9fc945c6027309ef2eeca9",
+  "recipeSha256": "bb74e3f75d97553dfb3e4d1318d2b2f90e20e4ca2cd4f23268695850f08bbc67",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/alofi.json",
-      "sha256": "caab8da1b87265c05f5865294437ec264600e6859fa58d745b7e620453f2ed15",
-      "inputSha256": "774ababf75fdc961a3a58c23826cbc20d6ce61ec603d1f0cc33ccbe0bd7f7709",
+      "sha256": "94017622c9e8d685b2b0e32d7d974637ab7cdd596b605dcfc92c2840ac9b267f",
+      "inputSha256": "9b3dbf720c33825579ebbd71dc371f0780cf57e47645844a3827d3c733d0a82a",
       "contentSha256": "d42bc0a9fc0b3891b959a1ced8f39dfffae8572482dcf091f23970892be9a707"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5102,11 +5102,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 21,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 21,
     "acceptedCandidateCount": 21,
-    "rejectedCandidateCount": 6,
-    "firstCandidateSuccessCount": 15,
-    "firstCandidateSuccessRate": 0.7142857142857143,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 21,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "alofi-airport-alofi-airport",
@@ -5122,11 +5122,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5145,11 +5140,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5168,11 +5158,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5191,11 +5176,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5250,11 +5230,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5264,11 +5239,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5338,7 +5308,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 28964,
+    "utf8Bytes": 28870,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5352,25 +5322,25 @@
     "estimates": [
       {
         "venue": "alofi-airport-alofi-airport",
-        "triangles": 4010,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "alofi-clinic",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "alofi-community-notices",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "alofi-community-voting-game",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5382,19 +5352,19 @@
       },
       {
         "venue": "alofi-market-game",
-        "triangles": 3582,
+        "triangles": 4258,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "alofi-meal-stop",
-        "triangles": 3194,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "alofi-osm-node-3173841972",
-        "triangles": 2578,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
@@ -5406,13 +5376,13 @@
       },
       {
         "venue": "alofi-osm-node-3173841987",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "alofi-osm-node-3174114636",
-        "triangles": 2946,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
@@ -5424,19 +5394,19 @@
       },
       {
         "venue": "alofi-osm-node-8637114457",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "alofi-osm-way-111378893",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "alofi-osm-way-111378893",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "alofi-osm-way-1191533235",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5454,13 +5424,13 @@
       },
       {
         "venue": "alofi-osm-way-693372026",
-        "triangles": 4614,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "alofi-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5472,7 +5442,7 @@
       },
       {
         "venue": "alofi-transit",
-        "triangles": 2698,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

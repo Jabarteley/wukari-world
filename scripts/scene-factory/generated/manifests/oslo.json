@@ -5,17 +5,17 @@
   "city": "oslo",
   "region": "western-europe",
   "recipeFile": "oslo.json",
-  "recipeSha256": "9fe0f065aac529edacffb1be081424beaa236493261de011d636eb577987ad03",
+  "recipeSha256": "e4fc9566d4d792ac8ab8d0636d8a5a39ed82e1c700134db17da93139f6ef52cd",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/oslo.json",
-      "sha256": "607d40072f82c8375350d38cdfc381541c69cac2c9993ec5ce1102817ccaa8c6",
-      "inputSha256": "c63405624d4c4bcf7785ef82bc6c1a25aac69edef07354359c28f5b0884e68a6",
+      "sha256": "51ad2e6c01ee1962fee587ffc76dcafb04f569d757dfa1460b9bbaf5733ba6a9",
+      "inputSha256": "6c3fc3f132dfec619f1b85338648fd8c739205389da1566a596dbb4c3478b47f",
       "contentSha256": "d06ada27306b63f270e6fd0b2c783b9b21d64d1e167d281724280ed7fdbabe45"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "oslo-airport-oslo-airport",
@@ -5204,6 +5204,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5267,6 +5272,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5357,6 +5367,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34218,
+    "utf8Bytes": 34253,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,25 +5401,25 @@
     "estimates": [
       {
         "venue": "oslo-airport-oslo-airport",
-        "triangles": 3590,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oslo-clinic",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oslo-community-notices",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oslo-community-voting-game",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5416,37 +5431,37 @@
       },
       {
         "venue": "oslo-market-game",
-        "triangles": 4162,
+        "triangles": 5218,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oslo-meal-stop",
-        "triangles": 3274,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oslo-osm-node-1779117990",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "oslo-osm-node-1914126620",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "oslo-osm-node-1914126620",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "oslo-osm-node-260042955",
-        "triangles": 3274,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oslo-osm-node-540229469",
-        "triangles": 3178,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
@@ -5458,43 +5473,43 @@
       },
       {
         "venue": "oslo-osm-way-106902060",
-        "triangles": 3798,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oslo-osm-way-129487913",
-        "triangles": 3518,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oslo-osm-way-143526382",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oslo-osm-way-308441483",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oslo-osm-way-43222619",
-        "triangles": 2998,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oslo-osm-way-443983964",
-        "triangles": 3526,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oslo-osm-way-48672338",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5506,31 +5521,31 @@
       },
       {
         "venue": "oslo-osm-way-760875553",
-        "triangles": 2998,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oslo-osm-way-822899835",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oslo-quiet-reflection",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oslo-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "oslo-transit",
-        "triangles": 4010,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

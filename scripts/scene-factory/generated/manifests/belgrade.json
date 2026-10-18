@@ -5,17 +5,17 @@
   "city": "belgrade",
   "region": "western-europe",
   "recipeFile": "belgrade.json",
-  "recipeSha256": "4fd552aa1624705e10d7ac0dd6e27664f7e8f09cae28d1728e7849dc6c793efc",
+  "recipeSha256": "7909f5d05bfb6fd612950ac2ae22708f2bffe7d9ac92dfab51d011b387e086af",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/belgrade.json",
-      "sha256": "e5c75de5503ab0be9491720599e6a17537f011862a2698e6bbf076a2ab09455b",
-      "inputSha256": "e29015ce7cab122a22d83e5ded7b2de12f2666f843d2ff0f1a10e25eb528022e",
+      "sha256": "2383175c08e15a10848212c5ca3aed1bed8a4da5f6890368e1974fa7f6d2e6aa",
+      "inputSha256": "eafcdc56f067f979d6afb32a348f9ea3720ce74099765af6119a591725b92083",
       "contentSha256": "b7a6b82787cbb7d705d28d9320205194b5cba9e8f0ccff2d11050d898cda130e"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "belgrade-airport-belgrade-airport",
@@ -5249,6 +5249,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5258,6 +5263,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5285,11 +5295,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5299,6 +5304,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34822,
+    "utf8Bytes": 34788,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,19 +5401,19 @@
     "estimates": [
       {
         "venue": "belgrade-airport-belgrade-airport",
-        "triangles": 5426,
+        "triangles": 5246,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belgrade-clinic",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belgrade-community-notices",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5415,7 +5425,7 @@
       },
       {
         "venue": "belgrade-community-workshop",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
@@ -5427,37 +5437,37 @@
       },
       {
         "venue": "belgrade-meal-stop",
-        "triangles": 3274,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belgrade-osm-node-11425530815",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "belgrade-osm-node-12869419136",
-        "triangles": 3966,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "belgrade-osm-node-3017515469",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "belgrade-osm-node-5589378733",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "belgrade-osm-node-12869419136",
+        "triangles": 4598,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "belgrade-osm-node-3017515469",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "belgrade-osm-node-5589378733",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "belgrade-osm-way-1350045138",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5469,13 +5479,13 @@
       },
       {
         "venue": "belgrade-osm-way-1444519027",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belgrade-osm-way-370226754",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5487,37 +5497,37 @@
       },
       {
         "venue": "belgrade-osm-way-392169933",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belgrade-osm-way-438907241",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belgrade-osm-way-474077436",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belgrade-osm-way-482462319",
-        "triangles": 3518,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belgrade-osm-way-715373965",
-        "triangles": 3274,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belgrade-osm-way-93145927",
-        "triangles": 2998,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
@@ -5529,13 +5539,13 @@
       },
       {
         "venue": "belgrade-recreation",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "belgrade-transit",
-        "triangles": 4010,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

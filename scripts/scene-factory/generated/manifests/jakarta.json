@@ -5,17 +5,17 @@
   "city": "jakarta",
   "region": "east-asia",
   "recipeFile": "jakarta.json",
-  "recipeSha256": "e66efd336c7cc2eccc37e430d46cb45088150eefdfaf33d47f813fd878cb04c5",
+  "recipeSha256": "f365a60f8a1b98b07fea72459c0e5b74fd082d039d54ba203160896e18c8e7ee",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/jakarta.json",
-      "sha256": "3315f23e4e2ef309cd890b793c864eb760898628414f54ac0fc274409eb274d2",
-      "inputSha256": "f8e406f5c18864f6476b4af0ce2370c037b9b8f28cbb39be1ec66f58b5e84a49",
+      "sha256": "ffe17d8d121b79928f557ce44528f55f43adce63f04baf7537fddbb5792feb51",
+      "inputSha256": "d46228d1278bd64de0aac5066aebd6d250d2b74d02ea2bb61b3c268672eef2e0",
       "contentSha256": "d9df0f2bb7aee1e9be3284e77f3c4938ed81f7de0147d5fc0d45979eefaecd52"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "jakarta-airport-jakarta-airport",
@@ -5276,11 +5276,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5308,16 +5303,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34297,
+    "utf8Bytes": 34269,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,79 +5386,79 @@
     "estimates": [
       {
         "venue": "jakarta-airport-jakarta-airport",
-        "triangles": 2362,
+        "triangles": 3434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jakarta-clinic",
-        "triangles": 3402,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jakarta-community-notices",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jakarta-community-voting-game",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "jakarta-community-workshop",
-        "triangles": 3402,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "jakarta-market-game",
-        "triangles": 2910,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "jakarta-meal-stop",
-        "triangles": 3178,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "jakarta-osm-node-13546873949",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "jakarta-osm-relation-18873178",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "jakarta-community-workshop",
+        "triangles": 3890,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "jakarta-market-game",
+        "triangles": 4638,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "jakarta-meal-stop",
+        "triangles": 3514,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "jakarta-osm-node-13546873949",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "jakarta-osm-relation-18873178",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "jakarta-osm-way-1082234947",
-        "triangles": 3200,
+        "triangles": 3176,
         "meshes": 12,
         "lights": 3
       },
       {
         "venue": "jakarta-osm-way-1156849545",
-        "triangles": 3194,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jakarta-osm-way-119451364",
-        "triangles": 2882,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jakarta-osm-way-121919489",
-        "triangles": 4614,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
@@ -5485,37 +5470,37 @@
       },
       {
         "venue": "jakarta-osm-way-28193134",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jakarta-osm-way-29203124",
-        "triangles": 3526,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jakarta-osm-way-34748225",
-        "triangles": 3526,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jakarta-osm-way-498482968",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jakarta-osm-way-510896714",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jakarta-osm-way-626583660",
-        "triangles": 3490,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
@@ -5527,25 +5512,25 @@
       },
       {
         "venue": "jakarta-osm-way-877465306",
-        "triangles": 4598,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jakarta-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jakarta-recreation",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jakarta-transit",
-        "triangles": 4010,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

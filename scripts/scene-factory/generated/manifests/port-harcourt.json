@@ -5,17 +5,17 @@
   "city": "port-harcourt",
   "region": "niger-delta",
   "recipeFile": "port-harcourt.json",
-  "recipeSha256": "658478a0a0eb8ed07b410192cebe55e366001878d986d20e566e3a5521bcc03d",
+  "recipeSha256": "63acdb3874657c245ec1111288a992465ef11d1acb43a89d51311796f05c9c1f",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/port-harcourt.json",
-      "sha256": "e9434be41b1788ef42e2017b7facd9d36d3c204bb8a1f8b7552d18bb065d5465",
-      "inputSha256": "a3222234de2a4b55715b4dcc43a6e0fe54d626867263096de9ac98403c1278de",
+      "sha256": "464ac857ebf4d1412160429dbcdef7804ea05c8f142700f1ac605515e286a01c",
+      "inputSha256": "ed796683f5f6819d306c302c8bd930f79e7dc2601f5f2320d565e35a7f693a64",
       "contentSha256": "fb5d9677a4d7f2504536c8d128fe091924e343243e7be04730696e5ba1d5d8a4"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5047,6 +5047,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5083,11 +5088,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5112,7 +5112,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 9847,
+    "utf8Bytes": 9854,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5132,7 +5132,7 @@
       },
       {
         "venue": "diobu-church",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5144,25 +5144,25 @@
       },
       {
         "venue": "garden-city-salon",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ph-clinic",
-        "triangles": 3402,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ph-polling",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rumuola-savings",
-        "triangles": 3342,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       }

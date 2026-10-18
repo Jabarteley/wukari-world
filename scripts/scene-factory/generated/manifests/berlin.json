@@ -5,17 +5,17 @@
   "city": "berlin",
   "region": "western-europe",
   "recipeFile": "berlin.json",
-  "recipeSha256": "78582856ac91978e2a8855a0e5719d3b4c11046fd0d101dfe25d65f0363491df",
+  "recipeSha256": "ca3a86ed7392c7e60892131df7133083cc102b756c707d25facfa4865501a7be",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/berlin.json",
-      "sha256": "29ed0a47e179e63482a2b86ab8657a3ee2a5aa8d52d629c7b84519efaacfe68f",
-      "inputSha256": "f6bd07aea4a8b1fcdb9bbd54a0f42bb8f568d67a4256046482084d7fdd756c37",
+      "sha256": "243926ebdd46c051cb7ea69b285ea7232f6b383c84a715a8d17468eb1a42c42b",
+      "inputSha256": "47974ca3c6a62a7af2366cd2b53f2b34a7813d797322cba2e3e47760082c2c47",
       "contentSha256": "1348f0335ffef56ec5bdeae72e217015c8ea0d63958aeb6451e3c5a0ff953251"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "berlin-airport-berlin-airport",
@@ -5177,11 +5177,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5191,6 +5186,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5326,6 +5326,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34485,
+    "utf8Bytes": 34468,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,13 +5396,13 @@
     "estimates": [
       {
         "venue": "berlin-airport-berlin-airport",
-        "triangles": 4238,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "berlin-clinic",
-        "triangles": 2490,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
@@ -5409,7 +5414,7 @@
       },
       {
         "venue": "berlin-community-voting-game",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5421,13 +5426,13 @@
       },
       {
         "venue": "berlin-market-game",
-        "triangles": 4246,
+        "triangles": 4922,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "berlin-meal-stop",
-        "triangles": 3194,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
@@ -5445,97 +5450,97 @@
       },
       {
         "venue": "berlin-osm-node-279997440",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "berlin-osm-node-505058576",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "berlin-osm-way-1442933370",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "berlin-osm-way-20593936",
-        "triangles": 2998,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "berlin-osm-way-20980117",
-        "triangles": 3610,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "berlin-osm-way-24950668",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "berlin-osm-way-26669855",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "berlin-osm-way-26775078",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "berlin-osm-way-277991410",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "berlin-osm-way-28505596",
-        "triangles": 3934,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "berlin-osm-way-291483445",
-        "triangles": 3898,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "berlin-osm-way-46830254",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "berlin-osm-way-50239695",
-        "triangles": 3518,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "berlin-quiet-reflection",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "berlin-osm-way-277991410",
+        "triangles": 2998,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "berlin-osm-way-28505596",
+        "triangles": 4666,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "berlin-osm-way-291483445",
+        "triangles": 3966,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "berlin-osm-way-46830254",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "berlin-osm-way-50239695",
+        "triangles": 3798,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "berlin-quiet-reflection",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "berlin-recreation",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "berlin-transit",
-        "triangles": 2698,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

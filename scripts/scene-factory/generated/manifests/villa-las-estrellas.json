@@ -5,17 +5,17 @@
   "city": "villa-las-estrellas",
   "region": "americas-oceania",
   "recipeFile": "villa-las-estrellas.json",
-  "recipeSha256": "2ab5d6d026335ad5b05f8b0b521737c86b5fc98517b8cf4c68cd48d6e6095cf0",
+  "recipeSha256": "a1c784c545526eff47377a1c95c233513f8c20280927ad18c8ae1c0e638b18af",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/villa-las-estrellas.json",
-      "sha256": "b8d0460b65c8c25e4fdd6eb2be6b961cc460911927969ad022a9ee797d5a87b8",
-      "inputSha256": "7920910f3809bc5c826eb067445533444739faca40a77cb6844defc3ba995fae",
+      "sha256": "04fc104bb3f5863cf806a5930ea8110b961e491e28720fb6732ec8b3829b6ac7",
+      "inputSha256": "337a3f42c9ab72af376062f527cd387eb3486a5d9324e4d439507474fa0841ff",
       "contentSha256": "1e103ee75e58216ca5661b25850d4c66c6aaeab78a036719323560acbef454fa"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5053,17 +5053,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 14,
-    "attemptedCandidateCount": 14,
+    "attemptedCandidateCount": 15,
     "acceptedCandidateCount": 14,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 14,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 13,
+    "firstCandidateSuccessRate": 0.9285714285714286,
     "venues": [
       {
         "venue": "villa-las-estrellas-airport-villa-las-estrellas-airport",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5196,7 +5201,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 19985,
+    "utf8Bytes": 19922,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5210,19 +5215,19 @@
     "estimates": [
       {
         "venue": "villa-las-estrellas-airport-villa-las-estrellas-airport",
-        "triangles": 3558,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "villa-las-estrellas-clinic",
-        "triangles": 3890,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "villa-las-estrellas-community-notices",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5234,25 +5239,25 @@
       },
       {
         "venue": "villa-las-estrellas-community-workshop",
-        "triangles": 3890,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "villa-las-estrellas-market-game",
-        "triangles": 4642,
+        "triangles": 3638,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "villa-las-estrellas-meal-stop",
-        "triangles": 3202,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "villa-las-estrellas-osm-node-10684180473",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5270,7 +5275,7 @@
       },
       {
         "venue": "villa-las-estrellas-osm-way-749856717",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5282,13 +5287,13 @@
       },
       {
         "venue": "villa-las-estrellas-recreation",
-        "triangles": 3798,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "villa-las-estrellas-transit",
-        "triangles": 3590,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

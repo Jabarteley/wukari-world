@@ -5,17 +5,17 @@
   "city": "grytviken",
   "region": "americas-oceania",
   "recipeFile": "grytviken.json",
-  "recipeSha256": "facb6a632a44409ff66f74a4fd3e43bf8b07a548f85d94ad743db625ec3c2c92",
+  "recipeSha256": "9574dc56022a9b6dc71a3f0c419631ca73670a9486ee3c1aa4ec6b615816126c",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/grytviken.json",
-      "sha256": "8484fd7a0fc457c87d21210023d8b40230c8093882a1471a7d5a0dda091241e4",
-      "inputSha256": "5b83c7d3752c40fdf1253e888d035cc4a2650d4f50aeb109f465e606a97fb933",
+      "sha256": "f07ec920f8e94dde5867f2fcce5d1b18eeda0348944f70f2d1388732ede205cc",
+      "inputSha256": "3b81cc9197693ab27054f93c21c915378006dc1877280e7c43fa1a990e05e3d7",
       "contentSha256": "e1aefcf77a320f833be17d751eae0acc9750022b6f1bd6f329732f4883a338eb"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5046,11 +5046,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 13,
-    "attemptedCandidateCount": 13,
+    "attemptedCandidateCount": 15,
     "acceptedCandidateCount": 13,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 13,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 11,
+    "firstCandidateSuccessRate": 0.8461538461538461,
     "venues": [
       {
         "venue": "grytviken-airport-grytviken-airport",
@@ -5120,6 +5120,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5147,6 +5152,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5180,7 +5190,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 18326,
+    "utf8Bytes": 18265,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5194,37 +5204,37 @@
     "estimates": [
       {
         "venue": "grytviken-airport-grytviken-airport",
-        "triangles": 3974,
+        "triangles": 2962,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "grytviken-clinic",
-        "triangles": 2910,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "grytviken-community-notices",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "grytviken-community-voting-game",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "grytviken-community-workshop",
-        "triangles": 3370,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "grytviken-market-game",
-        "triangles": 4638,
+        "triangles": 3962,
         "meshes": 13,
         "lights": 3
       },
@@ -5236,7 +5246,7 @@
       },
       {
         "venue": "grytviken-osm-node-6579560468",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5254,19 +5264,19 @@
       },
       {
         "venue": "grytviken-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "grytviken-recreation",
-        "triangles": 4430,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "grytviken-transit",
-        "triangles": 3530,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

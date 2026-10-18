@@ -5,17 +5,17 @@
   "city": "cove",
   "region": "americas-oceania",
   "recipeFile": "cove.json",
-  "recipeSha256": "2e32462bc5da765c59d8535ff196935a1af0bcd4db8f42afc0582a23aa846b26",
+  "recipeSha256": "2c94d61343869882fb8da34ad3822056161bab91d39e5ed2e69ca967c84136b6",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/cove.json",
-      "sha256": "020b914dc9000ff3133288b5031f18e81f9220565ed00cabcd3fae3f3db121f2",
-      "inputSha256": "68d04553ff60a76550f601eba295ae660b8841c98f73c17705d188d0f76853f8",
+      "sha256": "6319a01115c382b82b56acb4e345e4bae7958438781f465c74cd3929f3c7b5f0",
+      "inputSha256": "14584939e42a84abd66c7bf245b30d071ff2981cb1384698256b6ec0c4192408",
       "contentSha256": "98ba213b0f13879a659887a4c7a54aa694d2323285fc814820830d4b031e7383"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5025,11 +5025,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 10,
-    "attemptedCandidateCount": 11,
+    "attemptedCandidateCount": 10,
     "acceptedCandidateCount": 10,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 9,
-    "firstCandidateSuccessRate": 0.9,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 10,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "cove-airport-cove-airport",
@@ -5045,11 +5045,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5137,7 +5132,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 14049,
+    "utf8Bytes": 13961,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5151,61 +5146,61 @@
     "estimates": [
       {
         "venue": "cove-airport-cove-airport",
-        "triangles": 3798,
+        "triangles": 2486,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cove-clinic",
-        "triangles": 3402,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cove-community-notices",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "cove-community-voting-game",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "cove-community-workshop",
-        "triangles": 3438,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "cove-market-game",
-        "triangles": 4694,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "cove-meal-stop",
-        "triangles": 3514,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "cove-quiet-reflection",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "cove-community-voting-game",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "cove-community-workshop",
+        "triangles": 2910,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "cove-market-game",
+        "triangles": 3638,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "cove-meal-stop",
+        "triangles": 3202,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "cove-quiet-reflection",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "cove-recreation",
-        "triangles": 3518,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cove-transit",
-        "triangles": 3530,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

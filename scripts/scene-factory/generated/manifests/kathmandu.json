@@ -5,17 +5,17 @@
   "city": "kathmandu",
   "region": "south-asia",
   "recipeFile": "kathmandu.json",
-  "recipeSha256": "d617d9f2f211ded48760a9012e3c9fa1b6b083d7ca648985a5b836e462eded45",
+  "recipeSha256": "fa811959a797da48e745e6f39318c8f0f6ff72c9a587fd6195ecccaee918d40f",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/kathmandu.json",
-      "sha256": "5bd9111c7e7ae67045b1b7f15ffaeb2cd6920c03ef39ee18908f0d4c168da5a0",
-      "inputSha256": "35ff2f7bc24f1797415b9be0960d5c0c8386fab659ce506c37d17ca2ec007970",
+      "sha256": "817eef0599b0460b3fe6f45e5171c21e280a599bf90065fb7c9e0a1ee645854f",
+      "inputSha256": "3425d313466f9cdeb8c3072aba8b7b997b9faf633543eeaa9beb56e6181de232",
       "contentSha256": "d727e326e0526479ccb5ae32e4ead89f3d1dc6f00190fb41a2ea235f9fd217e9"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5150,11 +5150,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5173,6 +5168,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34549,
+    "utf8Bytes": 34546,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,61 +5391,61 @@
     "estimates": [
       {
         "venue": "kathmandu-airport-kathmandu-airport",
-        "triangles": 3590,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kathmandu-clinic",
-        "triangles": 2910,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kathmandu-community-notices",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kathmandu-community-voting-game",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kathmandu-community-workshop",
-        "triangles": 3438,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kathmandu-market-game",
-        "triangles": 4638,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kathmandu-meal-stop",
-        "triangles": 3202,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kathmandu-osm-node-10034234966",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "kathmandu-community-workshop",
+        "triangles": 3402,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kathmandu-market-game",
+        "triangles": 3638,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kathmandu-meal-stop",
+        "triangles": 3274,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kathmandu-osm-node-10034234966",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "kathmandu-osm-node-11300416091",
-        "triangles": 3526,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kathmandu-osm-node-1417852753",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5457,85 +5457,85 @@
       },
       {
         "venue": "kathmandu-osm-node-3079586714",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kathmandu-osm-node-4213646591",
-        "triangles": 3978,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kathmandu-osm-node-4413371489",
-        "triangles": 3274,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kathmandu-osm-relation-21498033",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kathmandu-osm-way-120106732",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kathmandu-osm-way-16232252",
-        "triangles": 2578,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kathmandu-osm-way-183558418",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kathmandu-osm-way-193705373",
-        "triangles": 3730,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kathmandu-osm-way-221217814",
-        "triangles": 4598,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kathmandu-osm-way-231049690",
-        "triangles": 3966,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kathmandu-osm-way-85650618",
         "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "kathmandu-osm-way-221217814",
+        "triangles": 4878,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kathmandu-osm-way-231049690",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kathmandu-osm-way-85650618",
+        "triangles": 4710,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "kathmandu-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kathmandu-recreation",
-        "triangles": 4798,
+        "triangles": 4518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kathmandu-transit",
-        "triangles": 3590,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

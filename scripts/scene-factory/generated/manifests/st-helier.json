@@ -5,17 +5,17 @@
   "city": "st-helier",
   "region": "western-europe",
   "recipeFile": "st-helier.json",
-  "recipeSha256": "ad1062f8166ee77e374b4220b7f75f35d2b6b436c93e659eff05317999b49fe8",
+  "recipeSha256": "631dc44124eb558436476f59dccb78ecc1f75451d2182f219b788fd9fdef5eec",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/st-helier.json",
-      "sha256": "c777013297adc549ec629c43be6fc8a703481ef52b09f9554626fa87ff92fbd3",
-      "inputSha256": "884ced942eab8dda1616eb94d7b22ae9af7a405bc6a1cffe03eb9bc01d9ad3a1",
+      "sha256": "3e0a4c3a96da30e13d3a36831f454a5b60e9d6cbe9fb8a2c5b56b2b3bbfd9bc5",
+      "inputSha256": "ad3611aa6af74f372ab50c3b4d42b7eb8058974b651b8c2e87b705421d6acb5e",
       "contentSha256": "b6b7b3f6d9c94d23e527251fa41f098449d443b0965f28a39007c1141d434875"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "st-helier-airport-st-helier-airport",
@@ -5159,6 +5159,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5186,6 +5191,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5195,6 +5205,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5339,11 +5354,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34631,
+    "utf8Bytes": 34671,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,13 +5401,13 @@
     "estimates": [
       {
         "venue": "st-helier-airport-st-helier-airport",
-        "triangles": 3530,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-helier-clinic",
-        "triangles": 3370,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
@@ -5409,7 +5419,7 @@
       },
       {
         "venue": "st-helier-community-voting-game",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5421,61 +5431,61 @@
       },
       {
         "venue": "st-helier-market-game",
-        "triangles": 5338,
+        "triangles": 5026,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-helier-meal-stop",
-        "triangles": 3194,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-helier-osm-node-1783469367",
-        "triangles": 3978,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-helier-osm-node-1784634611",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-helier-osm-node-1793026515",
-        "triangles": 3178,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-helier-osm-node-1795426195",
-        "triangles": 3978,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-helier-osm-way-1182987296",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-helier-osm-way-166410471",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-helier-osm-way-166663089",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-helier-osm-way-177305474",
-        "triangles": 3194,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
@@ -5487,13 +5497,13 @@
       },
       {
         "venue": "st-helier-osm-way-182196435",
-        "triangles": 3526,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-helier-osm-way-182786869",
-        "triangles": 3898,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
@@ -5505,37 +5515,37 @@
       },
       {
         "venue": "st-helier-osm-way-193301844",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-helier-osm-way-496496072",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-helier-osm-way-903201743",
-        "triangles": 4430,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-helier-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-helier-recreation",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-helier-transit",
-        "triangles": 2986,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

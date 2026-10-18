@@ -5,17 +5,17 @@
   "city": "west-island",
   "region": "americas-oceania",
   "recipeFile": "west-island.json",
-  "recipeSha256": "ca9fccc8e11bc82416e86241ae239a189fda176136b86c73d21f77897ef9131c",
+  "recipeSha256": "e4d48b323e10b119dcde5153a1efdcde789614086ba2d55b5761903e213ff4e0",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/west-island.json",
-      "sha256": "cc1f541dc103d99603b3d46699f15a23dd5bbc55fbaddeca972abfab56f64fa8",
-      "inputSha256": "4bef952938b7e305f95c27c8a3b415eb866cf2c62455379851e2cd803a486021",
+      "sha256": "d118fbd02badde140cd342ee7d1dfa45b1eda0393fc668a5f873945d6bf067b8",
+      "inputSha256": "125c5af9b8092dca0f70fb272a54449d1b611106aab62035eff55a7dc66da469",
       "contentSha256": "ac725c7ce0e949f65b9397d0750fa5e3bd903d68c006572da7d3de684266583b"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5060,11 +5060,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 15,
-    "attemptedCandidateCount": 16,
+    "attemptedCandidateCount": 17,
     "acceptedCandidateCount": 15,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 14,
-    "firstCandidateSuccessRate": 0.9333333333333333,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 13,
+    "firstCandidateSuccessRate": 0.8666666666666667,
     "venues": [
       {
         "venue": "west-island-airport-west-island-airport",
@@ -5089,11 +5089,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5112,6 +5107,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5175,6 +5175,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5217,7 +5222,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 20999,
+    "utf8Bytes": 21034,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5243,25 +5248,25 @@
       },
       {
         "venue": "west-island-community-notices",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "west-island-community-voting-game",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "west-island-community-workshop",
-        "triangles": 3438,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "west-island-market-game",
-        "triangles": 4642,
+        "triangles": 3638,
         "meshes": 13,
         "lights": 3
       },
@@ -5273,31 +5278,31 @@
       },
       {
         "venue": "west-island-osm-node-4547647294",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "west-island-osm-node-4547647295",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "west-island-osm-way-1015047086",
-        "triangles": 3202,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "west-island-osm-way-1204779092",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "west-island-osm-way-198316207",
-        "triangles": 3202,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
@@ -5315,7 +5320,7 @@
       },
       {
         "venue": "west-island-transit",
-        "triangles": 3530,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

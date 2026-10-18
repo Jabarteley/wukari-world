@@ -5,17 +5,17 @@
   "city": "hamilton",
   "region": "americas-oceania",
   "recipeFile": "hamilton.json",
-  "recipeSha256": "fa19ffe1a77361edc548c2daaa0cdf4a566c736997ee93fab4fcc103b4b31781",
+  "recipeSha256": "486eb0493b676011e7adbb66668882c925c7ab53b49d17582e7bda5a2cc9af68",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/hamilton.json",
-      "sha256": "4005e379b5e5a507be43009b5fdfd20ead80d61cbb9e275cce49c66f5d29573e",
-      "inputSha256": "ec08680210e614c7cae12f2e4fde8f64eb23148dd41421fd96ca3d54f0f3266c",
+      "sha256": "4cdd33c8930a77c06c6bdf9fff79aa0cfa3b9226cf7c62d698dcee9e48a3cd39",
+      "inputSha256": "934544ea55212482a3baf43a99048b4a6c46b6518721042950887a15247a0f41",
       "contentSha256": "bf01d5a85567f8031b73d6185f124c5784deae4baea7c42b4d4ba21bace8c4a3"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 29,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 4,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.84,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "hamilton-airport-hamilton-airport",
@@ -5150,11 +5150,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5164,6 +5159,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5173,11 +5178,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5214,11 +5214,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5237,11 +5232,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5392,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34505,
+    "utf8Bytes": 34698,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5406,37 +5396,37 @@
     "estimates": [
       {
         "venue": "hamilton-airport-hamilton-airport",
-        "triangles": 2310,
+        "triangles": 3622,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hamilton-clinic",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hamilton-community-notices",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hamilton-community-voting-game",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hamilton-community-workshop",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hamilton-market-game",
-        "triangles": 4642,
+        "triangles": 4638,
         "meshes": 13,
         "lights": 3
       },
@@ -5448,19 +5438,19 @@
       },
       {
         "venue": "hamilton-osm-node-12249214673",
-        "triangles": 3526,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hamilton-osm-node-5519434022",
-        "triangles": 2578,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hamilton-osm-node-7289544262",
-        "triangles": 3202,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
@@ -5472,43 +5462,43 @@
       },
       {
         "venue": "hamilton-osm-way-1198079103",
-        "triangles": 2882,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hamilton-osm-way-175194099",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hamilton-osm-way-181381774",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hamilton-osm-way-181381778",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hamilton-osm-way-183907775",
-        "triangles": 3202,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hamilton-osm-way-326975395",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hamilton-osm-way-717069727",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5526,31 +5516,31 @@
       },
       {
         "venue": "hamilton-osm-way-834369428",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hamilton-osm-way-919300910",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hamilton-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hamilton-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hamilton-transit",
-        "triangles": 4238,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

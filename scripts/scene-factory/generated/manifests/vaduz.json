@@ -5,17 +5,17 @@
   "city": "vaduz",
   "region": "western-europe",
   "recipeFile": "vaduz.json",
-  "recipeSha256": "a21d29dd9372bb213cbace396a0c830866d1d43c2d0afd4d334b7f349851eb22",
+  "recipeSha256": "8c58a18d75797e60a931e425569e33e9615741b9f94743bff70deb13aa9f541c",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/vaduz.json",
-      "sha256": "beea6afaff893a44c7dc6addff17dad1d43869b5ba3668e3ce335da90738c8d8",
-      "inputSha256": "a8270cac90f9e5ee87604f929ea7de5fb56f3c408fdf6616f790670f106dd59a",
+      "sha256": "bf9c4cdad3b60e6fdc3befa8ddb5d4e206a7707472847dd7cc1966d9473804f9",
+      "inputSha256": "daa4926ea7bf456bdb8996cc7ab783fb9aadc63e879574a36b9099014c7a6d77",
       "contentSha256": "0fd82eaac4c12c335217b6a7ee4cdcddf18e13be8676432db6c0b8a4cf223cd4"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "vaduz-airport-vaduz-airport",
@@ -5150,11 +5150,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5218,6 +5213,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5254,6 +5254,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34438,
+    "utf8Bytes": 34436,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,151 +5396,151 @@
     "estimates": [
       {
         "venue": "vaduz-airport-vaduz-airport",
-        "triangles": 3530,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-clinic",
-        "triangles": 3438,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-community-notices",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-community-voting-game",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-community-workshop",
-        "triangles": 3890,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-market-game",
-        "triangles": 3486,
+        "triangles": 5218,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-meal-stop",
-        "triangles": 3194,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-osm-node-11381640081",
-        "triangles": 3274,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-osm-node-300209696",
-        "triangles": 3490,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-osm-node-354435079",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-osm-node-498566336",
-        "triangles": 2998,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-osm-node-5752404321",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-osm-way-1324954458",
-        "triangles": 4430,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-osm-way-243055673",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-osm-way-298855541",
-        "triangles": 2946,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-osm-way-330503932",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-osm-way-47003798",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-osm-way-484271148",
-        "triangles": 3686,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-osm-way-485353483",
-        "triangles": 3686,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-osm-way-491625232",
-        "triangles": 2998,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-osm-way-977381553",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-osm-way-979391092",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-recreation",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vaduz-transit",
-        "triangles": 4010,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

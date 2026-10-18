@@ -5,17 +5,17 @@
   "city": "chagos",
   "region": "americas-oceania",
   "recipeFile": "chagos.json",
-  "recipeSha256": "54a7809f15fc461d8259a132694169da299b6bd608d8bc04ae166ed867890546",
+  "recipeSha256": "b00638619d22965bc0ece35f64958cf0bd65ad08c9b6445fb22650a121b92786",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/chagos.json",
-      "sha256": "77784f3117a64a7fbae785be99857f59856d15c62b39f06c73b3d41aa80d1118",
-      "inputSha256": "48b9da2540aabe84aee18c7be591bb0838e60f9957fe6f7fb070a40c328e016c",
+      "sha256": "f7a840e5ee38f84b6d478d069695fb1fc655e859e377d6f2d738e6b28ab0e5b9",
+      "inputSha256": "d9845478b6ff9b85bcaf5818b3646334b485298f81983cfa2990f20229995902",
       "contentSha256": "fc638c597d393fa97c9c5334af41fe894d7e791f1ec971e572b756d550e42193"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5148,7 +5148,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 15389,
+    "utf8Bytes": 15421,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5162,67 +5162,67 @@
     "estimates": [
       {
         "venue": "chagos-airport-chagos-airport",
-        "triangles": 3558,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chagos-clinic",
-        "triangles": 3890,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chagos-community-notices",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chagos-community-voting-game",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "chagos-community-workshop",
-        "triangles": 3438,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "chagos-market-game",
-        "triangles": 4642,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "chagos-meal-stop",
-        "triangles": 3202,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "chagos-osm-node-5194716720",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "chagos-community-workshop",
+        "triangles": 3402,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "chagos-market-game",
+        "triangles": 2910,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "chagos-meal-stop",
+        "triangles": 3514,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "chagos-osm-node-5194716720",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "chagos-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chagos-recreation",
-        "triangles": 4710,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chagos-transit",
-        "triangles": 2986,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

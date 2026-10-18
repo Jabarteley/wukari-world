@@ -5,17 +5,17 @@
   "city": "tehran",
   "region": "south-asia",
   "recipeFile": "tehran.json",
-  "recipeSha256": "3ce010c514570b159a2f96efbb2d74f35a774f77bd5e599cdb58bc92e587f0b8",
+  "recipeSha256": "80141d65d286908df4958ef4e0aa08d478f74d8179f45376548b917dffde34f0",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/tehran.json",
-      "sha256": "048130ff68addd26d13ba2bdaaaa4ad8cccd1b2760b07108918b761871b3a35d",
-      "inputSha256": "e7f549c7273846ea41a586a8c7e4d98a471ff986e8f2390691e4c57d21337faa",
+      "sha256": "97e50bb45129557769a5ce0fc77ca3d3e61dd4f600148090d390017800bd5c84",
+      "inputSha256": "58c93ae594271d5268f50ad20db73b99c344b582ffa77258c4e45359e9c5e10b",
       "contentSha256": "4e2823191b8dd1d00a495e0140a3580f1be3956f4f333e6a1ff60da3bf0fc3b3"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "tehran-airport-tehran-airport",
@@ -5168,6 +5168,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5186,6 +5191,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34437,
+    "utf8Bytes": 34544,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,19 +5396,19 @@
     "estimates": [
       {
         "venue": "tehran-airport-tehran-airport",
-        "triangles": 3530,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tehran-clinic",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tehran-community-notices",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5410,25 +5420,25 @@
       },
       {
         "venue": "tehran-community-workshop",
-        "triangles": 3890,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tehran-market-game",
-        "triangles": 4282,
+        "triangles": 3294,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tehran-meal-stop",
-        "triangles": 3202,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tehran-osm-node-10214246553",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5440,43 +5450,43 @@
       },
       {
         "venue": "tehran-osm-relation-6957011",
-        "triangles": 3610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tehran-osm-relation-8129683",
-        "triangles": 3934,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tehran-osm-way-1067538666",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tehran-osm-way-112376927",
-        "triangles": 3966,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tehran-osm-way-1193089813",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tehran-osm-way-119376034",
-        "triangles": 2578,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tehran-osm-way-1527989327",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5500,37 +5510,37 @@
       },
       {
         "venue": "tehran-osm-way-458252915",
-        "triangles": 3518,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tehran-osm-way-572366884",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tehran-osm-way-600451203",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tehran-quiet-reflection",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tehran-recreation",
         "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "tehran-osm-way-572366884",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tehran-osm-way-600451203",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tehran-quiet-reflection",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tehran-recreation",
+        "triangles": 3518,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "tehran-transit",
-        "triangles": 2986,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

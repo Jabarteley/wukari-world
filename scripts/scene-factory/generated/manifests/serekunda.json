@@ -5,17 +5,17 @@
   "city": "serekunda",
   "region": "gulf-guinea",
   "recipeFile": "serekunda.json",
-  "recipeSha256": "a23e431355dc55b1c46e9172181a63d4e8a553518fb172ed9b4be38f6f5eecab",
+  "recipeSha256": "9661a74b1ee4afcca04f57c14363d5a3dff2cc5b9a069cb64b1b9cf19df7abfe",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/serekunda.json",
-      "sha256": "467451177e9c4958d9381bbfb2c660bf44ee5da4892f7733646706bc62189aa1",
-      "inputSha256": "a42f4d907de21f0e77754c9b8b2ce3d30b5dab5976950f2a44f0dba7cb7a0573",
+      "sha256": "e5db48e4e9bdbda1962439e290a24e8eebed185d6632c143cfa1054d25307f9a",
+      "inputSha256": "4448792c5b14824f0a423923445b5dd97153fa3c552fe74bf941e1493b612316",
       "contentSha256": "9050cdcb537c263dfee66b49959debbc346eadb7abd339c3a204cd02c4a791be"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,17 +5130,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "serekunda-airport-serekunda-airport",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5159,6 +5164,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5285,6 +5295,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34605,
+    "utf8Bytes": 34573,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,13 +5401,13 @@
     "estimates": [
       {
         "venue": "serekunda-airport-serekunda-airport",
-        "triangles": 3246,
+        "triangles": 3186,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "serekunda-clinic",
-        "triangles": 3370,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
@@ -5404,49 +5419,49 @@
       },
       {
         "venue": "serekunda-community-voting-game",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "serekunda-community-workshop",
-        "triangles": 3890,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "serekunda-market-game",
-        "triangles": 4638,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "serekunda-meal-stop",
-        "triangles": 3514,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "serekunda-osm-node-12025767906",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "serekunda-community-workshop",
+        "triangles": 3402,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "serekunda-market-game",
+        "triangles": 3638,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "serekunda-meal-stop",
+        "triangles": 2946,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "serekunda-osm-node-12025767906",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "serekunda-osm-node-6300945109",
-        "triangles": 3274,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "serekunda-osm-node-9080250964",
-        "triangles": 3274,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "serekunda-osm-node-9158275429",
-        "triangles": 2882,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
@@ -5458,13 +5473,13 @@
       },
       {
         "venue": "serekunda-osm-way-166695422",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "serekunda-osm-way-249687879",
-        "triangles": 3458,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
@@ -5476,25 +5491,25 @@
       },
       {
         "venue": "serekunda-osm-way-255647292",
-        "triangles": 3490,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "serekunda-osm-way-255649417",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "serekunda-osm-way-255895814",
-        "triangles": 4878,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "serekunda-osm-way-263258266",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5506,31 +5521,31 @@
       },
       {
         "venue": "serekunda-osm-way-374017688",
-        "triangles": 3898,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "serekunda-osm-way-816348601",
-        "triangles": 3490,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "serekunda-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "serekunda-recreation",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "serekunda-transit",
-        "triangles": 4010,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

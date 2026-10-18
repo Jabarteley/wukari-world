@@ -5,17 +5,17 @@
   "city": "torshavn",
   "region": "western-europe",
   "recipeFile": "torshavn.json",
-  "recipeSha256": "875d4f582e92c786ac441a26e7f42d8872433e80c1df2c0dd11aede980ae5e83",
+  "recipeSha256": "f2869818efa20d858b7cf3d2d45179109b5953b904640585960e9c3fffc14c80",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/torshavn.json",
-      "sha256": "69f79495bc966469093aa11818ad306ac5af2b362ae9a7d9d28c75f47783f80f",
-      "inputSha256": "ccc5b28fa2e4cfce2841e5e308f655383982ba6996d204b394a6292586548d12",
+      "sha256": "1c6834cf3a81c6a9a8a0a2c7e0065f927af9bade66cd53b64b8589c3fa0543cd",
+      "inputSha256": "bcb46cb01e1fd2d883842b7a5b3f94777971adda82cd60844c0687e7d65cfe77",
       "contentSha256": "ce7efc3599cba3c0cba49e8a1a7df50637afa5876292d6bbc20f00dc005066a2"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5123,11 +5123,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 24,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 24,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.9583333333333334,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 21,
+    "firstCandidateSuccessRate": 0.875,
     "venues": [
       {
         "venue": "torshavn-airport-torshavn-airport",
@@ -5215,6 +5215,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5287,11 +5292,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5301,6 +5301,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5319,6 +5324,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5361,7 +5371,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 33140,
+    "utf8Bytes": 33174,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5375,43 +5385,43 @@
     "estimates": [
       {
         "venue": "torshavn-airport-torshavn-airport",
-        "triangles": 2986,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "torshavn-clinic",
-        "triangles": 3402,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "torshavn-community-notices",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "torshavn-community-voting-game",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "torshavn-community-workshop",
-        "triangles": 3402,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "torshavn-market-game",
-        "triangles": 4922,
+        "triangles": 4246,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "torshavn-meal-stop",
-        "triangles": 3178,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
@@ -5429,67 +5439,67 @@
       },
       {
         "venue": "torshavn-osm-node-4918755823",
-        "triangles": 3526,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "torshavn-osm-node-5844823036",
-        "triangles": 4878,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "torshavn-osm-node-604992048",
-        "triangles": 3274,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "torshavn-osm-node-683373731",
-        "triangles": 2578,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "torshavn-osm-way-43493030",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "torshavn-osm-way-43917412",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "torshavn-osm-way-44619145",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "torshavn-osm-way-44945414",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "torshavn-osm-way-48075009",
-        "triangles": 4430,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "torshavn-osm-way-493139327",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "torshavn-osm-way-43917412",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "torshavn-osm-way-44619145",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "torshavn-osm-way-44945414",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "torshavn-osm-way-48075009",
+        "triangles": 3798,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "torshavn-osm-way-493139327",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "torshavn-osm-way-648765786",
-        "triangles": 3526,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
@@ -5501,19 +5511,19 @@
       },
       {
         "venue": "torshavn-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "torshavn-recreation",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "torshavn-transit",
-        "triangles": 3530,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

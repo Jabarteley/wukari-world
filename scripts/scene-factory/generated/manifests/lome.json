@@ -5,17 +5,17 @@
   "city": "lome",
   "region": "gulf-guinea",
   "recipeFile": "lome.json",
-  "recipeSha256": "a63a619628ab4b96ceea6e416cf444bc121f976cf7e3a486ef8d52c5e217929f",
+  "recipeSha256": "4a4cd779db57d90f7ef8a11ee7283db5fdf92b7758b0f4fb0d217df3984744e4",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/lome.json",
-      "sha256": "0784cc7e2532b169e7ee5092380c9bb2595b1841c54693e4eeb0332dda207d78",
-      "inputSha256": "9a584045f33edcc93763888437477d94349c3781c224c52db820dc804d49e978",
+      "sha256": "4b698a147a98816d95bf5e7c6b77c41948d78bd6c6e722a432bc788894388f4a",
+      "inputSha256": "252dc723a809e207e48d7e0c70be4604f9bdb800187181dd7331eb8210c38500",
       "contentSha256": "fd17cbe3e85833c91de60fd270dee6f2796743ce64a9ddbf22a5e5f48508243b"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5116,11 +5116,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 23,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 23,
     "acceptedCandidateCount": 23,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.9130434782608695,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "lome-aflao-market",
@@ -5280,11 +5280,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5312,11 +5307,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5350,7 +5340,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 31588,
+    "utf8Bytes": 31475,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5364,73 +5354,73 @@
     "estimates": [
       {
         "venue": "lome-aflao-market",
-        "triangles": 3934,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lome-airport-lome-airport",
-        "triangles": 2698,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lome-centre-de-loisirs-boad",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lome-clinic",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lome-community-notices",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lome-community-voting-game",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lome-community-workshop",
-        "triangles": 2910,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lome-eglise-des-assemblees-chretiennes",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "lome-community-workshop",
+        "triangles": 3370,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "lome-eglise-des-assemblees-chretiennes",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "lome-fauna-zoo",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lome-la-concorde",
-        "triangles": 4666,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lome-marche-de-be",
-        "triangles": 2882,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lome-marche-de-djidjole",
-        "triangles": 2882,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
@@ -5442,25 +5432,25 @@
       },
       {
         "venue": "lome-meal-stop",
-        "triangles": 2946,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lome-mosquee-de-totsi",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lome-mosquee-oumar-bno-abdoul-aziz",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lome-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5472,31 +5462,31 @@
       },
       {
         "venue": "lome-stade-de-kegue",
-        "triangles": 3490,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lome-tinga",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lome-togo-national-museum",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lome-transit",
-        "triangles": 3590,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lome-universite-des-sciences-et-technologies",
-        "triangles": 3898,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       }

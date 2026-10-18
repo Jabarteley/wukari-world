@@ -5,17 +5,17 @@
   "city": "ndjamena",
   "region": "sahel-francophone",
   "recipeFile": "ndjamena.json",
-  "recipeSha256": "2f3010581e3f5ac1946e89535cd9a739595f35b1ec62b7cf217d4cc1376c36c7",
+  "recipeSha256": "42e97312d9245de6c850614463c2e7872a7e876492877c646854eade7e8a0a97",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/ndjamena.json",
-      "sha256": "2dcac9125ae264c8c80a20077b4f954a892330d59ebdd9ff6fc4d3ab0f2cdefe",
-      "inputSha256": "a800251e311bb21e2788953c1626bf563dc4f9226297bbb09436f1fd45f265b0",
+      "sha256": "83007ecc40ac05454829f684750eba6ab333faf4be15a7977224fff14d2656de",
+      "inputSha256": "9d708494df2e9eb42ecae9d1cd9c80b283a5125af3a71840128cc2d164856ef8",
       "contentSha256": "bff6de344c03a58aad6e31af887d11102a25e8131bdd8b3cd74406fe6d915cf2"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,17 +5130,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.88,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "ndjamena-airport-ndjamena-airport",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5168,11 +5173,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5331,11 +5331,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34845,
+    "utf8Bytes": 34640,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,7 +5396,7 @@
     "estimates": [
       {
         "venue": "ndjamena-airport-ndjamena-airport",
-        "triangles": 3530,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
@@ -5413,37 +5408,37 @@
       },
       {
         "venue": "ndjamena-community-notices",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ndjamena-community-voting-game",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ndjamena-community-workshop",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ndjamena-market-game",
-        "triangles": 3342,
+        "triangles": 4762,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ndjamena-meal-stop",
-        "triangles": 2946,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ndjamena-osm-node-11135875905",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5467,7 +5462,7 @@
       },
       {
         "venue": "ndjamena-osm-node-4108051090",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5479,73 +5474,73 @@
       },
       {
         "venue": "ndjamena-osm-node-4502748090",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ndjamena-osm-node-7174815188",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ndjamena-osm-node-8652966419",
-        "triangles": 3178,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ndjamena-osm-way-1066128727",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ndjamena-osm-way-1415633322",
-        "triangles": 2578,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ndjamena-osm-way-1451346354",
-        "triangles": 3934,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ndjamena-osm-way-156565063",
-        "triangles": 2882,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ndjamena-osm-way-199599925",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ndjamena-osm-way-678864284",
-        "triangles": 4878,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ndjamena-quiet-reflection",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ndjamena-recreation",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ndjamena-transit",
-        "triangles": 2986,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

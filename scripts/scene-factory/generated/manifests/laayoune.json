@@ -5,17 +5,17 @@
   "city": "laayoune",
   "region": "maghreb",
   "recipeFile": "laayoune.json",
-  "recipeSha256": "d02205c225682dbae8831aaf168b7baf1bc49b7c88f87eb0b76fdca04f56f655",
+  "recipeSha256": "cba81b88b41253449f8c22f6e21c0bb124ab35629e6f6acc562321a0be616f2b",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/laayoune.json",
-      "sha256": "7ce4e7291086c79667e87502e6883f6148480cd0fc781982a18f3900f4583bc9",
-      "inputSha256": "c3932617528f701e73b3357f3c9ccbb53157b891347fe681ecdd82dfe3a4ebb0",
+      "sha256": "8f34c8614ae363b6870eb4e85e3fa96e02b504cd71ad18c9c4ffb140a64db5b4",
+      "inputSha256": "b45d5253a74f45f9c36e329c8aefc8fc1b817517dfd98c878ba733ec6fc05ff5",
       "contentSha256": "00c603e023e7ba985e9a1b21e77d78f02cc7d2cdca5cf666adb08c75b686d8b2"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,17 +5130,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 30,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 5,
+    "firstCandidateSuccessCount": 20,
+    "firstCandidateSuccessRate": 0.8,
     "venues": [
       {
         "venue": "laayoune-airport-laayoune-airport",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5150,6 +5155,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5177,6 +5187,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5222,6 +5237,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5276,16 +5296,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5349,6 +5359,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5397,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34341,
+    "utf8Bytes": 34486,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,61 +5411,61 @@
     "estimates": [
       {
         "venue": "laayoune-airport-laayoune-airport",
-        "triangles": 2698,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-clinic",
-        "triangles": 2490,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-community-notices",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-community-voting-game",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-community-workshop",
-        "triangles": 3438,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-market-game",
-        "triangles": 3114,
+        "triangles": 4170,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-meal-stop",
-        "triangles": 3202,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-osm-node-11477229086",
-        "triangles": 3178,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-osm-node-11757225441",
-        "triangles": 4598,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-osm-node-7178769989",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5462,37 +5477,37 @@
       },
       {
         "venue": "laayoune-osm-node-8638080418",
-        "triangles": 3514,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-osm-way-1264837437",
-        "triangles": 3966,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-osm-way-1264986401",
-        "triangles": 4666,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-osm-way-1266314236",
-        "triangles": 4666,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-osm-way-1266320835",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-osm-way-1279760117",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
@@ -5504,7 +5519,7 @@
       },
       {
         "venue": "laayoune-osm-way-232401813",
-        "triangles": 3526,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
@@ -5516,31 +5531,31 @@
       },
       {
         "venue": "laayoune-osm-way-316763285",
-        "triangles": 4598,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-osm-way-607707452",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-recreation",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "laayoune-transit",
-        "triangles": 4238,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

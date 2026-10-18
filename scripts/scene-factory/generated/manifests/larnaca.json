@@ -5,17 +5,17 @@
   "city": "larnaca",
   "region": "western-europe",
   "recipeFile": "larnaca.json",
-  "recipeSha256": "05bb4750d016b9c2d7aa77358b721850b6377150dc8f637138110f3da2dc263f",
+  "recipeSha256": "853a56ad89dccbf90d02d76a3a599da0326dd1c7bd19d284503156131e937ee4",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/larnaca.json",
-      "sha256": "f2c7e6e87c32979a2644dabcda25896943f19cdaff94f3f2de09eeb5d0621004",
-      "inputSha256": "f685b742372bf7a2466639c0899c4a6c4759e7e174117e3b8dce3dcbd54c858b",
+      "sha256": "c54d580d33e21bbd820248d336161fb35886d99343186451d3dc6a64ed4eac3a",
+      "inputSha256": "794e004028c55b55dbd75b35dd6f0eafced14d5c9fdad28a12e72fc54f0db255",
       "contentSha256": "17291e6abf0f249a49c64564d105aebc946087cd6d5a4250e654d67cc68bb982"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "larnaca-airport-larnaca-airport",
@@ -5177,6 +5177,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34547,
+    "utf8Bytes": 34542,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5392,19 +5397,19 @@
       },
       {
         "venue": "larnaca-clinic",
-        "triangles": 3370,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-community-notices",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-community-voting-game",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5416,121 +5421,121 @@
       },
       {
         "venue": "larnaca-market-game",
-        "triangles": 4802,
+        "triangles": 4058,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-meal-stop",
-        "triangles": 3274,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-osm-node-4361248690",
-        "triangles": 3514,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-osm-node-4401051294",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-osm-node-9852870606",
-        "triangles": 2946,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-osm-relation-20507958",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-osm-way-1033582203",
-        "triangles": 3526,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-osm-way-1251246319",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-osm-way-1492777202",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-osm-way-149466626",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "larnaca-osm-way-186575346",
-        "triangles": 2998,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "larnaca-osm-way-256609297",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "larnaca-osm-way-186575346",
+        "triangles": 2578,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "larnaca-osm-way-256609297",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "larnaca-osm-way-493412494",
-        "triangles": 3526,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-osm-way-513953442",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-osm-way-513962296",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-osm-way-536939636",
-        "triangles": 3686,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-osm-way-759244399",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-recreation",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "larnaca-transit",
-        "triangles": 4238,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

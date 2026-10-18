@@ -5,17 +5,17 @@
   "city": "port-aux-francais",
   "region": "americas-oceania",
   "recipeFile": "port-aux-francais.json",
-  "recipeSha256": "2462689c9b9050a59de31e245bceec5ce6373988e9e1d481dd0225f65f1afc1c",
+  "recipeSha256": "a0d1c1e4a98a6445326a9c0692e087970ce1bb6619d58ecbea9bcefb7842861a",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/port-aux-francais.json",
-      "sha256": "36ef896d6d5c8c580b88e4f560cbbbdd41be9b62035368d08137b8a4ad4bc0cc",
-      "inputSha256": "a22cb5d334290d8686892a6de3f32d2f4351a8cc2cfedbc0549610c12b9c3a44",
+      "sha256": "34cc51702333b1bbaf57198bd147fa71960989cae70986f29bb7d2dbb8c12d8f",
+      "inputSha256": "eb2240af7c78b0d4b4cc97ad89ad5d9bb2c7fb57b049322c6f5008729b022c02",
       "contentSha256": "e0876071fdcc8bcc7402382f846db5c9cba84e4343ace183f1a67d4226042ac5"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5066,6 +5066,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5111,11 +5116,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5161,11 +5161,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5175,6 +5170,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5190,7 +5190,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 18356,
+    "utf8Bytes": 18432,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5204,7 +5204,7 @@
     "estimates": [
       {
         "venue": "port-aux-francais-airport-port-aux-francais-airport",
-        "triangles": 2486,
+        "triangles": 2546,
         "meshes": 13,
         "lights": 3
       },
@@ -5216,19 +5216,19 @@
       },
       {
         "venue": "port-aux-francais-community-notices",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "port-aux-francais-community-voting-game",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "port-aux-francais-community-voting-game",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "port-aux-francais-community-workshop",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
@@ -5240,43 +5240,43 @@
       },
       {
         "venue": "port-aux-francais-meal-stop",
-        "triangles": 3178,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-aux-francais-osm-way-187212489",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-aux-francais-osm-way-187231295",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-aux-francais-osm-way-187231297",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-aux-francais-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-aux-francais-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-aux-francais-transit",
-        "triangles": 2986,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

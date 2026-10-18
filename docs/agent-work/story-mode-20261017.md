@@ -5,7 +5,7 @@
 - **Work ID:** `story-mode-20261017`
 - **Owner:** Story programme integration
 - **Thread:** `01a14bf1-fd6d-7de1-9770-a0c22f5d554a`
-- **UTC updated:** `2026-10-18T16:43:29Z`
+- **UTC updated:** `2026-10-18T17:06:19Z`
 - **Status:** `active`
 - **Work state:** `implementation`
 
@@ -26,9 +26,9 @@ Deliver four independently reviewed and released phases of Story Mode for `kroma
 ## Repository state
 
 - **Base:** Phase1 PR35 merged as `678b6bbe50900561d712ebe35f4932e48227d3b5`; exact combined CI39101841081 and protected release39102769792 passed, followed by active public health and unauthenticated320/390 browser proof. This is historical delivery evidence, not a claim that later main releases remain on678b6bbe.
-- **Branch:** `story/phase2-scenes`. Local merge `04d1ad50a5093ff543d28e3f2a2be6ab30096ada` includes main `c16fb841c8d67227320ef84576da35fe1a3aae2a`; all ten dirty tracked hashes preserved, zero overlap with dirty/untracked files or1223 world source pins. Pushed head remains2e722658, historicalCI39124806881 success. Actual full284city/6423recipe build and1436-file readonly check pass, focused144/144 pass. Full test-project typecheck hits3584MiB ceiling; registry graph correction pending verification. No Phase2 PR/release.
+- **Branch:** `story/phase2-scenes`, local/pushed source `5be26025bdf7eba1205ec7ee6859a4e08909a617` including mainc16fb841. Exact CI39146523218 built and typechecked successfully but startup Brotli196914 exceeds unchanged196100 by814B. Host acceptance needs its missing progression-asset prerequisite. No Phase2 PR/release.
 - **Initial dirty status:** clean.
-- **Resources:** Historical game5351 exec11040 and catalogue5354 exec59892 remain untouched. Task Chrome65923/debug5356 idle;5355closed. Corrective238 generation and all source workers are terminal. Worldr5 installed2changed/1434unchanged of1436 files, manifestcb35bc08; readonlycheck12667matched1436withoutmutation, focused144/144passed. Final49fixturecasespassed and fulltypecheck5projects/0errors/0baselinepassed81.12s. Soleheavy verification91747 now runs the required allCities+city-scenes suite; sourcefrozen. Staged2144explicitpaths contain2095changedfiles; futuretalk and otherownersrecords excluded. Currentbranch04d1ad50 includesfreshmainc16fb841; exacthostedcandidateCI andbrowserpending.
+- **Resources:** Historical game5351 and catalogue5354 remain untouched. Task Chrome65923/debug5356 is idle. No heavy generation/check currently running. Worldr6 completed1436outputs/1135written/301unchanged, manifest9712029447aa31076f4b92e61baa41c9a8948a68151a2da7bb8ebddbb2038db7. Hostr3 has284cities/6423venues/34configs, zero failures, canonicalSHA4764aae983a94369d533d6d4ef4eaacaa4030a95e4fc6e5b657c78b406ee8469. Downloaded hosted artifacts5be and2e72 are terminal. A bounded bundle worker owns vite.config.ts; integration runs failed geometry/adapter checks at unchanged caps. Futuretalk and other owners records stay excluded.
 
 
 ## Acceptance tracker
@@ -871,3 +871,29 @@ The offline284-city local builder and phone conversation card were handed back a
 - Adding factory test roots exposed three valid fixture typing errors: assertion ordering narrowed an empty list tonever[], a mutated byte was possiblyundefined, and a brief request ID wasunknown. Corrected with preserved assertions and explicit guards;49/49affectedfixturespassed1808.19ms. Two trailingblanklines removed; gitdiffcheckclean. All1223hostpinsremainexact.
 - Full npmtypecheck now passes5projects/0TSorVueerrors/0baseline in81.12s at3584MiB. The controlled registry graph cut resolves the observed compiler failure; actualVitechunk proof still requires hostedCI. FullallCities+city-scenes is runningserial under91747.
 - Explicitallowlist2144paths safely staged2095changedfiles withall1435worldpayloadhashesrechecked andall568canonicalheroinputs present. No futuretalksource, rawimage/archive, tools, rootprep or otherownersrecord was included. Next: finitecandidatecommit/freshmainpush/hostedCI inparallelwiththeexistinglongsuite; no localapplicationbuild or historicalpreviewrestart.
+
+## First full-scene and gated-host findings
+
+- Source5be26025bdf7eba1205ec7ee6859a4e08909a617 is pushed; manualCI39146523218 includes optionalUI/hostacceptance. Releasepolicy passes. FourWorkersteps failstartup because their ASSETS fixtures use dist and the workflow generatescity+wordassets but omitsprogression:assets. The startup code is unchanged frommain; sourceinspection confirmsmanifestfourfiles andrequiredreader. Integration owns the narrowworkflowprerequisiteaddition, with no test/budget/sourceauthorityweakening.
+- Longsuite91747ended1 after570.411s. Six allCities checks pass:offlineoutput22.42s, sharedcontracts315.48s, Storyreachability0.466s/zero terminalcities, boundaries0.489s, market/arrival0.003s, travel/return/reload95.12s. Publicvenuegeometryfails4.27s withRecipe:decodedatlasdimensionsdiffer because nativeGeometryfixtureoverridesactualatlasheaderdecoder with1×1. Integration owns src/testing/nativeGeometry.test-fixture.ts header-basedimagecomposition; no productionatlasvalidationchange.
+- Fiveadaptercasesfailbecause their6-turnsettleheuristicfinishesbeforeactualrecipeassets; an event/condition-basedwaitchange is delegated solelyincity-scenes.test.ts, preservingassertionsandfailuretimeouts. Lastallvenuecasehit3584MiBOOM inSetrehash. The newpartsOf recipebranch callsplayableCityIds().includes on millionsoflookups; that reader rebuildsa284-entrySet/list everycall. Integration replacesonlyitsnewmembershipbranchwiththeexistingconstant-timeisCityId reader, andwillrefreshhostpins/worldbecauseclassifierhashchanges. Noexistingprotectedperformancefunction is rewritten.
+
+## Corrective runtime verification resumed
+
+- Accepted event-driven adapter wait source after inspecting every readiness/retry/late-arrival assertion. The failure-only timeout remains5seconds. No production retry or scene-budget checks weakened. Integration replaced geometry-only1x1bitmap stub with the existing byte-header descriptor; actual pixel decode is a separate browser gate.
+- Source pins and world regenerated after constant-time recipe city membership. Worldr6 receipt records1436planned/1135written/301unchanged and manifest9712029447aa31076f4b92e61baa41c9a8948a68151a2da7bb8ebddbb2038db7. This changes recipe seeds/layouts, so actual browser reviews must use the next exact artifact.
+- Next: rerun the previously failing public-venue geometry and complete city-scenes cases, plus focused recipe checks. Already passing unchanged city contracts/travel results remain recorded. Compare actual hosted startup graphs before any chunk amendment, then publish one finite correction.
+
+## Additional runtime and UI gate corrections
+
+- Corrective runtime r5 passed1436outputcheck and144focusedchecks, then failed68.065s. Native geometry reached sign rendering and revealed missingfillRect in the outer geometry canvas; it now reuses the existing geometry-only recipe canvas. Adapter timeouts now expose the real rootcause: the global geometry-only document lacked controlsquerySelector. A bounded fixture amendment supplies the finite DOMmethods required by the actual host, retaining byte-headerdimensions and real nativefiles.
+- Pure actual284packmemoryprobe completed atfixed512MiB:252387072heap/632291328RSS and312300transientSets. Loading alone is not the previous3584MiBOOM. The allvenue test synchronously created/disposed6423native scenes without awaiting their asynchronous loads; integration now awaits and asserts real native readiness per venue before disposal. This strengthens the scene proof while bounding outstanding work; final acceptance awaits the actual run.
+- ExactCI additional17UI failures inventoried. Four stale social/native-onboarding assertions now follow current existing production contracts; integration additionally owns the narrow expected-value updates in server/social.test.ts and src/app/features/start/startComponents.test.ts. Seven venue-world scheduler/idlefixtures are under one bounded worker in src/venue-world.test.ts, with unchanged idle/disposal assertions and no production scene edits.
+- The actual branch lookup bug is repaired at the shared part boundary: the nigeria-runtime market variant belongs only toLagos and worship variant only toAbuja. Sharedassetfiles remainlazy. Freshhostr4 completed0 andworldr7 isrunning.
+- Startup artifact comparison disproves eager scene-recipes: it isabsent fromall284startupclosures. CurrentLagos grew19→23files and195787→196914Brotli. Accepted sourcechunk consolidation putsalready-eager appstate andeight helpers intoapp-runtime. Artifact-onlycompressionestimate is1139Brecovery; exacthostedrebuild remainsrequired andallcaps stayunchanged.
+
+## Finite hosted correction candidate
+
+- Worldr7 completed1436outputs/1135written/301unchanged; manifest1dfe2099d15873ffef52b5f9ad8ab7aa48a694102ada36d6610c4bfa48908987. Mutation-freecheckpassed25.823s and144focusedcheckspassed6.118s. Focusedadapter3readiness/retrycasespassed; twoothercasesfilteredwithouttheirrequiredinitialLagosloadfailedwiththatmissingprecondition, notnewruntimeacceptance. Fullorderedscene/publicgeometryverification32690runswiththatinitialcase included.
+- Social/startfocused36casesinitially32pass4fail, exposingfourfurtherstaleexpectations (defaultnativeidentity,presetassetlabels,emailcopy,SSRscopeattributes). Sourceexpectationscorrectedwithactualrenderedoutput; rerunpending. Venue-worldfixturehandoffpreservesallsemanticassertionsanddrainsfinitebakingcallbacksseparatelyfromrecurringmotion,withactualfullfilechecksnext.
+- Freshorigin/mainstillc16fb841andisancestorofHEAD; noupstreammergeisneeded. Preparinganexplicitcorrectivepathlistandexactowned-outputhashauditbeforeordinarycommit/push. NoPhase2PR,releaseorbrowseracceptanceclaim.

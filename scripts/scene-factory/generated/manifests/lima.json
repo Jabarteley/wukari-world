@@ -5,17 +5,17 @@
   "city": "lima",
   "region": "americas-oceania",
   "recipeFile": "lima.json",
-  "recipeSha256": "5ea83956f18c3aced4a90727b847491b6ef4437560731684408db5e4f72b3d2b",
+  "recipeSha256": "5a8eef10a5fd9239f3dc815d38ee6e88ebf916088efa5dbb3e8623758629d5e6",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/lima.json",
-      "sha256": "2bf235b9b1f1803132b190d91e47b139ff7259cf2743cd19af7b7d2071cdf467",
-      "inputSha256": "463184d00c9efe1abc790661744c898572338a968ac189d31e4797800bdccb42",
+      "sha256": "a3247871830cccfb92bb6f1c47a9d490b0198ee603afb9677651a77e73b5761e",
+      "inputSha256": "fdc98ffaeab12ebad56e5b0699d1712d808c099af814694e630524bd8f1ea3e4",
       "contentSha256": "c3eb8d047287da378f58270bf1a872177f60e54c8cf64db758a11f593535dd52"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.88,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "lima-airport-lima-airport",
@@ -5213,11 +5213,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5281,11 +5276,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5295,6 +5285,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5313,11 +5308,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5345,6 +5335,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34544,
+    "utf8Bytes": 34505,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,37 +5396,37 @@
     "estimates": [
       {
         "venue": "lima-airport-lima-airport",
-        "triangles": 3590,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lima-clinic",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lima-community-notices",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lima-community-voting-game",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lima-community-workshop",
-        "triangles": 3370,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lima-market-game",
-        "triangles": 3606,
+        "triangles": 5338,
         "meshes": 13,
         "lights": 3
       },
@@ -5443,49 +5438,49 @@
       },
       {
         "venue": "lima-osm-node-10294326057",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lima-osm-node-1459528357",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lima-osm-node-1728415463",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "lima-osm-node-1728415463",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "lima-osm-relation-12280616",
-        "triangles": 4598,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lima-osm-relation-6252388",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lima-osm-way-375577634",
-        "triangles": 3978,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lima-osm-way-379394923",
         "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "lima-osm-way-379394923",
+        "triangles": 3490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "lima-osm-way-401294974",
-        "triangles": 3526,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
@@ -5497,19 +5492,19 @@
       },
       {
         "venue": "lima-osm-way-436738985",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lima-osm-way-437330220",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lima-osm-way-68674787",
-        "triangles": 2882,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
@@ -5521,25 +5516,25 @@
       },
       {
         "venue": "lima-osm-way-76738820",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lima-osm-way-808110260",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lima-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lima-recreation",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },

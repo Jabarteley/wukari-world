@@ -5,17 +5,17 @@
   "city": "delhi",
   "region": "south-asia",
   "recipeFile": "delhi.json",
-  "recipeSha256": "84ad2de658e0f1f609d16e9f9acfef31982e8a6ae23d296c3837dba56b1e2558",
+  "recipeSha256": "3918022ba6d99b6b4c0cc4c01d1df981fab0c704c7596183c34fa776ebe07ff5",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/delhi.json",
-      "sha256": "dc9909567ba26f792f6f86e44c229b7a300089f253105ba50b13ae14bde18a8c",
-      "inputSha256": "5bfe3001eda9775f0d0bc37cdedc31d68127164ea3dae18a48d857a841d589f3",
+      "sha256": "537251a042dc2f4a1577c09313582baf328b830389b7255a3ca7e73c553b3351",
+      "inputSha256": "069c2a046c3fe35c9c4529766fd650426c833e0d721d7c2aa7df3671c5a64ae4",
       "contentSha256": "4643bad6bdf76f7164c2cc39d83dd5f6ead2c04a66a9f019b1d51a2e2bc3e512"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "delhi-airport-delhi-airport",
@@ -5204,6 +5204,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5249,11 +5254,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5335,16 +5335,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34415,
+    "utf8Bytes": 34270,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,7 +5391,7 @@
     "estimates": [
       {
         "venue": "delhi-airport-delhi-airport",
-        "triangles": 4438,
+        "triangles": 4378,
         "meshes": 13,
         "lights": 3
       },
@@ -5419,7 +5409,7 @@
       },
       {
         "venue": "delhi-community-voting-game",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5431,19 +5421,19 @@
       },
       {
         "venue": "delhi-market-game",
-        "triangles": 4638,
+        "triangles": 3962,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "delhi-meal-stop",
-        "triangles": 2946,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "delhi-osm-node-10823999060",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5455,43 +5445,43 @@
       },
       {
         "venue": "delhi-osm-node-6465991440",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "delhi-osm-way-102758345",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "delhi-osm-way-111698030",
-        "triangles": 2998,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "delhi-osm-way-1162586312",
-        "triangles": 4598,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "delhi-osm-way-1326248225",
-        "triangles": 3966,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "delhi-osm-way-154708937",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "delhi-osm-way-189447678",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
@@ -5503,7 +5493,7 @@
       },
       {
         "venue": "delhi-osm-way-467108001",
-        "triangles": 3898,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
@@ -5521,13 +5511,13 @@
       },
       {
         "venue": "delhi-osm-way-80936826",
-        "triangles": 3798,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "delhi-osm-way-816798914",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5539,13 +5529,13 @@
       },
       {
         "venue": "delhi-recreation",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "delhi-transit",
-        "triangles": 4010,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "praia",
   "region": "gulf-guinea",
   "recipeFile": "praia.json",
-  "recipeSha256": "b82b45626353595ec6b43011c62ad04d44ddf52af8c40fa882a0f70ab0442f6c",
+  "recipeSha256": "4616ffa37a5f2a3257f31f457f8acfa8c516697dc2e195d5c83ad2521ec41ecf",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/praia.json",
-      "sha256": "63352b17fdb41993d7331fa528f0fb2d5922feccb77049517c108aab7e7e8fc6",
-      "inputSha256": "e327cba6b4e02543618bc4fc20fa48b04745550927daafd6d4104422c1e09c57",
+      "sha256": "0a5871176a7e49b0f82033b28cdd963edd1c9efde197105ec6d44214b4e19a94",
+      "inputSha256": "56921397de24a8b97f9aa824a5b43dc230e9ec166265bb564d2fc0db422e65d0",
       "contentSha256": "1928901710c36b214fdc72ea1d7d9e02460469dc32c292c780af483a3e8f158c"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5222,11 +5222,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5344,6 +5339,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34425,
+    "utf8Bytes": 34446,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,151 +5391,151 @@
     "estimates": [
       {
         "venue": "praia-airport-praia-airport",
-        "triangles": 3530,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "praia-clinic",
-        "triangles": 2490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "praia-community-notices",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "praia-community-voting-game",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "praia-community-workshop",
         "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "praia-community-notices",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "praia-community-voting-game",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "praia-community-workshop",
+        "triangles": 2910,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "praia-market-game",
-        "triangles": 2774,
+        "triangles": 4506,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "praia-meal-stop",
-        "triangles": 3514,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "praia-osm-node-4706531118",
-        "triangles": 4610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "praia-osm-node-4970670691",
-        "triangles": 2998,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "praia-osm-node-6432419161",
-        "triangles": 3202,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "praia-osm-node-7490200241",
-        "triangles": 3610,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "praia-osm-node-7933657029",
-        "triangles": 3514,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "praia-osm-node-909626615",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "praia-osm-relation-12849568",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "praia-osm-way-1208534900",
-        "triangles": 2998,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "praia-osm-way-194252477",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "praia-osm-way-236735652",
-        "triangles": 4878,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "praia-osm-way-239654104",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "praia-osm-way-240118946",
-        "triangles": 4598,
+        "venue": "praia-osm-way-1208534900",
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "praia-osm-way-665879789",
-        "triangles": 3978,
+        "venue": "praia-osm-way-194252477",
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "praia-osm-way-819344290",
-        "triangles": 3382,
+        "venue": "praia-osm-way-236735652",
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "praia-osm-way-954580000",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "praia-quiet-reflection",
+        "venue": "praia-osm-way-239654104",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "praia-osm-way-240118946",
+        "triangles": 4878,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "praia-osm-way-665879789",
+        "triangles": 3526,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "praia-osm-way-819344290",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "praia-osm-way-954580000",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "praia-quiet-reflection",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "praia-recreation",
-        "triangles": 3798,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "praia-transit",
-        "triangles": 3590,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

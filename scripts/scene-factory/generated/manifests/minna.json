@@ -5,17 +5,17 @@
   "city": "minna",
   "region": "gulf-guinea",
   "recipeFile": "minna.json",
-  "recipeSha256": "7b2a6e895aec27a6085ef10b959a7fee748af53faa5f3b596b843e127c2ec252",
+  "recipeSha256": "785075b65598025ada9cf81969e0b7301194927c6440adabd29c20c686619d58",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/minna.json",
-      "sha256": "079246c79d5ee59e05d8a5d181164df0dceba272f3fad7f31c010c27fe8de0b0",
-      "inputSha256": "1974fe15c06b7db525e08bf1378c763763c6605e2af2e21b9e55dfc37ef33439",
+      "sha256": "4e9064750be59bf035b6994e45d9e78dff67e4340ff575dc4572ed0bbe6a0e3d",
+      "inputSha256": "25defad941e8a91ff54e41af38c351207cdfa463c422b810d5be422f4cd79aa6",
       "contentSha256": "5ce3ab6ce3e4e555cc4d25d943d3403b22ffd331f136ee0540d4374c05486555"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5053,11 +5053,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 14,
-    "attemptedCandidateCount": 15,
+    "attemptedCandidateCount": 16,
     "acceptedCandidateCount": 14,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 13,
-    "firstCandidateSuccessRate": 0.9285714285714286,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 12,
+    "firstCandidateSuccessRate": 0.8571428571428571,
     "venues": [
       {
         "venue": "federal-library-minna",
@@ -5109,6 +5109,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5145,6 +5150,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5154,11 +5164,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5201,7 +5206,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 19940,
+    "utf8Bytes": 19996,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5215,61 +5220,61 @@
     "estimates": [
       {
         "venue": "federal-library-minna",
-        "triangles": 3374,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "fut-minna-bosso-campus",
-        "triangles": 3374,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "fut-minna-main-campus",
-        "triangles": 2490,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "general-hospital-minna",
-        "triangles": 3402,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gtbank-minna",
-        "triangles": 2882,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kings-corner",
-        "triangles": 2974,
+        "triangles": 3230,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kure-market",
-        "triangles": 3282,
+        "triangles": 5014,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "minna-bus-park",
-        "triangles": 2642,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "minna-stadium",
-        "triangles": 4006,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "niger-state-house-of-assembly",
-        "triangles": 3862,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
@@ -5293,7 +5298,7 @@
       },
       {
         "venue": "yemisi-suswam-garden",
-        "triangles": 3758,
+        "triangles": 4458,
         "meshes": 13,
         "lights": 3
       }

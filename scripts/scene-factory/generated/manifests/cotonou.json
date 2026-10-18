@@ -5,17 +5,17 @@
   "city": "cotonou",
   "region": "gulf-guinea",
   "recipeFile": "cotonou.json",
-  "recipeSha256": "d1c254f4a1e0b8fbdc09f541feba683c041cbec4c212dab14df9322b56180b03",
+  "recipeSha256": "5c525aa08e0464b91c333baf6bc06304d8dfe20565831461e2437adef3ed363d",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/cotonou.json",
-      "sha256": "5743f9fb019a5bcd0f87f6eaf684a21cdbdb8efe877d25e4d1e778c0f7ccd2e3",
-      "inputSha256": "ba0ba1f847d03dd84eb03fff82988b75d4afb950bb86db380555e45c913d0b93",
+      "sha256": "c0ac020acc8998585d65c55e1ba94ec7bb907455bf96870b7d7f511c1fe6fa44",
+      "inputSha256": "03fe6d146735b893fe842be50c7e20cf510893f79d89b2e2f2740c9aa8a3de1b",
       "contentSha256": "da4fef2f565005d3e4ecb55792378e2fdc68b3287b249f975a602c1afafe9d85"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5155,7 +5155,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
+            "reason": "crowd[5]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5345,7 +5345,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 31864,
+    "utf8Bytes": 31842,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5365,43 +5365,43 @@
       },
       {
         "venue": "cotonou-airport-cotonou-airport",
-        "triangles": 3530,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cotonou-centre-de-promotion-de-l-artisanat",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "cotonou-centre-international-de-conference",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "cotonou-clinic",
-        "triangles": 3370,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "cotonou-community-notices",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "cotonou-community-voting-game",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "cotonou-centre-international-de-conference",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "cotonou-clinic",
+        "triangles": 2490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "cotonou-community-notices",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "cotonou-community-voting-game",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "cotonou-community-workshop",
-        "triangles": 3370,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
@@ -5413,37 +5413,37 @@
       },
       {
         "venue": "cotonou-jardin-botanique-et-zoologique",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cotonou-marche-st-michel",
-        "triangles": 3934,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cotonou-market-game",
-        "triangles": 4126,
+        "triangles": 4058,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cotonou-meal-stop",
-        "triangles": 3194,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cotonou-mosquee-centrale-d-avotrou",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cotonou-mosquee-centrale-de-godomey",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5455,19 +5455,19 @@
       },
       {
         "venue": "cotonou-place-lenine",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cotonou-pole-commercial-tokpa-yoyo",
-        "triangles": 4614,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cotonou-quiet-reflection",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5479,13 +5479,13 @@
       },
       {
         "venue": "cotonou-stade-de-l-amitie",
-        "triangles": 3490,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cotonou-transit",
-        "triangles": 3590,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },

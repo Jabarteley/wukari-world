@@ -5,17 +5,17 @@
   "city": "osogbo",
   "region": "yoruba-southwest",
   "recipeFile": "osogbo.json",
-  "recipeSha256": "42c22af0431258711d9d023231bf09b9d46c2be32265537836ea0fee2f954502",
+  "recipeSha256": "3b1a25f83851b3e894949b0b2d3c52bd5957d796035c248aaef7bbeb801bfa4b",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/osogbo.json",
-      "sha256": "4606615208dac0bdd93cd26a4d35e4c713e52f32914cbef799b4d2f74bcbacdd",
-      "inputSha256": "a5b01378abe24b31324c273a379bdf34f55b11d2f9d38de8a3fd364721c9facf",
+      "sha256": "a91aebe7335187983349cc864c8527913bcbc97d560a50a17d4242f75350cf93",
+      "inputSha256": "84eeb856d63dbf7b793a4b03cf5e6bf12ea24caa1ce6d369702fa439103efd2e",
       "contentSha256": "6338ff52ba7ed059f190a401530eee89e6954b002ac18f67b6e8359ca04a61b9"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5067,11 +5067,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 16,
-    "attemptedCandidateCount": 20,
+    "attemptedCandidateCount": 18,
     "acceptedCandidateCount": 16,
-    "rejectedCandidateCount": 4,
-    "firstCandidateSuccessCount": 13,
-    "firstCandidateSuccessRate": 0.8125,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 14,
+    "firstCandidateSuccessRate": 0.875,
     "venues": [
       {
         "venue": "abegi-anu-bar",
@@ -5096,6 +5096,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5123,11 +5128,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5191,16 +5191,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5210,6 +5200,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5228,11 +5223,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5248,7 +5238,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 22972,
+    "utf8Bytes": 22915,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5262,19 +5252,19 @@
     "estimates": [
       {
         "venue": "abegi-anu-bar",
-        "triangles": 3230,
+        "triangles": 2918,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ayegbaju-market",
-        "triangles": 5978,
+        "triangles": 5666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "calvary-baptist-church",
-        "triangles": 2462,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
@@ -5286,61 +5276,61 @@
       },
       {
         "venue": "gtbank-osogbo",
-        "triangles": 3374,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "igboona-market",
-        "triangles": 4334,
+        "triangles": 3282,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lautech-teaching-hospital",
-        "triangles": 3370,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nelson-mandela-freedom-park",
-        "triangles": 4458,
+        "triangles": 4738,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "new-orisunbare-market",
-        "triangles": 5010,
+        "triangles": 5014,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "noun-osogbo",
-        "triangles": 3374,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "osogbo-township-stadium",
-        "triangles": 3518,
+        "triangles": 2606,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "osun-house-of-assembly",
-        "triangles": 3342,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "osun-osogbo-sacred-grove",
-        "triangles": 2462,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "our-lady-of-fatima-hospital",
-        "triangles": 3342,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
@@ -5352,7 +5342,7 @@
       },
       {
         "venue": "union-baptist-church",
-        "triangles": 3410,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       }

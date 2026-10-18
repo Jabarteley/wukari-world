@@ -5,17 +5,17 @@
   "city": "khartoum",
   "region": "east-africa",
   "recipeFile": "khartoum.json",
-  "recipeSha256": "5928f8698f038f03ef665e8b90c50fc896e40ccd74c91b234bef30f994fb4654",
+  "recipeSha256": "afa854919713d58ace3811aad1825a53831f332d913b34e8d27bfe1809f679cd",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/khartoum.json",
-      "sha256": "211e6c9ec63d11dde1e27283e849788194843df245dd2b18138884511871887e",
-      "inputSha256": "38854f62a7115b6b8bcd1568987d91534fbd46b86a0ace1bfa54720114c64d83",
+      "sha256": "75fc440047950c79f6ecbbe05456ea109e11038e00a763ff5a90b7912d93f53f",
+      "inputSha256": "21c179c368436c61528c06806c85d65ab348c41cb047e78837209f1421081f00",
       "contentSha256": "2b76f1bc62104b31c9a4bd04fa3ed06a849b8a570e6660fddea1c6ff3232d679"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "khartoum-airport-khartoum-airport",
@@ -5213,6 +5213,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5331,7 +5336,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
+            "reason": "crowd[7]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5377,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34684,
+    "utf8Bytes": 34621,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,7 +5396,7 @@
     "estimates": [
       {
         "venue": "khartoum-airport-khartoum-airport",
-        "triangles": 2986,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
@@ -5403,103 +5408,103 @@
       },
       {
         "venue": "khartoum-community-notices",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "khartoum-community-voting-game",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "khartoum-community-workshop",
-        "triangles": 3370,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "khartoum-market-game",
-        "triangles": 3762,
+        "triangles": 4506,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "khartoum-meal-stop",
-        "triangles": 3514,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "khartoum-osm-node-6207175685",
-        "triangles": 3526,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "khartoum-osm-node-7039345257",
-        "triangles": 2946,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "khartoum-osm-node-7079529828",
-        "triangles": 2946,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "khartoum-osm-node-7079627016",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "khartoum-osm-node-7095798160",
-        "triangles": 4878,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "khartoum-osm-node-7161280085",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "khartoum-osm-way-1007170590",
+        "venue": "khartoum-osm-node-7095798160",
         "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "khartoum-osm-way-108830728",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "khartoum-osm-way-1450938789",
-        "triangles": 4614,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "khartoum-osm-way-303334100",
+        "venue": "khartoum-osm-node-7161280085",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "khartoum-osm-way-1007170590",
+        "triangles": 3966,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "khartoum-osm-way-108830728",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "khartoum-osm-way-1450938789",
+        "triangles": 4610,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "khartoum-osm-way-303334100",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "khartoum-osm-way-309577358",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "khartoum-osm-way-5772972",
-        "triangles": 3458,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
@@ -5511,31 +5516,31 @@
       },
       {
         "venue": "khartoum-osm-way-788773933",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "khartoum-osm-way-815520727",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "khartoum-quiet-reflection",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "khartoum-osm-way-815520727",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "khartoum-quiet-reflection",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "khartoum-recreation",
-        "triangles": 3798,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "khartoum-transit",
-        "triangles": 4010,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

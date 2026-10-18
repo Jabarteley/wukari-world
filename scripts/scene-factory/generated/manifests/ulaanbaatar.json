@@ -5,17 +5,17 @@
   "city": "ulaanbaatar",
   "region": "east-asia",
   "recipeFile": "ulaanbaatar.json",
-  "recipeSha256": "80a5aadcbc064b98e1f9bff3d0ab09b195758c357ae24a287555c8a33bf69d39",
+  "recipeSha256": "c7b32acf1c1384ac08539f549ca991bfe6742c9934412aca4116712e3c400235",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/ulaanbaatar.json",
-      "sha256": "549210b05177aa1a3af34e21f82818295150514ee38c974a08fd13d93379b962",
-      "inputSha256": "006f9f03a395a76ea20df51a2249e81e4e31b2c0d3388f77ccc14be54a227a4e",
+      "sha256": "f2ad95c58f6c7c358090b93aeed96c597af413119875737844cfd09d359e699f",
+      "inputSha256": "da7840cd3aa095c46d97a71b728137b0a257038aae60610c49fd807d50e7cdef",
       "contentSha256": "03c98ff6f31fb4b5c206128134e9bf04e797b5c53ea5e81b974bede2c9c456cf"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5150,6 +5150,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5222,11 +5227,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34606,
+    "utf8Bytes": 34535,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5397,49 +5397,49 @@
       },
       {
         "venue": "ulaanbaatar-clinic",
-        "triangles": 2490,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ulaanbaatar-community-notices",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ulaanbaatar-community-voting-game",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ulaanbaatar-community-workshop",
-        "triangles": 3890,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ulaanbaatar-market-game",
-        "triangles": 4906,
+        "triangles": 3486,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ulaanbaatar-meal-stop",
-        "triangles": 3178,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ulaanbaatar-osm-node-1367931400",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ulaanbaatar-osm-node-2293321279",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5451,13 +5451,13 @@
       },
       {
         "venue": "ulaanbaatar-osm-node-2321962180",
-        "triangles": 2946,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ulaanbaatar-osm-node-2355050258",
-        "triangles": 3978,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
@@ -5469,13 +5469,13 @@
       },
       {
         "venue": "ulaanbaatar-osm-node-9832193961",
-        "triangles": 2946,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ulaanbaatar-osm-relation-21094827",
-        "triangles": 3966,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5487,13 +5487,13 @@
       },
       {
         "venue": "ulaanbaatar-osm-way-129230039",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ulaanbaatar-osm-way-1495767145",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
@@ -5505,13 +5505,13 @@
       },
       {
         "venue": "ulaanbaatar-osm-way-961119183",
-        "triangles": 2998,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ulaanbaatar-osm-way-972441327",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5523,19 +5523,19 @@
       },
       {
         "venue": "ulaanbaatar-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ulaanbaatar-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ulaanbaatar-transit",
-        "triangles": 2986,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

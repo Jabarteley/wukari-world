@@ -9,13 +9,13 @@
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/lagos.json",
-      "sha256": "ad997934f8fd407a486ae96ffd853ee1075c74fd5ac488c922471aeb85619e28",
-      "inputSha256": "ab9b83d76f5f13b8d36e369185a02a7332bba1ab0520398124827b3ca882da32",
+      "sha256": "2a7822902e39aee5c2da518e10e36accc82f7c47f7fba1a9aa78c0f9a1a76f38",
+      "inputSha256": "8035ddb41294119959b50180b7de473a63be35a2460f6f15b07583386c1e713c",
       "contentSha256": "bdd212f52719ba1088e85f7de6068995733ee79f332945dcbf1dd3c52ed0f257"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",

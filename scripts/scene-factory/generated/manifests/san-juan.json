@@ -5,17 +5,17 @@
   "city": "san-juan",
   "region": "americas-oceania",
   "recipeFile": "san-juan.json",
-  "recipeSha256": "f237b0b85655409f8b6ca7d9ad09d81c0dc87b0afff741ba753aaf6a011a5f1f",
+  "recipeSha256": "1ee132366a6b388c4f48b15fd71f4d5c8f6c88960a27130a64bb32709f011ac9",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/san-juan.json",
-      "sha256": "3c484b8eeb8d6d83a9e8e5ca577c9fffefc36dfe659888755e15fa873fcaf158",
-      "inputSha256": "921c509c961d7e96517ba24addc1bb0fde5b5134857c7a20613ae95a3232e675",
+      "sha256": "08c6ceeaf7e64bf3f501c50cb22d9a5b48d3d31b0c945943749c1a934e3f6c41",
+      "inputSha256": "c7d5f91428a3088daf76d8933572a40871ded32c5191daa227d516319ad7ef53",
       "contentSha256": "d3e9aff6c2780416d0d40e01f19d643e5e81a021c44d074502d94a88ad733e42"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "san-juan-airport-san-juan-airport",
@@ -5195,6 +5195,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5240,6 +5245,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5258,11 +5273,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34825,
+    "utf8Bytes": 34747,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,61 +5401,61 @@
     "estimates": [
       {
         "venue": "san-juan-airport-san-juan-airport",
-        "triangles": 3590,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-juan-clinic",
-        "triangles": 3438,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-juan-community-notices",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-juan-community-voting-game",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-juan-community-workshop",
-        "triangles": 2910,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-juan-market-game",
-        "triangles": 4626,
+        "triangles": 4938,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-juan-meal-stop",
-        "triangles": 3178,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-juan-osm-node-357273264",
-        "triangles": 3798,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-juan-osm-node-4727907289",
         "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "san-juan-osm-node-357273264",
+        "triangles": 3518,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-juan-osm-node-4727907289",
+        "triangles": 3178,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "san-juan-osm-node-4892514142",
-        "triangles": 4598,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5457,31 +5467,31 @@
       },
       {
         "venue": "san-juan-osm-way-196598864",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-juan-osm-way-197848164",
-        "triangles": 3898,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-juan-osm-way-198390426",
-        "triangles": 4598,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-juan-osm-way-203588975",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "san-juan-osm-way-197848164",
+        "triangles": 4878,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-juan-osm-way-198390426",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-juan-osm-way-203588975",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "san-juan-osm-way-255583481",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5493,49 +5503,49 @@
       },
       {
         "venue": "san-juan-osm-way-336398987",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-juan-osm-way-421147595",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "san-juan-osm-way-528579414",
-        "triangles": 3526,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-juan-osm-way-55788712",
-        "triangles": 3490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-juan-osm-way-60449170",
-        "triangles": 3730,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "san-juan-quiet-reflection",
+        "venue": "san-juan-osm-way-421147595",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "san-juan-osm-way-528579414",
+        "triangles": 3978,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-juan-osm-way-55788712",
+        "triangles": 3458,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-juan-osm-way-60449170",
+        "triangles": 3518,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "san-juan-quiet-reflection",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "san-juan-recreation",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "san-juan-transit",
-        "triangles": 2698,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

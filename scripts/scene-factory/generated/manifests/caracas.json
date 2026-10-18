@@ -5,17 +5,17 @@
   "city": "caracas",
   "region": "americas-oceania",
   "recipeFile": "caracas.json",
-  "recipeSha256": "a441d72ac70913891af7bd327011efca9bbf4a8bd784c40027ec9922043d2098",
+  "recipeSha256": "f87869006e5878d30843dc2a8ea030a1852baf77a9a001e6fcae6eac76bb6988",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/caracas.json",
-      "sha256": "ecf25d1bd23f2eecc3eb25e4f544858aa07d1f8aa8e63462a686ed919c2b6703",
-      "inputSha256": "9d331fa1437ff3b49e3478b8ad795be24888b6fcc51d65b59861290c0b77d042",
+      "sha256": "44bcaef513cebe07bbfe488ba7f8f31095c69d0b0da4ca70b8e2df76bbe8564f",
+      "inputSha256": "6500aba9948682992aa0750c2a4e7bb3544bb5c90d17fbd3e69883cb043ade98",
       "contentSha256": "ede98cc8594a302e14405b1c212c9fe27e6b6c24e20780aef5390a7d41a5f611"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 30,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 5,
+    "firstCandidateSuccessCount": 20,
+    "firstCandidateSuccessRate": 0.8,
     "venues": [
       {
         "venue": "caracas-airport-caracas-airport",
@@ -5168,6 +5168,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5204,6 +5209,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5240,6 +5250,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5285,6 +5300,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5339,6 +5359,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5397,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34735,
+    "utf8Bytes": 34722,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,49 +5411,49 @@
     "estimates": [
       {
         "venue": "caracas-airport-caracas-airport",
-        "triangles": 4238,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-clinic",
-        "triangles": 2910,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-community-notices",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-community-voting-game",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-community-workshop",
-        "triangles": 3370,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-market-game",
-        "triangles": 4178,
+        "triangles": 3190,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-meal-stop",
-        "triangles": 3514,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-osm-relation-13278974",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
@@ -5440,13 +5465,13 @@
       },
       {
         "venue": "caracas-osm-relation-13436467",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-osm-way-179958526",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5458,31 +5483,31 @@
       },
       {
         "venue": "caracas-osm-way-216503320",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-osm-way-217701255",
-        "triangles": 4710,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-osm-way-226086260",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-osm-way-226265822",
-        "triangles": 2882,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-osm-way-240655511",
-        "triangles": 3934,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
@@ -5494,43 +5519,43 @@
       },
       {
         "venue": "caracas-osm-way-276063096",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-osm-way-306847206",
-        "triangles": 3966,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-osm-way-378723909",
-        "triangles": 3458,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-osm-way-783746298",
-        "triangles": 3490,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-recreation",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "caracas-transit",
-        "triangles": 4238,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

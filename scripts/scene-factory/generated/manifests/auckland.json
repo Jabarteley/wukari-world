@@ -5,17 +5,17 @@
   "city": "auckland",
   "region": "americas-oceania",
   "recipeFile": "auckland.json",
-  "recipeSha256": "a7ada28db7047d3332a6ee4aa895b97788712d89cbd07593319a95b660bd10e2",
+  "recipeSha256": "a06bc19e67a75405dda19188c2706776e9836d9f112cbddfa922b8ac056b52e4",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/auckland.json",
-      "sha256": "07bd9eb7a0d486884c732d1fae4273e917a87389efe5021da21befd147321ce8",
-      "inputSha256": "5bf4693e4ddf6590d00ca7ab99d080f31a9082f6366ba7feb98b0926c72993d7",
+      "sha256": "0293d2554d4c9fcaad79709ada60d06694fc58149f6285ecaf86ec15096dcf9c",
+      "inputSha256": "9d86a78c20a275ec59c0121fdff8c7b6ed576327fa01daab31cefb563b14c8ea",
       "contentSha256": "2143e45328d212c5bc9a669ceab8c9c64c650f88db838c3f7245f26b0b2021a3"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5141,11 +5141,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5155,11 +5150,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5304,6 +5294,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5313,6 +5308,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34663,
+    "utf8Bytes": 34592,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,37 +5396,37 @@
     "estimates": [
       {
         "venue": "auckland-airport-auckland-airport",
-        "triangles": 4010,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "auckland-clinic",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "auckland-community-notices",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "auckland-community-voting-game",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "auckland-community-workshop",
-        "triangles": 2910,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "auckland-market-game",
-        "triangles": 4626,
+        "triangles": 2894,
         "meshes": 13,
         "lights": 3
       },
@@ -5438,13 +5438,13 @@
       },
       {
         "venue": "auckland-osm-node-2006136519",
-        "triangles": 2578,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "auckland-osm-node-4258039707",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5456,19 +5456,19 @@
       },
       {
         "venue": "auckland-osm-relation-9089456",
-        "triangles": 4610,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "auckland-osm-way-11019403",
-        "triangles": 2882,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "auckland-osm-way-26155148",
-        "triangles": 3458,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
@@ -5480,7 +5480,7 @@
       },
       {
         "venue": "auckland-osm-way-336630313",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5492,49 +5492,49 @@
       },
       {
         "venue": "auckland-osm-way-339310375",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "auckland-osm-way-58379525",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "auckland-osm-way-680869064",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "auckland-osm-way-68312672",
-        "triangles": 3798,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "auckland-osm-way-930842670",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "auckland-osm-way-97144423",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "auckland-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "auckland-recreation",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },

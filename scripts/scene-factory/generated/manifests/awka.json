@@ -5,17 +5,17 @@
   "city": "awka",
   "region": "igbo-southeast",
   "recipeFile": "awka.json",
-  "recipeSha256": "6505a7629d03ba9efbf751a6b1a7c9ad610eb3b2a1aa18d5fa8cc857d637165e",
+  "recipeSha256": "e5e0ffc41b28a62db45f2cabe7cdf74bcceda3665b1ca915527167791f650fe1",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/awka.json",
-      "sha256": "8b59dc2ea0c1d054fc00b556afb55e31c6c1256e0654c2fc999de6d5034287c0",
-      "inputSha256": "e525c5389920e51188c3f090c566241c26cb152b781889aec3dbc57ddee2b008",
+      "sha256": "3ef42fe2a656ab708ae9c8824f463266d7b95d27ba998aecc0bd3d90f019b229",
+      "inputSha256": "15f9f8a249dcce5498b7323bf340e01d484c065785b547b8207585b9ecf43c8f",
       "contentSha256": "e63acd46c47d9ce9e95a196c0d9f3ef241df624ddb01be6f10acc116bb46c9ba"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5116,11 +5116,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 23,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 24,
     "acceptedCandidateCount": 23,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.9130434782608695,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.9565217391304348,
     "venues": [
       {
         "venue": "anambra-ministry-of-works",
@@ -5136,11 +5136,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5195,11 +5190,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "No six-pair crowd allocation fits the validated walk grid"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5326,6 +5316,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5350,7 +5345,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 32753,
+    "utf8Bytes": 32834,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5364,55 +5359,55 @@
     "estimates": [
       {
         "venue": "anambra-ministry-of-works",
-        "triangles": 3342,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "anambra-state-house-of-assembly",
-        "triangles": 3342,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "archbishop-ibezim-college-of-education",
-        "triangles": 2462,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "awka-central-mosque",
-        "triangles": 3862,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "awka-city-stadium",
-        "triangles": 2606,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "burger-chicken-awka",
-        "triangles": 2974,
+        "triangles": 3222,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "christ-the-king-hospital-awka",
-        "triangles": 3374,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "diamond-pizza-awka",
-        "triangles": 3230,
+        "triangles": 3206,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ecwa-awka",
-        "triangles": 3862,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
@@ -5424,7 +5419,7 @@
       },
       {
         "venue": "ekwueme-square-awka",
-        "triangles": 2882,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
@@ -5436,19 +5431,19 @@
       },
       {
         "venue": "gideons-barber-shop-awka",
-        "triangles": 3342,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lords-chosen-awka",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mayfresh-savings-loans-awka",
-        "triangles": 3862,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
@@ -5460,13 +5455,13 @@
       },
       {
         "venue": "ora-palace-okpuno",
-        "triangles": 2882,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "paul-university-awka",
-        "triangles": 2490,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
@@ -5478,25 +5473,25 @@
       },
       {
         "venue": "st-patricks-cathedral-awka",
-        "triangles": 3342,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "star-sunny-motor-park-awka",
-        "triangles": 2654,
+        "triangles": 2834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "uzondu-microfinance-bank-awka",
-        "triangles": 2882,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vcs-gate-awka",
-        "triangles": 3374,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "santo-domingo",
   "region": "americas-oceania",
   "recipeFile": "santo-domingo.json",
-  "recipeSha256": "9a8e81404f9eac531323d26b8acfd90c36b8ef253b0521863b791ad13d5464c8",
+  "recipeSha256": "40b5d2da5558cad73ed43d3d5d29077d87c066eaf9e082f9f19afda87586cf22",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/santo-domingo.json",
-      "sha256": "677549f02f340733251cfdcaf22ce2bc9f91e4bb4ea7adc9b4d042f432132290",
-      "inputSha256": "e6968efa2b160438ef8b76d9122bfdfce85566a65471442908d668ca6eb84b9c",
+      "sha256": "a7cdc3b523f2719a19bdecde9f6e37ab0c0847f727020f9e65dbb8fb79d138db",
+      "inputSha256": "84c3642403d4bb639e77049d1b148c17f6a14525d9179193926ca0fa44977702",
       "contentSha256": "b524466b41b34b2266f37bf2fdfd2d63e5429a2ce996396a56f24614a8468cae"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5294,6 +5294,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5348,11 +5353,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 35033,
+    "utf8Bytes": 34999,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,19 +5391,19 @@
     "estimates": [
       {
         "venue": "santo-domingo-airport-santo-domingo-airport",
-        "triangles": 3590,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santo-domingo-clinic",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santo-domingo-community-notices",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5415,19 +5415,19 @@
       },
       {
         "venue": "santo-domingo-community-workshop",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santo-domingo-market-game",
-        "triangles": 4538,
+        "triangles": 4606,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santo-domingo-meal-stop",
-        "triangles": 3514,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
@@ -5439,25 +5439,25 @@
       },
       {
         "venue": "santo-domingo-osm-way-1170357043",
-        "triangles": 4430,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santo-domingo-osm-way-222941453",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santo-domingo-osm-way-250861349",
-        "triangles": 3458,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santo-domingo-osm-way-250877911",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5469,7 +5469,7 @@
       },
       {
         "venue": "santo-domingo-osm-way-300113579",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5481,19 +5481,19 @@
       },
       {
         "venue": "santo-domingo-osm-way-338342953",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santo-domingo-osm-way-358599439",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santo-domingo-osm-way-378243851",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5505,19 +5505,19 @@
       },
       {
         "venue": "santo-domingo-osm-way-41565898",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santo-domingo-osm-way-53622354",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santo-domingo-osm-way-80445127",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5529,13 +5529,13 @@
       },
       {
         "venue": "santo-domingo-recreation",
-        "triangles": 3518,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "santo-domingo-transit",
-        "triangles": 4010,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

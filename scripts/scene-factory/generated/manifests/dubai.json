@@ -5,17 +5,17 @@
   "city": "dubai",
   "region": "south-asia",
   "recipeFile": "dubai.json",
-  "recipeSha256": "6e59c81d795bb5d5f18f6fe7b2fd81d7cbb0e66c8cb256e413b1827fff0dff36",
+  "recipeSha256": "ffefa17db1e27989af63ece8d55be7edd1bb16ce10a280f739387a36dfad797d",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/dubai.json",
-      "sha256": "42bceb62d7fa6df8f0dd8c11b7a72995e41f2790d1dd4b733f386a43d6610802",
-      "inputSha256": "8d079a7509338e82eaccc3160d699cacfe12cc10c877d4c2aeaa7210c2e6da72",
+      "sha256": "ef3b60ed9f54dda76f1e6b75cd9b1b5dbb781b6a3b568d89818efbce1b60cbe1",
+      "inputSha256": "7133a2fece5e0a8383e85060069cd579580e6907d49609e9576a3f87df0dfd16",
       "contentSha256": "d03ae87678ba1533be383dd361a27663bad61f2c268bdd5f5f5a2277d83c3bfe"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5303,6 +5303,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5339,11 +5344,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34304,
+    "utf8Bytes": 34387,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,37 +5391,37 @@
     "estimates": [
       {
         "venue": "dubai-airport-dubai-airport",
-        "triangles": 3590,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dubai-clinic",
-        "triangles": 3890,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dubai-community-notices",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dubai-community-voting-game",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dubai-community-workshop",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dubai-market-game",
-        "triangles": 4638,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
@@ -5433,37 +5433,37 @@
       },
       {
         "venue": "dubai-osm-node-1532272198",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dubai-osm-node-3272826588",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dubai-osm-relation-13303178",
-        "triangles": 3686,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dubai-osm-relation-2844942",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dubai-osm-way-104655711",
-        "triangles": 4610,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dubai-osm-way-175115425",
-        "triangles": 2882,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
@@ -5475,19 +5475,19 @@
       },
       {
         "venue": "dubai-osm-way-202564429",
-        "triangles": 2578,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dubai-osm-way-230629140",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dubai-osm-way-238918057",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5499,7 +5499,7 @@
       },
       {
         "venue": "dubai-osm-way-364819836",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
@@ -5511,7 +5511,7 @@
       },
       {
         "venue": "dubai-osm-way-551627055",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5523,7 +5523,7 @@
       },
       {
         "venue": "dubai-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5535,7 +5535,7 @@
       },
       {
         "venue": "dubai-transit",
-        "triangles": 3590,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

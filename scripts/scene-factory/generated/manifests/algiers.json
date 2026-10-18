@@ -5,17 +5,17 @@
   "city": "algiers",
   "region": "maghreb",
   "recipeFile": "algiers.json",
-  "recipeSha256": "f08b777ee47f0cb074845f95b98756163c0a1ce29eb56189c3b974b8d76142c7",
+  "recipeSha256": "9f16e3cc14d15567aa3efcc9bb6216f639d17dddd556bac4db68efc522eb4a1d",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/algiers.json",
-      "sha256": "7bbbc6429b57c52ca910c4b35f39f82517644d24c1638fe85eb3212c26d251b4",
-      "inputSha256": "4585bba72fe887bf1edb9df99242a196b11cc070b6526dc68d9d90fb936c7d9b",
+      "sha256": "06dde98e471cb30761dc7d082805c7448f5a73d4001009977dc36918c428c28b",
+      "inputSha256": "8700d485e3d8a9dd7a74291601709f9423e6bc6e4df910820c359fb6aa8ecbc4",
       "contentSha256": "53adbd7afccd5f43951fe1954fe657cafd60f688793b9519cc5b5b250cefcdd3"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5163,6 +5163,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5226,11 +5231,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5345,7 +5345,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 31628,
+    "utf8Bytes": 31672,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5359,49 +5359,49 @@
     "estimates": [
       {
         "venue": "algiers-airport-algiers-airport",
-        "triangles": 4238,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "algiers-bab-ezzouar-shopping-mall",
-        "triangles": 4610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "algiers-central-post-office",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "algiers-clinic",
-        "triangles": 3370,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "algiers-community-notices",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "algiers-community-voting-game",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "algiers-community-workshop",
-        "triangles": 3438,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "algiers-dounya-parc",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5413,13 +5413,13 @@
       },
       {
         "venue": "algiers-market-game",
-        "triangles": 3714,
+        "triangles": 4458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "algiers-martyrs-memorial",
-        "triangles": 2578,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
@@ -5431,7 +5431,7 @@
       },
       {
         "venue": "algiers-museum-of-modern-art",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5449,25 +5449,25 @@
       },
       {
         "venue": "algiers-notre-dame-d-afrique",
-        "triangles": 3586,
+        "triangles": 4286,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "algiers-quiet-reflection",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "algiers-recreation",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "algiers-riadh-el-feth",
-        "triangles": 4614,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
@@ -5485,13 +5485,13 @@
       },
       {
         "venue": "algiers-transit",
-        "triangles": 2698,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "algiers-usthb",
-        "triangles": 3898,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       }

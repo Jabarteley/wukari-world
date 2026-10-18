@@ -5,17 +5,17 @@
   "city": "malabo",
   "region": "gulf-guinea",
   "recipeFile": "malabo.json",
-  "recipeSha256": "e5380edb38e3c220c72c4870b0415f8f5ae2151be3cb131597e8c8217d65e867",
+  "recipeSha256": "51d17bdebbb458579c4562eafc58c85a850ffbea8b6fcc11d04760dbe32d69c6",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/malabo.json",
-      "sha256": "00a7d5bba062ee29a198f8a1fd4bd49ba0c2b5c69ca27a50a7a2a44548f656ca",
-      "inputSha256": "0ceb3a1a8d77994eec26c5193fcd993fac6492e72498e782f7f2ddeae7c087da",
+      "sha256": "6860a6a89c0fe298440e782f1e8ec97e7dc8df658827156639725a98d1eabdca",
+      "inputSha256": "5c595c9f40cf6a1c045792ef9b6721de9d1283c535151e1aa83822978e8df8a9",
       "contentSha256": "caca8138c669d027dfca33f96c53d96d7e404f77f20cb7b32ec34cd0383d447f"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5133,8 +5133,8 @@
     "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
     "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "malabo-airport-malabo-airport",
@@ -5195,6 +5195,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5231,11 +5241,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5290,11 +5295,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34308,
+    "utf8Bytes": 34309,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,7 +5396,7 @@
     "estimates": [
       {
         "venue": "malabo-airport-malabo-airport",
-        "triangles": 3590,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
@@ -5408,73 +5408,73 @@
       },
       {
         "venue": "malabo-community-notices",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "malabo-community-voting-game",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "malabo-community-workshop",
-        "triangles": 3438,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "malabo-market-game",
-        "triangles": 3874,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "malabo-meal-stop",
-        "triangles": 3202,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "malabo-osm-node-14180562901",
-        "triangles": 2882,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "malabo-osm-node-3299210014",
-        "triangles": 2946,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "malabo-osm-node-4638964990",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "malabo-osm-node-5670102933",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "malabo-community-workshop",
+        "triangles": 3890,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "malabo-market-game",
+        "triangles": 4618,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "malabo-meal-stop",
+        "triangles": 3514,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "malabo-osm-node-14180562901",
+        "triangles": 3610,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "malabo-osm-node-3299210014",
+        "triangles": 3274,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "malabo-osm-node-4638964990",
+        "triangles": 2578,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "malabo-osm-node-5670102933",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "malabo-osm-node-5909941285",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "malabo-osm-node-9195927549",
-        "triangles": 4666,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "malabo-osm-node-9554184978",
-        "triangles": 2946,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
@@ -5492,55 +5492,55 @@
       },
       {
         "venue": "malabo-osm-way-272208994",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "malabo-osm-way-347366427",
-        "triangles": 3978,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "malabo-osm-way-363635642",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "malabo-osm-way-638398364",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "malabo-osm-way-678125725",
-        "triangles": 3978,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "malabo-osm-way-678128961",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "malabo-quiet-reflection",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "malabo-recreation",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "malabo-transit",
-        "triangles": 3530,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

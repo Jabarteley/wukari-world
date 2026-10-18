@@ -5,17 +5,17 @@
   "city": "umuahia",
   "region": "igbo-southeast",
   "recipeFile": "umuahia.json",
-  "recipeSha256": "b83a06edaacb220a370173ad2eb54eaedb0d069a4a8fc6b9fd799cb2bbc0284c",
+  "recipeSha256": "e3ea7a547d562ff16829bea3602803d730ed708a09964e53d1b50ea8fe0f279b",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/umuahia.json",
-      "sha256": "bd72fcda2c54c49ae369e8e5e1003de6dd555fa0de71509d2b62d25145d83a9b",
-      "inputSha256": "491a66a0b0c4f9567f7b84e1c98ad98d85a23e0ece671bd361aa6dc0cde4b76a",
+      "sha256": "0839880d3518442a04e30e535394f1a7c008574a74767b2a93b2c7dd21829913",
+      "inputSha256": "396ea7f559ae627781ff62e1f1d54c35ead157d4ad0cc4b4da998f89b2376260",
       "contentSha256": "0ddf65c0e8275103a32d033500dbfaa1d38c8009680b424e554841ddb05e94d1"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5116,11 +5116,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 23,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 23,
     "acceptedCandidateCount": 23,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.9130434782608695,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "abia-state-government-house",
@@ -5181,11 +5181,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5276,11 +5271,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5350,7 +5340,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 32899,
+    "utf8Bytes": 33007,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5364,43 +5354,43 @@
     "estimates": [
       {
         "venue": "abia-state-government-house",
-        "triangles": 2462,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "abia-state-house-of-assembly",
-        "triangles": 2882,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "abia-state-secretariat",
         "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "abia-state-secretariat",
+        "triangles": 3374,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "afrikana-flavors-umuahia",
-        "triangles": 3206,
+        "triangles": 3302,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "all-saints-cathedral-umuahia",
-        "triangles": 3862,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apumiri-council-headquarters",
-        "triangles": 2882,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "college-of-nursing-amachara",
-        "triangles": 3410,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
@@ -5412,7 +5402,7 @@
       },
       {
         "venue": "de-native-restaurant-umuahia",
-        "triangles": 3206,
+        "triangles": 3230,
         "meshes": 13,
         "lights": 3
       },
@@ -5424,55 +5414,55 @@
       },
       {
         "venue": "living-faith-church-umuahia",
-        "triangles": 3342,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lux-mundi-university",
-        "triangles": 2910,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "national-gallery-art-museum-umuahia",
-        "triangles": 2882,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "national-war-museum-umuahia",
-        "triangles": 2882,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ojukwu-bunker",
         "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "ojukwu-bunker",
+        "triangles": 2462,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "old-umuahia-train-station",
-        "triangles": 2726,
+        "triangles": 3558,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "orie-ugba-market",
-        "triangles": 5014,
+        "triangles": 4334,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "township-stadium-umuahia",
-        "triangles": 3486,
+        "triangles": 4006,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ubani-modern-market",
-        "triangles": 3282,
+        "triangles": 5014,
         "meshes": 13,
         "lights": 3
       },
@@ -5484,13 +5474,13 @@
       },
       {
         "venue": "umuahia-ibeku-station",
-        "triangles": 3014,
+        "triangles": 3558,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "umuchukwu-microfinance-bank",
-        "triangles": 3410,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },

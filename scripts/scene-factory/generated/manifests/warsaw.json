@@ -5,17 +5,17 @@
   "city": "warsaw",
   "region": "western-europe",
   "recipeFile": "warsaw.json",
-  "recipeSha256": "1572b648b90f267450950551ce15af0dff205eb426f464683a2b27802d632b01",
+  "recipeSha256": "7bde4fb712c3b93595ada95b788b0b802fd2470c9b0418c2656aadb07573c02a",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/warsaw.json",
-      "sha256": "7c03ab64ff02006a94e3d841911bb8f77f280c19b5fa8826dcd14632db6141e0",
-      "inputSha256": "96998b376689ee611fa60a1f6139c874fc67c00681b4f19e1f368feca60e6661",
+      "sha256": "57a113c0c9a9b540ee4abc7ce8a9baf3f32d6ad423d50e5194db9902bada0f5c",
+      "inputSha256": "bf34c009922e338d759d35e23312eca01116063cde7c34455ea87122d4cbf90e",
       "contentSha256": "4b012cef1847174cd1476bb892e22e59fdd9a0a6eb677051e6fb11160025a034"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "warsaw-airport-warsaw-airport",
@@ -5231,6 +5231,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34523,
+    "utf8Bytes": 34482,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,55 +5391,55 @@
     "estimates": [
       {
         "venue": "warsaw-airport-warsaw-airport",
-        "triangles": 2986,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-clinic",
-        "triangles": 2490,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-community-notices",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-community-voting-game",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-community-workshop",
-        "triangles": 3438,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-market-game",
-        "triangles": 5218,
+        "triangles": 4230,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-meal-stop",
-        "triangles": 3514,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-osm-way-1025962496",
-        "triangles": 2578,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-osm-way-110020158",
-        "triangles": 3686,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5446,31 +5451,31 @@
       },
       {
         "venue": "warsaw-osm-way-173534115",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-osm-way-23498828",
-        "triangles": 3978,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-osm-way-23771865",
-        "triangles": 4710,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-osm-way-24279875",
-        "triangles": 4614,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-osm-way-24924674",
-        "triangles": 4666,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
@@ -5482,13 +5487,13 @@
       },
       {
         "venue": "warsaw-osm-way-271202947",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-osm-way-326736657",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
@@ -5500,37 +5505,37 @@
       },
       {
         "venue": "warsaw-osm-way-401557317",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-osm-way-5111535",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-osm-way-693882871",
-        "triangles": 4598,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-recreation",
-        "triangles": 3518,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "warsaw-transit",
-        "triangles": 2986,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

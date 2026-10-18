@@ -5,17 +5,17 @@
   "city": "ouagadougou",
   "region": "sahel-francophone",
   "recipeFile": "ouagadougou.json",
-  "recipeSha256": "6fc9881ae4c5732cbc4f7bf672cb3ce1a03c3e5bad24934b9f63a75a15e1c1a7",
+  "recipeSha256": "987455f4eddf7884394dbd2051b0baac5a671f3c53a1caa28e6b2a176f7300dc",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/ouagadougou.json",
-      "sha256": "9d9122b777e4ab409e4ba72586426fa4a26964ba538912a1d172db577f0a1ccc",
-      "inputSha256": "c81107f77477b73ba6cb3276d8da2bf3f626a0cf1b81739b9ef957c768fa0847",
+      "sha256": "5ccd9a23b964f82fe28e876cda223297524d3e40397ef856f1717e7de8098060",
+      "inputSha256": "136aa4076738f76b12c23d1c71c46d344581f06a03342f771bb2505b321529fc",
       "contentSha256": "45480fd02c4968ea10eaee1887e3a82fdb2c4952c2bad7bedf38438ce09a0a5b"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5144,22 +5144,17 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 27,
-    "attemptedCandidateCount": 29,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 27,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 0.9259259259259259,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 26,
+    "firstCandidateSuccessRate": 0.9629629629629629,
     "venues": [
       {
         "venue": "ouagadougou-2ie",
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5251,7 +5246,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
+            "reason": "crowd[10]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5414,7 +5409,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 37607,
+    "utf8Bytes": 37534,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5428,55 +5423,55 @@
     "estimates": [
       {
         "venue": "ouagadougou-2ie",
-        "triangles": 3966,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-airport-ouagadougou-airport",
-        "triangles": 2986,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-clinic",
-        "triangles": 2490,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-community-notices",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-community-voting-game",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-community-workshop",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-fespaco",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-grande-mosquee",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-hopital-pediatrique",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5488,43 +5483,43 @@
       },
       {
         "venue": "ouagadougou-mairie-bogodogo",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-marche-sankariare",
-        "triangles": 4614,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-marche-zogona",
-        "triangles": 3934,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-market-game",
-        "triangles": 4738,
+        "triangles": 4426,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-meal-stop",
-        "triangles": 3194,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-music-museum",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-national-heroes-monument",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5536,7 +5531,7 @@
       },
       {
         "venue": "ouagadougou-place-des-artistes",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
@@ -5548,19 +5543,19 @@
       },
       {
         "venue": "ouagadougou-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-recreation",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-rond-point-des-nations-unies",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5572,19 +5567,19 @@
       },
       {
         "venue": "ouagadougou-stade-du-4-aout",
-        "triangles": 2998,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-transit",
-        "triangles": 3590,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ouagadougou-universite-aube-nouvelle",
-        "triangles": 3686,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       }

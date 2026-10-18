@@ -5,17 +5,17 @@
   "city": "port-louis",
   "region": "americas-oceania",
   "recipeFile": "port-louis.json",
-  "recipeSha256": "2fb68b745d01acc618043762f216b1e8a6901385d75ff2a936e86245a632d970",
+  "recipeSha256": "4441a93c76894eb879463b62921fa6b8da6861e65de034febfa375a2f8f162ec",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/port-louis.json",
-      "sha256": "06852ffc69a545fcc4b4f46b10c07b25b4923828abe118fba306c08b4ca411aa",
-      "inputSha256": "8a66cdf177cef187ef1fb57702a25739ffc8ca23041ff53d039430f55c19d0c1",
+      "sha256": "23e47cf472e9bd46d05718a807a89d1f9b52d5d596f9ce93bd62d9ad4bf301c5",
+      "inputSha256": "495c5688feef1c8262b0ca97c8e9ae3c48fe948276c06b0a756227718783e3f2",
       "contentSha256": "869172a56a491ca5059b995d6bf285b34c1491a2f559a9bcc1db42a0e1f9ea6f"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 29,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 4,
+    "firstCandidateSuccessCount": 21,
+    "firstCandidateSuccessRate": 0.84,
     "venues": [
       {
         "venue": "port-louis-airport-port-louis-airport",
@@ -5159,6 +5159,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5177,6 +5182,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5213,6 +5223,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5231,11 +5246,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5254,6 +5264,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5392,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34620,
+    "utf8Bytes": 34751,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,13 +5406,13 @@
     "estimates": [
       {
         "venue": "port-louis-airport-port-louis-airport",
-        "triangles": 2986,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-louis-clinic",
-        "triangles": 3890,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
@@ -5409,121 +5424,121 @@
       },
       {
         "venue": "port-louis-community-voting-game",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-louis-community-workshop",
-        "triangles": 3370,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-louis-market-game",
-        "triangles": 3786,
+        "triangles": 2798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-louis-meal-stop",
-        "triangles": 3194,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-louis-osm-node-1793110377",
-        "triangles": 2946,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-louis-osm-node-3753991177",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "port-louis-osm-node-5558934330",
-        "triangles": 3202,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "port-louis-osm-relation-14750287",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "port-louis-osm-way-154287619",
-        "triangles": 3526,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "port-louis-osm-way-158575993",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "port-louis-osm-way-170362036",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "port-louis-osm-way-287506166",
-        "triangles": 3526,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "port-louis-osm-way-296191237",
-        "triangles": 2578,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "port-louis-osm-way-305142563",
-        "triangles": 3966,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "port-louis-osm-way-33142632",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "port-louis-osm-way-445169724",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "port-louis-osm-way-471868507",
+        "venue": "port-louis-osm-node-5558934330",
+        "triangles": 3274,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "port-louis-osm-relation-14750287",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "port-louis-osm-way-154287619",
+        "triangles": 3458,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "port-louis-osm-way-158575993",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "port-louis-osm-way-170362036",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "port-louis-osm-way-287506166",
+        "triangles": 2998,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "port-louis-osm-way-296191237",
+        "triangles": 2998,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "port-louis-osm-way-305142563",
         "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "port-louis-osm-way-33142632",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "port-louis-osm-way-445169724",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "port-louis-osm-way-471868507",
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-louis-osm-way-475489173",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-louis-osm-way-495476854",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-louis-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5535,7 +5550,7 @@
       },
       {
         "venue": "port-louis-transit",
-        "triangles": 2986,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

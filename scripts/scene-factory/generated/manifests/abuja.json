@@ -5,17 +5,17 @@
   "city": "abuja",
   "region": "gulf-guinea",
   "recipeFile": "abuja.json",
-  "recipeSha256": "367fb3dfed95d9207e1d6ff82eb90391982b3b9683ab05336048864e288440c0",
+  "recipeSha256": "a980991018df58862446e6947684126f806614bbeca9ebd6301697c6fe236010",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/abuja.json",
-      "sha256": "e4380e3654a06cac0aa08b2bc7291cc933b4f11451714f8af3d0a785fa7302cd",
-      "inputSha256": "42a96001d92b6461b0e0377172c4f4a6fd2f46406c974a6d3b75fdb3d441e11f",
+      "sha256": "a8f3e340089de7b4aa5e9c02964bcb699cf6b638e4f0674f4d953ddc34025c5f",
+      "inputSha256": "61dcac22e2e5e50d0bd9ef0034f5d809d699694f053face6a4f2fb144844e821",
       "contentSha256": "fc26f2479b9e0eb57f0b0f76978e8feab0ad9f3ac4cdda1da6dcb4382829bce1"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5020,11 +5020,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 6,
-    "attemptedCandidateCount": 7,
+    "attemptedCandidateCount": 6,
     "acceptedCandidateCount": 6,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 5,
-    "firstCandidateSuccessRate": 0.8333333333333334,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 6,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "airport",
@@ -5058,11 +5058,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5096,7 +5091,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 8519,
+    "utf8Bytes": 8562,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5110,13 +5105,13 @@
     "estimates": [
       {
         "venue": "airport",
-        "triangles": 3106,
+        "triangles": 3286,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "community-polling",
-        "triangles": 2882,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
@@ -5128,19 +5123,19 @@
       },
       {
         "venue": "kubwa-kitchen",
-        "triangles": 3302,
+        "triangles": 3230,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kubwa-salon",
-        "triangles": 3862,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "wuse-savings",
-        "triangles": 3862,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       }

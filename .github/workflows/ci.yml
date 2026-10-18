@@ -208,7 +208,7 @@ jobs:
       - id: root-install
         run: npm ci --no-audit --no-fund
       - name: Generate runtime content assets
-        run: npm run cities:assets && npm run words:assets
+        run: npm run cities:assets && npm run words:assets && npm run progression:assets
       - name: Business quote and identity-safe retry checks
         run: >-
           node --experimental-strip-types --test --test-concurrency=1

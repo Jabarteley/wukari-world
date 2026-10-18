@@ -5,17 +5,17 @@
   "city": "buenos-aires",
   "region": "americas-oceania",
   "recipeFile": "buenos-aires.json",
-  "recipeSha256": "64ae3afdd40c1f8011688e2df0ee83133fc37910381ea9afee7e391a0d1d7258",
+  "recipeSha256": "ffc5cf0635f86dbf5803867a421a0fa523e24333512f7008f2a64952b6b1e7e0",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/buenos-aires.json",
-      "sha256": "5517b47431a765559044ae58ce26ce3b5087f21a62c1ef70dd1c174205a72335",
-      "inputSha256": "6f67c562a2e1668c5241a46154e25724d186ec1a4379863354362115379e54d1",
+      "sha256": "5806050e50a829bac8779ac4d864656ddcb040e28f9a5a4e8b467c72a993b2bb",
+      "inputSha256": "a2944e2a4281f0c13af6edfe82f70fa7b42335563a41fe39f516dfd6503eb7c6",
       "contentSha256": "77d033fcc51ca794cd5534371f00d97579d69205275fea27605f8090438c6d9c"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "buenos-aires-airport-buenos-aires-airport",
@@ -5231,6 +5231,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5285,11 +5290,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5299,11 +5299,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34981,
+    "utf8Bytes": 34983,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,37 +5391,37 @@
     "estimates": [
       {
         "venue": "buenos-aires-airport-buenos-aires-airport",
-        "triangles": 2698,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "buenos-aires-clinic",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "buenos-aires-community-notices",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "buenos-aires-community-voting-game",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "buenos-aires-community-workshop",
-        "triangles": 3438,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "buenos-aires-market-game",
-        "triangles": 4938,
+        "triangles": 3882,
         "meshes": 13,
         "lights": 3
       },
@@ -5444,13 +5439,13 @@
       },
       {
         "venue": "buenos-aires-osm-relation-14618378",
-        "triangles": 4878,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "buenos-aires-osm-relation-3087274",
-        "triangles": 4598,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
@@ -5462,7 +5457,7 @@
       },
       {
         "venue": "buenos-aires-osm-relation-7447545",
-        "triangles": 4878,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5480,19 +5475,19 @@
       },
       {
         "venue": "buenos-aires-osm-way-159783339",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "buenos-aires-osm-way-161797198",
-        "triangles": 3526,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "buenos-aires-osm-way-173109152",
-        "triangles": 2578,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
@@ -5504,43 +5499,43 @@
       },
       {
         "venue": "buenos-aires-osm-way-294261998",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "buenos-aires-osm-way-297407589",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "buenos-aires-osm-way-517109240",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "buenos-aires-osm-way-53012324",
-        "triangles": 2998,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "buenos-aires-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "buenos-aires-recreation",
-        "triangles": 3798,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "buenos-aires-transit",
-        "triangles": 4010,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "la-paz",
   "region": "americas-oceania",
   "recipeFile": "la-paz.json",
-  "recipeSha256": "2e662b20bdcba692659080a28ca86c3c27c5de33c3b657d2fa92119ca8056238",
+  "recipeSha256": "a420187e49b7c1f69cf881a7da6edd3c2c5a54072abee9f68c1e85df4132baa9",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/la-paz.json",
-      "sha256": "5f2c2c630e737aaec1efb17e35bf6cef066199a45f2bc4363bf0f3b31402a10d",
-      "inputSha256": "5fe07f39b3638b420d2bd68906b60de1c87350ba3297e8c336377a4dac3bfc11",
+      "sha256": "d702fd370ad48ac9f744d3da5824f60b5c80479d9b991a4a58da124266403e0e",
+      "inputSha256": "efab7c951cef6488571d9e1c0f37e4425d851c98b5a75cab11a17cf458a7ea93",
       "contentSha256": "5d363bff89054a38d28c82598e6b5c26c36ec084e08484ac38a3e9060215920e"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5141,6 +5141,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5276,11 +5281,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5299,11 +5299,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5331,6 +5326,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34508,
+    "utf8Bytes": 34575,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,67 +5396,67 @@
     "estimates": [
       {
         "venue": "la-paz-airport-la-paz-airport",
-        "triangles": 3530,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-clinic",
-        "triangles": 3890,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-community-notices",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-community-voting-game",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-community-workshop",
-        "triangles": 2490,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-market-game",
-        "triangles": 3382,
+        "triangles": 4058,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-meal-stop",
-        "triangles": 2946,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-osm-node-12194828333",
-        "triangles": 2946,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-osm-node-2145192906",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-osm-node-2145197042",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-osm-node-5273668603",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5468,55 +5468,55 @@
       },
       {
         "venue": "la-paz-osm-node-5376703910",
-        "triangles": 2946,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-osm-relation-11730900",
-        "triangles": 4430,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-osm-way-105592750",
-        "triangles": 2578,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-osm-way-105617730",
-        "triangles": 4598,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-osm-way-114037395",
-        "triangles": 2998,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-osm-way-1313884277",
-        "triangles": 2998,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-osm-way-1331129474",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-osm-way-44166578",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-osm-way-526897787",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5534,13 +5534,13 @@
       },
       {
         "venue": "la-paz-recreation",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "la-paz-transit",
-        "triangles": 2698,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

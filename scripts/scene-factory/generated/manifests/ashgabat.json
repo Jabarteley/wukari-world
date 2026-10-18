@@ -5,17 +5,17 @@
   "city": "ashgabat",
   "region": "south-asia",
   "recipeFile": "ashgabat.json",
-  "recipeSha256": "fd3f8be7703834c198828bfcc705e7cbc28919706f4c38bc66a1f96a652e22b3",
+  "recipeSha256": "472a967a1a26dba161c7fe94c9a11d146c628728b822c18b05b229fa35e8d97b",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/ashgabat.json",
-      "sha256": "b6b5fd56e7bd5e52c340bcde97d54634c4b642b79d639ae032d63a7abc1affb5",
-      "inputSha256": "b0583c1852f9b739d00dcea3b121ec09c47e2a9f316cfbaf32edd70707a1e2bc",
+      "sha256": "3557a3e313e1ea39faf97ca2b60432a43bfecfd33a3f2f04358741d35dc9f8b5",
+      "inputSha256": "56ac67042003cba3d8010a21ec1a91269a9167d4fe84087eb5b20ff11a328b67",
       "contentSha256": "4d44435062ff339ec2f0b30ecbed062653b478dca54d34980963f05a0dd1d439"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5177,11 +5177,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5326,6 +5321,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34627,
+    "utf8Bytes": 34528,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,79 +5391,79 @@
     "estimates": [
       {
         "venue": "ashgabat-airport-ashgabat-airport",
-        "triangles": 2986,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ashgabat-clinic",
-        "triangles": 2910,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ashgabat-community-notices",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ashgabat-community-voting-game",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ashgabat-community-workshop",
         "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "ashgabat-community-notices",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ashgabat-community-voting-game",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ashgabat-community-workshop",
+        "triangles": 3890,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "ashgabat-market-game",
-        "triangles": 4162,
+        "triangles": 5218,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ashgabat-meal-stop",
-        "triangles": 3178,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ashgabat-osm-node-3680900775",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ashgabat-osm-relation-14346390",
-        "triangles": 3490,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ashgabat-osm-relation-19307489",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ashgabat-osm-relation-21265088",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "ashgabat-osm-relation-21265088",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "ashgabat-osm-way-147533322",
-        "triangles": 2998,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ashgabat-osm-way-1550858457",
-        "triangles": 3898,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
@@ -5475,7 +5475,7 @@
       },
       {
         "venue": "ashgabat-osm-way-241580572",
-        "triangles": 3686,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
@@ -5487,49 +5487,49 @@
       },
       {
         "venue": "ashgabat-osm-way-257738467",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ashgabat-osm-way-28191839",
-        "triangles": 4666,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ashgabat-osm-way-326724432",
-        "triangles": 2882,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ashgabat-osm-way-34063268",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ashgabat-osm-way-366761908",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ashgabat-osm-way-440202473",
-        "triangles": 4598,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ashgabat-quiet-reflection",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "ashgabat-osm-way-440202473",
+        "triangles": 4878,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ashgabat-quiet-reflection",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "ashgabat-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },

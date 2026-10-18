@@ -5,17 +5,17 @@
   "city": "libreville",
   "region": "gulf-guinea",
   "recipeFile": "libreville.json",
-  "recipeSha256": "51ac9407adb89e4d3c8841f4fba2b11e758b9652da580bd7e8394a2cac3effdd",
+  "recipeSha256": "516198434a1bcf25706449291febc82de85edadcbce7c30c8f5ddd7795a48280",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/libreville.json",
-      "sha256": "05c363f60aa05bb607bf2f5334c2baaea64a6d01c09413414968b19ea6ed73c2",
-      "inputSha256": "802f79a97e8fec5195914949b96b4176b78e40d64715eee1de88815b1987ad5b",
+      "sha256": "ba33cd543d899573da4ec3d7bef223ecbead1621b7c811bb7692e23080b7cdc7",
+      "inputSha256": "7b22f77f5d4fd5ea0318136e575093ef442a3fc0002ab8884b93c978ac0a70e9",
       "contentSha256": "16494d47b93c80c7de9a5a5fe8e9dd08611160671d91240b66b6b1fd648652af"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5119,8 +5119,8 @@
     "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 23,
     "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.9130434782608695,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.9565217391304348,
     "venues": [
       {
         "venue": "libreville-airport-libreville-airport",
@@ -5154,11 +5154,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5267,11 +5262,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5326,6 +5316,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5350,7 +5350,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 31952,
+    "utf8Bytes": 31900,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5364,97 +5364,97 @@
     "estimates": [
       {
         "venue": "libreville-airport-libreville-airport",
-        "triangles": 3530,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "libreville-arboretum-sibang",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "libreville-beach-park",
-        "triangles": 4430,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "libreville-bibliotheque-nationale",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "libreville-clinic",
-        "triangles": 2910,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "libreville-community-notices",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "libreville-community-voting-game",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "libreville-community-workshop",
         "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "libreville-community-notices",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "libreville-community-voting-game",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "libreville-community-workshop",
+        "triangles": 2490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "libreville-galeries-tsika",
-        "triangles": 4610,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "libreville-mairie-nzeng-ayong",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "libreville-marche-nkembo",
         "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "libreville-mairie-nzeng-ayong",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "libreville-marche-nkembo",
+        "triangles": 2882,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "libreville-marches-graine-cite-damas",
-        "triangles": 4666,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "libreville-marches-graine-lac-bleu",
-        "triangles": 3934,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "libreville-market-game",
-        "triangles": 4414,
+        "triangles": 5090,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "libreville-meal-stop",
-        "triangles": 3178,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "libreville-national-art-museum",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5466,7 +5466,7 @@
       },
       {
         "venue": "libreville-palais-des-congres",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5478,25 +5478,25 @@
       },
       {
         "venue": "libreville-recreation",
-        "triangles": 3518,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "libreville-stade-omnisports",
-        "triangles": 3490,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "libreville-transit",
-        "triangles": 2698,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "libreville-tsunami-parc",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       }

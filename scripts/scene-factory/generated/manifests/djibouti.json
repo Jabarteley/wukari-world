@@ -5,17 +5,17 @@
   "city": "djibouti",
   "region": "east-africa",
   "recipeFile": "djibouti.json",
-  "recipeSha256": "5846af8f1f51e73c8d1344dd1517d8ff5dcae9d800824d4daa1769aa82b3d933",
+  "recipeSha256": "c50703878c6291de44bdf7fb8671b404454c9c8fb3fe446fe59071b36dbdb946",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/djibouti.json",
-      "sha256": "86f0be87f3ed6232c889ba9bc05175154d4402dcebb578e16392510139f5dc7f",
-      "inputSha256": "8b0f4c5f265fa2535bd4bed6565305c1a2ca1efd4f21a6bbd9e79b77ccef02b9",
+      "sha256": "4dea7ccb1f46ed6eb55858382fffaf63026f3adca62c5434756e360713a76f3b",
+      "inputSha256": "72146f3c4da6af6778aef3b4a1e2a91bcf085883e823a5a8981dc1dfbf87178b",
       "contentSha256": "b4a5248fdc3d71c99284707f155e86f27d4a42f46a87e5cdc8a9669ed25ad249"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.88,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "djibouti-airport-djibouti-airport",
@@ -5159,6 +5159,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5240,11 +5245,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5254,11 +5254,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5304,11 +5299,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34479,
+    "utf8Bytes": 34612,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,73 +5391,73 @@
     "estimates": [
       {
         "venue": "djibouti-airport-djibouti-airport",
-        "triangles": 3618,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "djibouti-clinic",
-        "triangles": 3370,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "djibouti-community-notices",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "djibouti-community-voting-game",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "djibouti-community-workshop",
         "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "djibouti-market-game",
-        "triangles": 3638,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "djibouti-meal-stop",
-        "triangles": 3514,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "djibouti-osm-node-14221742154",
+        "venue": "djibouti-community-notices",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "djibouti-community-voting-game",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "djibouti-community-workshop",
+        "triangles": 3402,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "djibouti-market-game",
+        "triangles": 2910,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "djibouti-meal-stop",
+        "triangles": 3194,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "djibouti-osm-node-14221742154",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "djibouti-osm-node-3789244393",
-        "triangles": 2882,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "djibouti-osm-node-4787069324",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "djibouti-osm-node-4932312785",
-        "triangles": 2946,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "djibouti-osm-node-5313235263",
-        "triangles": 4610,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
@@ -5479,13 +5469,13 @@
       },
       {
         "venue": "djibouti-osm-node-5351742924",
-        "triangles": 2946,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "djibouti-osm-node-5380475275",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5497,49 +5487,49 @@
       },
       {
         "venue": "djibouti-osm-way-114934833",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "djibouti-osm-way-266382353",
-        "triangles": 3898,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "djibouti-osm-way-383773335",
-        "triangles": 3730,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "djibouti-osm-way-549877936",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "djibouti-osm-way-266382353",
+        "triangles": 3686,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "djibouti-osm-way-383773335",
+        "triangles": 4430,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "djibouti-osm-way-549877936",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "djibouti-osm-way-575079686",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "djibouti-osm-way-711138844",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "djibouti-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "djibouti-recreation",
-        "triangles": 3518,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },

@@ -5,17 +5,17 @@
   "city": "minsk",
   "region": "western-europe",
   "recipeFile": "minsk.json",
-  "recipeSha256": "fc2e69506b666cf692c338fb95acf6604977bc91e737b66e0aa45b3e232b077c",
+  "recipeSha256": "71c6151aa28ccc1399cf6475d1cf2581779f8f4cd5599627c68c7329c1a4ec25",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/minsk.json",
-      "sha256": "dba39d878d9732635d5efd213d9c337ea892a280be30a450dfec7c50464d61e1",
-      "inputSha256": "864a606b3c96dc4bda78c68caeef3ff2ba3cf260faf5d2ac0538033d12ff8107",
+      "sha256": "12541b7f8436ba4125aff31296c8f4508d4c17ee0af7c57d2554cb46ac0617ec",
+      "inputSha256": "0593132a4d1b687e896ce386d2409d780665011ecc2a7d6f210bdaf583cb98ca",
       "contentSha256": "2befabbb0f972beb85472f7e828a7a4bb1fafb5ff55fb8c67f9592778aa42c1e"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 29,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 4,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.88,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "minsk-airport-minsk-airport",
@@ -5150,11 +5150,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5209,11 +5204,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5232,6 +5222,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5259,16 +5254,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5350,6 +5335,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5392,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34661,
+    "utf8Bytes": 34495,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5406,25 +5396,25 @@
     "estimates": [
       {
         "venue": "minsk-airport-minsk-airport",
-        "triangles": 4238,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "minsk-clinic",
-        "triangles": 3402,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "minsk-community-notices",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "minsk-community-voting-game",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5436,19 +5426,19 @@
       },
       {
         "venue": "minsk-market-game",
-        "triangles": 3970,
+        "triangles": 3226,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "minsk-meal-stop",
-        "triangles": 3178,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "minsk-osm-node-1165818843",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5460,7 +5450,7 @@
       },
       {
         "venue": "minsk-osm-node-2788687315",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5472,7 +5462,7 @@
       },
       {
         "venue": "minsk-osm-relation-21968",
-        "triangles": 3898,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
@@ -5490,7 +5480,7 @@
       },
       {
         "venue": "minsk-osm-way-23409356",
-        "triangles": 3490,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
@@ -5502,19 +5492,19 @@
       },
       {
         "venue": "minsk-osm-way-292848094",
-        "triangles": 3526,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "minsk-osm-way-384227903",
-        "triangles": 3686,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "minsk-osm-way-39246694",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5526,31 +5516,31 @@
       },
       {
         "venue": "minsk-osm-way-76132102",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "minsk-osm-way-80616815",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "minsk-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "minsk-recreation",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "minsk-transit",
-        "triangles": 2698,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

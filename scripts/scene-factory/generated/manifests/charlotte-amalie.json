@@ -5,17 +5,17 @@
   "city": "charlotte-amalie",
   "region": "americas-oceania",
   "recipeFile": "charlotte-amalie.json",
-  "recipeSha256": "ee63c94dfcd4ab7d1e9b8948d5c3af0fa3cbb1fe4c4ef3fdc075d1d7f548452e",
+  "recipeSha256": "bd66af957ee6d022cc5bff15fce185c175206f11bcbe8c1918b36197c4f07bba",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/charlotte-amalie.json",
-      "sha256": "9c00ffdf36b56128e1e5baa4e605a3a9f5d9aa601512df6c98fdb5093c44090b",
-      "inputSha256": "ca89f09b3d20a63bbfb43ffa72d93740c1f588024aaf848bdd188cf9afe8544d",
+      "sha256": "c6a5eb8010de3c743a471b618cf0e26a7223727f541462660a827678a53cc3a5",
+      "inputSha256": "1264b45113b318f4efe5515c61db10febb04bd397b2870c20c494c7767ab6cd2",
       "contentSha256": "ff82dd50609c60ca7b352ac8bad0ac781527fb81adabdb53b7d506f9fa7daf1e"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5372,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 35172,
+    "utf8Bytes": 35031,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,43 +5386,43 @@
     "estimates": [
       {
         "venue": "charlotte-amalie-airport-charlotte-amalie-airport",
-        "triangles": 4238,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "charlotte-amalie-clinic",
-        "triangles": 2490,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "charlotte-amalie-community-notices",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "charlotte-amalie-community-voting-game",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "charlotte-amalie-community-workshop",
-        "triangles": 3402,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "charlotte-amalie-market-game",
-        "triangles": 2934,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "charlotte-amalie-meal-stop",
-        "triangles": 3178,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
@@ -5434,19 +5434,19 @@
       },
       {
         "venue": "charlotte-amalie-osm-node-356559520",
-        "triangles": 4430,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "charlotte-amalie-osm-node-356559567",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "charlotte-amalie-osm-node-356559609",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5458,37 +5458,37 @@
       },
       {
         "venue": "charlotte-amalie-osm-node-6003432587",
-        "triangles": 3274,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "charlotte-amalie-osm-node-9451357027",
-        "triangles": 3526,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "charlotte-amalie-osm-node-9453513417",
-        "triangles": 3458,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "charlotte-amalie-osm-relation-14560476",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "charlotte-amalie-osm-way-1155633919",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "charlotte-amalie-osm-way-38311399",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
@@ -5500,7 +5500,7 @@
       },
       {
         "venue": "charlotte-amalie-osm-way-469663512",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5512,25 +5512,25 @@
       },
       {
         "venue": "charlotte-amalie-osm-way-917673033",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "charlotte-amalie-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "charlotte-amalie-recreation",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "charlotte-amalie-transit",
-        "triangles": 2698,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

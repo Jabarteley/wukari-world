@@ -5,17 +5,17 @@
   "city": "yola",
   "region": "sahel-north",
   "recipeFile": "yola.json",
-  "recipeSha256": "497404608ac91dc1f328ac8543a04d7ad1b42cec2283ab95e775414ea6a55e62",
+  "recipeSha256": "b58432626b19a62340b07ab3433dd857f281f3c637a17b493e8736e923eb4535",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/yola.json",
-      "sha256": "1717c749d004be9798bad78567fdf8e0fae8faa96e5c4bb4ffa183708ff686dc",
-      "inputSha256": "0b42a4ddc9f9dac8bd2d0b5298806b2cfe3ba254a83326013263b64622ec36b0",
+      "sha256": "2bb5a50cce15ad284b2558b5709ea428e34eb2ed3c4435bb975e3edf1d584463",
+      "inputSha256": "1d64bd7f79d2cc5fd07984c31f9580b8f5abaa97f59c3980bde2dc8fdea4f032",
       "contentSha256": "ea5bf25d53f052e674e46465018c0e077b8878f74dc2db5c04d0499ab8109474"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5088,11 +5088,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 19,
-    "attemptedCandidateCount": 19,
+    "attemptedCandidateCount": 23,
     "acceptedCandidateCount": 19,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 19,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 4,
+    "firstCandidateSuccessCount": 16,
+    "firstCandidateSuccessRate": 0.8421052631578947,
     "venues": [
       {
         "venue": "adamawa-ministry-tourism-arts-culture",
@@ -5144,6 +5144,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5234,6 +5239,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5261,6 +5271,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5276,7 +5296,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 27064,
+    "utf8Bytes": 26980,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5290,25 +5310,25 @@
     "estimates": [
       {
         "venue": "adamawa-ministry-tourism-arts-culture",
-        "triangles": 2882,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "american-university-of-nigeria",
-        "triangles": 3890,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "emirates-museum-yola",
-        "triangles": 3862,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "fmc-yola",
-        "triangles": 2882,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
@@ -5320,19 +5340,19 @@
       },
       {
         "venue": "jimeta-ultra-modern-market",
-        "triangles": 4010,
+        "triangles": 3282,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "karew-jimeta-market",
-        "triangles": 4010,
+        "triangles": 3282,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "keystone-bank-yola",
-        "triangles": 2882,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
@@ -5344,25 +5364,25 @@
       },
       {
         "venue": "mauth-yola",
-        "triangles": 2910,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "mubi-park-motor-park",
-        "triangles": 3814,
+        "triangles": 2802,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "musa-barbing-salon",
-        "triangles": 3374,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "national-museum-yola",
-        "triangles": 3862,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
@@ -5374,31 +5394,31 @@
       },
       {
         "venue": "yahuza-suya-spot",
-        "triangles": 3302,
+        "triangles": 3230,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yola-central-mosque",
-        "triangles": 3410,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yola-market",
-        "triangles": 4334,
+        "triangles": 3282,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yola-mosque",
-        "triangles": 3862,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yola-race-course",
-        "triangles": 4006,
+        "triangles": 3554,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "jos",
   "region": "gulf-guinea",
   "recipeFile": "jos.json",
-  "recipeSha256": "429dc7e63688a4bd88c462afc7f7b2745214880da7949819d342be26c9e98d7e",
+  "recipeSha256": "2e4a2c87960ff4275e9e4ac9dab074664a846d299c157a15c1f5c8a6c7490c73",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/jos.json",
-      "sha256": "0303eda7e8f67e487c78c1ce5208e5dea1515e8f9a57426262a316f35448e758",
-      "inputSha256": "f9fdcd8d12a6936f4c1ada57c70ebc8e41c6628b28ca6a5448608d0d91384cb7",
+      "sha256": "1555dbf54e7dfce4c6206fbc9ed4674fc7d9cecac7298ed59e3bbb85c84a88ab",
+      "inputSha256": "a8584eecdef22fccc4018cc2b4153c1cc15ea76fd8774c3f94ddb5d88ee33bfe",
       "contentSha256": "19a3d6b10c71b258249ea08c5da281f7e8d31697be20633b42b6c910312d1a34"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5109,9 +5109,9 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 22,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 24,
     "acceptedCandidateCount": 22,
-    "rejectedCandidateCount": 3,
+    "rejectedCandidateCount": 2,
     "firstCandidateSuccessCount": 20,
     "firstCandidateSuccessRate": 0.9090909090909091,
     "venues": [
@@ -5156,16 +5156,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5248,7 +5238,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
+            "reason": "crowd[6]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5279,6 +5269,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5339,7 +5334,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 31255,
+    "utf8Bytes": 31411,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5353,73 +5348,73 @@
     "estimates": [
       {
         "venue": "angwan-rukuba-park",
-        "triangles": 5010,
+        "triangles": 4334,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "angwan-rukuba-polling-station",
-        "triangles": 3862,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "baptist-college-of-theology",
-        "triangles": 3342,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bingham-university-teaching-hospitals",
-        "triangles": 3862,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "christ-methodist-cathedral",
-        "triangles": 3862,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "de-bills-food",
-        "triangles": 3222,
+        "triangles": 3302,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "duke-and-duchess-executive-salon",
-        "triangles": 2882,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "first-bank-jos",
-        "triangles": 2882,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gotul-peace-park",
-        "triangles": 3826,
+        "triangles": 4738,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "grand-cereals-and-oil-mills",
-        "triangles": 3342,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "inec-headquarters-jos",
-        "triangles": 2882,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jos-central-mosque",
-        "triangles": 3342,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
@@ -5431,37 +5426,37 @@
       },
       {
         "venue": "jos-museum",
-        "triangles": 2462,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "juth",
-        "triangles": 2490,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kasuwan-mata",
-        "triangles": 5010,
+        "triangles": 5066,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kyan-rikkos-village-head-palace",
-        "triangles": 2882,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "rwang-pam-township-stadium",
-        "triangles": 2606,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sculpture-garden",
-        "triangles": 3758,
+        "triangles": 4458,
         "meshes": 13,
         "lights": 3
       },
@@ -5473,13 +5468,13 @@
       },
       {
         "venue": "terminus-motor-park",
-        "triangles": 5126,
+        "triangles": 3874,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "university-of-jos",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       }

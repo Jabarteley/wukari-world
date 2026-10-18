@@ -5,17 +5,17 @@
   "city": "sanaa",
   "region": "south-asia",
   "recipeFile": "sanaa.json",
-  "recipeSha256": "501ef0a192646b5be5e775ad340a7a8828915a6180776e5ef974b9a7862bfcf1",
+  "recipeSha256": "42b53587b3131d03d389ac1ab3b570504f3d16e74ee45105a5005469ecf9dc6c",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/sanaa.json",
-      "sha256": "91a31b2986c1f02e55cf160ac77fc4c58535580b7c2f86cd2c27d06bc4b9e40d",
-      "inputSha256": "27451e7349c41268d6f1c864dfe1f3ef17a07de2b3185346b63fde46f121197a",
+      "sha256": "dc0fe6f38ab831989105073c4f9ab3a6b259414fe6916ae05e2fa1735bbe20d2",
+      "inputSha256": "cff19e75cb7c08baa15ff0aadd7d0435f8692a415c79791dbaf2cd8cf3618823",
       "contentSha256": "4e249d2e9849c8ca5ab30c1749fd1bdbdb8aed0bd6f8a2f52366a99ab647ca85"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,17 +5130,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 29,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 4,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.84,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "sanaa-airport-sanaa-airport",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5186,11 +5191,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5200,11 +5200,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5304,11 +5299,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5345,11 +5335,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5392,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34385,
+    "utf8Bytes": 34338,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5412,13 +5397,13 @@
       },
       {
         "venue": "sanaa-clinic",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sanaa-community-notices",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5436,25 +5421,25 @@
       },
       {
         "venue": "sanaa-market-game",
-        "triangles": 4114,
+        "triangles": 4858,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sanaa-meal-stop",
-        "triangles": 3178,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sanaa-osm-node-11554098569",
-        "triangles": 2578,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sanaa-osm-node-13384264101",
-        "triangles": 3934,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
@@ -5466,67 +5451,67 @@
       },
       {
         "venue": "sanaa-osm-node-13952707101",
-        "triangles": 3610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sanaa-osm-node-4190366692",
-        "triangles": 3526,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sanaa-osm-node-4298021192",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sanaa-osm-node-4510701911",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sanaa-osm-node-4858907323",
-        "triangles": 3898,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sanaa-osm-node-8583463118",
-        "triangles": 3526,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sanaa-osm-relation-908271",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sanaa-osm-way-1089171473",
-        "triangles": 3194,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sanaa-osm-way-1089201817",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sanaa-osm-way-120230549",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sanaa-osm-way-1530760059",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5544,13 +5529,13 @@
       },
       {
         "venue": "sanaa-recreation",
-        "triangles": 4710,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sanaa-transit",
-        "triangles": 3530,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

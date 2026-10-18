@@ -15,7 +15,7 @@
  *
  * This module reads the already-loaded city content catalogue to decide whether the shared parametric adapter is needed.
  */
-import { cachedCityContent, cityNetworkReady, loadCityContent, loadCityNetwork, playableCityIds } from '../game/cities/registry.ts';
+import { cachedCityContent, cityNetworkReady, isCityId, loadCityContent, loadCityNetwork, playableCityIds } from '../game/cities/registry.ts';
 import type { SceneDef } from './types.ts';
 
 /** VARIANTS[kind][variant] of a scene file. */
@@ -56,7 +56,7 @@ const partsOf = (cityId: string, authored = false): readonly PartId[] => [
   ...(hasKind(cityId, 'quad') ? ['campus' as const] : []),
   ...(hasKind(cityId, 'hilltop') ? ['viewpoint' as const] : []),
   ...(hasParametricVenues(cityId) ? ['parametric' as const] : []),
-  ...(!authored && playableCityIds().includes(cityId) ? [`recipe:${cityId}` as const] : []),
+  ...(!authored && isCityId(cityId) ? [`recipe:${cityId}` as const] : []),
 ];
 
 /** Cities with scenes of their own. */
@@ -99,7 +99,11 @@ export const parametricSceneAdapter = (): ParametricSceneAdapter | null => loade
 export function citySceneDef(cityId: string, kind: string, variant: string, authored = false): SceneDef | null {
   const parts = partsOf(cityId, authored);
   if (cityId === 'lagos' && kind === 'market' && !variant) return loaded.get('nigeria-runtime')?.variants?.market?.['nigeria-broad-street'] ?? null;
-  for (const part of parts) { const variants = loaded.get(part)?.variants, own = variants && Object.hasOwn(variants, kind) ? variants[kind]! : null; if (own && Object.hasOwn(own, variant)) return own[variant]!; }
+  for (const part of parts) {
+    if (part === 'nigeria-runtime' && ((kind === 'market' && cityId !== 'lagos') || (kind === 'worship' && cityId !== 'abuja'))) continue;
+    const variants = loaded.get(part)?.variants, own = variants && Object.hasOwn(variants, kind) ? variants[kind]! : null;
+    if (own && Object.hasOwn(own, variant)) return own[variant]!;
+  }
   for (const part of parts) { const kinds = loaded.get(part)?.kinds; if (kinds && Object.hasOwn(kinds, kind)) return kinds[kind]!; }
   return null;
 }

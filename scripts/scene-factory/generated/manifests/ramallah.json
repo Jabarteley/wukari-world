@@ -5,17 +5,17 @@
   "city": "ramallah",
   "region": "south-asia",
   "recipeFile": "ramallah.json",
-  "recipeSha256": "1b9ca57c2dcc1550f99e0a8c6a0866cba63c4738c05801e4dbe4e350e0d52f4d",
+  "recipeSha256": "c9cc4bbd789013e2e87ff2ac062e3fadf0f1c59609dd0849d48062fa533d32b0",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/ramallah.json",
-      "sha256": "b85c64478abe20581ea77f50c77e2b88924ca6e49d9a0b12849034b0bd77767f",
-      "inputSha256": "6f94de4ab02f6667d72e9c4a28ecc3ca15c7449a7efbcf0cde5ea88516077e33",
+      "sha256": "579d3655d3c596d2dc82db46e3ec0b7cc45103b0930e5ecaf9df71598ed40399",
+      "inputSha256": "e5222957da5ddc04b23cac213c35c7e627d1924a12f2111e0f26373d4d38afe9",
       "contentSha256": "32f135d164be538e6c2d81b4f07b81f4756a71cbd305cac8ced26f5db4752887"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5177,6 +5177,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5339,11 +5344,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34495,
+    "utf8Bytes": 34421,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,7 +5391,7 @@
     "estimates": [
       {
         "venue": "ramallah-airport-ramallah-airport",
-        "triangles": 4238,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
@@ -5403,61 +5403,61 @@
       },
       {
         "venue": "ramallah-community-notices",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ramallah-community-voting-game",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ramallah-community-workshop",
-        "triangles": 3890,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ramallah-market-game",
-        "triangles": 4702,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ramallah-meal-stop",
-        "triangles": 3202,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ramallah-osm-node-2675850287",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ramallah-osm-node-432260801",
-        "triangles": 3730,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ramallah-osm-node-432262059",
-        "triangles": 3194,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ramallah-osm-node-432267397",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "ramallah-community-workshop",
+        "triangles": 3438,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ramallah-market-game",
+        "triangles": 2658,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ramallah-meal-stop",
+        "triangles": 3194,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ramallah-osm-node-2675850287",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ramallah-osm-node-432260801",
+        "triangles": 3798,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ramallah-osm-node-432262059",
+        "triangles": 2946,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ramallah-osm-node-432267397",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "ramallah-osm-node-432274045",
-        "triangles": 3274,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
@@ -5469,37 +5469,37 @@
       },
       {
         "venue": "ramallah-osm-node-432286032",
-        "triangles": 2998,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ramallah-osm-node-4753096643",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ramallah-osm-node-5133731942",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ramallah-osm-way-253373054",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "ramallah-osm-way-253373054",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "ramallah-osm-way-257319379",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ramallah-osm-way-345024242",
-        "triangles": 4598,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
@@ -5511,7 +5511,7 @@
       },
       {
         "venue": "ramallah-osm-way-419484958",
-        "triangles": 3798,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
@@ -5529,13 +5529,13 @@
       },
       {
         "venue": "ramallah-recreation",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ramallah-transit",
-        "triangles": 3590,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "ho-chi-minh-city",
   "region": "east-asia",
   "recipeFile": "ho-chi-minh-city.json",
-  "recipeSha256": "05abf814da501c4be2dfeb0d9c316274bbdf8aa8ca75ad24930c7377849d805a",
+  "recipeSha256": "004556c534812bdbadeac3e0cac7cea3959ccb175e468af291818de8701c686d",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/ho-chi-minh-city.json",
-      "sha256": "106e3327437f23459f680838c6824d6d25eb0503e8157e349ccb3f8f4866c420",
-      "inputSha256": "2beaf2814b309063f4f866964be19a7b9e7b9f19084e1d8c1eb69666c466037b",
+      "sha256": "a0f64cd9156db965fdcd441550015517fd32eafdc42b5526449a21e1b6cb0b6a",
+      "inputSha256": "fefd0d3d1ca82536e768a7441b28cf53cd6a9acbb4acedb3ec3a27c3acc3ad11",
       "contentSha256": "a8bdfb426c5052ce05e48d35d0ff276ff802fce8aa5e4687e8bc6314f5d8f5ac"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "ho-chi-minh-city-airport-ho-chi-minh-city-airport",
@@ -5222,11 +5222,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5272,6 +5267,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5344,6 +5344,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34932,
+    "utf8Bytes": 34886,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,7 +5396,7 @@
     "estimates": [
       {
         "venue": "ho-chi-minh-city-airport-ho-chi-minh-city-airport",
-        "triangles": 4010,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
@@ -5403,7 +5408,7 @@
       },
       {
         "venue": "ho-chi-minh-city-community-notices",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5415,19 +5420,19 @@
       },
       {
         "venue": "ho-chi-minh-city-community-workshop",
-        "triangles": 3370,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ho-chi-minh-city-market-game",
-        "triangles": 3654,
+        "triangles": 4330,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ho-chi-minh-city-meal-stop",
-        "triangles": 3202,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
@@ -5439,19 +5444,19 @@
       },
       {
         "venue": "ho-chi-minh-city-osm-way-1529292331",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ho-chi-minh-city-osm-way-198047671",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ho-chi-minh-city-osm-way-306440163",
-        "triangles": 4598,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
@@ -5463,79 +5468,79 @@
       },
       {
         "venue": "ho-chi-minh-city-osm-way-32735046",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ho-chi-minh-city-osm-way-32735082",
-        "triangles": 3730,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ho-chi-minh-city-osm-way-463548000",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ho-chi-minh-city-osm-way-494789249",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ho-chi-minh-city-osm-way-503561771",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ho-chi-minh-city-osm-way-516639172",
-        "triangles": 3966,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ho-chi-minh-city-osm-way-613756783",
-        "triangles": 3978,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ho-chi-minh-city-osm-way-665450065",
-        "triangles": 2998,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ho-chi-minh-city-osm-way-806860787",
-        "triangles": 4666,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "ho-chi-minh-city-osm-way-808022726",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "ho-chi-minh-city-quiet-reflection",
+        "venue": "ho-chi-minh-city-osm-way-32735082",
+        "triangles": 4430,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ho-chi-minh-city-osm-way-463548000",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ho-chi-minh-city-osm-way-494789249",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ho-chi-minh-city-osm-way-503561771",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "ho-chi-minh-city-osm-way-516639172",
+        "triangles": 4598,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ho-chi-minh-city-osm-way-613756783",
+        "triangles": 3458,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ho-chi-minh-city-osm-way-665450065",
+        "triangles": 3526,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ho-chi-minh-city-osm-way-806860787",
+        "triangles": 4610,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ho-chi-minh-city-osm-way-808022726",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "ho-chi-minh-city-quiet-reflection",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "ho-chi-minh-city-recreation",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ho-chi-minh-city-transit",
-        "triangles": 2698,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

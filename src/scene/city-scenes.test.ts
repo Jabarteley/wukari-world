@@ -21,6 +21,7 @@ import { CITY_KINDS, citySceneDef, cityScenesReady, loadAllCityScenes, loadCityS
 import { sceneVenue } from '../venue-world.ts';
 import type { ScenesState, WorldAdapterOptions } from '../campus/unilag/world-adapter.ts';
 import { cityContent } from '../game/cities/registry.ts';
+import { awaitNativeSceneGeometry } from '../testing/nativeGeometry.test-fixture.ts';
 
 // Node has no CSS loader. Keep the browser stylesheet intact and stub only its
 // side-effect import while this test imports the adapter's pure host seam.
@@ -60,11 +61,40 @@ function manualTimers() {
     fire() { const next = waiting.shift(); assert.ok(next, 'a retry is waiting'); next.run(); },
   };
 }
-const settle = async (): Promise<void> => { for (let i = 0; i < 6; i++) await new Promise<void>((done) => setImmediate(done)); };
+async function boundedEvent(event: Promise<void>, label: string): Promise<void> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  try {
+    await Promise.race([event, new Promise<never>((_resolve, reject) => { timer = setTimeout(() => reject(new Error(`Timed out waiting for ${label}`)), 5_000); })]);
+  } finally { if (timer) clearTimeout(timer); }
+}
 function adapter(options: WorldAdapterOptions) {
   const container = stubContainer(), seen: ScenesState[] = [], hosts: (string | null)[] = [];
-  const world = createWorldAdapter(container as unknown as HTMLElement, { renderer: stubRenderer(), onScenes: (state) => { seen.push(state); }, onHost: (kind) => { hosts.push(kind); }, ...options });
-  return { world, container, seen, hosts };
+  const waits = new Set<() => void>();
+  const changed = () => { for (const wait of [...waits]) wait(); };
+  const untilScenes = (predicate: () => boolean, label: string): Promise<void> => {
+    if (predicate()) return Promise.resolve();
+    return new Promise<void>((resolve, reject) => {
+      let timer: ReturnType<typeof setTimeout>;
+      const finish = (error?: unknown) => {
+        clearTimeout(timer); waits.delete(check);
+        if (error) reject(error); else resolve();
+      };
+      const check = () => {
+        try { if (predicate()) finish(); }
+        catch (error) { finish(error); }
+      };
+      timer = setTimeout(() => finish(new Error(`Timed out waiting for ${label}: ${JSON.stringify(seen.at(-1))}`)), 5_000);
+      waits.add(check);
+      check();
+    });
+  };
+  const { onScenes, onHost, ...rest } = options;
+  const world = createWorldAdapter(container as unknown as HTMLElement, {
+    renderer: stubRenderer(), ...rest,
+    onScenes: (state) => { seen.push(state); onScenes?.(state); changed(); },
+    onHost: (kind) => { hosts.push(kind); onHost?.(kind); changed(); },
+  });
+  return { world, container, seen, hosts, untilScenes };
 }
 
 test('every city with authored scenes, including Lagos, waits for its own download', async () => {
@@ -89,11 +119,10 @@ test('every city with authored scenes, including Lagos, waits for its own downlo
 test('the adapter draws nothing for a city whose scenes are on their way, says so, and builds the venue host when they arrive', async () => {
   let release: () => void = () => {};
   const gate = new Promise<void>((done) => { release = done; });
-  const { world, container, seen, hosts } = adapter({ location: 'national-mosque', cityId: 'abuja', loadScenes: async (cityId) => { await gate; await loadCityScenes(cityId); } });
+  const { world, container, seen, hosts, untilScenes } = adapter({ location: 'national-mosque', cityId: 'abuja', loadScenes: async (cityId) => { await gate; await loadCityScenes(cityId); } });
   assert.equal(world.host, null, 'no host yet');
   assert.equal(world.awaiting, 'abuja');
   assert.ok(container.classes.has('scenes-loading'));
-  await settle();
   assert.deepEqual(seen.map((state) => [state.city, state.status]), [['abuja', 'loading']]);
   // What arrives meanwhile is kept for the host.
   world.setState({ location: 'national-mosque', estate: { city: 'abuja' } });
@@ -102,7 +131,7 @@ test('the adapter draws nothing for a city whose scenes are on their way, says s
   assert.equal(world.walkTo(0, 0), false);
   assert.equal(world.host, null);
   release();
-  await settle();
+  await untilScenes(() => seen.at(-1)?.city === 'abuja' && seen.at(-1)?.status === 'ready' && world.host === 'venue', 'Abuja venue readiness');
   assert.equal(world.host, 'venue');
   assert.equal(world.awaiting, null);
   assert.equal(container.classes.has('scenes-loading'), false);
@@ -120,13 +149,18 @@ test('the adapter draws nothing for a city whose scenes are on their way, says s
 test('a failed download is retried by itself with growing waits, then stops until the player asks again', async () => {
   const timers = manualTimers();
   let attempts = 0, failing = true;
-  const { world, seen, hosts } = adapter({ location: 'palace', cityId: 'kano', lazy: timers.options, loadScenes: async (cityId) => { attempts += 1; if (failing) throw new Error('Failed to fetch dynamically imported module'); await loadCityScenes(cityId); } });
-  await settle();
+  const { world, seen, hosts, untilScenes } = adapter({ location: 'palace', cityId: 'kano', lazy: timers.options, loadScenes: async (cityId) => { attempts += 1; if (failing) throw new Error('Failed to fetch dynamically imported module'); await loadCityScenes(cityId); } });
+  await untilScenes(() => attempts === 1 && seen.at(-1)?.status === 'retrying', 'the first Kano retry');
   assert.equal(attempts, 1);
   assert.deepEqual(seen.map((state) => [state.status, state.retryInMs]), [['loading', null], ['retrying', 1000]]);
   assert.equal(world.host, null, 'still nothing drawn: no stand-in');
-  for (const wait of [2000, 4000, 8000, 16000]) { timers.fire(); await settle(); assert.equal(seen.at(-1)!.retryInMs, wait); }
-  timers.fire(); await settle();
+  for (const [index, wait] of [2000, 4000, 8000, 16000].entries()) {
+    timers.fire();
+    await untilScenes(() => attempts === index + 2 && seen.at(-1)?.status === 'retrying' && seen.at(-1)?.retryInMs === wait, `Kano retry wait ${wait}`);
+    assert.equal(seen.at(-1)!.retryInMs, wait);
+  }
+  timers.fire();
+  await untilScenes(() => attempts === 6 && seen.at(-1)?.status === 'failed', 'the terminal Kano retry failure');
   assert.equal(attempts, 6);
   assert.equal(seen.at(-1)!.status, 'failed');
   assert.equal(timers.waiting.length, 0, 'no further attempt by itself');
@@ -134,7 +168,7 @@ test('a failed download is retried by itself with growing waits, then stops unti
   // The player asks again, and the connection is back.
   failing = false;
   assert.equal(world.retryScenes(), true);
-  await settle();
+  await untilScenes(() => attempts === 7 && seen.at(-1)?.status === 'ready' && world.host === 'venue', 'the explicit Kano retry');
   assert.equal(attempts, 7);
   assert.equal(seen.at(-1)!.status, 'ready');
   assert.equal(world.host, 'venue');
@@ -146,10 +180,11 @@ test('a failed download is retried by itself with growing waits, then stops unti
 test('an automatic retry that succeeds builds the scene without the player doing anything', async () => {
   const timers = manualTimers();
   let attempts = 0;
-  const { world } = adapter({ location: 'pleasure-park', cityId: 'port-harcourt', lazy: timers.options, loadScenes: async (cityId) => { attempts += 1; if (attempts === 1) throw new Error('offline'); await loadCityScenes(cityId); } });
-  await settle();
+  const { world, seen, untilScenes } = adapter({ location: 'pleasure-park', cityId: 'port-harcourt', lazy: timers.options, loadScenes: async (cityId) => { attempts += 1; if (attempts === 1) throw new Error('offline'); await loadCityScenes(cityId); } });
+  await untilScenes(() => attempts === 1 && seen.at(-1)?.status === 'retrying', 'the Port Harcourt retry');
   assert.equal(world.host, null);
-  timers.fire(); await settle();
+  timers.fire();
+  await untilScenes(() => attempts === 2 && seen.at(-1)?.status === 'ready' && world.host === 'venue', 'automatic Port Harcourt readiness');
   assert.equal(world.host, 'venue');
   assert.equal((world.diagnostics() as { location?: string }).location, 'pleasure-park');
   world.dispose();
@@ -159,9 +194,9 @@ test('arriving in another city: the old city leaves the screen, the new one is b
   let release: () => void = () => {};
   const gate = new Promise<void>((done) => { release = done; });
   const ready = new Set<string>([DEFAULT_CITY_ID]);
-  const { world, hosts } = adapter({ location: 'park', scenesReady: (cityId) => ready.has(cityId), loadScenes: async (cityId) => { await gate; await loadCityScenes(cityId); ready.add(cityId); } });
+  const { world, hosts, seen, untilScenes } = adapter({ location: 'park', scenesReady: (cityId) => ready.has(cityId), loadScenes: async (cityId) => { await gate; await loadCityScenes(cityId); ready.add(cityId); } });
   assert.equal(world.host, null, 'the default city waits for canonical character readiness');
-  await settle();
+  await untilScenes(() => seen.at(-1)?.city === DEFAULT_CITY_ID && seen.at(-1)?.status === 'ready' && world.host === 'venue', 'the default-city venue');
   assert.equal(world.host, 'venue');
   world.setState({ location: 'park', estate: { city: DEFAULT_CITY_ID } });
   // The trip ended in Ibadan, at the campus court.
@@ -174,7 +209,7 @@ test('arriving in another city: the old city leaves the screen, the new one is b
   world.setState({ location: 'bowers-tower', estate: { city: 'ibadan' } });
   assert.equal(world.host, null);
   release();
-  await settle();
+  await untilScenes(() => seen.at(-1)?.city === 'ibadan' && seen.at(-1)?.status === 'ready' && world.host === 'venue', 'the arrived Ibadan venue');
   assert.equal(world.host, 'venue');
   assert.equal((world.diagnostics() as { location?: string }).location, 'bowers-tower');
   assert.deepEqual(hosts, ['venue', 'venue']);
@@ -192,15 +227,27 @@ test('arriving in another city: the old city leaves the screen, the new one is b
 test('leaving for a city that is ready while another was awaited builds at once, and the late arrival changes nothing', async () => {
   let release: () => void = () => {};
   const gate = new Promise<void>((done) => { release = done; });
+  let lateFinished: () => void = () => {}, lateFailed: (error: unknown) => void = () => {};
+  const lateCompletion = new Promise<void>((done, reject) => {
+    lateFinished = done;
+    lateFailed = reject;
+  });
   const ready = new Set<string>([DEFAULT_CITY_ID]);
-  const { world, hosts, seen } = adapter({ location: 'itoku-market', cityId: 'abeokuta', scenesReady: (cityId) => ready.has(cityId), loadScenes: async (cityId) => { await gate; await loadCityScenes(cityId); ready.add(cityId); } });
+  const { world, hosts, seen, untilScenes } = adapter({
+    location: 'itoku-market', cityId: 'abeokuta', scenesReady: (cityId) => ready.has(cityId),
+    loadScenes: (cityId) => {
+      const work = (async () => { await gate; await loadCityScenes(cityId); ready.add(cityId); })();
+      void work.then(() => setImmediate(lateFinished), (error) => setImmediate(() => lateFailed(error)));
+      return work;
+    },
+  });
   assert.equal(world.awaiting, 'abeokuta');
   world.setState({ location: 'park', estate: { city: DEFAULT_CITY_ID } });
-  await settle();
+  await untilScenes(() => seen.at(-1)?.city === DEFAULT_CITY_ID && seen.at(-1)?.status === 'ready' && world.host === 'venue', 'the ready default city after leaving Abeokuta');
   assert.equal(world.host, 'venue');
   assert.equal(world.awaiting, null);
   release();
-  await settle();
+  await boundedEvent(lateCompletion, 'the abandoned Abeokuta load to settle');
   assert.deepEqual(hosts, ['venue'], 'no second host for the city that was left');
   assert.equal(seen.some((state) => state.city === 'abeokuta' && state.status === 'ready'), false, 'nobody is told that the abandoned city is ready');
   assert.equal((world.diagnostics() as { location?: string }).location, 'park');
@@ -225,8 +272,12 @@ test('every venue of every city is drawn from its own city\'s download alone', a
         if (!lagosMarket && other !== cityId && citySceneDef(other, kind, variant) && !Object.hasOwn(CITY_KINDS, kind)) assert.equal(citySceneDef(other, kind, variant), own, `${cityId}/${venue.id}: ${kind}/${variant} is ${other}'s scene`);
       }
       const entry = buildVenueScene(kit, venue, cityId);
-      assert.equal(entry.kind, kind, `${cityId}/${venue.id} is drawn as its own kind, not the plain plaza`);
-      entry.dispose();
+      try {
+        const readiness = await awaitNativeSceneGeometry(entry, `${cityId}/${venue.id}`);
+        assert.deepEqual(readiness.errors, [], `${cityId}/${venue.id}: native geometry loads`);
+        assert.equal(readiness.pendingCharacters, 0, `${cityId}/${venue.id}: native geometry is ready`);
+        assert.equal(entry.kind, kind, `${cityId}/${venue.id} is drawn as its own kind, not the plain plaza`);
+      } finally { entry.dispose(); }
     }
   }
   // Lagos overrides its own market; its other bare kinds still use shared scenery.

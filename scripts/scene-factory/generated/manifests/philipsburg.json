@@ -5,17 +5,17 @@
   "city": "philipsburg",
   "region": "americas-oceania",
   "recipeFile": "philipsburg.json",
-  "recipeSha256": "cfbc82481f96a365fbf68e63ed62dd2ced40a6220b166ab4f15d0b9f822d0b95",
+  "recipeSha256": "7aaac1967ce671bae33c110ffdfc9640174303ecc22d5975c469c5489af2ec46",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/philipsburg.json",
-      "sha256": "2d6b5d64b88ec89b418877b1cf847a973d0b6a0388dfc9cdc107ba574051da2b",
-      "inputSha256": "46b5634b423537b90d5f8b4d53c3a80edc34c56a5e338ab522a18d8e29a78555",
+      "sha256": "cd514dfc7c924cc8ba8c7b46b0dc8f7af5be7626e60fc0fdf63bb48031c4155e",
+      "inputSha256": "705d84b9eb0edb1d89171b45cd5f29dd77b5a1466d0612cc6dba08cbd7dcfaea",
       "contentSha256": "48152e18ea0a04e902bef33a87a02b53bc019f7c09cb5328bb1e42475a084593"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "philipsburg-airport-philipsburg-airport",
@@ -5204,11 +5204,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5317,6 +5312,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5344,11 +5344,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34869,
+    "utf8Bytes": 34907,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,61 +5391,61 @@
     "estimates": [
       {
         "venue": "philipsburg-airport-philipsburg-airport",
-        "triangles": 2698,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "philipsburg-clinic",
-        "triangles": 3438,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "philipsburg-community-notices",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "philipsburg-community-voting-game",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "philipsburg-community-voting-game",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "philipsburg-community-workshop",
-        "triangles": 3438,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "philipsburg-market-game",
-        "triangles": 4126,
+        "triangles": 4802,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "philipsburg-meal-stop",
-        "triangles": 3274,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "philipsburg-osm-node-12750078802",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "philipsburg-osm-node-13841746696",
-        "triangles": 3458,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "philipsburg-osm-node-1927202186",
-        "triangles": 3526,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
@@ -5462,55 +5457,55 @@
       },
       {
         "venue": "philipsburg-osm-node-6074914982",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "philipsburg-osm-relation-10372197",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "philipsburg-osm-way-1417556522",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "philipsburg-osm-way-261368991",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "philipsburg-osm-way-261373936",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "philipsburg-osm-way-363071670",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "philipsburg-osm-way-363228766",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "philipsburg-osm-way-367767346",
-        "triangles": 3202,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "philipsburg-osm-way-368524649",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5522,7 +5517,7 @@
       },
       {
         "venue": "philipsburg-osm-way-521520589",
-        "triangles": 4614,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
@@ -5534,13 +5529,13 @@
       },
       {
         "venue": "philipsburg-recreation",
-        "triangles": 4710,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "philipsburg-transit",
-        "triangles": 4010,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

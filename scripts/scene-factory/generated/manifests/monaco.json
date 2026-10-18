@@ -5,17 +5,17 @@
   "city": "monaco",
   "region": "western-europe",
   "recipeFile": "monaco.json",
-  "recipeSha256": "6f3ee33780169cfa9c3d5ea5835cfdf97593aaac8f5a90f61f7d5ca60e392942",
+  "recipeSha256": "4eb2edd1a379ef272373e80f15c3479f9f59c0344e6d76e20cb55c4723b5f746",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/monaco.json",
-      "sha256": "2ac4eb567d113853c49e8e76349792f0ad858f1fd10e15d8ca0d5c8f2cf7b8ba",
-      "inputSha256": "8a9322916b78cd4dee4b7a9b3c708614b9ae40cbbad42917dd01e993a66306f2",
+      "sha256": "15f1c4abbb57c0121f66ba6c60f646ff2697c82b7d15470fe96621f28acbce8e",
+      "inputSha256": "6808119e1dc736ce7616fd49e9a54ffdb8e39492acbcd09e5bcacecad3651c3a",
       "contentSha256": "dcead45bcf4d1d8b7bbfeb498bb2b2578db452998e7ebcffdc69d7e6890f6003"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "monaco-airport-monaco-airport",
@@ -5250,7 +5250,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
+            "reason": "crowd[8]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5317,11 +5317,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34488,
+    "utf8Bytes": 34520,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,43 +5391,43 @@
     "estimates": [
       {
         "venue": "monaco-airport-monaco-airport",
-        "triangles": 2698,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "monaco-clinic",
-        "triangles": 3402,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "monaco-community-notices",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "monaco-community-voting-game",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "monaco-community-workshop",
         "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "monaco-community-notices",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "monaco-community-voting-game",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "monaco-community-workshop",
+        "triangles": 3370,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "monaco-market-game",
-        "triangles": 4414,
+        "triangles": 5090,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "monaco-meal-stop",
-        "triangles": 3194,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
@@ -5444,37 +5439,37 @@
       },
       {
         "venue": "monaco-osm-node-4893574386",
-        "triangles": 2946,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "monaco-osm-node-5919288520",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "monaco-osm-node-6461009225",
-        "triangles": 2998,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "monaco-osm-node-7857077111",
         "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "monaco-osm-node-5919288520",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "monaco-osm-node-6461009225",
+        "triangles": 3490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "monaco-osm-node-7857077111",
+        "triangles": 3178,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "monaco-osm-node-7930513065",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "monaco-osm-relation-13453960",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5486,25 +5481,25 @@
       },
       {
         "venue": "monaco-osm-way-157719659",
-        "triangles": 4430,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "monaco-osm-way-201286353",
-        "triangles": 2882,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "monaco-osm-way-23715051",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "monaco-osm-way-49209155",
-        "triangles": 2998,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
@@ -5516,13 +5511,13 @@
       },
       {
         "venue": "monaco-osm-way-49209644",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "monaco-osm-way-94399398",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5534,13 +5529,13 @@
       },
       {
         "venue": "monaco-recreation",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "monaco-transit",
-        "triangles": 4238,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

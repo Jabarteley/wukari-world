@@ -5,17 +5,17 @@
   "city": "nukualofa",
   "region": "americas-oceania",
   "recipeFile": "nukualofa.json",
-  "recipeSha256": "7855da57cf00865ecf138035ddd5b739ea5ff9d7e8ab668463b10a44b16a2337",
+  "recipeSha256": "4973af0062e4efdaecf74d990cb3498e8387d8cbd99f8de3db65a3666e24480d",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/nukualofa.json",
-      "sha256": "dfce8cadf95b2fbe60f43c0ae7e636ddeabfdd5e45eeda1b0fb6b7f1458ad08f",
-      "inputSha256": "bce83740d03d70982be92cb2ff8f51065c311df53c9ae803c373e9d202850545",
+      "sha256": "e5f318e41eee857db9c618c40263f626201f4269a4acb21ab203afd5514da042",
+      "inputSha256": "e2c9a0ceb391352d3f012084ce8f6d603fbe74f371f101147a2b36e1ace6e5d1",
       "contentSha256": "a0e2890a5f2e4cbcfd018f2adf3c7df0ab7edf7b8863cc0040467ac235ff9083"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "nukualofa-airport-nukualofa-airport",
@@ -5276,11 +5276,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34462,
+    "utf8Bytes": 34508,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,73 +5386,73 @@
     "estimates": [
       {
         "venue": "nukualofa-airport-nukualofa-airport",
-        "triangles": 3590,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nukualofa-clinic",
-        "triangles": 2490,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nukualofa-community-notices",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "nukualofa-community-voting-game",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "nukualofa-community-workshop",
-        "triangles": 2490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "nukualofa-market-game",
-        "triangles": 2622,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "nukualofa-meal-stop",
-        "triangles": 2946,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "nukualofa-osm-node-12072562069",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "nukualofa-community-voting-game",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "nukualofa-community-workshop",
+        "triangles": 3370,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "nukualofa-market-game",
+        "triangles": 2934,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "nukualofa-meal-stop",
+        "triangles": 3274,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "nukualofa-osm-node-12072562069",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "nukualofa-osm-node-1234123401",
-        "triangles": 3490,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nukualofa-osm-node-3230856831",
-        "triangles": 3610,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nukualofa-osm-node-6441638780",
-        "triangles": 3514,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nukualofa-osm-relation-5274827",
-        "triangles": 3526,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
@@ -5469,7 +5464,7 @@
       },
       {
         "venue": "nukualofa-osm-way-300336346",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5481,25 +5476,25 @@
       },
       {
         "venue": "nukualofa-osm-way-307399349",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "nukualofa-osm-way-314371836",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "nukualofa-osm-way-314371836",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "nukualofa-osm-way-319048856",
-        "triangles": 3514,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nukualofa-osm-way-320590185",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5511,31 +5506,31 @@
       },
       {
         "venue": "nukualofa-osm-way-338584633",
-        "triangles": 3798,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nukualofa-osm-way-687265667",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nukualofa-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nukualofa-recreation",
-        "triangles": 3518,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nukualofa-transit",
-        "triangles": 3530,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

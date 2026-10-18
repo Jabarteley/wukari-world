@@ -5,17 +5,17 @@
   "city": "valletta",
   "region": "western-europe",
   "recipeFile": "valletta.json",
-  "recipeSha256": "33bf4f26513ac7da5b124b603ff4f43d15ca3a6f4758ef57998159ec221fa94e",
+  "recipeSha256": "28c3510edb44b11910ba538b4d6163bf24ba68ccd996880a60f2ed2f773ccb7b",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/valletta.json",
-      "sha256": "6ba609b102ecdaa43a3bcf576dd289e61f2f8d1ca39f2e95e6f5fbb23358d087",
-      "inputSha256": "ff29136b68caf0413d95a66069b3af455ad83baf10e10d039a5223a51bcb4872",
+      "sha256": "fd59931aca52c06305b3a0d23824203a673ae38122691b66a485a91dfef4c577",
+      "inputSha256": "03efea77fe30c2c6c1d8d7ff3a46b51a72aac60c5d35fa96de9c34982ef21298",
       "contentSha256": "9b2ce269cebf1c482346f0dfba085a2e9ae6a73ecdec0c2fc832d1aa37c9c782"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "valletta-airport-valletta-airport",
@@ -5249,6 +5249,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5267,6 +5272,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5312,6 +5322,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34622,
+    "utf8Bytes": 34529,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,85 +5401,85 @@
     "estimates": [
       {
         "venue": "valletta-airport-valletta-airport",
-        "triangles": 3530,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "valletta-clinic",
-        "triangles": 3402,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "valletta-community-notices",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "valletta-community-voting-game",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "valletta-community-workshop",
-        "triangles": 3402,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "valletta-market-game",
-        "triangles": 3174,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "valletta-meal-stop",
-        "triangles": 3194,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "valletta-osm-node-1742953661",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "valletta-osm-relation-14484752",
-        "triangles": 3178,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "valletta-osm-way-138969519",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "valletta-osm-way-171895544",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "valletta-osm-way-224009613",
+        "venue": "valletta-community-workshop",
+        "triangles": 3890,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "valletta-market-game",
+        "triangles": 5218,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "valletta-meal-stop",
         "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "valletta-osm-way-24063943",
+        "venue": "valletta-osm-node-1742953661",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "valletta-osm-relation-14484752",
+        "triangles": 3194,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "valletta-osm-way-138969519",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "valletta-osm-way-171895544",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "valletta-osm-way-224009613",
+        "triangles": 3194,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "valletta-osm-way-24063943",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "valletta-osm-way-243915139",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
@@ -5476,7 +5491,7 @@
       },
       {
         "venue": "valletta-osm-way-27462446",
-        "triangles": 3798,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
@@ -5488,7 +5503,7 @@
       },
       {
         "venue": "valletta-osm-way-33426681",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5500,13 +5515,13 @@
       },
       {
         "venue": "valletta-osm-way-46780543",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "valletta-osm-way-60088300",
-        "triangles": 3458,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
@@ -5518,19 +5533,19 @@
       },
       {
         "venue": "valletta-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "valletta-recreation",
-        "triangles": 4430,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "valletta-transit",
-        "triangles": 4010,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "tegucigalpa",
   "region": "americas-oceania",
   "recipeFile": "tegucigalpa.json",
-  "recipeSha256": "2609e89e0fca97f5d5599ff804eb98655ecd5838939c5420a535a2ec166b4efc",
+  "recipeSha256": "904cefc59188f5ade619f17ec369f2de8a383d1767c813d4cc04f2e248bc35e4",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/tegucigalpa.json",
-      "sha256": "6c8def1e27545c6ed34458db8816488d8fd8656cfb1a3687b3eaacda7318b5b2",
-      "inputSha256": "1dcf3b6c8bf9b3766bd6f5017528130921fcab47dc0893c35001284c6c60fe8a",
+      "sha256": "16698586fd1af2d3b760d951f7b1875675c28e23904467639115c544ed37813d",
+      "inputSha256": "9ceeb582c17f7ceb2ad4f7e0c5c87b91d2a52712c14ac8c5d0a971c7888d4eb3",
       "contentSha256": "6c52166f36ca66140a1bf5eed92c784e51bdc88976078810628af09b2023dcba"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5141,6 +5141,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5249,11 +5254,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34843,
+    "utf8Bytes": 34861,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,43 +5391,43 @@
     "estimates": [
       {
         "venue": "tegucigalpa-airport-tegucigalpa-airport",
-        "triangles": 4010,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tegucigalpa-clinic",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tegucigalpa-community-notices",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tegucigalpa-community-voting-game",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tegucigalpa-community-workshop",
-        "triangles": 3890,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tegucigalpa-market-game",
-        "triangles": 3534,
+        "triangles": 4522,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tegucigalpa-meal-stop",
-        "triangles": 3178,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
@@ -5439,49 +5439,49 @@
       },
       {
         "venue": "tegucigalpa-osm-node-12184570445",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tegucigalpa-osm-node-12184594653",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tegucigalpa-osm-node-388490985",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tegucigalpa-osm-node-3887643459",
-        "triangles": 3274,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tegucigalpa-osm-node-472563369",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "tegucigalpa-osm-way-1203375623",
-        "triangles": 3314,
+        "venue": "tegucigalpa-osm-node-3887643459",
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "tegucigalpa-osm-way-1207066140",
+        "venue": "tegucigalpa-osm-node-472563369",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "tegucigalpa-osm-way-1203375623",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "tegucigalpa-osm-way-1207066140",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "tegucigalpa-osm-way-132362943",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5493,19 +5493,19 @@
       },
       {
         "venue": "tegucigalpa-osm-way-33908433",
-        "triangles": 4598,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tegucigalpa-osm-way-406969067",
-        "triangles": 3966,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tegucigalpa-osm-way-421304389",
-        "triangles": 3194,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
@@ -5517,25 +5517,25 @@
       },
       {
         "venue": "tegucigalpa-osm-way-637292919",
-        "triangles": 3526,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tegucigalpa-quiet-reflection",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tegucigalpa-recreation",
-        "triangles": 3518,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tegucigalpa-transit",
-        "triangles": 2698,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

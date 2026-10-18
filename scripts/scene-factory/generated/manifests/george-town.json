@@ -5,17 +5,17 @@
   "city": "george-town",
   "region": "americas-oceania",
   "recipeFile": "george-town.json",
-  "recipeSha256": "8fe8f0242a293153e115862853ee54a628189678b1cc533d4a79dd1833236017",
+  "recipeSha256": "4f27fbe99d9bba82c2841787e79f33eba1f757c5e08a88f190207859447e6ddf",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/george-town.json",
-      "sha256": "82d7b217aa1a54276f006ffa7f0bb2c1d5e1edbc3c01054cdcce1df328138fc2",
-      "inputSha256": "6db60e5b0efb470a7f7ba209ec90f7d99bf17a4c245f7a5bd512afe0dfd0af17",
+      "sha256": "57db31b52ce386b743925b34029fa876835f95dc169740ee158b0652c268569b",
+      "inputSha256": "ee2af4e68934c6f22b37f8614dee6f18a1abc18c3c6cc0714397ecbb033edcdc",
       "contentSha256": "67cb7773a20b267d700befa8f67526cf7d891e4ec8e0222ba6f957635a6560d7"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5102,11 +5102,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 21,
-    "attemptedCandidateCount": 24,
+    "attemptedCandidateCount": 21,
     "acceptedCandidateCount": 21,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 18,
-    "firstCandidateSuccessRate": 0.8571428571428571,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 21,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "george-town-airport-george-town-airport",
@@ -5149,11 +5149,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5235,11 +5230,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5249,11 +5239,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "No six-pair crowd allocation fits the validated walk grid"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5323,7 +5308,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 29194,
+    "utf8Bytes": 29353,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5337,127 +5322,127 @@
     "estimates": [
       {
         "venue": "george-town-airport-george-town-airport",
-        "triangles": 3530,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "george-town-clinic",
-        "triangles": 2910,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "george-town-community-notices",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "george-town-community-voting-game",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "george-town-community-workshop",
-        "triangles": 3438,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "george-town-market-game",
-        "triangles": 3666,
+        "triangles": 3734,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "george-town-meal-stop",
-        "triangles": 3194,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "george-town-osm-node-1550931122",
-        "triangles": 3490,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "george-town-osm-node-5322136279",
-        "triangles": 4430,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "george-town-osm-node-6340499785",
-        "triangles": 3526,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "george-town-osm-node-778613443",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "george-town-osm-way-217613994",
-        "triangles": 2882,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "george-town-osm-way-369024905",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "george-town-osm-way-372662553",
-        "triangles": 3514,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "george-town-osm-way-374313515",
-        "triangles": 3202,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "george-town-osm-way-615434121",
-        "triangles": 3730,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "george-town-osm-way-62088563",
-        "triangles": 3610,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "george-town-osm-way-62225884",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "george-town-quiet-reflection",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "george-town-recreation",
         "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "george-town-osm-node-6340499785",
+        "triangles": 3978,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "george-town-osm-node-778613443",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "george-town-osm-way-217613994",
+        "triangles": 3610,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "george-town-osm-way-369024905",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "george-town-osm-way-372662553",
+        "triangles": 3194,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "george-town-osm-way-374313515",
+        "triangles": 3194,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "george-town-osm-way-615434121",
+        "triangles": 4430,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "george-town-osm-way-62088563",
+        "triangles": 4614,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "george-town-osm-way-62225884",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "george-town-quiet-reflection",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "george-town-recreation",
+        "triangles": 4430,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "george-town-transit",
-        "triangles": 3530,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

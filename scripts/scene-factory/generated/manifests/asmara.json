@@ -5,17 +5,17 @@
   "city": "asmara",
   "region": "east-africa",
   "recipeFile": "asmara.json",
-  "recipeSha256": "8ed54906765b39e5244c4d4c903aeb7a743526da51210c6291a53fdb21bfd32f",
+  "recipeSha256": "7e29e7ec5f41b3547990f79f324dd52059fb4e8863a2a970eb247ed88225fad7",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/asmara.json",
-      "sha256": "0e40f3d8af78c50e3ff6697bfad23f63d3d5f8ec6be367e338e297928e3a0ae6",
-      "inputSha256": "c2c68d5a4162923d02acd021c4746fb04889488c69ea3e5f67ad81a5aaf8c9d8",
+      "sha256": "af2e58331851b6e468f48075d9b7fbf6f0afaaf087e9598c962c868e6c47cd87",
+      "inputSha256": "744c3ce58a4fa773b61900be0800a9247d3d15f2f858223fb647681f7e51e7ad",
       "contentSha256": "41479f275c734c24b475dd7b213518d17209a78e9e0f78389c76de2a26e7cd21"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "asmara-airport-asmara-airport",
@@ -5150,11 +5150,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34481,
+    "utf8Bytes": 34396,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,7 +5386,7 @@
     "estimates": [
       {
         "venue": "asmara-airport-asmara-airport",
-        "triangles": 4238,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
@@ -5403,49 +5398,49 @@
       },
       {
         "venue": "asmara-community-notices",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asmara-community-voting-game",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asmara-community-workshop",
-        "triangles": 3890,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asmara-market-game",
-        "triangles": 4842,
+        "triangles": 4530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asmara-meal-stop",
-        "triangles": 3274,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asmara-osm-node-1834089661",
-        "triangles": 3194,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asmara-osm-node-6360893186",
-        "triangles": 3194,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asmara-osm-node-7075366286",
-        "triangles": 3490,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5457,55 +5452,55 @@
       },
       {
         "venue": "asmara-osm-way-120789247",
-        "triangles": 2882,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asmara-osm-way-120789704",
-        "triangles": 4666,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asmara-osm-way-145347060",
-        "triangles": 4598,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asmara-osm-way-278139357",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asmara-osm-way-278139845",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asmara-osm-way-355197149",
-        "triangles": 2998,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asmara-osm-way-457538564",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asmara-osm-way-714628474",
-        "triangles": 4598,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asmara-osm-way-783951928",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5517,7 +5512,7 @@
       },
       {
         "venue": "asmara-osm-way-93787841",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5529,13 +5524,13 @@
       },
       {
         "venue": "asmara-recreation",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asmara-transit",
-        "triangles": 3590,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

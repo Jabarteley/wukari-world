@@ -5,17 +5,17 @@
   "city": "lusaka",
   "region": "southern-africa",
   "recipeFile": "lusaka.json",
-  "recipeSha256": "ea5a2a59ba7fd780e1f1478b5a02921e53b06393c02eafad46ed79b1bd3483da",
+  "recipeSha256": "8e9f3000449d103fc5411b8c772687c5831eee43d2b548305efb19f781e503ad",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/lusaka.json",
-      "sha256": "b7849ec42a9872f8c046c25f6397d0aec112b2c0f15a0e6eeb751a9918982773",
-      "inputSha256": "3d6c329bb8cd945e1539b81194fbaa688c7ab6021d8a7058b0a659666195e140",
+      "sha256": "14e2688ca92d628c9630dcb08fd401f83513674568c57dc571ae820d57f086b5",
+      "inputSha256": "8277333713e542de8cc159c96ef45606b5a179783d2b69c093daa884a1817de5",
       "contentSha256": "aeb14d21f99b309cbe5ab590ee22f668eb76df6c0421cf324232d6cea9c6cbf6"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "lusaka-airport-lusaka-airport",
@@ -5195,6 +5195,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5303,11 +5308,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5326,11 +5326,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34478,
+    "utf8Bytes": 34533,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,67 +5391,67 @@
     "estimates": [
       {
         "venue": "lusaka-airport-lusaka-airport",
-        "triangles": 4238,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lusaka-bayport",
-        "triangles": 3586,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lusaka-cathedral-of-the-child-jesus",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lusaka-clinic",
-        "triangles": 3370,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lusaka-community-notices",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "lusaka-clinic",
+        "triangles": 3890,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "lusaka-community-notices",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "lusaka-community-voting-game",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lusaka-community-workshop",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lusaka-crossroads-mall",
-        "triangles": 4666,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lusaka-embassy-park",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lusaka-evelyn-hone-college",
-        "triangles": 4878,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lusaka-hindu-temple",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5468,19 +5463,19 @@
       },
       {
         "venue": "lusaka-jaame-masjid",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lusaka-kenneth-kaunda-chilenje-house",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lusaka-lusaka-playhouse",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5492,13 +5487,13 @@
       },
       {
         "venue": "lusaka-meal-stop",
-        "triangles": 3194,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lusaka-national-heroes-stadium",
-        "triangles": 3490,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5510,19 +5505,19 @@
       },
       {
         "venue": "lusaka-oasis-mall",
-        "triangles": 3610,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lusaka-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lusaka-recreation",
-        "triangles": 4710,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
@@ -5534,13 +5529,13 @@
       },
       {
         "venue": "lusaka-transit",
-        "triangles": 4010,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lusaka-woodlands-mall",
-        "triangles": 2882,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       }

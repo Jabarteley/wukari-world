@@ -5,17 +5,17 @@
   "city": "sao-paulo",
   "region": "americas-oceania",
   "recipeFile": "sao-paulo.json",
-  "recipeSha256": "87b518f9432c312182fa6a8b65805444149505c0e5bc43b0645ea4f7d74043fb",
+  "recipeSha256": "643af579e44752dbdf8c38437d881d1400d1d32a6d45a6d38730fe960821790c",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/sao-paulo.json",
-      "sha256": "a55e69cc405077fa71857d344293ee403e4ea0c7568f71c5fa8e9549c4ffbc31",
-      "inputSha256": "5019317b1b12b885b3b4e0e92f581efb19b582c8e38760886f813802fb6ed7b6",
+      "sha256": "78029e9cac15ad7b5c3f316dc58c387a248dbbe8f41c03355c04fa779832fa1d",
+      "inputSha256": "8673b0c7436da6e70daeed46233ac850be15742ed5d19cdff2fe6f0f1d8d97f7",
       "contentSha256": "6b6d59ceb96675ebdbee08d9ddf340f972d2f75948010f8ab1a5e51a76883763"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,17 +5130,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "sao-paulo-airport-sao-paulo-airport",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34722,
+    "utf8Bytes": 34801,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,67 +5391,67 @@
     "estimates": [
       {
         "venue": "sao-paulo-airport-sao-paulo-airport",
-        "triangles": 4238,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sao-paulo-clinic",
-        "triangles": 2910,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sao-paulo-community-notices",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sao-paulo-community-voting-game",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sao-paulo-community-workshop",
         "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "sao-paulo-market-game",
-        "triangles": 4602,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sao-paulo-meal-stop",
-        "triangles": 3202,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sao-paulo-osm-node-4732250495",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sao-paulo-osm-node-5602604506",
+        "venue": "sao-paulo-community-notices",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "sao-paulo-osm-node-5890753625",
+        "venue": "sao-paulo-community-voting-game",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sao-paulo-community-workshop",
+        "triangles": 2910,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sao-paulo-market-game",
+        "triangles": 3926,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sao-paulo-meal-stop",
+        "triangles": 3178,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sao-paulo-osm-node-4732250495",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sao-paulo-osm-node-5602604506",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "sao-paulo-osm-node-5890753625",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "sao-paulo-osm-node-6732845827",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5458,43 +5463,43 @@
       },
       {
         "venue": "sao-paulo-osm-way-1082441931",
-        "triangles": 3686,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sao-paulo-osm-way-1251674385",
-        "triangles": 3514,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sao-paulo-osm-way-158967597",
-        "triangles": 4878,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sao-paulo-osm-way-196866078",
-        "triangles": 3526,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sao-paulo-osm-way-218678632",
-        "triangles": 3458,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sao-paulo-osm-way-243738993",
-        "triangles": 3798,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sao-paulo-osm-way-276636672",
-        "triangles": 3966,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5506,31 +5511,31 @@
       },
       {
         "venue": "sao-paulo-osm-way-547462224",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sao-paulo-osm-way-75490092",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sao-paulo-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sao-paulo-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sao-paulo-transit",
-        "triangles": 4238,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

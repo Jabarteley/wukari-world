@@ -5,17 +5,17 @@
   "city": "kinshasa",
   "region": "gulf-guinea",
   "recipeFile": "kinshasa.json",
-  "recipeSha256": "5d9f5726cea751f3580c10cf59aacec3912d8bab67bb1b9ab384b6773c189fc6",
+  "recipeSha256": "afaf09df66d2ae7f6475897aefe0304189a665ff618c528d24e014d00b38c406",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/kinshasa.json",
-      "sha256": "4e2a081af8c8d5695598cda552c54a664076af82ccbaf6b1b61b90017a441587",
-      "inputSha256": "0d0abc19c03fea69265f374f52b3fc6dbfb508ee9e84eb415b9b0e6b3934ed4a",
+      "sha256": "b7d35c5fff5baf50cf7cee1993692be7d180492744632a19a6a289ccb5073a4b",
+      "inputSha256": "af8b3d01b389af54fc08f161aa9003c82c08af2394c3f3ba741b14b0e1f466a2",
       "contentSha256": "8f52ee0d243e6aadb947e7665112de9027c3454ef45b785443f64d45728ff944"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.88,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "kinshasa-airport-kinshasa-airport",
@@ -5142,7 +5142,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
+            "reason": "crowd[1]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5245,11 +5245,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5304,6 +5299,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5322,11 +5322,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34535,
+    "utf8Bytes": 34641,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,13 +5396,13 @@
     "estimates": [
       {
         "venue": "kinshasa-airport-kinshasa-airport",
-        "triangles": 3590,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kinshasa-clinic",
-        "triangles": 2910,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
@@ -5419,43 +5414,43 @@
       },
       {
         "venue": "kinshasa-community-voting-game",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kinshasa-community-workshop",
-        "triangles": 3438,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kinshasa-market-game",
-        "triangles": 2774,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kinshasa-meal-stop",
-        "triangles": 3274,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kinshasa-osm-node-12684273365",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "kinshasa-community-workshop",
+        "triangles": 2910,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kinshasa-market-game",
+        "triangles": 4506,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kinshasa-meal-stop",
+        "triangles": 2946,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kinshasa-osm-node-12684273365",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "kinshasa-osm-node-2298412028",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kinshasa-osm-node-5331304126",
-        "triangles": 3514,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
@@ -5467,13 +5462,13 @@
       },
       {
         "venue": "kinshasa-osm-node-6743676049",
-        "triangles": 4610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kinshasa-osm-node-7802162236",
-        "triangles": 4614,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
@@ -5485,25 +5480,25 @@
       },
       {
         "venue": "kinshasa-osm-way-109431897",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kinshasa-osm-way-129297066",
-        "triangles": 2578,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kinshasa-osm-way-1536197976",
-        "triangles": 3178,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kinshasa-osm-way-23465935",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5515,7 +5510,7 @@
       },
       {
         "venue": "kinshasa-osm-way-362188754",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5527,13 +5522,13 @@
       },
       {
         "venue": "kinshasa-osm-way-700648669",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kinshasa-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5545,7 +5540,7 @@
       },
       {
         "venue": "kinshasa-transit",
-        "triangles": 3530,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

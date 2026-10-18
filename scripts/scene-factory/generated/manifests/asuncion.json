@@ -5,17 +5,17 @@
   "city": "asuncion",
   "region": "americas-oceania",
   "recipeFile": "asuncion.json",
-  "recipeSha256": "7ed55c6694980a287e5a8b4c7afee19d30a040779b80f583f842deb31f195207",
+  "recipeSha256": "38791ed313defea4aedf0edad043fd8f824aa3993c9bd6d2480450f889bb6c99",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/asuncion.json",
-      "sha256": "b22a8db931829f30019216c4e2e00b6959d915456cae8be6f9867c9df8202d01",
-      "inputSha256": "fedb3a07300eb20c7dc10285855e19d3511b652a336d5400c80f7cdadfca24c5",
+      "sha256": "dc2cf844ee57465b23b0936ca45f2b231ad750f6f4211afb4db3a9f30632ce7d",
+      "inputSha256": "f81b7fd93ea85ab6053f0ad4a20cb68043dd95c99bd2b6e4ac0836f6e3c5f2e0",
       "contentSha256": "ff8d401a278140e9d75cd26e549a2478b248113044f2e2d1d7786ad2eea735f8"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "asuncion-airport-asuncion-airport",
@@ -5195,11 +5195,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5263,6 +5258,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5272,6 +5272,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5326,11 +5331,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5349,6 +5349,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34728,
+    "utf8Bytes": 34673,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5402,37 +5407,37 @@
       },
       {
         "venue": "asuncion-clinic",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asuncion-community-notices",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asuncion-community-voting-game",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asuncion-community-workshop",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asuncion-market-game",
-        "triangles": 4282,
+        "triangles": 4350,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asuncion-meal-stop",
-        "triangles": 3202,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
@@ -5444,7 +5449,7 @@
       },
       {
         "venue": "asuncion-osm-node-5793564354",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5462,13 +5467,13 @@
       },
       {
         "venue": "asuncion-osm-way-272754498",
-        "triangles": 2578,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asuncion-osm-way-273246495",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5480,19 +5485,19 @@
       },
       {
         "venue": "asuncion-osm-way-274541627",
-        "triangles": 2578,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asuncion-osm-way-276186496",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asuncion-osm-way-276233284",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5504,31 +5509,31 @@
       },
       {
         "venue": "asuncion-osm-way-29045875",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asuncion-osm-way-316831439",
-        "triangles": 4878,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asuncion-osm-way-48488012",
-        "triangles": 3966,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asuncion-osm-way-752981298",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "asuncion-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5540,7 +5545,7 @@
       },
       {
         "venue": "asuncion-transit",
-        "triangles": 4010,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

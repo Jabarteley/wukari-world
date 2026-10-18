@@ -5,17 +5,17 @@
   "city": "toronto",
   "region": "americas-oceania",
   "recipeFile": "toronto.json",
-  "recipeSha256": "21b59e838e2203a64a87f9edd649d2515a497ef8bfb008d542b5a006838cf5a1",
+  "recipeSha256": "dd7d9e721ca877f6bfa0950df495bd1f4c19a25354ddb9498f195c45b984aa48",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/toronto.json",
-      "sha256": "0172aeea15560b1ca79b919b7ae432c6ee73451bb346a3dd85d353de4a19e0a7",
-      "inputSha256": "43dc8e840103a3e77c5b5291cb86af6a818a96eeaa91fa8aa893daa3e57e62b7",
+      "sha256": "c6ffe487dd721b0cad00d684defe88dc1b33ed65f996c5fc3c37b367fc6ca33c",
+      "inputSha256": "47270dcb08f36f5dd331862146db3ed7eef9691e6f7b2782fb35e7dbfc023a34",
       "contentSha256": "cd35126016de8b09bf4d324fcee50672e188fc7243e16da6de244c182896b7ee"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.88,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "toronto-airport-toronto-airport",
@@ -5204,11 +5204,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5254,11 +5249,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5295,6 +5285,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5349,11 +5344,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34625,
+    "utf8Bytes": 34584,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,37 +5391,37 @@
     "estimates": [
       {
         "venue": "toronto-airport-toronto-airport",
-        "triangles": 3982,
+        "triangles": 2850,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "toronto-clinic",
-        "triangles": 3438,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "toronto-community-notices",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "toronto-community-voting-game",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "toronto-community-workshop",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "toronto-market-game",
-        "triangles": 4694,
+        "triangles": 4638,
         "meshes": 13,
         "lights": 3
       },
@@ -5443,13 +5433,13 @@
       },
       {
         "venue": "toronto-osm-node-2424870841",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "toronto-osm-node-5369170123",
-        "triangles": 3194,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
@@ -5461,43 +5451,43 @@
       },
       {
         "venue": "toronto-osm-way-299944185",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "toronto-osm-way-30082934",
-        "triangles": 4614,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "toronto-osm-way-33711256",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "toronto-osm-way-35545706",
-        "triangles": 3458,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "toronto-osm-way-60483157",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "toronto-osm-way-61956858",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "toronto-osm-way-656128849",
-        "triangles": 4430,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
@@ -5509,13 +5499,13 @@
       },
       {
         "venue": "toronto-osm-way-681295729",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "toronto-osm-way-702100748",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
@@ -5527,19 +5517,19 @@
       },
       {
         "venue": "toronto-osm-way-85544826",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "toronto-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "toronto-recreation",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },

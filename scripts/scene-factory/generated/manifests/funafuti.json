@@ -5,17 +5,17 @@
   "city": "funafuti",
   "region": "americas-oceania",
   "recipeFile": "funafuti.json",
-  "recipeSha256": "b7a25666a1b560de2b3ed1998f4e609cc81dbfdf5e46a9ac9e2c5b0f3ca6037a",
+  "recipeSha256": "de8b5760d78cce2d258bdecb479d34e6d607ba05e1eb416ef8a1dda27cbd9e33",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/funafuti.json",
-      "sha256": "2700223a0d257b2ba94f542385c7324d8d6f1ccfadc534484c0e5363afb27a2f",
-      "inputSha256": "299536ea7f8f43819b4125e475696be81099a5a4a320499d4e50305d05985dd2",
+      "sha256": "7794dbe1c664ad678574bb0896cf445c28202ac9db8aaff775d973bf6d1862bc",
+      "inputSha256": "e5fd6fece04625e8532c33c9a6c138e330c6c47338777f31a33b9216d85b4579",
       "contentSha256": "34e0e3e7076d54664290de5ec16f07c078de0ff980c6c240304fc26e369d1e1d"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5067,11 +5067,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 16,
-    "attemptedCandidateCount": 17,
+    "attemptedCandidateCount": 19,
     "acceptedCandidateCount": 16,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 15,
-    "firstCandidateSuccessRate": 0.9375,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 13,
+    "firstCandidateSuccessRate": 0.8125,
     "venues": [
       {
         "venue": "funafuti-airport-funafuti-airport",
@@ -5115,7 +5115,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
+            "reason": "crowd[9]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5137,6 +5137,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5191,6 +5196,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5233,7 +5243,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 22310,
+    "utf8Bytes": 22296,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5247,19 +5257,19 @@
     "estimates": [
       {
         "venue": "funafuti-airport-funafuti-airport",
-        "triangles": 3422,
+        "triangles": 3482,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "funafuti-clinic",
-        "triangles": 3402,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "funafuti-community-notices",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5271,61 +5281,61 @@
       },
       {
         "venue": "funafuti-community-workshop",
-        "triangles": 2910,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "funafuti-market-game",
-        "triangles": 3638,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "funafuti-meal-stop",
-        "triangles": 3194,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "funafuti-osm-node-12470543601",
-        "triangles": 3514,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "funafuti-osm-node-13332937401",
-        "triangles": 3274,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "funafuti-osm-node-13987101501",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "funafuti-osm-node-13987101601",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "funafuti-osm-way-136840917",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "funafuti-osm-way-1560044520",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "funafuti-osm-way-136840917",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "funafuti-osm-way-1560044520",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "funafuti-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5337,7 +5347,7 @@
       },
       {
         "venue": "funafuti-transit",
-        "triangles": 3590,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

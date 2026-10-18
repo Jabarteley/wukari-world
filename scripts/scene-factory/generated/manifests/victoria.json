@@ -5,17 +5,17 @@
   "city": "victoria",
   "region": "swahili-coast",
   "recipeFile": "victoria.json",
-  "recipeSha256": "c8982cf92a4917f6a4ee71f4d9f99299862f34a8b6cfb4710a4a190663d3cb03",
+  "recipeSha256": "7f91dcaa1472f826ceb36b648bf608db526f6ec1ecc831d2b30207a63210fff5",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/victoria.json",
-      "sha256": "0e277131b53798dff03fba4ae47b82750ece87e8cabc074566f91df4a92269f7",
-      "inputSha256": "4b3290a331277c63471200f11bca73487895a721f7221e8f4b5ad778057aa432",
+      "sha256": "0b2062089977e509abfc982b988f1f2f0d262a143ee81c49c3aa5273184781d7",
+      "inputSha256": "13f9c43cad3fba4ab8032fb9fc705fb83af0d4d85a577272ab3dac4a953313c1",
       "contentSha256": "8ff3c9e5e998306d39d6c160b1011cfdc080f669b8ee5aff380ae7e43ba40577"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "victoria-airport-victoria-airport",
@@ -5204,6 +5204,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5222,6 +5227,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34452,
+    "utf8Bytes": 34657,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,25 +5396,25 @@
     "estimates": [
       {
         "venue": "victoria-airport-victoria-airport",
-        "triangles": 4130,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "victoria-clinic",
-        "triangles": 3402,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "victoria-community-notices",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "victoria-community-voting-game",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5416,7 +5426,7 @@
       },
       {
         "venue": "victoria-market-game",
-        "triangles": 3962,
+        "triangles": 4694,
         "meshes": 13,
         "lights": 3
       },
@@ -5434,13 +5444,13 @@
       },
       {
         "venue": "victoria-osm-node-1198043911",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "victoria-osm-node-2387375448",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5452,37 +5462,37 @@
       },
       {
         "venue": "victoria-osm-node-4547496634",
-        "triangles": 3610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "victoria-osm-node-769201090",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "victoria-osm-node-8757739017",
-        "triangles": 2998,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "victoria-osm-node-9454112784",
-        "triangles": 2578,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "victoria-osm-node-9694888508",
-        "triangles": 2998,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "victoria-osm-relation-8526443",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5494,43 +5504,43 @@
       },
       {
         "venue": "victoria-osm-way-276438928",
-        "triangles": 2882,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "victoria-osm-way-504513920",
-        "triangles": 4430,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "victoria-osm-way-616378214",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "victoria-osm-way-699263049",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "victoria-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "victoria-recreation",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "victoria-transit",
-        "triangles": 2698,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

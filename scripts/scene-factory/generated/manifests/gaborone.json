@@ -5,17 +5,17 @@
   "city": "gaborone",
   "region": "southern-africa",
   "recipeFile": "gaborone.json",
-  "recipeSha256": "e75e4b0cd5df7b525b1f7457374cfe41b6ab415c522063bcf1589f94d105123b",
+  "recipeSha256": "a67e8101f85739da071ebe8f92c8a804e4fa65bc7351d9fb8a85fd9633b731d8",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/gaborone.json",
-      "sha256": "5586bc1921f7f4196fd3e6f26e580bf650e638fa6c786d761df3755170ff6c46",
-      "inputSha256": "222c72af72dda18b83ba3a1cb51348cb90fcfeba12416d5476ac7ed8beeed464",
+      "sha256": "9544f0bb5661df741e92d6d314801b9ba25ae18b6f5a584ac7a6c9d424ff4d39",
+      "inputSha256": "9b7196fb4f944288c9a1c2dede445ca44551fdbf496003f140a49979d0d12b83",
       "contentSha256": "fe89541fed7986c9d61aa1e2812376d1042518f46694b3e07cc445464f12c5f6"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5109,11 +5109,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 22,
-    "attemptedCandidateCount": 23,
+    "attemptedCandidateCount": 22,
     "acceptedCandidateCount": 22,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.9545454545454546,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "gaborone-airport-gaborone-airport",
@@ -5309,11 +5309,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5329,7 +5324,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 30442,
+    "utf8Bytes": 30515,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5343,85 +5338,85 @@
     "estimates": [
       {
         "venue": "gaborone-airport-gaborone-airport",
-        "triangles": 2698,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-airport-junction-shopping-center",
-        "triangles": 4614,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-botho-university",
-        "triangles": 3686,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-botswana-national-museum",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "gaborone-clinic",
-        "triangles": 2490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "gaborone-community-notices",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "gaborone-community-voting-game",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "gaborone-community-workshop",
-        "triangles": 2910,
+        "venue": "gaborone-clinic",
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "gaborone-gaborone-technical-college",
-        "triangles": 4598,
+        "venue": "gaborone-community-notices",
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "gaborone-game-city",
-        "triangles": 3934,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "gaborone-market-game",
-        "triangles": 4642,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "gaborone-meal-stop",
-        "triangles": 3514,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "gaborone-mokolodi-reptile-park",
+        "venue": "gaborone-community-voting-game",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "gaborone-community-workshop",
+        "triangles": 3370,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "gaborone-gaborone-technical-college",
+        "triangles": 3686,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "gaborone-game-city",
+        "triangles": 3610,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "gaborone-market-game",
+        "triangles": 3962,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "gaborone-meal-stop",
+        "triangles": 2946,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "gaborone-mokolodi-reptile-park",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "gaborone-philatelic-museum",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5433,37 +5428,37 @@
       },
       {
         "venue": "gaborone-rail-park-mall",
-        "triangles": 4610,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-recreation",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-sarona-city-mall",
-        "triangles": 4610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-three-dikgosi-monument",
-        "triangles": 4454,
+        "triangles": 3506,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-transit",
-        "triangles": 2986,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gaborone-ub-indoor-sports-center",
-        "triangles": 3526,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },

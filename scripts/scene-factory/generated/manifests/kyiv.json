@@ -5,17 +5,17 @@
   "city": "kyiv",
   "region": "western-europe",
   "recipeFile": "kyiv.json",
-  "recipeSha256": "1cddee9580956e9bcd2f28640ac01d8d798c963a9c8c8c23dfe31e8323b6d323",
+  "recipeSha256": "6184604e31d20477017ab65cf01a0e8f120c73bfb239c4d612aadfb20ca0093a",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/kyiv.json",
-      "sha256": "5c77ab5eb2b66bb6596e923ef92ca3c83d6028a10a26d94bab5d6d9e4849cd0f",
-      "inputSha256": "8871e6128bd6d2cd284af420810f338970124e6b403cd658cdcd2d5c2d4eeae6",
+      "sha256": "e8e639f1b7f0cb2bcd963e2a17048f482dd9cbbddd14c25945513fb9017de38a",
+      "inputSha256": "84959909b0eb19c406b965126c4b3ea6b196292356686255e8b72af330952b6d",
       "contentSha256": "ab5bcc495ec939ad240acbad91d2d1cfc1c082325575deb6c8004bf1f673e33d"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "kyiv-airport-kyiv-airport",
@@ -5186,6 +5186,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34561,
+    "utf8Bytes": 34530,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,55 +5391,55 @@
     "estimates": [
       {
         "venue": "kyiv-airport-kyiv-airport",
-        "triangles": 4238,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kyiv-clinic",
-        "triangles": 3402,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kyiv-community-notices",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kyiv-community-voting-game",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kyiv-community-workshop",
-        "triangles": 3370,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kyiv-market-game",
-        "triangles": 3874,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kyiv-meal-stop",
-        "triangles": 3514,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kyiv-osm-node-309594358",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "kyiv-osm-node-6423216738",
+        "venue": "kyiv-community-voting-game",
         "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kyiv-community-workshop",
+        "triangles": 3438,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kyiv-market-game",
+        "triangles": 4618,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kyiv-meal-stop",
+        "triangles": 3194,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kyiv-osm-node-309594358",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kyiv-osm-node-6423216738",
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5446,91 +5451,91 @@
       },
       {
         "venue": "kyiv-osm-way-1052304759",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kyiv-osm-way-114113363",
-        "triangles": 4878,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kyiv-osm-way-152179973",
-        "triangles": 3518,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kyiv-osm-way-158025803",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kyiv-osm-way-191681151",
-        "triangles": 4614,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kyiv-osm-way-192594997",
-        "triangles": 3686,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kyiv-osm-way-223762038",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kyiv-osm-way-41378030",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kyiv-osm-way-438649004",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kyiv-osm-way-552929873",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kyiv-osm-way-642676042",
-        "triangles": 3966,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kyiv-osm-way-832672170",
-        "triangles": 3526,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kyiv-quiet-reflection",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "kyiv-osm-way-552929873",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kyiv-osm-way-642676042",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kyiv-osm-way-832672170",
+        "triangles": 2578,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kyiv-quiet-reflection",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "kyiv-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kyiv-transit",
-        "triangles": 2986,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

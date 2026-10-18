@@ -5,17 +5,17 @@
   "city": "zagreb",
   "region": "western-europe",
   "recipeFile": "zagreb.json",
-  "recipeSha256": "ee7d8c837afafc078ad140fc8ea8efac2dde9178b1bd000816bbf71f5c1a68f4",
+  "recipeSha256": "a84bf9094bd5111a3f17a24ca9b3d3dafc64b9744bcd6547cae69c4cc5b5c357",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/zagreb.json",
-      "sha256": "cf8b10c698165f498db207e6e707c66f897da86333943ccbbdf7bc0ea89760c2",
-      "inputSha256": "8810867793091794655326eb6e46b6a641e5df7b26013f456fcd8aa90f8cb290",
+      "sha256": "70a83b3d3432a3d1fa8f0cd1356fbce6c8d992402b474a73284c5521cb24e6fa",
+      "inputSha256": "65dcd85ed4a7ebb3418aa30383f0eb91918e8f83b5410190bd21d9e3010064c1",
       "contentSha256": "db7286f176d4b2d133ba59ad8233d2b1ffcec76ad35d33fdf7ca54ffce4a95b8"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,9 +5130,9 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
+    "rejectedCandidateCount": 2,
     "firstCandidateSuccessCount": 24,
     "firstCandidateSuccessRate": 0.96,
     "venues": [
@@ -5276,6 +5276,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5303,11 +5313,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34446,
+    "utf8Bytes": 34605,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,7 +5396,7 @@
     "estimates": [
       {
         "venue": "zagreb-airport-zagreb-airport",
-        "triangles": 4010,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
@@ -5403,13 +5408,13 @@
       },
       {
         "venue": "zagreb-community-notices",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zagreb-community-voting-game",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5421,13 +5426,13 @@
       },
       {
         "venue": "zagreb-market-game",
-        "triangles": 4458,
+        "triangles": 3038,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zagreb-meal-stop",
-        "triangles": 3178,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
@@ -5439,7 +5444,7 @@
       },
       {
         "venue": "zagreb-osm-relation-2680527",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5451,7 +5456,7 @@
       },
       {
         "venue": "zagreb-osm-way-261119216",
-        "triangles": 2998,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
@@ -5463,25 +5468,25 @@
       },
       {
         "venue": "zagreb-osm-way-296100147",
-        "triangles": 2998,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "zagreb-osm-way-30014192",
         "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "zagreb-osm-way-30014192",
+        "triangles": 3458,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "zagreb-osm-way-350664499",
-        "triangles": 4878,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zagreb-osm-way-589021801",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5493,19 +5498,19 @@
       },
       {
         "venue": "zagreb-osm-way-713274174",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zagreb-osm-way-761095793",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zagreb-osm-way-78326996",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5517,25 +5522,25 @@
       },
       {
         "venue": "zagreb-osm-way-880362547",
-        "triangles": 3898,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zagreb-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zagreb-recreation",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zagreb-transit",
-        "triangles": 4010,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

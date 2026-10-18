@@ -5,17 +5,17 @@
   "city": "chisinau",
   "region": "western-europe",
   "recipeFile": "chisinau.json",
-  "recipeSha256": "7526f256dc748e33f47a4cc093aa5b488f7aa4d099c6315804ee05130af229a5",
+  "recipeSha256": "f788087e7b94d3e4146f496d6bcb33d0d6299c30cd7f0775728a4cd004a3354c",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/chisinau.json",
-      "sha256": "fc199216d83e51e3c285abf468698f2bad74181a3e8e49996a14b9701785fb82",
-      "inputSha256": "be841b863dc6d1c0bb4bee6858b6336edd275829dfb8060c5074d02e26db3906",
+      "sha256": "eb2debe4022150c33b95a03b35692fb62b256d123bd53191d91d71a3380c0410",
+      "inputSha256": "cd6d2c5b07e3628469cf3929c1eb78da8b335ad4230cf12f714f8a7bc028a030",
       "contentSha256": "826ce0bfcd3d12afbd233179635abc5bdc17d21bbc62c8c7a43dcb45c10d45a1"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "chisinau-airport-chisinau-airport",
@@ -5231,6 +5231,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5295,15 +5300,10 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
+            "reason": "crowd[8]: exact target is blocked"
           },
           {
             "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5322,6 +5322,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34666,
+    "utf8Bytes": 34608,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,13 +5401,13 @@
     "estimates": [
       {
         "venue": "chisinau-airport-chisinau-airport",
-        "triangles": 3590,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chisinau-clinic",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
@@ -5414,37 +5419,37 @@
       },
       {
         "venue": "chisinau-community-voting-game",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chisinau-community-workshop",
-        "triangles": 3370,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chisinau-market-game",
-        "triangles": 2990,
+        "triangles": 3666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chisinau-meal-stop",
-        "triangles": 2946,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chisinau-osm-node-662713481",
-        "triangles": 3202,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chisinau-osm-node-855102025",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5456,13 +5461,13 @@
       },
       {
         "venue": "chisinau-osm-relation-13721147",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chisinau-osm-relation-6675955",
-        "triangles": 3978,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
@@ -5474,31 +5479,31 @@
       },
       {
         "venue": "chisinau-osm-relation-9892239",
-        "triangles": 4430,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chisinau-osm-way-115891944",
-        "triangles": 4878,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chisinau-osm-way-145671580",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "chisinau-osm-way-1457886531",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "chisinau-osm-way-1457886531",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "chisinau-osm-way-1546886425",
-        "triangles": 3526,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
@@ -5510,37 +5515,37 @@
       },
       {
         "venue": "chisinau-osm-way-26426519",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chisinau-osm-way-32890479",
-        "triangles": 3458,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chisinau-osm-way-38690601",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chisinau-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chisinau-recreation",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chisinau-transit",
-        "triangles": 2698,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

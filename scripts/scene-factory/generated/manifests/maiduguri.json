@@ -5,17 +5,17 @@
   "city": "maiduguri",
   "region": "sahel-north",
   "recipeFile": "maiduguri.json",
-  "recipeSha256": "1d709fe4b46f0cd0c6250dd86002c598a1d41eeb726f819189b420a7c401afc6",
+  "recipeSha256": "fdc5f4b89a8853017529603fbff9a0fb77b31b12f3f592923da33c45e0ecede6",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/maiduguri.json",
-      "sha256": "4fec03bde283d23331de42c76103c750072117e6badf9b8ca672461debca22b2",
-      "inputSha256": "faf14e771df660b3a98703ecf271d81b1b7c262bdf5f514aae933fd5634bf054",
+      "sha256": "f7083bc896d2f6aec637f233a2d79a685327c592b1a24226e097dcf560f07b9e",
+      "inputSha256": "90c0c57a98079482d232c68c03f3e7d5feae73f92cd590afa363573f72e12e8c",
       "contentSha256": "e44f14442e030addaed4f6d34af83d8962250b53c5b437e618b934e88eaa40c2"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5095,11 +5095,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 20,
-    "attemptedCandidateCount": 21,
+    "attemptedCandidateCount": 20,
     "acceptedCandidateCount": 20,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 19,
-    "firstCandidateSuccessRate": 0.95,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 20,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "access-bank-maiduguri",
@@ -5178,11 +5178,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5297,7 +5292,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 28424,
+    "utf8Bytes": 28639,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5311,7 +5306,7 @@
     "estimates": [
       {
         "venue": "access-bank-maiduguri",
-        "triangles": 3862,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
@@ -5323,19 +5318,19 @@
       },
       {
         "venue": "al-ansar-university",
-        "triangles": 3402,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bexil-gardens",
-        "triangles": 3758,
+        "triangles": 3546,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "borno-government-house",
-        "triangles": 3862,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
@@ -5347,43 +5342,43 @@
       },
       {
         "venue": "borno-state-specialist-hospital",
-        "triangles": 2490,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "el-kanemi-stadium",
-        "triangles": 3026,
+        "triangles": 3486,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gamboru-market",
-        "triangles": 3534,
+        "triangles": 4954,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "hannas-restaurant",
-        "triangles": 3222,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kasuwan-shanu",
-        "triangles": 5010,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kayat-restaurant",
         "triangles": 3230,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "kasuwan-shanu",
+        "triangles": 3282,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kayat-restaurant",
+        "triangles": 2974,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "maiduguri-central-mosque",
-        "triangles": 3862,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
@@ -5395,13 +5390,13 @@
       },
       {
         "venue": "maiduguri-monday-market",
-        "triangles": 3282,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "shehu-of-borno-palace",
-        "triangles": 3374,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
@@ -5413,19 +5408,19 @@
       },
       {
         "venue": "uba-maiduguri",
-        "triangles": 3862,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "umth-maiduguri",
         "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "university-of-maiduguri",
+        "venue": "umth-maiduguri",
         "triangles": 3410,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "university-of-maiduguri",
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       }

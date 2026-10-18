@@ -5,17 +5,17 @@
   "city": "suva",
   "region": "americas-oceania",
   "recipeFile": "suva.json",
-  "recipeSha256": "f16ff610de051232c7492e81868dd8fd54425dbfb16ce815006ed742bd2ce48e",
+  "recipeSha256": "62ff70498deca9cf63af474460cafe8c67ba89b6b2d7f56618af6e0acd805de0",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/suva.json",
-      "sha256": "c824af0138928680dd7ae6191d9be37534bc5063705fc74f37560c4e1e396d11",
-      "inputSha256": "3e72ea64eacbd777558a0f505aec9c1cabe45af79e86278e74be1e71451bafdc",
+      "sha256": "9aa85b46bb5d063ae4c0d3507040393378ffa2b760ef4e28a3a03f20e53f2c64",
+      "inputSha256": "3481e706f1f90741a25df70ef5d4f0331478cb9c088091f0e902503735efae55",
       "contentSha256": "55cb23f8bf965d05bd45bf3adff98d97317a59124cb7d8113d3de611503e8cf7"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,17 +5130,22 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 31,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 6,
-    "firstCandidateSuccessCount": 20,
-    "firstCandidateSuccessRate": 0.8,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "suva-airport-suva-airport",
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5150,6 +5155,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5186,11 +5196,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5218,11 +5223,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5259,11 +5259,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5273,16 +5268,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5382,11 +5367,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5402,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34348,
+    "utf8Bytes": 34248,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5422,13 +5402,13 @@
       },
       {
         "venue": "suva-clinic",
-        "triangles": 3402,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "suva-community-notices",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5440,37 +5420,37 @@
       },
       {
         "venue": "suva-community-workshop",
-        "triangles": 3438,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "suva-market-game",
-        "triangles": 4802,
+        "triangles": 4126,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "suva-meal-stop",
-        "triangles": 3178,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "suva-osm-node-4461947007",
-        "triangles": 3966,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "suva-osm-node-4500791362",
-        "triangles": 4430,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "suva-osm-node-4551574653",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5482,55 +5462,55 @@
       },
       {
         "venue": "suva-osm-way-1015760632",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "suva-osm-way-1067790146",
-        "triangles": 3202,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "suva-osm-way-1309951782",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "suva-osm-way-226445953",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "suva-osm-way-23708350",
-        "triangles": 2578,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "suva-osm-way-24281973",
-        "triangles": 3458,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "suva-osm-way-292559681",
-        "triangles": 3934,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "suva-osm-way-506437485",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "suva-osm-way-666132415",
-        "triangles": 3458,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
@@ -5542,7 +5522,7 @@
       },
       {
         "venue": "suva-osm-way-931639205",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5554,7 +5534,7 @@
       },
       {
         "venue": "suva-recreation",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },

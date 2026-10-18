@@ -5,17 +5,17 @@
   "city": "asaba",
   "region": "niger-delta",
   "recipeFile": "asaba.json",
-  "recipeSha256": "29feb8ae0adbf5ed66c69e16021e8000ad96aa411855d64314f61810e236ee70",
+  "recipeSha256": "7cf4fdbb42e6973affdf1bf1c85b0cd585c000c6192d43b9f8f01bd56fb93091",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/asaba.json",
-      "sha256": "6a137a6a3867b61fc5056b9c7a3b16ec8a37de50b7b45cf3fda73809ad49f6ba",
-      "inputSha256": "5d2c031fb9a5d7acdbc5e31b525d1da86f8233741ebb43f6d2b84bbdc774757c",
+      "sha256": "f3cfbc520fd26099d0c0d6639765c54e6bc2114798882e720d798c1ac3b47306",
+      "inputSha256": "03ada8f4f3f9b87e81b5234d84fd69ee2dea6f19e5bfc3ffc5f6859f3552b971",
       "contentSha256": "aaed02b6d4ca3196af5160c2dd1dcd4beac0e445897646e3ccec58ff209eaa85"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5039,11 +5039,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 12,
-    "attemptedCandidateCount": 12,
+    "attemptedCandidateCount": 13,
     "acceptedCandidateCount": 12,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 12,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 11,
+    "firstCandidateSuccessRate": 0.9166666666666666,
     "venues": [
       {
         "venue": "asaba-international-airport",
@@ -5131,6 +5131,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5164,7 +5169,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 17215,
+    "utf8Bytes": 17267,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5178,25 +5183,25 @@
     "estimates": [
       {
         "venue": "asaba-international-airport",
-        "triangles": 2590,
+        "triangles": 3842,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "eco-bank-asaba",
-        "triangles": 3342,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-college-of-education-technical-asaba",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-medical-centre-asaba",
-        "triangles": 3862,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
@@ -5208,7 +5213,7 @@
       },
       {
         "venue": "first-empire-bar",
-        "triangles": 2990,
+        "triangles": 2918,
         "meshes": 13,
         "lights": 3
       },
@@ -5220,13 +5225,13 @@
       },
       {
         "venue": "holy-family-catholic-church-asaba",
-        "triangles": 3862,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "national-museum-asaba",
-        "triangles": 3862,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },

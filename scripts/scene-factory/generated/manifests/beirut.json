@@ -5,17 +5,17 @@
   "city": "beirut",
   "region": "south-asia",
   "recipeFile": "beirut.json",
-  "recipeSha256": "689a9e822e84111f11fc4c27a68de5ab5d0c1aa2c55da3ce9a14be341713f3ac",
+  "recipeSha256": "30752375c35ad0bfa475ecbae4bed24834b3d77f5c13e3dcbc88eff9b5a3ad52",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/beirut.json",
-      "sha256": "d14536d68620ecef4a90b78ec4e872bc99e7e828f2e09404a091d7ccc35cdfa0",
-      "inputSha256": "0622648f70fe031b35aff673941585f12c65a0e10b7a9f13daf0e4513f78e047",
+      "sha256": "59f05741f047545eb4de5a7b8101f9f455e661cb0500e0034f8034912e52599c",
+      "inputSha256": "97e9b152409632dcfe3b01b69cd34f639d8f7212ae8e355e1068e6fd189a3441",
       "contentSha256": "3828e2aac5cc542c11bc9452764e12288f7d1b468eb13152139d0738f2833dbf"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "beirut-airport-beirut-airport",
@@ -5150,6 +5150,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34345,
+    "utf8Bytes": 34343,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,25 +5391,25 @@
     "estimates": [
       {
         "venue": "beirut-airport-beirut-airport",
-        "triangles": 3590,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "beirut-clinic",
-        "triangles": 3370,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "beirut-community-notices",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "beirut-community-voting-game",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5422,13 +5427,13 @@
       },
       {
         "venue": "beirut-meal-stop",
-        "triangles": 2946,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "beirut-osm-node-12928075501",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
@@ -5440,7 +5445,7 @@
       },
       {
         "venue": "beirut-osm-node-2932843969",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5452,13 +5457,13 @@
       },
       {
         "venue": "beirut-osm-node-4504613689",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "beirut-osm-node-4589295511",
-        "triangles": 3514,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
@@ -5470,67 +5475,67 @@
       },
       {
         "venue": "beirut-osm-node-8317853057",
-        "triangles": 3514,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "beirut-osm-way-261481055",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "beirut-osm-way-338095207",
-        "triangles": 4878,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "beirut-osm-way-479475562",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "beirut-osm-way-483174171",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "beirut-osm-way-743280529",
-        "triangles": 4598,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "beirut-osm-way-993570500",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "beirut-osm-way-994902555",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "beirut-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "beirut-recreation",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "beirut-transit",
-        "triangles": 3590,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

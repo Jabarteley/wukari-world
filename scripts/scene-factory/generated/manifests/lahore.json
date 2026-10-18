@@ -5,17 +5,17 @@
   "city": "lahore",
   "region": "south-asia",
   "recipeFile": "lahore.json",
-  "recipeSha256": "294024754312bd16923d2f2f4c7a9d631b1897c6b170d7081f6ee9ae607c8788",
+  "recipeSha256": "57fdba1abe117a9cd3379254febd6bb4c0ac039f93ca0b0a846164cb98ca9897",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/lahore.json",
-      "sha256": "73e88b574af03acdeddb0c9eb17ead35eead969561cd535686f62965e276c9c7",
-      "inputSha256": "e452231862d5ee2b5ff01bb8cfdf329780de45196179beefa40e4144dafabd71",
+      "sha256": "5dd8e674ba4bb32b139a0534f666b03b3c8452513a16ab9dcf92a28914c8894b",
+      "inputSha256": "51a01b810b75dce68ba60cc0219eeffa2bbdb379de6ef50730fd18e52c1ee1e0",
       "contentSha256": "511c0b895af662ba65a6d765719a60a78f1cbf9fca9171f510ed4876c874b70a"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "lahore-airport-lahore-airport",
@@ -5267,6 +5267,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34479,
+    "utf8Bytes": 34368,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,73 +5391,73 @@
     "estimates": [
       {
         "venue": "lahore-airport-lahore-airport",
-        "triangles": 4238,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lahore-clinic",
-        "triangles": 3370,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lahore-community-notices",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lahore-community-voting-game",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "lahore-community-workshop",
-        "triangles": 3370,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lahore-market-game",
-        "triangles": 2922,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lahore-meal-stop",
-        "triangles": 3178,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lahore-osm-node-1374726049",
-        "triangles": 3798,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lahore-osm-node-3228646369",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lahore-osm-node-674141730",
+        "venue": "lahore-community-voting-game",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "lahore-osm-node-7116277007",
+        "venue": "lahore-community-workshop",
+        "triangles": 3402,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "lahore-market-game",
+        "triangles": 2610,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "lahore-meal-stop",
+        "triangles": 3274,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "lahore-osm-node-1374726049",
+        "triangles": 3518,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "lahore-osm-node-3228646369",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "lahore-osm-node-674141730",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "lahore-osm-node-7116277007",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "lahore-osm-node-8955079625",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5464,37 +5469,37 @@
       },
       {
         "venue": "lahore-osm-way-172700972",
-        "triangles": 3490,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lahore-osm-way-27736338",
-        "triangles": 3490,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lahore-osm-way-291684963",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lahore-osm-way-291807527",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lahore-osm-way-611956194",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lahore-osm-way-70017485",
-        "triangles": 3686,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5518,19 +5523,19 @@
       },
       {
         "venue": "lahore-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lahore-recreation",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lahore-transit",
-        "triangles": 3590,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

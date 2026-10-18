@@ -5,17 +5,17 @@
   "city": "palikir",
   "region": "americas-oceania",
   "recipeFile": "palikir.json",
-  "recipeSha256": "e1642db3ea86546a7b34a6a791af539c638f499c260e68f0ddf9d13ff1db51e7",
+  "recipeSha256": "d399b19844751fc665d97cf3533eebe96dc8f73a5bde5b838999bf11f0917ab4",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/palikir.json",
-      "sha256": "bf9d32702c86f5290a3a998c494df9e2569f45f4b8351b16b1033d0342ec0bd6",
-      "inputSha256": "1985c02dcfcd41c053b83cece4fddcaf1ae8c8b60cbcb8f094b0101db036cf86",
+      "sha256": "7ca297a29f89f01655f32da5ffed675fe2a93e12293558ba5b84fe7a2f679bf5",
+      "inputSha256": "fe76f8b8e1c4b8fd0f22f742b90fb5575c05430b0d00ee3df8703db786c06f50",
       "contentSha256": "0d0354012df9942e829f2957e728a85f0263b7ea14b3fdb0187fa1700f7f9b64"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5308,7 +5308,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 29104,
+    "utf8Bytes": 29062,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5322,67 +5322,67 @@
     "estimates": [
       {
         "venue": "palikir-airport-palikir-airport",
-        "triangles": 3182,
+        "triangles": 4674,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "palikir-clinic",
-        "triangles": 3370,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "palikir-community-notices",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "palikir-community-voting-game",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "palikir-community-workshop",
-        "triangles": 2910,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "palikir-market-game",
-        "triangles": 3638,
+        "triangles": 3962,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "palikir-meal-stop",
-        "triangles": 3194,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "palikir-osm-node-3230314553",
-        "triangles": 3978,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "palikir-osm-node-358689543",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "palikir-osm-node-3958969172",
-        "triangles": 2946,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "palikir-osm-node-4467670089",
-        "triangles": 3526,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5394,55 +5394,55 @@
       },
       {
         "venue": "palikir-osm-way-1447609004",
-        "triangles": 3518,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "palikir-osm-way-1447609575",
-        "triangles": 4430,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "palikir-osm-way-316996156",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "palikir-osm-way-481854372",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "palikir-osm-way-551942387",
-        "triangles": 3202,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "palikir-osm-way-585464416",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "palikir-quiet-reflection",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "palikir-recreation",
         "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "palikir-osm-way-1447609575",
+        "triangles": 4710,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "palikir-osm-way-316996156",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "palikir-osm-way-481854372",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "palikir-osm-way-551942387",
+        "triangles": 3274,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "palikir-osm-way-585464416",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "palikir-quiet-reflection",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "palikir-recreation",
+        "triangles": 3798,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "palikir-transit",
-        "triangles": 3590,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

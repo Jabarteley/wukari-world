@@ -5,17 +5,17 @@
   "city": "majuro",
   "region": "americas-oceania",
   "recipeFile": "majuro.json",
-  "recipeSha256": "d73c64baf2df72d3c934866115c2fa47fa880b283a587f3a182a0d23c79e7657",
+  "recipeSha256": "d938f7eff9cdd87dea207f468d2953dff05c926d8405fa7769e6dbc85c3b2b73",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/majuro.json",
-      "sha256": "8f6aa0f4bec936c44091cc7973dde77aeabb109f0349fb3a020dc4249b49b1fb",
-      "inputSha256": "be36a96c949f1fb2b2ee18ae073451947be656fd9c98c6efe085364808758521",
+      "sha256": "2b3ad2ea597b00cd733573d321eec0777031493c86c83667a82a3551af114e5d",
+      "inputSha256": "01cd342b3f2953b9a7f1613f5c8f6eed99a5bd4bce6e66cd44996f7e34df2e18",
       "contentSha256": "5f99236c95ab08d9e7d0c49c393580de249e034407686de1e5306cf62cd3c308"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5176,11 +5176,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5208,6 +5203,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[0]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5313,7 +5313,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 28969,
+    "utf8Bytes": 28986,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5339,7 +5339,7 @@
       },
       {
         "venue": "majuro-community-notices",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5351,37 +5351,37 @@
       },
       {
         "venue": "majuro-community-workshop",
-        "triangles": 3370,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "majuro-market-game",
-        "triangles": 3618,
+        "triangles": 2942,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "majuro-meal-stop",
-        "triangles": 3202,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "majuro-osm-node-11103492901",
-        "triangles": 3518,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "majuro-osm-node-1563948641",
-        "triangles": 3194,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "majuro-osm-node-1583072058",
-        "triangles": 4878,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
@@ -5399,7 +5399,7 @@
       },
       {
         "venue": "majuro-osm-node-3261641985",
-        "triangles": 3514,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
@@ -5411,19 +5411,19 @@
       },
       {
         "venue": "majuro-osm-node-9956412121",
-        "triangles": 3274,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "majuro-osm-way-1333499846",
-        "triangles": 3978,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "majuro-osm-way-87621879",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5435,19 +5435,19 @@
       },
       {
         "venue": "majuro-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "majuro-recreation",
-        "triangles": 3798,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "majuro-transit",
-        "triangles": 3530,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

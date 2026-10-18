@@ -5,17 +5,17 @@
   "city": "paramaribo",
   "region": "americas-oceania",
   "recipeFile": "paramaribo.json",
-  "recipeSha256": "19ff8326db7735d39dfb75881ec014bb5fbf2749aa53a22ca188104116d3477f",
+  "recipeSha256": "3c43ae7639b83e6ee3b945219a390ea8ebdb6dec4e067e17b1026393c654218f",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/paramaribo.json",
-      "sha256": "7a81911971531938f6b58ab46574102f829cccb07d8031040de7e1683c6d390b",
-      "inputSha256": "d86f3b244152a021cb2add512000a01674cb1e6743aa6a7ef2f4d5a67308f35a",
+      "sha256": "dbec55debe6318b6f5d753737813af8d95a626e6c46dae5b8f03101707b0db63",
+      "inputSha256": "d7e61651aa8afdf4df847fe2c533dd4ee0ed45e5fb36ed4d88632e29ab4c7bf6",
       "contentSha256": "d6484c6fa23013dddfa406f828065dd33c7ddc4a5b0cee9914698e7e0a14c31d"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "paramaribo-airport-paramaribo-airport",
@@ -5276,11 +5276,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34772,
+    "utf8Bytes": 34804,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,37 +5386,37 @@
     "estimates": [
       {
         "venue": "paramaribo-airport-paramaribo-airport",
-        "triangles": 2882,
+        "triangles": 2642,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "paramaribo-clinic",
-        "triangles": 3890,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paramaribo-community-notices",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paramaribo-community-voting-game",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paramaribo-community-workshop",
         "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "paramaribo-community-notices",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "paramaribo-community-voting-game",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "paramaribo-community-workshop",
+        "triangles": 3402,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "paramaribo-market-game",
-        "triangles": 3962,
+        "triangles": 4642,
         "meshes": 13,
         "lights": 3
       },
@@ -5433,79 +5428,79 @@
       },
       {
         "venue": "paramaribo-osm-node-4462598425",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paramaribo-osm-way-135643181",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paramaribo-osm-way-155987982",
-        "triangles": 3798,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paramaribo-osm-way-156303014",
-        "triangles": 3490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paramaribo-osm-way-170813028",
-        "triangles": 3610,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "paramaribo-osm-way-191965158",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "paramaribo-osm-way-135643181",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "paramaribo-osm-way-155987982",
+        "triangles": 4430,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "paramaribo-osm-way-156303014",
+        "triangles": 2578,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "paramaribo-osm-way-170813028",
+        "triangles": 2882,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "paramaribo-osm-way-191965158",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "paramaribo-osm-way-191965515",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "paramaribo-osm-way-193176151",
-        "triangles": 3934,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "paramaribo-osm-way-229263516",
-        "triangles": 3526,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "paramaribo-osm-way-229384907",
-        "triangles": 4598,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "paramaribo-osm-way-397593588",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "paramaribo-osm-way-444063650",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "paramaribo-osm-way-718195852",
-        "triangles": 3490,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
@@ -5517,13 +5512,13 @@
       },
       {
         "venue": "paramaribo-osm-way-968232803",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "paramaribo-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5535,7 +5530,7 @@
       },
       {
         "venue": "paramaribo-transit",
-        "triangles": 3590,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

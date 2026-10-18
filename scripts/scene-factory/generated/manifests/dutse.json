@@ -5,17 +5,17 @@
   "city": "dutse",
   "region": "sahel-north",
   "recipeFile": "dutse.json",
-  "recipeSha256": "47da892a2ea3ade2cab7b279adf82b51ded3328704b314dc57ef43ca52120bf4",
+  "recipeSha256": "4b13102db6c67593bcb013dbb6c4dc512a0207d31ac1ecac65b51c3303c4abdd",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/dutse.json",
-      "sha256": "18801e341e8c2670c7aff737948d41b82a489a22ca489105c928948647eb069f",
-      "inputSha256": "b8550131045039f34ef5fdc9d8146c6cce9106bc367ec6ab040333d8c10c7082",
+      "sha256": "d7881efb1e4bb5b59b8188161aa39ecc4e5b1e82fa0ac204312f99baa3a6e840",
+      "inputSha256": "465a36a67c119a454af2f9d883f5b0573d81e9d1d177f42b1a90a05b5ad2d23f",
       "contentSha256": "eb2416ede5d441721042f58ad08f52d537f539147101ffe6dc3521878bc0267b"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5074,22 +5074,17 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 17,
-    "attemptedCandidateCount": 20,
+    "attemptedCandidateCount": 18,
     "acceptedCandidateCount": 17,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 14,
-    "firstCandidateSuccessRate": 0.8235294117647058,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 16,
+    "firstCandidateSuccessRate": 0.9411764705882353,
     "venues": [
       {
         "venue": "central-mosque-galamawa-dutse",
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5126,6 +5121,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5153,11 +5153,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5239,11 +5234,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5259,7 +5249,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 24429,
+    "utf8Bytes": 24391,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5273,13 +5263,13 @@
     "estimates": [
       {
         "venue": "central-mosque-galamawa-dutse",
-        "triangles": 3410,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "christ-the-king-catholic-church-dutse",
-        "triangles": 3342,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
@@ -5291,25 +5281,25 @@
       },
       {
         "venue": "dutse-general-hospital",
-        "triangles": 3862,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dutse-museum",
-        "triangles": 2462,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dutse-rock-range",
-        "triangles": 3862,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dutse-ultra-modern-market",
-        "triangles": 5066,
+        "triangles": 3282,
         "meshes": 13,
         "lights": 3
       },
@@ -5321,25 +5311,25 @@
       },
       {
         "venue": "gtbank-dutse",
-        "triangles": 3410,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "hadiza-nakowa-restaurant-dutse",
-        "triangles": 3206,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "jigawa-ministry-of-environment-dutse",
         "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "hadiza-nakowa-restaurant-dutse",
+        "triangles": 3222,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "jigawa-ministry-of-environment-dutse",
+        "triangles": 2462,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "jigawa-state-polytechnic-dutse",
-        "triangles": 2490,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
@@ -5357,19 +5347,19 @@
       },
       {
         "venue": "rasheed-shekoni-hospital-dutse",
-        "triangles": 3890,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sterling-bank-dutse",
-        "triangles": 2462,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yahuza-suya-spot-dutse",
-        "triangles": 3206,
+        "triangles": 3542,
         "meshes": 13,
         "lights": 3
       }

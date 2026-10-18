@@ -5,17 +5,17 @@
   "city": "baku",
   "region": "western-europe",
   "recipeFile": "baku.json",
-  "recipeSha256": "4fca08313038ae4cdd8a4c83714a4d31227a62457a6bd87ec630adecfa132dc0",
+  "recipeSha256": "0a50186c7af7aba7cc06d8e00ba6b70380d384af916461cb96b377f040e0e4c7",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/baku.json",
-      "sha256": "8474e0003ac7de66df8ca95b80a9958d914ef01719f022da2fd0c5ddec9cb001",
-      "inputSha256": "f1d61c63c6d7c1b6646cc1b42e4e2467133631938281ce14a60b009b9b8c26ae",
+      "sha256": "5d153731154038d42b41b25feca396d14271dbc7d39190ed55a2b0fe671a7776",
+      "inputSha256": "f0442c64b52698f5c614b20109201895e46a733ec0cabfc18f7390ddd8d94d53",
       "contentSha256": "dc1d84a306417618b5515510deee14da47db1c8fc8665853d23b7fc7e6b9c2c6"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "baku-airport-baku-airport",
@@ -5204,11 +5204,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34328,
+    "utf8Bytes": 34401,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5397,31 +5392,31 @@
       },
       {
         "venue": "baku-clinic",
-        "triangles": 2490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "baku-community-notices",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "baku-community-voting-game",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "baku-community-workshop",
         "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "baku-community-notices",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "baku-community-voting-game",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "baku-community-workshop",
+        "triangles": 2910,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "baku-market-game",
-        "triangles": 4642,
+        "triangles": 3962,
         "meshes": 13,
         "lights": 3
       },
@@ -5433,43 +5428,43 @@
       },
       {
         "venue": "baku-osm-node-10119666141",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "baku-osm-node-12766646790",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "baku-osm-node-2768993504",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "baku-osm-node-2947442051",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "baku-osm-node-12766646790",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "baku-osm-node-2768993504",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "baku-osm-node-2947442051",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "baku-osm-node-5320172364",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "baku-osm-way-1204756170",
-        "triangles": 3966,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "baku-osm-way-178593266",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
@@ -5481,13 +5476,13 @@
       },
       {
         "venue": "baku-osm-way-299424032",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "baku-osm-way-323398478",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
@@ -5499,43 +5494,43 @@
       },
       {
         "venue": "baku-osm-way-357033239",
-        "triangles": 3490,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "baku-osm-way-384863335",
-        "triangles": 3934,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "baku-osm-way-663814207",
-        "triangles": 2998,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "baku-osm-way-674677959",
-        "triangles": 4614,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "baku-quiet-reflection",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "baku-recreation",
-        "triangles": 3518,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "baku-transit",
-        "triangles": 2986,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

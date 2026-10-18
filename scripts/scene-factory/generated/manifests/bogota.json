@@ -5,17 +5,17 @@
   "city": "bogota",
   "region": "americas-oceania",
   "recipeFile": "bogota.json",
-  "recipeSha256": "2cf2243e5f50a236562152ffd20ba91512ff140965449147587d077d081d8c5b",
+  "recipeSha256": "8e4337076bbed2b05e13ce4c5bbf9a035274c515213fa9b1a3829b4681a7f132",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/bogota.json",
-      "sha256": "6c674a0c8286492d70ec2b56ef6811d8669efd1832fdae4210102faa9c940cc6",
-      "inputSha256": "2c20234f3474fb7645edaa1359b4a18f96af2935b66706fea018857eac243123",
+      "sha256": "360d08395e87ee3261ac5b51736a38329b243245c2e0c266b7a9abfde506b498",
+      "inputSha256": "e13a1fab61451136570279c2da6b5e3ac80eb7b5dfd6c37ea9246e02c31183b4",
       "contentSha256": "282d93da35775e28bd6481663ff63e68791e878f09595559bfbed44347c37266"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 30,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 5,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "bogota-airport-bogota-airport",
@@ -5168,6 +5168,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5213,6 +5223,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5258,6 +5278,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5267,11 +5292,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5344,11 +5364,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5397,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34580,
+    "utf8Bytes": 34605,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,67 +5411,67 @@
     "estimates": [
       {
         "venue": "bogota-airport-bogota-airport",
-        "triangles": 3590,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bogota-clinic",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bogota-community-notices",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bogota-community-voting-game",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bogota-community-workshop",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bogota-market-game",
-        "triangles": 4058,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bogota-meal-stop",
-        "triangles": 3274,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bogota-osm-node-1194775794",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "bogota-meal-stop",
+        "triangles": 2946,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bogota-osm-node-1194775794",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "bogota-osm-relation-19012716",
-        "triangles": 3490,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bogota-osm-relation-19135828",
-        "triangles": 3934,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bogota-osm-way-1008418546",
-        "triangles": 3978,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
@@ -5468,37 +5483,37 @@
       },
       {
         "venue": "bogota-osm-way-177256716",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bogota-osm-way-24152211",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bogota-osm-way-24410567",
-        "triangles": 3526,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bogota-osm-way-24421901",
-        "triangles": 3610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bogota-osm-way-26930352",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bogota-osm-way-398077902",
-        "triangles": 4598,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
@@ -5510,25 +5525,25 @@
       },
       {
         "venue": "bogota-osm-way-675058435",
-        "triangles": 3966,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bogota-osm-way-86369735",
-        "triangles": 3686,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bogota-osm-way-99625014",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bogota-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5540,7 +5555,7 @@
       },
       {
         "venue": "bogota-transit",
-        "triangles": 2986,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

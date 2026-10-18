@@ -5,17 +5,17 @@
   "city": "muscat",
   "region": "south-asia",
   "recipeFile": "muscat.json",
-  "recipeSha256": "a128df4818624477be2bce6b2c3aace698cb7e781dc28fc9b97b6407036c082e",
+  "recipeSha256": "a93fcb41bbc7ba31cfde8e3b9f66029c3904f241afffffda7217371ed763fd3b",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/muscat.json",
-      "sha256": "b2a34bda162f0d9174cb478cd6a38b3bafbff12d7e8d9bfd295c15cfdbd5577a",
-      "inputSha256": "4468863ff471aef780f2bb64f5cf04c8f04ddf5101a2018bf6ac2e37953a3cdd",
+      "sha256": "40f4d909ea0fef67b97b324e60e4ee458fac1c6754196538f6930ee394459d36",
+      "inputSha256": "9b8d1211d1f1a9962a534d7334827ef220836925f100ef4b179a826485774da9",
       "contentSha256": "a0cd672734a286bf02d946a4dc4c8e79df3e7605d92e0ba35820e43f807d6e5d"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 32,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 7,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.84,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "muscat-airport-muscat-airport",
@@ -5178,15 +5178,10 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
+            "reason": "crowd[5]: exact target is blocked"
           },
           {
             "candidate": 2,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5232,21 +5227,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 3,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 4,
             "outcome": "accepted"
           }
         ]
@@ -5256,11 +5236,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5306,6 +5281,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5315,11 +5295,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5365,6 +5340,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5407,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34346,
+    "utf8Bytes": 34361,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5421,13 +5401,13 @@
     "estimates": [
       {
         "venue": "muscat-airport-muscat-airport",
-        "triangles": 2698,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "muscat-clinic",
-        "triangles": 3890,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
@@ -5439,7 +5419,7 @@
       },
       {
         "venue": "muscat-community-voting-game",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5451,67 +5431,67 @@
       },
       {
         "venue": "muscat-market-game",
-        "triangles": 4638,
+        "triangles": 4642,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "muscat-meal-stop",
-        "triangles": 3514,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "muscat-osm-node-10252459505",
-        "triangles": 2946,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "muscat-osm-node-1719812351",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "muscat-osm-node-1721989476",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "muscat-osm-node-2559425023",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "muscat-osm-node-3703217884",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "muscat-osm-node-3703217884",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "muscat-osm-node-571119169",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "muscat-osm-node-6258430359",
-        "triangles": 3274,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "muscat-osm-way-20147882",
-        "triangles": 2998,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "muscat-osm-way-224449131",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5523,19 +5503,19 @@
       },
       {
         "venue": "muscat-osm-way-273893092",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "muscat-osm-way-286215978",
-        "triangles": 3978,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "muscat-osm-way-287310284",
-        "triangles": 3518,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
@@ -5547,13 +5527,13 @@
       },
       {
         "venue": "muscat-osm-way-993559976",
-        "triangles": 3686,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "muscat-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5565,7 +5545,7 @@
       },
       {
         "venue": "muscat-transit",
-        "triangles": 2698,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

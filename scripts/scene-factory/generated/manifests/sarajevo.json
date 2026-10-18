@@ -5,17 +5,17 @@
   "city": "sarajevo",
   "region": "western-europe",
   "recipeFile": "sarajevo.json",
-  "recipeSha256": "4ffd6f9e4daf8ffdf3e6733144c2565c78f5ffd6edd9a5220d87806283fc56cf",
+  "recipeSha256": "a0a829a15b48f389165006cd3db129389773f02516e9b03a04d487d8b61c1125",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/sarajevo.json",
-      "sha256": "c7ff88876a52b84f8cb4242cff0b97d04ac96d92a2b2600b771791498f34eb78",
-      "inputSha256": "58d2f3a2e8fd4c21994d7513be9f3e1d77bc2ef5d72d57aa41b2f784cdce08a9",
+      "sha256": "ee2f97cca9376101fa1d2053da2cf45f415e388afefece3377eccd514e560f7c",
+      "inputSha256": "5ef2f7a964eff2936d478ff5e60cc3df355c0e92526d1c502866443932d1fb40",
       "contentSha256": "8b256f5760204db592eb5d1fe728423e6f82fd9744b91f92a28ccc65108d8117"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.88,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "sarajevo-airport-sarajevo-airport",
@@ -5195,6 +5195,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5222,11 +5227,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5317,11 +5317,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34579,
+    "utf8Bytes": 34677,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,7 +5396,7 @@
     "estimates": [
       {
         "venue": "sarajevo-airport-sarajevo-airport",
-        "triangles": 4238,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
@@ -5419,25 +5414,25 @@
       },
       {
         "venue": "sarajevo-community-voting-game",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sarajevo-community-workshop",
-        "triangles": 2490,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sarajevo-market-game",
-        "triangles": 2886,
+        "triangles": 3942,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sarajevo-meal-stop",
-        "triangles": 3194,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
@@ -5449,13 +5444,13 @@
       },
       {
         "venue": "sarajevo-osm-relation-8425673",
-        "triangles": 3934,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sarajevo-osm-way-118942247",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5473,19 +5468,19 @@
       },
       {
         "venue": "sarajevo-osm-way-188836329",
-        "triangles": 3934,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sarajevo-osm-way-224740343",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sarajevo-osm-way-23480568",
-        "triangles": 3978,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
@@ -5497,43 +5492,43 @@
       },
       {
         "venue": "sarajevo-osm-way-27298226",
-        "triangles": 3526,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sarajevo-osm-way-28784587",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sarajevo-osm-way-588118276",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sarajevo-osm-way-622818140",
-        "triangles": 3966,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sarajevo-osm-way-777985963",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sarajevo-osm-way-840206905",
         "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "sarajevo-quiet-reflection",
+        "venue": "sarajevo-osm-way-777985963",
         "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sarajevo-osm-way-840206905",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sarajevo-quiet-reflection",
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5545,7 +5540,7 @@
       },
       {
         "venue": "sarajevo-transit",
-        "triangles": 4010,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

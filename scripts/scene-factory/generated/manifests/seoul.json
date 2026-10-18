@@ -5,17 +5,17 @@
   "city": "seoul",
   "region": "east-asia",
   "recipeFile": "seoul.json",
-  "recipeSha256": "41d9f082a7604f0c92eab51338c2d4cc4f37086cdf336292887b9203eaf6a6bf",
+  "recipeSha256": "110de324a6adcfada18a187ee5a29961dc9a10626340a3664e8ded463204510f",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/seoul.json",
-      "sha256": "8bb2a9feded24937c900473f907f3f9a363cbad15c1a02412f55cc73ddc7ff96",
-      "inputSha256": "8d2705f2d82d9dd0124ba0b255a2ee3a70d2e32c8f3cc311cd4f3ac2a3d7893a",
+      "sha256": "e6e9c02106ae31adfaf94c18948b4cee698701e101318b7c813ad74147bdcbff",
+      "inputSha256": "8d8e12ce3cdd8f178782b6eed0b5f99041d5995e29c790dbd2941291166e6aa2",
       "contentSha256": "136a88b3848a4be2f5c76a70e5d51d727f9ec537c03d8b15c7bf8d8760e8f7d5"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5177,11 +5177,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5200,6 +5195,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5209,6 +5209,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5263,11 +5268,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34315,
+    "utf8Bytes": 34310,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,55 +5396,55 @@
     "estimates": [
       {
         "venue": "seoul-airport-seoul-airport",
-        "triangles": 2986,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "seoul-clinic",
-        "triangles": 2910,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "seoul-community-notices",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "seoul-community-voting-game",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "seoul-community-workshop",
         "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "seoul-community-notices",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "seoul-community-voting-game",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "seoul-community-workshop",
+        "triangles": 3438,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "seoul-market-game",
-        "triangles": 4938,
+        "triangles": 2894,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "seoul-meal-stop",
-        "triangles": 3178,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "seoul-osm-node-11469141023",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "seoul-osm-node-368860625",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5456,37 +5456,37 @@
       },
       {
         "venue": "seoul-osm-way-1080852337",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "seoul-osm-way-1463915497",
-        "triangles": 3898,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "seoul-osm-way-231020902",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "seoul-osm-way-258637347",
-        "triangles": 3526,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "seoul-osm-way-26281660",
-        "triangles": 3610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "seoul-osm-way-336024475",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5498,31 +5498,31 @@
       },
       {
         "venue": "seoul-osm-way-416586666",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "seoul-osm-way-419363587",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "seoul-osm-way-613824923",
-        "triangles": 3978,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "seoul-osm-way-658766450",
-        "triangles": 2998,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "seoul-osm-way-872196107",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5534,13 +5534,13 @@
       },
       {
         "venue": "seoul-recreation",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "seoul-transit",
-        "triangles": 4010,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

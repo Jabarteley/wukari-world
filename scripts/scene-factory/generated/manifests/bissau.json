@@ -5,17 +5,17 @@
   "city": "bissau",
   "region": "gulf-guinea",
   "recipeFile": "bissau.json",
-  "recipeSha256": "da817744ac4eaa94665e272ab0d56c221b7ee16b5851232cf621ea4251f583b8",
+  "recipeSha256": "84d25afae25df64d79a23de27348eba1bafe3b765c26d4115be72a5ccd4f5232",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/bissau.json",
-      "sha256": "0655fb37fc2c16d5f7e88d2d97dec13da93f25d7e5efe68d444bf72e53e52bc5",
-      "inputSha256": "82600a8636d4187aa2641a41ceb6b01b9de63f03dff61a1f1d2ac61040dac6b3",
+      "sha256": "f52b446d635f872cd63639dd8e555803ec4500a8b803983663708174c091e198",
+      "inputSha256": "bc19d26cb9bd2e3dbd6cd60cc042cc6d4224626c0ffa1f21a3511bfe7f71ff96",
       "contentSha256": "2ae9746a2582898ba5d751897da4af289e05fc9c17344bd10a6c8ae1cbd869ad"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5195,11 +5195,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5227,6 +5222,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34474,
+    "utf8Bytes": 34399,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,7 +5391,7 @@
     "estimates": [
       {
         "venue": "bissau-airport-bissau-airport",
-        "triangles": 3590,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
@@ -5403,31 +5403,31 @@
       },
       {
         "venue": "bissau-community-notices",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bissau-community-voting-game",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bissau-community-workshop",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bissau-market-game",
-        "triangles": 3766,
+        "triangles": 5810,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bissau-meal-stop",
-        "triangles": 2946,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
@@ -5439,25 +5439,25 @@
       },
       {
         "venue": "bissau-osm-node-2082479562",
-        "triangles": 4610,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bissau-osm-node-2084171134",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bissau-osm-node-4719996189",
         "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "bissau-osm-node-2084171134",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bissau-osm-node-4719996189",
+        "triangles": 4614,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "bissau-osm-node-4810103621",
-        "triangles": 3514,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
@@ -5469,49 +5469,49 @@
       },
       {
         "venue": "bissau-osm-node-5680620456",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bissau-osm-node-5711301327",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "bissau-osm-node-5711301327",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "bissau-osm-node-9108219424",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bissau-osm-relation-9659980",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bissau-osm-way-112723869",
-        "triangles": 3490,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bissau-osm-way-1288347449",
-        "triangles": 4430,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bissau-osm-way-130194162",
-        "triangles": 4878,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bissau-osm-way-572352190",
-        "triangles": 4710,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
@@ -5529,7 +5529,7 @@
       },
       {
         "venue": "bissau-recreation",
-        "triangles": 4710,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },

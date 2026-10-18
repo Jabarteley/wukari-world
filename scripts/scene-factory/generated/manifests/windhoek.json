@@ -5,17 +5,17 @@
   "city": "windhoek",
   "region": "southern-africa",
   "recipeFile": "windhoek.json",
-  "recipeSha256": "103dfd07c878fe8b79e5ca78451e8e3110e422b076d754d340743eab6fd800f7",
+  "recipeSha256": "a2c7a68af543b43fa8fa5791c3059dfe7b4232d9edf368fa67638badb853e9ea",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/windhoek.json",
-      "sha256": "6758701be4f6ae20016bb1a369b645df3df9029bb13f186d1601b74330c69735",
-      "inputSha256": "5386490638c65d8e25c433c15023894365555b66987ec11272052e8c2f2190b7",
+      "sha256": "5f062d59ceb47c5dc54a33400b4afd52b56a68adb78777fc3ba8673eb4052e33",
+      "inputSha256": "37d6c976863dda878c93fde82a20467162b270b308bd4398f9084a334b167359",
       "contentSha256": "b005207b91403b9fd61e7c1412bfc947cdf37bd9f60a0bd87b4369be19a8485a"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "windhoek-airport-windhoek-airport",
@@ -5213,11 +5213,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5335,11 +5330,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34768,
+    "utf8Bytes": 34720,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5402,19 +5392,19 @@
       },
       {
         "venue": "windhoek-avis-dam-recreational-area",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "windhoek-clinic",
-        "triangles": 3402,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "windhoek-community-notices",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5426,97 +5416,97 @@
       },
       {
         "venue": "windhoek-community-workshop",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "windhoek-heinitzburg",
-        "triangles": 3490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "windhoek-heroes-acre",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "windhoek-independence-memorial-museum",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "windhoek-maerua-mall",
-        "triangles": 4614,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "windhoek-market-game",
-        "triangles": 3342,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "windhoek-meal-stop",
-        "triangles": 3202,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "windhoek-national-botanical-garden",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "windhoek-national-museum-of-namibia",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "windhoek-national-theatre",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "windhoek-owela-museum",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "windhoek-parliament-garden",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "windhoek-quiet-reflection",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "windhoek-recreation",
-        "triangles": 3518,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "windhoek-sam-nujoma-stadium",
         "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "windhoek-heroes-acre",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "windhoek-independence-memorial-museum",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "windhoek-maerua-mall",
+        "triangles": 3934,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "windhoek-market-game",
+        "triangles": 5386,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "windhoek-meal-stop",
+        "triangles": 3178,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "windhoek-national-botanical-garden",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "windhoek-national-museum-of-namibia",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "windhoek-national-theatre",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "windhoek-owela-museum",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "windhoek-parliament-garden",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "windhoek-quiet-reflection",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "windhoek-recreation",
+        "triangles": 4710,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "windhoek-sam-nujoma-stadium",
+        "triangles": 3526,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "windhoek-town-square-mall",
-        "triangles": 4610,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
@@ -5528,19 +5518,19 @@
       },
       {
         "venue": "windhoek-transnamib-railway-museum",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "windhoek-wernhil-shopping-centre",
-        "triangles": 4666,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "windhoek-windhoek-city-hill",
-        "triangles": 4566,
+        "triangles": 3586,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "kingston",
   "region": "americas-oceania",
   "recipeFile": "kingston.json",
-  "recipeSha256": "d72ae1b058f1c5c47d3da22a3e78f30acd6553d4f6b414c80a533edd1af308b3",
+  "recipeSha256": "9906fdddd2380c00fc7d852b9ca3b043348edb0f9fbea39e5203f1e7ad755a9f",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/kingston.json",
-      "sha256": "c40d687788cbda1adc2e88d500ec3c7539a70c1ae456fcf2548b141195d2adb3",
-      "inputSha256": "039955b9180c9b7c8a76a0ffeae4da899f9f10e1538a3bc389795d01e856257f",
+      "sha256": "a914ff33846a5316ee3433844bfd1d4417d5b6130eff07c303410cf57073e054",
+      "inputSha256": "0eec949e63f47ca65d101e52d3045879e61f03e7ca543e17521c91504b142e55",
       "contentSha256": "260090ae603af11dee8d3ea44a34c65bcb2e7719b69d1ffd2c0a2c8be8fc6768"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5204,6 +5204,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5249,11 +5254,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34743,
+    "utf8Bytes": 34662,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,43 +5391,43 @@
     "estimates": [
       {
         "venue": "kingston-airport-kingston-airport",
-        "triangles": 2986,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingston-clinic",
-        "triangles": 3890,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingston-community-notices",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingston-community-voting-game",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingston-community-workshop",
-        "triangles": 2910,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingston-market-game",
-        "triangles": 3994,
+        "triangles": 5050,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingston-meal-stop",
-        "triangles": 3202,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
@@ -5439,19 +5439,19 @@
       },
       {
         "venue": "kingston-osm-node-2497592734",
-        "triangles": 4878,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingston-osm-node-307991768",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingston-osm-node-4913756065",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5463,31 +5463,31 @@
       },
       {
         "venue": "kingston-osm-way-173106442",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingston-osm-way-25886780",
-        "triangles": 3458,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingston-osm-way-262238296",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingston-osm-way-299256337",
-        "triangles": 3686,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingston-osm-way-325781633",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5499,25 +5499,25 @@
       },
       {
         "venue": "kingston-osm-way-374593273",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kingston-osm-way-375141828",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "kingston-osm-way-375141828",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "kingston-osm-way-753127490",
-        "triangles": 4710,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kingston-osm-way-839108008",
-        "triangles": 2946,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
@@ -5535,7 +5535,7 @@
       },
       {
         "venue": "kingston-transit",
-        "triangles": 4238,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

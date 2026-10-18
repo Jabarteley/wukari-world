@@ -5,17 +5,17 @@
   "city": "riyadh",
   "region": "south-asia",
   "recipeFile": "riyadh.json",
-  "recipeSha256": "7ff99fdd32a15279a786eed67092fb8f4cd3014b784eea385786950d5574d1a4",
+  "recipeSha256": "f8b999ee5ca800f3756703ccd07fc7ccc7e33a3c496614e7c012b86b9b1729f0",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/riyadh.json",
-      "sha256": "db69c75015935bd4bad41294546433c9a6b25ad99f50f7b83e202f8c581f794e",
-      "inputSha256": "89f28d77bdfd3abbd2dba01dea1a2574d0ab2417184dbe40bf6938860fcccd4a",
+      "sha256": "6eb0c4525912c9b14eeb2882e4fb89849271a7e2a86ee9ef98d5c676ab6e9398",
+      "inputSha256": "bc54ad232556088ef59c2448b471fe1d3fa0033116bde740c0a0f621f8a91b2b",
       "contentSha256": "2d74170ed02b4abdbc1349818abfaafadb7b22f0d6eaaf3befae45b34b08aebc"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "riyadh-airport-riyadh-airport",
@@ -5204,11 +5204,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5344,16 +5339,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34392,
+    "utf8Bytes": 34309,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,13 +5386,13 @@
     "estimates": [
       {
         "venue": "riyadh-airport-riyadh-airport",
-        "triangles": 3826,
+        "triangles": 2514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riyadh-clinic",
-        "triangles": 3890,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
@@ -5419,61 +5404,61 @@
       },
       {
         "venue": "riyadh-community-voting-game",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riyadh-community-workshop",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riyadh-market-game",
-        "triangles": 2910,
+        "triangles": 4638,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riyadh-meal-stop",
-        "triangles": 3194,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riyadh-osm-node-3351034516",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riyadh-osm-way-1193082860",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riyadh-osm-way-119616744",
-        "triangles": 3458,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riyadh-osm-way-161100723",
-        "triangles": 4610,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riyadh-osm-way-161612193",
-        "triangles": 3966,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riyadh-osm-way-168522856",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
@@ -5485,67 +5470,67 @@
       },
       {
         "venue": "riyadh-osm-way-264745917",
-        "triangles": 4614,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riyadh-osm-way-328365837",
-        "triangles": 3966,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riyadh-osm-way-329990284",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "riyadh-osm-way-331075149",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "riyadh-osm-way-441769548",
-        "triangles": 4430,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "riyadh-osm-way-53157805",
-        "triangles": 3978,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "riyadh-osm-way-623544763",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "riyadh-osm-way-978220391",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "riyadh-quiet-reflection",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "riyadh-osm-way-331075149",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "riyadh-osm-way-441769548",
+        "triangles": 3798,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "riyadh-osm-way-53157805",
+        "triangles": 3458,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "riyadh-osm-way-623544763",
+        "triangles": 3978,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "riyadh-osm-way-978220391",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "riyadh-quiet-reflection",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "riyadh-recreation",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "riyadh-transit",
-        "triangles": 4238,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

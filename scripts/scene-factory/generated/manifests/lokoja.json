@@ -5,17 +5,17 @@
   "city": "lokoja",
   "region": "gulf-guinea",
   "recipeFile": "lokoja.json",
-  "recipeSha256": "7a46888cd57ba93f2497deae34674ca153906bc21c33858c1a67402ea169c618",
+  "recipeSha256": "2ba85898637066eab0ced4c689715084e62501b2c8409b0e754a774a6dd10870",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/lokoja.json",
-      "sha256": "1e9b66c54b75e1c8ec381e4d1bb784f70b915cee0d67bb726f8d491b6a8359fa",
-      "inputSha256": "c4aa01f6dd3f501c67fe88530185644fad6a0903f8dba00550932b654bd93f7e",
+      "sha256": "694226299e7fbb230b33bb6cbe41d6cab9bb675369a3173f5a673e07b5c4d8db",
+      "inputSha256": "fe4acfa9d58e717c484f48b5bd269560a8d70e00f6624c40ccdd8b378a8bbdaa",
       "contentSha256": "d6de88cce3d33069c1a87a9c66f9c98134181d9cc9d941b8e8a1fb3982c2cea8"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5046,11 +5046,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 13,
-    "attemptedCandidateCount": 13,
+    "attemptedCandidateCount": 14,
     "acceptedCandidateCount": 13,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 13,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 12,
+    "firstCandidateSuccessRate": 0.9230769230769231,
     "venues": [
       {
         "venue": "children-amusement-park",
@@ -5102,6 +5102,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5180,7 +5185,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 18611,
+    "utf8Bytes": 18699,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5194,55 +5199,55 @@
     "estimates": [
       {
         "venue": "children-amusement-park",
-        "triangles": 4458,
+        "triangles": 4178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-medical-centre-lokoja",
-        "triangles": 2910,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-university-lokoja",
-        "triangles": 3402,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gtbank-lokoja",
-        "triangles": 3342,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kgirs-lokoja",
-        "triangles": 3342,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kogi-state-specialist-hospital",
-        "triangles": 3342,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lokoja-anglican-church",
-        "triangles": 3862,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lokoja-central-masjid",
-        "triangles": 2882,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lokoja-central-mosque",
-        "triangles": 2462,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
@@ -5266,7 +5271,7 @@
       },
       {
         "venue": "maigaris-palace",
-        "triangles": 2462,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       }

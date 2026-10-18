@@ -5,17 +5,17 @@
   "city": "kaduna",
   "region": "sahel-north",
   "recipeFile": "kaduna.json",
-  "recipeSha256": "2b116adaed8352c0d56455934ed9b03f956a41422a392928c71321b35867c476",
+  "recipeSha256": "834a56f248317178f5fce70695780dcc767bbeb46effec1b80898ba732fc6411",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/kaduna.json",
-      "sha256": "25a5c811ba2df2478a2e2fcbed77033a2fd9e82628a119b5ffeca5e54757bf62",
-      "inputSha256": "e1f48d97f646af54e017d1aa7d9f49dff6816150d03fabbc85e2ea6144bc5149",
+      "sha256": "ef704522813e30955c1f8f5034d4556d3cee5040503a5b0fa9d829f7487cb2d3",
+      "inputSha256": "5818a3ff4e5f0a2574386c6b6b5a9f0ead7b00e75ade0ff21e47d520dc6e61fa",
       "contentSha256": "3410f0e37b800329c8241575e51237e48255d9123c0dd10577b8476f3b2eac82"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5153,6 +5153,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5225,11 +5230,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5281,7 +5281,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 27115,
+    "utf8Bytes": 27145,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5301,49 +5301,49 @@
       },
       {
         "venue": "arewa-house-museum",
-        "triangles": 3410,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "chechinya-market",
-        "triangles": 4334,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "giwa-hospital",
-        "triangles": 2490,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kaduna-government-house",
-        "triangles": 3410,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kaduna-polytechnic",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kaduna-secretariat",
-        "triangles": 2882,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kaduna-state-university",
-        "triangles": 3862,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kaduna-war-memorial-stone",
-        "triangles": 3342,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
@@ -5361,7 +5361,7 @@
       },
       {
         "venue": "mafzee-collection-and-spa",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
@@ -5373,31 +5373,31 @@
       },
       {
         "venue": "neuro-psychiatric-hospital-barnawa",
-        "triangles": 3410,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-johns-catholic-church",
-        "triangles": 3410,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sultan-bello-mosque",
-        "triangles": 2462,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "television-market",
-        "triangles": 5010,
+        "triangles": 5066,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "unguwan-rimi-market",
-        "triangles": 4010,
+        "triangles": 5014,
         "meshes": 13,
         "lights": 3
       },

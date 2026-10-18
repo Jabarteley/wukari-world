@@ -5,17 +5,17 @@
   "city": "jamestown",
   "region": "americas-oceania",
   "recipeFile": "jamestown.json",
-  "recipeSha256": "f19828f65c02e5bf1d2ada9454d433025bcbecd071758d22830a5ff08a5f2c10",
+  "recipeSha256": "fd769060a99c0f13f1f8f06b49c0a3710a6aa86a70e3fcd3c7ba0df34f3b67d8",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/jamestown.json",
-      "sha256": "4aacb3483a58f19df2d3af0cfc50e36e29b23eccb6dd897450e7577f255af29a",
-      "inputSha256": "ab65893caf94755c1744f1c60a7eea8f4dd74011f050a8ecdcc87dc5596584b7",
+      "sha256": "c99bb7d309580618d1c6c96caec969c52880abfe33ba5387cb73b69e13dba169",
+      "inputSha256": "f7bf92418da40761c988eb96938488c12df57ba5e39bbfdfe686f89dbf0694d1",
       "contentSha256": "6d6ea670c2dff07154699d2ed7596ffa0c57de798978597cb09a37772cdb54a3"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5091,8 +5091,8 @@
     "attemptedCandidateCount": 22,
     "acceptedCandidateCount": 19,
     "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 17,
-    "firstCandidateSuccessRate": 0.8947368421052632,
+    "firstCandidateSuccessCount": 16,
+    "firstCandidateSuccessRate": 0.8421052631578947,
     "venues": [
       {
         "venue": "jamestown-airport-jamestown-airport",
@@ -5126,6 +5126,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5135,16 +5140,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5154,6 +5149,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5235,6 +5235,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5244,11 +5249,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5305,55 +5305,55 @@
     "estimates": [
       {
         "venue": "jamestown-airport-jamestown-airport",
-        "triangles": 2938,
+        "triangles": 4190,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jamestown-clinic",
-        "triangles": 2910,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "jamestown-community-notices",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "jamestown-community-voting-game",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "jamestown-community-workshop",
         "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "jamestown-community-notices",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "jamestown-community-voting-game",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "jamestown-community-workshop",
+        "triangles": 2490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "jamestown-market-game",
-        "triangles": 4694,
+        "triangles": 3638,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jamestown-meal-stop",
-        "triangles": 3178,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jamestown-osm-node-11755023051",
-        "triangles": 3202,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jamestown-osm-node-13908472202",
-        "triangles": 3526,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
@@ -5365,43 +5365,43 @@
       },
       {
         "venue": "jamestown-osm-way-146163203",
-        "triangles": 4710,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jamestown-osm-way-254448055",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jamestown-osm-way-35798100",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jamestown-osm-way-550478777",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jamestown-osm-way-552579270",
-        "triangles": 3194,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jamestown-osm-way-754718688",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "jamestown-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5413,7 +5413,7 @@
       },
       {
         "venue": "jamestown-transit",
-        "triangles": 2986,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

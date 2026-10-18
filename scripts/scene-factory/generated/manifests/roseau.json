@@ -5,17 +5,17 @@
   "city": "roseau",
   "region": "americas-oceania",
   "recipeFile": "roseau.json",
-  "recipeSha256": "fd62b1d3d48a377bb4f2266c2d5c045a031edd90cc61ef6cab2b7c9ce2ccf994",
+  "recipeSha256": "2a89ae65d1a3a946a8877c0e6e4f3e842b24888bfefb325d1ce95828aad77a1a",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/roseau.json",
-      "sha256": "273c9ebfac3a3deb0ff238934dca3d03161d935ab9d42b372d7079211cbbba3a",
-      "inputSha256": "6a8339606f2a7220b61d8d1eb4b72fb6dd42002e7fab0727bd5e85307da41c5e",
+      "sha256": "53b37bba9dee5bbcd54574ac65a76527bcea4f98ce8cf34372d42e1e7ffc837c",
+      "inputSha256": "3592c7042193f793cdddb13eedeace59a2f4ed1ace8ca2bb7e740b4453340401",
       "contentSha256": "2b8161e0d552352677d1b591f8b35b79c543832953b0b5cc2db15081a6e5aee6"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5141,11 +5141,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5191,11 +5186,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5241,6 +5231,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5259,6 +5254,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "No six-pair crowd allocation fits the validated walk grid"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34540,
+    "utf8Bytes": 34571,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,19 +5396,19 @@
     "estimates": [
       {
         "venue": "roseau-airport-roseau-airport",
-        "triangles": 3530,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "roseau-clinic",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "roseau-community-notices",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5420,31 +5420,31 @@
       },
       {
         "venue": "roseau-community-workshop",
-        "triangles": 2490,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "roseau-market-game",
-        "triangles": 3638,
+        "triangles": 4642,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "roseau-meal-stop",
-        "triangles": 2946,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "roseau-osm-node-11977639451",
-        "triangles": 3978,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "roseau-osm-node-1418090286",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5456,31 +5456,31 @@
       },
       {
         "venue": "roseau-osm-node-4568918989",
-        "triangles": 3458,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "roseau-osm-node-4650862492",
-        "triangles": 3194,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "roseau-osm-node-5238480521",
         "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "roseau-osm-node-5238480521",
+        "triangles": 3202,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "roseau-osm-node-5779237653",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "roseau-osm-node-9682732830",
-        "triangles": 3526,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
@@ -5498,49 +5498,49 @@
       },
       {
         "venue": "roseau-osm-way-198518720",
-        "triangles": 3686,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "roseau-osm-way-361451994",
-        "triangles": 3610,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "roseau-osm-way-389821142",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "roseau-osm-way-396804252",
-        "triangles": 4598,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "roseau-osm-way-396970462",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "roseau-quiet-reflection",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "roseau-quiet-reflection",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "roseau-recreation",
-        "triangles": 4798,
+        "triangles": 4518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "roseau-transit",
-        "triangles": 4238,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

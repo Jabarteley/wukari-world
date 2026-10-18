@@ -5,17 +5,17 @@
   "city": "ijebu-ode",
   "region": "yoruba-southwest",
   "recipeFile": "ijebu-ode.json",
-  "recipeSha256": "0787cd49615ed3276ba8faad56abc8992305fa75de42dcc265508981faf594bd",
+  "recipeSha256": "84f9d4af03650243d89e44c293778e4f2129bea68f86d15da170ca88f894b51f",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/ijebu-ode.json",
-      "sha256": "e266a386b6e689f38f3f38dc2c220cadf1c629a66c310bdfc92804cd10db6643",
-      "inputSha256": "647c5e866bc77938329551f186ac846e751bdbe7eaaaf5b18d176c4e67368244",
+      "sha256": "c5c5c6349ad10b737eca45631838f23b7a3a7c640a3c91525fc1e8894e864aa4",
+      "inputSha256": "515850737471daca9804372f00eacdcd435de14629601558da5a17353f2c5c82",
       "contentSha256": "1b09b6e270dd7fcaab42ec775384361e5c22bfa1a3c7944c1ec1ca1db33b78d3"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5078,7 +5078,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 8533,
+    "utf8Bytes": 8506,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5098,31 +5098,31 @@
       },
       {
         "venue": "ijebu-chapel",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ijebu-clinic",
-        "triangles": 3438,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ijebu-kitchen",
-        "triangles": 3282,
+        "triangles": 2954,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ijebu-polling",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ijebu-salon",
-        "triangles": 3342,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       }

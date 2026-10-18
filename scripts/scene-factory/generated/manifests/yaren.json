@@ -5,17 +5,17 @@
   "city": "yaren",
   "region": "americas-oceania",
   "recipeFile": "yaren.json",
-  "recipeSha256": "ccc732a7711e4dff2ef4072ef0615e905d0a95ee0c019c185c85f81b789b1631",
+  "recipeSha256": "0b9a3c1304cc300342a30deaaff7f22ae811b498ecdb60c722ee394587851c7b",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/yaren.json",
-      "sha256": "881715700c30e67e64c92100680595b91c76db332b4bef2a0a1b28c71e5731db",
-      "inputSha256": "930b00aeeeb588eb37a48968a49b3962e2b8b5cbbed29c5dc5775833926ee583",
+      "sha256": "cb5281a146adf8d656225c9904838cfc673039973b6bb7f7070a480ebab17b91",
+      "inputSha256": "d4f7abec05fe2e5d6a9c87b3905ea2b295da5bdd60e2d22096cc0ec52a0401f3",
       "contentSha256": "45e5e02e8cdac80a576c5eb710dc0cc69ad462ab20ddc08d82befca5db06c3d7"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5088,22 +5088,17 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 19,
-    "attemptedCandidateCount": 21,
+    "attemptedCandidateCount": 19,
     "acceptedCandidateCount": 19,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 17,
-    "firstCandidateSuccessRate": 0.8947368421052632,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 19,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "yaren-airport-yaren-airport",
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5131,11 +5126,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5286,7 +5276,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 26267,
+    "utf8Bytes": 26242,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5306,19 +5296,19 @@
       },
       {
         "venue": "yaren-clinic",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaren-community-notices",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaren-community-voting-game",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5330,31 +5320,31 @@
       },
       {
         "venue": "yaren-market-game",
-        "triangles": 3638,
+        "triangles": 4694,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaren-meal-stop",
-        "triangles": 2946,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaren-osm-node-10994324451",
-        "triangles": 3514,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaren-osm-node-10994460231",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaren-osm-node-12057081469",
-        "triangles": 2946,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
@@ -5366,19 +5356,19 @@
       },
       {
         "venue": "yaren-osm-node-5943958387",
-        "triangles": 2578,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaren-osm-node-6715040385",
-        "triangles": 2578,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaren-osm-node-6717696888",
-        "triangles": 3978,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5390,13 +5380,13 @@
       },
       {
         "venue": "yaren-osm-way-1184110658",
-        "triangles": 3966,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yaren-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5408,7 +5398,7 @@
       },
       {
         "venue": "yaren-transit",
-        "triangles": 3590,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

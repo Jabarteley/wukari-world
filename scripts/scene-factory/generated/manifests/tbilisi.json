@@ -5,17 +5,17 @@
   "city": "tbilisi",
   "region": "western-europe",
   "recipeFile": "tbilisi.json",
-  "recipeSha256": "4db6321d92f08a2d29c1e3f4b802f64597584787265d59cc05848791b3c6fdd5",
+  "recipeSha256": "6b9cf8babae49570f345dbd6299cd5da3f0036518e30ceb2ef75591e16362905",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/tbilisi.json",
-      "sha256": "f721b92b24a1c0078eb456d2d79f0bb4c52c6e9fadaf63f64b80add56f005bf0",
-      "inputSha256": "8d51e36bb6b3554f8b413db28bddd10a359545b7f48cff64da073cf0d83642b6",
+      "sha256": "b93162cab2da77dd2d11edea6f855bf957677c305b8e5d01a394b6bf2ea2604c",
+      "inputSha256": "745747acd2edea02269f1c5845049edf021c33593603700ef65fdcfc5c25a979",
       "contentSha256": "a867baf23179c626822cefbf6908fcc737e6e9cc8cfe0306b641bdff643a3407"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "tbilisi-airport-tbilisi-airport",
@@ -5222,11 +5222,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5236,6 +5231,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5245,6 +5245,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5317,6 +5322,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5362,11 +5372,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34532,
+    "utf8Bytes": 34561,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,7 +5401,7 @@
     "estimates": [
       {
         "venue": "tbilisi-airport-tbilisi-airport",
-        "triangles": 4238,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
@@ -5408,25 +5413,25 @@
       },
       {
         "venue": "tbilisi-community-notices",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tbilisi-community-voting-game",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tbilisi-community-workshop",
-        "triangles": 3402,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tbilisi-market-game",
-        "triangles": 3190,
+        "triangles": 4922,
         "meshes": 13,
         "lights": 3
       },
@@ -5450,7 +5455,7 @@
       },
       {
         "venue": "tbilisi-osm-relation-16510616",
-        "triangles": 3966,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5462,7 +5467,7 @@
       },
       {
         "venue": "tbilisi-osm-relation-17883776",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5474,13 +5479,13 @@
       },
       {
         "venue": "tbilisi-osm-relation-3941505",
-        "triangles": 3490,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tbilisi-osm-way-104122415",
-        "triangles": 4710,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
@@ -5492,55 +5497,55 @@
       },
       {
         "venue": "tbilisi-osm-way-1136546674",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tbilisi-osm-way-1321501893",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tbilisi-osm-way-1429264291",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tbilisi-osm-way-194271283",
-        "triangles": 3458,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tbilisi-osm-way-38326853",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "tbilisi-osm-way-551386185",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "tbilisi-osm-way-551386185",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "tbilisi-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tbilisi-recreation",
-        "triangles": 3798,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tbilisi-transit",
-        "triangles": 4238,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

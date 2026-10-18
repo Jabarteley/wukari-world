@@ -5,17 +5,17 @@
   "city": "zurich",
   "region": "western-europe",
   "recipeFile": "zurich.json",
-  "recipeSha256": "17e8a2c173591a373eb63113cd17cbef9f989a96d2838d44ca891224e7e9b0ff",
+  "recipeSha256": "81969bae4230a20472e4490b1e025d43f3bbfc175ec2cebc302b9488d3c4f5a5",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/zurich.json",
-      "sha256": "23b888c4c019e5ab88f98669759774a8c2bd95071d4954902a47606c5e3485f7",
-      "inputSha256": "bd72f10e1d243216af387890ff99231406add64c2096548c4481ced7747770c3",
+      "sha256": "142ee75d14fd5edcebae86426b5897bd83deef40c546125232dcb5f6081d83bc",
+      "inputSha256": "73e9f927c80c1e95058f2b184ee4a775231741f01ce30801062965109b8e49d8",
       "contentSha256": "291499ff6e92045c21de3bc402177353a5dcc837d8a03023e8e4866f0de4beb5"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 30,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 5,
-    "firstCandidateSuccessCount": 20,
-    "firstCandidateSuccessRate": 0.8,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "zurich-airport-zurich-airport",
@@ -5159,11 +5159,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5173,11 +5168,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5196,11 +5186,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[2]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5246,11 +5231,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5260,6 +5240,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5323,11 +5308,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5397,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34533,
+    "utf8Bytes": 34502,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5411,25 +5391,25 @@
     "estimates": [
       {
         "venue": "zurich-airport-zurich-airport",
-        "triangles": 4238,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zurich-clinic",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zurich-community-notices",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zurich-community-voting-game",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5447,25 +5427,25 @@
       },
       {
         "venue": "zurich-meal-stop",
-        "triangles": 3514,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zurich-osm-node-306475059",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zurich-osm-node-6419670946",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zurich-osm-node-9717533158",
-        "triangles": 3966,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
@@ -5477,13 +5457,13 @@
       },
       {
         "venue": "zurich-osm-way-163539799",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zurich-osm-way-236595729",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5495,67 +5475,67 @@
       },
       {
         "venue": "zurich-osm-way-30296204",
-        "triangles": 3686,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zurich-osm-way-303186336",
-        "triangles": 3490,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zurich-osm-way-312787805",
-        "triangles": 2578,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "zurich-osm-way-437737781",
         "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "zurich-osm-way-437737781",
+        "triangles": 3490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "zurich-osm-way-49895064",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zurich-osm-way-555945140",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zurich-osm-way-59561172",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "zurich-osm-way-769027329",
-        "triangles": 3178,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "zurich-quiet-reflection",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "zurich-osm-way-769027329",
+        "triangles": 3202,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "zurich-quiet-reflection",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "zurich-recreation",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zurich-transit",
-        "triangles": 3590,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

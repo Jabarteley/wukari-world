@@ -5,17 +5,17 @@
   "city": "lilongwe",
   "region": "southern-africa",
   "recipeFile": "lilongwe.json",
-  "recipeSha256": "0f75e7a5299ae446feba32a8715a0e0dae3623e6d9686b93c0d36a6f27f15d58",
+  "recipeSha256": "f776eb4e816bc68d73c64403579128353285a3b7d811f06a30b29c6c6075ad55",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/lilongwe.json",
-      "sha256": "e1622ff90e783b8c438b7b55485f09e82c279b92812dcca7caa847680c749bcd",
-      "inputSha256": "108436564d95ca936fedf3696eef17b6c8bf47a30304245900901251d81215ea",
+      "sha256": "70e7f850837f7231e80b69169d7c8f687fde1e05f11e54c793b7bd27ec3922a9",
+      "inputSha256": "8c118aa3566b77e0bd68973755552d7e6117b4ca042af29e372a8885279634b4",
       "contentSha256": "9757d5868beac5ceb5e5f37ab58672647e47e38958c9faaa2518b57d7dea8a0a"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5242,11 +5242,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5328,6 +5323,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5361,7 +5361,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 33254,
+    "utf8Bytes": 33271,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5375,7 +5375,7 @@
     "estimates": [
       {
         "venue": "lilongwe-african-bible-college",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5387,7 +5387,7 @@
       },
       {
         "venue": "lilongwe-capital-kids-play-centre",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5399,7 +5399,7 @@
       },
       {
         "venue": "lilongwe-clinic",
-        "triangles": 3438,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
@@ -5411,31 +5411,31 @@
       },
       {
         "venue": "lilongwe-community-voting-game",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lilongwe-community-workshop",
-        "triangles": 3370,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lilongwe-gateway-shopping-mall",
-        "triangles": 4614,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lilongwe-kumbali-cultural-village",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lilongwe-lilongwe-wildlife-center",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5453,19 +5453,19 @@
       },
       {
         "venue": "lilongwe-meal-stop",
-        "triangles": 3178,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lilongwe-mzuzu-university-lilongwe-branch",
-        "triangles": 3686,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lilongwe-national-library-service",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5477,7 +5477,7 @@
       },
       {
         "venue": "lilongwe-open-theatre",
-        "triangles": 3490,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5489,31 +5489,31 @@
       },
       {
         "venue": "lilongwe-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lilongwe-recreation",
-        "triangles": 3798,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lilongwe-silver-stadium",
-        "triangles": 3526,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lilongwe-transit",
-        "triangles": 3530,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lilongwe-war-memorial-tower",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       }

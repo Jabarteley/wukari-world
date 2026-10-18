@@ -5,17 +5,17 @@
   "city": "kuala-lumpur",
   "region": "east-asia",
   "recipeFile": "kuala-lumpur.json",
-  "recipeSha256": "d3acde9c50dfb146702b3d46237ed7d8ae16568e7e357d49c8ecc3e8af9744c2",
+  "recipeSha256": "9ab50714b60298f3540277524a867bbad3283bb33d415991b59262bb38976c08",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/kuala-lumpur.json",
-      "sha256": "e233b00e55af90d092ac9105571a6afe856fa19624f5fb4150858199dd2e11aa",
-      "inputSha256": "a1ca6829a41b648d953d2b38eb50154d91fc8c81e73e40eb44628e86e45a8fcc",
+      "sha256": "c71f4f509b5a4ec5288c10c0321c4dbba566172c7b75c551d9f6d68565ae5195",
+      "inputSha256": "a61f841c9038cebac4b56315b57e50441d78bc6c231cab79fe384208be1c8646",
       "contentSha256": "ad47aa31144eac278d65630aac577ad2ce967d88f21ccb5df4fd33d61f7b707d"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.88,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "kuala-lumpur-airport-kuala-lumpur-airport",
@@ -5159,6 +5159,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5195,11 +5200,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5290,11 +5290,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5349,11 +5344,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[5]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34743,
+    "utf8Bytes": 34682,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,13 +5391,13 @@
     "estimates": [
       {
         "venue": "kuala-lumpur-airport-kuala-lumpur-airport",
-        "triangles": 4590,
+        "triangles": 5602,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kuala-lumpur-clinic",
-        "triangles": 3890,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
@@ -5419,43 +5409,43 @@
       },
       {
         "venue": "kuala-lumpur-community-voting-game",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kuala-lumpur-community-workshop",
-        "triangles": 2910,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kuala-lumpur-market-game",
-        "triangles": 4694,
+        "triangles": 3638,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kuala-lumpur-meal-stop",
-        "triangles": 3514,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kuala-lumpur-osm-node-11049175263",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kuala-lumpur-osm-node-2935650691",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kuala-lumpur-osm-node-8379958565",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5467,85 +5457,85 @@
       },
       {
         "venue": "kuala-lumpur-osm-relation-17060995",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kuala-lumpur-osm-way-1033470607",
-        "triangles": 3934,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kuala-lumpur-osm-way-1207976408",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kuala-lumpur-osm-way-200560100",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "kuala-lumpur-osm-way-24691651",
-        "triangles": 3978,
+        "venue": "kuala-lumpur-osm-way-1033470607",
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "kuala-lumpur-osm-way-342904301",
-        "triangles": 3898,
+        "venue": "kuala-lumpur-osm-way-1207976408",
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "kuala-lumpur-osm-way-404265345",
-        "triangles": 3898,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kuala-lumpur-osm-way-487114579",
-        "triangles": 3730,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kuala-lumpur-osm-way-823365646",
-        "triangles": 4598,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "kuala-lumpur-osm-way-914977615",
+        "venue": "kuala-lumpur-osm-way-200560100",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "kuala-lumpur-osm-way-24691651",
+        "triangles": 2578,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kuala-lumpur-osm-way-342904301",
+        "triangles": 4878,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kuala-lumpur-osm-way-404265345",
+        "triangles": 4878,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kuala-lumpur-osm-way-487114579",
+        "triangles": 4430,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kuala-lumpur-osm-way-823365646",
+        "triangles": 3686,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "kuala-lumpur-osm-way-914977615",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "kuala-lumpur-osm-way-925097361",
-        "triangles": 3458,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kuala-lumpur-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kuala-lumpur-recreation",
-        "triangles": 3798,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kuala-lumpur-transit",
-        "triangles": 3590,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

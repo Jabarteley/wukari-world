@@ -5,17 +5,17 @@
   "city": "tallinn",
   "region": "western-europe",
   "recipeFile": "tallinn.json",
-  "recipeSha256": "9a1ade578eb70681df4d33d03cff0d8d2a1a85f8b001f72752742060807169a4",
+  "recipeSha256": "153af6055fcdb02fc9612578cd9bd85e06013f7181336f4078788589c2bfbe22",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/tallinn.json",
-      "sha256": "623f10abff2a13994f6961d761b57b9098dc517165c8c43a6e73fa61ad80bd8e",
-      "inputSha256": "761841832ec1cff903fa0446671e1e045e9a616533cc87cde189aeab25bce03f",
+      "sha256": "239691b888119770d95c1b2f8836befc83ced30d479d0b5e53a71d34e8918e69",
+      "inputSha256": "b08832a4b75762805cb0647936a2daddf8f2457884d254b929933e6a5a70123a",
       "contentSha256": "f60e4036c5addf6dacafc4f0fd2ff4f95dc561e862f01f6293da9e415a3b1500"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 29,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 4,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.84,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "tallinn-airport-tallinn-airport",
@@ -5159,11 +5159,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5272,6 +5267,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5281,11 +5281,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[11]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5295,11 +5290,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,11 +5362,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5392,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34434,
+    "utf8Bytes": 34545,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5406,7 +5391,7 @@
     "estimates": [
       {
         "venue": "tallinn-airport-tallinn-airport",
-        "triangles": 4238,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
@@ -5418,43 +5403,43 @@
       },
       {
         "venue": "tallinn-community-notices",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tallinn-community-voting-game",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tallinn-community-workshop",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tallinn-market-game",
-        "triangles": 5266,
+        "triangles": 3846,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tallinn-meal-stop",
-        "triangles": 3274,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tallinn-osm-node-11071633601",
-        "triangles": 2998,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tallinn-osm-node-1606298155",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5466,19 +5451,19 @@
       },
       {
         "venue": "tallinn-osm-node-687057209",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tallinn-osm-relation-1205174",
-        "triangles": 4878,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tallinn-osm-way-1213651720",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
@@ -5490,19 +5475,19 @@
       },
       {
         "venue": "tallinn-osm-way-230751799",
-        "triangles": 2578,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tallinn-osm-way-25822425",
-        "triangles": 3458,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tallinn-osm-way-26846079",
-        "triangles": 4610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
@@ -5514,7 +5499,7 @@
       },
       {
         "venue": "tallinn-osm-way-26908368",
-        "triangles": 4666,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
@@ -5526,31 +5511,31 @@
       },
       {
         "venue": "tallinn-osm-way-81647511",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tallinn-osm-way-951559494",
-        "triangles": 3898,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tallinn-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tallinn-recreation",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "tallinn-transit",
-        "triangles": 3590,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

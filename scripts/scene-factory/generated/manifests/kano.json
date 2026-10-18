@@ -5,17 +5,17 @@
   "city": "kano",
   "region": "sahel-north",
   "recipeFile": "kano.json",
-  "recipeSha256": "9f671ba2af200c6823c59fbb2343812d7ea3ebe443ec5e1e8605bc06dba3dac6",
+  "recipeSha256": "22ebb48a7c8aa0f084406c056c99c7a93bd7e4f216ce6df694fd415021443149",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/kano.json",
-      "sha256": "005e841cf69b0d4bc6c4f5ceda75ba629b9f463d1d79e2a63261cc68a20a6437",
-      "inputSha256": "e222a2b34c89ce671b4d33c05e0bef7dea8877fdf27c183f487cd225e2db6d23",
+      "sha256": "afae43db775dbbeb5474fd142d5e12485642c49b296a3e85c973b9ccab04c525",
+      "inputSha256": "60d2927db357515051e6b1a571e24bab0e40da5b6ae02f79bd14e20a33b30184",
       "contentSha256": "a43042624694345de7c79edc794584b1a1516ca8e149743aac63af1c58ef079f"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5092,7 +5092,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 8564,
+    "utf8Bytes": 8584,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5106,37 +5106,37 @@
     "estimates": [
       {
         "venue": "airport",
-        "triangles": 5330,
+        "triangles": 5270,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "community-polling",
-        "triangles": 2462,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nassarawa-clinic",
-        "triangles": 3370,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nassarawa-kitchen",
-        "triangles": 3302,
+        "triangles": 3206,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nassarawa-salon",
-        "triangles": 3862,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "nassarawa-savings",
-        "triangles": 3374,
+        "triangles": 3342,
         "meshes": 13,
         "lights": 3
       }

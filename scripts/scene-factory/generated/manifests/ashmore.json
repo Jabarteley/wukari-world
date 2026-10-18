@@ -5,17 +5,17 @@
   "city": "ashmore",
   "region": "americas-oceania",
   "recipeFile": "ashmore.json",
-  "recipeSha256": "99c376a2d46bb885dd854092b63ff2f0a09a705399dcb5934ca89d10cb1d8c51",
+  "recipeSha256": "77452fe38379f17a2520ffbce95fecdabebbb68282b6640297e2f5c7a71da2c3",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/ashmore.json",
-      "sha256": "4df4dab9e271c50ac881cc979bae12fddccfe2af9f855eaeca3e504e15742bc9",
-      "inputSha256": "afd950ab27f4ff9068dc9ebd227f5726ed05c9c278ac68404af439c5cd86d9ee",
+      "sha256": "34c0fe511606e58b1109c8b995f4829aa198c27c6e874d6fc1078543fa910e10",
+      "inputSha256": "1f1eae4259e18a3fb24599865ae51bec5adc4ef08602631fea5c31bad01b8769",
       "contentSha256": "408331a4f71f9c30d0005b30d18d35bcd05f91d068f6ec225cbc335626a1c53d"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5132,7 +5132,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 14053,
+    "utf8Bytes": 14084,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5146,43 +5146,43 @@
     "estimates": [
       {
         "venue": "ashmore-airport-ashmore-airport",
-        "triangles": 4184,
+        "triangles": 3112,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ashmore-clinic",
-        "triangles": 2490,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ashmore-community-notices",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ashmore-community-voting-game",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ashmore-community-workshop",
-        "triangles": 3402,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ashmore-market-game",
-        "triangles": 2910,
+        "triangles": 4642,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ashmore-meal-stop",
-        "triangles": 3202,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
@@ -5194,13 +5194,13 @@
       },
       {
         "venue": "ashmore-recreation",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ashmore-transit",
-        "triangles": 3530,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

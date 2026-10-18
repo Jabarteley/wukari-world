@@ -5,17 +5,17 @@
   "city": "st-georges",
   "region": "americas-oceania",
   "recipeFile": "st-georges.json",
-  "recipeSha256": "af142895f39f1f5ec9d0ef6763fd0a0ca920a8f51502ec8d95a6f35e05bf026e",
+  "recipeSha256": "0940d5a9d0803a6acf31dab9ca4e9e66748003b4fbc73899b72c16736edfd55c",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/st-georges.json",
-      "sha256": "9e926310e9e5824a5cc05c7fec013c6ec64f5667f246c700c9cafbbc86386ce2",
-      "inputSha256": "2b27fffc588523c20ce80a9fc4ddcc5147960b9ec1efd3709a8fa5467be352d8",
+      "sha256": "f160237b88de91b4e06dbe8903a70f6ac9421f8404b537af6bcbb11a6258f085",
+      "inputSha256": "71687a905b36e16c24f9322c6fdd7e67644300a331ddf2bb66ba542a8b80939a",
       "contentSha256": "541405d20945f10ccea6279538e4a945dfb74d4a6c412ce204cc30a0c9a2eb28"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,9 +5130,9 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
+    "rejectedCandidateCount": 2,
     "firstCandidateSuccessCount": 23,
     "firstCandidateSuccessRate": 0.92,
     "venues": [
@@ -5141,16 +5141,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5196,6 +5186,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5250,6 +5245,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5304,11 +5304,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34661,
+    "utf8Bytes": 34821,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,85 +5396,85 @@
     "estimates": [
       {
         "venue": "st-georges-airport-st-georges-airport",
-        "triangles": 4238,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-georges-clinic",
-        "triangles": 3438,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-georges-community-notices",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-georges-community-voting-game",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-georges-community-workshop",
         "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "st-georges-market-game",
-        "triangles": 2870,
+        "venue": "st-georges-community-notices",
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "st-georges-meal-stop",
-        "triangles": 2946,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-georges-osm-node-11159744805",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-georges-osm-node-11183191376",
-        "triangles": 3274,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-georges-osm-node-278214972",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-georges-osm-node-3752214509",
-        "triangles": 3730,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-georges-osm-node-5976587886",
-        "triangles": 3978,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-georges-osm-node-640501899",
+        "venue": "st-georges-community-voting-game",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "st-georges-osm-node-9858873098",
+        "venue": "st-georges-community-workshop",
+        "triangles": 3890,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-georges-market-game",
+        "triangles": 4602,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-georges-meal-stop",
+        "triangles": 3194,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-georges-osm-node-11159744805",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-georges-osm-node-11183191376",
+        "triangles": 3194,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-georges-osm-node-278214972",
         "triangles": 2998,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-georges-osm-node-3752214509",
+        "triangles": 4710,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-georges-osm-node-5976587886",
+        "triangles": 3526,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-georges-osm-node-640501899",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-georges-osm-node-9858873098",
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
@@ -5491,13 +5486,13 @@
       },
       {
         "venue": "st-georges-osm-way-25532699",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-georges-osm-way-383799104",
-        "triangles": 4610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
@@ -5509,19 +5504,19 @@
       },
       {
         "venue": "st-georges-osm-way-435911842",
-        "triangles": 3202,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-georges-osm-way-439102912",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-georges-osm-way-451481996",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
@@ -5533,19 +5528,19 @@
       },
       {
         "venue": "st-georges-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-georges-recreation",
-        "triangles": 3518,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "st-georges-transit",
-        "triangles": 3530,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

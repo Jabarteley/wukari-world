@@ -5,17 +5,17 @@
   "city": "antananarivo",
   "region": "swahili-coast",
   "recipeFile": "antananarivo.json",
-  "recipeSha256": "6b5c243f0cae126b38564e4008214c08352c52b89444677f41cec0fcdf165a4c",
+  "recipeSha256": "579812d146c7456b750aa11188c7f3726cd715623f51ea766089fd7571720028",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/antananarivo.json",
-      "sha256": "54d1f6a4fdaa25d01d3cafec5e62142ba18370f4f095bcaed43aba5532adfba7",
-      "inputSha256": "ca1fd308753052169817fc7a4082805b9be0239473214d77c29d1972a2fcc234",
+      "sha256": "8fe3c9374d1d22320586baabb2267800201b9c1f7126c0e6768aed518227d976",
+      "inputSha256": "5b8c2a26d0618859d074021ad9763c90e61fcb170d62cb79da3ac93992c46fc2",
       "contentSha256": "fedb88782f069b9e50bc41f2735afeab636d1e2f6c873ffd3daf4eb03a76fe04"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "antananarivo-airport-fmmi",
@@ -5168,6 +5168,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5195,6 +5200,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "No six-pair crowd allocation fits the validated walk grid"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5312,6 +5322,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34868,
+    "utf8Bytes": 34856,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5392,67 +5407,67 @@
       },
       {
         "venue": "antananarivo-clinic",
-        "triangles": 3438,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "antananarivo-community-notices",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "antananarivo-community-voting-game",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "antananarivo-community-workshop",
-        "triangles": 2910,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "antananarivo-market-game",
-        "triangles": 4786,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "antananarivo-meal-stop",
-        "triangles": 3514,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "antananarivo-osm-node-11840542812",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "antananarivo-community-workshop",
+        "triangles": 3370,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "antananarivo-market-game",
+        "triangles": 5098,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "antananarivo-meal-stop",
+        "triangles": 3178,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "antananarivo-osm-node-11840542812",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "antananarivo-osm-node-11883673240",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "antananarivo-osm-node-11888568626",
-        "triangles": 3194,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "antananarivo-osm-node-11892950099",
-        "triangles": 3194,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "antananarivo-osm-node-13496096598",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5464,19 +5479,19 @@
       },
       {
         "venue": "antananarivo-osm-node-623568960",
-        "triangles": 3898,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "antananarivo-osm-relation-1167731",
-        "triangles": 4430,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "antananarivo-osm-relation-16814959",
-        "triangles": 3526,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5494,19 +5509,19 @@
       },
       {
         "venue": "antananarivo-osm-way-1280560456",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "antananarivo-osm-way-49037178",
-        "triangles": 2998,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "antananarivo-osm-way-52638460",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5518,19 +5533,19 @@
       },
       {
         "venue": "antananarivo-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "antananarivo-recreation",
-        "triangles": 3730,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "antananarivo-transit",
-        "triangles": 2986,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "basseterre",
   "region": "americas-oceania",
   "recipeFile": "basseterre.json",
-  "recipeSha256": "0dfadf759965a6c9a38c7aef1be99a9de67396231e7d2e4081623f2b48d57481",
+  "recipeSha256": "daefe2c0467b9d52917357098d4b70318826da4666528305db6ce9b423391025",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/basseterre.json",
-      "sha256": "21c4abc40be0dc8a0f0589810640420e65a2c29705b0acf3865bcfd3ab1dbc79",
-      "inputSha256": "cb871338bbccef5ba08030b298b9ad82435b2f1318cc1593ea4e4fa48a890d08",
+      "sha256": "6acdef0c1044a59c528bfed32f7775e14d5e829a141ecc473cf4b6924f8ef5c9",
+      "inputSha256": "4501295b96761d4f7b01b8f78b44f9acd5644553b53bc81695b7e0b489531e0b",
       "contentSha256": "b08af5965d94934107e8ba4344091cadd47746c34872867e29df84b4a87809e3"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "basseterre-airport-basseterre-airport",
@@ -5276,6 +5276,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5303,6 +5308,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5321,11 +5331,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5344,6 +5349,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34663,
+    "utf8Bytes": 34650,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,43 +5401,43 @@
     "estimates": [
       {
         "venue": "basseterre-airport-basseterre-airport",
-        "triangles": 2986,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "basseterre-clinic",
-        "triangles": 2490,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "basseterre-community-notices",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "basseterre-community-voting-game",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "basseterre-community-workshop",
-        "triangles": 3402,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "basseterre-market-game",
-        "triangles": 4518,
+        "triangles": 5506,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "basseterre-meal-stop",
-        "triangles": 3178,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
@@ -5439,25 +5449,25 @@
       },
       {
         "venue": "basseterre-osm-node-3448719953",
-        "triangles": 3526,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "basseterre-osm-node-6288064624",
-        "triangles": 3610,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "basseterre-osm-way-298302151",
-        "triangles": 2946,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "basseterre-osm-way-397170029",
-        "triangles": 4598,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
@@ -5475,19 +5485,19 @@
       },
       {
         "venue": "basseterre-osm-way-398248819",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "basseterre-osm-way-398772697",
-        "triangles": 4878,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "basseterre-osm-way-399489244",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5505,37 +5515,37 @@
       },
       {
         "venue": "basseterre-osm-way-60260592",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "basseterre-osm-way-60261200",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "basseterre-osm-way-682274447",
-        "triangles": 3978,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "basseterre-quiet-reflection",
         "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "basseterre-osm-way-682274447",
+        "triangles": 3490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "basseterre-quiet-reflection",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "basseterre-recreation",
-        "triangles": 3798,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "basseterre-transit",
-        "triangles": 3530,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "birnin-kebbi",
   "region": "sahel-north",
   "recipeFile": "birnin-kebbi.json",
-  "recipeSha256": "4981c0bfee877f0b410781f358bcae5e3507391806808042fdf9426a7193b424",
+  "recipeSha256": "1c29f8f77db80a2afd8edeb68148c52c070f765b9c6c8caf55d34fc9d4e0e297",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/birnin-kebbi.json",
-      "sha256": "b5dd13e65b984c45d045289f47fa8f2d7418049f4c74e6ca3b87fbc49986ffc5",
-      "inputSha256": "1abfe1d7e3ebdff610a95ac563b43abfc35cdffd79d4fe998d59dd02e7e8862e",
+      "sha256": "4a91eae15ef6d1728e2812b65d835d73dfec31cec5dd9bcdbbe4680bcfee6656",
+      "inputSha256": "fd1131e7216b38dbcb2b3ba7335555528ebea144e96340aba0a4808756e8fe17",
       "contentSha256": "f5bf196268c0d1b35c1d132517cc0f494063eaca0859fa580ea7a3f1e11e3910"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5077,8 +5077,8 @@
     "attemptedCandidateCount": 19,
     "acceptedCandidateCount": 17,
     "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 15,
-    "firstCandidateSuccessRate": 0.8823529411764706,
+    "firstCandidateSuccessCount": 16,
+    "firstCandidateSuccessRate": 0.9411764705882353,
     "venues": [
       {
         "venue": "central-mosque-birnin-kebbi",
@@ -5103,11 +5103,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5189,11 +5184,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5221,6 +5211,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5254,7 +5254,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 24661,
+    "utf8Bytes": 24698,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5268,103 +5268,103 @@
     "estimates": [
       {
         "venue": "central-mosque-birnin-kebbi",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "daula-restaurant-birnin-kebbi",
-        "triangles": 3302,
+        "triangles": 3206,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "deelad-place-birnin-kebbi",
-        "triangles": 3222,
+        "triangles": 3542,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-medical-centre-birnin-kebbi",
-        "triangles": 3342,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-university-birnin-kebbi",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "first-ecwa-bishara-church-birnin-kebbi",
-        "triangles": 3862,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "haliru-abdu-stadium-birnin-kebbi",
-        "triangles": 3026,
+        "triangles": 2606,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kebbi-ministry-of-environment-solid-minerals",
-        "triangles": 3342,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kebbi-ministry-of-information-culture",
-        "triangles": 3374,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sir-ahmadu-bello-airport-birnin-kebbi",
-        "triangles": 2334,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sir-yahaya-memorial-hospital-birnin-kebbi",
-        "triangles": 2490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-dominics-catholic-church-birnin-kebbi",
-        "triangles": 3410,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "waziri-umaru-federal-polytechnic-birnin-kebbi",
         "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "sir-ahmadu-bello-airport-birnin-kebbi",
+        "triangles": 2514,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sir-yahaya-memorial-hospital-birnin-kebbi",
+        "triangles": 3370,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "st-dominics-catholic-church-birnin-kebbi",
+        "triangles": 3342,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "waziri-umaru-federal-polytechnic-birnin-kebbi",
+        "triangles": 3410,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "yaryara-mini-market-birnin-kebbi",
-        "triangles": 5010,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "yusuf-bala-usman-library-birnin-kebbi",
-        "triangles": 3374,
+        "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zaget-mini-market-birnin-kebbi",
-        "triangles": 3282,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "zauro-ambrusa-general-hospital-birnin-kebbi",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       }

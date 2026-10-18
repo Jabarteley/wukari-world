@@ -5,17 +5,17 @@
   "city": "gustavia",
   "region": "americas-oceania",
   "recipeFile": "gustavia.json",
-  "recipeSha256": "e5f971a32994e513c343bc5cd8e991c7bcdf736abd2d3e9f994089717916029b",
+  "recipeSha256": "1bbf0f15770aff7cb38da8060c6a0ffd62638fab35ca3dbd2779dc13fd98952e",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/gustavia.json",
-      "sha256": "ba4375685b3c5338cac7cb2f01c20082da96fca25f6b478b71bfee09648d562f",
-      "inputSha256": "dab59de29f88b18102b4778a37789428e665419901fb7fc6bdec78a24f0f1bc3",
+      "sha256": "73d22b3acc1f8dbb76c67be10d00fe645b895fa317825891c799e898d62f3450",
+      "inputSha256": "0cf6541ac5033e0aee0d5fdf7e91873374c3636a8de822208ed87fa5fdca653a",
       "contentSha256": "cd982b830607edb8b19f03cfdec7655bf9d2907db920b7bd7616baf658266c9c"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5102,11 +5102,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 21,
-    "attemptedCandidateCount": 21,
+    "attemptedCandidateCount": 22,
     "acceptedCandidateCount": 21,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 20,
+    "firstCandidateSuccessRate": 0.9523809523809523,
     "venues": [
       {
         "venue": "gustavia-airport-gustavia-airport",
@@ -5239,6 +5239,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5308,7 +5313,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 29134,
+    "utf8Bytes": 29214,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5322,55 +5327,55 @@
     "estimates": [
       {
         "venue": "gustavia-airport-gustavia-airport",
-        "triangles": 2546,
+        "triangles": 3618,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gustavia-clinic",
-        "triangles": 3402,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gustavia-community-notices",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "gustavia-community-voting-game",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "gustavia-community-voting-game",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "gustavia-community-workshop",
-        "triangles": 3370,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gustavia-market-game",
-        "triangles": 2910,
+        "triangles": 3638,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gustavia-meal-stop",
-        "triangles": 2946,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gustavia-osm-node-3104286317",
-        "triangles": 2578,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gustavia-osm-node-3663052503",
-        "triangles": 3490,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5382,13 +5387,13 @@
       },
       {
         "venue": "gustavia-osm-node-5639324914",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gustavia-osm-node-5639324916",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5400,7 +5405,7 @@
       },
       {
         "venue": "gustavia-osm-way-1193995016",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5412,37 +5417,37 @@
       },
       {
         "venue": "gustavia-osm-way-361887020",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gustavia-osm-way-364607503",
-        "triangles": 3194,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gustavia-osm-way-496898761",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gustavia-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gustavia-recreation",
-        "triangles": 4430,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "gustavia-transit",
-        "triangles": 3530,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

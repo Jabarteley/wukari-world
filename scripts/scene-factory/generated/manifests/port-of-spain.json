@@ -5,17 +5,17 @@
   "city": "port-of-spain",
   "region": "americas-oceania",
   "recipeFile": "port-of-spain.json",
-  "recipeSha256": "3d409328b30f9a820ffc0270559516272434845c3321a029666de5162a7afadb",
+  "recipeSha256": "b92475d4ee206b6b998c20c73e8ab914e64c30a577e3a1ce82aef21c5a4991a0",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/port-of-spain.json",
-      "sha256": "ddd867621da16ada7202419bc59b226412c202e9f07a10af4979fcf5b1d6e2a5",
-      "inputSha256": "6fb65db6622a7b16f5ece05a19c53ad17eaf1f09ce860c2a6304263cbb175409",
+      "sha256": "9766fe5c050df8c3e35e7a53ccc8edb6720aaec2e3579234071ddaa613c03938",
+      "inputSha256": "bd3bfb8c6a7b2bc10f11d61fdf1f6b73911b945a4e94d48328e21580ab3ca6da",
       "contentSha256": "10959040bd644be07bd03da993ce38a77ba1d587e69c8d5c79695495ddd8ebae"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5372,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34922,
+    "utf8Bytes": 34810,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,7 +5386,7 @@
     "estimates": [
       {
         "venue": "port-of-spain-airport-port-of-spain-airport",
-        "triangles": 3530,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
@@ -5410,31 +5410,31 @@
       },
       {
         "venue": "port-of-spain-community-workshop",
-        "triangles": 2490,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-of-spain-market-game",
-        "triangles": 4802,
+        "triangles": 3070,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-of-spain-meal-stop",
-        "triangles": 3202,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-of-spain-osm-node-1049039374",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-of-spain-osm-node-1530642487",
-        "triangles": 3458,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
@@ -5452,37 +5452,37 @@
       },
       {
         "venue": "port-of-spain-osm-relation-11925862",
-        "triangles": 3490,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-of-spain-osm-way-100764338",
-        "triangles": 2578,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-of-spain-osm-way-100764513",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-of-spain-osm-way-100822158",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-of-spain-osm-way-100866002",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-of-spain-osm-way-1058026060",
-        "triangles": 3514,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
@@ -5500,7 +5500,7 @@
       },
       {
         "venue": "port-of-spain-osm-way-386980356",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5512,13 +5512,13 @@
       },
       {
         "venue": "port-of-spain-osm-way-389725165",
-        "triangles": 3898,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "port-of-spain-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },

@@ -5,17 +5,17 @@
   "city": "dublin",
   "region": "western-europe",
   "recipeFile": "dublin.json",
-  "recipeSha256": "8f4526355fc56036196084ed365a902a8eba48a65fa9f2a74d9fe40d5f5b8131",
+  "recipeSha256": "7c1c5ce7817f5667c04aa1f365a6a3c96880e158f58417a5f6dd2b28738c0b8e",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/dublin.json",
-      "sha256": "2981a6e1c86c3dd5d0184e3056e7aefe1ca841cc331b7e5a5fd967d78086e4dc",
-      "inputSha256": "d00867bb55b5d4dfd6ca823e2a5470a76043a1a0122d4753f13a8b09ccef67ca",
+      "sha256": "62072029d240fcbefad2deceafe878b5d5f627d1d24edea62c3b326a1102a9b8",
+      "inputSha256": "03b8b182f30c3e13d4cf75d48555b636713f75b94037bb62ef0cafc66c4abc67",
       "contentSha256": "0bcb70cd6f1a1b97d282a30485c96467a452b65fd18ae3216cc7117f9abb1525"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "dublin-airport-dublin-airport",
@@ -5249,11 +5249,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5299,11 +5294,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34484,
+    "utf8Bytes": 34454,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5402,7 +5392,7 @@
       },
       {
         "venue": "dublin-clinic",
-        "triangles": 3438,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
@@ -5414,7 +5404,7 @@
       },
       {
         "venue": "dublin-community-voting-game",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5426,55 +5416,55 @@
       },
       {
         "venue": "dublin-market-game",
-        "triangles": 4638,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dublin-meal-stop",
-        "triangles": 2946,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dublin-osm-relation-14714515",
-        "triangles": 4666,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dublin-osm-way-1136285120",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dublin-osm-way-227972923",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dublin-osm-way-228188022",
-        "triangles": 3966,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "dublin-osm-way-23565036",
-        "triangles": 4430,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "dublin-osm-way-255385171",
         "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "dublin-osm-way-23565036",
+        "triangles": 3798,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "dublin-osm-way-255385171",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "dublin-osm-way-26778663",
-        "triangles": 3490,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
@@ -5486,55 +5476,55 @@
       },
       {
         "venue": "dublin-osm-way-312566450",
-        "triangles": 2854,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "dublin-osm-way-325933039",
-        "triangles": 4430,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "dublin-osm-way-40585926",
-        "triangles": 2578,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "dublin-osm-way-51680291",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "dublin-osm-way-541772649",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "dublin-osm-way-562581062",
-        "triangles": 3490,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "dublin-osm-way-769452904",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "dublin-quiet-reflection",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "dublin-osm-way-325933039",
+        "triangles": 3730,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "dublin-osm-way-40585926",
+        "triangles": 3458,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "dublin-osm-way-51680291",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "dublin-osm-way-541772649",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "dublin-osm-way-562581062",
+        "triangles": 3526,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "dublin-osm-way-769452904",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "dublin-quiet-reflection",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "dublin-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },

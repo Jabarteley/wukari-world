@@ -5,17 +5,17 @@
   "city": "manila",
   "region": "east-asia",
   "recipeFile": "manila.json",
-  "recipeSha256": "3d33f8009908dc9cebf9ac45975354c5366ce700870a2a7248c8a15ef858baf1",
+  "recipeSha256": "d4cc807bbbcef5a91e4e881ae8c569fdba4f1d1464f9b6eadb0d9ff49e0c114e",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/manila.json",
-      "sha256": "769b90abc0b172c5b4dbcf017e92f2992ea86159802171ab998f039976f00777",
-      "inputSha256": "9f1c3c99dd3f94fe931b01890b1351c5c337929125ce59122349deab83fc2451",
+      "sha256": "fa4d4a88ccf6aaeefe7ca60ce1f1319f3c6a74bf16de1f20bbbbb442d49f22a8",
+      "inputSha256": "fb3aa84edfb64ca9e4df56e6506255a0f3a96d4b4a5583a2bb024fe01ad9fb41",
       "contentSha256": "7dcde045a3d5c76713e668387244c92d3dc0c8d2cb878a95a3d6e4b4bb602ccd"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.88,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "manila-airport-manila-airport",
@@ -5169,7 +5169,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
+            "reason": "crowd[0]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5218,11 +5218,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5250,6 +5245,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[9]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5268,11 +5268,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34417,
+    "utf8Bytes": 34398,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5401,121 +5396,121 @@
     "estimates": [
       {
         "venue": "manila-airport-manila-airport",
-        "triangles": 2698,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-clinic",
-        "triangles": 2490,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-community-notices",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-community-voting-game",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-community-workshop",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-market-game",
-        "triangles": 2894,
+        "triangles": 3206,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-meal-stop",
-        "triangles": 3178,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-osm-node-1782932802",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-osm-way-108541189",
-        "triangles": 3490,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-osm-way-1234015855",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-osm-way-1435976373",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-osm-way-165717167",
-        "triangles": 3966,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-osm-way-223179404",
-        "triangles": 4878,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-osm-way-231404558",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-osm-way-280162481",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-osm-way-28921378",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-osm-way-308687760",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-osm-way-319524305",
-        "triangles": 3934,
+        "triangles": 4666,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-osm-way-368600427",
-        "triangles": 3458,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-osm-way-41374806",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5533,19 +5528,19 @@
       },
       {
         "venue": "manila-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-recreation",
-        "triangles": 4710,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "manila-transit",
-        "triangles": 2698,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

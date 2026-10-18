@@ -5,17 +5,17 @@
   "city": "georgetown",
   "region": "americas-oceania",
   "recipeFile": "georgetown.json",
-  "recipeSha256": "9bb4f1bb8d1261e1013c848a3504fce0b5e02513c50c1cfce7330361195828e3",
+  "recipeSha256": "5eebfc3752db6efaf868fbd2e8edf003f089a19086813bc0e8404903f3f3a966",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/georgetown.json",
-      "sha256": "756b5e55ac535a61ccca66ccf620c59c6fcf7ed63779b82e69f228e7535fc586",
-      "inputSha256": "5014e042c41b647bcaaba266b75b0d8098299edae7e34e9823a43fe9e94282a4",
+      "sha256": "bb859f10956749b6037b644c40a2099a762df697cc1805532011ef02fa598376",
+      "inputSha256": "d553a24d6958526eeaf34e2d8b86c6c88e50ab8a4d5febd6f980d516e3910168",
       "contentSha256": "55504c768edf637172a99e7d60c96dffd5ab06ae147e6f4916bd88fc70f40fc5"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 29,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 4,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.84,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "georgetown-airport-georgetown-airport",
@@ -5195,6 +5195,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5222,11 +5227,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5254,11 +5254,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5268,11 +5263,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5363,11 +5353,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5392,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34779,
+    "utf8Bytes": 34686,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5406,103 +5391,103 @@
     "estimates": [
       {
         "venue": "georgetown-airport-georgetown-airport",
-        "triangles": 4010,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "georgetown-clinic",
-        "triangles": 2490,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "georgetown-community-notices",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "georgetown-community-voting-game",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
-        "venue": "georgetown-community-workshop",
-        "triangles": 2910,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "georgetown-market-game",
-        "triangles": 4222,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "georgetown-meal-stop",
-        "triangles": 3274,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "georgetown-osm-node-4179922366",
-        "triangles": 3274,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "georgetown-osm-node-8060672985",
-        "triangles": 2578,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "georgetown-osm-node-8773177618",
-        "triangles": 3526,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "georgetown-osm-relation-11213168",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "georgetown-osm-way-215619747",
+        "venue": "georgetown-community-voting-game",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "georgetown-community-workshop",
+        "triangles": 3402,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "georgetown-market-game",
+        "triangles": 3478,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "georgetown-meal-stop",
+        "triangles": 3178,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "georgetown-osm-node-4179922366",
+        "triangles": 3178,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "georgetown-osm-node-8060672985",
+        "triangles": 3978,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "georgetown-osm-node-8773177618",
+        "triangles": 3490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "georgetown-osm-relation-11213168",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "georgetown-osm-way-215619747",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "georgetown-osm-way-30765532",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "georgetown-osm-way-403108105",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "georgetown-osm-way-403113847",
-        "triangles": 4710,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "georgetown-osm-way-405708710",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "georgetown-osm-way-405722320",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5514,43 +5499,43 @@
       },
       {
         "venue": "georgetown-osm-way-479572609",
-        "triangles": 3798,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "georgetown-osm-way-576678606",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "georgetown-osm-way-790600904",
-        "triangles": 4666,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "georgetown-osm-way-818881326",
-        "triangles": 4598,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "georgetown-quiet-reflection",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "georgetown-recreation",
         "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "georgetown-osm-way-576678606",
+        "triangles": 3526,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "georgetown-osm-way-790600904",
+        "triangles": 3610,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "georgetown-osm-way-818881326",
+        "triangles": 3686,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "georgetown-quiet-reflection",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "georgetown-recreation",
+        "triangles": 3798,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "georgetown-transit",
-        "triangles": 2986,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

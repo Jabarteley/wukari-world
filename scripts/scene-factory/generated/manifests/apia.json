@@ -5,17 +5,17 @@
   "city": "apia",
   "region": "americas-oceania",
   "recipeFile": "apia.json",
-  "recipeSha256": "10ecc930258332b0557e5e4435b0f8d4f71239adfa621acdc464e8449c3b59bb",
+  "recipeSha256": "8341343baa04ccd5addf22ef41c40eff570e987f62c3806551fafb7b38255544",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/apia.json",
-      "sha256": "e9cce3f5124b46ac5d3d7e256045da133edb4150ecb93099ec3ff72cacac5422",
-      "inputSha256": "ce64fe3f10934fff29636f3163f3a7e7ec2343c1fedc955b8ae434467966e3a7",
+      "sha256": "6eac0fa2b114e54ff0ee511d7288b85b9386a9106eec0f4068eb7d42c5f379c3",
+      "inputSha256": "1228f822dcb85d20af653fd1b7a219ee5842a310f6cd8059ec2b043a7764a6c3",
       "contentSha256": "4938eb8db7961faaeb4eedca924c97a2c4903f5019c5da5b9c8898adcba0fd5f"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "apia-airport-apia-airport",
@@ -5249,6 +5249,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34349,
+    "utf8Bytes": 34392,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5398,37 +5408,37 @@
       },
       {
         "venue": "apia-community-notices",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "apia-community-voting-game",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "apia-community-voting-game",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "apia-community-workshop",
-        "triangles": 3890,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apia-market-game",
-        "triangles": 3238,
+        "triangles": 4226,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apia-meal-stop",
-        "triangles": 3194,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apia-osm-node-12898274696",
-        "triangles": 4614,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
@@ -5446,91 +5456,91 @@
       },
       {
         "venue": "apia-osm-node-6593037804",
-        "triangles": 2998,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apia-osm-node-687792042",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apia-osm-node-689554231",
-        "triangles": 2998,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apia-osm-node-994447379",
-        "triangles": 4598,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apia-osm-way-1124777338",
-        "triangles": 3518,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apia-osm-way-1408954851",
-        "triangles": 4598,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apia-osm-way-141190639",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apia-osm-way-1418195769",
-        "triangles": 2882,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apia-osm-way-142503177",
-        "triangles": 3202,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apia-osm-way-1446121761",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apia-osm-way-1459400895",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apia-osm-way-374404905",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apia-quiet-reflection",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apia-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "apia-transit",
-        "triangles": 2986,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

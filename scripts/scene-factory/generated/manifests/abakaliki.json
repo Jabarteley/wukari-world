@@ -5,17 +5,17 @@
   "city": "abakaliki",
   "region": "igbo-southeast",
   "recipeFile": "abakaliki.json",
-  "recipeSha256": "ae22b839597c3975e1800985d42e1d059326d7a4540e279ad8b4a6951d83f99e",
+  "recipeSha256": "66ad23cd3da26b86e8ec575605f59545138bacd118f6ac186531c33369201b7e",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/abakaliki.json",
-      "sha256": "a5e18af8917af6990b1d5a7597eb58190a4832e69ab220c22de9821cc265bd08",
-      "inputSha256": "3df28874d69ca4a4d5142cc709e6cf83f00533cf1409b7bf58c3efe40a54894b",
+      "sha256": "65c1fa2e3fac32a9cb36a7e8d04d178023b8958d88763075b2f7ba374f17a444",
+      "inputSha256": "1511e993146e2cafb5a7fe51e9583e6f23d5e68e0fc393ffc318e141874ff38b",
       "contentSha256": "61d0e2a974153d8471df5c663759d924612c7b8f7be00f969a849078fea592d0"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5053,11 +5053,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 14,
-    "attemptedCandidateCount": 14,
+    "attemptedCandidateCount": 16,
     "acceptedCandidateCount": 14,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 14,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 12,
+    "firstCandidateSuccessRate": 0.8571428571428571,
     "venues": [
       {
         "venue": "abakaliki-rice-processing-market",
@@ -5100,6 +5100,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5145,6 +5150,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5196,7 +5206,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 20254,
+    "utf8Bytes": 20171,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5210,7 +5220,7 @@
     "estimates": [
       {
         "venue": "abakaliki-rice-processing-market",
-        "triangles": 5010,
+        "triangles": 3282,
         "meshes": 13,
         "lights": 3
       },
@@ -5222,73 +5232,73 @@
       },
       {
         "venue": "blessed-martins-college-of-nursing-sciences",
-        "triangles": 2490,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "capital-medicare-abakaliki",
-        "triangles": 3342,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "crunchies-restaurant-abakaliki",
-        "triangles": 3542,
+        "triangles": 3230,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ebonyi-ministry-of-works",
-        "triangles": 3342,
+        "triangles": 3862,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ebonyi-state-library-board",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "fatilami-park",
-        "triangles": 4738,
+        "triangles": 3826,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "federal-teaching-hospital-abakaliki",
-        "triangles": 3438,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "first-bank-abakaliki",
-        "triangles": 3410,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "itc-motor-park-abakaliki",
-        "triangles": 3466,
+        "triangles": 4718,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "national-museum-abakaliki",
-        "triangles": 3342,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "st-theresas-cathedral-abakaliki",
         "triangles": 3410,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "st-theresas-cathedral-abakaliki",
+        "triangles": 2882,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "zenith-bank-ogoja-road-abakaliki",
-        "triangles": 3862,
+        "triangles": 2462,
         "meshes": 13,
         "lights": 3
       }

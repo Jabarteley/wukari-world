@@ -5,17 +5,17 @@
   "city": "sydney",
   "region": "americas-oceania",
   "recipeFile": "sydney.json",
-  "recipeSha256": "3bee317fe425edd7041d8c11c1792c79522a419c33c83e93e31b85af1b9789cf",
+  "recipeSha256": "009f565ba7b9125b90c0c308fa8853bb424dab1366098ade243e75eca17283df",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/sydney.json",
-      "sha256": "fa1fc8d84de1a7a96753e6f5bc34683da1ad0180acbe6d5d3478672097058bcb",
-      "inputSha256": "b71705e2af352fd2cee4fb7ac93adde46459a7af916cf17104efa64f31c20aa8",
+      "sha256": "74d1f0c6d63ca8a77b31c7b1ca07265cb9ca92e47a8e4d2df72a563d1838a6bd",
+      "inputSha256": "57c0a40ae5456eb51688fc255f10e5f0639e42e0623f1a5022ee97cc381b887d",
       "contentSha256": "16495aac27dc850be3ccecfcdf3b37491903277e5c59fdd72ee384988e9de146"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 27,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 2,
+    "firstCandidateSuccessCount": 23,
+    "firstCandidateSuccessRate": 0.92,
     "venues": [
       {
         "venue": "sydney-airport-sydney-airport",
@@ -5294,6 +5294,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[8]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5312,6 +5317,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34577,
+    "utf8Bytes": 34559,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,49 +5396,49 @@
     "estimates": [
       {
         "venue": "sydney-airport-sydney-airport",
-        "triangles": 3758,
+        "triangles": 4770,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sydney-clinic",
-        "triangles": 3402,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sydney-community-notices",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sydney-community-voting-game",
-        "triangles": 3834,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "sydney-community-workshop",
         "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "sydney-community-notices",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sydney-community-voting-game",
+        "triangles": 2434,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "sydney-community-workshop",
+        "triangles": 3370,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "sydney-market-game",
-        "triangles": 4694,
+        "triangles": 3962,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sydney-meal-stop",
-        "triangles": 3514,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sydney-osm-node-2052073022",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5440,7 +5450,7 @@
       },
       {
         "venue": "sydney-osm-way-1075245506",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
@@ -5458,55 +5468,55 @@
       },
       {
         "venue": "sydney-osm-way-1451898197",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sydney-osm-way-19234830",
-        "triangles": 3934,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sydney-osm-way-207693612",
-        "triangles": 4878,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sydney-osm-way-273864558",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sydney-osm-way-309039664",
-        "triangles": 4614,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sydney-osm-way-4385854",
-        "triangles": 3526,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sydney-osm-way-5310699",
-        "triangles": 3458,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sydney-osm-way-548322850",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sydney-osm-way-610927146",
-        "triangles": 4878,
+        "triangles": 3686,
         "meshes": 13,
         "lights": 3
       },
@@ -5518,19 +5528,19 @@
       },
       {
         "venue": "sydney-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sydney-recreation",
-        "triangles": 3518,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sydney-transit",
-        "triangles": 3590,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

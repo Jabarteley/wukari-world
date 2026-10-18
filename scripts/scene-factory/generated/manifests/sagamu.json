@@ -5,17 +5,17 @@
   "city": "sagamu",
   "region": "yoruba-southwest",
   "recipeFile": "sagamu.json",
-  "recipeSha256": "d849f79ff94d67fbcabfb1c5d23a4a552ffac19123800270fcceefef69920823",
+  "recipeSha256": "f91dcb034449644938072daf4fbd8e52af951697e4385da5caf685d70fc515c0",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/sagamu.json",
-      "sha256": "86b6c36c007e366cf19fa1db828d13048ff84ea24a317bf1f5b44f8750fd3c66",
-      "inputSha256": "d57e41a313f435e16576fdf645db02151fccb88d603800a88d8861610d992734",
+      "sha256": "fb5614bd53c99c58a471f60770f263fa51ee998cdf0076871fd57bf3e68e3f92",
+      "inputSha256": "926a580dcde6ced02c832c0c2da8067b71f45bae370f03a6d2077367da58b56a",
       "contentSha256": "fe8f88bbe2aabedb5c131f234c80ce563b2916370ef56124fed87032dc4414ac"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5007,11 +5007,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 6,
-    "attemptedCandidateCount": 7,
+    "attemptedCandidateCount": 6,
     "acceptedCandidateCount": 6,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 5,
-    "firstCandidateSuccessRate": 0.8333333333333334,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 6,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "ilisan-chapel",
@@ -5063,11 +5063,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[4]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5083,7 +5078,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 8536,
+    "utf8Bytes": 8488,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5097,19 +5092,19 @@
     "estimates": [
       {
         "venue": "ilisan-chapel",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "remo-kitchen",
-        "triangles": 3798,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sagamu-clinic",
-        "triangles": 2490,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
@@ -5121,13 +5116,13 @@
       },
       {
         "venue": "sagamu-polling",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "sagamu-salon",
-        "triangles": 3410,
+        "triangles": 3374,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "pago-pago",
   "region": "americas-oceania",
   "recipeFile": "pago-pago.json",
-  "recipeSha256": "b2bac9abb89f063e7bf31c8626d53141c305782ec291f1af3d1a04a3cd099f47",
+  "recipeSha256": "237591f12e5e68e261f9c942fa5af57ab3eba01f302dca3671240e3119f06315",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/pago-pago.json",
-      "sha256": "7bde9dda67abce053bd842378bcbedfe4b2335213b6c83343d9575f8623895d0",
-      "inputSha256": "01fbb5f4d41e1d3d75e21730090dcfa00d279c8775b81cde027de7817be86b0a",
+      "sha256": "5c09dafa3657497c17509b5a19e5cc48ea0d30f70cd5942bfbd9e594f61e18a0",
+      "inputSha256": "c7880e2060ea922a3e86ed16cb2d5020983c2f90ff66510a8d26177c0275c6da",
       "contentSha256": "9085b263a288b418b2d8517d34faa45892ce1af08547d9f7c3275305944fe03d"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5081,11 +5081,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 18,
-    "attemptedCandidateCount": 20,
+    "attemptedCandidateCount": 18,
     "acceptedCandidateCount": 18,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 16,
-    "firstCandidateSuccessRate": 0.8888888888888888,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 18,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "pago-pago-airport-pago-pago-airport",
@@ -5146,11 +5146,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "No six-pair crowd allocation fits the validated walk grid"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5250,11 +5245,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5270,7 +5260,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 25025,
+    "utf8Bytes": 25077,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5284,31 +5274,31 @@
     "estimates": [
       {
         "venue": "pago-pago-airport-pago-pago-airport",
-        "triangles": 3590,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pago-pago-clinic",
-        "triangles": 3890,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pago-pago-community-notices",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pago-pago-community-voting-game",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pago-pago-community-workshop",
-        "triangles": 3402,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
@@ -5320,73 +5310,73 @@
       },
       {
         "venue": "pago-pago-meal-stop",
-        "triangles": 3514,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pago-pago-osm-node-359258592",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pago-pago-osm-node-3844905202",
-        "triangles": 3514,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pago-pago-osm-node-4791141236",
-        "triangles": 3178,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pago-pago-osm-node-9049560467",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pago-pago-osm-node-9049560470",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pago-pago-osm-node-9049637848",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pago-pago-osm-way-1205108937",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pago-pago-osm-way-253635520",
-        "triangles": 3490,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pago-pago-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pago-pago-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "pago-pago-transit",
-        "triangles": 2698,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

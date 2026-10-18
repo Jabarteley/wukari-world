@@ -64,7 +64,7 @@ The world planner requires `scripts/scene-factory/asset-index.json`. The current
 - `npm run scenes:build` plans the world and atomically installs only the factory-owned paths. It refuses foreign or changed files, removes only verified obsolete outputs, and writes the world manifest last.
 - `npm run scenes:check` rebuilds the plan in memory and compares the installed inventory and bytes without creating files or temporary directories.
 
-Both commands run Node with a 512 MiB heap limit. `prebuild` runs `scenes:check`, so an ordinary application build cannot proceed with missing or stale generated scene outputs. The actual world build installed 1,436 files. A fresh `scenes:check` matched all 1,436 without writing or deleting files; both report world manifest `cb35bc0819634e7f79b1c3f2c2b54349555136599730336c813c332ea95ce47e`.
+Both commands run Node with a 512 MiB heap limit. `prebuild` runs `scenes:check`, so an ordinary application build cannot proceed with missing or stale generated scene outputs. The actual world build installed 1,436 files. A fresh `scenes:check` matched all 1,436 without writing or deleting files; both report world manifest `1dfe2099d15873ffef52b5f9ad8ab7aa48a694102ada36d6610c4bfa48908987`.
 
 The first actual checks exposed two integration issues. Narrow normalization for the legacy Nigerian country alias (`nigeria`/`ng`) now passes its focused 20/20 cases. A wider hero could obstruct activity; rear-band reservation now passes its actual-venue 19/19 cases. The full build and mutation-free check now pass; browser and release acceptance remain separate.
 

@@ -5,17 +5,17 @@
   "city": "niamey",
   "region": "sahel-francophone",
   "recipeFile": "niamey.json",
-  "recipeSha256": "8fbc4d42729803c343a01fedc2861f0552dc3f1e0393596839c08c905b2a74b4",
+  "recipeSha256": "574a043b0d6df22611cfde4886ee6ff869c2cb5b86fb345c8eb81d03d8f3640c",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/niamey.json",
-      "sha256": "2ea5e4c404e691316b982e33d7884e92fbf14e0cc855b98e9e235a58e4374b79",
-      "inputSha256": "165cc8e5f0df18a70cd6f7ef737a6c3fbcc688cace116f2023c2f0d646a4a312",
+      "sha256": "1caae5d3366cf197644ab5585764c2d2eec50ace4809cbb5dc9a4f5692505960",
+      "inputSha256": "5c8b7b5810d51a2052fe0c846e886b0f1311d2317757bcd72c929285f95abbeb",
       "contentSha256": "e5ff6bcb592f51d1384e9d0fc945630f76292d908e2abcd9d4ecad5d72aa6405"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5168,6 +5168,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5177,11 +5182,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5218,6 +5218,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5281,11 +5286,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5382,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34559,
+    "utf8Bytes": 34568,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,19 +5396,19 @@
     "estimates": [
       {
         "venue": "niamey-airport-niamey-airport",
-        "triangles": 4238,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "niamey-clinic",
-        "triangles": 2910,
+        "triangles": 3402,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "niamey-community-notices",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5420,13 +5420,13 @@
       },
       {
         "venue": "niamey-community-workshop",
-        "triangles": 3438,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "niamey-market-game",
-        "triangles": 4362,
+        "triangles": 3306,
         "meshes": 13,
         "lights": 3
       },
@@ -5438,19 +5438,19 @@
       },
       {
         "venue": "niamey-osm-node-10770891720",
-        "triangles": 3202,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "niamey-osm-node-11419918096",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "niamey-osm-node-1684101906",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5462,19 +5462,19 @@
       },
       {
         "venue": "niamey-osm-node-2715713022",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "niamey-osm-node-4491536811",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "niamey-osm-node-7444882086",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5486,19 +5486,19 @@
       },
       {
         "venue": "niamey-osm-way-1160782464",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "niamey-osm-way-1186878593",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "niamey-osm-way-308752310",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
@@ -5510,7 +5510,7 @@
       },
       {
         "venue": "niamey-osm-way-611735693",
-        "triangles": 3490,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
@@ -5522,25 +5522,25 @@
       },
       {
         "venue": "niamey-osm-way-921259734",
-        "triangles": 3274,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "niamey-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "niamey-recreation",
-        "triangles": 3798,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "niamey-transit",
-        "triangles": 3530,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

@@ -5,17 +5,17 @@
   "city": "prague",
   "region": "western-europe",
   "recipeFile": "prague.json",
-  "recipeSha256": "fb58b55c534e1b67c1c5608dd84ab5dd8ee64931f150eb021d5381a3a0976736",
+  "recipeSha256": "7b0de02e3f9f270c0beaa8baaca702bd04c03a2f9947a6a617ae93f606a0ce6c",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/prague.json",
-      "sha256": "7a7a2207e73bc4ac55ab02e84bbd8a9e76b3f09e2b2fdfaccbc9279b347bde3f",
-      "inputSha256": "31f275b401dbe92c5c5a69c0f6c02b0149a1d5dba80543698e27d5b11daa17a4",
+      "sha256": "090ad7c3dc4a2d881cc95fe9fd588cd88d9aad39b6bc5f113ceae7f26d511e1f",
+      "inputSha256": "e5b2c27b0aec1b12280770881e0cc3b9b8c07e5bdb7f65c233497f3ab5447104",
       "contentSha256": "c78136d88e39d48c0b5712e1c7426c964ccf044c393289089c76027009e47f09"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 30,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 5,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "prague-airport-prague-airport",
@@ -5168,6 +5168,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5177,11 +5187,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5263,6 +5268,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5290,6 +5300,16 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
+            "outcome": "rejected",
+            "reason": "crowd[5]: exact target is blocked"
+          },
+          {
+            "candidate": 3,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5397,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34483,
+    "utf8Bytes": 34452,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5397,13 +5417,13 @@
       },
       {
         "venue": "prague-clinic",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "prague-community-notices",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
@@ -5415,49 +5435,49 @@
       },
       {
         "venue": "prague-community-workshop",
-        "triangles": 3438,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "prague-market-game",
-        "triangles": 4642,
+        "triangles": 3962,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "prague-meal-stop",
-        "triangles": 3178,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "prague-osm-node-13922405680",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "prague-osm-node-3481221272",
-        "triangles": 3526,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "prague-osm-node-963907924",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "prague-osm-relation-7096099",
-        "triangles": 3798,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "prague-osm-way-1016659823",
-        "triangles": 2578,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
@@ -5475,25 +5495,25 @@
       },
       {
         "venue": "prague-osm-way-139745554",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "prague-osm-way-23093458",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "prague-osm-way-258815975",
-        "triangles": 2854,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "prague-osm-way-28310118",
-        "triangles": 3966,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
@@ -5505,19 +5525,19 @@
       },
       {
         "venue": "prague-osm-way-37111399",
-        "triangles": 3314,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "prague-osm-way-4019771",
-        "triangles": 2882,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "prague-osm-way-51001576",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5529,13 +5549,13 @@
       },
       {
         "venue": "prague-recreation",
-        "triangles": 3518,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "prague-transit",
-        "triangles": 4010,
+        "triangles": 3530,
         "meshes": 13,
         "lights": 3
       }

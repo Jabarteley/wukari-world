@@ -5,17 +5,17 @@
   "city": "vatican-city",
   "region": "western-europe",
   "recipeFile": "vatican-city.json",
-  "recipeSha256": "a6fce605be519e3a52076a1843b14cbe1345efe779cf3b8905777092079a5fbf",
+  "recipeSha256": "ba31dc6cfecf9c11638a51a30c29ee689ac9842a432fd976ada5d6ab5ddbc8c1",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/vatican-city.json",
-      "sha256": "b0bb08050f822bc5235e95054277a6fdc27d5332f40b2a5ba7cc7831cf2d821f",
-      "inputSha256": "e86a02478b523f07ba3998b6dbc9e1d48991ec1af09d0ea2c6cdf2152ab709b5",
+      "sha256": "37761545a553ea71fec4210b197a72d18f29e612123f2dda1c25f5860c7b05a9",
+      "inputSha256": "cde532a4d779191d6bc03485d26b1843b434b248dd569736152bbf87334f5482",
       "contentSha256": "cf55be804682d808ea0a12c42caa6ae5a37d900c94e1007060ef3fec78a9701c"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5081,22 +5081,17 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 18,
-    "attemptedCandidateCount": 21,
+    "attemptedCandidateCount": 18,
     "acceptedCandidateCount": 18,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 15,
-    "firstCandidateSuccessRate": 0.8333333333333334,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 18,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "vatican-city-airport-vatican-city-airport",
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5160,11 +5155,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5174,11 +5164,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5275,7 +5260,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 25184,
+    "utf8Bytes": 25069,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5289,37 +5274,37 @@
     "estimates": [
       {
         "venue": "vatican-city-airport-vatican-city-airport",
-        "triangles": 6316,
+        "triangles": 5004,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vatican-city-clinic",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vatican-city-community-notices",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vatican-city-community-voting-game",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vatican-city-community-workshop",
-        "triangles": 2910,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vatican-city-market-game",
-        "triangles": 4694,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
@@ -5337,43 +5322,43 @@
       },
       {
         "venue": "vatican-city-osm-node-1272283718",
-        "triangles": 3526,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vatican-city-osm-node-5108555139",
-        "triangles": 3978,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vatican-city-osm-node-5737556419",
-        "triangles": 3178,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vatican-city-osm-way-111699749",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vatican-city-osm-way-111996197",
-        "triangles": 2434,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vatican-city-osm-way-112137587",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vatican-city-osm-way-44402133",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5385,13 +5370,13 @@
       },
       {
         "venue": "vatican-city-recreation",
-        "triangles": 4710,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "vatican-city-transit",
-        "triangles": 3590,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       }

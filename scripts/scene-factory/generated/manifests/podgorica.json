@@ -5,17 +5,17 @@
   "city": "podgorica",
   "region": "western-europe",
   "recipeFile": "podgorica.json",
-  "recipeSha256": "7d3ede64e72b202216b9c73986d64fcb31dba76790d13245952c9d08a834c2ba",
+  "recipeSha256": "41ff69d5a0ae0443410d8b30e811b1a3ae5f42faeab320dbeffdf01e402a08ec",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/podgorica.json",
-      "sha256": "81b9d6c606f7b71dca5979c9cd77c4e03b5d0bf9e5cc0d5874ff3d03a6352139",
-      "inputSha256": "ee26379143224958e750903bdee6ce550a994e7fa1071e67170aa09d0c43fa75",
+      "sha256": "b6abcba9138170721d61983a41eef5d93987753912235400c584063656af0bb5",
+      "inputSha256": "5b390fb172ca7d04a85e6d768004cf8a066d59f2615e08941ec2a1aaebc497de",
       "contentSha256": "75efe548e3e477c86993ee98df7a94ed85ccba4fffe06d4c672251a3da9c047c"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 28,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.88,
     "venues": [
       {
         "venue": "podgorica-airport-podgorica-airport",
@@ -5258,6 +5258,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5303,11 +5308,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5326,6 +5326,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[3]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5344,6 +5349,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5377,7 +5387,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34697,
+    "utf8Bytes": 34613,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,109 +5401,109 @@
     "estimates": [
       {
         "venue": "podgorica-airport-podgorica-airport",
-        "triangles": 2760,
+        "triangles": 3832,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "podgorica-clinic",
-        "triangles": 2490,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "podgorica-community-notices",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "podgorica-community-voting-game",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "podgorica-community-workshop",
-        "triangles": 3890,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "podgorica-market-game",
-        "triangles": 3962,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "podgorica-meal-stop",
-        "triangles": 2946,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "podgorica-osm-node-2242615494",
-        "triangles": 3178,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "podgorica-osm-node-4345473682",
-        "triangles": 3686,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "podgorica-osm-node-4751745100",
-        "triangles": 3382,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "podgorica-osm-node-9896999137",
-        "triangles": 3202,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "podgorica-osm-relation-15505766",
         "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "podgorica-osm-node-9896999137",
+        "triangles": 3514,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "podgorica-osm-relation-15505766",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "podgorica-osm-way-1333029322",
-        "triangles": 3518,
+        "triangles": 4710,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "podgorica-osm-way-134769445",
-        "triangles": 3610,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "podgorica-osm-way-170592633",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "podgorica-osm-way-175501033",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "podgorica-osm-way-185576891",
-        "triangles": 4878,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "podgorica-osm-way-239484551",
-        "triangles": 3458,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
@@ -5511,25 +5521,25 @@
       },
       {
         "venue": "podgorica-osm-way-331572836",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "podgorica-osm-way-923891668",
-        "triangles": 3458,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "podgorica-quiet-reflection",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "podgorica-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },

@@ -5,17 +5,17 @@
   "city": "managua",
   "region": "americas-oceania",
   "recipeFile": "managua.json",
-  "recipeSha256": "774d217d6ad4d9fd20284e1b34a6205e66365a1d7f93a71bb1da13213eb08ea3",
+  "recipeSha256": "1aaab9a3b1747f7c88de786756827e8fac00fbfe4e0b812739ef308bedf13a5c",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/managua.json",
-      "sha256": "fcf9da353eb8d6802509568c89bc1a1a815305a798a520f7bf9bbe7be95d9482",
-      "inputSha256": "a3e1e52cd6c4204120c12fd321746e1e7b77773d7eb25e36b3fbf1abad4b48d0",
+      "sha256": "41a18cb5cbe6ada0802a5651e69e051128dbe0f88b8044643e1243e42ead5c2f",
+      "inputSha256": "a1a60c2e20f3aa9d270e07b64e53d2e81db6e3865b297d473f3ec0368ca64d2b",
       "contentSha256": "b9d079582bcd040fdb5255fefa2908a0d26146366dbb05b4b496a095977ef602"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 27,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 0.92,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 24,
+    "firstCandidateSuccessRate": 0.96,
     "venues": [
       {
         "venue": "managua-airport-managua-airport",
@@ -5204,11 +5204,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[1]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5254,6 +5249,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5308,11 +5308,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "props[2]: overlapping blocking footprints"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5382,7 +5377,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34686,
+    "utf8Bytes": 34656,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5396,37 +5391,37 @@
     "estimates": [
       {
         "venue": "managua-airport-managua-airport",
-        "triangles": 3530,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "managua-clinic",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "managua-community-notices",
-        "triangles": 3382,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "managua-community-voting-game",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "managua-community-workshop",
-        "triangles": 3370,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "managua-market-game",
-        "triangles": 3914,
+        "triangles": 3982,
         "meshes": 13,
         "lights": 3
       },
@@ -5438,67 +5433,67 @@
       },
       {
         "venue": "managua-osm-node-14225260759",
-        "triangles": 3458,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "managua-osm-node-1787488316",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "managua-osm-node-2355682005",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "managua-osm-node-4001705843",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "managua-osm-node-497371428",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "managua-osm-node-889552361",
         "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "managua-osm-node-2355682005",
+        "triangles": 3314,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "managua-osm-node-4001705843",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "managua-osm-node-497371428",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "managua-osm-node-889552361",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "managua-osm-relation-20576117",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "managua-osm-relation-21143410",
-        "triangles": 4666,
+        "triangles": 4614,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "managua-osm-relation-5844843",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "managua-osm-way-160261758",
-        "triangles": 2578,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "managua-osm-way-241368647",
-        "triangles": 3898,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5510,13 +5505,13 @@
       },
       {
         "venue": "managua-osm-way-38578726",
-        "triangles": 4614,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "managua-osm-way-38578925",
-        "triangles": 4878,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5534,13 +5529,13 @@
       },
       {
         "venue": "managua-recreation",
-        "triangles": 3730,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "managua-transit",
-        "triangles": 4238,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

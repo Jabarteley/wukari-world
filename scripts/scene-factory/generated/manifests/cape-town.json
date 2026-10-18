@@ -5,17 +5,17 @@
   "city": "cape-town",
   "region": "southern-africa",
   "recipeFile": "cape-town.json",
-  "recipeSha256": "1f6d83b64f9390ca0d2ef84873c77505d1042a675c52e8268d187a363d0c3ad4",
+  "recipeSha256": "085cf8ea1166aeef6e258c307c6c3be2aa9bdb12eb4a39e292d29f47decb4ab1",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/cape-town.json",
-      "sha256": "e8e15e8d1d31bf673c3a8a995bcdec808b6475b58f465faece0c76fd488b32af",
-      "inputSha256": "b7cfa04f1fd65921701069a756dc977169a2873a5a9af7a64ce86f4ee62e0c9d",
+      "sha256": "0e42f703565a2b49bee8321da6409b2dba96be0e5ff537e231f3d3fc99a60e39",
+      "inputSha256": "152565f463d28a09ffb17e27c5709652d2d4bd3f9f68e966abcfd3dfefec3fd1",
       "contentSha256": "5b286530dfeee36b3708cacd060626c61f2786ac2d5373e79599d817295b7cfe"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5116,11 +5116,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 23,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 26,
     "acceptedCandidateCount": 23,
-    "rejectedCandidateCount": 2,
-    "firstCandidateSuccessCount": 21,
-    "firstCandidateSuccessRate": 0.9130434782608695,
+    "rejectedCandidateCount": 3,
+    "firstCandidateSuccessCount": 20,
+    "firstCandidateSuccessRate": 0.8695652173913043,
     "venues": [
       {
         "venue": "cape-town-airport-cape-town-airport",
@@ -5145,6 +5145,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5200,7 +5205,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
+            "reason": "crowd[11]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5222,11 +5227,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[7]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5290,6 +5290,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "No six-pair crowd allocation fits the validated walk grid"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5350,7 +5355,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 31872,
+    "utf8Bytes": 31906,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5376,13 +5381,13 @@
       },
       {
         "venue": "cape-town-artscape-theatre-centre",
-        "triangles": 3834,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cape-town-baxter-theatre-centre",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5394,13 +5399,13 @@
       },
       {
         "venue": "cape-town-castle-military-museum",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cape-town-cavendish-square",
-        "triangles": 2882,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
@@ -5412,67 +5417,67 @@
       },
       {
         "venue": "cape-town-community-notices",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cape-town-community-voting-game",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cape-town-community-workshop",
-        "triangles": 3402,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cape-town-cput-district-six-campus",
-        "triangles": 4878,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cape-town-district-six-museum",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cape-town-gardens-shul",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cape-town-iziko-slave-lodge",
-        "triangles": 2854,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cape-town-market-game",
-        "triangles": 2910,
+        "triangles": 4694,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cape-town-maynardville-open-air-theatre",
-        "triangles": 2854,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cape-town-meal-stop",
-        "triangles": 3178,
+        "triangles": 3202,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cape-town-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
@@ -5484,19 +5489,19 @@
       },
       {
         "venue": "cape-town-rhodes-memorial",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cape-town-signal-hill-frame",
-        "triangles": 3490,
+        "triangles": 3458,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "cape-town-transit",
-        "triangles": 4238,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

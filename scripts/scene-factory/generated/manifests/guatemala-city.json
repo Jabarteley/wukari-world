@@ -5,17 +5,17 @@
   "city": "guatemala-city",
   "region": "americas-oceania",
   "recipeFile": "guatemala-city.json",
-  "recipeSha256": "1e8b250baf9973390cd41d6551e1de0e54bc4f938130971558424d0b893f9a9c",
+  "recipeSha256": "9296951df1728f29ce31d8cf1036d3c6d098323bc7cbcdae5d7dd653e49f8c86",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/guatemala-city.json",
-      "sha256": "93109653a70c90a20f87932e932b88905505b24ab150cff23dcaaf42e120b626",
-      "inputSha256": "3f0b03df0ef8b3ae2229e8e38a98f249648b56cdd571e78d3972e2fc98c42381",
+      "sha256": "495664081484c14f878270d3ba2ea56f170ba62c509226b1889c5e71e1e7428f",
+      "inputSha256": "7c52d0fce136be2e5828621c45efc9611e7bdc6eef7eadeed88c59c6f9c66690",
       "contentSha256": "20ab69eda31ae258b8a7b49f5fd46053cc59b2c1eae27add5fc5bbe76a35fecc"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,22 +5130,17 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 28,
+    "attemptedCandidateCount": 25,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 22,
-    "firstCandidateSuccessRate": 0.88,
+    "rejectedCandidateCount": 0,
+    "firstCandidateSuccessCount": 25,
+    "firstCandidateSuccessRate": 1,
     "venues": [
       {
         "venue": "guatemala-city-airport-guatemala-city-airport",
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5317,11 +5312,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[10]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5331,11 +5321,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5387,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34983,
+    "utf8Bytes": 34928,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5407,37 +5392,37 @@
       },
       {
         "venue": "guatemala-city-clinic",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-community-notices",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-community-voting-game",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-community-workshop",
-        "triangles": 3370,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-market-game",
-        "triangles": 3070,
+        "triangles": 4058,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-meal-stop",
-        "triangles": 3274,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
@@ -5455,55 +5440,55 @@
       },
       {
         "venue": "guatemala-city-osm-node-3999620682",
-        "triangles": 3178,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-osm-node-7431985094",
-        "triangles": 4614,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-osm-relation-8610992",
-        "triangles": 3686,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-osm-way-1098138942",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-osm-way-1262950847",
-        "triangles": 3898,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-osm-way-258156539",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-osm-way-325466184",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-osm-way-405394242",
-        "triangles": 3346,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-osm-way-48203145",
-        "triangles": 3686,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5515,37 +5500,37 @@
       },
       {
         "venue": "guatemala-city-osm-way-619635959",
-        "triangles": 3934,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-osm-way-620744754",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-osm-way-665884078",
-        "triangles": 3978,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-quiet-reflection",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-recreation",
-        "triangles": 3730,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "guatemala-city-transit",
-        "triangles": 3590,
+        "triangles": 2986,
         "meshes": 13,
         "lights": 3
       }

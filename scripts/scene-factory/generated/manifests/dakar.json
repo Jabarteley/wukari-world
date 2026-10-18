@@ -5,17 +5,17 @@
   "city": "dakar",
   "region": "sahel-francophone",
   "recipeFile": "dakar.json",
-  "recipeSha256": "693dcd52c12537618f2328c6a3dd5d7c8bad2061a3797591e476b8aa1d138c8d",
+  "recipeSha256": "41cf7fac830e2e18ae67e952287e3eaf5409fd3b18c2018881e5a306615cbc00",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/dakar.json",
-      "sha256": "82f50e23b048f2b2096bfd92a136a1dcb8ad013a0014a4508df372f16a4a9970",
-      "inputSha256": "c8a7fcbaca6978acc25a7c6de0539ac64f2e76238d19c1ac2c31c6bab54507a4",
+      "sha256": "46b4ad758b12d572750a9b293c763651dd1f136b5b6d7c1fa093face8b989d47",
+      "inputSha256": "4e3df07d05fe2f0e7f450acee9907ed7efe8bf3b03839ca6a25f4017cd77eab4",
       "contentSha256": "76dcca364f349f7c2e3d0edc527e29b8f60b6285ca11a8a495061df7a5336ab3"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5116,11 +5116,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 23,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 24,
     "acceptedCandidateCount": 23,
-    "rejectedCandidateCount": 3,
-    "firstCandidateSuccessCount": 20,
-    "firstCandidateSuccessRate": 0.8695652173913043,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.9565217391304348,
     "venues": [
       {
         "venue": "dakar-airport-dakar-airport",
@@ -5172,11 +5172,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[9]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5204,6 +5199,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[7]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5276,11 +5276,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[3]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5317,11 +5312,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[8]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5355,7 +5345,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 31863,
+    "utf8Bytes": 31941,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5369,37 +5359,37 @@
     "estimates": [
       {
         "venue": "dakar-airport-dakar-airport",
-        "triangles": 3590,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dakar-cathedrale-du-souvenir-africain",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dakar-centre-commercial-pa-u22",
-        "triangles": 3934,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dakar-clinic",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dakar-community-notices",
-        "triangles": 3382,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dakar-community-voting-game",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5411,13 +5401,13 @@
       },
       {
         "venue": "dakar-grand-theatre-national",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dakar-market-game",
-        "triangles": 2934,
+        "triangles": 4978,
         "meshes": 13,
         "lights": 3
       },
@@ -5441,25 +5431,25 @@
       },
       {
         "venue": "dakar-musee-des-civilisations-noires",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dakar-musee-leopold-sedar-senghor",
-        "triangles": 3382,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dakar-parc-de-hann",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dakar-phare-des-mamelles",
-        "triangles": 2998,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
@@ -5471,31 +5461,31 @@
       },
       {
         "venue": "dakar-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dakar-recreation",
-        "triangles": 4710,
+        "triangles": 3798,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dakar-sentrade",
-        "triangles": 4614,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dakar-theatre-daniel-sorano",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "dakar-transit",
-        "triangles": 2698,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },

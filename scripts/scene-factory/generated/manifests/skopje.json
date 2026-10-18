@@ -5,17 +5,17 @@
   "city": "skopje",
   "region": "western-europe",
   "recipeFile": "skopje.json",
-  "recipeSha256": "b4cdc1f8a71016c3365b764905446d1ba95e4a84e6e0150572e9d48141ad166b",
+  "recipeSha256": "c5198499f19d824e6554b494675e72492982ceb9521a64b40c1cda132d912692",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/skopje.json",
-      "sha256": "0324d0ad3dc0bb1ca7b2d36d3ec6f801a5af61121c69b2d6d79800b7ab179990",
-      "inputSha256": "9be66985e1aadd8b4bffd85c45cbfdde939d22c0e9ffe73b5c03ff2dd9996282",
+      "sha256": "4d7879b62757773fb825ac75c31e0ea131b9b953efb68a891be0792c9e3e584a",
+      "inputSha256": "fb5d34584c9c49556e6f67998cfedf032a013c7b0c02b2a8006d996ba0ab01e5",
       "contentSha256": "9f35648152800c7bebf8ac57d388a928252249eb0402883854223f4e664d0c51"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 26,
+    "attemptedCandidateCount": 29,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 1,
-    "firstCandidateSuccessCount": 24,
-    "firstCandidateSuccessRate": 0.96,
+    "rejectedCandidateCount": 4,
+    "firstCandidateSuccessCount": 21,
+    "firstCandidateSuccessRate": 0.84,
     "venues": [
       {
         "venue": "skopje-airport-skopje-airport",
@@ -5159,6 +5159,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[11]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5177,6 +5182,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5213,6 +5223,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5313,7 +5328,7 @@
           {
             "candidate": 1,
             "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
+            "reason": "crowd[8]: exact target is blocked"
           },
           {
             "candidate": 2,
@@ -5377,7 +5392,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34561,
+    "utf8Bytes": 34588,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5391,73 +5406,73 @@
     "estimates": [
       {
         "venue": "skopje-airport-skopje-airport",
-        "triangles": 3590,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "skopje-clinic",
-        "triangles": 3890,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "skopje-community-notices",
-        "triangles": 2434,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "skopje-community-voting-game",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "skopje-community-workshop",
-        "triangles": 3402,
+        "triangles": 3438,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "skopje-market-game",
-        "triangles": 3098,
+        "triangles": 3774,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "skopje-meal-stop",
-        "triangles": 2946,
+        "triangles": 3178,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "skopje-osm-node-3951819342",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "skopje-osm-node-4110147399",
-        "triangles": 3202,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "skopje-osm-node-9896205907",
-        "triangles": 3514,
+        "triangles": 2946,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "skopje-osm-way-1395332286",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "skopje-osm-way-1486501468",
-        "triangles": 3898,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
@@ -5469,25 +5484,25 @@
       },
       {
         "venue": "skopje-osm-way-1559869019",
-        "triangles": 3686,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "skopje-osm-way-16669251",
         "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "skopje-osm-way-16669251",
+        "triangles": 3966,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "skopje-osm-way-174495088",
-        "triangles": 3458,
+        "triangles": 2578,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "skopje-osm-way-229939246",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5499,25 +5514,25 @@
       },
       {
         "venue": "skopje-osm-way-35778021",
-        "triangles": 2998,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "skopje-osm-way-38071327",
-        "triangles": 2578,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "skopje-osm-way-414650719",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "skopje-osm-way-481402867",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },

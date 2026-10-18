@@ -5,17 +5,17 @@
   "city": "bangui",
   "region": "gulf-guinea",
   "recipeFile": "bangui.json",
-  "recipeSha256": "04659883f8860b5fe4e1289712d85e2aa55f1da3801ad74af71acfe0cb30d0ab",
+  "recipeSha256": "dca01a7a01999378cee80ff0ffce2a167d4be54a3a71e9cbe855999178ec3a52",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/bangui.json",
-      "sha256": "594fe88e6c21716688ea815ec49dc44e9a652ba2edccad754881c636c9d22e80",
-      "inputSha256": "1abbe095ef7d132bb8aab7ed98cea2c955b3c578ec750667c4dc3f437ace5478",
+      "sha256": "55b507bf57fb790dcf427fb470aa8cf9c180928207f443540523e65bd9d2b531",
+      "inputSha256": "728dc1f25f1ebffee079f2c7c7f0962a7cf64852cb953657ced7ac023e6c130b",
       "contentSha256": "2ccca3cc3aead5ba700cdab7ddc85ababb43abd3b1e2771a7ef127422982262b"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5116,11 +5116,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 23,
-    "attemptedCandidateCount": 23,
+    "attemptedCandidateCount": 24,
     "acceptedCandidateCount": 23,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 23,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 1,
+    "firstCandidateSuccessCount": 22,
+    "firstCandidateSuccessRate": 0.9565217391304348,
     "venues": [
       {
         "venue": "bangui-airport-bangui-airport",
@@ -5172,6 +5172,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5340,7 +5345,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 31702,
+    "utf8Bytes": 31683,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5354,19 +5359,19 @@
     "estimates": [
       {
         "venue": "bangui-airport-bangui-airport",
-        "triangles": 4010,
+        "triangles": 4238,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bangui-clinic",
-        "triangles": 2490,
+        "triangles": 2910,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bangui-community-notices",
-        "triangles": 3314,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
@@ -5384,73 +5389,73 @@
       },
       {
         "venue": "bangui-market-game",
-        "triangles": 3342,
+        "triangles": 4398,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bangui-meal-stop",
-        "triangles": 3202,
+        "triangles": 3274,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bangui-osm-node-2225267665",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bangui-osm-node-2225615058",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bangui-osm-node-2381567443",
-        "triangles": 3514,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bangui-osm-node-4637219536",
-        "triangles": 3686,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bangui-osm-node-4637748534",
-        "triangles": 3934,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bangui-osm-node-4733960505",
-        "triangles": 2946,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "bangui-osm-node-5369227121",
         "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "bangui-osm-node-2225615058",
+        "triangles": 3382,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bangui-osm-node-2381567443",
+        "triangles": 3202,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bangui-osm-node-4637219536",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bangui-osm-node-4637748534",
+        "triangles": 3610,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bangui-osm-node-4733960505",
+        "triangles": 3514,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "bangui-osm-node-5369227121",
+        "triangles": 2854,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "bangui-osm-way-188492702",
-        "triangles": 2434,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bangui-osm-way-188497852",
-        "triangles": 3458,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bangui-osm-way-235317733",
-        "triangles": 3490,
+        "triangles": 3978,
         "meshes": 13,
         "lights": 3
       },
@@ -5462,7 +5467,7 @@
       },
       {
         "venue": "bangui-osm-way-405889132",
-        "triangles": 3686,
+        "triangles": 3966,
         "meshes": 13,
         "lights": 3
       },
@@ -5474,19 +5479,19 @@
       },
       {
         "venue": "bangui-quiet-reflection",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bangui-recreation",
-        "triangles": 3518,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "bangui-transit",
-        "triangles": 4238,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       }

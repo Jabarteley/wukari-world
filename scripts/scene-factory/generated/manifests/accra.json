@@ -5,17 +5,17 @@
   "city": "accra",
   "region": "gulf-guinea",
   "recipeFile": "accra.json",
-  "recipeSha256": "982b47a73acce2413f5115dcad1f88ed5fd8efa03fa372ab1805ae1522832f51",
+  "recipeSha256": "b24b35e655547216b13e7c975b539080e068a997b3f404496d3ff6ba1836a5e0",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/accra.json",
-      "sha256": "96695bf4e78c3c43a511badac3aefc33bd5d7a83cc272f599341abc50f60c502",
-      "inputSha256": "080dc9a7c5d4169909f1fdbb861410c5b96baca463c9c1e64147dc52be17118c",
+      "sha256": "18e62c5ca9d7c0ba2a3a70a2e4dc6e68da80bef73e9321ca6ad518061fb9b761",
+      "inputSha256": "8eae51e9e4a878cdb0bdfc157f8cd4043c8ac4ee6133f73fa0be6714b2b859e3",
       "contentSha256": "d0a561b71ee75dc1f247f2dcee305b1eadcad4a84bd2329fb379b7c6c81fb874"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5154,6 +5154,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[10]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5172,6 +5177,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[4]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5199,11 +5209,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[0]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5276,11 +5281,6 @@
         "attempts": [
           {
             "candidate": 1,
-            "outcome": "rejected",
-            "reason": "crowd[6]: exact target is blocked"
-          },
-          {
-            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5350,7 +5350,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 31504,
+    "utf8Bytes": 31545,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5364,67 +5364,67 @@
     "estimates": [
       {
         "venue": "accra-accra-ghana-temple",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "accra-accra-mall",
-        "triangles": 4610,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "accra-accra-technical-university",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "accra-accra-zoo",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "accra-achimota-retail-centre",
-        "triangles": 3934,
+        "triangles": 4610,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "accra-airport-accra-airport",
-        "triangles": 3590,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "accra-clinic",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "accra-community-notices",
-        "triangles": 3834,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "accra-community-voting-game",
-        "triangles": 3834,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "accra-community-workshop",
-        "triangles": 2910,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "accra-el-wak-stadium",
-        "triangles": 3458,
+        "triangles": 3490,
         "meshes": 13,
         "lights": 3
       },
@@ -5436,13 +5436,13 @@
       },
       {
         "venue": "accra-james-fort",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "accra-kaneshie-market-complex",
-        "triangles": 4614,
+        "triangles": 3610,
         "meshes": 13,
         "lights": 3
       },
@@ -5460,25 +5460,25 @@
       },
       {
         "venue": "accra-meal-stop",
-        "triangles": 3274,
+        "triangles": 3194,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "accra-national-museum",
-        "triangles": 3346,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "accra-national-theatre",
-        "triangles": 3834,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "accra-quiet-reflection",
-        "triangles": 2854,
+        "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
@@ -5490,7 +5490,7 @@
       },
       {
         "venue": "accra-transit",
-        "triangles": 4010,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       },

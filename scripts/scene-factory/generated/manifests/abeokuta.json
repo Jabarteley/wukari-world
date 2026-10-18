@@ -5,17 +5,17 @@
   "city": "abeokuta",
   "region": "yoruba-southwest",
   "recipeFile": "abeokuta.json",
-  "recipeSha256": "1b06b362222547d6dd9bd22d242ec73750230c5bbd41b18d9e2ca49957a26bd6",
+  "recipeSha256": "fcf214c96e9455c743f5042bd34825db0c418000154d484c4c617f25e3d6d160",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/abeokuta.json",
-      "sha256": "a9c14ac3afafeb8e5b9c593a60014bc2f6506f2d332b1f94c1d29a5933570d6e",
-      "inputSha256": "b9564c57da868ffa61b5a1f5ddf3b5d578206833fce39345fc89ab4ffa69e263",
+      "sha256": "16e7a5a4ef3c09d0f80eba4286bdadc21ec31089fc7998e6d9507bcac0930523",
+      "inputSha256": "ff82a7ca497cfa34db6792f84e63578f527829a475534ddcdd964822b243e27a",
       "contentSha256": "a5f450f2ec481362c74672204cf5b8de57bd725f3fbd1268fd8bc289ea096509"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5034,7 +5034,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 4383,
+    "utf8Bytes": 4407,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5048,19 +5048,19 @@
     "estimates": [
       {
         "venue": "abeokuta-clinic",
-        "triangles": 3402,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "ake-polling",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "kuto-kitchen",
-        "triangles": 3934,
+        "triangles": 3926,
         "meshes": 13,
         "lights": 3
       }

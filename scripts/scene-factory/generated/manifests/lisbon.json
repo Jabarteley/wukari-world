@@ -5,17 +5,17 @@
   "city": "lisbon",
   "region": "western-europe",
   "recipeFile": "lisbon.json",
-  "recipeSha256": "bb942fef6c345081979cdcebf1f205015cea85f0bc85753ac533114ad2388eb0",
+  "recipeSha256": "ae4d63c2b1787bf7cc7f0dab13f5a0d263bff2bd09070f91ba0e6a156641e06c",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/lisbon.json",
-      "sha256": "29b3a1520001192a712b6514868d67fd3e7e5ea64caf4179900b63a2edec547e",
-      "inputSha256": "a8e2645dbf19b86761948c42b935b05a4d8c4238a969613407d07504f69f9964",
+      "sha256": "8a1995e66913d7e3c777577597a5dbc05be0c279428294a89546f98cad5d482c",
+      "inputSha256": "62b15b8d3460d301c7bfa95a7667c8b9a9232a2ddcc5d5243f332c600636e204",
       "contentSha256": "00b40fd3de2b715efa41f9c4fa4175b6608ee00c7e65f41691dd06a0af71cfc3"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5372,7 +5372,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34619,
+    "utf8Bytes": 34440,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5392,73 +5392,73 @@
       },
       {
         "venue": "lisbon-clinic",
-        "triangles": 3370,
+        "triangles": 2490,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lisbon-community-notices",
-        "triangles": 3346,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lisbon-community-voting-game",
-        "triangles": 2434,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lisbon-community-workshop",
-        "triangles": 3890,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lisbon-market-game",
-        "triangles": 5234,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lisbon-meal-stop",
-        "triangles": 3514,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lisbon-osm-node-1191138578",
         "triangles": 3314,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "lisbon-community-workshop",
+        "triangles": 2490,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "lisbon-market-game",
+        "triangles": 4922,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "lisbon-meal-stop",
+        "triangles": 3202,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "lisbon-osm-node-1191138578",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "lisbon-osm-relation-3174204",
-        "triangles": 3346,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lisbon-osm-relation-8198208",
-        "triangles": 3978,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lisbon-osm-way-100443688",
-        "triangles": 4598,
+        "triangles": 3898,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lisbon-osm-way-144001459",
-        "triangles": 3382,
+        "triangles": 3834,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lisbon-osm-way-179419205",
-        "triangles": 4878,
+        "triangles": 4598,
         "meshes": 13,
         "lights": 3
       },
@@ -5476,61 +5476,61 @@
       },
       {
         "venue": "lisbon-osm-way-364773455",
-        "triangles": 3346,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lisbon-osm-way-36615985",
-        "triangles": 3458,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lisbon-osm-way-42645796",
-        "triangles": 3610,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lisbon-osm-way-52430141",
-        "triangles": 4598,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lisbon-osm-way-558565533",
-        "triangles": 3314,
-        "meshes": 13,
-        "lights": 3
-      },
-      {
-        "venue": "lisbon-osm-way-722649425",
         "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
+        "venue": "lisbon-osm-way-36615985",
+        "triangles": 3978,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "lisbon-osm-way-42645796",
+        "triangles": 4610,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "lisbon-osm-way-52430141",
+        "triangles": 3898,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "lisbon-osm-way-558565533",
+        "triangles": 3834,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
+        "venue": "lisbon-osm-way-722649425",
+        "triangles": 3346,
+        "meshes": 13,
+        "lights": 3
+      },
+      {
         "venue": "lisbon-osm-way-812621314",
-        "triangles": 3798,
+        "triangles": 4430,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lisbon-quiet-reflection",
-        "triangles": 2434,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lisbon-recreation",
-        "triangles": 4710,
+        "triangles": 3730,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "lisbon-transit",
-        "triangles": 3530,
+        "triangles": 4010,
         "meshes": 13,
         "lights": 3
       }

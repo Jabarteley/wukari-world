@@ -5,17 +5,17 @@
   "city": "conakry",
   "region": "gulf-guinea",
   "recipeFile": "conakry.json",
-  "recipeSha256": "4b2525486f0860c82f83eb1fcaf02f363c39effe865f1a8a0a4ebb2b69a45b6c",
+  "recipeSha256": "8ad56fda3adbedcf3a59df624a1894bbb86090eb321b47aaf0e79306a87ed365",
   "input": {
     "brief": {
       "path": "scripts/scene-factory/generated/briefs/conakry.json",
-      "sha256": "3db96e3b3cc8397ca0b055e082a96d1245fd5d4fe49c779222b7464bf7742232",
-      "inputSha256": "f3919cb36262a22837749b58f6fee84e832275ef8060ae91d6a2e377ff5767f0",
+      "sha256": "7887059090b0a1698f0d6fb3e2671ea7b7bde700f1d796edeef06b0d06caa798",
+      "inputSha256": "b3b8d459dc92de6b56750f67a5b51c9fa8aee26d35e75e8856b464e9905d0f51",
       "contentSha256": "21e39cbe6fc1ace0f060ac5d768e18bc32276cacde1faed715d700142fac5808"
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c06de3f3e69835b2a05dc8f5e9992ebb395b66953f1c62b1727cc2c278561945",
+      "sha256": "7043c9342eac8483847dd65ed8f1f87c307d6f77bd53ba84ec5ea8b309beed2d",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -4783,7 +4783,7 @@
         },
         {
           "path": "src/scene/city-scenes.ts",
-          "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+          "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
         },
         {
           "path": "src/scene/kit.ts",
@@ -5130,11 +5130,11 @@
   },
   "candidateDrafting": {
     "targetVenueCount": 25,
-    "attemptedCandidateCount": 25,
+    "attemptedCandidateCount": 29,
     "acceptedCandidateCount": 25,
-    "rejectedCandidateCount": 0,
-    "firstCandidateSuccessCount": 25,
-    "firstCandidateSuccessRate": 1,
+    "rejectedCandidateCount": 4,
+    "firstCandidateSuccessCount": 21,
+    "firstCandidateSuccessRate": 0.84,
     "venues": [
       {
         "venue": "conakry-airport-conakry-airport",
@@ -5159,6 +5159,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "props[2]: overlapping blocking footprints"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5258,6 +5263,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[2]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5267,6 +5277,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[1]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5321,6 +5336,11 @@
         "attempts": [
           {
             "candidate": 1,
+            "outcome": "rejected",
+            "reason": "crowd[6]: exact target is blocked"
+          },
+          {
+            "candidate": 2,
             "outcome": "accepted"
           }
         ]
@@ -5372,7 +5392,7 @@
   },
   "validation": {
     "parseCityRecipes": true,
-    "utf8Bytes": 34493,
+    "utf8Bytes": 34384,
     "limits": {
       "cityBytes": 120000,
       "triangles": 15000,
@@ -5386,37 +5406,37 @@
     "estimates": [
       {
         "venue": "conakry-airport-conakry-airport",
-        "triangles": 2986,
+        "triangles": 3590,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "conakry-clinic",
-        "triangles": 3402,
+        "triangles": 3370,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "conakry-community-notices",
-        "triangles": 3346,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "conakry-community-voting-game",
-        "triangles": 3834,
+        "triangles": 2434,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "conakry-community-workshop",
-        "triangles": 2910,
+        "triangles": 3890,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "conakry-market-game",
-        "triangles": 4346,
+        "triangles": 3670,
         "meshes": 13,
         "lights": 3
       },
@@ -5434,19 +5454,19 @@
       },
       {
         "venue": "conakry-osm-node-6813943851",
-        "triangles": 2434,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "conakry-osm-node-7289060001",
-        "triangles": 4666,
+        "triangles": 2882,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "conakry-osm-node-8007052060",
-        "triangles": 3194,
+        "triangles": 3514,
         "meshes": 13,
         "lights": 3
       },
@@ -5458,31 +5478,31 @@
       },
       {
         "venue": "conakry-osm-way-217953079",
-        "triangles": 3898,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "conakry-osm-way-291396458",
-        "triangles": 3314,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "conakry-osm-way-338672791",
-        "triangles": 3490,
+        "triangles": 2998,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "conakry-osm-way-338977493",
-        "triangles": 3314,
+        "triangles": 2854,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "conakry-osm-way-39240323",
-        "triangles": 2854,
+        "triangles": 3346,
         "meshes": 13,
         "lights": 3
       },
@@ -5494,25 +5514,25 @@
       },
       {
         "venue": "conakry-osm-way-504471379",
-        "triangles": 4598,
+        "triangles": 4878,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "conakry-osm-way-550010888",
-        "triangles": 2578,
+        "triangles": 3526,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "conakry-osm-way-552008098",
-        "triangles": 3314,
+        "triangles": 3382,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "conakry-osm-way-616434324",
-        "triangles": 2882,
+        "triangles": 3934,
         "meshes": 13,
         "lights": 3
       },
@@ -5524,13 +5544,13 @@
       },
       {
         "venue": "conakry-recreation",
-        "triangles": 3730,
+        "triangles": 3518,
         "meshes": 13,
         "lights": 3
       },
       {
         "venue": "conakry-transit",
-        "triangles": 4238,
+        "triangles": 2698,
         "meshes": 13,
         "lights": 3
       }

@@ -30,6 +30,9 @@ const dirty = ref(false)
 const layout = ref<PlacedModel[]>([])
 const selected = ref<string | null>(null)
 const choosing = ref<ModelView | null>(null)
+/** Physics (phase 3): on once Rapier has loaded; whether a model is in the walker's hands. */
+const physicsOn = ref(false)
+const holding = ref(false)
 let engine: Engine | null = null
 let gone = false
 let counter = Date.now() % 100000
@@ -52,6 +55,7 @@ onMounted(async () => {
     status(s) { floor.value = s.floor; floors.value = s.floors; view.value = s.view },
     picked(key) { selected.value = key; engine?.highlight(key) },
     tapped(at) { if (choosing.value) add(choosing.value, at); else if (picked.value) move(at) },
+    physics(state) { physicsOn.value = state === 'on' },
   })
   loading.value = false
 })
@@ -61,6 +65,10 @@ function leave(): void {
   if (dirty.value && !globalThis.confirm?.('Leave without saving where your models stand?')) return
   emit('close')
 }
+function jump(): void { engine?.jump() }
+function grab(): void { holding.value = engine?.grab() ?? false; if (!holding.value) note.value = '' }
+function throwIt(): void { engine?.throwHeld(); holding.value = false }
+function setLoose(on: boolean): void { const p = picked.value; if (!p) return; if (on) p.loose = true; else delete p.loose; changed(p) }
 function toggleView(): void { engine?.setView(view.value === 'first' ? 'third' : 'first') }
 function toggleEdit(): void {
   editing.value = !editing.value
@@ -149,6 +157,11 @@ const round = (v: number): number => Math.round(v * 100) / 100
         <div class="ws-stick" aria-label="Walk: drag the stick" @pointerdown="stickDown" @pointermove="stickMove" @pointerup="stickUp" @pointercancel="stickUp">
           <span class="ws-knob" :style="stick ? { transform: `translate(${stick.x}px, ${stick.y}px)` } : undefined" />
         </div>
+        <div v-if="physicsOn && !editing" class="ws-acts" role="group" aria-label="Actions">
+          <button type="button" class="ws-pill" @click="jump">Jump</button>
+          <button type="button" class="ws-pill" :class="{ 'is-on': holding }" :aria-pressed="holding" @click="grab">{{ holding ? 'Put down' : 'Pick up' }}</button>
+          <button v-if="holding" type="button" class="ws-pill" @click="throwIt">Throw</button>
+        </div>
         <button v-if="world.canEdit" type="button" class="ws-pill ws-edit" :class="{ 'is-on': editing }" :aria-pressed="editing" @click="toggleEdit">{{ editing ? 'Done' : 'Place models' }}</button>
         <section v-if="editing" class="ws-panel" aria-label="Place your models">
           <template v-if="picked">
@@ -162,6 +175,7 @@ const round = (v: number): number => Math.round(v * 100) / 100
               <button type="button" aria-label="Higher" @click="lift(0.1)">↑</button>
               <button type="button" aria-label="Remove from the space" @click="remove">✕</button>
             </div>
+            <label class="ws-check"><input type="checkbox" :checked="picked.loose === true" @change="setLoose(($event.target as HTMLInputElement).checked)" /> Loose: falls, rolls and can be picked up</label>
             <p class="ws-hint">Tap a floor to move it there.</p>
           </template>
           <template v-else>
@@ -208,6 +222,9 @@ const round = (v: number): number => Math.round(v * 100) / 100
 .ws-wide.is-primary { background: #14181c; color: #fff; }
 .ws-wide:disabled { opacity: 0.5; }
 .ws-hint { margin: 0; font-size: 12px; color: #4a5560; }
+.ws-check { display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: 13px; }
+.ws-check input { width: 20px; height: 20px; flex-shrink: 0; }
+.ws-acts { position: absolute; right: 12px; bottom: calc(max(18px, env(safe-area-inset-bottom)) + 54px); display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
 .ws-note { position: absolute; left: 50%; bottom: calc(max(18px, env(safe-area-inset-bottom)) + 124px); transform: translateX(-50%); width: max-content; max-width: 86vw; margin: 0; padding: 8px 12px; border-radius: 12px; background: rgba(20, 24, 28, 0.72); color: #fff; font-size: 13px; }
 .ws-error { background: #a1281d; }
 </style>

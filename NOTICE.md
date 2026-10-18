@@ -34,5 +34,6 @@ The data is stored as generated modules under `src/map3d/geo/data/` and `src/mod
 | [ws](https://github.com/websockets/ws) | MIT |
 | [@sentry/browser](https://github.com/getsentry/sentry-javascript) | MIT |
 | [posthog-js](https://github.com/PostHog/posthog-js) | Apache-2.0 AND MIT |
+| [Rapier](https://rapier.rs/) (`@dimforge/rapier3d-compat`, physics in the 3D space screen) | Apache-2.0 |
 
 Transitive dependencies keep their own licences in `node_modules`.

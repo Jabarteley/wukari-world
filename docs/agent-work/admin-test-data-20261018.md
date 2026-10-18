@@ -6,9 +6,9 @@
 - **Owner:** Claude Fable 5.1 (T3 Code thread, owner's Mac)
 - **Model / effort:** `claude-fable-5-1 / default`
 - **Thread:** local
-- **UTC updated:** `2026-10-18T05:40:00Z`
-- **Status:** `verified-local`
-- **Work state:** `implementation`
+- **UTC updated:** `2026-10-18T07:15:00Z`
+- **Status:** `complete`
+- **Work state:** `deployment`
 
 ## Goal and boundaries
 
@@ -26,9 +26,9 @@
 - **Host:** owner's Mac
 - **Branch / worktree:** `main`
 - **Base:** `377300fab`
-- **Current commit:** uncommitted on top of `377300fab`
+- **Current commit:** `2fc749b20`, merged with main `21a34d8d6` as `7d219e3f4` (public main)
 - **Dirty status:** only the owned paths above plus this record
-- **Port/process ownership:** `npm run dev -- --open --port 5190` (open mode, `.data-open`), started by this thread for screenshots; stop rule: this thread stops it when done.
+- **Port/process ownership:** none (the open-mode dev server used for screenshots was stopped).
 
 ## Progress
 
@@ -48,14 +48,13 @@
 
 ### Immediate resume steps
 
-1. `npm run check:fast`, then commit and deploy per `relay/DEPLOY.md` (standing permission).
-2. On the live admin: Players → Test sessions → Remove all (root); expect ~8,800 removals in batches of 500.
+1. On the live admin: Players → Test sessions → Remove all (root); expect ~8,800 removals in batches of 500.
 
 ## Release state
 
 - **Local implementation:** `verified-local`
-- **Deployment:** `not-requested`
-- **Release gate:** `check:fast` + smoke against the deployed build (the smoke now sends `probe: true`; its sessions should show under Test sessions and expire in 15 min).
+- **Deployment:** `verified` — live build `joinallworld-7d219e3f4fa4a5bac8423ce2af5` (CI 39104401505 success; wrangler deploy; release-continuity after ok; live smoke PASS 15 checks with `SMOKE_CITIES=abuja,ibadan,nairobi`).
+- **Release gate:** full `npm test` on the pre-merge commit: 6174/6274 pass; the 96 failures (scene/street rendering, story state ordering, onboarding look fields, local cache files) were sampled on base `377300fab` and fail there too. Edge admin tests pass on the merged commit.
 - **References:** `docs/ADMIN.md` (Test sessions), `scripts/smoke.ts`
 
 ## Checkpoint history
@@ -63,3 +62,4 @@
 | UTC | Status | Change or finding | Evidence | Next step |
 |---|---|---|---|---|
 | 2026-10-18T05:40:00Z | verified-local | Probe sessions, removal tool, admin UI polish | admin.test.ts probe test pass; typecheck clean; screenshots | check:fast, commit, deploy |
+| 2026-10-18T07:15:00Z | complete | Merged main 21a34d8d6, pushed 7d219e3f4, deployed | CI 39104401505; live health; smoke PASS | owner presses Remove all once |

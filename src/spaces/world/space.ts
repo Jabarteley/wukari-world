@@ -93,6 +93,10 @@ export interface BuiltSpace {
   modelObject(key: string): InstanceType<typeof THREE.Object3D> | undefined
   /** Every placement's object, for picking. */
   modelObjects(): InstanceType<typeof THREE.Object3D>[]
+  /** The furniture as solid boxes, measured from what is drawn: [x0, z0, x1, z1], the floor height and how tall. */
+  furnitureBoxes(): { rect: [number, number, number, number]; y: number; height: number }[]
+  /** Whether a mesh is part of the house itself (walls, floors, stairs, windows, roof, yard), for physics. */
+  isShell(node: InstanceType<typeof THREE.Object3D>): boolean
   /** Ground and floors, for placing a model where the player taps. */
   surfaces(): InstanceType<typeof THREE.Object3D>[]
   dispose(): void
@@ -243,6 +247,7 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
     if (f === 0) {
       const leaf = solid(new THREE.Mesh(box(0.05, DOOR_TOP - 0.02, T - 0.12), doorMat))
       const hinge = new THREE.Group()
+      hinge.name = 'door'
       hinge.position.set(0, 0, door * T + 0.06)
       leaf.position.set(0, DOOR_TOP / 2, (T - 0.12) / 2)
       hinge.rotation.y = -1.2
@@ -302,7 +307,8 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
 
   // Furniture.
   const furniture = Array.from({ length: plot.floors }, () => new THREE.Group())
-  furniture.forEach((g, f) => floors[f]!.add(g))
+  furniture.forEach((g, f) => { g.name = 'furniture'; floors[f]!.add(g) })
+  const boxes: { rect: [number, number, number, number]; y: number; height: number }[] = []
   const blocking: [number, number, number, number][][] = Array.from({ length: plot.floors }, () => [])
   const nearCache = new Map<string, Promise<InstanceType<typeof THREE.Group> | null>>()
   const near = (url: string) => {
@@ -331,6 +337,11 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
     if (!/^(mat|rug|gymmat)$/.test(def.shape)) blocking[f]!.push([item.x * T + 0.05, item.y * T + 0.05, (item.x + size.w) * T - 0.05, (item.y + size.h) * T - 0.05])
     const proxy = shapeOf(def.shape, w, d, def.color, material, box)
     mount.add(proxy)
+    if (!/^(mat|rug|gymmat)$/.test(def.shape)) {
+      mount.updateWorldMatrix(true, true)
+      const bounds = new THREE.Box3().setFromObject(mount)
+      if (bounds.max.y - y > 0.05) boxes.push({ rect: [bounds.min.x, bounds.min.z, bounds.max.x, bounds.max.z], y, height: Math.max(0.3, bounds.max.y - y) })
+    }
     const url = NEAR[def.shape]
     if (url) void near(url).then((source) => {
       if (gone || !source) return
@@ -388,7 +399,7 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
         holder.position.set(p.x, p.floor * H + p.y, p.z)
         holder.rotation.y = (p.ry * Math.PI) / 180
         holder.scale.setScalar(p.s)
-        holder.userData = { key: p.k, hash: p.hash, floor: p.floor }
+        holder.userData = { key: p.k, hash: p.hash, floor: p.floor, loose: p.loose === true }
         holder.name = `model-${p.k}`
         modelGroup.add(holder)
         placed.set(p.k, holder)
@@ -401,6 +412,12 @@ export function buildSpace(input: SpaceInput, maxAnisotropy = 8): BuiltSpace {
     },
     modelObject: (key) => placed.get(key),
     modelObjects: () => [...placed.values()],
+    furnitureBoxes: () => boxes.map((b) => ({ ...b, rect: [...b.rect] as [number, number, number, number] })),
+    isShell(node) {
+      // The open front door is drawn, not solid: it would close the doorway.
+      for (let n: InstanceType<typeof THREE.Object3D> | null = node; n; n = n.parent) if (n.name === 'furniture' || n.name === 'models' || n.name === 'door') return false
+      return true
+    },
     surfaces: () => surfaces,
     dispose() {
       gone = true

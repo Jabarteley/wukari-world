@@ -46,6 +46,21 @@ async function cancel(e: EventView): Promise<void> {
 }
 async function share(e: EventView): Promise<void> { if ((await shareLink(`/ev/${e.code}`, `Come to ${e.title} on Allworld`)) === 'copied') toast('Link copied.') }
 function again(e: EventView): void { form.value = { ...form.value, title: e.title, about: e.about, place: e.place.label ?? 'The Square' }; open.value = null; making.value = true }
+// Tickets in real money (docs/EARN.md): the host sets a price once their payout account is ready; a guest pays through Bachs.
+const ticket = ref({ price: 2000, email: '' }), buying = ref(false), pricing = ref(false)
+type R<T> = ({ ok: true } & T) | { ok: false; reason: string }
+const earnCall = async <T,>(path: string, body: object): Promise<R<T>> => { try { return await game.fetchJson(path, { method: 'POST', body }) } catch (e) { return { ok: false, reason: (e as { reason?: string }).reason ?? 'That did not go through.' } } }
+async function setPrice(e: EventView, price: number): Promise<void> {
+  busy.value = true; const r = await earnCall<{ price: number }>('/api/earn/price', { event: e.id, price }); busy.value = false
+  if (!r.ok) { toast(r.reason, 'error'); return }
+  pricing.value = false; toast(r.price ? `Tickets are ₦${r.price.toLocaleString('en-NG')}.` : 'The event is free again.')
+  const fresh = await api.event(e.id); if (fresh.ok) open.value = fresh.event
+}
+async function buy(e: EventView): Promise<void> {
+  busy.value = true; const r = await earnCall<{ pay: string }>('/api/earn/pay', { kind: 'ticket', id: e.id, email: ticket.value.email }); busy.value = false
+  if (!r.ok) { toast(r.reason, 'error'); return }
+  location.assign(r.pay)
+}
 const go = (e: EventView): void => { if (/square/i.test(e.place.label ?? '')) shell.open('places'); else shell.open('places') }
 </script>
 
@@ -59,8 +74,17 @@ const go = (e: EventView): void => { if (/square/i.test(e.place.label ?? '')) sh
         <p v-if="open.about" class="feed-body">{{ open.about }}</p>
         <p class="feed-note">Hosted by {{ open.by.name }}<template v-if="open.cohosts.length"> with {{ open.cohosts.map((c) => c.name).join(', ') }}</template> · {{ open.going }} going · {{ open.maybe }} maybe · room for {{ open.cap }}</p>
         <p v-if="open.friendsGoing.length" class="feed-note">Friends going: {{ open.friendsGoing.map((f) => f.name).join(', ') }}</p>
+        <p v-if="open.price" class="feed-note" data-earn="ticket">Ticket ₦{{ open.price.toLocaleString('en-NG') }}<template v-if="open.ticket"> · you have one</template></p>
+        <form v-if="open.price && !open.ticket && !open.mine && open.phase !== 'over'" class="feed-row" @submit.prevent="buy(open)">
+          <template v-if="buying"><input v-model="ticket.email" type="email" autocomplete="email" placeholder="E-mail for the receipt" aria-label="E-mail for the receipt"><button type="submit" class="social-btn is-primary" :disabled="busy || !ticket.email.includes('@')">Pay ₦{{ open.price.toLocaleString('en-NG') }}</button></template>
+          <button v-else type="button" class="social-btn is-primary" @click="buying = true">Buy a ticket</button>
+        </form>
+        <div v-if="open.mine && open.phase !== 'over'" class="feed-row">
+          <template v-if="pricing"><input v-model.number="ticket.price" type="number" min="200" step="100" aria-label="Ticket price in naira"><button type="button" class="social-btn" :disabled="busy" @click="setPrice(open, ticket.price)">Set price</button><button v-if="open.price" type="button" class="feed-pill" @click="setPrice(open, 0)">Make it free</button></template>
+          <button v-else type="button" class="feed-pill" @click="pricing = true">{{ open.price ? 'Change the ticket price' : 'Sell tickets (real money)' }}</button>
+        </div>
         <div v-if="open.phase !== 'over'" class="feed-row">
-          <button type="button" class="social-btn" :class="{ 'is-primary': open.me === 'going' }" @click="answer(open, 'going')">Going</button>
+          <button v-if="!open.price || open.ticket || open.mine" type="button" class="social-btn" :class="{ 'is-primary': open.me === 'going' }" @click="answer(open, 'going')">Going</button>
           <button type="button" class="social-btn" :class="{ 'is-primary': open.me === 'maybe' }" @click="answer(open, 'maybe')">Maybe</button>
           <button v-if="open.me && !open.mine" type="button" class="feed-pill" @click="answer(open, null)">Can't come</button>
         </div>

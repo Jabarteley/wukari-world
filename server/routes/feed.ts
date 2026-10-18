@@ -25,6 +25,7 @@
 import { HTTP_PER_MINUTE } from './social.ts'
 import { addressBucket } from '../host-context.ts'
 import { feedService } from '../feed/service.ts'
+import { earnService } from '../earn/service.ts'
 import { review } from '../feed/review.ts'
 import { contactsService } from '../feed/contacts.ts'
 import { promoteService } from '../promote/service.ts'
@@ -51,7 +52,7 @@ async function sha256(bytes: Uint8Array): Promise<string> {
 const videoKind = (bytes: Uint8Array): 'webm' | 'mp4' | null => (bytes[0] === 0x1a && bytes[1] === 0x45 && bytes[2] === 0xdf && bytes[3] === 0xa3 ? 'webm' : bytes[4] === 0x66 && bytes[5] === 0x74 && bytes[6] === 0x79 && bytes[7] === 0x70 ? 'mp4' : null)
 
 export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
-  const feed = feedService(ctx)
+  const feed = feedService(ctx), earn = earnService(ctx)
   const contacts = contactsService(ctx)
   const promote = promoteService(ctx)
   // Public photos and clips: on (the owner's decision of 18 Oct 2026); an admin can switch them back to friends-and-crews without a deploy.
@@ -179,8 +180,8 @@ export default function feedRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
       return { body: answer, renew: true }
     },
     'POST /api/feed/post/remove': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.removePost(db, s, b)) } },
-    'POST /api/feed/react': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.react(db, s, b)) } },
-    'POST /api/feed/reply': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => { const r = feed.reply(db, s, b); if (r.ok) counted('feed.reply')(db); return r }) } },
+    'POST /api/feed/react': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => { const r = feed.react(db, s, b); if (r.ok && b.emoji !== null) earn.notePoint(db, s, b.id); return r }) } },
+    'POST /api/feed/reply': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => { const r = feed.reply(db, s, b); if (r.ok) { counted('feed.reply')(db); earn.notePoint(db, s, b.id) } return r }) } },
     'POST /api/feed/reply/remove': async (request) => { const b = await body(request); return { body: await write(request, (db, s) => feed.removeReply(db, s, b)) } },
     'POST /api/feed/report': async (request) => {
       const b = await body(request)

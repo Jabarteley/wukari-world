@@ -21,6 +21,7 @@ import { lagosTime } from '../../src/game/clock.ts'
 import { cityName, cityCatalogue, cityCatalogueEntry } from '../../src/game/cities/registry.ts'
 import { roomLinkPath } from '../../src/places/model.ts'
 import { feedOf, peekFeed } from './data.ts'
+import { gigPaid, needsTicket, ticketOf } from '../earn/data.ts'
 import type { AuthorRecord, CrewRecord, DecisionRecord, EventRecord, FeedCollection, GigRecord, PostRecord, Reply, ReportRecord } from './data.ts'
 import type { Db, RouteContext, SessionRecord } from '../types.ts'
 
@@ -164,7 +165,7 @@ function buildService(ctx: RouteContext) {
       id: e.id, title: e.title, about: e.about, by: person(db, f, e.by, viewer), cohosts: e.cohosts.map((c) => person(db, f, c, viewer)),
       start: e.start, end: e.end, phase: eventPhase(e, now()), place: place(e.city, e.venue, e.label), cap: e.cap,
       going: e.going.length, maybe: e.maybe.length, me, friendsGoing: viewer ? e.going.filter((g) => friends(db, viewer, g)).slice(0, 6).map((g) => person(db, f, g, viewer)) : [],
-      code: e.code, mine: viewer === e.by || Boolean(viewer && e.cohosts.includes(viewer)),
+      code: e.code, mine: viewer === e.by || Boolean(viewer && e.cohosts.includes(viewer)), ...ticketOf(db, e.id, viewer),
     }
   }
   function gigView(db: Db, f: FeedCollection, g: GigRecord, viewer: string | null): GigView {
@@ -172,7 +173,7 @@ function buildService(ctx: RouteContext) {
     return {
       id: g.id, title: g.title, about: g.about, by: person(db, f, g.by, viewer), city: g.city, cityName: cityName(g.city) ?? g.city, reward: g.reward, at: g.at,
       state: g.state, applicants: g.applicants.length, applied: Boolean(viewer && g.applicants.includes(viewer)),
-      ...(g.worker ? { worker: person(db, f, g.worker, viewer) } : {}), mine,
+      ...(g.worker ? { worker: person(db, f, g.worker, viewer) } : {}), mine, ...(gigPaid(db, g.id) !== undefined && (mine || viewer === g.worker) ? { paid: gigPaid(db, g.id)! } : {}),
       ...(mine ? { people: g.applicants.filter((a) => !blocked(a, g.by)).map((a) => person(db, f, a, viewer)) } : {}),
       ...(g.state === 'done' ? { reviewed: { poster: Boolean(g.reviews?.poster), worker: Boolean(g.reviews?.worker) } } : {}),
     }
@@ -662,6 +663,7 @@ function buildService(ctx: RouteContext) {
     const answer = body.answer === 'going' || body.answer === 'maybe' ? body.answer : null
     const was = e.going.includes(id) ? 'going' : e.maybe.includes(id) ? 'maybe' : null
     if (id === e.by && answer !== 'going') return no('host', 'You are hosting this event. Cancel it instead.')
+    if (answer === 'going' && was !== 'going' && id !== e.by && !e.cohosts.includes(id) && needsTicket(db, e.id, id)) return no('ticket_needed', 'This event has tickets. Buy one to go.')
     e.going = e.going.filter((x) => x !== id); e.maybe = e.maybe.filter((x) => x !== id)
     if (answer === 'going') { if (e.going.length >= e.cap) { if (was === 'maybe') e.maybe.push(id); return no('event_full', 'This event is full.') } e.going.push(id) }
     if (answer === 'maybe') e.maybe.push(id)

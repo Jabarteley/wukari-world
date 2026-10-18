@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Businesses (docs/PROMOTE.md): every business and service of the city, free to list, and cheap weeks of a Sponsored card for those who
-// want more customers. Paid to Allworld only, by card through Paystack or by bank transfer; a refused listing says why.
+// want more customers. Paid to Allworld only, by card, transfer or mobile money through Bachs, or by bank transfer; a refused listing says why.
 import '../../../ui/controls.css'
 import '../../../ui/panels/social.css'
 import '../feed/feed.css'
@@ -97,9 +97,9 @@ const when = (ms?: number): string => (ms ? new Date(ms).toLocaleDateString(unde
         <b>{{ TIERS[boosting.tier].label }}</b><p class="feed-note">{{ TIERS[boosting.tier].what }}.</p>
         <label>Weeks<input v-model.number="boosting.weeks" type="number" min="1" :max="PROMOTE.weeksMax"></label>
         <p class="feed-note">Total {{ naira(prices[boosting.tier] * Math.max(1, Math.min(PROMOTE.weeksMax, boosting.weeks || 1))) }}, paid to Allworld.</p>
-        <label v-if="me?.payment === 'paystack'">E-mail for the receipt<input v-model="boosting.email" type="email" autocomplete="email"></label>
+        <label v-if="me?.payment === 'bachs'">E-mail for the receipt<input v-model="boosting.email" type="email" autocomplete="email"></label>
         <label>Advertising approval number (optional)<input v-model="boosting.arcon" maxlength="60" placeholder="If you have one"></label>
-        <div class="feed-row"><button type="submit" class="social-btn is-primary" :disabled="busy">{{ me?.payment === 'paystack' ? 'Pay with card or transfer' : 'Get bank details' }}</button><button type="button" class="feed-pill" @click="boosting = null">Cancel</button></div>
+        <div class="feed-row"><button type="submit" class="social-btn is-primary" :disabled="busy">{{ me?.payment === 'bachs' ? 'Pay with card or transfer' : 'Get bank details' }}</button><button type="button" class="feed-pill" @click="boosting = null">Cancel</button></div>
       </form>
       <div v-if="bank" class="feed-card feed-form"><b>Pay {{ naira(bank.amount) }} by bank transfer</b><p class="feed-body">{{ bank.text }}</p><p class="feed-note">Use the reference <b>{{ bank.ref }}</b>. Your boost starts once we see the payment.</p><button type="button" class="feed-pill" @click="bank = null">Done</button></div>
 

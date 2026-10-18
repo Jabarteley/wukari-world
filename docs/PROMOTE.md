@@ -35,10 +35,11 @@ how often each boost was shown and how often a listing was opened (numbers only)
 
 Paid to Allworld, never to a player:
 
-- **Card (Paystack)**: when the host has `PAYSTACK_SECRET_KEY` (the owner's own key, set as a Worker secret), a boost opens Paystack's
-  checkout with an e-mail the business types for its receipt. On return (`/?promote=<reference>`), the server asks Paystack itself about
-  the reference and starts the boost only for a successful payment in naira of at least the order's amount. The key never leaves the
-  server. A boost bought while another runs starts when that one ends.
+- **Card, transfer or mobile money (Bachs)**: when the host has `BACHS_API_KEY` (the owner's Bachs key, set as a Worker secret; a
+  `sk_sandbox_` key uses the sandbox), a boost opens a Bachs hosted checkout (`checkout.bachs.io`) with an e-mail the business types for
+  its receipt, keyed by the order's reference. On return (`/?promote=<reference>`), and on the heartbeat for two days, the server asks
+  Bachs itself about the checkout and its payment and starts the boost only for a succeeded payment in naira of at least the order's
+  amount. The key never leaves the server (`server/payments/bachs.ts`, shared with [EARN.md](EARN.md)). A boost bought while another runs starts when that one ends.
 - **Bank transfer**: without the key, and when an admin has written the bank details (`promoteBankDetails`), the business gets those
   details and a reference; an admin presses Mark paid once the money is in.
 - **Closed**: with neither, listings are still free and live, and boosts say "open soon".
@@ -48,7 +49,7 @@ An optional advertising approval number (ARCON) can be given with an order and i
 ## Before taking money (owner decisions)
 
 The research in REAL-VALUE.md lists what should be in place before advertising is sold: a registered company (CAC), VAT registration (VAT
-on advertising, 7.5%), a lawyer's note on ARCON vetting of adverts, a published refund policy, and the Paystack merchant account in the
+on advertising, 7.5%), a lawyer's note on ARCON vetting of adverts, a published refund policy, and the Bachs merchant account in the
 company's name. None of that is something code can do: the switches above stay off until the owner turns them on.
 
 ## Stored data

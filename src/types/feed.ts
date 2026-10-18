@@ -82,10 +82,14 @@ export interface EventView {
   start: number; end: number; phase: EventPhase; place: FeedPlace; cap: number
   going: number; maybe: number; me: 'going' | 'maybe' | null; friendsGoing: FeedPerson[]
   code: string; mine: boolean
+  /** A ticket price in real naira (docs/EARN.md), and whether the viewer holds one. */
+  price?: number; ticket?: true
 }
 export interface GigView {
   id: string; title: string; about: string; by: FeedPerson; city: string; cityName: string; reward: number; at: number
   state: GigState; applicants: number; applied: boolean; worker?: FeedPerson; mine: boolean
+  /** For the poster and the worker: what was paid in real naira (docs/EARN.md). */
+  paid?: number
   /** For the poster: who applied. */
   people?: FeedPerson[]
   reviewed?: { poster: boolean; worker: boolean }

@@ -20,7 +20,7 @@ export function sunDirection(hour: number): THREE.Vector3 {
   return new THREE.Vector3(-Math.sin(az) * Math.cos(alt), Math.sin(alt), Math.cos(az) * Math.cos(alt)).normalize();
 }
 
-export function createDaylight(renderer: THREE.WebGLRenderer, scene: THREE.Scene, camera: THREE.PerspectiveCamera, cascades = true): Daylight {
+export function createDaylight(renderer: THREE.WebGLRenderer, scene: THREE.Scene, camera: THREE.PerspectiveCamera, cascades = true, shadowMapSize = 4096): Daylight {
   const sky = new Sky(); sky.scale.setScalar(45000);
   const u = sky.material.uniforms;
   u.turbidity!.value = 4.2; u.rayleigh!.value = 1.9; u.mieCoefficient!.value = 0.004; u.mieDirectionalG!.value = 0.86;
@@ -30,7 +30,7 @@ export function createDaylight(renderer: THREE.WebGLRenderer, scene: THREE.Scene
   single.castShadow = true; single.shadow.mapSize.set(4096, 4096); single.shadow.bias = -0.0002; single.shadow.normalBias = 0.5;
   Object.assign(single.shadow.camera, { left: -350, right: 350, top: 350, bottom: -350, near: 1, far: 4000 });
   if (!cascades) { scene.add(single); scene.add(single.target); }
-  const csm = new CSM({ camera, parent: scene, cascades: 4, maxFar: 2500, mode: 'practical', shadowMapSize: 4096, lightIntensity: 3.2, lightNear: 1, lightFar: 6000, lightMargin: 600, shadowBias: -0.00012 });
+  const csm = new CSM({ camera, parent: scene, cascades: 4, maxFar: 2500, mode: 'practical', shadowMapSize, lightIntensity: 3.2, lightNear: 1, lightFar: 6000, lightMargin: 600, shadowBias: -0.00012 });
   csm.fade = true;
   for (const light of csm.lights) { light.shadow.normalBias = 0.6; light.color.set('#fff2de'); }
   const hemi = new THREE.HemisphereLight('#cfe2f3', '#8a7a62', 0.35); scene.add(hemi);
@@ -51,8 +51,12 @@ export function createDaylight(renderer: THREE.WebGLRenderer, scene: THREE.Scene
       if (!cascades) for (const light of csm.lights) light.intensity = 0;
       daylight.night = 1 - THREE.MathUtils.smoothstep(sun.y, -0.08, 0.06);
       hemi.intensity = 0.04 + 0.08 * THREE.MathUtils.smoothstep(height, 0, 0.3);
+      // At night: moonlight and the city's skyglow keep the shapes readable (cool from above, warm sodium from below).
+      const dark = 1 - THREE.MathUtils.smoothstep(sun.y, -0.12, 0.05);
+      hemi.color.set('#cfe2f3').lerp(new THREE.Color('#6d7fa8'), dark); hemi.groundColor.set('#8a7a62').lerp(new THREE.Color('#5a4630'), dark);
+      hemi.intensity += 0.35 * dark;
       // Daylight: the sun several times brighter than the sky (clear tropical afternoon), so lit and shaded faces read apart.
-      scene.environmentIntensity = 0.06 + 0.32 * THREE.MathUtils.smoothstep(sun.y, -0.05, 0.25);
+      scene.environmentIntensity = 0.1 + 0.28 * THREE.MathUtils.smoothstep(sun.y, -0.05, 0.25);
       // Humid coastal haze: pale blue-grey by day.
       const haze = new THREE.Color().setHSL(0.58, 0.28, 0.1 + 0.58 * THREE.MathUtils.smoothstep(sun.y, -0.1, 0.4));
       if (warm < 0.7) haze.lerp(new THREE.Color('#e7b48a'), (1 - warm) * 0.35 * THREE.MathUtils.smoothstep(sun.y, -0.05, 0.05));

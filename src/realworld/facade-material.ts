@@ -96,8 +96,11 @@ float glassMask = 0.0; vec3 lit = vec3(0.0);
       diffuseColor.rgb = interior;
       roughnessFactor = style > 1.5 ? 0.04 : 0.08;
       metalnessFactor = style > 1.5 ? 0.85 : 0.35;
-      float on = step(0.58, fhash(vec3(floorIndex, bayIndex, seed * 7.0))) * uNight;
-      lit = vec3(1.0, 0.78, 0.5) * on * (0.6 + 0.6 * h) * (shop > 0.5 ? 2.2 : 1.0);
+      // About a third of windows lit; a building in three is dark (no grid power, no generator running).
+      float powered = step(0.3, fhash(vec3(seed * 31.0, 2.0, 5.0)));
+      float on = step(0.66, fhash(vec3(floorIndex, bayIndex, seed * 7.0))) * uNight * powered;
+      vec3 bulb = mix(vec3(1.0, 0.72, 0.42), vec3(0.78, 0.88, 1.0), step(0.5, fhash(vec3(bayIndex, floorIndex, seed * 3.0))));
+      lit = bulb * on * (0.25 + 0.55 * h) * (shop > 0.5 ? 1.8 : 1.0);
     }
   }
   diffuseColor.rgb *= grime;
@@ -106,6 +109,6 @@ float glassMask = 0.0; vec3 lit = vec3(0.0);
       .replace('#include <normal_fragment_maps>', '#include <normal_fragment_maps>\nnormal = normalize(mix(normal, nonPerturbedNormal, glassMask));')
       .replace('#include <emissivemap_fragment>', '#include <emissivemap_fragment>\ntotalEmissiveRadiance += lit;');
   };
-  material.customProgramCacheKey = () => 'realworld-facade-3';
+  material.customProgramCacheKey = () => 'realworld-facade-4';
   return { material, uniforms };
 }

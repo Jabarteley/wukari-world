@@ -83,7 +83,7 @@ export function buildDressing(world: World): Dressing {
   for (const b of world.buildings) { const ring = open(b.ring), xs = ring.map((p) => p[0]), zs = ring.map((p) => p[1]);
     for (let gx = Math.floor(Math.min(...xs) / cell); gx <= Math.floor(Math.max(...xs) / cell); gx++) for (let gz = Math.floor(Math.min(...zs) / cell); gz <= Math.floor(Math.max(...zs) / cell); gz++) { const k = `${gx},${gz}`; grid.set(k, [...(grid.get(k) ?? []), ring]); } }
   const inBuilding = (x: number, z: number) => (grid.get(`${Math.floor(x / cell)},${Math.floor(z / cell)}`) ?? []).some((ring) => { let c = false; for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) { const [xi, zi] = ring[i]!, [xj, zj] = ring[j]!; if ((zi > z) !== (zj > z) && x < ((xj - xi) * (z - zi)) / (zj - zi) + xi) c = !c; } return c; });
-  const poles = new Mesher(), lamps = new Mesher(), cables: number[] = [];
+  const poles = new Mesher(), lamps = new Mesher(), cables: number[] = [], pools: [number, number][] = [];
   const pole = new THREE.CylinderGeometry(0.1, 0.16, 9, 6).translate(0, 4.5, 0), arm = new THREE.BoxGeometry(1.8, 0.12, 0.12).translate(0, 8.6, 0);
   const lampArm = new THREE.BoxGeometry(1.6, 0.08, 0.08).translate(-0.8, 8.0, 0), lampHead = new THREE.BoxGeometry(0.6, 0.12, 0.28).translate(-1.55, 7.95, 0);
   const put = (m: Mesher, g: THREE.BufferGeometry, x: number, z: number, yaw: number) => { const c = g.clone().rotateY(yaw).translate(x, 0, z); const p = c.attributes.position!, n = c.attributes.normal!, uv = c.attributes.uv!, idx = c.index!, base = m.count;
@@ -102,7 +102,7 @@ export function buildDressing(world: World): Dressing {
         if (inBuilding(x, z)) { prev = null; continue; }
         const yaw = Math.atan2(-dz, dx) + (side > 0 ? Math.PI / 2 : -Math.PI / 2);
         put(poles, pole, x, z, yaw); put(poles, arm, x, z, Math.atan2(-dz, dx) + Math.PI / 2);
-        if (r.major) { put(poles, lampArm, x, z, yaw); put(lamps, lampHead, x, z, yaw); }
+        if (r.major) { put(poles, lampArm, x, z, yaw); put(lamps, lampHead, x, z, yaw); const hx = x + Math.cos(yaw) * -1.55, hz = z - Math.sin(yaw) * -1.55; pools.push([hx, hz]); }
         // Three cables from the cross arm to the previous pole's, sagging 0.6 m in the middle.
         if (prev) for (const k of [-0.8, 0, 0.8]) {
           const ax = prev[0] + dz * k * 0 + -dz * k, az = prev[1] + dx * k, bx = x - dz * k, bz = z + dx * k;
@@ -119,8 +119,15 @@ export function buildDressing(world: World): Dressing {
   group.add(new THREE.Mesh(lamps.build(), lampMaterial));
   const cableGeometry = new THREE.BufferGeometry(); cableGeometry.setAttribute('position', new THREE.Float32BufferAttribute(cables, 3));
   group.add(new THREE.LineSegments(cableGeometry, new THREE.LineBasicMaterial({ color: '#1d1d1d' })));
+  // Pools of lamp light on the ground: additive discs with a soft falloff, shown at night.
+  const pool = document.createElement('canvas'); pool.width = pool.height = 128; const pg = pool.getContext('2d')!, grad = pg.createRadialGradient(64, 64, 0, 64, 64, 64);
+  grad.addColorStop(0, 'rgba(255,214,150,1)'); grad.addColorStop(0.35, 'rgba(255,190,120,0.45)'); grad.addColorStop(1, 'rgba(255,170,90,0)'); pg.fillStyle = grad; pg.fillRect(0, 0, 128, 128);
+  const poolMaterial = new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(pool), transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, opacity: 0, polygonOffset: true, polygonOffsetFactor: -8, fog: true });
+  const poolMesh = new THREE.InstancedMesh(new THREE.PlaneGeometry(16, 16).rotateX(-Math.PI / 2), poolMaterial, Math.max(1, pools.length));
+  pools.forEach(([x, z], i) => poolMesh.setMatrixAt(i, new THREE.Matrix4().makeTranslation(x, 0.2, z))); poolMesh.count = pools.length; poolMesh.computeBoundingSphere(); poolMesh.frustumCulled = false; poolMesh.renderOrder = 2;
+  group.add(poolMesh);
   return {
     group, signs: placed.length, poles: count,
-    setNight(night) { for (const m of signMaterials) m.emissive.setScalar(night * 0.35); lampMaterial.emissive.set('#ffd9a0').multiplyScalar(night * 4); },
+    setNight(night) { for (const m of signMaterials) m.emissive.setScalar(night * 0.25); lampMaterial.emissive.set('#ffd9a0').multiplyScalar(night * 6); poolMaterial.opacity = night * 0.38; poolMesh.visible = night > 0.01; },
   };
 }

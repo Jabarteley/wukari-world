@@ -24,7 +24,8 @@ const hud = document.getElementById('hud')!;
 const say = (text: string) => { hud.textContent = text; };
 
 const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: 'high-performance', preserveDrawingBuffer: params.has('shot') });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+// 1.5x by default: at 2x the frame costs about twice as much for little visible gain (measured 18 Oct: 52-79 fps at 1x, 26-29 at 2x).
+renderer.setPixelRatio(Number(params.get('dpr') ?? Math.min(devicePixelRatio, 1.5)));
 renderer.setSize(innerWidth, innerHeight);
 renderer.toneMapping = ({ agx: THREE.AgXToneMapping, aces: THREE.ACESFilmicToneMapping, neutral: THREE.NeutralToneMapping } as const)[(params.get('tm') ?? 'neutral') as 'agx' | 'aces' | 'neutral'] ?? THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = Number(params.get('exposure') ?? 1.05);
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -43,7 +44,7 @@ const [world, asphalt, paving, plaster, concrete, metal, ground, grass] = await 
   loadSet(renderer, 'Concrete034', 3), loadSet(renderer, 'CorrugatedSteel007A', 1.2, ['ao', 'metalness']), loadSet(renderer, 'Ground037', 5, ['ao']), loadSet(renderer, 'Grass004', 3, ['ao']),
 ]);
 
-const daylight = createDaylight(renderer, scene, camera, params.get('csm') !== '0');
+const daylight = createDaylight(renderer, scene, camera, params.get('csm') !== '0', Number(params.get('shadow') ?? 4096));
 const t0 = performance.now();
 const built = buildBuildings(world.buildings);
 const facade = createFacadeMaterial(plaster);
@@ -86,7 +87,7 @@ void people.ready.then(() => { dirty = true; });
 scene.traverse((o) => { const m = (o as THREE.Mesh).material as THREE.Material | undefined; if (m && (o as THREE.Mesh).isMesh && o !== daylight.sky) daylight.setupMaterial(m); });
 const buildMs = Math.round(performance.now() - t0);
 
-const post = createPost(renderer, scene, camera);
+const post = createPost(renderer, scene, camera, { ao: params.get('ao') !== '0', msaa: Number(params.get('msaa') ?? 4) });
 let hour = Number(params.get('hour') ?? 15.5);
 const setHour = (h: number) => { hour = h; daylight.setHour(h); if (params.has('env')) scene.environmentIntensity *= Number(params.get('env')); if (params.has('sun')) for (const l of daylight.csm.lights) l.intensity *= Number(params.get('sun')); facade.uniforms.night.value = daylight.night; dressing.setNight(daylight.night); post.bloom.strength = 0.12 + 0.5 * daylight.night; dirty = true; };
 let dirty = true;

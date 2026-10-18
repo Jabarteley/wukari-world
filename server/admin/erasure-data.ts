@@ -29,6 +29,7 @@ import type { Admin } from './gate.ts'
 import type { AccountRecord, ArchivedLife, Db, RouteContext, SessionRecord, SocialCollection } from '../types.ts'
 import { forgetArena, peekBook as peekArena } from '../tournaments/book.ts'
 import { forgetOAuth } from '../agents/privacy.ts'
+import { eraseSpaces } from '../spaces/store.ts'
 import { ownerKeyOf } from '../tournaments/life.ts'
 
 export type ErasureScope = 'guest' | 'agent' | 'account'
@@ -230,7 +231,7 @@ function preflightSharedIntegrity(ctx: RouteContext, db: Db, actors: ReadonlySet
   const known = new Set([
     'version', 'sessions', 'archivedLives', 'social', 'civic', 'support', 'moderation', 'growth', 'visits', 'commerce', 'business', 'market', 'legacy',
     'trust', 'trustChecks', 'street', 'realValue', 'showcase', 'politics', 'campus', 'accounts', 'accountDevices', 'accountLog', 'walletEffects', 'livingWorld', 'clans',
-    'storyHelp', 'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', 'arenapots', 'agentarena', 'oauth', 'arenadaily', '$store',
+    'storyHelp', 'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', 'arenapots', 'agentarena', 'oauth', 'arenadaily', 'spaces', '$store',
   ])
   const collectionNames = (db.$store as (typeof db.$store & { collectionNames?: () => readonly string[] }) | undefined)?.collectionNames?.() ?? []
   const names = new Set([...Object.keys(db), ...collectionNames])
@@ -727,6 +728,7 @@ export function eraseData(ctx: RouteContext, db: Db, plan: ErasurePlan): Erasure
   scrubPolitics(db, ids)
   scrubBusiness(db, ids)
   forgetClanPlayers(db, ids)
+  eraseSpaces(db, ids)
   scrubTrustAndSupport(db, ids, accounts)
   scrubAdminCollections(db, ids, accounts)
   scrubMisc(db, ids, accounts)

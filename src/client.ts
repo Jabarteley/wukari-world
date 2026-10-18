@@ -14,7 +14,7 @@ import { ACTION_TYPES } from './types/actions.ts';
 import type { ActionType } from './types/actions.ts';
 import { lifeCities, loadLifeCities } from './game/cities/lifeCities.ts';
 import { campusFor } from './game/campus-gate.ts';
-import { progressionFor } from './game/progression-gate.ts';
+import { progressionFor, loadProgression as loadProgressionPack } from './game/progression-gate.ts';
 import { teachingFor } from './game/teaching-gate.ts';
 import { homewardFor, hasHomewardMarker, assertHomewardLiability } from './game/homeward-gate.ts';
 import type { LifeContextInit, LifeState } from './types/life.ts';
@@ -133,6 +133,7 @@ export interface Client {
   readonly snapshotPhase: SnapshotPhase
   /** Server-advertised for this in-memory actor/city/connection snapshot only; never saved. */
   readonly interactiveTeachingStarts: boolean
+  readonly storyMode: boolean
   api: Api
   fetchJson: Api
   connect(createNew?: boolean, startCity?: string): Promise<boolean>
@@ -271,7 +272,7 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
   let snapshotOwner = typeof saved?.ownerId === 'string' && saved.ownerId ? saved.ownerId : null
   let snapshotPhase: SnapshotPhase = saved?.identity ? 'unconfirmed' : 'preview'
   let snapshotGeneration = 0, connectGeneration = 0
-  let teachingCapability: { owner: string; city: CityId; connection: number; snapshot: number } | null = null
+  let teachingCapability: { owner: string; city: CityId; connection: number; snapshot: number; teaching: boolean; story: boolean } | null = null
   type TeachingTransition = { connection: number; snapshot: number }
   let teachingTransition: TeachingTransition | null = null
   const featureRules = (snapshot: unknown) => {
@@ -286,6 +287,11 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
     if (!(error instanceof HomewardSnapshotError)) throw error
     cachedStateReady = false; snapshotPhase = 'unavailable'
     initialState = createLife(null, { cityId })
+  }
+  const hasCapability = (key: 'teaching' | 'story'): boolean => {
+    const current = teachingCapability
+    return Boolean(current?.[key] && client.ready && client.session?.id === current.owner && client.cityId === current.city
+      && connectGeneration === current.connection && snapshotGeneration === current.snapshot)
   }
   const client: Client = {
     // A saved life waits for its private rules; until then the device shows an unavailable preview.
@@ -305,11 +311,8 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
     get online() { return client.ready && Boolean(client.session); },
     get pendingAction() { return pendingAction ? structuredClone(pendingAction) : null; },
     get snapshotPhase() { return snapshotPhase; },
-    get interactiveTeachingStarts() {
-      const current = teachingCapability
-      return Boolean(current && client.ready && client.session?.id === current.owner && client.cityId === current.city
-        && connectGeneration === current.connection && snapshotGeneration === current.snapshot)
-    },
+    get interactiveTeachingStarts() { return hasCapability('teaching') },
+    get storyMode() { return hasCapability('story') },
     get revision() { return revision; },
     api, fetchJson: fetchScoped, connect, command, retryPendingAction, switchCity, switchLegacy, refresh, lifeChanged, wake, schedule, stop,
   };
@@ -450,11 +453,12 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
       teachingCapability = { ...teachingCapability, snapshot: snapshotGeneration }
     }
   }
-  async function accept(next: unknown, rev: number | undefined, askedAt: number, cause: ChangeCause, responseCurrent: () => boolean, responseOwner: string | null, teachingStarts: boolean, teachingCurrent: () => boolean, transition: TeachingTransition | null = null): Promise<boolean> {
+  async function accept(next: unknown, rev: number | undefined, askedAt: number, cause: ChangeCause, responseCurrent: () => boolean, responseOwner: string | null, capabilities: Pick<LifeResponse, 'interactiveTeachingStarts' | 'storyMode'>, teachingCurrent: () => boolean, transition: TeachingTransition | null = null): Promise<boolean> {
     const overtaken = (): boolean => typeof rev === 'number' && rev < revision && askedAt < taken;
     if (!responseCurrent() || overtaken()) return false;
     await loadLife(next, [client.cityId]); // every city the life refers to, before it is rebuilt
     if (!responseCurrent()) return false;
+    if (capabilities.storyMode === true) await loadProgressionPack();
     const waiting = featureRules(next);
     if (waiting) await waiting;
     if (!responseCurrent() || overtaken()) return false;
@@ -474,8 +478,8 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
     // (a running campus shuttle, today's quiz) must not drop what the server has just sent.
     client.state = built;
     if (isCityId(client.state.estate.city)) client.cityId = client.state.estate.city as CityId;
-    if (teachingCurrent() && (teachingTransition === null ? transition === null : teachingTransition === transition)) teachingCapability = teachingStarts && responseOwner && responseOwner === client.session?.id
-      ? { owner: responseOwner, city: client.cityId, connection: connectGeneration, snapshot: snapshotGeneration } : null
+    if (teachingCurrent() && (teachingTransition === null ? transition === null : teachingTransition === transition)) teachingCapability = (capabilities.interactiveTeachingStarts === true || capabilities.storyMode === true) && responseOwner && responseOwner === client.session?.id
+      ? { owner: responseOwner, city: client.cityId, connection: connectGeneration, snapshot: snapshotGeneration, teaching: capabilities.interactiveTeachingStarts === true, story: capabilities.storyMode === true } : null
     persist();
     onChange(client.state, previous, why);
     schedule();
@@ -540,7 +544,7 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
     const responseTeachingCurrent = teachingScope()
     if (!client.online || !responseCurrent()) return false;
     const askedAt = taken;
-    try { const response = await fetchCurrentLife(client.cityId, responseCurrent); return await accept(response.state, response.rev, askedAt, cause, responseCurrent, responseOwner, response.interactiveTeachingStarts === true, responseTeachingCurrent); }
+    try { const response = await fetchCurrentLife(client.cityId, responseCurrent); return await accept(response.state, response.rev, askedAt, cause, responseCurrent, responseOwner, response, responseTeachingCurrent); }
     catch (e) {
       const error = e as ApiError;
       if (!responseCurrent() || error.code === 'stale_identity_response') return false;
@@ -636,7 +640,7 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
       const askedAt = taken;
       const responseTeachingCurrent = teachingScope()
       const first = await fetchCurrentLife(client.cityId, current);
-      if (!current() || !(await accept(first.state, first.rev, askedAt, 'own', current, response.session.id, first.interactiveTeachingStarts === true, responseTeachingCurrent))) return false
+      if (!current() || !(await accept(first.state, first.rev, askedAt, 'own', current, response.session.id, first, responseTeachingCurrent))) return false
       client.ready = true; client.link = 'online';
       // Initial accept() runs before readiness; start visible polling once the connection is usable.
       schedule();
@@ -705,7 +709,7 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
       const response = await api<ActionResponse>('/api/action', { method: 'POST', body }, responseCurrent);
       await loadedSnapshot(response, responseCurrent);
       if (!responseCurrent()) return { ok: false, code: 'stale_identity_response' }
-      await accept(response.state, response.rev, askedAt, 'own', responseCurrent, intent.sessionId, response.interactiveTeachingStarts === true, responseTeachingCurrent);
+      await accept(response.state, response.rev, askedAt, 'own', responseCurrent, intent.sessionId, response, responseTeachingCurrent);
       if (!responseCurrent()) return { ok: false, code: 'stale_identity_response' }
       clearPending(intent, generation)
       if (!response.ok && client.state.message) status(client.state.message, true);
@@ -718,7 +722,7 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
       if (error.code === 'city_moved' && isCityId(error.city)) {
         try {
           const askedAt = taken, moved = await fetchCurrentLife(error.city, responseCurrent);
-          if (!(await accept(moved.state, moved.rev, askedAt, 'elsewhere', responseCurrent, intent.sessionId, moved.interactiveTeachingStarts === true, responseTeachingCurrent))) return { ok: false, code: 'stale_identity_response' };
+          if (!(await accept(moved.state, moved.rev, askedAt, 'elsewhere', responseCurrent, intent.sessionId, moved, responseTeachingCurrent))) return { ok: false, code: 'stale_identity_response' };
         } catch (recoveryError) {
           if (!responseCurrent() || (recoveryError as ApiError).code === 'stale_identity_response') return { ok: false, code: 'stale_identity_response' };
           lost(recoveryError as ApiError);
@@ -774,7 +778,7 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
       const result = await api<{ ok: true; city: string }>('/api/characters/switch', { method: 'POST', body: { id, clientId } }, scope.current);
       const askedAt = taken;
       const current = await fetchCurrentLife(result.city, scope.current);
-      if (!(await accept(current.state, current.rev, askedAt, 'own', scope.current, scope.owner, current.interactiveTeachingStarts === true, responseTeachingCurrent, transition))) return { ok: false, code: 'stale_identity_response' };
+      if (!(await accept(current.state, current.rev, askedAt, 'own', scope.current, scope.owner, current, responseTeachingCurrent, transition))) return { ok: false, code: 'stale_identity_response' };
       return { ok: true, code: 'switched' };
     } catch (error) {
       if (!scope.current()) return { ok: false, code: 'stale_identity_response' };
@@ -800,7 +804,7 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
       await loadedSnapshot(data, scope.current);
       if (!scope.current()) return { ok: false, code: 'stale_identity_response' };
       client.cityId = id as CityId;
-      if (!(await accept(data.state, data.rev, askedAt, 'own', scope.current, scope.owner, data.interactiveTeachingStarts === true, responseTeachingCurrent, transition))) { if (scope.current()) client.cityId = client.state.estate.city as CityId; return { ok: false, code: 'stale_identity_response' }; }
+      if (!(await accept(data.state, data.rev, askedAt, 'own', scope.current, scope.owner, data, responseTeachingCurrent, transition))) { if (scope.current()) client.cityId = client.state.estate.city as CityId; return { ok: false, code: 'stale_identity_response' }; }
       holdCity(id as CityId);
       return { ok: true, code: 'switched' };
     } catch (e) {

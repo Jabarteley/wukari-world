@@ -1,0 +1,66 @@
+{
+  "sourceSha": "ea76250649a728172d623e80b8fb22112f570e0a",
+  "verifiedAt": "2026-10-18T02:51:32.901108+00:00",
+  "method": "Independent integration-owner PNG signature/IHDR dimensions/byte-count/SHA256 check of saved native files; visual review by browser operator. No image edits.",
+  "captures": [
+    {
+      "file": "phone/current-ea762506-story-header-320.png",
+      "width": 320,
+      "height": 740,
+      "bytes": 55172,
+      "sha256": "8a68d49461d120e96c7170f79affa2afa8857a47574a2a21f9a983c25e37b131"
+    },
+    {
+      "file": "phone/current-ea762506-free-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 88514,
+      "sha256": "1d99f71150e89b43d01f25a2ae591e1338d42dc7af6483454bb15c9bda7d600e"
+    },
+    {
+      "file": "phone/current-ea762506-free-hospital-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 158917,
+      "sha256": "0ec92eb9778485e100652ea440e5227f216a91202988b9d4f62751f4a1304bb1"
+    },
+    {
+      "file": "phone/current-ea762506-story-restored-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 83052,
+      "sha256": "6c2a6c1a927505c90c0b1e782d73bfecbbfbda9f20984ab8e9c0816e9bcf56e3"
+    },
+    {
+      "file": "phone/current-ea762506-kano-chapter4-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 43754,
+      "sha256": "1baafada0e46716038be8d7c9bc1a8d489cde03456480ea3997d3975bf9df881"
+    },
+    {
+      "file": "phone/current-ea762506-hospital-locked-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 151475,
+      "sha256": "69130ace359c55da2fc8c4b53edab3b9453878888990dbac72fdbb0cdbe11e94"
+    },
+    {
+      "file": "phone/current-ea762506-helper-keepsakes-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 65976,
+      "sha256": "826a72005d95ea3a31c3c2f0b67bdbde0d00376b36842fff7d4db633bfb3080a"
+    },
+    {
+      "file": "phone/current-ea762506-nairobi-story-390.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 75065,
+      "sha256": "b802a09758da9e99d04a0a133b9e5df1a27e96a224151dafe58c4171be373e44"
+    }
+  ],
+  "passed": 8,
+  "failed": 0,
+  "totalBytes": 721925
+}

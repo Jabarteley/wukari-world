@@ -70,6 +70,7 @@ export interface Map2DState {
   property?: { car?: string | null };
 }
 export interface Map2DOptions {
+  venueAccess?: () => readonly { id: string; status: string }[];
   /** Where the zoom ladder hears of zoom the map could not take (see ./zoom-ladder.ts). */
   ladder?: LadderPort;
   pack: CityPack;
@@ -150,7 +151,7 @@ export function cityFlatModel(pack: CityPack, cityId = pack.id, network = buildN
   return flatModel(pack, network, { venues, soon: COMING_SOON });
 }
 
-export function createMap2D(container: HTMLElement, { ladder = NO_PORT, pack, cityId = pack.id, world = null, onSelectVenue = () => {}, onSelectGov = () => {}, onSelectLga = () => {}, onSelectHouse = () => {}, onSelectPeople = () => {}, deepLink = null }: Map2DOptions = {} as Map2DOptions): Map2D {
+export function createMap2D(container: HTMLElement, { ladder = NO_PORT, pack, venueAccess, cityId = pack.id, world = null, onSelectVenue = () => {}, onSelectGov = () => {}, onSelectLga = () => {}, onSelectHouse = () => {}, onSelectPeople = () => {}, deepLink = null }: Map2DOptions = {} as Map2DOptions): Map2D {
   const content = contentFor(cityId), venueTable = Object.fromEntries(content.venues.map((venue) => [venue.id, venue.definition]));
   const stateHouseId = content.venues.find((venue) => venue.kind === 'statehouse')?.id ?? null;
   const govVenueIds = new Set(content.venues.filter((venue) => venue.kind === 'statehouse' || venue.kind === 'polling').map((venue) => venue.id));
@@ -210,15 +211,16 @@ export function createMap2D(container: HTMLElement, { ladder = NO_PORT, pack, ci
   const ownPlot = (): PlotAddress | null => { const plot = state?.estate?.plot; return plot && pack.lgas?.some((lga) => lga.id === plot.lga) ? plot : null; };
 
   function updateLabels() {
+    const locked = new Set(venueAccess?.().filter(row => row.status === 'Locked').map(row => row.id));
     const at = state?.t ?? 0, going = isDeparting(state) && state!.activeAction!.id !== state!.location ? state!.activeAction!.id : null;
     homeAt = homeSpot();
-    const next = JSON.stringify([densityFor(size.width).venueChars, state?.location, going, homeAt.x, homeAt.z, filter, selected, layers.gov, Object.values(venueTable).map((venue) => openingInfo(venue.hours, at).status)]);
+    const next = JSON.stringify([[...locked], densityFor(size.width).venueChars, state?.location, going, homeAt.x, homeAt.z, filter, selected, layers.gov, Object.values(venueTable).map((venue) => openingInfo(venue.hours, at).status)]);
     if (next === labelKey) return;
     labelKey = next; labelsDirty = true;
     for (const [id, label] of labels) {
       const venue = venueTable[id], soon = label.place.kind === 'soon';
-      const opening = venue ? openingInfo(venue.hours, at) : null, open = Boolean(opening?.open), here = state?.location === id;
-      const status = soon ? 'Coming soon' : here ? (going ? 'Leaving from here' : 'You are here') : going === id ? 'On the way' : open ? '' : opening?.opensAt ? `opens ${opening.opensAt}` : 'Closed';
+      const opening = venue ? openingInfo(venue.hours, at) : null, open = !locked.has(id) && Boolean(opening?.open), here = state?.location === id;
+      const status = soon ? 'Coming soon' : locked.has(id) ? '🔒 Locked' : here ? (going ? 'Leaving from here' : 'You are here') : going === id ? 'On the way' : open ? '' : opening?.opensAt ? `opens ${opening.opensAt}` : 'Closed';
       const dimmed = soon ? filter !== 'all' : filter === 'open' ? !open : filter !== 'all' && venue!.category !== filter && id !== 'home';
       const district = id === 'home' ? homeAt.district : venue?.district ?? '';
       label.name.textContent = shorten(nameOf(id), densityFor(size.width).venueChars); label.note.textContent = status;

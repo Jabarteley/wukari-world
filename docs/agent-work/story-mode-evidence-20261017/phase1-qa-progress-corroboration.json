@@ -1,0 +1,46 @@
+{
+  "schema": "allworld-story-local-progress-corroboration",
+  "version": 1,
+  "createdAt": "2026-10-18T02:21:44+00:00",
+  "sourceSha": "aa3c30d860bb5bd338e2e7c63f8296a574821164",
+  "scope": "Read-only saved-state corroboration after actual Chrome post-Kaduna Story/Free/Story UI reversal; independent of UI-visible proof and not a fabricated journey.",
+  "databaseSha256": "af34d1c75ecca3f29f9f4d33d2a3e13a56cea6fff217456d6f5183586d4e324e",
+  "actor": "Story Host Kano",
+  "characterCity": "kaduna",
+  "travelFrom": "kano",
+  "location": "kawo-motor-park",
+  "mode": "story",
+  "start": "kano",
+  "kano": {
+    "missions": [
+      "mission:v1:kano:daily:20744:d-local-kano-tale-life",
+      "mission:v1:kano:weekly:2963:w-local-kano-tale-discovery",
+      "mission:v1:kano:daily:20744:d-local-kano-tale-social",
+      "mission:v1:kano:weekly:2963:w-local-kano-tale-life",
+      "mission:v1:kano:weekly:2963:w-local-kano-tale-social",
+      "mission:v1:kano:weekly:2964:w-local-kano-tale-discovery"
+    ],
+    "venues": [
+      "nassarawa-garden",
+      "kurmi-market",
+      "central-mosque",
+      "dala-hill",
+      "dye-pits",
+      "nassarawa-clinic"
+    ],
+    "missionCount": 6,
+    "venueCount": 6,
+    "rootsKind": "second-answer",
+    "rootsReceiptRetained": true
+  },
+  "kaduna": {
+    "missionCount": 0,
+    "venueCount": 1,
+    "venues": [
+      "kawo-motor-park"
+    ]
+  },
+  "dataWrites": 0,
+  "timeAdvances": 0,
+  "credentialsIncluded": false
+}

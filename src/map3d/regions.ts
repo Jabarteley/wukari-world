@@ -24,7 +24,7 @@ import { knownCityIds, cityRules, cityCatalogue, cityCatalogueEntry, loadCityMap
  * legacy   true when the server already keeps lives for this city although it is shown as coming
  *          soon. Only a player who already has such a life is offered it, labelled "Preview".
  */
-import type { AfricaGroupId, AtlasLevelId, Box4, CityId, CityPack, CityStatus, ContinentId, Hub, Point2, RegionEntry, RegionKind, RegionStatus, ZoneId } from './types.ts';
+import type { AfricaGroupId, AtlasLevelId, Box4, CityId, CityPack, CityStatus, ContinentId, Hub, MapStoryView, Point2, RegionEntry, RegionKind, RegionStatus, ZoneId } from './types.ts';
 
 /** What a city module's `import()` gives: the pack's parts as named exports, and the same object as `default`. */
 export type CityModule = CityPack & { default?: CityPack };
@@ -58,7 +58,8 @@ export interface Zone { id: ZoneId; name: string; tint: string }
 export interface AfricaGroup { id: AfricaGroupId; name: string; tint: string }
 export interface Continent { id: ContinentId; name: string; lon: number; lat: number }
 /** What a player may do with a city: it is where they are, they may enter it, they may only look, or it is coming soon. */
-export type CityAccess = 'here' | 'enter' | 'preview' | 'soon';
+export type CityAccess = 'here' | 'enter' | 'locked' | 'preview' | 'soon';
+export interface CityAccessContext { current?: string | null; held?: readonly string[]; story?: MapStoryView | null }
 
 const cityDescriptor = (id: string): CityEntry | null => {
   const catalogue = cityCatalogueEntry(id);
@@ -126,15 +127,20 @@ export async function loadCityPack(cityId: string): Promise<CityPack | null> {
 
 /**
  * What a player may do with a city, given the city they are in and the legacy cities they already
- * have a life in (ids). → 'here' | 'enter' | 'preview' | 'soon'
+ * have a life in (ids), plus the already-derived Story view. → 'here' | 'enter' | 'locked' | 'preview' | 'soon'
  */
-export function cityAccess(cityId: string, { current = null, held = [] }: { current?: string | null; held?: readonly string[] } = {}): CityAccess {
+export function cityAccess(cityId: string, { current = null, held = [], story = null }: CityAccessContext = {}): CityAccess {
   const entry = cityEntry(cityId);
   if (!entry) return 'soon';
   if (cityId === current) return 'here';
-  if (entry.status === 'playable') return 'enter';
+  if (entry.status === 'playable') {
+    if (story?.enabled && story.mode === 'story' && story.cities.find(city => city.id === cityId)?.unlocked !== true) return 'locked';
+    return 'enter';
+  }
   return entry.legacy && held.includes(cityId) ? 'preview' : 'soon';
 }
+
+export const storyCityLockReason = (cityId: string): string => `Finish a connected city's story before entering ${cityEntry(cityId)?.name ?? cityId}.`;
 
 // ---- The atlas: world → continent → country → state (src/map3d/geo) -------------------------------------
 /**

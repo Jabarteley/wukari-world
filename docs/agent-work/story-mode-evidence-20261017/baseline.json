@@ -1,0 +1,19 @@
+{
+  "source": "c42aeee66e0fbc60e85cb808d8d2ec263a7ac4d4",
+  "ci": "https://github.com/kromate/joinallworld/actions/runs/39072013954",
+  "health": {
+    "ok": true,
+    "build": "joinallworld-c42aeee66e0fbc60e85cb808d8d",
+    "transport": "cloudflare"
+  },
+  "bytes": {
+    "LOADING_RAW": 90568,
+    "LOADING_GZIP": 35263,
+    "STARTUP_RAW": 614418,
+    "STARTUP_GZIP": 222613,
+    "STARTUP_BROTLI": 195490,
+    "SCENE_HOST_RAW": 188923,
+    "SCENE_HOST_GZIP": 70912
+  },
+  "factorySpendUsd": 0
+}

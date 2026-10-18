@@ -81,6 +81,7 @@ export interface CityMapState {
   travel?: { home?: string };
 }
 export interface CityMapOptions {
+  venueAccess?: () => readonly { id: string; status: string }[];
   onSelectVenue?: (venueId: string) => void;
   onSelectGov?: () => void;
   onSelectNeighbour?: (neighbour: { id: string; name: string }) => void;
@@ -156,7 +157,7 @@ const make = <K extends keyof HTMLElementTagNameMap>(tag: K, className?: string,
 const ICON = (path: string) => `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
 let hintSeen = false;             // the how-to line is shown until the player first moves the map or picks a place
 
-export function createCityMap(container: HTMLElement, { onSelectVenue = () => {}, onSelectGov = () => {}, onSelectNeighbour = () => {} }: CityMapOptions = {}): CityMap {
+export function createCityMap(container: HTMLElement, { onSelectVenue = () => {}, onSelectGov = () => {}, onSelectNeighbour = () => {}, venueAccess }: CityMapOptions = {}): CityMap {
   let cityId = 'lagos', state: CityMapState | null = null, layer: 'city' | 'world' = 'city', filter = 'all', selected: string | null = null, signature = '', built = false;
   let layers: CityLayers = { billboards: false, sea: false, neighbours: false, gov: false }, overlay: { ads: AdsData | null, neighbours: NeighboursData | null, gov: GovData | null } = { ads: null, neighbours: null, gov: null }, overlayKey = '', seaPending = false;
   // The view: `scale` is CSS pixels per map unit, (x, y) is where the map's top-left corner sits in the container.
@@ -411,13 +412,14 @@ export function createCityMap(container: HTMLElement, { onSelectVenue = () => {}
     if (!built) return;
     const now = state?.t ?? 0, home = homeSpot(), venues = venueTable();
     const going = isDeparting(state) ? state!.activeAction!.id : null; // a trip or the commute
-    const openIds = Object.values(venues).filter((venue) => isOpen(venue.hours, now)).map((venue) => venue.id).join(',');
-    const next = [state?.location, going, home.map.x, home.map.y, filter, selected, openIds].join('|');
+    const locked = new Set(venueAccess?.().filter(row => row.status === 'Locked').map(row => row.id));
+    const openIds = Object.values(venues).filter((venue) => !locked.has(venue.id) && isOpen(venue.hours, now)).map((venue) => venue.id).join(',');
+    const next = [state?.location, going, home.map.x, home.map.y, filter, selected, openIds, [...locked].join(',')].join('|');
     if (next === signature) return;
     signature = next;
     for (const pin of root.querySelectorAll<HTMLButtonElement>('.cmap-pin')) {
       const id = pin.dataset.venue!, venue = venues[id], soon = !venue;
-      const here = state?.location === id, open = venue ? isOpen(venue.hours, now) : false;
+      const here = state?.location === id, open = !locked.has(id) && (venue ? isOpen(venue.hours, now) : false);
       const place = id === 'home' ? home.map : (venue || SOON_TABLE[id])!.map;
       pin.style.left = `${place.x}%`; pin.style.top = `${place.y}%`;
       // A label near the left or right edge grows inwards, so it is never cut off.
@@ -429,7 +431,7 @@ export function createCityMap(container: HTMLElement, { onSelectVenue = () => {}
       pin.classList.toggle('is-closed', !soon && !open);
       pin.classList.toggle('is-dimmed', dimmed && !here);
       pin.classList.toggle('is-selected', selected === id);
-      const status = soon ? 'Coming soon' : here ? 'You are here' : going === id ? 'On the way' : open ? '' : 'Closed';
+      const status = soon ? 'Coming soon' : locked.has(id) ? '🔒 Locked' : here ? 'You are here' : going === id ? 'On the way' : open ? '' : 'Closed';
       // Closed is shown calmly: a grey pin and one quiet word, not a badge on every door.
       const note = pin.querySelector('.cmap-pin-note')!;
       note.textContent = status;

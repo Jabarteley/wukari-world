@@ -1,0 +1,126 @@
+{
+  "sourceRevision": "ea76250649a728172d623e80b8fb22112f570e0a",
+  "revisionBasis": "Integration owner verified exact HEAD and restarted the task launcher at this revision before browser confirmation; browser operator performed no Git/source mutations.",
+  "scope": "Finite merged-source confirmation of preserved actors, ordered post-Kaduna mode reversal, locks, responsive layout, helper keepsakes and Nairobi signature entry. Earlier gameplay challenges and travel were not repeated.",
+  "result": "PASS for this finite browser confirmation",
+  "browser": {
+    "name": "Chrome",
+    "browserId": "3",
+    "nativeMacInput": "Not used; browser API worked independently of native lock.",
+    "hostTabId": "460562350",
+    "helperTabId": "460562353",
+    "nairobiTabId": "460562356",
+    "authentication": "Existing Chrome origin cookies worked directly; no resume endpoint or new character was needed in this run.",
+    "userTabs": "Original use.live tab 460562168 and other user tabs untouched."
+  },
+  "host": {
+    "actor": "Story Host Kano",
+    "origin": "http://127.0.0.1:5351",
+    "city": "Kaduna",
+    "location": "Kawo Motor Park",
+    "orderedModes": [
+      "Story",
+      "Free",
+      "Story"
+    ],
+    "orderedOpenCities": [
+      275,
+      284,
+      275
+    ],
+    "totalCities": 284,
+    "orderedOpenKadunaVenues": [
+      3,
+      19,
+      3
+    ],
+    "totalKadunaVenues": 19,
+    "preservedProgress": {
+      "kadunaChapter": 0,
+      "kadunaMissions": 0,
+      "kadunaVenues": 1,
+      "kanoVisibleChapter": 4,
+      "kanoVisibleLabel": "Open"
+    },
+    "progressEvidenceLimit": "Current rendered City chapters proves Kano Chapter 4; it does not expose its six mission/six venue receipt totals. Prior independent saved-state corroboration is separate evidence.",
+    "hospital": {
+      "venue": "Giwa Hospital",
+      "free": "Open 24 hours; travel choices available; Go button enabled, observed isEnabled true.",
+      "story": "Locked; Giwa Hospital opens at chapter 2: Belong; Story path locked.",
+      "travelPerformed": false
+    }
+  },
+  "modeSwitchTiming": {
+    "method": "Date.now immediately before awaited rendered button click, followed by awaited Choose how to explore region innerText; elapsed after text returned. Rendered text confirmed target mode and counts.",
+    "firstAndOnlyOrderedMeasurementsMs": {
+      "StoryToFree": 299,
+      "FreeToStory": 290
+    },
+    "targetMs": 300,
+    "passesObservedTarget": true,
+    "conditions": "Warm local browser/app. Includes browser automation IPC and DOM observation overhead. Not a frame-presentation timestamp, physical-device benchmark, or production latency claim. 299 ms is close to the threshold; no repeat/best-value selection."
+  },
+  "responsive": {
+    "320": {
+      "innerWidth": 320,
+      "innerHeight": 740,
+      "documentScrollWidth": 320
+    },
+    "390": {
+      "innerWidth": 390,
+      "innerHeight": 844,
+      "documentScrollWidth": 390
+    },
+    "horizontalOverflow": false,
+    "visualReview": "Story and Free controls, map cards and locks readable at recorded widths with no horizontal clipping. At 320 mode buttons stack and normal vertical scrolling is required. All eight saved captures visually reviewed."
+  },
+  "helper": {
+    "actor": "Story Helper Lagos",
+    "origin": "http://localhost:5351",
+    "city": "Lagos",
+    "location": "Freedom Park",
+    "chapter": 0,
+    "missions": 0,
+    "venues": 0,
+    "openCities": 1,
+    "keepsakes": 2,
+    "keepsakeNames": [
+      "Kano Roots keepsake",
+      "Kano Roots keepsake"
+    ],
+    "countryMapText": "37 states \u00b7 1 open \u00b7 36 Story locked",
+    "selectedKanoText": "Finish a connected city's story before entering Kano.",
+    "ownKanoLocked": true,
+    "evidence": "Keepsakes screenshot plus rendered map and selected Kano text observed; no travel."
+  },
+  "nairobi": {
+    "actor": "Story Nairobi Start",
+    "origin": "http://nairobi.localhost:5351",
+    "location": "Uhuru Park",
+    "chapter": 0,
+    "missions": 3,
+    "venues": 2,
+    "openCities": 1,
+    "signature": "City tables",
+    "actualUIAction": "Clicked Open Tables.",
+    "result": "Chess \u00b7 Starter chess table (game venue), Free, Uhuru Park, 1 watching; Nobody is sitting yet; Sit down and Table rules visible.",
+    "newGameStarted": false
+  },
+  "boundaries": {
+    "manualClockAdvances": 0,
+    "newCharacters": 0,
+    "newTravel": 0,
+    "newChallenges": 0,
+    "sourceGitProcessProviderActions": 0,
+    "olderEvidenceModified": false,
+    "currentScreenshotsOnly": true
+  },
+  "completion": {
+    "browserInputPaused": true,
+    "viewportReset": true,
+    "serverOwnership": "Integration owner; operator did not stop/restart the QA server.",
+    "nextStep": "Return browser ownership to integration owner for QA shutdown and evidence integration."
+  },
+  "captureManifest": "current-ea762506-capture-manifest.json",
+  "captureCount": 8
+}

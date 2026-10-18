@@ -17,13 +17,13 @@ import { cityLinks, cityRules, cityName, catalogueCitiesInState, isOpenCityId, l
  */
 import type { CityLinkMode } from '../../types/index.ts';
 import { TRIP_SKIP, tripSkipFee } from '../../game/content/travel.ts';
-import type { AfricaGroupId, ContinentId, RegionKind, RegionStatus } from '../types.ts';
-import { AFRICA_GROUPS, CONTINENTS, ZONES, cityAccess, cityEntry, regionEntry } from '../regions.ts';
+import type { AfricaGroupId, ContinentId, MapStoryView, RegionKind, RegionStatus } from '../types.ts';
+import { AFRICA_GROUPS, CONTINENTS, ZONES, cityAccess, cityEntry, regionEntry, storyCityLockReason } from '../regions.ts';
 
 export interface RegionRef { kind: RegionKind; id: string }
 export interface RouteInfo { status?: 'open' | 'coming'; id: string; to: string; mode: CityLinkMode; label: string; fare: number; /** Whole seconds the trip takes. */ seconds: number; minutes: number; km: number; hub: string; live: boolean; why: string | null; /** What stops it is that the life has not settled in: the card offers the way to settle. */ settle?: boolean; /** What arriving at once would add to the fare, in naira (0: this character's first skip, which is free). Absent when the player's own routes are not known. */ skip?: number }
 export interface RegionAction { kind: 'enter-city' | 'open-city' | 'zoom'; label: string; city?: string; level?: string }
-export type RegionTone = 'here' | 'open' | 'preview' | 'soon' | 'none';
+export type RegionTone = 'here' | 'open' | 'locked' | 'preview' | 'soon' | 'none';
 export interface RegionInfo {
   kind: RegionKind; id: string; name: string; type: string; capital: string | null; teaser: string; status: RegionStatus;
   tag: string; tone: RegionTone; city: { id: string; name: string } | null; preview: readonly string[] | null;
@@ -37,6 +37,7 @@ export interface RegionContext {
   feature?: FeatureLike | null;
   current?: string | null;
   held?: string[];
+  story?: MapStoryView | null;
   routes?: { to: string; mode: string; blocked?: string | null; /** What stops this way is that the life has not settled in (a guest of the quick start). */ settle?: boolean; /** The character still has its free first skip between cities. */ skipFree?: boolean }[] | null;
 }
 
@@ -55,7 +56,7 @@ function routesBetween(from: string, to: string, mine: RegionContext['routes']):
   });
 }
 
-export function regionInfo(ref: RegionRef, { cityId = null, feature = null, current = null, held = [], routes = null }: RegionContext = {}): RegionInfo {
+export function regionInfo(ref: RegionRef, { cityId = null, feature = null, current = null, held = [], story = null, routes = null }: RegionContext = {}): RegionInfo {
   const entry = regionEntry(ref.kind, ref.id), status = entry.status, name = feature?.name ?? ref.id;
   const capital = Array.isArray(feature?.cap) ? feature.cap[0] : feature?.cap ?? null;
   const base: Omit<RegionInfo, 'type' | 'teaser' | 'tag' | 'tone'> = { kind: ref.kind, id: ref.id, name, capital, status, city: null, preview: null, routes: [], soon: [], routesFrom: null, planned: null, wait: null, action: null };
@@ -69,9 +70,10 @@ export function regionInfo(ref: RegionRef, { cityId = null, feature = null, curr
     const type = `${ref.id === 'fct' ? 'Territory' : 'State'}${zone ? ` · ${zone}` : ''}`;
     const teaser = entry.teaser || `${name} is on the map for later.`;
     if (!city) return { ...base, type, teaser, tag: 'Coming soon', tone: 'soon', wait: `${name} is not open yet. We will announce it in the game when it is.` };
-    const access = cityAccess(city.id, { current, held });
+    const access = cityAccess(city.id, { current, held, story });
     const info = { ...base, type, teaser: city.status === 'playable' ? city.teaser : teaser, city: { id: city.id, name: city.name }, preview: city.status === 'playable' ? null : city.preview ?? null };
     if (city.status === 'playable') {
+      if (access === 'locked') return { ...info, teaser: storyCityLockReason(city.id), tag: 'Story locked', tone: 'locked' };
       // The open city: from here every link to a planned city can be looked at.
       // Only open destinations are listed with a fare; the planned ones are named under "Opening soon".
       const every = current === city.id ? [...new Set(linksFrom(city.id).map(link => link.to))] : [];
@@ -92,7 +94,8 @@ export function regionInfo(ref: RegionRef, { cityId = null, feature = null, curr
   if (status === 'open') {
     const city = entry.city ? cityEntry(entry.city) : null;
     if (city?.status === 'playable') {
-      const access = cityAccess(city.id, { current, held });
+      const access = cityAccess(city.id, { current, held, story });
+      if (access === 'locked') return { ...base, type, teaser: storyCityLockReason(city.id), city: { id: city.id, name: city.name }, preview: null, tag: 'Story locked', tone: 'locked' };
       const every = current === city.id ? [...new Set(linksFrom(city.id).map(link => link.to))] : [];
       const others = every.filter(to => isOpenCityId(to));
       const soon = every.filter(to => !isOpenCityId(to)).map(to => cityName(to) ?? to);

@@ -251,11 +251,13 @@ function load(): Promise<void> {
       // After settling the player is back on the map with that city's card open, not in the house.
       onSettle: (city) => { openSettleFlow(city ? () => { if (game.mode.value !== 'map') showMapLayer('world', { level: 2, city }) } : undefined) },
       held: heldCities,
+      story: () => game.view.value.story,
       // A row of the friends list: Chat opens the conversation; Call and Ping are the card's own buttons, pressed from here.
       onFriend: (action, id, name) => { void friendAction(action, id, name) },
     })
     void keepFriends()
     const city = createCityView(cityBox.value, {
+      venueAccess: () => game.view.value.travel.destinations,
       cityId: game.cityId.value,
       ladder: zoom.cityPort,
       onSelectVenue: (venueId) => { shell.open('map', { destination: venueId }) },
@@ -290,6 +292,8 @@ watch(() => scene.mapsWanted.value || game.mode.value === 'map', (wanted) => { i
 watch([game.mode, worldLayer], show, { flush: 'post' })
 // The country map shows which cities this player holds: drawn again when that list changes.
 watch(() => heldCities().join(), () => scene.world.value?.refresh?.())
+// Story mode changes city access without changing the underlying world catalogue.
+watch(() => game.view.value.story, () => scene.world.value?.refresh?.(), { deep: true })
 const onResize = (): void => { if (mapOpen()) { scene.world.value?.resize(); scene.city.value?.resize() } }
 window.addEventListener('resize', onResize)
 onBeforeUnmount(() => {

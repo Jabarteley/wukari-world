@@ -116,7 +116,7 @@ function announce(meta: LifeMeta | undefined, state: LifeState): void {
  * session is created; a session without it — every session made before the flag existed, and
  * every session the Cloudflare worker makes — behaves as before.
  */
-export function settleCity(session: SessionRecord, cityId: CityId, now: number): LifeState {
+export function settleCity(session: SessionRecord, cityId: CityId, now: number, storyMode = false): LifeState {
   requireSessionCities(session, [cityId]);
   const stored = session.cities?.[cityId];
   if (Object.hasOwn(session.cities ?? {}, cityId) && (!stored?.state || !Number.isSafeInteger(stored.state.cash) || stored.state.cash < 0)) {
@@ -131,7 +131,7 @@ export function settleCity(session: SessionRecord, cityId: CityId, now: number):
   if (!entry) {
     if (cityRules(cityId)?.status !== 'open') throw Object.assign(new Error('city_closed'), { status: 409, code: 'city_closed' });
     const salt = newSalt();
-    entry = session.cities[cityId] = { state: createLife({ name: session.name }, { now, cityId, isNew: true, quickStart: session.onboarding === true, salt, money }), updatedAt: now, salt };
+    entry = session.cities[cityId] = { state: createLife({ name: session.name }, { now, cityId, storyMode, isNew: true, quickStart: session.onboarding === true, salt, money }), updatedAt: now, salt };
   }
   if (typeof entry.salt !== 'string' || !SALT_PATTERN.test(entry.salt)) entry.salt = newSalt();
   const { salt } = entry;
@@ -139,9 +139,9 @@ export function settleCity(session: SessionRecord, cityId: CityId, now: number):
   progressionOf(entry, now, isNew);
   const { observe } = observeProgression(session, entry, origin);
   // trustedSave: this is the server's own stored copy, so an action that can no longer run is settled here (src/life.ts createLife).
-  entry.state = createLife(entry.state, { now, cityId, isNew: false, salt, trustedSave: true, money, observe, executionOrigin: origin });
+  entry.state = createLife(entry.state, { now, cityId, storyMode, isNew: false, salt, trustedSave: true, money, observe, executionOrigin: origin });
   const elapsed = Number.isFinite(entry.updatedAt) ? Math.max(0, (now - entry.updatedAt) / 1000) : 0;
-  if (elapsed > 0) advanceLife(entry.state, elapsed, { now, cityId, salt, money, observe, executionOrigin: origin });
+  if (elapsed > 0) advanceLife(entry.state, elapsed, { now, cityId, storyMode, salt, money, observe, executionOrigin: origin });
   rememberActive(entry, origin);
   entry.state.t = now;
   entry.updatedAt = now;

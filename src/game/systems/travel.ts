@@ -459,7 +459,7 @@ function view(state: LifeState, ctx: LifeContext): TravelView {
     category: 'soon', x: place.map.x, y: place.map.y, zone: place.zone, here: false, visited: false, open: false, hours: 'Coming soon', status: 'Coming soon',
     band: null, ambient: '', preview: [], modes: [], blocked: travelBlock(state, place.id, 'trek', ctx),
   }));
-  return {
+  return modify(state, 'travel.view', {
     modes: [...localModes(state.estate.city)],
     duration: TRAVEL_DURATION,
     defaultMode: DEFAULT_MODE,
@@ -492,7 +492,7 @@ function view(state: LifeState, ctx: LifeContext): TravelView {
     active: trip ? { from: state.location, to: trip.id, mode: typeof trip.mode === 'string' ? trip.mode : null, fare: typeof trip.fare === 'number' && Number.isSafeInteger(trip.fare) ? trip.fare : null, refundable: false } : null,
     // Paying to arrive now: the price as it stands, or why it is not offered (a trip between cities is in state.activeAction, not in `active`).
     skip: skipOffer(state),
-  };
+  }, {}, ctx);
 }
 
 /**

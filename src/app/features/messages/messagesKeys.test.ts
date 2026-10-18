@@ -12,3 +12,8 @@ test('Escape closes the menu and the request form before the chat, and returns f
   assert.match(app, /function closeMenu\(\): void \{ ui\.manage = false; void nextTick\(\(\) => rootBox\.value\?\.querySelector<HTMLElement>\('\.messages-kebab'\)\?\.focus\(\)\) \}/)
   assert.match(app, /:can-request="canRequest"/)
 })
+
+test('a Story update opens the lazy Passport Story panel with its validated focus id', () => {
+  assert.match(app, /openStoryHelp = \(storyHelp: string\): boolean => shell\.open\('passport', \{ tab: 'story', storyHelp \}\)/)
+  assert.match(app, /v-if="line\.storyHelp"[^>]*@click="openStoryHelp\(line\.storyHelp\)"[^>]*>Open challenge/)
+})

@@ -1,0 +1,434 @@
+{
+  "updatedAt": "2026-10-18T02:52:20Z",
+  "status": "all-pre-pr-gates-pass-pr-and-release-pending",
+  "phase": 1,
+  "checkout": "/Users/anthonyakpan/work/joinallworld-story",
+  "baseSha": "c42aeee66e0fbc60e85cb808d8d2ec263a7ac4d4",
+  "runtimeCandidate": "ea76250649a728172d623e80b8fb22112f570e0a",
+  "mainIntegrated": "9eab3816db3f1cdc2fc3e5671915f8c7549b9efa",
+  "sourceFilesSha256": {
+    "src/game/progression-slices.ts": "c623e9ac4b19392c259b0d318b22287d99e68d7ab15ae6dec3bf199562daa5e0",
+    "src/game/snapshot-fields.ts": "d7c4e3ab990930ba3de1485dae2045462648577a15460b67dd5bd7716a99e25e",
+    "src/game/teaching-gate.ts": "9399e0561a43a8487ba761a0c70e5f89060c3097dd7f54d5af94fc93469568c2",
+    "src/game/homeward-gate.ts": "62d260f49807fd80f7457d9160ea2bde3bb5b07b73c7095e834103061cb4c270",
+    "src/types/view.ts": "8c70ac11e42aa9636e32ef853a9e85f32b26374f40318e28bb45b073025d4b58",
+    "src/types/engine.test.ts": "b925ddc8a1802724ca5ea2460d180f5218fee6307c3ea4f1d127e209b85c221e",
+    "src/game/progression-gate.ts": "d391d54c1634fff963cf9972a5baf20932391616af259d7d418cbb91a37b346a",
+    "vite.config.ts": "7f50422ccd4f24dd5cabd0a2560dc7b2eeebc2ebabedb0a55d88cb977ef00be1",
+    "server/admin/erasure-data.ts": "9611fc3124442fa9ca8320e7c96dacf757053ea314681fa2af695db7a6ab76be",
+    "src/game/systems/story.ts": "6947838dde8f2ae914a3dcdb5524043dc9682341c0575dde2987fd735fa83518",
+    "src/story/story-system.test.ts": "d03cc8ddd4266845f9e460e6b9738f4fe5e99608fc9a60baaae968a0c928f8d0"
+  },
+  "sourcePinsScope": "Selected feature-source files at the runtime candidate, not a complete repository manifest.",
+  "checks": {
+    "integration": {
+      "runtimeSha": "ea76250649a728172d623e80b8fb22112f570e0a",
+      "typecheck": {
+        "projects": 5,
+        "errors": 0,
+        "baselineAdditions": 0,
+        "log": "phase1-main9eab-typecheck.log"
+      },
+      "focused": {
+        "pass": 66,
+        "fail": 0,
+        "durationMs": 6020.48525,
+        "log": "phase1-main9eab-focused-tests.log"
+      },
+      "conflictResolution": "union of Story routes and incoming Spaces host/game routes; no behavior invented",
+      "exactHostedBudgets": "pass; hosted log summary",
+      "exactFullCitySceneSuites": "pass15/15,0failures,0skips;1058529.957791ms",
+      "mergedBrowserConfirmation": "pass; phone/current-ea762506-browser-report.json",
+      "ciRun": 39090198072,
+      "ciUrl": "https://github.com/kromate/joinallworld/actions/runs/39090198072",
+      "ciStatus": "success",
+      "fullSuiteExec": null,
+      "hostedSummary": "phase1-ci-ea762506-summary.json",
+      "exactFullSuiteLog": "phase1-cities-scenes-ea762506.log",
+      "builtGraph": "pass284cities,StoryUIabsentstartupandscenehost",
+      "builtGraphEvidence": "phase1-bundle-ea762506.json"
+    },
+    "localTypecheck": {
+      "projects": 5,
+      "errors": 0,
+      "baselineAdditions": 0,
+      "log": "phase1-main9eab-typecheck.log"
+    },
+    "focused": {
+      "pass": 66,
+      "fail": 0,
+      "durationMs": 6020.48525,
+      "log": "phase1-main9eab-focused-tests.log"
+    },
+    "citiesScenes": {
+      "sourceSha": "ea76250649a728172d623e80b8fb22112f570e0a",
+      "artifactSha": "ea76250649a728172d623e80b8fb22112f570e0a",
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 1058529.957791,
+      "log": "phase1-cities-scenes-ea762506.log"
+    },
+    "builtDownloadAndGraph": {
+      "status": "pass",
+      "artifactSha": "ea76250649a728172d623e80b8fb22112f570e0a",
+      "cities": 284,
+      "startup": {
+        "rawJavaScript": 613961,
+        "gzipJavaScript": 222634,
+        "brotliAll": 195450
+      },
+      "sceneHost": {
+        "raw": 188939,
+        "gzip": 70896,
+        "brotli": 61440
+      },
+      "storyScreensInStartup": false,
+      "storyScreensInSceneHost": false,
+      "evidence": "phase1-bundle-ea762506.json"
+    },
+    "hostedBudgets": {
+      "sourceSha": "ea76250649a728172d623e80b8fb22112f570e0a",
+      "ciRun": 39090198072,
+      "url": "https://github.com/kromate/joinallworld/actions/runs/39090198072",
+      "conclusion": "success",
+      "observedAt": "2026-10-18T02:43:21Z",
+      "measurements": {
+        "LOADING_RAW": {
+          "measured": 90568,
+          "limit": 92000
+        },
+        "LOADING_GZIP": {
+          "measured": 35263,
+          "limit": 37000
+        },
+        "FIRST_PAINT_BROTLI": {
+          "measured": 35373,
+          "limit": 36800
+        },
+        "STARTUP_RAW": {
+          "measured": 613961,
+          "limit": 615000
+        },
+        "STARTUP_GZIP": {
+          "measured": 222634,
+          "limit": 223000
+        },
+        "STARTUP_BROTLI": {
+          "measured": 195450,
+          "limit": 195600
+        },
+        "SCENE_HOST_RAW": {
+          "measured": 188939,
+          "limit": 192000
+        },
+        "SCENE_HOST_GZIP": {
+          "measured": 70896,
+          "limit": 71000
+        }
+      },
+      "nativeInventoryErrors": 0,
+      "source": "Exact hosted build-and-smoke-fast log; no local build or estimated bundle size",
+      "fullChecksInput": false,
+      "localAllCitiesScenes": "pass15/15,0failed,0skipped",
+      "builtImportGraph": "pass284cities"
+    }
+  },
+  "currentCI": {
+    "id": 39090198072,
+    "url": "https://github.com/kromate/joinallworld/actions/runs/39090198072",
+    "sourceSha": "ea76250649a728172d623e80b8fb22112f570e0a",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "browser": {
+    "sourceSha": "ea76250649a728172d623e80b8fb22112f570e0a",
+    "status": "pass",
+    "report": "phone/current-ea762506-browser-report.json",
+    "captureManifest": "phone/current-ea762506-capture-manifest.json",
+    "independentCaptureCheck": "phase1-capture-check-ea762506.json",
+    "captures": 8,
+    "storyToFreeMs": 299,
+    "freeToStoryMs": 290,
+    "timingScope": "First and only ordered samples in a warm local browser including automation/DOM overhead; not physical-device or production latency.",
+    "cityCounts": [
+      275,
+      284,
+      275
+    ],
+    "kadunaVenueCounts": [
+      3,
+      19,
+      3
+    ],
+    "widths": [
+      320,
+      390
+    ],
+    "horizontalOverflow": false,
+    "kanoChapterRetained": 4,
+    "helperOwnKanoLocked": true,
+    "helperKeepsakes": 2,
+    "nairobiSignatureEntry": "Actual City tables/Open Tables chess surface, without starting a new game.",
+    "savedStateCorroboration": "phase1-qa-progress-corroboration.json",
+    "fullJourneyScope": "Earlier actual Kano tales/collection, six missions/six venues, clinic opening, locked Kaduna/Katsina, friend second-answer and two-seat memory, helper return, bargain and bus to Kaduna; Nairobi distinct authored content and chess moves. These earlier actions were preserved, not replayed on the merged candidate.",
+    "pending": [],
+    "physicalDeviceVerified": false
+  },
+  "qaServer": {
+    "port": 5351,
+    "apiPort": 5352,
+    "launchedFromSha": "ea76250649a728172d623e80b8fb22112f570e0a",
+    "persistentData": ".data-story-qa/",
+    "status": "gracefully-stopped-after-completed-browser-gate",
+    "pid": null,
+    "execSession": null,
+    "terminatedPid": 70392,
+    "terminalExitCode": 143,
+    "stoppedAt": "2026-10-18T02:52:20Z",
+    "reason": "Browser operator paused input and returned ownership. Saved ordinary UI-earned progress and existing local test clock preserved.",
+    "temporaryLauncher": "/tmp/story-qa-server-20261017.mts; local fixture only, excluded from shipped source."
+  },
+  "release": {
+    "pullRequest": null,
+    "mergeSha": null,
+    "releaseRun": null,
+    "liveStoryBuild": null
+  },
+  "factorySpendUsd": 0,
+  "factoryPreparation": {
+    "status": "Future-phase tooling and assets excluded from phase1 staging and release.",
+    "actualBlenderPilot": true,
+    "runtimeIntegration": false,
+    "externalSpendUsd": 0,
+    "workerComputeCost": "unavailable"
+  },
+  "upstreamProductionHealth": {
+    "ok": true,
+    "build": "joinallworld-9eab3816db3f1cdc2fc3e567191",
+    "observedAt": "2026-10-18T02:43:21Z",
+    "storyIncluded": false,
+    "request": "GET with explicit application/json Accept and identifying verification User-Agent; default Python User-Agent returned403"
+  },
+  "historical": {
+    "scope": "Earlier candidates and observations only; superseded by the source-pinned checks and browser report above.",
+    "checks": {
+      "citiesScenes": {
+        "passed": 15,
+        "failed": 0,
+        "durationMs": 1106461.257083,
+        "sourceSha": "f3af60c4df1c713da39ad65da241b23d32126435",
+        "log": "phase1-cities-scenes-final.log"
+      },
+      "hostedChunk": {
+        "passed": 1,
+        "failed": 0,
+        "artifactSha": "f3af60c4df1c713da39ad65da241b23d32126435",
+        "rawBytes": 188923,
+        "gzipBytes": 70910,
+        "log": "phase1-current-hosted-chunk.log"
+      },
+      "browserParityBeforeReaderConsolidation": {
+        "passed": 1,
+        "failed": 0,
+        "log": "phase1-browser-parity.log"
+      },
+      "localTypecheck": {
+        "projects": 5,
+        "errors": 0,
+        "baselinedErrors": 0,
+        "log": "phase1-current-main-typecheck.log",
+        "scope": "Roots receipt repair, integrated main c607e1e5 and untracked factory preparation"
+      },
+      "snapshotGates": {
+        "passed": 63,
+        "failed": 0,
+        "durationMs": 4153.268708,
+        "log": "phase1-final-loaders.log"
+      },
+      "spacesErasureIntegration": {
+        "passed": 4,
+        "failed": 0,
+        "durationMs": 850.043458,
+        "log": "phase1-spaces-erasure.log"
+      },
+      "builtDownloadAndGraph": {
+        "artifactSha": "aa3c30d860bb5bd338e2e7c63f8296a574821164",
+        "cities": 284,
+        "startup": {
+          "rawJavaScript": 613955,
+          "gzipJavaScript": 222658,
+          "brotliAll": 195413
+        },
+        "sceneHost": {
+          "raw": 188923,
+          "gzip": 70908
+        },
+        "storyScreensInStartup": false,
+        "storyScreensInSceneHost": false,
+        "unchangedMeasuredBudgets": "pass",
+        "nativeAssetInventory": "pass; CI39083947965 reports 0 errors",
+        "evidence": "phase1-bundle-aa3c30d8.json"
+      },
+      "rootsReceiptRepair": {
+        "passed": 20,
+        "failed": 0,
+        "durationMs": 947.802625,
+        "scope": [
+          "src/story/story-system.test.ts",
+          "server/story/coop.test.ts"
+        ],
+        "preRepairReproduction": {
+          "invalidErrandRetained": true
+        }
+      },
+      "priorAa3CitiesScenes": {
+        "status": "pass",
+        "sourceSha": "aa3c30d860bb5bd338e2e7c63f8296a574821164",
+        "artifactSha": "aa3c30d860bb5bd338e2e7c63f8296a574821164",
+        "log": "phase1-cities-scenes-aa3c30d8.log",
+        "note": "Current CI artifact downloaded and safely replaced exact prior artifact files before the scene-host assertion. Native/static asset files preserved.",
+        "artifactInstalledBeforeHostAssertion": true,
+        "passed": 15,
+        "failed": 0,
+        "skipped": 0,
+        "durationMs": 1162689.700667,
+        "terminalCities": [],
+        "nativeGeometry": "actual native and skinned geometry ready; unchanged triangle and draw caps"
+      },
+      "rootsAndSpacesIntegration": {
+        "passed": 25,
+        "failed": 0,
+        "durationMs": 1056.976875,
+        "log": "phase1-roots-spaces-tests.log"
+      },
+      "priorAa3BuiltGraph": {
+        "status": "pass",
+        "artifactSha": "aa3c30d860bb5bd338e2e7c63f8296a574821164",
+        "script": "/tmp/story-verify-built-aa3c30d8.mjs",
+        "log": "phase1-bundle-aa3c30d8-graph.log",
+        "cities": 284,
+        "evidence": "phase1-bundle-aa3c30d8.json",
+        "storyScreensInStartup": false,
+        "storyScreensInSceneHost": false
+      },
+      "historicalBuiltDownloadAndGraph": {
+        "artifactSha": "4eb1e9dbcd4c75737f1fcdcdcc8a88068b76906f",
+        "cities": 284,
+        "startup": {
+          "rawJavaScript": 613955,
+          "gzipJavaScript": 222618,
+          "brotliAll": 195461
+        },
+        "sceneHost": {
+          "raw": 188923,
+          "gzip": 70906
+        },
+        "storyScreensInStartup": false,
+        "storyScreensInSceneHost": false,
+        "unchangedMeasuredBudgets": "pass",
+        "nativeAssetInventory": "pass; CI reports 0 errors",
+        "evidence": "phase1-bundle-4eb1e9db.json"
+      },
+      "browserAtAa3": {
+        "sourceSha": "aa3c30d860bb5bd338e2e7c63f8296a574821164",
+        "status": "pass finite remaining post-Kaduna gate",
+        "storyToFreeMs": 281,
+        "freeToStoryMs": 287,
+        "cityCounts": [
+          275,
+          284,
+          275
+        ],
+        "kadunaVenueCounts": [
+          3,
+          19,
+          3
+        ],
+        "captures": 17,
+        "widths": [
+          320,
+          390
+        ],
+        "horizontalOverflow": false,
+        "report": "phone/current-aa3-browser-report.json",
+        "manifest": "phone/current-aa3-capture-manifest.json",
+        "parentFileCheck": "phase1-current-capture-check.json",
+        "parentSavedStateCheck": "phase1-qa-progress-corroboration.json",
+        "limits": "warm local DOM-confirmed timings; not physical-device/production performance"
+      }
+    },
+    "priorFailedCI": {
+      "url": "https://github.com/kromate/joinallworld/actions/runs/39081036432",
+      "sha": "fa97782580f29982664d0d6bc52be4b82cd740c6",
+      "conclusion": "failure",
+      "typecheck": "success",
+      "startup": {
+        "raw": 613968,
+        "gzip": 222642,
+        "brotli": 195642
+      },
+      "sceneHost": {
+        "raw": 188923,
+        "gzip": 70909
+      },
+      "unchangedCaps": {
+        "raw": 615000,
+        "gzip": 223000,
+        "brotli": 195600
+      }
+    },
+    "previousSuccessfulCI": {
+      "url": "https://github.com/kromate/joinallworld/actions/runs/39083947965",
+      "sha": "aa3c30d860bb5bd338e2e7c63f8296a574821164",
+      "status": "completed",
+      "conclusion": "success",
+      "typecheck": "success",
+      "buildAndSmoke": "success",
+      "releasePolicy": "success",
+      "startup": {
+        "rawJavaScript": 613955,
+        "gzipJavaScript": 222658,
+        "brotliAll": 195413
+      },
+      "sceneHost": {
+        "raw": 188923,
+        "gzip": 70908
+      },
+      "unchangedCaps": {
+        "rawJavaScript": 615000,
+        "gzipJavaScript": 223000,
+        "brotliAll": 195600
+      },
+      "nativeAssetInventory": {
+        "errors": 0
+      },
+      "nativeIntegration": "success",
+      "log": "ci-39083947965-build.log"
+    },
+    "browserAvailabilityResolved": "Native Mac input remained locked; Chrome browser API worked. The unlock blocker was resolved without native input.",
+    "aa3BrowserReport": "phone/current-aa3-browser-report.json",
+    "aa3CaptureManifest": "phone/current-aa3-capture-manifest.json",
+    "aa3IndependentCaptureCheck": "phase1-current-capture-check.json",
+    "historicalActionEvidence": [
+      {
+        "path": "phone/two-seat-completed.txt",
+        "scope": "Earlier actual completed two-seat UI text; source revision unpinned."
+      },
+      {
+        "path": "phone/kano-bargain-agreed.txt",
+        "scope": "Earlier practice bargain UI text; source revision unpinned."
+      },
+      {
+        "path": "phone/helper-coop-panel-390.jpg",
+        "scope": "Reviewed earlier co-op entry panel, not a completed challenge; source revision unpinned."
+      },
+      {
+        "path": "phone/nairobi-signature-chess-390.jpg",
+        "scope": "Reviewed earlier actual chess surface; source revision unpinned."
+      }
+    ],
+    "rejectedCaptures": "Old 365px crops and transient/obsolete clinic frames remain local and are excluded from committed evidence."
+  },
+  "nextAction": "Commit only curated Phase1 evidence, push after fresh-main check, open and attach PR, wait for current CI, merge, release and confirm the active public build/live page before Phase2."
+}

@@ -884,6 +884,7 @@ export interface Database {
   growth?: GrowthCollection
   /** server/social/visit-book.ts: invitations to a home and house links. Created by the first one, so it is not in COLLECTION_NAMES. */
   visits?: VisitsCollection
+  storyHelp?: import('./story/coop.ts').StoryHelpBook
   /** Real merchant listings and encrypted external grants, independent of simulated shops. */
   commerce?: CommerceCollection
   /** server/business/service.ts: every player-owned shop. Created by the first shop, so it is not in COLLECTION_NAMES. */

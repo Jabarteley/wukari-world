@@ -147,7 +147,7 @@ export function dealMissions(state: LifeState, scope: Scope, period: number, ctx
     const authored = options.filter(def => def.cityId === state.estate.city && missionCatalogues.authoredIds.has(def.id));
     const legacyLocal = kind === 'discovery' ? options.filter(def => def.cityId === state.estate.city) : [];
     // Guarantee a local thread without making the same three tasks the entire daily experience.
-    const localPriority = scope === 'weekly' || kind === MISSION_KINDS[(period + state.missions.seed) % MISSION_KINDS.length];
+    const localPriority = scope === 'weekly' || (ctx?.storyMode === true && state.story?.mode === 'story') || kind === MISSION_KINDS[(period + state.missions.seed) % MISSION_KINDS.length];
     const choices = missionCatalogues.authoredCities.has(state.estate.city)
       ? authored.length && localPriority ? authored : options
       : legacyLocal.length ? legacyLocal : options;

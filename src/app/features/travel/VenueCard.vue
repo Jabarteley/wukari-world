@@ -15,6 +15,7 @@ import { tell } from './travelMapState.ts'
 import { useTravelActions } from './useTravelActions.ts'
 import { useCrowd } from './useCrowd.ts'
 import { copyText } from '../../../ui/share.ts'
+import { storyVenueLock } from '../story/storyUi.ts'
 
 const props = defineProps<{ item: TravelDestination }>()
 const { game, shell } = useApp()
@@ -22,6 +23,7 @@ const { travel, pending } = useTravelActions()
 
 const chosen = computed(() => chosenMode(props.item, mapUi.mode, game.view.value.travel.defaultMode))
 const block = computed(() => goBlock(game.state.value, game.view.value, props.item, chosen.value))
+const storyLock = computed(() => storyVenueLock(game.view.value.story, props.item.id))
 const chips = computed(() => (mapUi.showAll ? props.item.preview : props.item.preview.slice(0, CHIP_LIMIT)))
 const more = computed(() => props.item.preview.length - chips.value.length)
 const crowd = useCrowd()
@@ -34,7 +36,7 @@ function back(): void {
 }
 function go(): void {
   const mode = chosen.value
-  if (block.value || !mode) return
+  if (storyLock.value || block.value || !mode) return
   // Leaving on a trip clears the selection: the card makes way for the trip bar and the map shows the trip.
   // (If the server refuses it, its reason is a toast and the place is one tap away.)
   mapUi.destination = null
@@ -63,18 +65,20 @@ const onAbout = (event: Event): void => { mapUi.aboutOpen = (event.currentTarget
       <button
         v-for="option in item.modes" :key="option.id" type="button" :aria-pressed="option === chosen"
         :class="{ 'is-selected': option === chosen, 'is-short': option.blocked && !item.blocked }"
-        :disabled="Boolean(item.blocked)" :title="item.blocked ? item.blocked.reason : option.blurb || ''"
+        :disabled="Boolean(item.blocked || storyLock)" :title="storyLock || (item.blocked ? item.blocked.reason : option.blurb || '')"
         :aria-label="`${option.label}, ${fareText(option)}, ${option.seconds} seconds${option.slow ? ', go-slow on the road' : ''}`" @click="mapUi.mode = option.id"
       >
         <span aria-hidden="true"><GameIcon inline kind="mode" :id="option.id" :emoji="option.icon" /></span><b>{{ option.label }}</b><small>{{ fareText(option) }}</small><small class="map-mode-time">{{ option.seconds }}s{{ option.slow ? ' · go-slow' : '' }}</small>
       </button>
     </div>
-    <p v-if="chosen && !item.blocked" class="map-trip">{{ tripLine(chosen) }}</p>
-    <div v-if="block" class="map-why" :class="`is-${block.code}`" role="note">
+    <p v-if="chosen && !item.blocked && !storyLock" class="map-trip">{{ tripLine(chosen) }}</p>
+    <div v-if="storyLock" class="map-why is-story" role="note"><p>{{ storyLock }}</p></div>
+    <div v-else-if="block" class="map-why" :class="`is-${block.code}`" role="note">
       <p>{{ block.reason }}</p>
       <GoFix v-if="block.fix" :fix="block.fix" look="map-fix" @mode="mapUi.mode = $event" />
     </div>
-    <button v-if="block || !chosen" type="button" class="map-go" disabled :aria-label="`Cannot go: ${block?.label || 'unavailable'}`">{{ block ? block.label : '' }}</button>
+    <button v-if="storyLock" type="button" class="map-go" disabled :aria-label="`Cannot go: ${storyLock}`">Story path locked</button>
+    <button v-else-if="block || !chosen" type="button" class="map-go" disabled :aria-label="`Cannot go: ${block?.label || 'unavailable'}`">{{ block ? block.label : '' }}</button>
     <button v-else type="button" class="map-go" :disabled="pending !== null" @click="go">Go · {{ fareText(chosen) }} <span aria-hidden="true">→</span></button>
     <button v-if="item.id === 'state-house'" type="button" class="map-chip-button" @click="shell.open('state-house')"><GameIcon inline name="governor" /><span>Who governs? Open the {{ civicOffice(game.view.value.cityId) }}</span></button>
     <button v-else-if="item.id === 'polling-unit'" type="button" class="map-chip-button" @click="shell.open('governor')"><GameIcon inline name="ballot" /><span>Election: candidates, voting and results</span></button>

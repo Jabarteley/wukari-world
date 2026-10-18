@@ -126,6 +126,7 @@ type Gesture = { kind: 'pan' | 'rotate'; id: number; from: Pt; last: Pt; moved: 
 /** The renderer the map draws with: a WebGLRenderer, or a stand-in under test. */
 export type MapRenderer = THREE.WebGLRenderer
 export interface Map3DOptions {
+  venueAccess?: () => readonly { id: string; status: string }[];
   /** The city built ahead in short slices by prebuildCity(); the map owns it from here (it frees it on destroy). Without it the map builds the city itself, at once. */
   prebuilt?: PrebuiltCity | null
   pack: CityPack
@@ -184,7 +185,7 @@ export async function prebuildCity(pack: CityPack, cityId: string, alive: () => 
   }
 }
 
-export function createMap3D(container: HTMLElement, { prebuilt = null, pack, cityId = pack?.id, travelVehicle = null, trafficModels = null, onSelectVenue = () => {}, onSelectGov = () => {}, onSelectNeighbour = () => {}, onSelectContext = () => {}, onTripDue = () => {}, onContextLost = () => {},
+export function createMap3D(container: HTMLElement, { prebuilt = null, pack, venueAccess, cityId = pack?.id, travelVehicle = null, trafficModels = null, onSelectVenue = () => {}, onSelectGov = () => {}, onSelectNeighbour = () => {}, onSelectContext = () => {}, onTripDue = () => {}, onContextLost = () => {},
   world = null, ladder = NO_PORT, onSelectLga = () => {}, onSelectHouse = () => {}, onSelectPeople = () => {},
   renderer: providedRenderer, raf = globalThis.requestAnimationFrame?.bind(globalThis), caf = globalThis.cancelAnimationFrame?.bind(globalThis), now = () => globalThis.performance.now(),
   reducedMotion = Boolean(globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches), deepLink = null, tabHidden }: Map3DOptions) {
@@ -566,16 +567,17 @@ export function createMap3D(container: HTMLElement, { prebuilt = null, pack, cit
     pinLayer = createPinLayer(labelLayer, doc!);
   }
   function updateLabels() {
+    const locked = new Set(venueAccess?.().filter(row => row.status === 'Locked').map(row => row.id));
     if (!labelLayer) return;
     // Once the server has moved the player, the place is where they are — not where they are going, nor one they are leaving.
     const at = state?.t ?? 0, going = trip && state?.location !== trip.to ? trip.to : null, home = city.places.home!;
-    const next = JSON.stringify([densityFor(size.width).venueChars, state?.location, going, home.house, filter, selected, hovered, layers.gov, Object.values(venueTable).map((venue) => openingInfo(venue.hours, at).status)]);
+    const next = JSON.stringify([[...locked], densityFor(size.width).venueChars, state?.location, going, home.house, filter, selected, hovered, layers.gov, Object.values(venueTable).map((venue) => openingInfo(venue.hours, at).status)]);
     if (next === labelKey) return;
     labelKey = next; labelsDirty = true;
     for (const [id, label] of labels) {
       const place = city.places[id]!, venue = venueTable[id], soon = place.kind === 'soon';
-      const opening = venue ? openingInfo(venue.hours, at) : null, open = Boolean(opening?.open), here = state?.location === id;
-      const status = soon ? 'Coming soon' : here ? (going ? 'Leaving from here' : 'You are here') : going === id ? 'On the way' : open ? '' : opening?.opensAt ? `opens ${opening.opensAt}` : 'Closed';
+      const opening = venue ? openingInfo(venue.hours, at) : null, open = !locked.has(id) && Boolean(opening?.open), here = state?.location === id;
+      const status = soon ? 'Coming soon' : locked.has(id) ? '🔒 Locked' : here ? (going ? 'Leaving from here' : 'You are here') : going === id ? 'On the way' : open ? '' : opening?.opensAt ? `opens ${opening.opensAt}` : 'Closed';
       const dimmed = soon ? filter !== 'all' : filter === 'open' ? !open : filter !== 'all' && venue!.category !== filter && id !== 'home';
       const district = place.kind === 'home' ? home.district : venue?.district ?? '';
       label.name.textContent = shorten(nameOf(place), densityFor(size.width).venueChars); label.note.textContent = status;

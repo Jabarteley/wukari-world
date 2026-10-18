@@ -79,7 +79,15 @@ onMounted(() => {
 })
 // Opened for one game ({ game: 'oro' | 'chess' | 'weave' } or, from an address, { play: 'oro' }): Oro opens on today's word, the others are brought into view.
 const wanted = (): string => { const p = props.params as { game?: unknown; play?: unknown } | null | undefined; const game = p?.game ?? p?.play; return typeof game === 'string' ? game : '' }
-watch(() => props.params, () => { if (roomParam()) void openRoom(roomParam()); else if (clanParam()) screen.value = 'clans'; else if (wanted() === 'oro') screen.value = 'daily' }, { immediate: true })
+watch(() => props.params, () => {
+  if (roomParam()) void openRoom(roomParam())
+  else if (clanParam()) screen.value = 'clans'
+  else if (wanted() === 'oro') screen.value = 'daily'
+  else {
+    const entry = catalogEntry(wanted())
+    if (entry?.practice) void openLive(entry, { kind: 'practice', seats: entry.min })
+  }
+}, { immediate: true })
 useSection(() => (wanted() === 'chess' || wanted() === 'weave' ? { section: wanted() } : null))
 function back(): void { screen.value = 'hub'; void loadToday(); void loadDaily() }
 function onState(next: OroView): void { today.value = next }

@@ -2,6 +2,8 @@
 
 What the game does today, how to run and operate a server, every setting, and where each part of the code lives. New here? Start with the [README](../README.md), then [CONTRIBUTING.md](../CONTRIBUTING.md) and [your first change](FIRST-CHANGE.md).
 
+The optional, server-gated chapter path, its saved receipts, city locks, friend help, solo route, and release gates are documented in [Story Mode](STORY-MODE.md).
+
 ## Commands and settings
 
 Requires Node.js 22.18 or newer (24 is recommended; `.nvmrc` names it).

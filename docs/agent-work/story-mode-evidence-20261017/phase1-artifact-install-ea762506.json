@@ -1,0 +1,16 @@
+{
+  "sourceSha": "ea76250649a728172d623e80b8fb22112f570e0a",
+  "ciRun": 39090198072,
+  "artifactId": 12122561906,
+  "registeredArchiveDigest": "sha256:6e024e54d1585fd3a73d37f0901ce400dc17f48f21464114d12d98f2bf978e23",
+  "oldSourceSha": "aa3c30d860bb5bd338e2e7c63f8296a574821164",
+  "priorFilesVerified": 2658,
+  "exactFilesInstalled": 2665,
+  "oldCodeFilesRemoved": 1241,
+  "artifactAggregateSha256": "e7ece64fab384ac227a836ececc47a936b84b079d145034ae1e19f5272702bae",
+  "protectedStaticFilesPreserved": 285,
+  "protectedStaticBytes": 19493634,
+  "allCopiedBytesVerified": true,
+  "localApplicationBuild": false,
+  "scope": "Only verified old CI JS/CSS/index/manifest files were replaced in ignored dist; native and other static files were preserved. Archive digest is GitHub registered metadata, not independently recomputed from the discarded compressed archive."
+}

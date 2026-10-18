@@ -137,6 +137,7 @@ export function createGame(options: GameOptions = {}): Game {
   const pendingAction = shallowRef<PendingActionIntent | null>(client.pendingAction)
   const snapshotPhase = ref<SnapshotPhase>(client.snapshotPhase)
   const interactiveTeachingStarts = ref(client.interactiveTeachingStarts)
+  const storyMode = ref(client.storyMode)
   const cityId = ref<CityId>(client.cityId)
   const online = ref(client.online)
   const connected = computed(() => online.value)
@@ -150,6 +151,7 @@ export function createGame(options: GameOptions = {}): Game {
     pendingAction.value = client.pendingAction
     snapshotPhase.value = client.snapshotPhase
     interactiveTeachingStarts.value = client.interactiveTeachingStarts
+    storyMode.value = client.storyMode
     cityId.value = client.cityId
     if (withOnline) online.value = client.online
   }
@@ -178,7 +180,7 @@ export function createGame(options: GameOptions = {}): Game {
     const catalogue = contentFor(city)
     const now = client.serverNow()
     return {
-      ...viewLife(life, { now, cityId: city, interactiveTeachingStarts: interactiveTeachingStarts.value }),
+      ...viewLife(life, { now, cityId: city, interactiveTeachingStarts: interactiveTeachingStarts.value, storyMode: storyMode.value }),
       cityId: city, city: clientCity(city), connected: online.value, link: link.value, session: session.value, net: net.value, storage: storage.value,
       // The life's own name (the server keeps it equal to the session nickname), so a rename shows as soon as the next state arrives.
       name: life.name || client.identity.name, now,

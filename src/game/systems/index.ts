@@ -13,6 +13,7 @@ import { registerSystem } from '../registry.ts';
 import achievements from './achievements.ts';
 import episodes from './episodes.ts';
 import projects from './projects.ts';
+import story from './story.ts';
 import livingWorld from './living-world.ts';
 import market from './market.ts';
 import unilagStudent from '../../campus/unilag/student.ts';
@@ -22,7 +23,7 @@ import { installProgressionMissions } from './missions.ts';
 
 installHomewardRules(homewardRules);
 
-export const PROGRESSION_SYSTEMS = [achievements, episodes, projects];
+export const PROGRESSION_SYSTEMS = [achievements, episodes, projects, story];
 export const CAMPUS_SYSTEMS = [unilagStudent, unilagCommunity, unilagShuttle];
 for (const system of PROGRESSION_SYSTEMS) registerSystem(system);
 registerSystem(livingWorld);

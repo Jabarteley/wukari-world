@@ -523,7 +523,7 @@ function relocate(state: LifeState, payload: Record<string, unknown>, ctx: LifeC
  * venue of the way they came (flight: the airport, road: the motor park or terminal, rail: the station; ticketArrivalVenue), else the city's public
  * arrival place. `venue`: a public venue to arrive at instead (a friend's ping, systems/social.ts 'join').
  */
-export function arriveInCity(state: LifeState, active: Pick<IntercityAction, 'id'> & Partial<Pick<IntercityAction, 'mode'>>, ctx: LifeContext, venue?: string): void {
+export function arriveInCity(state: LifeState, active: Pick<IntercityAction, 'id'> & Partial<Pick<IntercityAction, 'mode'>>, ctx: LifeContext, venue?: string | { venue: string; spot?: string }): void {
   const e = state.estate, from = e.city, to = active.id, now = nowOf(state, ctx);
   // The home left behind is put away exactly as it is: the house stays yours.
   const { city, away, nudged, home, homeAt, ...residence } = e;
@@ -538,8 +538,9 @@ export function arriveInCity(state: LifeState, active: Pick<IntercityAction, 'id
   emit(state, 'city.changed', { from, to }, ctx);
   emit(state, 'home.owned', { living: e.living === 'own', house }, ctx);
   emit(state, 'house.moved', { id: e.living === 'own' ? 'own' : house, from: 'away', cost: 0, house }, ctx);
-  const destination = venue ?? (kept?.lga ? 'home' : ticketArrivalVenue(to, active.mode, (place) => !place.cities && openAt(place.hours, now)).id);
-  if (!destination || !arrive(state, destination, ctx, { mode: null })) throw new TypeError('The destination city needs a public arrival venue');
+  const requested = typeof venue === 'object' ? venue.venue : venue;
+  const destination = requested ?? (kept?.lga ? 'home' : ticketArrivalVenue(to, active.mode, (place) => !place.cities && openAt(place.hours, now)).id);
+  if (!destination || !arrive(state, destination, ctx, { mode: null, ...(typeof venue === 'object' && venue.spot !== undefined ? { spot: venue.spot } : {}) })) throw new TypeError('The destination city needs a public arrival venue');
   const homeName = e.home && e.home !== to ? cityName(e.home) ?? e.home : null;
   state.message = `Welcome to ${cityName(to) ?? to}. ${kept?.lga ? (e.home === to ? 'You are home.' : 'You are back at your house here.') : `You are visiting${homeName ? `: your home is in ${homeName}` : ''}.`}`;
 }

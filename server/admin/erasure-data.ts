@@ -1,3 +1,4 @@
+import { forgetStoryHelp } from '../story/coop.ts'
 /**
  * OWNER: admin
  *
@@ -230,7 +231,7 @@ function preflightSharedIntegrity(ctx: RouteContext, db: Db, actors: ReadonlySet
   const known = new Set([
     'version', 'sessions', 'archivedLives', 'social', 'civic', 'support', 'moderation', 'growth', 'visits', 'commerce', 'business', 'market', 'legacy',
     'trust', 'trustChecks', 'street', 'realValue', 'showcase', 'politics', 'campus', 'accounts', 'accountDevices', 'accountLog', 'walletEffects', 'livingWorld', 'clans',
-    'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', 'arenapots', 'agentarena', 'oauth', 'arenadaily', 'spaces', '$store',
+    'storyHelp', 'agentMemory', 'agents', 'records', 'adminAudit', 'adminSanctions', 'adminNotes', 'prayers', 'ownerActs', 'stages', 'agentCalls', 'playerErasure', 'arenareplays', 'arenapots', 'agentarena', 'oauth', 'arenadaily', 'spaces', '$store',
   ])
   const collectionNames = (db.$store as (typeof db.$store & { collectionNames?: () => readonly string[] }) | undefined)?.collectionNames?.() ?? []
   const names = new Set([...Object.keys(db), ...collectionNames])
@@ -721,6 +722,7 @@ export function eraseData(ctx: RouteContext, db: Db, plan: ErasurePlan): Erasure
 
   if (db.social) scrubSocial(ctx, db.social, ids)
   scrubVisits(db, ids)
+  forgetStoryHelp(db, ids)
   scrubGrowth(db, ids)
   scrubCivic(db, ids)
   scrubPolitics(db, ids)

@@ -36,6 +36,7 @@ import { createWorldData } from './world-data.ts';
 
 /** What the host passes in: the city to open and what to do when the player picks something on the map. */
 export interface CityViewOptions {
+  venueAccess?: () => readonly { id: string; status: string }[];
   cityId?: string
   onSelectVenue?: (venueId: string) => void
   onSelectGov?: () => void
@@ -124,7 +125,7 @@ export interface CityView {
 const PREFERENCE_KEY = 'joinallworld-map';
 const RELEASE_MS = 120000;
 
-export function createCityView(container: HTMLElement, { cityId: firstCity = 'lagos', ladder, onSelectVenue, onSelectGov, onSelectNeighbour, onSelectLga, onSelectHouse, onSelectPeople, fetchJson = null, onTripDue, onNotice = () => {} }: CityViewOptions = {}): CityView {
+export function createCityView(container: HTMLElement, { cityId: firstCity = 'lagos', ladder, venueAccess, onSelectVenue, onSelectGov, onSelectNeighbour, onSelectLga, onSelectHouse, onSelectPeople, fetchJson = null, onTripDue, onNotice = () => {} }: CityViewOptions = {}): CityView {
   let cityId = firstCity, state: MapState | null = null, player: unknown = null, impl: MapImpl | null = null, kind: CityViewKind | null = null, layer = 'city', shown = false, mounting = 0, releaseTimer: ReturnType<typeof setTimeout> | null = null, released = false, brokenGl = false;
   let simple = false, remounting = false;
   try { simple = globalThis.localStorage?.getItem(PREFERENCE_KEY) === '2d' || new URLSearchParams(globalThis.location.search).get('map') === '2d'; } catch { simple = false; }
@@ -169,7 +170,7 @@ export function createCityView(container: HTMLElement, { cityId: firstCity = 'la
   }
 
   const onSelectContext = (land: { id: string; name: string; planned: boolean }): void => { if (land.planned) onNotice(`${land.name}: opening soon.`); };
-  const callbacks = { onSelectVenue, onSelectGov, onSelectNeighbour, onSelectLga, onSelectHouse, onSelectPeople, onSelectContext };
+  const callbacks = { venueAccess, onSelectVenue, onSelectGov, onSelectNeighbour, onSelectLga, onSelectHouse, onSelectPeople, onSelectContext };
   async function mount() {
     const ticket = ++mounting;
     const want3d = !simple && !brokenGl && hasCityPack(cityId) && webglAvailable();

@@ -27,6 +27,7 @@ function harness({ online = true } = {}) {
   let life = createLife({ name: 'Ada' }), up = online, session: OwnSession | null = { id: 'public-1', name: 'Ada' };
   let revision = 1, actionSnapshot: LifeState | null = null, actionCode = 'started', lifeFailure: { path: string; status: number } | null = null;
   let teachingField: unknown, teachingFieldPresent = false;
+  let storyField: unknown, storyFieldPresent = false;
   let heldLife: { started: () => void; release: () => void; waiting: Promise<void> } | null = null;
   const memory = new Map();
   const fetch = async (path: string, options: RequestInit = {}) => {
@@ -37,11 +38,12 @@ function harness({ online = true } = {}) {
       if (lifeFailure?.path === path) return json(lifeFailure.status, { error: lifeFailure.status === 401 ? 'session_expired' : 'city_moved' });
       const answer: Record<string, unknown> = { state: life, rev: revision, serverTime: 5000 };
       if (teachingFieldPresent) answer.interactiveTeachingStarts = teachingField;
+      if (storyFieldPresent) answer.storyMode = storyField;
       const held = heldLife; heldLife = null;
       if (held) { held.started(); await held.waiting; }
       return json(200, answer);
     }
-    if (path === '/api/action') { life = actionSnapshot ?? { ...life, cash: life.cash - 400, message: 'Travelling to The Library.' }; actionSnapshot = null; revision += 1; return json(200, { ok: true, code: actionCode, state: life, rev: revision, serverTime: 5000, ...(teachingFieldPresent ? { interactiveTeachingStarts: teachingField } : {}) }); }
+    if (path === '/api/action') { life = actionSnapshot ?? { ...life, cash: life.cash - 400, message: 'Travelling to The Library.' }; actionSnapshot = null; revision += 1; return json(200, { ok: true, code: actionCode, state: life, rev: revision, serverTime: 5000, ...(teachingFieldPresent ? { interactiveTeachingStarts: teachingField } : {}), ...(storyFieldPresent ? { storyMode: storyField } : {}) }); }
     return json(404, { error: 'not_found' });
   };
   const client = createClient({ fetch, now: () => 1000, randomUUID: () => '11111111-1111-4111-8111-111111111111', setTimeout: () => 0, clearTimeout: () => {},
@@ -52,6 +54,7 @@ function harness({ online = true } = {}) {
     setUp: (value: boolean) => { up = value; },
     dropSession: () => { session = null; },
     setTeachingField: (value: unknown, present = true) => { teachingField = value; teachingFieldPresent = present; },
+    setStoryField: (value: unknown, present = true) => { storyField = value; storyFieldPresent = present; },
     setSession: (id: string, name: string) => { session = { id, name }; },
     setLife: (value: LifeState, nextRevision: number) => { life = value; revision = nextRevision; },
     setActionSnapshot: (value: LifeState, code = 'started') => { actionSnapshot = value; actionCode = code; },
@@ -66,6 +69,35 @@ function harness({ online = true } = {}) {
     },
   };
 }
+
+test('Story mode capability belongs to an accepted live snapshot and is never restored from storage', async () => {
+  const h = harness()
+  h.setStoryField(true)
+  assert.equal(await h.client.connect(), true)
+  assert.equal(h.client.storyMode, true)
+  const saved = JSON.parse(h.memory.get(STORAGE_KEY) ?? 'null') as { state?: Record<string, unknown>; storyMode?: unknown }
+  assert.equal(Object.hasOwn(saved, 'storyMode'), false)
+  assert.equal(Object.hasOwn(saved.state ?? {}, 'storyMode'), false)
+  h.setStoryField('true')
+  await h.client.refresh()
+  assert.equal(h.client.storyMode, false)
+  h.setStoryField(true)
+  await h.client.refresh()
+  const held = h.holdNextLife(), old = h.client.refresh()
+  await held.began
+  h.setStoryField(undefined, false)
+  h.setSession('public-2', 'Bola')
+  assert.equal(await h.client.connect(), true)
+  held.release()
+  await old
+  assert.equal(h.client.storyMode, false, 'an older actor response cannot restore the capability')
+  h.setStoryField(true)
+  await h.client.refresh()
+  assert.equal(h.client.storyMode, true)
+  h.setUp(false)
+  assert.equal(await h.client.connect(), false)
+  assert.equal(h.client.storyMode, false)
+})
 
 test('offline client is read-only: no request, no local grant, state unchanged', async () => {
   const h = harness({ online: false });

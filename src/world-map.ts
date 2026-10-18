@@ -5,13 +5,14 @@
  * is the door the host (src/life-main.js) knows, kept so the host does not change when the map does.
  *
  * Contract:
- *   createWorldMap(container, { onOpenCity(cityId), onEnterCity(cityId), onTravel(to, mode), routes(), held() })
+ *   createWorldMap(container, { onOpenCity(cityId), onEnterCity(cityId), onTravel(to, mode), routes(), held(), story() })
  *     → { setCity(cityId), setState(state), refresh(), resize(), destroy(), … }
  *   onOpenCity   the player chose the city they are already in: show its city map
  *   onEnterCity  the player chose another city they may enter (see cityAccess in src/map3d/regions.ts)
  *   onTravel     the player set out for another city along a link (the 'estate.relocate' action)
  *   routes()     the life's own view of its links (view.estate.links), with the server's reason when blocked
  *   held()       the cities in which this player already has a life (session.cities)
+ *   story()      the already-derived Story view used to lock city pins and cards without loading game rules
  *   setState     the life's state: a trip between cities is drawn where the server's timer says it is
  *
  * The region registry (src/map3d/regions.ts) says what is open, planned or coming soon; the map

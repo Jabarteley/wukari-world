@@ -271,7 +271,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
   // One character on several devices: a change a player would see is announced to every socket of that character (host-context.ts lifeAnnouncer).
   const lifeSync = lifeAnnouncer((publicId, frame) => ctx.push(publicId, frame));
   const retention = retentionPolicy(env);
-  const authority = lifeAuthority({ retention, now, receipts, changed: lifeSync.note, interactiveTeachingStarts });
+  const authority = lifeAuthority({ retention, now, receipts, changed: lifeSync.note, interactiveTeachingStarts, storyMode: () => ctx.checks.setting?.('storyMode') === true });
   const { act, playerAct } = authority, settle = open ? open.settle(authority.settle) : authority.settle;
   /** True from a failed write of the data file until the next successful one. Reads still work then; saving does not. */
   const storageFailing = () => { try { return store.stats?.().failing === true; } catch { return false; } };

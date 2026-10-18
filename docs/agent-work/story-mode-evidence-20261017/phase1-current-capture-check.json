@@ -1,0 +1,129 @@
+{
+  "createdAt": "2026-10-18T02:24:13+00:00",
+  "sourceSha": "aa3c30d860bb5bd338e2e7c63f8296a574821164",
+  "scope": "Independent file signature, native pixel dimensions, file identity and SHA-256 checks; no image edits or additional browser actions. Visual claims remain the browser operator observations.",
+  "captures": [
+    {
+      "file": "current-aa3-kaduna-story-baseline-320.png",
+      "width": 320,
+      "height": 740,
+      "sha256": "de88409b5f919e02c5701ef3c9e9a4f27abdbb4119bdf55672aa78d887e96127",
+      "bytes": 46977
+    },
+    {
+      "file": "current-aa3-kaduna-story-header-320.png",
+      "width": 320,
+      "height": 740,
+      "sha256": "c16b446f178e09dd180eee33045512d7cc733029748c2aceccae411597f3c1d7",
+      "bytes": 55369
+    },
+    {
+      "file": "current-aa3-kaduna-free-320.png",
+      "width": 320,
+      "height": 740,
+      "sha256": "c46379e7873554ff17002fc2ed33f6980d63c9875a012e1c9e07d0cf13a51377",
+      "bytes": 55097
+    },
+    {
+      "file": "current-aa3-kaduna-free-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "7676f84169333e373890466c1b78a32e3bc8f1d99abcff70e7fdbec3bc411fbb",
+      "bytes": 76380
+    },
+    {
+      "file": "current-aa3-kaduna-free-map-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "433d97ec2bea4bcebddfa8dadb2b3d7426757f405cef182cb47f80514a4ad9e5",
+      "bytes": 169004
+    },
+    {
+      "file": "current-aa3-kaduna-free-hospital-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "0ac6bb63679558d776d0e6167365688f5afb780ba81892238f0882a4e5d11863",
+      "bytes": 156677
+    },
+    {
+      "file": "current-aa3-kaduna-story-restored-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "7a97de363d722ce622dbcfb2a91b9cc8da7896aa0edce76e33dffbd40c715333",
+      "bytes": 77514
+    },
+    {
+      "file": "current-aa3-kano-chapter4-retained-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "1eb28a2b2f89f1e20040ad7101f4eef05887730a7eddaf4b416de8c37ed30552",
+      "bytes": 43763
+    },
+    {
+      "file": "current-aa3-kaduna-story-hospital-locked-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "28232a4c7ec95f081d4f4f37d818eb5d11972e5690a1388037c7f806ce3b8ce3",
+      "bytes": 149630
+    },
+    {
+      "file": "current-aa3-kaduna-story-map-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "9d4cd06bec8ccefe1e914082e6054f75f8daaa084067ffe5bc458efa84251e04",
+      "bytes": 167949
+    },
+    {
+      "file": "current-aa3-kaduna-story-map-320.png",
+      "width": 320,
+      "height": 740,
+      "sha256": "d1663c61774bea7b6bb68f785cade61465470d843103199e97ad6cddcf4dd515",
+      "bytes": 138580
+    },
+    {
+      "file": "current-aa3-helper-story-baseline-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "16577a69da60e8e2af7954835b11a1af88aa11aeabe6ae5ceee13e7e404fd6e5",
+      "bytes": 74312
+    },
+    {
+      "file": "current-aa3-helper-keepsakes-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "826a72005d95ea3a31c3c2f0b67bdbde0d00376b36842fff7d4db633bfb3080a",
+      "bytes": 65976
+    },
+    {
+      "file": "current-aa3-helper-country-count-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "e23cb70b7ade9e91c01e044e00abf4eb26348834291e180c3dc68b5c39bda42c",
+      "bytes": 92482
+    },
+    {
+      "file": "current-aa3-helper-kano-locked-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "2978b0f8b6422ff0117b3f2a8230b10122709a4a3d0ac2e9b1e7293885e892dc",
+      "bytes": 152559
+    },
+    {
+      "file": "current-aa3-nairobi-story-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "91a49642f68e454643a7274fd3d43c8082b7a4a367b6fddefd7cce28deaa5891",
+      "bytes": 75088
+    },
+    {
+      "file": "current-aa3-nairobi-tables-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "feb09a74f40fa4dfa18223976f0518ef13db7499c501e331789c53d443245024",
+      "bytes": 39813
+    }
+  ],
+  "count": 17,
+  "totalBytes": 1637170,
+  "pass": true
+}

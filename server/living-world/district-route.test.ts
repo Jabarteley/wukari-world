@@ -5,8 +5,8 @@ import { resolveDistrictRoute } from './district-route.ts'
 import type { StreetAssetReader } from '../street/types.ts'
 
 const city = 'lagos'
-const version = 'street-v1-c0dd6f6101f6f562'
-const tileFile = 'pack-eab52104e1de300cccc38b649ce561fb1db87e7158676ec3c705701f8e60b52a.txt'
+const version = 'street-v1-ded0fd03cff896f8'
+const tileFile = 'pack-32435778c43cdd87fd7971570668850ff4cb042a669d449babcb8bf63905458f.txt'
 type Manifest = { city: string; version: string; tiles: { tile: { x: number; z: number }; sha256: string; packKey?: string; packSha256?: string }[]; [key: string]: unknown }
 
 async function publishedFixture(currentMode: 'pointer' | 'full' = 'pointer') {

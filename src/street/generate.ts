@@ -2,7 +2,7 @@ import { inLga } from '../map3d/lga.ts'
 import { buildNetwork } from '../map3d/roads.ts'
 import type { CityPack } from '../map3d/types.ts'
 import { GROUND_CELL, mapPointToMetres, QUANTUM, tileKey, tileOf, tileOrigin, TILE_METRES } from './frame.ts'
-import type { DoorTarget, EstateGateSeed, GenerationIssue, MetrePoint, SourceKind, StreetDoor, StreetSource, TileCoord, WireStreetTile, EstatePortalMapping } from './types.ts'
+import type { DoorTarget, EstateGateSeed, GenerationIssue, MappedArea, MetrePoint, SourceKind, StreetDoor, StreetSource, TileCoord, WireStreetTile, EstatePortalMapping } from './types.ts'
 
 interface Segment { id: string; name: string; source: SourceKind; width: number; bridge: boolean; a: MetrePoint; b: MetrePoint }
 interface Building { id: string; source: 'generated-fabric' | 'generated-venue'; height: number; points: MetrePoint[] }
@@ -39,7 +39,7 @@ function polygonClip(points: readonly MetrePoint[], origin: MetrePoint): MetrePo
 }
 
 /** Offline only: nothing imports map loaders here, and decorate() is never executed. */
-export function createStreetSource(pack: CityPack, options: { version: string; venues: readonly string[]; gates?: readonly EstateGateSeed[]; roadSource?: SourceKind; maxTiles?: number; estatePortals?: boolean }): StreetSource {
+export function createStreetSource(pack: CityPack, options: { version: string; venues: readonly string[]; gates?: readonly EstateGateSeed[]; roadSource?: SourceKind; maxTiles?: number; estatePortals?: boolean; mapped?: MappedArea }): StreetSource {
   mapPointToMetres(pack, { x: 0, z: 0 })
   const scale = 1000 / (pack.frame?.unitsPerKm ?? 10), issues: GenerationIssue[] = []
   const roads = pack.roads.filter(road => { const valid = road.points.length >= 2 && road.points.every(([x, z]) => Number.isFinite(x) && Number.isFinite(z)); if (!valid) issues.push({ code: 'invalid-road', id: road.id, detail: 'Invalid centreline omitted.' }); return valid })
@@ -55,7 +55,11 @@ export function createStreetSource(pack: CityPack, options: { version: string; v
       for (let x = -1; x <= 1; x++) for (let z = -1; z <= 1; z++) { const tile = { x: at.x + x, z: at.z + z }, key = tileKey(tile); if (visited.has(key) || !clipped(segment.a, segment.b, tileOrigin(tile), segment.width / 2 + 10)) continue; visited.add(key); addTile(tile); const held = index.get(key) ?? []; held.push(segment); index.set(key, held) }
     }
   }
-  network.roads.forEach((road, roadIndex) => { for (let i = 1; i < road.points.length; i++) { const a = road.points[i - 1], b = road.points[i]; if (a && b) addSegment({ id: `road:${pack.id}:${roadIndex}`, name: road.name.slice(0, 160), source: options.roadSource ?? 'authored', width: road.trunk ? 18 : road.major ? 12 : 8, bridge: Boolean(road.bridge), a: { x: a.x * scale, z: a.z * scale }, b: { x: b.x * scale, z: b.z * scale } }) } })
+  const mappedBox = options.mapped?.box, excluded = new Set((options.mapped?.exclude ?? []).map(tileKey))
+  const inMapped = (point: MetrePoint): boolean => Boolean(mappedBox && point.x >= mappedBox.x0 && point.x <= mappedBox.x1 && point.z >= mappedBox.z0 && point.z <= mappedBox.z1) && !excluded.has(tileKey(tileOf(point)))
+  // Inside the mapped area the real roads replace the map's (which stay in the network: door placement and routes still use them).
+  for (const road of options.mapped?.roads ?? []) for (let i = 1; i < road.points.length; i++) { const a = road.points[i - 1], b = road.points[i]; if (a && b && finitePoint(a) && finitePoint(b) && road.width > 0) addSegment({ id: road.id, name: road.name, source: 'mapped', width: road.width, bridge: road.bridge, a, b }) }
+  network.roads.forEach((road, roadIndex) => { for (let i = 1; i < road.points.length; i++) { const a = road.points[i - 1], b = road.points[i]; if (a && b && (!(inMapped({ x: a.x * scale, z: a.z * scale }) && inMapped({ x: b.x * scale, z: b.z * scale })) || [...excluded].some(key => { const [x, z] = key.split('_').map(Number); return clipped({ x: a.x * scale, z: a.z * scale }, { x: b.x * scale, z: b.z * scale }, tileOrigin({ x: x!, z: z! })) !== null }))) addSegment({ id: `road:${pack.id}:${roadIndex}`, name: road.name.slice(0, 160), source: options.roadSource ?? 'authored', width: road.trunk ? 18 : road.major ? 12 : 8, bridge: Boolean(road.bridge), a: { x: a.x * scale, z: a.z * scale }, b: { x: b.x * scale, z: b.z * scale } }) } })
   const routeIds = new Map<string, string>()
   function addDoor(id: string, routeId: string, centre: MetrePoint, target: DoorTarget): void {
     const gate = network.places[routeId]?.gate
@@ -106,20 +110,47 @@ export function createStreetSource(pack: CityPack, options: { version: string; v
     portals.push({ lga: seed.lga, estate: seed.estate, requested: seed.point, anchor: approach, roadId: best.road.id, roadLga, crossLga: roadLga !== seed.lga, displacementMetres: Math.hypot(approach.x - seed.point.x, approach.z - seed.point.z) })
   }
 
+  // Real buildings: any that would cover a door, its approach or a generated access path is left out (the way in stays walkable).
+  // Each is owned by the tile holding its centroid (drawn once, whole) and blocks the ground of every tile its bounds reach.
+  interface Mapped { id: string; ring: MetrePoint[]; height: number; roof?: string; levels?: number; min: MetrePoint; max: MetrePoint }
+  const access = segments.filter(segment => segment.source === 'generated')
+  const mappedOwned = new Map<string, Mapped[]>(), mappedCovering = new Map<string, Mapped[]>()
+  let mappedDropped = 0
+  for (const b of options.mapped?.buildings ?? []) {
+    const ring = b.ring.filter(finitePoint); if (ring.length < 3) continue
+    const xs = ring.map(p => p.x), zs = ring.map(p => p.z), min = { x: Math.min(...xs), z: Math.min(...zs) }, max = { x: Math.max(...xs), z: Math.max(...zs) }
+    if (max.x - min.x > TILE_METRES * 2 || max.z - min.z > TILE_METRES * 2) { mappedDropped++; continue }
+    const blocksDoor = doors.some(door => inside(door.at, ring) || inside(door.approach, ring)) || access.some(segment => {
+      if (Math.max(segment.a.x, segment.b.x) < min.x - 2 || Math.min(segment.a.x, segment.b.x) > max.x + 2 || Math.max(segment.a.z, segment.b.z) < min.z - 2 || Math.min(segment.a.z, segment.b.z) > max.z + 2) return false
+      const steps = Math.ceil(Math.hypot(segment.b.x - segment.a.x, segment.b.z - segment.a.z))
+      for (let i = 0; i <= steps; i++) { const point = { x: segment.a.x + (segment.b.x - segment.a.x) * i / Math.max(1, steps), z: segment.a.z + (segment.b.z - segment.a.z) * i / Math.max(1, steps) }; if (inside(point, ring)) return true }
+      return false
+    })
+    let touchesExcluded = false
+    for (let x = tileOf(min).x; x <= tileOf(max).x; x++) for (let z = tileOf(min).z; z <= tileOf(max).z; z++) if (excluded.has(tileKey({ x, z }))) touchesExcluded = true
+    if (blocksDoor || touchesExcluded) { mappedDropped++; continue }
+    const centroid = { x: xs.reduce((a, v) => a + v, 0) / xs.length, z: zs.reduce((a, v) => a + v, 0) / zs.length }
+    const entry: Mapped = { id: b.id, ring, height: Math.max(1, Math.min(400, b.height)), ...(b.roof && /^#[0-9a-f]{6}$/.test(b.roof) ? { roof: b.roof } : {}), ...(b.levels ? { levels: Math.max(1, Math.min(200, Math.round(b.levels))) } : {}), min, max }
+    const owner = tileOf(centroid), ownerKey = tileKey(owner); mappedOwned.set(ownerKey, [...(mappedOwned.get(ownerKey) ?? []), entry]); addTile(owner)
+    for (let x = tileOf(min).x; x <= tileOf(max).x; x++) for (let z = tileOf(min).z; z <= tileOf(max).z; z++) { const key = tileKey({ x, z }); mappedCovering.set(key, [...(mappedCovering.get(key) ?? []), entry]) }
+  }
+  if (mappedDropped) issues.push({ code: 'mapped-building-dropped', id: pack.id, detail: `${mappedDropped} real buildings left out: over two tiles across, or covering a door, its approach or an access path.` })
+
   function tile(at: TileCoord): WireStreetTile {
     const origin = tileOrigin(at), nearby = index.get(tileKey(at)) ?? [], q = (point: MetrePoint): number[] => [Math.round(point.x * 100) - origin.x * 100, Math.round(point.z * 100) - origin.z * 100]
     const buildings = siteBuildings.filter(building => polygonClip(building.points, origin).length >= 3)
     for (let gx = Math.floor((origin.x - 8) / 24); gx <= Math.floor((origin.x + 136) / 24); gx++) for (let gz = Math.floor((origin.z - 8) / 24); gz <= Math.floor((origin.z + 136) / 24); gz++) {
       const centre = { x: (gx + 0.5) * 24, z: (gz + 0.5) * 24 }, map = { x: centre.x / scale, z: centre.z / scale }, fabric = pack.fabric.find(area => map.x >= area.box[0] && map.x <= area.box[2] && map.z >= area.box[1] && map.z <= area.box[3] && (!area.circle || Math.hypot(map.x - area.circle[0], map.z - area.circle[1]) <= area.circle[2]))
-      if (!fabric || fabric.style === 'green' || hash(`${pack.id}:${gx}:${gz}`) / 0xffffffff > Math.min(0.8, 0.5 + (fabric.keep ?? 0)) || !onLand(centre) || nearby.some(road => distance(centre, road.a, road.b) < road.width / 2 + 10) || siteBuildings.some(building => distance(centre, building.points[0] ?? centre, building.points[2] ?? centre) < 12)) continue
+      if (!fabric || inMapped(centre) || fabric.style === 'green' || hash(`${pack.id}:${gx}:${gz}`) / 0xffffffff > Math.min(0.8, 0.5 + (fabric.keep ?? 0)) || !onLand(centre) || nearby.some(road => distance(centre, road.a, road.b) < road.width / 2 + 10) || siteBuildings.some(building => distance(centre, building.points[0] ?? centre, building.points[2] ?? centre) < 12)) continue
       const points = [{ x: centre.x - 6, z: centre.z - 5 }, { x: centre.x + 6, z: centre.z - 5 }, { x: centre.x + 6, z: centre.z + 5 }, { x: centre.x - 6, z: centre.z + 5 }]
       if (points.every(onLand)) buildings.push({ id: `fabric:${pack.id}:${gx}:${gz}`, source: 'generated-fabric', height: fabric.style === 'towers' ? 30 : fabric.style === 'dense' ? 9 : 6, points })
     }
-    const ground = Array<number>(128).fill(0)
-    for (let row = 0; row < 64; row++) for (let col = 0; col < 64; col++) { const point = { x: origin.x + (col + 0.5) * GROUND_CELL, z: origin.z + (row + 0.5) * GROUND_CELL }; if ((onLand(point) || nearby.some(road => road.bridge && distance(point, road.a, road.b) <= road.width / 2)) && !buildings.some(building => inside(point, building.points))) { const word = row * 2 + Math.floor(col / 32); ground[word] = ((ground[word] ?? 0) | (1 << (col % 32))) >>> 0 } }
+    const ground = Array<number>(128).fill(0), covering = mappedCovering.get(tileKey(at)) ?? []
+    for (let row = 0; row < 64; row++) for (let col = 0; col < 64; col++) { const point = { x: origin.x + (col + 0.5) * GROUND_CELL, z: origin.z + (row + 0.5) * GROUND_CELL }; if ((onLand(point) || nearby.some(road => road.bridge && distance(point, road.a, road.b) <= road.width / 2)) && !buildings.some(building => inside(point, building.points)) && !covering.some(building => point.x >= building.min.x && point.x <= building.max.x && point.z >= building.min.z && point.z <= building.max.z && inside(point, building.ring))) { const word = row * 2 + Math.floor(col / 32); ground[word] = ((ground[word] ?? 0) | (1 << (col % 32))) >>> 0 } }
     return { v: 1, city: pack.id, version: options.version, tile: [at.x, at.z], ground,
-      roads: nearby.flatMap(segment => { const points = clipped(segment.a, segment.b, origin); return points ? [{ id: segment.id, name: segment.name, source: segment.source, width: Math.round(segment.width * QUANTUM), bridge: segment.bridge, points: points.flatMap(q) }] : [] }),
-      buildings: buildings.flatMap(building => { const points = polygonClip(building.points, origin); return points.length >= 3 ? [{ id: building.id, source: building.source, height: Math.round(building.height * 100), footprint: points.flatMap(q) }] : [] }),
+      roads: nearby.filter(segment => excluded.has(tileKey(at)) ? segment.source !== 'mapped' : !(mappedBox && segment.source !== 'mapped' && segment.source !== 'generated' && inMapped({ x: (segment.a.x + segment.b.x) / 2, z: (segment.a.z + segment.b.z) / 2 }))).flatMap(segment => { const points = clipped(segment.a, segment.b, origin); return points ? [{ id: segment.id, name: segment.name, source: segment.source, width: Math.round(segment.width * QUANTUM), bridge: segment.bridge, points: points.flatMap(q) }] : [] }),
+      buildings: [...buildings.flatMap(building => { const points = polygonClip(building.points, origin); return points.length >= 3 ? [{ id: building.id, source: building.source, height: Math.round(building.height * 100), footprint: points.flatMap(q) }] : [] }),
+        ...(mappedOwned.get(tileKey(at)) ?? []).map(building => ({ id: building.id, source: 'mapped' as const, height: Math.round(building.height * 100), footprint: building.ring.flatMap(q), ...(building.roof ? { roof: building.roof } : {}), ...(building.levels ? { levels: building.levels } : {}) }))],
       doors: doors.filter(door => tileKey(tileOf(door.approach)) === tileKey(at)).map((door): WireStreetTile['doors'][number] => { const where = q(door.at), approach = q(door.approach); return { id: door.id, target: door.target, source: 'generated', at: [where[0] ?? 0, where[1] ?? 0], approach: [approach[0] ?? 0, approach[1] ?? 0] } }) }
   }
   return { city: pack.id, version: options.version, tiles: [...coords.values()].sort((a, b) => a.x - b.x || a.z - b.z), doors, issues, portals, tile,
@@ -127,4 +158,4 @@ export function createStreetSource(pack: CityPack, options: { version: string; v
 }
 
 /** Conservative public projected mask/road/box recipe: public venues plus one own estate door. */
-export const estimatedTileTriangles = (tile: WireStreetTile): number => 64 * 64 * 2 + tile.roads.reduce((sum, road) => sum + Math.max(0, road.points.length / 2 - 1) * 2, 0) + tile.buildings.length * 160 + (tile.doors.filter(door => door.target.kind === 'venue').length + Number(tile.doors.some(door => door.target.kind === 'estate'))) * 24
+export const estimatedTileTriangles = (tile: WireStreetTile): number => 64 * 64 * 2 + tile.roads.reduce((sum, road) => sum + Math.max(0, road.points.length / 2 - 1) * 2, 0) + tile.buildings.reduce((sum, building) => sum + (building.source === 'mapped' ? (building.footprint.length / 2) * 10 + 40 : 160), 0) + (tile.doors.filter(door => door.target.kind === 'venue').length + Number(tile.doors.some(door => door.target.kind === 'estate'))) * 24

@@ -4,11 +4,11 @@ import { globalPoint, tileKey } from '../../src/street/frame.ts'
 import type { MetrePoint, TileCoord } from '../../src/street/types.ts'
 
 const CITY = 'lagos'
-const VERSION = 'street-v1-c0dd6f6101f6f562'
-const MANIFEST_SHA256 = '76cd9b6db8e79fc0c5e1be3aea193b32430a6cc9cdda694f96df8b5f1cf597c3'
+const VERSION = 'street-v1-ded0fd03cff896f8'
+const MANIFEST_SHA256 = 'ebbf481808408ebc5134dd30df1fbb6152bb10f7374864a6db69e52d462e6800'
 const TILE: TileCoord = { x: -9, z: -5 }
-const TILE_SHA256 = '846c38cf8c80a2651e344b29779a3a6cd3d2246e821ffe9a01e440c4a321ab2b'
-const PACK_SHA256 = 'eab52104e1de300cccc38b649ce561fb1db87e7158676ec3c705701f8e60b52a'
+const TILE_SHA256 = '73e836b2712254d5d32a02e2238cdc8670f346fb2c2a80a2fef0fcc8ac2d8911'
+const PACK_SHA256 = '32435778c43cdd87fd7971570668850ff4cb042a669d449babcb8bf63905458f'
 const ROAD_ID = 'road:lagos:15'
 const ROAD_START = { x: 0, z: 32.53 }
 const ROAD_END = { x: 128, z: 50.56 }

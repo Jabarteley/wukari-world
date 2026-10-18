@@ -54,8 +54,14 @@ function decodeTile(value: unknown, expected: { city: string; version: string; t
     return { id: road.id, name: road.name, width: road.width / QUANTUM, bridge: road.bridge, source: source(road.source), points: points(road.points, 2) }
   })
   const buildings: TileBuilding[] = value.buildings.map(building => {
-    if (!object(building) || !token(building.id) || !integer(building.height, 100, 10000) || (building.source !== 'generated-fabric' && building.source !== 'generated-venue')) throw Error('Invalid street building')
-    return { id: building.id, height: building.height / QUANTUM, source: building.source, footprint: points(building.footprint, 3, 64) }
+    if (!object(building) || !token(building.id) || !integer(building.height, 100, 40000) || (building.source !== 'generated-fabric' && building.source !== 'generated-venue' && building.source !== 'mapped')) throw Error('Invalid street building')
+    if (building.source !== 'mapped') {
+      if (!integer(building.height, 100, 10000)) throw Error('Invalid street building')
+      return { id: building.id, height: building.height / QUANTUM, source: building.source, footprint: points(building.footprint, 3, 64) }
+    }
+    // A real footprint: the whole outline, up to one tile beyond the edges; optional sampled roof colour and storeys.
+    if ((building.roof !== undefined && (typeof building.roof !== 'string' || !/^#[0-9a-f]{6}$/.test(building.roof))) || (building.levels !== undefined && !integer(building.levels, 1, 200))) throw Error('Invalid mapped street building')
+    return { id: building.id, height: building.height / QUANTUM, source: 'mapped', footprint: points(building.footprint, 3, 256, 12800), ...(building.roof ? { roof: building.roof } : {}), ...(building.levels ? { levels: building.levels } : {}) }
   })
   const doors: StreetDoor[] = value.doors.map(door => {
     if (!object(door) || !token(door.id) || door.source !== 'generated') throw Error('Invalid street door')

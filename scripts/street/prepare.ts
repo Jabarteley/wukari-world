@@ -8,6 +8,7 @@ import { loadCityContent } from '../../src/game/cities/registry.ts'
 import { createStreetSource, estimatedTileTriangles } from '../../src/street/generate.ts'
 import { decodeImmutableStreetTile, mapPointToMetres, tileOf, tileKey, tileGroundAt, MAX_RAW_TILE_BYTES } from '../../src/street/frame.ts'
 import { publishPreparedStages } from './publish.ts'
+import { mappedArea } from './mapped-area.ts'
 import type { EstateGateSeed, StreetManifest, StreetPack } from '../../src/street/types.ts'
 
 export async function fullStreetSource(city: string) {
@@ -17,8 +18,9 @@ export async function fullStreetSource(city: string) {
   for (const lga of pack.lgas) { const layout = estateLayout(pack, lga.id); supported.push({ lga: lga.id, count: layout?.cells.length ?? 0 }); layout?.cells.forEach((cell, estate) => gates.push({ lga: lga.id, estate, point: mapPointToMetres(pack, cell) })) }
   const venues = content.venues.filter(place => !['home', 'neighbourhood', 'city-street'].includes(place.id)).map(place => place.id)
   const code = await Promise.all(['generate', 'frame'].map(name => readFile(new URL(`../../src/street/${name}.ts`, import.meta.url), 'utf8')))
-  const version = `street-v1-${createHash('sha256').update(JSON.stringify({ pack: { id: pack.id, frame: pack.frame, roads: pack.roads, land: pack.land, water: pack.water, inland: pack.inland, sites: pack.sites, fabric: pack.fabric }, gates, venues, estatePortals: true, code })).digest('hex').slice(0, 16)}`
-  const source = createStreetSource(pack, { version, venues, gates, roadSource: 'authored', estatePortals: true })
+  const mapped = await mappedArea(city)
+  const version = `street-v1-${createHash('sha256').update(JSON.stringify({ pack: { id: pack.id, frame: pack.frame, roads: pack.roads, land: pack.land, water: pack.water, inland: pack.inland, sites: pack.sites, fabric: pack.fabric }, gates, venues, estatePortals: true, code, mapped: mapped?.sha256 ?? null })).digest('hex').slice(0, 16)}`
+  const source = createStreetSource(pack, { version, venues, gates, roadSource: 'authored', estatePortals: true, ...(mapped ? { mapped: mapped.area } : {}) })
   return { pack, source, supported, gates, venues }
 }
 /** Local publication preparation only: no provider, upload, deployment or runtime geography. */
@@ -44,7 +46,9 @@ export async function prepareStreet(city: string, emit = false) {
     const wire = source.tile(tile), text = JSON.stringify(wire), rawBytes = Buffer.byteLength(text), brotliBytes = brotliCompressSync(text, { params: { [constants.BROTLI_PARAM_QUALITY]: 5 } }).length, estimatedTriangles = estimatedTileTriangles(wire)
     const decoded = decodeImmutableStreetTile(wire, { city, version: source.version, tile })
     for (const door of decoded.doors) if (!tileGroundAt(decoded, door.approach)) throw Error(`Door approach is blocked after fabrication: ${door.id}`)
-    if (rawBytes > MAX_RAW_TILE_BYTES || brotliBytes > 60000 || estimatedTriangles > 25000) throw Error(`${city} tile ${tile.x}_${tile.z} exceeds byte/triangle caps`)
+    // Tiles with real buildings may cost more (owner, 17 Oct 2026: polish first, no phone budget for the 3D world).
+    const triangleCap = wire.buildings.some(building => building.source === 'mapped') ? 160000 : 25000
+    if (rawBytes > MAX_RAW_TILE_BYTES || brotliBytes > 60000 || estimatedTriangles > triangleCap) throw Error(`${city} tile ${tile.x}_${tile.z} exceeds byte/triangle caps`)
     const sha256 = createHash('sha256').update(text).digest('hex'), item = { key: tileKey(tile), wire }
     if (bundle.tiles.length >= 4 || Buffer.byteLength(JSON.stringify({ ...bundle, tiles: [...bundle.tiles, item] })) > MAX_RAW_TILE_BYTES) await flushPack()
     bundle.tiles.push(item); packRefs.push({ tile, file: '', rawBytes, brotliBytes, sha256, estimatedTriangles, packKey: item.key })

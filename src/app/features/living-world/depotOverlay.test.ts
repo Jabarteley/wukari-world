@@ -8,8 +8,8 @@ import type { StreetTile } from '../../../street/types.ts'
 import { buildMarinaDepotOverlay } from './depotOverlay.ts'
 
 const city = 'lagos'
-const version = 'street-v1-c0dd6f6101f6f562'
-const tileFile = 'pack-eab52104e1de300cccc38b649ce561fb1db87e7158676ec3c705701f8e60b52a.txt'
+const version = 'street-v1-ded0fd03cff896f8'
+const tileFile = 'pack-32435778c43cdd87fd7971570668850ff4cb042a669d449babcb8bf63905458f.txt'
 const tileCoord = { x: -9, z: -5 }
 
 async function publishedTile(): Promise<StreetTile> {

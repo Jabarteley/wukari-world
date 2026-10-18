@@ -7,12 +7,15 @@
  *   POST /api/spaces/design  { target, roomId?, prompt, keep? }   a plan from the player's words (the model router)
  *   POST /api/spaces/check   { target, roomId?, plan }            a pasted plan, checked and priced (no model)
  *   POST /api/spaces/apply   { target, roomId?, plan, requestId } make the home or the room the plan
+ *   GET  /api/spaces/host                            the AI host of my home (server/spaces/host.ts)
+ *   POST /api/spaces/host    { kind | null, persona?, on }      choose, change or remove it
  */
 import { spacesService } from '../spaces/service.ts';
+import { hostService } from '../spaces/host.ts';
 import type { RouteContext, RouteHandler, RouteKey } from '../types.ts';
 
 export default function spacesRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
-  const spaces = spacesService(ctx);
+  const spaces = spacesService(ctx), hosts = hostService(ctx);
   const limited = (publicId: string): void => { if (!ctx.allow(`spaces:http:${publicId}`, 30)) throw ctx.fail(429, 'rate_limited'); };
   const gate = async (request: Parameters<RouteHandler>[0]): Promise<void> => { limited(await ctx.store.read((db) => request.requireSession(db).publicId)); };
   return {
@@ -20,5 +23,11 @@ export default function spacesRoutes(ctx: RouteContext): Record<RouteKey, RouteH
     'POST /api/spaces/design': async (request) => { await gate(request); return { body: await spaces.design(request), renew: true }; },
     'POST /api/spaces/check': async (request) => { await gate(request); return { body: await spaces.check(request), renew: true }; },
     'POST /api/spaces/apply': async (request) => { await gate(request); return { body: await spaces.apply(request), renew: true }; },
+    'GET /api/spaces/host': async (request) => { await gate(request); return { body: await ctx.store.read((db) => hosts.read(db, request.requireSession(db))) }; },
+    'POST /api/spaces/host': async (request) => {
+      await gate(request);
+      const body = await request.json();
+      return { body: await ctx.store.transact((db) => hosts.write(db, request.requireSession(db, { renew: true }), body)), renew: true };
+    },
   };
 }

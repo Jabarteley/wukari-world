@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "updatedAt": "2026-10-18T03:28:51.532671+00:00",
+  "status": "verified-locally-hosted-gates-pending",
+  "baseSha": "377300fab8039d551638540047091b7c31609dbc",
+  "branch": "codex/story-core-worker-startup-fix",
+  "source": {
+    "path": "src/game/journeys.ts",
+    "sha256": "1b84aded1b1f21a60febb77664bab729f37bc45abaeef9a24cfbeb93868bf11c"
+  },
+  "failure": {
+    "releaseRun": 39092396438,
+    "message": "progression_content_unavailable",
+    "localReproduction": "neutral Worker bundle fails before any fixture request",
+    "reproductionPass": 0,
+    "reproductionFail": 1,
+    "reproductionDurationMs": 4294.671834
+  },
+  "repair": "Initialize the journey-id index on first lookup after the existing startup barrier; retain indexed subsequent reads. No provider, budget, security or stored-state changes.",
+  "checks": {
+    "workerSmoke": {
+      "pass": 5,
+      "fail": 0,
+      "durationMs": 6490.731333,
+      "log": "phase1-worker-five-complete-fixture.log",
+      "fixture": "Existing neutral esbuild + actual Miniflare Worker test fixture, including public IDs, restart, static HTML, combined gameplay and missing hashed asset behavior"
+    },
+    "storyJourneys": {
+      "pass": 8,
+      "fail": 0,
+      "durationMs": 444.429042,
+      "files": [
+        "src/story/ladder.test.ts",
+        "src/game/cities/kano/journey.test.ts",
+        "src/game/cities/nairobi/journey.test.ts"
+      ]
+    },
+    "typecheck": {
+      "projects": 5,
+      "errors": 0,
+      "baselineAdditions": 0,
+      "heapMiB": 3584
+    }
+  },
+  "localFixturePreparation": {
+    "applicationBuild": false,
+    "existingCiEmittedCodeSource": "ea76250649a728172d623e80b8fb22112f570e0a",
+    "progressionContent": "Existing deterministic data-asset generator; output manifest exactly matches the tracked source manifest. No application bundle built.",
+    "staticFiles": "Restored missing public/ files into ignored dist, preserving all existing CI emitted code."
+  },
+  "reusedOriginalPhase1Evidence": {
+    "scope": "Source data, journey algorithms and UI are unchanged by this repair; original full city/scene and phone browser evidence is retained at its original source revision.",
+    "runtimeSha": "ea76250649a728172d623e80b8fb22112f570e0a",
+    "ciRun": 39090198072,
+    "prCiRun": 39091668137
+  },
+  "hostedCi": null,
+  "repairPr": null,
+  "release": null,
+  "activeLiveBuild": null
+}

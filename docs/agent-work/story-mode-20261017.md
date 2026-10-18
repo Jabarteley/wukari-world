@@ -5,9 +5,9 @@
 - **Work ID:** `story-mode-20261017`
 - **Owner:** Story programme integration
 - **Thread:** `01a14bf1-fd6d-7de1-9770-a0c22f5d554a`
-- **UTC updated:** `2026-10-18T02:52:20Z`
+- **UTC updated:** `2026-10-18T03:24:38Z`
 - **Status:** `active`
-- **Work state:** `verification`
+- **Work state:** `implementation`
 
 ## Goal and boundaries
 
@@ -25,7 +25,7 @@ Deliver four independently reviewed and released phases of Story Mode for `kroma
 ## Repository state
 
 - **Base:** `c42aeee66e0fbc60e85cb808d8d2ec263a7ac4d4`; current pushed runtime `ea76250649a728172d623e80b8fb22112f570e0a`, integrating main `9eab3816db3f1cdc2fc3e5671915f8c7549b9efa`. Normal typecheck5projects/0errors, focused66/66, full city/scene15/15 and284-city built graph pass. Final merged-source browser gate also passes.
-- **Branch:** `story/phase1-core`
+- **Branch:** `codex/story-core-worker-startup-fix` (bounded fix-forward after PR34 release gate rejected startup)
 - **Initial dirty status:** clean.
 - **Resources:** Task QA Vite5351/API5352 gracefully stopped after browser ownership returned; exec54611 terminal143, PID70392 terminated. Saved actors/progress and local clock preserved. All local heavy/compiler/test/artifact sessions terminal. Protected listeners and Desktop checkout untouched. One future scene architecture review is source-only; future factory files remain unstaged.
 
@@ -33,7 +33,7 @@ Deliver four independently reviewed and released phases of Story Mode for `kroma
 
 | Phase | Required outcome and proof | Implementation | CI / merge / release | Next action |
 |---|---|---|---|---|
-| 1 Core | Reversible per-character free/story switch; permanent receipt-derived ladder and city tally in both modes; all four city doors and venue gate; map locks; city signatures; friends-only verified co-op with isolated helper pass, quotas, expiry, keepsake and solo path; erasure; 320/390px actual journeys | Implemented; local typecheck 5/0, full city/scene suites 15/15, snapshot gates 63/63 and merged erasure checks 4/4 pass | CI39090198072 success on ea762506; no PR | Create PR from accepted runtime and curated evidence, merge/release/verify live |
+| 1 Core | Reversible per-character free/story switch; permanent receipt-derived ladder and city tally in both modes; all four city doors and venue gate; map locks; city signatures; friends-only verified co-op with isolated helper pass, quotas, expiry, keepsake and solo path; erasure; 320/390px actual journeys | Implemented; local typecheck 5/0, full city/scene suites 15/15, snapshot gates 63/63 and merged erasure checks 4/4 pass | PR34 merged377300fa; PR CI39091668137 success; release39092396438 failed before deploy | Reproduce/fixWorker startup on bounded follow-up PR, rerun release and live verification |
 | 2 Scenes | Validated distinct recipes for every non-authored venue; Blender regional kits and sourced heroes; lazy packs; regeneration/check/contact sheets; Accra/Nairobi/Tokyo/Paris phone journeys and cold-load measurements | Pure contract/input tooling, final kit/hero and actual CPU Accra prototype reviewed; no runtime wiring | Pending | Start delivery branch after phase1 release; implement real compiler and host composition |
 | 3 Talk | Filtered per-city/per-NPC banks and sourced beta phrasebooks; deterministic greet/hours/directions; capped safe live path; cost/zero-call ledger and three-city browser evidence | Pure bank/draft tooling and beta phrase inputs reviewed; no runtime wiring | Pending | Implement factory execution and adapters outside owned house/model paths |
 | 4 Realism | Recipe sky/material/lighting pass and mapped-street chapter3 entry; phone budgets and full return journey | Queued | Pending | Coordinate allowed seam after phase2 |
@@ -60,13 +60,13 @@ No phase is accepted from a worker report, passing build or release receipt alon
 ## Immediate resume steps
 
 1. Current runtime `ea762506` passes all required pre-PR checks, including final Chrome320/390 browser confirmation. Native Mac lock is no longer a blocker.
-2. Commit curated Phase1 evidence only, recheck main, push and create/attach the PR. Wait for green CI, merge through PR and run the protected release on the new main.
-3. Confirm the active public build and actual live page, checkpoint Phase1, then branch Phase2 from fresh main. Future factory files stay out of Phase1.
+2. PR34 merged as377300fa after current CI39091668137 passed. Protected release39092396438 failed before deployment: all five Worker startup checks reported progression_content_unavailable. Production remains on9eab3816. Bounded fix-forward branch codex/story-core-worker-startup-fix now defers journey-index creation until first lookup.
+3. Run the proven neutral Worker reproduction, the release five checks and typecheck; publish the minimal repair PR, merge and release. Then confirm active build/live page and branch Phase2 from fresh main. Future factory files stay out of Phase1.
 
 ## Release state
 
-- **Local implementation:** Story core, reversible switch, authoritative capability, map locks and lazy co-op UI implemented. Focused checks116/116 before the disabled-view refinement; its focused checks28/28. Actual co-op and travel passed. Current candidate pushed; no PR, merge or release yet.
-- **Deployment:** authorized, not started.
+- **Local implementation:** Story core, reversible switch, authoritative capability, map locks and lazy co-op UI implemented. Focused checks116/116 before the disabled-view refinement; its focused checks28/28. Actual co-op and travel passed. PR34 merged377300fa with successful current CI39091668137. Protected release39092396438 rejected startup before deployment; bounded journey-index repair and active live acceptance pending.
+- **Deployment:** protected release39092396438 failed before deployment for377300fa. Live remains9eab3816; Story setting defaultfalse.
 - **Gate:** all four tracker rows remain open.
 
 ## Checkpoint history
@@ -344,3 +344,45 @@ The heavy slot is free. Root is restarting only the task QA preview fromea762506
 - Final merged browser confirmation passes at320/390CSSpx: first/only ordered Story→Free299ms and Free→Story290ms, cities275→284→275, Kaduna venues3→19→3, Giwa Hospital enabled in Free and chapter2Belong locked in Story. KanoChapter4 retained. Helper has two keepsakes and own Kano lock; Nairobi opens the actual chess table surface. No new travel, games, challenges or clock advances in this finite rerun.
 - Eight unmodified native PNGs visually reviewed; independent header/hash/byte check8/8,721925bytes. Earlier completed quests/co-op/travel remain historical gameplay evidence with separate source/scope labels. These are warm local browser timings, not physical-phone or production measurements.
 - Task QA stopped gracefully after input pause and ownership handback. All parent local execution sessions terminal. No PR, merge or Story deployment yet. All four phases remain open. Next: evidence commit, PR, green current CI, merge, protected release and active live verification.
+
+## Phase1 PR checkpoint 2026-10-18T03:01:01Z
+
+- [PR34](https://github.com/kromate/joinallworld/pull/34) opened and attached at4fddbddb22d921be75caa74e7de6a1276c6d75d0. Only curated evidence/documentation differs from the verified runtimeea762506. Fresh main9eab was an ancestor before the ordinary push.
+- PR CI39091668137 has passed policy and typecheck; hosted build/download/smoke is still running. The external review service skipped its review because the eligible file count exceeded its limit and available review credits were insufficient. No upgrade or extra credits were requested. Internal source review and the exact independent checks above remain the acceptance basis.
+- No Story release yet. Merge after current CI passes, then run the protected release and confirm active public build and actual live page.
+- Future-only deterministic scene layout tooling added outside runtime: nine focused checks pass, preserving actual effective targets/authored precedence and conservative explicit host allowances. Normal typecheck passes5/0. Parent rerun is active; final decoded asset geometry and complete host/browser acceptance remain open. No Phase2 source is staged.
+- Input proposal covers284cities/243country groupings; five palette corrections retained. Six current pilot briefs preserve102recipe targets,48authored venues and6homes. Region labels are art palette choices;61ambiguous placements still await parent judgment.
+- The existing runtime-scene interface is the selected Phase2 seam. Geometry and image pixels must prepare before city loading resolves, then mount synchronously with full reservation and verified native readmission. Shared edits stay in the allowed scene selection/loading regions. Shared campus fallback kinds must remain targets while actual city-authored kinds remain preserved; this distinction needs an explicit implementation test.
+- All14regional kit prototypes and five remaining six-pilot landmarks are being produced in an isolated temporary directory by the designated generation owner. Refined Accra remains unchanged. No public/runtime writes, provider calls or paid factory/GPU spend.
+
+## Phase1 merged/release checkpoint 2026-10-18T03:06:12Z
+
+- [PR34](https://github.com/kromate/joinallworld/pull/34) merged through the ordinary protected path at `377300fab8039d551638540047091b7c31609dbc`,2026-10-18T03:05:19Z. Its tree exactly matches accepted PR head4fddbddb; no runtime code changed after final browser acceptance.
+- PR CI39091668137 success. Exact PR output repeats613961raw/222634gzip/195450Brotli startup and188939raw/70896gzip host. No budget changed.
+- [Protected release39092396438](https://github.com/kromate/joinallworld/actions/runs/39092396438) dispatched with source_sha377300fa,deploytrue,publish_stagingfalse. It is running; live health still showed9eab before deployment. Source/defaultflag proof is separate from actual live UI acceptance.
+- Parent actual-asset-metadata layout probe passes23Accra recipes at36386UTF-8 bytes; max3694estimated triangles,12meshes,3lights including an explicit400triangle/3mesh/3light host planning allowance. This is data/metadata validation only, not construction, pixels or runtime budgets. The first probe used an incorrect durable-report path; failure log retained and corrected from the actual manifest.
+- Next executable step: wait for exact protected release, verify expected build `('joinallworld-'+mergeSha).slice(0,40)` through public health and actual live page through browser operator; checkpoint and create Phase2 branch from freshmain only afterward.
+
+## Phase1 release rejected / fix-forward registration 2026-10-18T03:18:34Z
+
+- Release39092396438 failed before deployment: all5Worker smoke checks throw `progression_content_unavailable` during module startup. Build/download and Node smoke passed. Deploy job skipped; publichealth remains healthy9eab. This is a real release gate failure, not accepted delivery.
+- Created `codex/story-core-worker-startup-fix` from exact main377300fa. Carrying only this record/evidence dirt plus untracked future factory work; no stash/reset or Desktop mutation. The original primary Phase1 PR remains34; a separate bounded repair PR is explicitly authorized by the supplied fix-forward instruction.
+- Integration owns the progression snapshot/export boundary and related focused tests. Read-only diagnosis is delegated; no source repair has been applied. Existing Worker smoke tests provide the actual symptom; parent is installing the pinned test tooling to reproduce with the same finite harness. No local application build or minification/size estimate.
+- Asset generation pauses after its current command and retains all outputs while the focused Worker check takes the single heavy slot. Protected ports and production data remain untouched. Next: one red-capable Worker startup command, minimise module caller, targeted repair/regression, normal typecheck/currentCI, follow-up PR and release.
+
+## Worker startup repair checkpoint 2026-10-18T03:24:38Z
+
+- Neutral Worker reproduction is red in4.295s:0/1 pass, progression_content_unavailable before any fixture request. Exact command and stack retained in phase1-worker-startup-reproduction.log.
+- The new journey index eagerly traversed the lazy progression proxy at module evaluation. Node smoke selected the eager source provider and missed this; the actual Worker selects the asset provider and installs content behind its existing startup barrier.
+- Minimal source repair defers the Map until first journey lookup. It keeps indexed reads and the existing unavailable/retry behavior. The installed snapshot cannot be replaced. Only src/game/journeys.ts is owned for this repair; no provider or release gate changes.
+- Existing neutral-esbuild/Miniflare fixture is the regression seam. No duplicate Node-only test was added. Parent review accepts the two-line lazy index plus changed lookup, subject to real Worker checks.
+- Current branch codex/story-core-worker-startup-fix, source base377300fab8039d551638540047091b7c31609dbc. Tracked repair source and this record only; future scene/talk files remain untracked and excluded.
+- The19-asset v4 batch completed and returned the heavy slot; light packaging/review continues. Factory external spend remains US$0; worker compute cost unknown.
+- Next executable step: verify local Worker startup repair, then release five/typecheck and ordinary protected PR/release.
+
+## Worker repair local acceptance 2026-10-18T03:28:51.532671+00:00
+
+- Exact release five Worker checks now pass5/5 in6490.731ms. Story ladder/Kano/Nairobi journey checks pass8/8; normal typecheck5projects/0errors/0baseline additions.
+- The first post-fix request exposed missing local fixture data, not another production source defect. The CI bundle evidence intentionally contains JS/CSS/index/manifest only. Existing deterministic progression assets were emitted with an exactly matching tracked manifest and missing repository public files restored to ignored dist. No application build or local minification ran.
+- Source diff is limited to lazy construction of the journey-id index. Existing provider barrier, catalogue data, receipt validation, stored state, budgets and UI are unchanged. Prior full284-city/scene and browser evidence remains labelled with its original runtime revision.
+- Reviewable local acceptance is phase1-worker-fix-checks.json. Next: ordinary follow-up PR, current hosted CI, merge, release and active live check.

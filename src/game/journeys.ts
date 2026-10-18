@@ -24,11 +24,13 @@ const earnedAtFor = (state: LifeState, member: JourneyMemberDefinition): number 
   return member.source.kind === 'episode' ? episodeReceipt(state, member)?.grantedAt ?? null : projectReceipt(state, member)?.earnedAt ?? null
 }
 
-const journeysById = new Map(JOURNEYS.map(journey => [journey.id, journey]))
+let journeysById: ReadonlyMap<string, JourneyDefinition> | null = null
+const journeyById = (id: string): JourneyDefinition | undefined =>
+  (journeysById ??= new Map(JOURNEYS.map(journey => [journey.id, journey]))).get(id)
 
 /** Completion time from validated member receipts without allocating the full journey projection. */
 export function journeyCompletionAt(state: LifeState, id: string): number | null {
-  const journey = journeysById.get(id)
+  const journey = journeyById(id)
   if (!journey) return null
   let latest = 0
   for (const member of journey.members) {

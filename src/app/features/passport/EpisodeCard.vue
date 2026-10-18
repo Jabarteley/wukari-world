@@ -5,11 +5,15 @@ import { useApp } from '../../state/app.ts'
 import BaseButton from '../../ui/BaseButton.vue'
 import GameIcon from '../../ui/GameIcon.vue'
 import { originLine } from './passportModel.ts'
+import StoryLearningCard from './StoryLearningCard.vue'
+import { storyLearningForEpisode } from './storyLearning.ts'
 
 const props = defineProps<{ row: EpisodeView; disconnected?: string }>()
 const { game, shell, goTo } = useApp()
 const pending = ref<string | null>(null)
 const chapterCount = 4
+const learningLesson = computed(() => storyLearningForEpisode(props.row.id))
+const showLearning = computed(() => Boolean(learningLesson.value && props.row.history.some(receipt => receipt.chapter === 2)))
 const completedChapters = computed(() => Math.min(chapterCount, props.row.history.length))
 const date = new Intl.DateTimeFormat('en-NG', { timeZone: 'Africa/Lagos', day: 'numeric', month: 'short', year: 'numeric' })
 const safePart = /^[a-z][a-z0-9-]{0,159}$/
@@ -68,6 +72,7 @@ async function choose(option: EpisodeOptionView): Promise<void> {
     <div class="episode-meter" role="meter" :aria-label="`${row.title} chapter progress`" aria-valuemin="0" :aria-valuemax="chapterCount" :aria-valuenow="row.status === 'completed' ? chapterCount : completedChapters"><i :style="{ width: `${(row.status === 'completed' ? chapterCount : completedChapters) / chapterCount * 100}%` }" /></div>
 
     <p v-if="row.recap" class="episode-recap"><b>Welcome back.</b> {{ row.recap }}</p>
+    <StoryLearningCard v-if="showLearning && learningLesson" :key="row.id" :episode-id="row.id" :lesson="learningLesson" />
     <section class="episode-scene" aria-label="Current chapter">
       <small>{{ row.chapterTitle }}</small>
       <b>{{ row.speaker }}</b>

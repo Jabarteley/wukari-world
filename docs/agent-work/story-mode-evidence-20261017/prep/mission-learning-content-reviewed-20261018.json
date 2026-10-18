@@ -1,0 +1,258 @@
+{
+  "schema": "allworld-mission-learning-content-reviewed",
+  "version": 1,
+  "created": "2026-10-18",
+  "status": "Content reviewed for four pilot cities; no runtime integration or player-learning claim",
+  "sourceRevisionReportedByParent": "cb1b0d7a",
+  "sourcePins": {
+    "src/types/local-tales.ts": "7e86343edb9ea46d15b94e42e03fd4cf97129e1cbd13eb31f2d8b21eb9e4fe05",
+    "src/types/episodes.ts": "0cef59ffd0cf7361831eb728d063e2e934261ef0be8169e2444302787413a294",
+    "src/game/content/local-tales/batch-01.ts": "3a8b9a81bacc423eab5a58ab66ec2beb5d762af9c3490871fd166fe251d3d253",
+    "src/game/content/local-tales/batch-02.ts": "a8b92e3b77619299221f8bf971c65fc48663db333b60c15a4e39435717ee8a08",
+    "src/game/content/local-tales/batch-07.ts": "dcc8998307cdbafbd1ad6677bae8d87489403c4d650713cd363844200a266b6f",
+    "src/game/content/local-tales/batch-08.ts": "d9832619720b0cc7361e12f38f32e075a410b193f4098d1e0d155239f159e40f",
+    "src/game/content/world-progression.generated.ts": "22d7ca92ca8b95d18cc96fce0dbeb6f31422cea02af0e396a132b382ec4f7f14",
+    "src/game/content/local-episodes.ts": "140583797cb0bb99523b47ec3e9dc01ef3ff54d8b921a71b5f49daefdb9b976a",
+    "src/game/systems/episodes.ts": "9e982633efe5a5e7ce5c2aee731c9aeb9b2ab2d023732bd6f436075cd97234aa",
+    "src/app/features/passport/EpisodeCard.vue": "ef7a82f2ed4fe65c45bd0719fb584236d45f60d59d976941c02fa89df08ea146",
+    "src/game/content/local-missions.ts": "142ac9e4033eb99bbc0d8acb67aa523d870b9b7cf66cf2f470995d21a71e69bf",
+    "src/game/content/world-missions.ts": "22a61d43814aefd8398b410eb8bef4242526f6e2536e2d4da4094741fcfd10ae"
+  },
+  "candidateEvidence": {
+    "path": "docs/agent-work/story-mode-evidence-20261017/prep/mission-learning-primary-candidates-20261018.json",
+    "sha256": "223e07f8764d5c1342f5fb9f5d1ac6fd7b4861313e67ad9538e866d7b135e8c4",
+    "status": "Primary-source claims checked; original lesson proposals only, not runtime content or proof of learning."
+  },
+  "priorAudit": {
+    "path": "docs/agent-work/story-mode-evidence-20261017/prep/mission-learning-source-audit-20261018.json",
+    "sha256": "40cf7597724f5948cb7f2755aedf68027431033e4d4c267f6f8f5fb858d71abe",
+    "status": "Fictional scenarios only; current mission receipts do not prove knowledge."
+  },
+  "rules": [
+    "Use exactly the parent-verified claim scope and source citation; do not add historical detail.",
+    "Label the insert as a sourced note distinct from fictional scenes and dialogue.",
+    "For Kano, preserve the explicit limitation that UNESCO lists it as tentative, not inscribed.",
+    "Keep episode IDs, episode venues, observations, challenges, proof requirements, rewards, mission IDs, and receipt semantics unchanged in any later implementation."
+  ],
+  "inserts": [
+    {
+      "cityId": "kano",
+      "existingEpisodeId": "place-kano-city-story",
+      "existingEpisodeTitle": "The Racecourse’s Slowest Sprint",
+      "position": {
+        "chapter": 2,
+        "placement": "After chapter 2 (“The baton steals the show”) and before chapter 3 (“Let the slow one lead”).",
+        "renderAs": "separate sourced Local history card after existing chapter text; never append to an NPC dialogue quotation"
+      },
+      "boundaryText": "Historical note, sourced below. Story characters and events are fictional.",
+      "lessonFact": "Kurmi Market historically participated in trade across the Sahara; its lanes group traders by the goods they sell.",
+      "sourceCitation": {
+        "title": "Ancient Kano City Walls and Asociated Sties",
+        "publisher": "National Commission for Museums and Monuments, Nigeria, submission published by UNESCO World Heritage Centre",
+        "url": "https://whc.unesco.org/en/tentativelists/5171/",
+        "locator": "Description, Kurmi Market paragraph",
+        "basis": "National tentative-list submission; not World Heritage inscription",
+        "accessed": "2026-10-18",
+        "reviewStatus": "parent-verified primary-source candidate; retain the source scope and locator as supplied"
+      },
+      "applicationQuestion": {
+        "prompt": "A historical guide describes Kurmi Market lanes by trade. A visitor wants leatherwork. What clue should they use?",
+        "choices": [
+          "The lane closest to the main gate",
+          "The kind of goods sold in the lane",
+          "The widest lane on the plan"
+        ],
+        "correctIndex": 1,
+        "explanation": "The source describes lanes organised by goods, so the trade category is a useful clue. This is historical context, not live walking directions.",
+        "retryFeedback": "The source says Kurmi Market lanes are grouped by the goods sold there. Use the kind of goods the visitor wants as the clue, then try again."
+      },
+      "fictionPreservation": {
+        "existingChapterTextUnchanged": true,
+        "existingEpisodeChoicesUnchanged": true,
+        "existingChallengeUnchanged": true,
+        "existingVenueAndDestinationUnchanged": true,
+        "existingProofRequirementsUnchanged": true,
+        "existingEpisodeIdUnchanged": true,
+        "existingRewardsAndReceiptsUnchanged": true
+      },
+      "currentMissionBoundary": "Current daily/weekly mission IDs, labels, activity/visit/greeting proofs, counters and rewards remain untouched. These missions do not assess this lesson.",
+      "existingSourcePointer": {
+        "path": "src/game/content/local-tales/batch-01.ts",
+        "lineRange": "881-926",
+        "episodeAdapter": "src/game/content/local-episodes.ts:56-117"
+      },
+      "fitNote": "The market-history note is adjacent to, but not part of, the Racecourse stage-sprint plot. Keep it visually separate; do not imply Amina or the performers visited Kurmi Market."
+    },
+    {
+      "cityId": "nairobi",
+      "existingEpisodeId": "place-nairobi-city-story",
+      "existingEpisodeTitle": "The Trays for the Wrong Roles",
+      "position": {
+        "chapter": 2,
+        "placement": "After chapter 2 (“No labels in the comedy”) and before chapter 3 (“Covered trays at curtain”).",
+        "renderAs": "separate sourced Local history card after existing chapter text; never append to an NPC dialogue quotation"
+      },
+      "boundaryText": "Historical note, sourced below. Story characters and events are fictional.",
+      "lessonFact": "The museum institution began in Nairobi in 1910; the Museum Hill building opened in 1930.",
+      "sourceCitation": {
+        "title": "Museum Story",
+        "publisher": "National Museums of Kenya",
+        "url": "https://museums.or.ke/museum-story/",
+        "locator": "Institution history paragraphs",
+        "basis": "Institutional history",
+        "accessed": "2026-10-18",
+        "reviewStatus": "parent-verified primary-source candidate; retain the source scope and locator as supplied"
+      },
+      "applicationQuestion": {
+        "prompt": "A timeline separates the institution beginning from the Museum Hill building opening. Which order fits the evidence?",
+        "choices": [
+          "Institution in 1930, building in 1910",
+          "Institution in 1910, building in 1930",
+          "Both the institution and building in 1930"
+        ],
+        "correctIndex": 1,
+        "explanation": "An institution can be older than its present building. The museum dates its founding to 1910 and this building opening to 1930.",
+        "retryFeedback": "Keep the two source dates distinct: the museum institution began in 1910; the Museum Hill building opened in 1930. Try again."
+      },
+      "fictionPreservation": {
+        "existingChapterTextUnchanged": true,
+        "existingEpisodeChoicesUnchanged": true,
+        "existingChallengeUnchanged": true,
+        "existingVenueAndDestinationUnchanged": true,
+        "existingProofRequirementsUnchanged": true,
+        "existingEpisodeIdUnchanged": true,
+        "existingRewardsAndReceiptsUnchanged": true
+      },
+      "currentMissionBoundary": "Current daily/weekly mission IDs, labels, activity/visit/greeting proofs, counters and rewards remain untouched. These missions do not assess this lesson.",
+      "existingSourcePointer": {
+        "path": "src/game/content/local-tales/batch-02.ts",
+        "lineRange": "745-776",
+        "episodeAdapter": "src/game/content/local-episodes.ts:56-117"
+      },
+      "fitNote": "The museum chronology is adjacent to, but not part of, the covered-tray plot. Keep it visually separate; do not imply Jesse’s fictional actors attended the museum."
+    },
+    {
+      "cityId": "tokyo",
+      "existingEpisodeId": "place-tokyo-city-story",
+      "existingEpisodeTitle": "Test Two Distinct Movements",
+      "position": {
+        "chapter": 2,
+        "placement": "After chapter 2 (“One Movement Is Shared”) and before chapter 3 (“Test Distinct Evidence”).",
+        "renderAs": "separate sourced Local history card after existing chapter text; never append to an NPC dialogue quotation"
+      },
+      "boundaryText": "Historical note, sourced below. Story characters and events are fictional.",
+      "lessonFact": "The city previously called Edo was renamed Tokyo in 1868.",
+      "sourceCitation": {
+        "title": "The Changing Face of Tokyo: From Edo to Today and into the Future",
+        "publisher": "Tokyo Metropolitan Government, Tokyo Updates",
+        "url": "https://www.tokyoupdates.metro.tokyo.lg.jp/en/post-393/",
+        "locator": "Opening history paragraph",
+        "basis": "Published historical talk on official metropolitan website",
+        "accessed": "2026-10-18",
+        "reviewStatus": "parent-verified primary-source candidate; retain the source scope and locator as supplied"
+      },
+      "applicationQuestion": {
+        "prompt": "An old record says Edo and a later record says Tokyo. What should you check before treating them as different cities?",
+        "choices": [
+          "Treat different names as different cities",
+          "Use the modern name without checking the dates",
+          "Compare record dates with the documented name change"
+        ],
+        "correctIndex": 2,
+        "explanation": "The 1868 renaming connects Edo with present-day Tokyo. Dates and name changes help interpret historical records.",
+        "retryFeedback": "Check the documented 1868 name change before treating Edo and Tokyo as two separate cities. Try again."
+      },
+      "fictionPreservation": {
+        "existingChapterTextUnchanged": true,
+        "existingEpisodeChoicesUnchanged": true,
+        "existingChallengeUnchanged": true,
+        "existingVenueAndDestinationUnchanged": true,
+        "existingProofRequirementsUnchanged": true,
+        "existingEpisodeIdUnchanged": true,
+        "existingRewardsAndReceiptsUnchanged": true
+      },
+      "currentMissionBoundary": "Current daily/weekly mission IDs, labels, activity/visit/greeting proofs, counters and rewards remain untouched. These missions do not assess this lesson.",
+      "existingSourcePointer": {
+        "path": "src/game/content/local-tales/batch-08.ts",
+        "lineRange": "1514-1559",
+        "episodeAdapter": "src/game/content/local-episodes.ts:56-117"
+      },
+      "fitNote": "The name-change fact is local historical context, not a fact about the fictional practice-game plot. Keep it visually separate from Nico’s dialogue."
+    },
+    {
+      "cityId": "paris",
+      "existingEpisodeId": "place-paris-city-story",
+      "existingEpisodeTitle": "Five Items Cover Seven Needs",
+      "position": {
+        "chapter": 2,
+        "placement": "After chapter 2 (“Two items each serve two purposes”) and before chapter 3 (“Every need must be covered”).",
+        "renderAs": "separate sourced Local history card after existing chapter text; never append to an NPC dialogue quotation"
+      },
+      "boundaryText": "Historical note, sourced below. Story characters and events are fictional.",
+      "lessonFact": "The historic Banks of the Seine property in Paris was inscribed on the World Heritage List in 1991.",
+      "sourceCitation": {
+        "title": "Paris, Banks of the Seine",
+        "publisher": "UNESCO World Heritage Centre",
+        "url": "https://whc.unesco.org/en/list/600/",
+        "locator": "Date of Inscription; property description",
+        "basis": "World Heritage property record",
+        "accessed": "2026-10-18",
+        "reviewStatus": "parent-verified primary-source candidate; retain the source scope and locator as supplied"
+      },
+      "applicationQuestion": {
+        "prompt": "A guide gives 1991 as the Seine property’s World Heritage inscription date. What can you conclude about its buildings?",
+        "choices": [
+          "Their construction dates must be checked separately",
+          "The oldest building must date from 1991",
+          "Most buildings can be dated from the inscription year"
+        ],
+        "correctIndex": 0,
+        "explanation": "1991 is the recognition date for this historic property, not the age of the river or every building along it.",
+        "retryFeedback": "The 1991 date is the World Heritage inscription date for the property, not a construction date for the river or all its buildings. Try again."
+      },
+      "fictionPreservation": {
+        "existingChapterTextUnchanged": true,
+        "existingEpisodeChoicesUnchanged": true,
+        "existingChallengeUnchanged": true,
+        "existingVenueAndDestinationUnchanged": true,
+        "existingProofRequirementsUnchanged": true,
+        "existingEpisodeIdUnchanged": true,
+        "existingRewardsAndReceiptsUnchanged": true
+      },
+      "currentMissionBoundary": "Current daily/weekly mission IDs, labels, activity/visit/greeting proofs, counters and rewards remain untouched. These missions do not assess this lesson.",
+      "existingSourcePointer": {
+        "path": "src/game/content/local-tales/batch-07.ts",
+        "lineRange": "623-646",
+        "episodeAdapter": "src/game/content/local-episodes.ts:56-117"
+      },
+      "fitNote": "The recognition date is local historical context, not a fact about Logan’s fictional packing puzzle. Keep it visually separate from Logan’s dialogue."
+    }
+  ],
+  "integrationGap": {
+    "finding": "Current types and UI can render episode chapter text and authored multiple-choice challenges, but cannot attach a source citation to a distinct non-dialogue fact card or assess a second question while preserving the existing story challenge.",
+    "currentTypes": {
+      "localTale": "src/types/local-tales.ts:2-10 has four chapter text fields, approaches and one dilemma; it has no source-attributed lesson field.",
+      "episode": "src/types/episodes.ts:127-130 models one challenge prompt/options/correct/retry per work/study/help branch; `EpisodeDefinition` has no sourced lesson insert."
+    },
+    "currentUiAndRuntime": {
+      "ui": "src/app/features/passport/EpisodeCard.vue:61-90 displays current episode text and options.",
+      "answerGate": "src/game/systems/episodes.ts:219-225 validates the current authored challenge and records chapter-3 proof.",
+      "missionUi": "src/app/features/growth/MissionItem.vue displays the current mission label/hint/progress; generated mission definitions track task completion, not fact answers."
+    },
+    "smallestSeamForReview": "Add an optional, separate `learningInsert` field to the episode definition/view carrying a non-dialogue fact, citation, 3-choice application prompt, correct option, explanation and retry feedback. Render it as a sourced card after chapter 2 in EpisodeCard. Keep the existing chapter-3 challenge and all episode/mission proof, reward, ID and receipt behavior unchanged. A client-local answer/retry interaction can avoid introducing a new persistent receipt or reward; if mastery must be recorded later, that is a separate reviewed contract.",
+    "openAcceptance": "Parent must review lesson fit, citation display/accessibility and whether ephemeral application answers meet the product learning requirement before Phase 3 implementation."
+  },
+  "externalResearch": {
+    "newSearches": 0,
+    "basis": "The four claims and source locators are copied from the parent-verified candidate artifact. This unit adds no historical claims and performs no independent source verification."
+  },
+  "reviewedSourceRevision": "dd7ce2bad34bb67866d78bb98a3e6791bbb6970b",
+  "draftProvenance": {
+    "path": "docs/agent-work/story-mode-evidence-20261017/prep/mission-learning-content-draft-20261018.json",
+    "sha256": "e5d9019f24530cdb6d31b2a9446e4ebdc21a80a888b4ad3673e15e1d1c47d710"
+  },
+  "review": {
+    "scope": "Kept the four verified factual claims and citations exact; shortened fiction boundary; replaced absurd distractors with choices about the lesson and varied correct-answer positions. Existing stories, mission rewards, proof and save state remain outside this content-only review.",
+    "integration": "Optional attributed episode card with local answer/retry interaction remains a Phase3 task. Do not infer mastery or reward receipts from a client-local answer."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "scope": "Source compilation only; no full typecheck, rendering, interactions or bundle measurement",
+  "results": [
+    {
+      "filename": "src/app/features/passport/StoryLearningCard.vue",
+      "sha256": "0ee8247e69824a150468ace49ec1b928c4084cfa4b2b901f001d11d29ff3143c",
+      "parse": "pass",
+      "scriptCompilation": "pass",
+      "templateCompilation": "pass",
+      "scriptSyntax": "pass"
+    },
+    {
+      "filename": "src/app/features/passport/EpisodeCard.vue",
+      "sha256": "dab550e0cbda82a06fdf5f463d2edb24e36eabbb8d1206310cda9fd8a97b2aa2",
+      "parse": "pass",
+      "scriptCompilation": "pass",
+      "templateCompilation": "pass",
+      "scriptSyntax": "pass"
+    }
+  ]
+}

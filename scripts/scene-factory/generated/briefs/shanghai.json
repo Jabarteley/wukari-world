@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "shanghai",
+    "name": "Shanghai",
+    "state": {
+      "id": "cn-shanghai",
+      "name": "Shanghai"
+    },
+    "country": {
+      "id": "cn",
+      "name": "China"
+    },
+    "point": {
+      "lon": 121.4691024,
+      "lat": 31.2323437
+    }
+  },
+  "style": {
+    "region": "east-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/china/shanghai-261011.osm.pbf",
+      "https://ourairports.com/airports/ZSPD/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/shanghai/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/shanghai/facts.ts",
+        "sha256": "e9cda9ae58510c0b00b72feb3a6d1682da09fb2bb6142973da4e3e765c39c200"
+      },
+      {
+        "path": "src/game/cities/shanghai/index.ts",
+        "sha256": "0062d8fcf8bc9818071da02f127532a6d8a115a89f14d0c3e756e0d85da68aec"
+      },
+      {
+        "path": "src/game/cities/shanghai/places.ts",
+        "sha256": "61493ea547c8e456679386b09bda5759f9e021881ebd87de199a00538e5eee22"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.4691024,
+        "lat": 31.2323437
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "shanghai-airport-shanghai-airport",
+      "name": "Shanghai Pudong International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.805,
+        "lat": 31.1434
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-airport-shanghai-airport-1",
+        "shanghai-shanghai-airport-shanghai-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "shanghai-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-clinic",
+      "name": "Fudan University Children Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.390259,
+        "lat": 31.141176
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-clinic-1",
+        "shanghai-shanghai-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/242365340"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q18111156"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-community-notices",
+      "name": "Pudong New District Government",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.539926,
+        "lat": 31.223438
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-community-notices-1",
+        "shanghai-shanghai-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1889448661"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q19853017"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-community-voting-game",
+      "name": "Shanghai Municipal People's Government",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.469029,
+        "lat": 31.232431
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-community-voting-game-1",
+        "shanghai-shanghai-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/178801539"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q10867824"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-community-workshop",
+      "name": "Shanghai University (Baoshan Campus)",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.389173,
+        "lat": 31.316504
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-community-workshop-1",
+        "shanghai-shanghai-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/13058054"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1343386"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-market-game",
+      "name": "Global Harbor",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.407946,
+        "lat": 31.235091
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-market-game-1",
+        "shanghai-shanghai-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/375224849"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16259176"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-meal-stop",
+      "name": "沙县小吃",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.597459,
+        "lat": 31.276061
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-meal-stop-1",
+        "shanghai-shanghai-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12862593135"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q19840758"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-osm-node-4880999164",
+      "name": "Shanghai Children Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.408483,
+        "lat": 31.195953
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-osm-node-4880999164-1",
+        "shanghai-shanghai-osm-node-4880999164-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4880999164"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q10867694"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-osm-relation-18781565",
+      "name": "Tongji University (Huxi Campus)",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.384627,
+        "lat": 31.273595
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-osm-relation-18781565-1",
+        "shanghai-shanghai-osm-relation-18781565-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/18781565"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16947"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-osm-relation-5390610",
+      "name": "ShanghaiTech University (Zhangjiang Campus)",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.59029,
+        "lat": 31.179281
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-osm-relation-5390610-1",
+        "shanghai-shanghai-osm-relation-5390610-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/5390610"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3817847"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-osm-way-1363229598",
+      "name": "上海市江桥批发市场",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.356221,
+        "lat": 31.2587
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-osm-way-1363229598-1",
+        "shanghai-shanghai-osm-way-1363229598-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1363229598"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q123740842"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-osm-way-15783341",
+      "name": "Shanghai Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.43737,
+        "lat": 31.183336
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-osm-way-15783341-1",
+        "shanghai-shanghai-osm-way-15783341-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/15783341"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q739528"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-osm-way-183944730",
+      "name": "Guyi Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.312336,
+        "lat": 31.29383
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-osm-way-183944730-1",
+        "shanghai-shanghai-osm-way-183944730-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/183944730"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5622827"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-osm-way-192206043",
+      "name": "Xinhua Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.513189,
+        "lat": 31.275066
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-osm-way-192206043-1",
+        "shanghai-shanghai-osm-way-192206043-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/192206043"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q88450"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-osm-way-24448592",
+      "name": "Hongkou Football Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.476339,
+        "lat": 31.27331
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-osm-way-24448592-1",
+        "shanghai-shanghai-osm-way-24448592-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/24448592"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q201773"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-osm-way-279318210",
+      "name": "Church of Jesus, Xinzhuang",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.36601,
+        "lat": 31.103723
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-osm-way-279318210-1",
+        "shanghai-shanghai-osm-way-279318210-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/279318210"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16928594"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-osm-way-328312304",
+      "name": "Shanghai Disney Resort",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.662109,
+        "lat": 31.143422
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-osm-way-328312304-1",
+        "shanghai-shanghai-osm-way-328312304-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/328312304"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q973987"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-osm-way-404699628",
+      "name": "Jade Buddha Temple",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.439848,
+        "lat": 31.243592
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-osm-way-404699628-1",
+        "shanghai-shanghai-osm-way-404699628-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/404699628"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q967601"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-osm-way-462007561",
+      "name": "Shanghai Zoo",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.358864,
+        "lat": 31.195155
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-osm-way-462007561-1",
+        "shanghai-shanghai-osm-way-462007561-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/462007561"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3182046"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-osm-way-474607998",
+      "name": "Shanghai Sanda University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.654504,
+        "lat": 31.271156
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-osm-way-474607998-1",
+        "shanghai-shanghai-osm-way-474607998-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/474607998"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7415930"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-osm-way-51051520",
+      "name": "Shanghai Tenth People's Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.448889,
+        "lat": 31.273829
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-osm-way-51051520-1",
+        "shanghai-shanghai-osm-way-51051520-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/51051520"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q23198"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-osm-way-712187766",
+      "name": "蔓趣公园",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.496166,
+        "lat": 31.176334
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-osm-way-712187766-1",
+        "shanghai-shanghai-osm-way-712187766-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/712187766"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q97186865"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-quiet-reflection",
+      "name": "Jiangwan Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.511196,
+        "lat": 31.311374
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-quiet-reflection-1",
+        "shanghai-shanghai-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/463240119"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20984155"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-recreation",
+      "name": "Binjiang Forest Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.524376,
+        "lat": 31.385238
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-recreation-1",
+        "shanghai-shanghai-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/74590795"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15893841"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "shanghai-transit",
+      "name": "East Nanjing Road",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.479229,
+        "lat": 31.239124
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "shanghai-shanghai-transit-1",
+        "shanghai-shanghai-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/shanghai/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/468916502"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1073609"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "shanghai-shanghai-airport-shanghai-airport-1",
+      "venueId": "shanghai-airport-shanghai-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-airport-shanghai-airport-2",
+      "venueId": "shanghai-airport-shanghai-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-clinic-1",
+      "venueId": "shanghai-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-clinic-2",
+      "venueId": "shanghai-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-community-notices-1",
+      "venueId": "shanghai-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-community-notices-2",
+      "venueId": "shanghai-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-community-voting-game-1",
+      "venueId": "shanghai-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-community-voting-game-2",
+      "venueId": "shanghai-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-community-workshop-1",
+      "venueId": "shanghai-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-community-workshop-2",
+      "venueId": "shanghai-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-market-game-1",
+      "venueId": "shanghai-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-market-game-2",
+      "venueId": "shanghai-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-meal-stop-1",
+      "venueId": "shanghai-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-meal-stop-2",
+      "venueId": "shanghai-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-node-4880999164-1",
+      "venueId": "shanghai-osm-node-4880999164",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-node-4880999164-2",
+      "venueId": "shanghai-osm-node-4880999164",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-relation-18781565-1",
+      "venueId": "shanghai-osm-relation-18781565",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-relation-18781565-2",
+      "venueId": "shanghai-osm-relation-18781565",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-relation-5390610-1",
+      "venueId": "shanghai-osm-relation-5390610",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-relation-5390610-2",
+      "venueId": "shanghai-osm-relation-5390610",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-1363229598-1",
+      "venueId": "shanghai-osm-way-1363229598",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-1363229598-2",
+      "venueId": "shanghai-osm-way-1363229598",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-15783341-1",
+      "venueId": "shanghai-osm-way-15783341",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-15783341-2",
+      "venueId": "shanghai-osm-way-15783341",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-183944730-1",
+      "venueId": "shanghai-osm-way-183944730",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-183944730-2",
+      "venueId": "shanghai-osm-way-183944730",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-192206043-1",
+      "venueId": "shanghai-osm-way-192206043",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-192206043-2",
+      "venueId": "shanghai-osm-way-192206043",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-24448592-1",
+      "venueId": "shanghai-osm-way-24448592",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-24448592-2",
+      "venueId": "shanghai-osm-way-24448592",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-279318210-1",
+      "venueId": "shanghai-osm-way-279318210",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-279318210-2",
+      "venueId": "shanghai-osm-way-279318210",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-328312304-1",
+      "venueId": "shanghai-osm-way-328312304",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-328312304-2",
+      "venueId": "shanghai-osm-way-328312304",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-404699628-1",
+      "venueId": "shanghai-osm-way-404699628",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-404699628-2",
+      "venueId": "shanghai-osm-way-404699628",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-462007561-1",
+      "venueId": "shanghai-osm-way-462007561",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-462007561-2",
+      "venueId": "shanghai-osm-way-462007561",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-474607998-1",
+      "venueId": "shanghai-osm-way-474607998",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-474607998-2",
+      "venueId": "shanghai-osm-way-474607998",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-51051520-1",
+      "venueId": "shanghai-osm-way-51051520",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-51051520-2",
+      "venueId": "shanghai-osm-way-51051520",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-712187766-1",
+      "venueId": "shanghai-osm-way-712187766",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-osm-way-712187766-2",
+      "venueId": "shanghai-osm-way-712187766",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-quiet-reflection-1",
+      "venueId": "shanghai-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-quiet-reflection-2",
+      "venueId": "shanghai-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-recreation-1",
+      "venueId": "shanghai-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-recreation-2",
+      "venueId": "shanghai-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-transit-1",
+      "venueId": "shanghai-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    },
+    {
+      "id": "shanghai-shanghai-transit-2",
+      "venueId": "shanghai-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/shanghai/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "shanghai-airport-shanghai-airport",
+    "shanghai-clinic",
+    "shanghai-community-notices",
+    "shanghai-community-voting-game",
+    "shanghai-community-workshop",
+    "shanghai-market-game",
+    "shanghai-meal-stop",
+    "shanghai-osm-node-4880999164",
+    "shanghai-osm-relation-18781565",
+    "shanghai-osm-relation-5390610",
+    "shanghai-osm-way-1363229598",
+    "shanghai-osm-way-15783341",
+    "shanghai-osm-way-183944730",
+    "shanghai-osm-way-192206043",
+    "shanghai-osm-way-24448592",
+    "shanghai-osm-way-279318210",
+    "shanghai-osm-way-328312304",
+    "shanghai-osm-way-404699628",
+    "shanghai-osm-way-462007561",
+    "shanghai-osm-way-474607998",
+    "shanghai-osm-way-51051520",
+    "shanghai-osm-way-712187766",
+    "shanghai-quiet-reflection",
+    "shanghai-recreation",
+    "shanghai-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "5ed0a42d015c5439654926e38d0acb694e26431ecdd4810900fab7bcb2ed0808",
+    "contentSha256": "d5b84f494240b98c8e3110ad463caac59539bd5e62d5b010a64abe2945532793"
+  }
+}

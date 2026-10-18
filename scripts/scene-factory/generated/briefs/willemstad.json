@@ -1,0 +1,2091 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "willemstad",
+    "name": "Willemstad",
+    "state": {
+      "id": "cw-willemstad",
+      "name": "Willemstad"
+    },
+    "country": {
+      "id": "cw",
+      "name": "Curaçao"
+    },
+    "point": {
+      "lon": -68.9351307,
+      "lat": 12.1066695
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "https://ourairports.com/airports/TNCC/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/willemstad/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/willemstad/facts.ts",
+        "sha256": "4374b90a5991e3d8340c19f73b3553cb5c976ff99ed39e448d6b9000508df656"
+      },
+      {
+        "path": "src/game/cities/willemstad/index.ts",
+        "sha256": "824a8390a0ca37a387459e6ea759fc7ca7218cb2898882526aa1f4881c5ecb95"
+      },
+      {
+        "path": "src/game/cities/willemstad/places.ts",
+        "sha256": "d014c64d8b16ce0c54799505e50e0a0b7158931476ff644004b920789d14090b"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.9351307,
+        "lat": 12.1066695
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "willemstad-airport-willemstad-airport",
+      "name": "Hato International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.959801,
+        "lat": 12.1889
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-airport-willemstad-airport-1",
+        "willemstad-willemstad-airport-willemstad-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "willemstad-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-clinic",
+      "name": "Curaçao Medical Center",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.941848,
+        "lat": 12.110175
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-clinic-1",
+        "willemstad-willemstad-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/387975180"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q63981880"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-community-notices",
+      "name": "Parliament of Curaçao",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.933647,
+        "lat": 12.104736
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-community-notices-1",
+        "willemstad-willemstad-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/250834080"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2326816"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-community-voting-game",
+      "name": "Bentana di informashon",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.911527,
+        "lat": 12.106383
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-community-voting-game-1",
+        "willemstad-willemstad-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/372920585"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-community-workshop",
+      "name": "Biblioteka Nashonal Kòrsou",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.914271,
+        "lat": 12.108453
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-community-workshop-1",
+        "willemstad-willemstad-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12960093074"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q25702525"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-market-game",
+      "name": "LXRY Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.861006,
+        "lat": 12.092618
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-market-game-1",
+        "willemstad-willemstad-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1552105131"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-meal-stop",
+      "name": "Porto Marie Beach",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -69.085519,
+        "lat": 12.218532
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-meal-stop-1",
+        "willemstad-willemstad-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/335611671"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-osm-node-1680059162",
+      "name": "Kokomo Beach",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -69.004475,
+        "lat": 12.160589
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-osm-node-1680059162-1",
+        "willemstad-willemstad-osm-node-1680059162-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1680059162"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-osm-node-295322115",
+      "name": "Flamingo observation tower",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -69.052987,
+        "lat": 12.212986
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-osm-node-295322115-1",
+        "willemstad-willemstad-osm-node-295322115-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/295322115"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-osm-node-3125134023",
+      "name": "Villapark Wind Gate",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.856237,
+        "lat": 12.124462
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-osm-node-3125134023-1",
+        "willemstad-willemstad-osm-node-3125134023-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3125134023"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-osm-node-4148045689",
+      "name": "Overkempe Estate",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.817374,
+        "lat": 12.092165
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-osm-node-4148045689-1",
+        "willemstad-willemstad-osm-node-4148045689-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4148045689"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-osm-node-614709247",
+      "name": "Fuikbaai",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.833709,
+        "lat": 12.053698
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-osm-node-614709247-1",
+        "willemstad-willemstad-osm-node-614709247-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/614709247"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-osm-node-621938358",
+      "name": "Hato Caves",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.948323,
+        "lat": 12.179784
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-osm-node-621938358-1",
+        "willemstad-willemstad-osm-node-621938358-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/621938358"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5681711"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-osm-node-8754288674",
+      "name": "Museum Landhuis Ascencion",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -69.061727,
+        "lat": 12.273017
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-osm-node-8754288674-1",
+        "willemstad-willemstad-osm-node-8754288674-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8754288674"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q63564878"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-osm-way-1380095524",
+      "name": "St. Martinus University (Faculty of Medicine)",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.885246,
+        "lat": 12.124753
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-osm-way-1380095524-1",
+        "willemstad-willemstad-osm-way-1380095524-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1380095524"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-osm-way-301593974",
+      "name": "Pearl of the Caribbean",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.831852,
+        "lat": 12.138314
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-osm-way-301593974-1",
+        "willemstad-willemstad-osm-way-301593974-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/301593974"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-osm-way-312133712",
+      "name": "Mikvé Israel-Emanuel",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.932717,
+        "lat": 12.105095
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-osm-way-312133712-1",
+        "willemstad-willemstad-osm-way-312133712-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/312133712"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5194634"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-osm-way-370349178",
+      "name": "Sint Anna Basiliek",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.936594,
+        "lat": 12.108265
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-osm-way-370349178-1",
+        "willemstad-willemstad-osm-way-370349178-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/370349178"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q23662567"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-osm-way-375316022",
+      "name": "Fromer I.P.O Police Academy",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.926001,
+        "lat": 12.145564
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-osm-way-375316022-1",
+        "willemstad-willemstad-osm-way-375316022-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/375316022"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-osm-way-687410566",
+      "name": "University of Curacao Dr. Moises Da Costa Gomez",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.961383,
+        "lat": 12.157299
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-osm-way-687410566-1",
+        "willemstad-willemstad-osm-way-687410566-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/687410566"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1708838"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-osm-way-696020924",
+      "name": "Stadion Ergilio Hato",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.887651,
+        "lat": 12.152792
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-osm-way-696020924-1",
+        "willemstad-willemstad-osm-way-696020924-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/696020924"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1637216"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-osm-way-946150393",
+      "name": "Landhuis Daniël",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -69.019575,
+        "lat": 12.210868
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-osm-way-946150393-1",
+        "willemstad-willemstad-osm-way-946150393-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/946150393"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q126178143"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-quiet-reflection",
+      "name": "Katedral di Pietermaai",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.924651,
+        "lat": 12.103109
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-quiet-reflection-1",
+        "willemstad-willemstad-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/371810812"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q23662555"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-recreation",
+      "name": "Rif Mangrove Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.943861,
+        "lat": 12.107784
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-recreation-1",
+        "willemstad-willemstad-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/237592022"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q137802420"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "willemstad-transit",
+      "name": "Punda Ferry Dock",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.934042,
+        "lat": 12.106401
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "willemstad-willemstad-transit-1",
+        "willemstad-willemstad-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/willemstad/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/295125540"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "willemstad-willemstad-airport-willemstad-airport-1",
+      "venueId": "willemstad-airport-willemstad-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-airport-willemstad-airport-2",
+      "venueId": "willemstad-airport-willemstad-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-clinic-1",
+      "venueId": "willemstad-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-clinic-2",
+      "venueId": "willemstad-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-community-notices-1",
+      "venueId": "willemstad-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-community-notices-2",
+      "venueId": "willemstad-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-community-voting-game-1",
+      "venueId": "willemstad-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-community-voting-game-2",
+      "venueId": "willemstad-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-community-workshop-1",
+      "venueId": "willemstad-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-community-workshop-2",
+      "venueId": "willemstad-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-market-game-1",
+      "venueId": "willemstad-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-market-game-2",
+      "venueId": "willemstad-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-meal-stop-1",
+      "venueId": "willemstad-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-meal-stop-2",
+      "venueId": "willemstad-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-node-1680059162-1",
+      "venueId": "willemstad-osm-node-1680059162",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-node-1680059162-2",
+      "venueId": "willemstad-osm-node-1680059162",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-node-295322115-1",
+      "venueId": "willemstad-osm-node-295322115",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-node-295322115-2",
+      "venueId": "willemstad-osm-node-295322115",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-node-3125134023-1",
+      "venueId": "willemstad-osm-node-3125134023",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-node-3125134023-2",
+      "venueId": "willemstad-osm-node-3125134023",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-node-4148045689-1",
+      "venueId": "willemstad-osm-node-4148045689",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-node-4148045689-2",
+      "venueId": "willemstad-osm-node-4148045689",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-node-614709247-1",
+      "venueId": "willemstad-osm-node-614709247",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-node-614709247-2",
+      "venueId": "willemstad-osm-node-614709247",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-node-621938358-1",
+      "venueId": "willemstad-osm-node-621938358",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-node-621938358-2",
+      "venueId": "willemstad-osm-node-621938358",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-node-8754288674-1",
+      "venueId": "willemstad-osm-node-8754288674",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-node-8754288674-2",
+      "venueId": "willemstad-osm-node-8754288674",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-way-1380095524-1",
+      "venueId": "willemstad-osm-way-1380095524",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-way-1380095524-2",
+      "venueId": "willemstad-osm-way-1380095524",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-way-301593974-1",
+      "venueId": "willemstad-osm-way-301593974",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-way-301593974-2",
+      "venueId": "willemstad-osm-way-301593974",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-way-312133712-1",
+      "venueId": "willemstad-osm-way-312133712",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-way-312133712-2",
+      "venueId": "willemstad-osm-way-312133712",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-way-370349178-1",
+      "venueId": "willemstad-osm-way-370349178",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-way-370349178-2",
+      "venueId": "willemstad-osm-way-370349178",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-way-375316022-1",
+      "venueId": "willemstad-osm-way-375316022",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-way-375316022-2",
+      "venueId": "willemstad-osm-way-375316022",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-way-687410566-1",
+      "venueId": "willemstad-osm-way-687410566",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-way-687410566-2",
+      "venueId": "willemstad-osm-way-687410566",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-way-696020924-1",
+      "venueId": "willemstad-osm-way-696020924",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-way-696020924-2",
+      "venueId": "willemstad-osm-way-696020924",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-way-946150393-1",
+      "venueId": "willemstad-osm-way-946150393",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-osm-way-946150393-2",
+      "venueId": "willemstad-osm-way-946150393",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-quiet-reflection-1",
+      "venueId": "willemstad-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-quiet-reflection-2",
+      "venueId": "willemstad-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-recreation-1",
+      "venueId": "willemstad-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-recreation-2",
+      "venueId": "willemstad-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-transit-1",
+      "venueId": "willemstad-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    },
+    {
+      "id": "willemstad-willemstad-transit-2",
+      "venueId": "willemstad-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/willemstad/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "willemstad-airport-willemstad-airport",
+    "willemstad-clinic",
+    "willemstad-community-notices",
+    "willemstad-community-voting-game",
+    "willemstad-community-workshop",
+    "willemstad-market-game",
+    "willemstad-meal-stop",
+    "willemstad-osm-node-1680059162",
+    "willemstad-osm-node-295322115",
+    "willemstad-osm-node-3125134023",
+    "willemstad-osm-node-4148045689",
+    "willemstad-osm-node-614709247",
+    "willemstad-osm-node-621938358",
+    "willemstad-osm-node-8754288674",
+    "willemstad-osm-way-1380095524",
+    "willemstad-osm-way-301593974",
+    "willemstad-osm-way-312133712",
+    "willemstad-osm-way-370349178",
+    "willemstad-osm-way-375316022",
+    "willemstad-osm-way-687410566",
+    "willemstad-osm-way-696020924",
+    "willemstad-osm-way-946150393",
+    "willemstad-quiet-reflection",
+    "willemstad-recreation",
+    "willemstad-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "f250f9457718972b8155beb1a84692cffe0dc94a775f5907cbb5a6aa5b90010b",
+    "contentSha256": "3317f56a9958f951da962f73861708e9d874eaff002beb1c70a190d6febc0aba"
+  }
+}

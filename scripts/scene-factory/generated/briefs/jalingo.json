@@ -1,0 +1,1215 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "jalingo",
+    "name": "Jalingo",
+    "state": {
+      "id": "taraba",
+      "name": "Taraba"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 11.366666666667,
+      "lat": 8.9
+    }
+  },
+  "style": {
+    "region": "sahel-north",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/jalingo/content.ts",
+        "sha256": "6fbedfee26c5e099e688cbd7a2e0d5f091a067baa85289fdcba35210b7cfef8c"
+      },
+      {
+        "path": "src/game/cities/jalingo/index.ts",
+        "sha256": "3a206e72b93efa69d47d884d6eb003afc88f6dffedc921f985a123d0aabfa05e"
+      },
+      {
+        "path": "src/game/cities/jalingo/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/jalingo/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for jalingo.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "bando-market",
+      "name": "Bando Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.3816804,
+        "lat": 8.8760734
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jalingo-bando-market-1",
+        "jalingo-bando-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jalingo."
+      }
+    },
+    {
+      "id": "central-mosque-sabo-gari",
+      "name": "Central Mosque Sabo Gari Jalingo",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.377789,
+        "lat": 8.879845
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jalingo-central-mosque-sabo-gari-1",
+        "jalingo-central-mosque-sabo-gari-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jalingo."
+      }
+    },
+    {
+      "id": "college-of-education-jalingo",
+      "name": "College of Education, Jalingo",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.365019583744896,
+        "lat": 8.89916448150062
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jalingo-college-of-education-jalingo-1",
+        "jalingo-college-of-education-jalingo-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jalingo."
+      }
+    },
+    {
+      "id": "federal-medical-centre-jalingo",
+      "name": "FEDERAL MEDICAL CENTRE JALINGO",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.3681684,
+        "lat": 8.9000787
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jalingo-federal-medical-centre-jalingo-1",
+        "jalingo-federal-medical-centre-jalingo-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jalingo."
+      }
+    },
+    {
+      "id": "government-house-mosque-jalingo",
+      "name": "Government House Mosque Jalingo",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.374587,
+        "lat": 8.887853
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jalingo-government-house-mosque-jalingo-1",
+        "jalingo-government-house-mosque-jalingo-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jalingo."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.335075568183216,
+        "lat": 8.942576134069517
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jalingo."
+      }
+    },
+    {
+      "id": "jalingo-centre-market",
+      "name": "Jalingo centre market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.3598894,
+        "lat": 8.8942138
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jalingo-jalingo-centre-market-1",
+        "jalingo-jalingo-centre-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jalingo."
+      }
+    },
+    {
+      "id": "jolly-nyame-stadium",
+      "name": "Jolly Nyame Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.3544891,
+        "lat": 8.9511247
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jalingo-jolly-nyame-stadium-1",
+        "jalingo-jolly-nyame-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jalingo."
+      }
+    },
+    {
+      "id": "nana-aishat-central-mosque",
+      "name": "Nana Aishat Central Mosque Jalingo",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.392528,
+        "lat": 8.885288
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jalingo-nana-aishat-central-mosque-1",
+        "jalingo-nana-aishat-central-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jalingo."
+      }
+    },
+    {
+      "id": "our-lady-queen-of-peace-cathedral",
+      "name": "Our Lady Queen Of Peace Catholic Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.3713365,
+        "lat": 8.9481007
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jalingo-our-lady-queen-of-peace-cathedral-1",
+        "jalingo-our-lady-queen-of-peace-cathedral-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jalingo."
+      }
+    },
+    {
+      "id": "rafin-sanyi-rock",
+      "name": "Rafin Sanyi Rock",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.3845808,
+        "lat": 8.8986972
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jalingo-rafin-sanyi-rock-1",
+        "jalingo-rafin-sanyi-rock-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jalingo."
+      }
+    },
+    {
+      "id": "specialist-hospital-jalingo",
+      "name": "Specialist Hospital Jalingo",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.3919524,
+        "lat": 8.9077485
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jalingo-specialist-hospital-jalingo-1",
+        "jalingo-specialist-hospital-jalingo-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jalingo."
+      }
+    },
+    {
+      "id": "st-peters-catholic-church-jalingo",
+      "name": "St. Peter`s Catholic Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.3264068,
+        "lat": 8.9262812
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jalingo-st-peters-catholic-church-jalingo-1",
+        "jalingo-st-peters-catholic-church-jalingo-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jalingo."
+      }
+    },
+    {
+      "id": "taraba-state-civil-service",
+      "name": "Taraba State Civil Service",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.3399506,
+        "lat": 8.9333837
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jalingo-taraba-state-civil-service-1",
+        "jalingo-taraba-state-civil-service-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for jalingo."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "jalingo-bando-market-1",
+      "venueId": "bando-market",
+      "name": "Hannatu Yohanna",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-bando-market-2",
+      "venueId": "bando-market",
+      "name": "Istifanus Bulus",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-central-mosque-sabo-gari-1",
+      "venueId": "central-mosque-sabo-gari",
+      "name": "Daniel Gyang",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-central-mosque-sabo-gari-2",
+      "venueId": "central-mosque-sabo-gari",
+      "name": "Maryamu Musa",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-college-of-education-jalingo-1",
+      "venueId": "college-of-education-jalingo",
+      "name": "Daniel Gambo",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-college-of-education-jalingo-2",
+      "venueId": "college-of-education-jalingo",
+      "name": "Maryamu Gyang",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-federal-medical-centre-jalingo-1",
+      "venueId": "federal-medical-centre-jalingo",
+      "name": "Hannatu Adamu",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-federal-medical-centre-jalingo-2",
+      "venueId": "federal-medical-centre-jalingo",
+      "name": "Istifanus Jatau",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-government-house-mosque-jalingo-1",
+      "venueId": "government-house-mosque-jalingo",
+      "name": "Hannatu Bulus",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-government-house-mosque-jalingo-2",
+      "venueId": "government-house-mosque-jalingo",
+      "name": "Istifanus Adamu",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-jalingo-centre-market-1",
+      "venueId": "jalingo-centre-market",
+      "name": "Daniel Dung",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-jalingo-centre-market-2",
+      "venueId": "jalingo-centre-market",
+      "name": "Maryamu Bako",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-jolly-nyame-stadium-1",
+      "venueId": "jolly-nyame-stadium",
+      "name": "Hannatu Pam",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-jolly-nyame-stadium-2",
+      "venueId": "jolly-nyame-stadium",
+      "name": "Istifanus Audu",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-nana-aishat-central-mosque-1",
+      "venueId": "nana-aishat-central-mosque",
+      "name": "Hannatu Ibrahim",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-nana-aishat-central-mosque-2",
+      "venueId": "nana-aishat-central-mosque",
+      "name": "Istifanus Ishaku",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-our-lady-queen-of-peace-cathedral-1",
+      "venueId": "our-lady-queen-of-peace-cathedral",
+      "name": "Daniel Musa",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-our-lady-queen-of-peace-cathedral-2",
+      "venueId": "our-lady-queen-of-peace-cathedral",
+      "name": "Maryamu Danjuma",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-rafin-sanyi-rock-1",
+      "venueId": "rafin-sanyi-rock",
+      "name": "Hannatu Audu",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-rafin-sanyi-rock-2",
+      "venueId": "rafin-sanyi-rock",
+      "name": "Istifanus Ibrahim",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-specialist-hospital-jalingo-1",
+      "venueId": "specialist-hospital-jalingo",
+      "name": "Daniel Garba",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-specialist-hospital-jalingo-2",
+      "venueId": "specialist-hospital-jalingo",
+      "name": "Maryamu Tanko",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-st-peters-catholic-church-jalingo-1",
+      "venueId": "st-peters-catholic-church-jalingo",
+      "name": "Hannatu Ishaku",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-st-peters-catholic-church-jalingo-2",
+      "venueId": "st-peters-catholic-church-jalingo",
+      "name": "Istifanus Pam",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-taraba-state-civil-service-1",
+      "venueId": "taraba-state-civil-service",
+      "name": "Daniel Bako",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    },
+    {
+      "id": "jalingo-taraba-state-civil-service-2",
+      "venueId": "taraba-state-civil-service",
+      "name": "Maryamu Garba",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jalingo/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "bando-market",
+    "central-mosque-sabo-gari",
+    "college-of-education-jalingo",
+    "federal-medical-centre-jalingo",
+    "government-house-mosque-jalingo",
+    "jalingo-centre-market",
+    "jolly-nyame-stadium",
+    "nana-aishat-central-mosque",
+    "our-lady-queen-of-peace-cathedral",
+    "rafin-sanyi-rock",
+    "specialist-hospital-jalingo",
+    "st-peters-catholic-church-jalingo",
+    "taraba-state-civil-service"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "c97143886ba7fea68f369b713de735c27334ead2cf96f18fec9bad376abd1194",
+    "contentSha256": "ada983c87f707fdda4c65e38c37c2f28e08a469a1e30d23700b570cf9be3f944"
+  }
+}

@@ -1,0 +1,2087 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "niamey",
+    "name": "Niamey",
+    "state": {
+      "id": "ne-niamey",
+      "name": "Niamey"
+    },
+    "country": {
+      "id": "ne",
+      "name": "Niger"
+    },
+    "point": {
+      "lon": 2.109823,
+      "lat": 13.524834
+    }
+  },
+  "style": {
+    "region": "sahel-francophone",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/africa/niger-261011.osm.pbf",
+      "https://ourairports.com/airports/DRRN/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/niamey/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/niamey/facts.ts",
+        "sha256": "15a7ea86ad0f37e26e4b318b9471d83129f1dfb1a63d90b53f57a41accd8bf72"
+      },
+      {
+        "path": "src/game/cities/niamey/index.ts",
+        "sha256": "77d937c998bb633a9065021df37b4d9b8df0d162b5fe7dcff188fee4dab84580"
+      },
+      {
+        "path": "src/game/cities/niamey/places.ts",
+        "sha256": "9c643c7d6af7f81826fbefd315b3d9f9eda5b4a83f996db10094b2dab0cfbb10"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.1098230000000004,
+        "lat": 13.524834
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "niamey-airport-niamey-airport",
+      "name": "Diori Hamani International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.18361,
+        "lat": 13.4815
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-airport-niamey-airport-1",
+        "niamey-niamey-airport-niamey-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "niamey-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-clinic",
+      "name": "Hôpital de Gawèye",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.107007,
+        "lat": 13.487411
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-clinic-1",
+        "niamey-niamey-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/789361639"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q64760712"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-community-notices",
+      "name": "SONIDEP Dépôt de Sorey",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.250861,
+        "lat": 13.438112
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-community-notices-1",
+        "niamey-niamey-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11962382179"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-community-voting-game",
+      "name": "Rond point Tolle",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.048109,
+        "lat": 13.576465
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-community-voting-game-1",
+        "niamey-niamey-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11104852426"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-community-workshop",
+      "name": "Abdou Moumouni University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.090059,
+        "lat": 13.50101
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-community-workshop-1",
+        "niamey-niamey-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/13527816"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q308329"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-market-game",
+      "name": "Marché de Bougoum",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.985851,
+        "lat": 13.433995
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-market-game-1",
+        "niamey-niamey-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/687861467"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-meal-stop",
+      "name": "Restaurant Banodo",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.169751,
+        "lat": 13.429116
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-meal-stop-1",
+        "niamey-niamey-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7468674723"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-osm-node-10770891720",
+      "name": "Restaurant Soniloga",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.211975,
+        "lat": 13.455965
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-osm-node-10770891720-1",
+        "niamey-niamey-osm-node-10770891720-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10770891720"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-osm-node-11419918096",
+      "name": "Institut National de la Jeunesse, des Sports et de la Culture",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.096338,
+        "lat": 13.504903
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-osm-node-11419918096-1",
+        "niamey-niamey-osm-node-11419918096-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11419918096"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q64760713"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-osm-node-1684101906",
+      "name": "Boubou Hama National Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.10822,
+        "lat": 13.512039
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-osm-node-1684101906-1",
+        "niamey-niamey-osm-node-1684101906-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1684101906"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1989844"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-osm-node-2454056091",
+      "name": "AGRHYMET Regional Center",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.100806,
+        "lat": 13.497918
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-osm-node-2454056091-1",
+        "niamey-niamey-osm-node-2454056091-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2454056091"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30255703"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-osm-node-2715713022",
+      "name": "Place Djibo Bakary",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.109249,
+        "lat": 13.514066
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-osm-node-2715713022-1",
+        "niamey-niamey-osm-node-2715713022-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2715713022"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q348849"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-osm-node-4491536811",
+      "name": "École des Mines de l'industrie et de la Geologie",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.087807,
+        "lat": 13.501355
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-osm-node-4491536811-1",
+        "niamey-niamey-osm-node-4491536811-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4491536811"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3577935"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-osm-node-7444882086",
+      "name": "Kangaweydo",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.120458,
+        "lat": 13.59591
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-osm-node-7444882086-1",
+        "niamey-niamey-osm-node-7444882086-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7444882086"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-osm-way-1013753293",
+      "name": "Marché Kalley Plateau",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.150004,
+        "lat": 13.56284
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-osm-way-1013753293-1",
+        "niamey-niamey-osm-way-1013753293-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1013753293"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-osm-way-1160782464",
+      "name": "Parc d'Attraction Aéroport",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.176227,
+        "lat": 13.473248
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-osm-way-1160782464-1",
+        "niamey-niamey-osm-way-1160782464-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1160782464"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-osm-way-1186878593",
+      "name": "MATERNITE",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.199327,
+        "lat": 13.537442
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-osm-way-1186878593-1",
+        "niamey-niamey-osm-way-1186878593-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1186878593"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-osm-way-308752310",
+      "name": "National Hospital of Niamey",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.101281,
+        "lat": 13.512975
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-osm-way-308752310-1",
+        "niamey-niamey-osm-way-308752310-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/308752310"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6973409"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-osm-way-380017757",
+      "name": "Église Notre-Dame du Perpétuel Secours",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.110649,
+        "lat": 13.517765
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-osm-way-380017757-1",
+        "niamey-niamey-osm-way-380017757-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/380017757"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24060612"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-osm-way-611735693",
+      "name": "Stade Général Seyni Kountché",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.108939,
+        "lat": 13.527216
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-osm-way-611735693-1",
+        "niamey-niamey-osm-way-611735693-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/611735693"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1501532"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-osm-way-628422326",
+      "name": "Parc d'agrément",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.068227,
+        "lat": 13.536705
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-osm-way-628422326-1",
+        "niamey-niamey-osm-way-628422326-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/628422326"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-osm-way-921259734",
+      "name": "Restaurant Bani Bani",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.163959,
+        "lat": 13.509341
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-osm-way-921259734-1",
+        "niamey-niamey-osm-way-921259734-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/921259734"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-quiet-reflection",
+      "name": "Great Mosque of Niamey",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.13289,
+        "lat": 13.52212
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-quiet-reflection-1",
+        "niamey-niamey-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/38758638"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q279545"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-recreation",
+      "name": "Zen Espace",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 1.96618,
+        "lat": 13.594749
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-recreation-1",
+        "niamey-niamey-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/699097345"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "niamey-transit",
+      "name": "Sonef Tranport Voyageurs",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.110019,
+        "lat": 13.530901
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "niamey-niamey-transit-1",
+        "niamey-niamey-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/niamey/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2750057668"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "niamey-niamey-airport-niamey-airport-1",
+      "venueId": "niamey-airport-niamey-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-airport-niamey-airport-2",
+      "venueId": "niamey-airport-niamey-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-clinic-1",
+      "venueId": "niamey-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-clinic-2",
+      "venueId": "niamey-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-community-notices-1",
+      "venueId": "niamey-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-community-notices-2",
+      "venueId": "niamey-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-community-voting-game-1",
+      "venueId": "niamey-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-community-voting-game-2",
+      "venueId": "niamey-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-community-workshop-1",
+      "venueId": "niamey-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-community-workshop-2",
+      "venueId": "niamey-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-market-game-1",
+      "venueId": "niamey-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-market-game-2",
+      "venueId": "niamey-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-meal-stop-1",
+      "venueId": "niamey-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-meal-stop-2",
+      "venueId": "niamey-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-node-10770891720-1",
+      "venueId": "niamey-osm-node-10770891720",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-node-10770891720-2",
+      "venueId": "niamey-osm-node-10770891720",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-node-11419918096-1",
+      "venueId": "niamey-osm-node-11419918096",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-node-11419918096-2",
+      "venueId": "niamey-osm-node-11419918096",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-node-1684101906-1",
+      "venueId": "niamey-osm-node-1684101906",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-node-1684101906-2",
+      "venueId": "niamey-osm-node-1684101906",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-node-2454056091-1",
+      "venueId": "niamey-osm-node-2454056091",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-node-2454056091-2",
+      "venueId": "niamey-osm-node-2454056091",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-node-2715713022-1",
+      "venueId": "niamey-osm-node-2715713022",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-node-2715713022-2",
+      "venueId": "niamey-osm-node-2715713022",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-node-4491536811-1",
+      "venueId": "niamey-osm-node-4491536811",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-node-4491536811-2",
+      "venueId": "niamey-osm-node-4491536811",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-node-7444882086-1",
+      "venueId": "niamey-osm-node-7444882086",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-node-7444882086-2",
+      "venueId": "niamey-osm-node-7444882086",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-way-1013753293-1",
+      "venueId": "niamey-osm-way-1013753293",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-way-1013753293-2",
+      "venueId": "niamey-osm-way-1013753293",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-way-1160782464-1",
+      "venueId": "niamey-osm-way-1160782464",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-way-1160782464-2",
+      "venueId": "niamey-osm-way-1160782464",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-way-1186878593-1",
+      "venueId": "niamey-osm-way-1186878593",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-way-1186878593-2",
+      "venueId": "niamey-osm-way-1186878593",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-way-308752310-1",
+      "venueId": "niamey-osm-way-308752310",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-way-308752310-2",
+      "venueId": "niamey-osm-way-308752310",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-way-380017757-1",
+      "venueId": "niamey-osm-way-380017757",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-way-380017757-2",
+      "venueId": "niamey-osm-way-380017757",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-way-611735693-1",
+      "venueId": "niamey-osm-way-611735693",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-way-611735693-2",
+      "venueId": "niamey-osm-way-611735693",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-way-628422326-1",
+      "venueId": "niamey-osm-way-628422326",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-way-628422326-2",
+      "venueId": "niamey-osm-way-628422326",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-way-921259734-1",
+      "venueId": "niamey-osm-way-921259734",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-osm-way-921259734-2",
+      "venueId": "niamey-osm-way-921259734",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-quiet-reflection-1",
+      "venueId": "niamey-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-quiet-reflection-2",
+      "venueId": "niamey-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-recreation-1",
+      "venueId": "niamey-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-recreation-2",
+      "venueId": "niamey-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-transit-1",
+      "venueId": "niamey-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    },
+    {
+      "id": "niamey-niamey-transit-2",
+      "venueId": "niamey-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/niamey/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "niamey-airport-niamey-airport",
+    "niamey-clinic",
+    "niamey-community-notices",
+    "niamey-community-voting-game",
+    "niamey-community-workshop",
+    "niamey-market-game",
+    "niamey-meal-stop",
+    "niamey-osm-node-10770891720",
+    "niamey-osm-node-11419918096",
+    "niamey-osm-node-1684101906",
+    "niamey-osm-node-2454056091",
+    "niamey-osm-node-2715713022",
+    "niamey-osm-node-4491536811",
+    "niamey-osm-node-7444882086",
+    "niamey-osm-way-1013753293",
+    "niamey-osm-way-1160782464",
+    "niamey-osm-way-1186878593",
+    "niamey-osm-way-308752310",
+    "niamey-osm-way-380017757",
+    "niamey-osm-way-611735693",
+    "niamey-osm-way-628422326",
+    "niamey-osm-way-921259734",
+    "niamey-quiet-reflection",
+    "niamey-recreation",
+    "niamey-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "165cc8e5f0df18a70cd6f7ef737a6c3fbcc688cace116f2023c2f0d646a4a312",
+    "contentSha256": "e5ff6bcb592f51d1384e9d0fc945630f76292d908e2abcd9d4ecad5d72aa6405"
+  }
+}

@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "macau",
+    "name": "Macau",
+    "state": {
+      "id": "mo-macau",
+      "name": "Macau"
+    },
+    "country": {
+      "id": "mo",
+      "name": "Macau"
+    },
+    "point": {
+      "lon": 113.5380454,
+      "lat": 22.1899448
+    }
+  },
+  "style": {
+    "region": "east-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/china/guangdong-261011.osm.pbf",
+      "https://ourairports.com/airports/VMMC/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/macau/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/macau/facts.ts",
+        "sha256": "236039aa03e45c95a919e88d2fd4b9d9d29f1f786faede9882ce2501d99326a5"
+      },
+      {
+        "path": "src/game/cities/macau/index.ts",
+        "sha256": "e07891a3186e8e12d05690ea58b323efc1d759bb0534b4b7a003166298e10116"
+      },
+      {
+        "path": "src/game/cities/macau/places.ts",
+        "sha256": "d64cbf9a7377e399813f61b500a4ab0bd2099dbec197fc2a0b22c47b4f464c92"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.5380454,
+        "lat": 22.1899448
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "macau-airport-macau-airport",
+      "name": "Macau International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.592003,
+        "lat": 22.149599
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-airport-macau-airport-1",
+        "macau-macau-airport-macau-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "macau-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-clinic",
+      "name": "The Islands Healthcare Complex — Macao Medical Center of Peking Union Medical College Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.56563,
+        "lat": 22.136227
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-clinic-1",
+        "macau-macau-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/428421340"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16926903"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-community-notices",
+      "name": "Monetary Authority of Macao",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.548146,
+        "lat": 22.195554
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-community-notices-1",
+        "macau-macau-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/347053217"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q986615"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-community-voting-game",
+      "name": "Cultural Centre Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.554692,
+        "lat": 22.190142
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-community-voting-game-1",
+        "macau-macau-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/307049831"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16926503"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-community-workshop",
+      "name": "Seac Pai Van Library",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.562234,
+        "lat": 22.128508
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-community-workshop-1",
+        "macau-macau-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7545205378"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q85882877"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-market-game",
+      "name": "台山街市市政綜合大樓 Complexo Municipal do Mercado de Tamagnini Barbosa",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.545766,
+        "lat": 22.210927
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-market-game-1",
+        "macau-macau-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/334453286"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q10914498"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-meal-stop",
+      "name": "Clube militar",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.544157,
+        "lat": 22.191734
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-meal-stop-1",
+        "macau-macau-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4325083289"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28345618"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-osm-relation-20002113",
+      "name": "University of Macau",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.543793,
+        "lat": 22.12835
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-osm-relation-20002113-1",
+        "macau-macau-osm-relation-20002113-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/20002113"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1563050"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-osm-relation-21176879",
+      "name": "Macau Tower",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.536797,
+        "lat": 22.179809
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-osm-relation-21176879-1",
+        "macau-macau-osm-relation-21176879-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/21176879"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1568304"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-osm-way-163732917",
+      "name": "Macau Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.55331,
+        "lat": 22.154666
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-osm-way-163732917-1",
+        "macau-macau-osm-way-163732917-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/163732917"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1674107"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-osm-way-172301929",
+      "name": "Kiang Wu Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.542683,
+        "lat": 22.199169
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-osm-way-172301929-1",
+        "macau-macau-osm-way-172301929-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/172301929"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5908476"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-osm-way-206823798",
+      "name": "沙梨頭街市 Mercado Municipal do Patane",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.537215,
+        "lat": 22.202583
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-osm-way-206823798-1",
+        "macau-macau-osm-way-206823798-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/206823798"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11129447"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-osm-way-244820723",
+      "name": "MUST Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.56821,
+        "lat": 22.152439
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-osm-way-244820723-1",
+        "macau-macau-osm-way-244820723-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/244820723"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6722722"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-osm-way-244930722",
+      "name": "Ramalho Eanes Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.551719,
+        "lat": 22.117999
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-osm-way-244930722-1",
+        "macau-macau-osm-way-244930722-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/244930722"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11073004"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-osm-way-295506987",
+      "name": "Grand Lisboa Palace Macau",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.574207,
+        "lat": 22.144086
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-osm-way-295506987-1",
+        "macau-macau-osm-way-295506987-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/295506987"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q61056117"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-osm-way-306158878",
+      "name": "Red Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.5448,
+        "lat": 22.205399
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-osm-way-306158878-1",
+        "macau-macau-osm-way-306158878-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/306158878"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7304572"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-osm-way-322642517",
+      "name": "Hac Sa Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.568754,
+        "lat": 22.118208
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-osm-way-322642517-1",
+        "macau-macau-osm-way-322642517-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/322642517"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5637016"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-osm-way-330083075",
+      "name": "Communications Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.55498,
+        "lat": 22.203265
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-osm-way-330083075-1",
+        "macau-macau-osm-way-330083075-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/330083075"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15905060"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-osm-way-330769741",
+      "name": "中葡職業技術學校 Escola Luso-Chinesa Técnico-Profissional",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.553796,
+        "lat": 22.210016
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-osm-way-330769741-1",
+        "macau-macau-osm-way-330769741-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/330769741"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q55695748"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-osm-way-346331627",
+      "name": "Broadway Macau",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.551577,
+        "lat": 22.146537
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-osm-way-346331627-1",
+        "macau-macau-osm-way-346331627-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/346331627"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15921371"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-osm-way-389129453",
+      "name": "St. Augustine's Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.538399,
+        "lat": 22.192326
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-osm-way-389129453-1",
+        "macau-macau-osm-way-389129453-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/389129453"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4587786"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-osm-way-580160817",
+      "name": "City University of Macau",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.557454,
+        "lat": 22.163951
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-osm-way-580160817-1",
+        "macau-macau-osm-way-580160817-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/580160817"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5123484"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-quiet-reflection",
+      "name": "Church of Our Lady of Sorrows",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.58932,
+        "lat": 22.132477
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-quiet-reflection-1",
+        "macau-macau-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/229290411"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q10300450"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-recreation",
+      "name": "氹仔海濱休憩區 Zona de Lazer da Marginal da Taipa",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.543828,
+        "lat": 22.159161
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-recreation-1",
+        "macau-macau-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/405826614"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q115639036"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "macau-transit",
+      "name": "凱泉灣總站 Riviera Macau / Terminal",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 113.532989,
+        "lat": 22.190763
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "macau-macau-transit-1",
+        "macau-macau-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/macau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2561573392"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q10896453"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "macau-macau-airport-macau-airport-1",
+      "venueId": "macau-airport-macau-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-airport-macau-airport-2",
+      "venueId": "macau-airport-macau-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-clinic-1",
+      "venueId": "macau-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-clinic-2",
+      "venueId": "macau-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-community-notices-1",
+      "venueId": "macau-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-community-notices-2",
+      "venueId": "macau-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-community-voting-game-1",
+      "venueId": "macau-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-community-voting-game-2",
+      "venueId": "macau-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-community-workshop-1",
+      "venueId": "macau-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-community-workshop-2",
+      "venueId": "macau-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-market-game-1",
+      "venueId": "macau-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-market-game-2",
+      "venueId": "macau-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-meal-stop-1",
+      "venueId": "macau-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-meal-stop-2",
+      "venueId": "macau-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-relation-20002113-1",
+      "venueId": "macau-osm-relation-20002113",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-relation-20002113-2",
+      "venueId": "macau-osm-relation-20002113",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-relation-21176879-1",
+      "venueId": "macau-osm-relation-21176879",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-relation-21176879-2",
+      "venueId": "macau-osm-relation-21176879",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-163732917-1",
+      "venueId": "macau-osm-way-163732917",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-163732917-2",
+      "venueId": "macau-osm-way-163732917",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-172301929-1",
+      "venueId": "macau-osm-way-172301929",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-172301929-2",
+      "venueId": "macau-osm-way-172301929",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-206823798-1",
+      "venueId": "macau-osm-way-206823798",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-206823798-2",
+      "venueId": "macau-osm-way-206823798",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-244820723-1",
+      "venueId": "macau-osm-way-244820723",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-244820723-2",
+      "venueId": "macau-osm-way-244820723",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-244930722-1",
+      "venueId": "macau-osm-way-244930722",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-244930722-2",
+      "venueId": "macau-osm-way-244930722",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-295506987-1",
+      "venueId": "macau-osm-way-295506987",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-295506987-2",
+      "venueId": "macau-osm-way-295506987",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-306158878-1",
+      "venueId": "macau-osm-way-306158878",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-306158878-2",
+      "venueId": "macau-osm-way-306158878",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-322642517-1",
+      "venueId": "macau-osm-way-322642517",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-322642517-2",
+      "venueId": "macau-osm-way-322642517",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-330083075-1",
+      "venueId": "macau-osm-way-330083075",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-330083075-2",
+      "venueId": "macau-osm-way-330083075",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-330769741-1",
+      "venueId": "macau-osm-way-330769741",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-330769741-2",
+      "venueId": "macau-osm-way-330769741",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-346331627-1",
+      "venueId": "macau-osm-way-346331627",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-346331627-2",
+      "venueId": "macau-osm-way-346331627",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-389129453-1",
+      "venueId": "macau-osm-way-389129453",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-389129453-2",
+      "venueId": "macau-osm-way-389129453",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-580160817-1",
+      "venueId": "macau-osm-way-580160817",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-osm-way-580160817-2",
+      "venueId": "macau-osm-way-580160817",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-quiet-reflection-1",
+      "venueId": "macau-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-quiet-reflection-2",
+      "venueId": "macau-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-recreation-1",
+      "venueId": "macau-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-recreation-2",
+      "venueId": "macau-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-transit-1",
+      "venueId": "macau-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    },
+    {
+      "id": "macau-macau-transit-2",
+      "venueId": "macau-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/macau/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "macau-airport-macau-airport",
+    "macau-clinic",
+    "macau-community-notices",
+    "macau-community-voting-game",
+    "macau-community-workshop",
+    "macau-market-game",
+    "macau-meal-stop",
+    "macau-osm-relation-20002113",
+    "macau-osm-relation-21176879",
+    "macau-osm-way-163732917",
+    "macau-osm-way-172301929",
+    "macau-osm-way-206823798",
+    "macau-osm-way-244820723",
+    "macau-osm-way-244930722",
+    "macau-osm-way-295506987",
+    "macau-osm-way-306158878",
+    "macau-osm-way-322642517",
+    "macau-osm-way-330083075",
+    "macau-osm-way-330769741",
+    "macau-osm-way-346331627",
+    "macau-osm-way-389129453",
+    "macau-osm-way-580160817",
+    "macau-quiet-reflection",
+    "macau-recreation",
+    "macau-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "3fba927fbfc3e4ceb9292416ce620a19201f27beeb230beb5a48adfe2ec224d7",
+    "contentSha256": "39378afc15b83f29dbe79490a77665c2a4b378d61c8446865e622297189e0f1d"
+  }
+}

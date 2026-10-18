@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "accra",
+  "sha256": "615ab02286fc0d2584d95831edaede8d35d47d4a8ced5932ae082b5d5ead0237",
+  "rawBytes": 28072,
+  "brotliBytes": 7701,
+  "triangles": 2364,
+  "parts": [
+    {
+      "node": "accra",
+      "triangles": 2364,
+      "bounds": {
+        "min": [
+          -4.19999981,
+          0,
+          -2.54999995
+        ],
+        "max": [
+          4.200000159715,
+          2.89998167788,
+          2.5500915899349996
+        ]
+      }
+    }
+  ]
+}

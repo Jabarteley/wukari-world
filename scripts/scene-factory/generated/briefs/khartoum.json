@@ -1,0 +1,2067 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "khartoum",
+    "name": "Khartoum",
+    "state": {
+      "id": "sd-khartoum",
+      "name": "Khartoum"
+    },
+    "country": {
+      "id": "sd",
+      "name": "Sudan"
+    },
+    "point": {
+      "lon": 32.5349123,
+      "lat": 15.5635972
+    }
+  },
+  "style": {
+    "region": "east-africa",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/africa/sudan-261011.osm.pbf",
+      "https://ourairports.com/airports/HSSK/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/khartoum/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/khartoum/facts.ts",
+        "sha256": "215e85bb9804ebe7f1700ed69215ad1d25bef7964bb800744e90dc3b91c289f0"
+      },
+      {
+        "path": "src/game/cities/khartoum/index.ts",
+        "sha256": "0cec2896b7dad7044dff28cd9b6e0840205c59969c1195202ba43f275ec03892"
+      },
+      {
+        "path": "src/game/cities/khartoum/places.ts",
+        "sha256": "59b77c4d4164ac3bd9a9d6bbf45862656160475d57d77d9aaa3d467cf59f11f4"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.5349123,
+        "lat": 15.5635972
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "khartoum-airport-khartoum-airport",
+      "name": "Khartoum International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.5532,
+        "lat": 15.5895
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-airport-khartoum-airport-1",
+        "khartoum-khartoum-airport-khartoum-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "khartoum-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-clinic",
+      "name": "AL-Huda Medical Center",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.561687,
+        "lat": 15.722313
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-clinic-1",
+        "khartoum-khartoum-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7726686414"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-community-notices",
+      "name": "Ministry of Energy and Oil",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.551439,
+        "lat": 15.563244
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-community-notices-1",
+        "khartoum-khartoum-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/344160930"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-community-voting-game",
+      "name": "ميدان قلب الاسد",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.425517,
+        "lat": 15.55133
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-community-voting-game-1",
+        "khartoum-khartoum-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8280144066"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-community-workshop",
+      "name": "International University of Africa",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.566694,
+        "lat": 15.531178
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-community-workshop-1",
+        "khartoum-khartoum-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/294267503"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1667493"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-market-game",
+      "name": "سوق سته",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.641193,
+        "lat": 15.61578
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-market-game-1",
+        "khartoum-khartoum-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5786075353"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-meal-stop",
+      "name": "كفتريا حاتيكم",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.482969,
+        "lat": 15.468936
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-meal-stop-1",
+        "khartoum-khartoum-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2142312829"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-osm-node-6207175685",
+      "name": "أراضي القماراب صالحة",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.367527,
+        "lat": 15.488849
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-osm-node-6207175685-1",
+        "khartoum-khartoum-osm-node-6207175685-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6207175685"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-osm-node-7039345257",
+      "name": "مطعم العطبراوي للمأكولات",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.494064,
+        "lat": 15.533813
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-osm-node-7039345257-1",
+        "khartoum-khartoum-osm-node-7039345257-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7039345257"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-osm-node-7079529828",
+      "name": "مطعم مودة",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.516186,
+        "lat": 15.398063
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-osm-node-7079529828-1",
+        "khartoum-khartoum-osm-node-7079529828-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7079529828"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-osm-node-7079627016",
+      "name": "مسجد الاندلس مربع 7",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.545311,
+        "lat": 15.453188
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-osm-node-7079627016-1",
+        "khartoum-khartoum-osm-node-7079627016-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7079627016"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-osm-node-7095798160",
+      "name": "كلية الشرطة والقانون",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.664188,
+        "lat": 15.477688
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-osm-node-7095798160-1",
+        "khartoum-khartoum-osm-node-7095798160-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7095798160"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-osm-node-7161280085",
+      "name": "منزل ضياء",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.452784,
+        "lat": 15.724641
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-osm-node-7161280085-1",
+        "khartoum-khartoum-osm-node-7161280085-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7161280085"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-osm-way-1007170590",
+      "name": "Ahfad University for Women",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.470101,
+        "lat": 15.644714
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-osm-way-1007170590-1",
+        "khartoum-khartoum-osm-way-1007170590-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1007170590"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q400222"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-osm-way-108830728",
+      "name": "Usine pharmaceutique Al Shifa",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.561693,
+        "lat": 15.645859
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-osm-way-108830728-1",
+        "khartoum-khartoum-osm-way-108830728-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/108830728"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-osm-way-1450938789",
+      "name": "Local Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.365541,
+        "lat": 15.721084
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-osm-way-1450938789-1",
+        "khartoum-khartoum-osm-way-1450938789-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1450938789"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-osm-way-303334100",
+      "name": "National Museum of Sudan",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.508348,
+        "lat": 15.606077
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-osm-way-303334100-1",
+        "khartoum-khartoum-osm-way-303334100-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/303334100"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q643453"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-osm-way-309577358",
+      "name": "University of Khartoum",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.541528,
+        "lat": 15.610946
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-osm-way-309577358-1",
+        "khartoum-khartoum-osm-way-309577358-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/309577358"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q656871"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-osm-way-5772972",
+      "name": "Al-Hilal Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.474978,
+        "lat": 15.647238
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-osm-way-5772972-1",
+        "khartoum-khartoum-osm-way-5772972-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/5772972"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q287268"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-osm-way-5775815",
+      "name": "Al Merrikh Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.471585,
+        "lat": 15.641287
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-osm-way-5775815-1",
+        "khartoum-khartoum-osm-way-5775815-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/5775815"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2829383"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-osm-way-788773933",
+      "name": "AL- Rajhi Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.369221,
+        "lat": 15.648806
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-osm-way-788773933-1",
+        "khartoum-khartoum-osm-way-788773933-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/788773933"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-osm-way-815520727",
+      "name": "مستشفى شرق النيل",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.652994,
+        "lat": 15.555611
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-osm-way-815520727-1",
+        "khartoum-khartoum-osm-way-815520727-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/815520727"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-quiet-reflection",
+      "name": "مسجد ابو نخيلة",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.483595,
+        "lat": 15.678972
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-quiet-reflection-1",
+        "khartoum-khartoum-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5243098751"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-recreation",
+      "name": "Children Area",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.426077,
+        "lat": 15.621052
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-recreation-1",
+        "khartoum-khartoum-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1559424933"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "khartoum-transit",
+      "name": "صينية القندول",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.523449,
+        "lat": 15.598574
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "khartoum-khartoum-transit-1",
+        "khartoum-khartoum-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/khartoum/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/35462161"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "khartoum-khartoum-airport-khartoum-airport-1",
+      "venueId": "khartoum-airport-khartoum-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-airport-khartoum-airport-2",
+      "venueId": "khartoum-airport-khartoum-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-clinic-1",
+      "venueId": "khartoum-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-clinic-2",
+      "venueId": "khartoum-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-community-notices-1",
+      "venueId": "khartoum-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-community-notices-2",
+      "venueId": "khartoum-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-community-voting-game-1",
+      "venueId": "khartoum-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-community-voting-game-2",
+      "venueId": "khartoum-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-community-workshop-1",
+      "venueId": "khartoum-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-community-workshop-2",
+      "venueId": "khartoum-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-market-game-1",
+      "venueId": "khartoum-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-market-game-2",
+      "venueId": "khartoum-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-meal-stop-1",
+      "venueId": "khartoum-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-meal-stop-2",
+      "venueId": "khartoum-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-node-6207175685-1",
+      "venueId": "khartoum-osm-node-6207175685",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-node-6207175685-2",
+      "venueId": "khartoum-osm-node-6207175685",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-node-7039345257-1",
+      "venueId": "khartoum-osm-node-7039345257",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-node-7039345257-2",
+      "venueId": "khartoum-osm-node-7039345257",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-node-7079529828-1",
+      "venueId": "khartoum-osm-node-7079529828",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-node-7079529828-2",
+      "venueId": "khartoum-osm-node-7079529828",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-node-7079627016-1",
+      "venueId": "khartoum-osm-node-7079627016",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-node-7079627016-2",
+      "venueId": "khartoum-osm-node-7079627016",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-node-7095798160-1",
+      "venueId": "khartoum-osm-node-7095798160",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-node-7095798160-2",
+      "venueId": "khartoum-osm-node-7095798160",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-node-7161280085-1",
+      "venueId": "khartoum-osm-node-7161280085",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-node-7161280085-2",
+      "venueId": "khartoum-osm-node-7161280085",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-1007170590-1",
+      "venueId": "khartoum-osm-way-1007170590",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-1007170590-2",
+      "venueId": "khartoum-osm-way-1007170590",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-108830728-1",
+      "venueId": "khartoum-osm-way-108830728",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-108830728-2",
+      "venueId": "khartoum-osm-way-108830728",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-1450938789-1",
+      "venueId": "khartoum-osm-way-1450938789",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-1450938789-2",
+      "venueId": "khartoum-osm-way-1450938789",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-303334100-1",
+      "venueId": "khartoum-osm-way-303334100",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-303334100-2",
+      "venueId": "khartoum-osm-way-303334100",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-309577358-1",
+      "venueId": "khartoum-osm-way-309577358",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-309577358-2",
+      "venueId": "khartoum-osm-way-309577358",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-5772972-1",
+      "venueId": "khartoum-osm-way-5772972",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-5772972-2",
+      "venueId": "khartoum-osm-way-5772972",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-5775815-1",
+      "venueId": "khartoum-osm-way-5775815",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-5775815-2",
+      "venueId": "khartoum-osm-way-5775815",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-788773933-1",
+      "venueId": "khartoum-osm-way-788773933",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-788773933-2",
+      "venueId": "khartoum-osm-way-788773933",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-815520727-1",
+      "venueId": "khartoum-osm-way-815520727",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-osm-way-815520727-2",
+      "venueId": "khartoum-osm-way-815520727",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-quiet-reflection-1",
+      "venueId": "khartoum-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-quiet-reflection-2",
+      "venueId": "khartoum-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-recreation-1",
+      "venueId": "khartoum-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-recreation-2",
+      "venueId": "khartoum-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-transit-1",
+      "venueId": "khartoum-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    },
+    {
+      "id": "khartoum-khartoum-transit-2",
+      "venueId": "khartoum-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/khartoum/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "khartoum-airport-khartoum-airport",
+    "khartoum-clinic",
+    "khartoum-community-notices",
+    "khartoum-community-voting-game",
+    "khartoum-community-workshop",
+    "khartoum-market-game",
+    "khartoum-meal-stop",
+    "khartoum-osm-node-6207175685",
+    "khartoum-osm-node-7039345257",
+    "khartoum-osm-node-7079529828",
+    "khartoum-osm-node-7079627016",
+    "khartoum-osm-node-7095798160",
+    "khartoum-osm-node-7161280085",
+    "khartoum-osm-way-1007170590",
+    "khartoum-osm-way-108830728",
+    "khartoum-osm-way-1450938789",
+    "khartoum-osm-way-303334100",
+    "khartoum-osm-way-309577358",
+    "khartoum-osm-way-5772972",
+    "khartoum-osm-way-5775815",
+    "khartoum-osm-way-788773933",
+    "khartoum-osm-way-815520727",
+    "khartoum-quiet-reflection",
+    "khartoum-recreation",
+    "khartoum-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "38854f62a7115b6b8bcd1568987d91534fbd46b86a0ace1bfa54720114c64d83",
+    "contentSha256": "2b76f1bc62104b31c9a4bd04fa3ed06a849b8a570e6660fddea1c6ff3232d679"
+  }
+}

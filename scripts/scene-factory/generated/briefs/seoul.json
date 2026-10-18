@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "seoul",
+    "name": "Seoul",
+    "state": {
+      "id": "kr-seoul",
+      "name": "Seoul"
+    },
+    "country": {
+      "id": "kr",
+      "name": "Korea (South)"
+    },
+    "point": {
+      "lon": 126.9782914,
+      "lat": 37.5666791
+    }
+  },
+  "style": {
+    "region": "east-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/south-korea-261011.osm.pbf",
+      "https://ourairports.com/airports/RKSI/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/seoul/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/seoul/facts.ts",
+        "sha256": "c12650b9adb1dd2f6b32c71e0b5e7209fa253cec6f78c5061d3fd26952945fd8"
+      },
+      {
+        "path": "src/game/cities/seoul/index.ts",
+        "sha256": "ddf29b4fb2f12496f54e90fb5c940e1c83031cad9d36c3840287de2fdf29d35a"
+      },
+      {
+        "path": "src/game/cities/seoul/places.ts",
+        "sha256": "911e28de59bde1a93042ab60e01a3b65b86dacb0af6237c0109216ef29570313"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 126.9782914,
+        "lat": 37.5666791
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "seoul-airport-seoul-airport",
+      "name": "Incheon International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 126.450996,
+        "lat": 37.469101
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-airport-seoul-airport-1",
+        "seoul-seoul-airport-seoul-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "seoul-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-clinic",
+      "name": "Samsung Medical Center",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 127.086291,
+        "lat": 37.488605
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-clinic-1",
+        "seoul-seoul-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/417994820"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q624119"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-community-notices",
+      "name": "Incheon City Hall",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 126.705241,
+        "lat": 37.456122
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-community-notices-1",
+        "seoul-seoul-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/238024537"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12613488"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-community-voting-game",
+      "name": "Bukahyeondong Community Service Center",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 126.957003,
+        "lat": 37.559444
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-community-voting-game-1",
+        "seoul-seoul-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/472113204"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2681752"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-community-workshop",
+      "name": "Uijeongbu Digital Library",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 127.033911,
+        "lat": 37.736558
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-community-workshop-1",
+        "seoul-seoul-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/368656330"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16978888"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-market-game",
+      "name": "Mecenatpolis",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 126.913778,
+        "lat": 37.550887
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-market-game-1",
+        "seoul-seoul-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/306956698"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q21057977"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-meal-stop",
+      "name": "Mega Coffee",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 126.983576,
+        "lat": 37.564757
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-meal-stop-1",
+        "seoul-seoul-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13874911724"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q120998343"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-osm-node-11469141023",
+      "name": "가운동 지석묘",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 127.175681,
+        "lat": 37.597557
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-osm-node-11469141023-1",
+        "seoul-seoul-osm-node-11469141023-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11469141023"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q55728659"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-osm-node-368860625",
+      "name": "Yonggungsa",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 126.527821,
+        "lat": 37.497167
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-osm-node-368860625-1",
+        "seoul-seoul-osm-node-368860625-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/368860625"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24856934"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-osm-node-8573225768",
+      "name": "호암산성",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 126.92314,
+        "lat": 37.445942
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-osm-node-8573225768-1",
+        "seoul-seoul-osm-node-8573225768-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8573225768"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12625259"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-osm-way-1080852337",
+      "name": "Gogang dong Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 126.812573,
+        "lat": 37.52719
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-osm-way-1080852337-1",
+        "seoul-seoul-osm-way-1080852337-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1080852337"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q489771"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-osm-way-1463915497",
+      "name": "국제법률경영대학원대학교",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 126.868068,
+        "lat": 37.726379
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-osm-way-1463915497-1",
+        "seoul-seoul-osm-way-1463915497-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1463915497"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q624179"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-osm-way-231020902",
+      "name": "Jayu Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 126.622399,
+        "lat": 37.475792
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-osm-way-231020902-1",
+        "seoul-seoul-osm-way-231020902-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/231020902"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11267359"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-osm-way-258637347",
+      "name": "Gocheok Sky Dome",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 126.867072,
+        "lat": 37.498165
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-osm-way-258637347-1",
+        "seoul-seoul-osm-way-258637347-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/258637347"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q10855359"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-osm-way-26281660",
+      "name": "Lotte World",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 127.098246,
+        "lat": 37.511315
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-osm-way-26281660-1",
+        "seoul-seoul-osm-way-26281660-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/26281660"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q494668"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-osm-way-336024475",
+      "name": "Korea Aerospace University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 126.86519,
+        "lat": 37.600254
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-osm-way-336024475-1",
+        "seoul-seoul-osm-way-336024475-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/336024475"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6431586"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-osm-way-381119781",
+      "name": "Sahmyook University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 127.105022,
+        "lat": 37.641803
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-osm-way-381119781-1",
+        "seoul-seoul-osm-way-381119781-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/381119781"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q624993"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-osm-way-416586666",
+      "name": "삼육의료원 서울병원",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 127.064675,
+        "lat": 37.587528
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-osm-way-416586666-1",
+        "seoul-seoul-osm-way-416586666-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/416586666"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2945878"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-osm-way-419363587",
+      "name": "Amsa-dong Prehistoric Settlement Site",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 127.130442,
+        "lat": 37.561248
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-osm-way-419363587-1",
+        "seoul-seoul-osm-way-419363587-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/419363587"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11250344"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-osm-way-613824923",
+      "name": "Goyang Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 126.743161,
+        "lat": 37.676438
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-osm-way-613824923-1",
+        "seoul-seoul-osm-way-613824923-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/613824923"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q484713"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-osm-way-658766450",
+      "name": "Tancheon Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 127.121186,
+        "lat": 37.410167
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-osm-way-658766450-1",
+        "seoul-seoul-osm-way-658766450-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/658766450"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q497095"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-osm-way-872196107",
+      "name": "Namhansanseong Emergency Palace",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 127.181449,
+        "lat": 37.478907
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-osm-way-872196107-1",
+        "seoul-seoul-osm-way-872196107-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/872196107"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20651693"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-quiet-reflection",
+      "name": "SSPX Korea Immaculate Conception Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 127.015131,
+        "lat": 37.496202
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-quiet-reflection-1",
+        "seoul-seoul-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13938380101"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q868160"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-recreation",
+      "name": "Paris Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 126.877055,
+        "lat": 37.534909
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-recreation-1",
+        "seoul-seoul-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/64933046"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12621454"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "seoul-transit",
+      "name": "Jegi-dong",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 127.034467,
+        "lat": 37.578378
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "seoul-seoul-transit-1",
+        "seoul-seoul-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/seoul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/355172758"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q490277"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "seoul-seoul-airport-seoul-airport-1",
+      "venueId": "seoul-airport-seoul-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-airport-seoul-airport-2",
+      "venueId": "seoul-airport-seoul-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-clinic-1",
+      "venueId": "seoul-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-clinic-2",
+      "venueId": "seoul-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-community-notices-1",
+      "venueId": "seoul-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-community-notices-2",
+      "venueId": "seoul-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-community-voting-game-1",
+      "venueId": "seoul-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-community-voting-game-2",
+      "venueId": "seoul-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-community-workshop-1",
+      "venueId": "seoul-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-community-workshop-2",
+      "venueId": "seoul-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-market-game-1",
+      "venueId": "seoul-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-market-game-2",
+      "venueId": "seoul-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-meal-stop-1",
+      "venueId": "seoul-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-meal-stop-2",
+      "venueId": "seoul-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-node-11469141023-1",
+      "venueId": "seoul-osm-node-11469141023",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-node-11469141023-2",
+      "venueId": "seoul-osm-node-11469141023",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-node-368860625-1",
+      "venueId": "seoul-osm-node-368860625",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-node-368860625-2",
+      "venueId": "seoul-osm-node-368860625",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-node-8573225768-1",
+      "venueId": "seoul-osm-node-8573225768",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-node-8573225768-2",
+      "venueId": "seoul-osm-node-8573225768",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-1080852337-1",
+      "venueId": "seoul-osm-way-1080852337",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-1080852337-2",
+      "venueId": "seoul-osm-way-1080852337",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-1463915497-1",
+      "venueId": "seoul-osm-way-1463915497",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-1463915497-2",
+      "venueId": "seoul-osm-way-1463915497",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-231020902-1",
+      "venueId": "seoul-osm-way-231020902",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-231020902-2",
+      "venueId": "seoul-osm-way-231020902",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-258637347-1",
+      "venueId": "seoul-osm-way-258637347",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-258637347-2",
+      "venueId": "seoul-osm-way-258637347",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-26281660-1",
+      "venueId": "seoul-osm-way-26281660",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-26281660-2",
+      "venueId": "seoul-osm-way-26281660",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-336024475-1",
+      "venueId": "seoul-osm-way-336024475",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-336024475-2",
+      "venueId": "seoul-osm-way-336024475",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-381119781-1",
+      "venueId": "seoul-osm-way-381119781",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-381119781-2",
+      "venueId": "seoul-osm-way-381119781",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-416586666-1",
+      "venueId": "seoul-osm-way-416586666",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-416586666-2",
+      "venueId": "seoul-osm-way-416586666",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-419363587-1",
+      "venueId": "seoul-osm-way-419363587",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-419363587-2",
+      "venueId": "seoul-osm-way-419363587",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-613824923-1",
+      "venueId": "seoul-osm-way-613824923",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-613824923-2",
+      "venueId": "seoul-osm-way-613824923",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-658766450-1",
+      "venueId": "seoul-osm-way-658766450",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-658766450-2",
+      "venueId": "seoul-osm-way-658766450",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-872196107-1",
+      "venueId": "seoul-osm-way-872196107",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-osm-way-872196107-2",
+      "venueId": "seoul-osm-way-872196107",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-quiet-reflection-1",
+      "venueId": "seoul-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-quiet-reflection-2",
+      "venueId": "seoul-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-recreation-1",
+      "venueId": "seoul-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-recreation-2",
+      "venueId": "seoul-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-transit-1",
+      "venueId": "seoul-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    },
+    {
+      "id": "seoul-seoul-transit-2",
+      "venueId": "seoul-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/seoul/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "seoul-airport-seoul-airport",
+    "seoul-clinic",
+    "seoul-community-notices",
+    "seoul-community-voting-game",
+    "seoul-community-workshop",
+    "seoul-market-game",
+    "seoul-meal-stop",
+    "seoul-osm-node-11469141023",
+    "seoul-osm-node-368860625",
+    "seoul-osm-node-8573225768",
+    "seoul-osm-way-1080852337",
+    "seoul-osm-way-1463915497",
+    "seoul-osm-way-231020902",
+    "seoul-osm-way-258637347",
+    "seoul-osm-way-26281660",
+    "seoul-osm-way-336024475",
+    "seoul-osm-way-381119781",
+    "seoul-osm-way-416586666",
+    "seoul-osm-way-419363587",
+    "seoul-osm-way-613824923",
+    "seoul-osm-way-658766450",
+    "seoul-osm-way-872196107",
+    "seoul-quiet-reflection",
+    "seoul-recreation",
+    "seoul-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "8d2705f2d82d9dd0124ba0b255a2ee3a70d2e32c8f3cc311cd4f3ac2a3d7893a",
+    "contentSha256": "136a88b3848a4be2f5c76a70e5d51d727f9ec537c03d8b15c7bf8d8760e8f7d5"
+  }
+}

@@ -1,0 +1,1854 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "luanda",
+    "name": "Luanda",
+    "state": {
+      "id": "ao-luanda",
+      "name": "Luanda"
+    },
+    "country": {
+      "id": "ao",
+      "name": "Angola"
+    },
+    "point": {
+      "lon": 13.2439512,
+      "lat": -8.8272699
+    }
+  },
+  "style": {
+    "region": "southern-africa",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap contributors and OurAirports dataset",
+    "sourceUrls": [
+      "https://ourairports.com/airports/FNBJ/",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/luanda/content.ts",
+        "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+      },
+      {
+        "path": "src/game/cities/luanda/facts.ts",
+        "sha256": "a17ca5da9a6c5a8d33b579b24989acaaae379c020c8a96b2ca41ce81a60a7bfa"
+      },
+      {
+        "path": "src/game/cities/luanda/index.ts",
+        "sha256": "de06ac7208f22baa1be447ce3959dbdc0610afeb34db8cd5d7fa567d2a3075ae"
+      },
+      {
+        "path": "src/game/cities/luanda/places.ts",
+        "sha256": "f439dda2b000e7cfd281fc05d2cead733b571f91e06a1e64f3622f6c358db8ac"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.2439512,
+        "lat": -8.827269899999997
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "luanda-agostinho-neto-statue",
+      "name": "Estatua de Dr. António Agostinho Neto",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.243931,
+        "lat": -8.827143
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-agostinho-neto-statue-1",
+        "luanda-luanda-agostinho-neto-statue-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3203159618"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-airport-luanda-airport",
+      "name": "Dr. Antonio Agostinho Neto International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.499078,
+        "lat": -9.050734
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-airport-luanda-airport-1",
+        "luanda-luanda-airport-luanda-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "luanda-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-citadel-stadium",
+      "name": "Citadel National Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.25594,
+        "lat": -8.827441
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-citadel-stadium-1",
+        "luanda-luanda-citadel-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/426006622"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3321268"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-clinic",
+      "name": "Hospital Especializado Augusto N’Gangula",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.246871,
+        "lat": -8.810321
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-clinic-1",
+        "luanda-luanda-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/224360779"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-community-notices",
+      "name": "Lady Ana Joaquina Courthouse",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.234405,
+        "lat": -8.813466
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-community-notices-1",
+        "luanda-luanda-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/6431029"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-community-voting-game",
+      "name": "Largo do Poeta Bocage",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.251325,
+        "lat": -8.827413
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-community-voting-game-1",
+        "luanda-luanda-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1717691574"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-community-workshop",
+      "name": "Universidade Agostinho Neto",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.229525,
+        "lat": -8.815558
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-community-workshop-1",
+        "luanda-luanda-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2375121209"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-franca-ndalu-stadium",
+      "name": "França Ndalu Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.241678,
+        "lat": -8.841273
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-franca-ndalu-stadium-1",
+        "luanda-luanda-franca-ndalu-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/583759413"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-iron-palace",
+      "name": "Iron Palace",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.235652,
+        "lat": -8.812179
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-iron-palace-1",
+        "luanda-luanda-iron-palace-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/408043157"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7128887"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-luanda-magica-park",
+      "name": "Parque Infantil Luanda Mágica",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.24971,
+        "lat": -8.807315
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-luanda-magica-park-1",
+        "luanda-luanda-luanda-magica-park-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6143924510"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-maianga-park",
+      "name": "Parque da Maianga",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.228741,
+        "lat": -8.825759
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-maianga-park-1",
+        "luanda-luanda-maianga-park-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/695838531"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-market-game",
+      "name": "Mercado da Chapada",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.256,
+        "lat": -8.820921
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-market-game-1",
+        "luanda-luanda-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/234406012"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-meal-stop",
+      "name": "Restaurante Kitanda",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.241893,
+        "lat": -8.815945
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-meal-stop-1",
+        "luanda-luanda-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4189227391"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-military-history-museum",
+      "name": "National Museum of Military History",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.223399,
+        "lat": -8.809164
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-military-history-museum-1",
+        "luanda-luanda-military-history-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1700958810"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q868147"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-ministries-square",
+      "name": "Largo dos Ministérios",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.239995,
+        "lat": -8.828628
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-ministries-square-1",
+        "luanda-luanda-ministries-square-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/424758837"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-natural-history-museum",
+      "name": "Our Lady Muxima - National Museum of Natural History of Angola",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.238462,
+        "lat": -8.815357
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-natural-history-museum-1",
+        "luanda-luanda-natural-history-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/220689322"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q10333589"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-quiet-reflection",
+      "name": "Luanda Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.229731,
+        "lat": -8.813744
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-quiet-reflection-1",
+        "luanda-luanda-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/376997812"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15043323"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-recreation",
+      "name": "Independence Square",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.245371,
+        "lat": -8.827227
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-recreation-1",
+        "luanda-luanda-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/378923999"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-science-technology-museum",
+      "name": "Science and Technology Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.224597,
+        "lat": -8.809773
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-science-technology-museum-1",
+        "luanda-luanda-science-technology-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/528180740"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-shopping-fortaleza",
+      "name": "Shopping Fortaleza",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.224367,
+        "lat": -8.808578
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-shopping-fortaleza-1",
+        "luanda-luanda-shopping-fortaleza-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/369001086"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q56349137"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-telecommunications-museum",
+      "name": "Telecommunications Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.271116,
+        "lat": -8.818144
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-telecommunications-museum-1",
+        "luanda-luanda-telecommunications-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1700726358"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "luanda-transit",
+      "name": "Bungo - Luanda Central Station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.24435,
+        "lat": -8.805272
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "luanda-luanda-transit-1",
+        "luanda-luanda-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/luanda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/226831624"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "luanda-luanda-agostinho-neto-statue-1",
+      "venueId": "luanda-agostinho-neto-statue",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-agostinho-neto-statue-2",
+      "venueId": "luanda-agostinho-neto-statue",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-airport-luanda-airport-1",
+      "venueId": "luanda-airport-luanda-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-airport-luanda-airport-2",
+      "venueId": "luanda-airport-luanda-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-citadel-stadium-1",
+      "venueId": "luanda-citadel-stadium",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-citadel-stadium-2",
+      "venueId": "luanda-citadel-stadium",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-clinic-1",
+      "venueId": "luanda-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-clinic-2",
+      "venueId": "luanda-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-community-notices-1",
+      "venueId": "luanda-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-community-notices-2",
+      "venueId": "luanda-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-community-voting-game-1",
+      "venueId": "luanda-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-community-voting-game-2",
+      "venueId": "luanda-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-community-workshop-1",
+      "venueId": "luanda-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-community-workshop-2",
+      "venueId": "luanda-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-franca-ndalu-stadium-1",
+      "venueId": "luanda-franca-ndalu-stadium",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-franca-ndalu-stadium-2",
+      "venueId": "luanda-franca-ndalu-stadium",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-iron-palace-1",
+      "venueId": "luanda-iron-palace",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-iron-palace-2",
+      "venueId": "luanda-iron-palace",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-luanda-magica-park-1",
+      "venueId": "luanda-luanda-magica-park",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-luanda-magica-park-2",
+      "venueId": "luanda-luanda-magica-park",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-maianga-park-1",
+      "venueId": "luanda-maianga-park",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-maianga-park-2",
+      "venueId": "luanda-maianga-park",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-market-game-1",
+      "venueId": "luanda-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-market-game-2",
+      "venueId": "luanda-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-meal-stop-1",
+      "venueId": "luanda-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-meal-stop-2",
+      "venueId": "luanda-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-military-history-museum-1",
+      "venueId": "luanda-military-history-museum",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-military-history-museum-2",
+      "venueId": "luanda-military-history-museum",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-ministries-square-1",
+      "venueId": "luanda-ministries-square",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-ministries-square-2",
+      "venueId": "luanda-ministries-square",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-natural-history-museum-1",
+      "venueId": "luanda-natural-history-museum",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-natural-history-museum-2",
+      "venueId": "luanda-natural-history-museum",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-quiet-reflection-1",
+      "venueId": "luanda-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-quiet-reflection-2",
+      "venueId": "luanda-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-recreation-1",
+      "venueId": "luanda-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-recreation-2",
+      "venueId": "luanda-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-science-technology-museum-1",
+      "venueId": "luanda-science-technology-museum",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-science-technology-museum-2",
+      "venueId": "luanda-science-technology-museum",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-shopping-fortaleza-1",
+      "venueId": "luanda-shopping-fortaleza",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-shopping-fortaleza-2",
+      "venueId": "luanda-shopping-fortaleza",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-telecommunications-museum-1",
+      "venueId": "luanda-telecommunications-museum",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-telecommunications-museum-2",
+      "venueId": "luanda-telecommunications-museum",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-transit-1",
+      "venueId": "luanda-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    },
+    {
+      "id": "luanda-luanda-transit-2",
+      "venueId": "luanda-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/luanda/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "luanda-agostinho-neto-statue",
+    "luanda-airport-luanda-airport",
+    "luanda-citadel-stadium",
+    "luanda-clinic",
+    "luanda-community-notices",
+    "luanda-community-voting-game",
+    "luanda-community-workshop",
+    "luanda-franca-ndalu-stadium",
+    "luanda-iron-palace",
+    "luanda-luanda-magica-park",
+    "luanda-maianga-park",
+    "luanda-market-game",
+    "luanda-meal-stop",
+    "luanda-military-history-museum",
+    "luanda-ministries-square",
+    "luanda-natural-history-museum",
+    "luanda-quiet-reflection",
+    "luanda-recreation",
+    "luanda-science-technology-museum",
+    "luanda-shopping-fortaleza",
+    "luanda-telecommunications-museum",
+    "luanda-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "820eadc8d1e463c58636f7991b55ed6352e3668297e7acddb4942d18912134fe",
+    "contentSha256": "6cc221f300f9912f2d6595dc87c20f77b36c23afa76836a2e54cb1baabfc9e6d"
+  }
+}

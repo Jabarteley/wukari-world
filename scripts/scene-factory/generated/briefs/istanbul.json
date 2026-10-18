@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "istanbul",
+    "name": "Istanbul",
+    "state": {
+      "id": "tr-istanbul",
+      "name": "Istanbul"
+    },
+    "country": {
+      "id": "tr",
+      "name": "Turkey"
+    },
+    "point": {
+      "lon": 28.9758715,
+      "lat": 41.006381
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/turkey-261011.osm.pbf",
+      "https://ourairports.com/airports/LTFM/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/istanbul/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/istanbul/facts.ts",
+        "sha256": "796072d66134d2c61f0fa5a8b9922b9272c442c7d3efef72db88d00d5bc3f179"
+      },
+      {
+        "path": "src/game/cities/istanbul/index.ts",
+        "sha256": "434912a97e494771dd609a030552fdb56e9d82fbff7f05f10e92b3cbb81924f9"
+      },
+      {
+        "path": "src/game/cities/istanbul/places.ts",
+        "sha256": "0457af1015c5e2285cfdaf03400ce6cbc8e90cc3be4cce506b46997fa3ee206c"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.9758715,
+        "lat": 41.006381
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "istanbul-airport-istanbul-airport",
+      "name": "İstanbul Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.732136,
+        "lat": 41.274874
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-airport-istanbul-airport-1",
+        "istanbul-istanbul-airport-istanbul-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "istanbul-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-clinic",
+      "name": "Ataşehir Memorial Hastanesi",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.10705,
+        "lat": 40.984232
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-clinic-1",
+        "istanbul-istanbul-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/399306293"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6023157"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-community-notices",
+      "name": "Anadolu Palace of Justice",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.178351,
+        "lat": 40.914402
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-community-notices-1",
+        "istanbul-istanbul-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/341045630"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q105679203"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-community-voting-game",
+      "name": "Rıhtım Meydanı",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.021595,
+        "lat": 40.991247
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-community-voting-game-1",
+        "istanbul-istanbul-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6458152384"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q109389732"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-community-workshop",
+      "name": "Halki seminary",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.094697,
+        "lat": 40.881881
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-community-workshop-1",
+        "istanbul-istanbul-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5285477246"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q692970"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-market-game",
+      "name": "Carousel Alışveriş ve Yaşam Merkezi",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.873417,
+        "lat": 40.977725
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-market-game-1",
+        "istanbul-istanbul-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/162139987"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5045568"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-meal-stop",
+      "name": "beyti lokanta",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.793988,
+        "lat": 40.97332
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-meal-stop-1",
+        "istanbul-istanbul-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/276462508"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4900260"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-osm-node-4735960522",
+      "name": "Saint Mary",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.04172,
+        "lat": 41.16035
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-osm-node-4735960522-1",
+        "istanbul-istanbul-osm-node-4735960522-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4735960522"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q124283487"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-osm-relation-9948513",
+      "name": "Büyük Çamlıca",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.067676,
+        "lat": 41.026756
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-osm-relation-9948513-1",
+        "istanbul-istanbul-osm-relation-9948513-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/9948513"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2414579"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-osm-way-1015392049",
+      "name": "Bahçeköy Aqueduct",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.991442,
+        "lat": 41.171041
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-osm-way-1015392049-1",
+        "istanbul-istanbul-osm-way-1015392049-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1015392049"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q123137312"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-osm-way-121462312",
+      "name": "Atatürk Olympic Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.765661,
+        "lat": 41.074474
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-osm-way-121462312-1",
+        "istanbul-istanbul-osm-way-121462312-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/121462312"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q221122"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-osm-way-1365047639",
+      "name": "Şamlar Köyü Camii",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.735929,
+        "lat": 41.123979
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-osm-way-1365047639-1",
+        "istanbul-istanbul-osm-way-1365047639-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1365047639"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q127418549"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-osm-way-1491971480",
+      "name": "Koç University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.073642,
+        "lat": 41.206062
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-osm-way-1491971480-1",
+        "istanbul-istanbul-osm-way-1491971480-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1491971480"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1193155"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-osm-way-159932934",
+      "name": "Maltepe Hasan Polat Stadyumu",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.131345,
+        "lat": 40.920438
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-osm-way-159932934-1",
+        "istanbul-istanbul-osm-way-159932934-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/159932934"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6055740"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-osm-way-342828509",
+      "name": "RAMS Park",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.990951,
+        "lat": 41.103378
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-osm-way-342828509-1",
+        "istanbul-istanbul-osm-way-342828509-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/342828509"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q81492"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-osm-way-388925021",
+      "name": "Olivium Outlet Center",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.909765,
+        "lat": 40.995372
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-osm-way-388925021-1",
+        "istanbul-istanbul-osm-way-388925021-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/388925021"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7088220"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-osm-way-401781146",
+      "name": "Forum Istanbul Shopping and Life Center",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.897651,
+        "lat": 41.046855
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-osm-way-401781146-1",
+        "istanbul-istanbul-osm-way-401781146-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/401781146"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6097672"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-osm-way-475513360",
+      "name": "Mimar Sinan Güzel Sanatlar Üniversitesi Dolmabahçe Yerleşkesi",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.000633,
+        "lat": 41.041051
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-osm-way-475513360-1",
+        "istanbul-istanbul-osm-way-475513360-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/475513360"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1936057"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-osm-way-48162658",
+      "name": "Uzun Aqueduct",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.902648,
+        "lat": 41.171133
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-osm-way-48162658-1",
+        "istanbul-istanbul-osm-way-48162658-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/48162658"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q110207143"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-osm-way-791438790",
+      "name": "İbn Haldun Üniversitesi",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.799523,
+        "lat": 41.137622
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-osm-way-791438790-1",
+        "istanbul-istanbul-osm-way-791438790-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/791438790"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q25477770"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-osm-way-969480621",
+      "name": "Mazul Kemer",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.851133,
+        "lat": 41.07089
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-osm-way-969480621-1",
+        "istanbul-istanbul-osm-way-969480621-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/969480621"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6001188"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-osm-way-989152604",
+      "name": "Beykoz Korusu",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.09881,
+        "lat": 41.133329
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-osm-way-989152604-1",
+        "istanbul-istanbul-osm-way-989152604-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/989152604"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6074699"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-quiet-reflection",
+      "name": "Arnavutköy Osmanlı Camii",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.74206,
+        "lat": 41.188175
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-quiet-reflection-1",
+        "istanbul-istanbul-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/317507205"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6062135"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-recreation",
+      "name": "Bebek Parkı",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.043787,
+        "lat": 41.07591
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-recreation-1",
+        "istanbul-istanbul-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/41724831"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q65219281"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "istanbul-transit",
+      "name": "Ayvansaray",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.944855,
+        "lat": 41.040811
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "istanbul-istanbul-transit-1",
+        "istanbul-istanbul-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/istanbul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/27609492"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q113407620"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "istanbul-istanbul-airport-istanbul-airport-1",
+      "venueId": "istanbul-airport-istanbul-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-airport-istanbul-airport-2",
+      "venueId": "istanbul-airport-istanbul-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-clinic-1",
+      "venueId": "istanbul-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-clinic-2",
+      "venueId": "istanbul-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-community-notices-1",
+      "venueId": "istanbul-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-community-notices-2",
+      "venueId": "istanbul-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-community-voting-game-1",
+      "venueId": "istanbul-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-community-voting-game-2",
+      "venueId": "istanbul-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-community-workshop-1",
+      "venueId": "istanbul-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-community-workshop-2",
+      "venueId": "istanbul-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-market-game-1",
+      "venueId": "istanbul-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-market-game-2",
+      "venueId": "istanbul-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-meal-stop-1",
+      "venueId": "istanbul-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-meal-stop-2",
+      "venueId": "istanbul-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-node-4735960522-1",
+      "venueId": "istanbul-osm-node-4735960522",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-node-4735960522-2",
+      "venueId": "istanbul-osm-node-4735960522",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-relation-9948513-1",
+      "venueId": "istanbul-osm-relation-9948513",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-relation-9948513-2",
+      "venueId": "istanbul-osm-relation-9948513",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-1015392049-1",
+      "venueId": "istanbul-osm-way-1015392049",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-1015392049-2",
+      "venueId": "istanbul-osm-way-1015392049",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-121462312-1",
+      "venueId": "istanbul-osm-way-121462312",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-121462312-2",
+      "venueId": "istanbul-osm-way-121462312",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-1365047639-1",
+      "venueId": "istanbul-osm-way-1365047639",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-1365047639-2",
+      "venueId": "istanbul-osm-way-1365047639",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-1491971480-1",
+      "venueId": "istanbul-osm-way-1491971480",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-1491971480-2",
+      "venueId": "istanbul-osm-way-1491971480",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-159932934-1",
+      "venueId": "istanbul-osm-way-159932934",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-159932934-2",
+      "venueId": "istanbul-osm-way-159932934",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-342828509-1",
+      "venueId": "istanbul-osm-way-342828509",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-342828509-2",
+      "venueId": "istanbul-osm-way-342828509",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-388925021-1",
+      "venueId": "istanbul-osm-way-388925021",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-388925021-2",
+      "venueId": "istanbul-osm-way-388925021",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-401781146-1",
+      "venueId": "istanbul-osm-way-401781146",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-401781146-2",
+      "venueId": "istanbul-osm-way-401781146",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-475513360-1",
+      "venueId": "istanbul-osm-way-475513360",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-475513360-2",
+      "venueId": "istanbul-osm-way-475513360",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-48162658-1",
+      "venueId": "istanbul-osm-way-48162658",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-48162658-2",
+      "venueId": "istanbul-osm-way-48162658",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-791438790-1",
+      "venueId": "istanbul-osm-way-791438790",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-791438790-2",
+      "venueId": "istanbul-osm-way-791438790",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-969480621-1",
+      "venueId": "istanbul-osm-way-969480621",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-969480621-2",
+      "venueId": "istanbul-osm-way-969480621",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-989152604-1",
+      "venueId": "istanbul-osm-way-989152604",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-osm-way-989152604-2",
+      "venueId": "istanbul-osm-way-989152604",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-quiet-reflection-1",
+      "venueId": "istanbul-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-quiet-reflection-2",
+      "venueId": "istanbul-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-recreation-1",
+      "venueId": "istanbul-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-recreation-2",
+      "venueId": "istanbul-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-transit-1",
+      "venueId": "istanbul-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    },
+    {
+      "id": "istanbul-istanbul-transit-2",
+      "venueId": "istanbul-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/istanbul/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "istanbul-airport-istanbul-airport",
+    "istanbul-clinic",
+    "istanbul-community-notices",
+    "istanbul-community-voting-game",
+    "istanbul-community-workshop",
+    "istanbul-market-game",
+    "istanbul-meal-stop",
+    "istanbul-osm-node-4735960522",
+    "istanbul-osm-relation-9948513",
+    "istanbul-osm-way-1015392049",
+    "istanbul-osm-way-121462312",
+    "istanbul-osm-way-1365047639",
+    "istanbul-osm-way-1491971480",
+    "istanbul-osm-way-159932934",
+    "istanbul-osm-way-342828509",
+    "istanbul-osm-way-388925021",
+    "istanbul-osm-way-401781146",
+    "istanbul-osm-way-475513360",
+    "istanbul-osm-way-48162658",
+    "istanbul-osm-way-791438790",
+    "istanbul-osm-way-969480621",
+    "istanbul-osm-way-989152604",
+    "istanbul-quiet-reflection",
+    "istanbul-recreation",
+    "istanbul-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "26ee6459094ba3c483acdd1a0a428ad5b3f4688f97a3190b9ac8032f0576bd1f",
+    "contentSha256": "3dcf5bc3f097ad7e647aa8678058bcf0512938d50b536f67762667635a87e564"
+  }
+}

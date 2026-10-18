@@ -1,0 +1,1740 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "enugu",
+    "name": "Enugu",
+    "state": {
+      "id": "enugu",
+      "name": "Enugu"
+    },
+    "country": {
+      "id": "ng",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 7.5136856,
+      "lat": 6.4496519
+    }
+  },
+  "style": {
+    "region": "igbo-southeast",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/enugu/content.ts",
+        "sha256": "cd79525fbb894639eb1163ffd962e4ad995e3ea43d6fd0f6df251a4f11d43746"
+      },
+      {
+        "path": "src/game/cities/enugu/index.ts",
+        "sha256": "50e93348ec0e763ea1c8aa68620785ef6aaa90df6efd6a22d9cf2b9ad60feddb"
+      },
+      {
+        "path": "src/game/cities/enugu/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/enugu/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for enugu.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "access-bank-okpara-avenue",
+      "name": "Access Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.494248,
+        "lat": 6.453484
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-access-bank-okpara-avenue-1",
+        "enugu-access-bank-okpara-avenue-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "agofure-park",
+      "name": "Agofure park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4881237,
+        "lat": 6.4385958
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Public area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Public area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-agofure-park-1",
+        "enugu-agofure-park-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "aguagwa",
+      "name": "Aguagwa",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4807023,
+        "lat": 6.415742
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor point"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor point",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-aguagwa-1",
+        "enugu-aguagwa-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "akanu-ibiam-international-airport",
+      "name": "Akanu Ibiam International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.5577709,
+        "lat": 6.4750846
+      },
+      "spots": [
+        {
+          "id": "terminal",
+          "name": "Terminal"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "terminal",
+          "name": "Terminal",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-akanu-ibiam-international-airport-1",
+        "enugu-akanu-ibiam-international-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "central-mosque-islamic-centre",
+      "name": "Central Mosque, Islamic Centre",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4934845,
+        "lat": 6.4216448
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-central-mosque-islamic-centre-1",
+        "enugu-central-mosque-islamic-centre-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "ekulu-garden",
+      "name": "Ekulu garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4955845,
+        "lat": 6.4956334
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Garden"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Garden",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-ekulu-garden-1",
+        "enugu-ekulu-garden-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "enugu-national-museum-of-unity",
+      "name": "Enugu's National Museum of Unity",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.5088215,
+        "lat": 6.461786
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-enugu-national-museum-of-unity-1",
+        "enugu-enugu-national-museum-of-unity-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "enugu-north-local-government-headquarters",
+      "name": "Enugu North Local Government Headquarters",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.486164,
+        "lat": 6.438371
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-enugu-north-local-government-headquarters-1",
+        "enugu-enugu-north-local-government-headquarters-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "enugu-state-college-of-education-technical",
+      "name": "Enugu State College Of Education (Technical), Enugu",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.498636,
+        "lat": 6.460075
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-enugu-state-college-of-education-technical-1",
+        "enugu-enugu-state-college-of-education-technical-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4880773871464426,
+        "lat": 6.446947918328271
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "ifenzi-beauty-salon",
+      "name": "Ifenzi Beauty Salon",
+      "kind": "salon",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4977946,
+        "lat": 6.4663188
+      },
+      "spots": [
+        {
+          "id": "chair",
+          "name": "Styling chair"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "chair",
+          "name": "Styling chair",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-ifenzi-beauty-salon-1",
+        "enugu-ifenzi-beauty-salon-2"
+      ],
+      "scene": {
+        "kind": "salon",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "institute-of-management-and-technology",
+      "name": "Institute of Management and Technology (IMT)",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.5134,
+        "lat": 6.4300107
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-institute-of-management-and-technology-1",
+        "enugu-institute-of-management-and-technology-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "jombos-kitchen",
+      "name": "Jombo's Kitchen",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.522927,
+        "lat": 6.467189
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-jombos-kitchen-1",
+        "enugu-jombos-kitchen-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "lambi-church-polling",
+      "name": "lambi church",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4823474,
+        "lat": 6.4153993
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Election officials"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Election officials",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-lambi-church-polling-1",
+        "enugu-lambi-church-polling-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "manuwa-bus-sop",
+      "name": "manuwa bus sop",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.5076468,
+        "lat": 6.425058
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-manuwa-bus-sop-1",
+        "enugu-manuwa-bus-sop-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "national-orthopedic-hospital-enugu",
+      "name": "National Orthopedic Hospital Enugu",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.5232182,
+        "lat": 6.4649309
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-national-orthopedic-hospital-enugu-1",
+        "enugu-national-orthopedic-hospital-enugu-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "niger-foundation-hospital",
+      "name": "Niger Foundation Hospital & Diagnostic Center",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.5135802,
+        "lat": 6.4430439
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-niger-foundation-hospital-1",
+        "enugu-niger-foundation-hospital-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "nnamdi-azikiwe-stadium",
+      "name": "Nnamdi Azikiwe Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4964734,
+        "lat": 6.4442601
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-nnamdi-azikiwe-stadium-1",
+        "enugu-nnamdi-azikiwe-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "ogbete-main-market",
+      "name": "Ogbete main Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4815672,
+        "lat": 6.4354497
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-ogbete-main-market-1",
+        "enugu-ogbete-main-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "university-of-nigeria-enugu-campus",
+      "name": "University of Nigeria Enugu Campus (UNEC)",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.5045338,
+        "lat": 6.4232556
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-university-of-nigeria-enugu-campus-1",
+        "enugu-university-of-nigeria-enugu-campus-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    },
+    {
+      "id": "wesley-cathedral",
+      "name": "Wesley Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4940956,
+        "lat": 6.4225293
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "enugu-wesley-cathedral-1",
+        "enugu-wesley-cathedral-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for enugu."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "enugu-access-bank-okpara-avenue-1",
+      "venueId": "access-bank-okpara-avenue",
+      "name": "Uzoamaka Obi",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-access-bank-okpara-avenue-2",
+      "venueId": "access-bank-okpara-avenue",
+      "name": "Emeka Ugwu",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-agofure-park-1",
+      "venueId": "agofure-park",
+      "name": "Uzoamaka Eze",
+      "role": "Park caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-agofure-park-2",
+      "venueId": "agofure-park",
+      "name": "Emeka Okonkwo",
+      "role": "Morning walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-aguagwa-1",
+      "venueId": "aguagwa",
+      "name": "Ugochukwu Nnadi",
+      "role": "Site attendant",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-aguagwa-2",
+      "venueId": "aguagwa",
+      "name": "Nkechi Onwuka",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-akanu-ibiam-international-airport-1",
+      "venueId": "akanu-ibiam-international-airport",
+      "name": "Ebere Okafor",
+      "role": "Check-in agent",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-akanu-ibiam-international-airport-2",
+      "venueId": "akanu-ibiam-international-airport",
+      "name": "Nnamdi Obi",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-central-mosque-islamic-centre-1",
+      "venueId": "central-mosque-islamic-centre",
+      "name": "Onyeka Okoro",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-central-mosque-islamic-centre-2",
+      "venueId": "central-mosque-islamic-centre",
+      "name": "Nkechi Okeke",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-ekulu-garden-1",
+      "venueId": "ekulu-garden",
+      "name": "Uzoamaka Okafor",
+      "role": "Garden keeper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-ekulu-garden-2",
+      "venueId": "ekulu-garden",
+      "name": "Emeka Obi",
+      "role": "Evening walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-enugu-national-museum-of-unity-1",
+      "venueId": "enugu-national-museum-of-unity",
+      "name": "Ebere Eze",
+      "role": "Museum guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-enugu-national-museum-of-unity-2",
+      "venueId": "enugu-national-museum-of-unity",
+      "name": "Mazi Uchenna",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-enugu-north-local-government-headquarters-1",
+      "venueId": "enugu-north-local-government-headquarters",
+      "name": "Onyeka Onwuka",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-enugu-north-local-government-headquarters-2",
+      "venueId": "enugu-north-local-government-headquarters",
+      "name": "Mama Amara",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-enugu-state-college-of-education-technical-1",
+      "venueId": "enugu-state-college-of-education-technical",
+      "name": "Onyeka Nwosu",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-enugu-state-college-of-education-technical-2",
+      "venueId": "enugu-state-college-of-education-technical",
+      "name": "Nkechi Nwachukwu",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-ifenzi-beauty-salon-1",
+      "venueId": "ifenzi-beauty-salon",
+      "name": "Uzoamaka Okonkwo",
+      "role": "Stylist",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-ifenzi-beauty-salon-2",
+      "venueId": "ifenzi-beauty-salon",
+      "name": "Emeka Ibe",
+      "role": "Client",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-institute-of-management-and-technology-1",
+      "venueId": "institute-of-management-and-technology",
+      "name": "Uzoamaka Ibe",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-institute-of-management-and-technology-2",
+      "venueId": "institute-of-management-and-technology",
+      "name": "Emeka Chukwu",
+      "role": "Instructor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-jombos-kitchen-1",
+      "venueId": "jombos-kitchen",
+      "name": "Onyeka Anyanwu",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-jombos-kitchen-2",
+      "venueId": "jombos-kitchen",
+      "name": "Nkechi Mbah",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-lambi-church-polling-1",
+      "venueId": "lambi-church-polling",
+      "name": "Ugochukwu Anyanwu",
+      "role": "Election official",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-lambi-church-polling-2",
+      "venueId": "lambi-church-polling",
+      "name": "Mama Chidinma",
+      "role": "Voter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-manuwa-bus-sop-1",
+      "venueId": "manuwa-bus-sop",
+      "name": "Onyeka Mbah",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-manuwa-bus-sop-2",
+      "venueId": "manuwa-bus-sop",
+      "name": "Nkechi Okoro",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-national-orthopedic-hospital-enugu-1",
+      "venueId": "national-orthopedic-hospital-enugu",
+      "name": "Onyeka Nwachukwu",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-national-orthopedic-hospital-enugu-2",
+      "venueId": "national-orthopedic-hospital-enugu",
+      "name": "Nkechi Nnadi",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-niger-foundation-hospital-1",
+      "venueId": "niger-foundation-hospital",
+      "name": "Uzoamaka Chukwu",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-niger-foundation-hospital-2",
+      "venueId": "niger-foundation-hospital",
+      "name": "Mazi Emeka",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-nnamdi-azikiwe-stadium-1",
+      "venueId": "nnamdi-azikiwe-stadium",
+      "name": "Onyeka Nnadi",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-nnamdi-azikiwe-stadium-2",
+      "venueId": "nnamdi-azikiwe-stadium",
+      "name": "Mama Nkechi",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-ogbete-main-market-1",
+      "venueId": "ogbete-main-market",
+      "name": "Uzoamaka Agu",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-ogbete-main-market-2",
+      "venueId": "ogbete-main-market",
+      "name": "Emeka Okafor",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-university-of-nigeria-enugu-campus-1",
+      "venueId": "university-of-nigeria-enugu-campus",
+      "name": "Onyeka Okeke",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-university-of-nigeria-enugu-campus-2",
+      "venueId": "university-of-nigeria-enugu-campus",
+      "name": "Mama Ifeoma",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-wesley-cathedral-1",
+      "venueId": "wesley-cathedral",
+      "name": "Uzoamaka Ugwu",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    },
+    {
+      "id": "enugu-wesley-cathedral-2",
+      "venueId": "wesley-cathedral",
+      "name": "Mazi Nnamdi",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/enugu/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "access-bank-okpara-avenue",
+    "agofure-park",
+    "aguagwa",
+    "akanu-ibiam-international-airport",
+    "central-mosque-islamic-centre",
+    "ekulu-garden",
+    "enugu-national-museum-of-unity",
+    "enugu-north-local-government-headquarters",
+    "enugu-state-college-of-education-technical",
+    "ifenzi-beauty-salon",
+    "institute-of-management-and-technology",
+    "jombos-kitchen",
+    "lambi-church-polling",
+    "manuwa-bus-sop",
+    "national-orthopedic-hospital-enugu",
+    "niger-foundation-hospital",
+    "nnamdi-azikiwe-stadium",
+    "ogbete-main-market",
+    "university-of-nigeria-enugu-campus",
+    "wesley-cathedral"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "633f0ae92ed571314da3d447bc358c00090db4763e5ffae8dbc0e5f291c7c0f0",
+    "contentSha256": "ff08d158310588960cd06e3647669e8afe7284d95b809c39f20f98bcc2848000"
+  }
+}

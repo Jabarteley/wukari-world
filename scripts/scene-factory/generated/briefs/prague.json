@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "prague",
+    "name": "Prague",
+    "state": {
+      "id": "cz-prague",
+      "name": "Prague"
+    },
+    "country": {
+      "id": "cz",
+      "name": "Czech Republic"
+    },
+    "point": {
+      "lon": 14.4212535,
+      "lat": 50.0874654
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/czech-republic-261011.osm.pbf",
+      "https://ourairports.com/airports/LKPR/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/prague/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/prague/facts.ts",
+        "sha256": "66ea7c63105ed42f6ea9a9ac9dceacb26613cfefbecbfb0143991d6d54d72b3b"
+      },
+      {
+        "path": "src/game/cities/prague/index.ts",
+        "sha256": "6e7c29d0cdd6261acef005101272f7c22712f67706833975e0527535fcc0a883"
+      },
+      {
+        "path": "src/game/cities/prague/places.ts",
+        "sha256": "927419a4db590a2a8ffafaa985bd0e63e49f63cba235adfe70e902d84340f720"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.4212535,
+        "lat": 50.0874654
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "prague-airport-prague-airport",
+      "name": "Václav Havel Airport Prague",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.259911,
+        "lat": 50.100874
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-airport-prague-airport-1",
+        "prague-prague-airport-prague-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "prague-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-clinic",
+      "name": "Psychiatrická nemocnice Bohnice",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.421776,
+        "lat": 50.13628
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-clinic-1",
+        "prague-prague-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/319062309"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12047504"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-community-notices",
+      "name": "Obecní úřad Borek",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.645025,
+        "lat": 50.222697
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-community-notices-1",
+        "prague-prague-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10241648078"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q893486"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-community-voting-game",
+      "name": "Úřad městské části Praha - Újezd",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.521617,
+        "lat": 50.018793
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-community-voting-game-1",
+        "prague-prague-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/432429276"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3563133"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-community-workshop",
+      "name": "Infocentrum s knihovnou",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.626287,
+        "lat": 50.011213
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-community-workshop-1",
+        "prague-prague-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1270591804"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q66458982"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-market-game",
+      "name": "Westfield Černý Most",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.583684,
+        "lat": 50.108106
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-market-game-1",
+        "prague-prague-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/250416859"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15734984"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-meal-stop",
+      "name": "Cyberdog",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.349553,
+        "lat": 50.050445
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-meal-stop-1",
+        "prague-prague-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7242001415"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q61964901"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-osm-node-13922405680",
+      "name": "Panevropská univerzita",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.500862,
+        "lat": 50.112762
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-osm-node-13922405680-1",
+        "prague-prague-osm-node-13922405680-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13922405680"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11086801"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-osm-node-3481221272",
+      "name": "vyhlídka na Housle",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.356218,
+        "lat": 50.12454
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-osm-node-3481221272-1",
+        "prague-prague-osm-node-3481221272-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3481221272"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12020439"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-osm-node-963907924",
+      "name": "zřícenina hrádku Karlík",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.25491,
+        "lat": 49.944734
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-osm-node-963907924-1",
+        "prague-prague-osm-node-963907924-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/963907924"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12028739"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-osm-relation-7096099",
+      "name": "park Maxe van der Stoela",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.387239,
+        "lat": 50.090733
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-osm-relation-7096099-1",
+        "prague-prague-osm-relation-7096099-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/7096099"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30934924"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-osm-way-1016659823",
+      "name": "rozhledna Hradiště - Závist",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.407961,
+        "lat": 49.962293
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-osm-way-1016659823-1",
+        "prague-prague-osm-way-1016659823-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1016659823"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q111449320"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-osm-way-1050400363",
+      "name": "OC Spektrum",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.57214,
+        "lat": 50.004925
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-osm-way-1050400363-1",
+        "prague-prague-osm-way-1050400363-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1050400363"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q62007105"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-osm-way-1190106231",
+      "name": "Korunka",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.298049,
+        "lat": 49.915922
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-osm-way-1190106231-1",
+        "prague-prague-osm-way-1190106231-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1190106231"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q115170331"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-osm-way-139745554",
+      "name": "sv. Kliment",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.409895,
+        "lat": 50.231795
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-osm-way-139745554-1",
+        "prague-prague-osm-way-139745554-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/139745554"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28779428"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-osm-way-23093458",
+      "name": "IKEM",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.463678,
+        "lat": 50.023151
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-osm-way-23093458-1",
+        "prague-prague-osm-way-23093458-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/23093458"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12021666"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-osm-way-258815975",
+      "name": "zámek Štiřín",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.599215,
+        "lat": 49.916564
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-osm-way-258815975-1",
+        "prague-prague-osm-way-258815975-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/258815975"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q27507556"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-osm-way-28310118",
+      "name": "Metropolitan University of Prague",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.498233,
+        "lat": 50.06896
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-osm-way-28310118-1",
+        "prague-prague-osm-way-28310118-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/28310118"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1814883"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-osm-way-34963462",
+      "name": "Přímské náměstí",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.678061,
+        "lat": 50.099029
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-osm-way-34963462-1",
+        "prague-prague-osm-way-34963462-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/34963462"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q45259244"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-osm-way-37111399",
+      "name": "kostel sv. Jakuba Většího",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.299535,
+        "lat": 50.224453
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-osm-way-37111399-1",
+        "prague-prague-osm-way-37111399-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/37111399"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q18534446"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-osm-way-4019771",
+      "name": "Metropole Zličín",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.286861,
+        "lat": 50.053456
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-osm-way-4019771-1",
+        "prague-prague-osm-way-4019771-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/4019771"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q51907509"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-osm-way-51001576",
+      "name": "Zámek Lobkovice",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.541383,
+        "lat": 50.251725
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-osm-way-51001576-1",
+        "prague-prague-osm-way-51001576-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/51001576"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q33413561"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-quiet-reflection",
+      "name": "monastýr sv. Václava a sv. Ludmily",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.153614,
+        "lat": 49.993206
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-quiet-reflection-1",
+        "prague-prague-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/1688416"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q110948340"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-recreation",
+      "name": "Pietní území Lidice",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.199741,
+        "lat": 50.142283
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-recreation-1",
+        "prague-prague-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/7735080"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12043645"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "prague-transit",
+      "name": "I. P. Pavlova",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 14.430311,
+        "lat": 50.07433
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "prague-prague-transit-1",
+        "prague-prague-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/prague/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/24569684"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1880944"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "prague-prague-airport-prague-airport-1",
+      "venueId": "prague-airport-prague-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-airport-prague-airport-2",
+      "venueId": "prague-airport-prague-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-clinic-1",
+      "venueId": "prague-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-clinic-2",
+      "venueId": "prague-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-community-notices-1",
+      "venueId": "prague-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-community-notices-2",
+      "venueId": "prague-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-community-voting-game-1",
+      "venueId": "prague-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-community-voting-game-2",
+      "venueId": "prague-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-community-workshop-1",
+      "venueId": "prague-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-community-workshop-2",
+      "venueId": "prague-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-market-game-1",
+      "venueId": "prague-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-market-game-2",
+      "venueId": "prague-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-meal-stop-1",
+      "venueId": "prague-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-meal-stop-2",
+      "venueId": "prague-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-node-13922405680-1",
+      "venueId": "prague-osm-node-13922405680",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-node-13922405680-2",
+      "venueId": "prague-osm-node-13922405680",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-node-3481221272-1",
+      "venueId": "prague-osm-node-3481221272",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-node-3481221272-2",
+      "venueId": "prague-osm-node-3481221272",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-node-963907924-1",
+      "venueId": "prague-osm-node-963907924",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-node-963907924-2",
+      "venueId": "prague-osm-node-963907924",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-relation-7096099-1",
+      "venueId": "prague-osm-relation-7096099",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-relation-7096099-2",
+      "venueId": "prague-osm-relation-7096099",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-1016659823-1",
+      "venueId": "prague-osm-way-1016659823",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-1016659823-2",
+      "venueId": "prague-osm-way-1016659823",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-1050400363-1",
+      "venueId": "prague-osm-way-1050400363",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-1050400363-2",
+      "venueId": "prague-osm-way-1050400363",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-1190106231-1",
+      "venueId": "prague-osm-way-1190106231",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-1190106231-2",
+      "venueId": "prague-osm-way-1190106231",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-139745554-1",
+      "venueId": "prague-osm-way-139745554",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-139745554-2",
+      "venueId": "prague-osm-way-139745554",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-23093458-1",
+      "venueId": "prague-osm-way-23093458",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-23093458-2",
+      "venueId": "prague-osm-way-23093458",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-258815975-1",
+      "venueId": "prague-osm-way-258815975",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-258815975-2",
+      "venueId": "prague-osm-way-258815975",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-28310118-1",
+      "venueId": "prague-osm-way-28310118",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-28310118-2",
+      "venueId": "prague-osm-way-28310118",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-34963462-1",
+      "venueId": "prague-osm-way-34963462",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-34963462-2",
+      "venueId": "prague-osm-way-34963462",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-37111399-1",
+      "venueId": "prague-osm-way-37111399",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-37111399-2",
+      "venueId": "prague-osm-way-37111399",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-4019771-1",
+      "venueId": "prague-osm-way-4019771",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-4019771-2",
+      "venueId": "prague-osm-way-4019771",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-51001576-1",
+      "venueId": "prague-osm-way-51001576",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-osm-way-51001576-2",
+      "venueId": "prague-osm-way-51001576",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-quiet-reflection-1",
+      "venueId": "prague-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-quiet-reflection-2",
+      "venueId": "prague-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-recreation-1",
+      "venueId": "prague-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-recreation-2",
+      "venueId": "prague-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-transit-1",
+      "venueId": "prague-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    },
+    {
+      "id": "prague-prague-transit-2",
+      "venueId": "prague-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/prague/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "prague-airport-prague-airport",
+    "prague-clinic",
+    "prague-community-notices",
+    "prague-community-voting-game",
+    "prague-community-workshop",
+    "prague-market-game",
+    "prague-meal-stop",
+    "prague-osm-node-13922405680",
+    "prague-osm-node-3481221272",
+    "prague-osm-node-963907924",
+    "prague-osm-relation-7096099",
+    "prague-osm-way-1016659823",
+    "prague-osm-way-1050400363",
+    "prague-osm-way-1190106231",
+    "prague-osm-way-139745554",
+    "prague-osm-way-23093458",
+    "prague-osm-way-258815975",
+    "prague-osm-way-28310118",
+    "prague-osm-way-34963462",
+    "prague-osm-way-37111399",
+    "prague-osm-way-4019771",
+    "prague-osm-way-51001576",
+    "prague-quiet-reflection",
+    "prague-recreation",
+    "prague-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "31f275b401dbe92c5c5a69c0f6c02b0149a1d5dba80543698e27d5b11daa17a4",
+    "contentSha256": "c78136d88e39d48c0b5712e1c7426c964ccf044c393289089c76027009e47f09"
+  }
+}

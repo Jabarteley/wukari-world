@@ -1,0 +1,2051 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "moroni",
+    "name": "Moroni",
+    "state": {
+      "id": "km-moroni",
+      "name": "Moroni"
+    },
+    "country": {
+      "id": "km",
+      "name": "Comoros"
+    },
+    "point": {
+      "lon": 43.251909,
+      "lat": -11.7040306
+    }
+  },
+  "style": {
+    "region": "swahili-coast",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/africa/comores-261011.osm.pbf",
+      "https://ourairports.com/airports/FMCH/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/moroni/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/moroni/facts.ts",
+        "sha256": "95d1e834378c4c4cd4a8cf03b7be87b663bfdb9b8b50658be6210846025276f9"
+      },
+      {
+        "path": "src/game/cities/moroni/index.ts",
+        "sha256": "907707fe1f19c5655cbddf07293327304afb64ac8bfd69a5c9ca512fec797934"
+      },
+      {
+        "path": "src/game/cities/moroni/places.ts",
+        "sha256": "c05f426df2b0218dd334b6013724662228edacd58ae1eb80eb8cba0e6f4cf68d"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.251909,
+        "lat": -11.7040306
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "moroni-airport-moroni-airport",
+      "name": "Prince Said Ibrahim International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.2719,
+        "lat": -11.5337
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-airport-moroni-airport-1",
+        "moroni-moroni-airport-moroni-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "moroni-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-clinic",
+      "name": "Centre de santé de Mitsoudjé",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.279655,
+        "lat": -11.804115
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-clinic-1",
+        "moroni-moroni-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/370308263"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-community-notices",
+      "name": "Marché de Bangoi",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.289437,
+        "lat": -11.843286
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-community-notices-1",
+        "moroni-moroni-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/437275265"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-community-voting-game",
+      "name": "Hotel de Ville Bambao Ya djou",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.26434,
+        "lat": -11.729304
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-community-voting-game-1",
+        "moroni-moroni-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/405414129"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-community-workshop",
+      "name": "bibliothèque",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.349887,
+        "lat": -11.852577
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-community-workshop-1",
+        "moroni-moroni-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4109090605"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-market-game",
+      "name": "2éme marché",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.277427,
+        "lat": -11.589679
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-market-game-1",
+        "moroni-moroni-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1426824415"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-meal-stop",
+      "name": "le voyageur",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.276611,
+        "lat": -11.537296
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-meal-stop-1",
+        "moroni-moroni-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2716274465"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-osm-node-12222798279",
+      "name": "Restau Maman Choureik",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.233454,
+        "lat": -11.747796
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-osm-node-12222798279-1",
+        "moroni-moroni-osm-node-12222798279-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12222798279"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-osm-node-13076688783",
+      "name": "Stade Omni Sport",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.273327,
+        "lat": -11.703583
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-osm-node-13076688783-1",
+        "moroni-moroni-osm-node-13076688783-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13076688783"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-osm-node-13885184807",
+      "name": "Marché de Boeni Bambao",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.255723,
+        "lat": -11.757845
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-osm-node-13885184807-1",
+        "moroni-moroni-osm-node-13885184807-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13885184807"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-osm-node-4784675163",
+      "name": "Karthala Crater Viewpoint",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.359042,
+        "lat": -11.762932
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-osm-node-4784675163-1",
+        "moroni-moroni-osm-node-4784675163-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4784675163"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-osm-node-6360018986",
+      "name": "Starting Point Road to Karthala (380 m)",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.275659,
+        "lat": -11.724271
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-osm-node-6360018986-1",
+        "moroni-moroni-osm-node-6360018986-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6360018986"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-osm-node-6360028085",
+      "name": "End of the 4x4 road (1580 m)",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.328715,
+        "lat": -11.73495
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-osm-node-6360028085-1",
+        "moroni-moroni-osm-node-6360028085-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6360028085"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-osm-node-8804811617",
+      "name": "Chez Bruno",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.395231,
+        "lat": -11.644604
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-osm-node-8804811617-1",
+        "moroni-moroni-osm-node-8804811617-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8804811617"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-osm-way-1426392579",
+      "name": "Poste de Santé",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.271908,
+        "lat": -11.565416
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-osm-way-1426392579-1",
+        "moroni-moroni-osm-way-1426392579-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1426392579"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-osm-way-1430217861",
+      "name": "marché public",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.299387,
+        "lat": -11.554437
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-osm-way-1430217861-1",
+        "moroni-moroni-osm-way-1430217861-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1430217861"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-osm-way-390008871",
+      "name": "Plais Trambwe",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.366717,
+        "lat": -11.625815
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-osm-way-390008871-1",
+        "moroni-moroni-osm-way-390008871-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/390008871"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-osm-way-392920702",
+      "name": "Université des Comores, Faculté des Lettres et Sciences Humaines",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.278167,
+        "lat": -11.732314
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-osm-way-392920702-1",
+        "moroni-moroni-osm-way-392920702-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/392920702"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-osm-way-397444369",
+      "name": "Université des Comores, Faculté des Sciences et Technologies",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.252321,
+        "lat": -11.694326
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-osm-way-397444369-1",
+        "moroni-moroni-osm-way-397444369-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/397444369"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-osm-way-452194135",
+      "name": "zainaba said",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.272192,
+        "lat": -11.657839
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-osm-way-452194135-1",
+        "moroni-moroni-osm-way-452194135-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/452194135"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-osm-way-485209014",
+      "name": "Université des Comores, Direction et Administration",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.260441,
+        "lat": -11.719845
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-osm-way-485209014-1",
+        "moroni-moroni-osm-way-485209014-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/485209014"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-osm-way-646081451",
+      "name": "Stade Olympique DeIkoni-Malouzini",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.240765,
+        "lat": -11.724316
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-osm-way-646081451-1",
+        "moroni-moroni-osm-way-646081451-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/646081451"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q65135568"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-quiet-reflection",
+      "name": "Ancienne Mosquée du Vendredi",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.251572,
+        "lat": -11.703731
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-quiet-reflection-1",
+        "moroni-moroni-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/432094417"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q107216207"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-recreation",
+      "name": "Ancien terrain de foot",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.326081,
+        "lat": -11.56038
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-recreation-1",
+        "moroni-moroni-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1423001401"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "moroni-transit",
+      "name": "Gare du Nord",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 43.260073,
+        "lat": -11.686233
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "moroni-moroni-transit-1",
+        "moroni-moroni-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/moroni/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4002400944"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "moroni-moroni-airport-moroni-airport-1",
+      "venueId": "moroni-airport-moroni-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-airport-moroni-airport-2",
+      "venueId": "moroni-airport-moroni-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-clinic-1",
+      "venueId": "moroni-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-clinic-2",
+      "venueId": "moroni-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-community-notices-1",
+      "venueId": "moroni-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-community-notices-2",
+      "venueId": "moroni-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-community-voting-game-1",
+      "venueId": "moroni-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-community-voting-game-2",
+      "venueId": "moroni-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-community-workshop-1",
+      "venueId": "moroni-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-community-workshop-2",
+      "venueId": "moroni-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-market-game-1",
+      "venueId": "moroni-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-market-game-2",
+      "venueId": "moroni-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-meal-stop-1",
+      "venueId": "moroni-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-meal-stop-2",
+      "venueId": "moroni-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-node-12222798279-1",
+      "venueId": "moroni-osm-node-12222798279",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-node-12222798279-2",
+      "venueId": "moroni-osm-node-12222798279",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-node-13076688783-1",
+      "venueId": "moroni-osm-node-13076688783",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-node-13076688783-2",
+      "venueId": "moroni-osm-node-13076688783",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-node-13885184807-1",
+      "venueId": "moroni-osm-node-13885184807",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-node-13885184807-2",
+      "venueId": "moroni-osm-node-13885184807",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-node-4784675163-1",
+      "venueId": "moroni-osm-node-4784675163",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-node-4784675163-2",
+      "venueId": "moroni-osm-node-4784675163",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-node-6360018986-1",
+      "venueId": "moroni-osm-node-6360018986",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-node-6360018986-2",
+      "venueId": "moroni-osm-node-6360018986",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-node-6360028085-1",
+      "venueId": "moroni-osm-node-6360028085",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-node-6360028085-2",
+      "venueId": "moroni-osm-node-6360028085",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-node-8804811617-1",
+      "venueId": "moroni-osm-node-8804811617",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-node-8804811617-2",
+      "venueId": "moroni-osm-node-8804811617",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-way-1426392579-1",
+      "venueId": "moroni-osm-way-1426392579",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-way-1426392579-2",
+      "venueId": "moroni-osm-way-1426392579",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-way-1430217861-1",
+      "venueId": "moroni-osm-way-1430217861",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-way-1430217861-2",
+      "venueId": "moroni-osm-way-1430217861",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-way-390008871-1",
+      "venueId": "moroni-osm-way-390008871",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-way-390008871-2",
+      "venueId": "moroni-osm-way-390008871",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-way-392920702-1",
+      "venueId": "moroni-osm-way-392920702",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-way-392920702-2",
+      "venueId": "moroni-osm-way-392920702",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-way-397444369-1",
+      "venueId": "moroni-osm-way-397444369",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-way-397444369-2",
+      "venueId": "moroni-osm-way-397444369",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-way-452194135-1",
+      "venueId": "moroni-osm-way-452194135",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-way-452194135-2",
+      "venueId": "moroni-osm-way-452194135",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-way-485209014-1",
+      "venueId": "moroni-osm-way-485209014",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-way-485209014-2",
+      "venueId": "moroni-osm-way-485209014",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-way-646081451-1",
+      "venueId": "moroni-osm-way-646081451",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-osm-way-646081451-2",
+      "venueId": "moroni-osm-way-646081451",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-quiet-reflection-1",
+      "venueId": "moroni-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-quiet-reflection-2",
+      "venueId": "moroni-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-recreation-1",
+      "venueId": "moroni-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-recreation-2",
+      "venueId": "moroni-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-transit-1",
+      "venueId": "moroni-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    },
+    {
+      "id": "moroni-moroni-transit-2",
+      "venueId": "moroni-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/moroni/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "moroni-airport-moroni-airport",
+    "moroni-clinic",
+    "moroni-community-notices",
+    "moroni-community-voting-game",
+    "moroni-community-workshop",
+    "moroni-market-game",
+    "moroni-meal-stop",
+    "moroni-osm-node-12222798279",
+    "moroni-osm-node-13076688783",
+    "moroni-osm-node-13885184807",
+    "moroni-osm-node-4784675163",
+    "moroni-osm-node-6360018986",
+    "moroni-osm-node-6360028085",
+    "moroni-osm-node-8804811617",
+    "moroni-osm-way-1426392579",
+    "moroni-osm-way-1430217861",
+    "moroni-osm-way-390008871",
+    "moroni-osm-way-392920702",
+    "moroni-osm-way-397444369",
+    "moroni-osm-way-452194135",
+    "moroni-osm-way-485209014",
+    "moroni-osm-way-646081451",
+    "moroni-quiet-reflection",
+    "moroni-recreation",
+    "moroni-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "35e046b7ee536023ada4d9e5d822dd988ce3ccbd22f03b667a9e1e7038f3da0c",
+    "contentSha256": "6f8bfe55afe77369e446ec7cdbc4b16194be03c971f9f4ddd5fa9bd7abba3092"
+  }
+}

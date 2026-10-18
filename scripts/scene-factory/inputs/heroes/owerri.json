@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "owerri",
+  "url": "/assets/scene-heroes/owerri.glb",
+  "sha256": "227c1b635bfcc7bb9553bbcd9fe77f715d9ccef9435e2f35c9694d6c2441f044",
+  "rawBytes": 27976,
+  "brotliBytes": 17749,
+  "triangles": 788,
+  "parts": [
+    {
+      "node": "owerri",
+      "triangles": 788,
+      "bounds": {
+        "min": [
+          -2.19872165,
+          0,
+          -0.751420498
+        ],
+        "max": [
+          2.1987216881919998,
+          2.300048340656,
+          0.7514352213759999
+        ]
+      },
+      "footprint": [
+        -2.19872165,
+        -0.751420498,
+        2.1987216881919998,
+        0.7514352213759999
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "2e0f96c41117603fa25828c6edb1628f9964a498c269ce1a5d15546b947a7d29"
+  },
+  "inputs": {
+    "rawSha256": "4c1cff4ee0cd565d99e6c7c2119e5cdb1602c0c86a2747ff2a5a9e086cf86b83",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "owerri",
+      "country": "ng",
+      "name": "Eke Ukwu Market, Owerri",
+      "category": "market",
+      "sourceUrls": [
+        "https://axxpoint.imostate.gov.ng/pdf/IMSG_2024_Budget_ver-Approved.pdf?ver=029"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-final20-primary-r5.json#records[city_id=owerri]; hero-inputs-r4.md final decisions",
+      "sourceLicence": "OpenStreetMap ODbL1.0 for exact object facts where cited; other source text rights unknown. No external image, map, mesh, texture, floor plan or geometry is reused.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 6,
+        "depth": 5,
+        "height": 2.3,
+        "seed": 6303,
+        "palette": [
+          "#c7b58d",
+          "#685748",
+          "#718b61",
+          "#bd7f55",
+          "#679aa7",
+          "#bdad83",
+          "#e1ddd0",
+          "#35444a"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "The state budget names a construction project for Eke Ukwu Market, Owerri and places it in Owerri Municipal. This supports a public market identity, but does not establish project completion or exact footprint. Original schematic category interpretation only. Dimensions, palette and layout are art direction, not surveyed measurements. Empty trade displays do not infer local merchandise, precise current access or operation. No production or external-rights approval.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "igbo-southeast"
+      }
+    },
+    "styleSha256": "e521f5975c9ebb265348861734083b151b3fb45cee72a594cea4548a3ff36a4e"
+  }
+}

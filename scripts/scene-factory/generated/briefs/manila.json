@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "manila",
+    "name": "Manila",
+    "state": {
+      "id": "ph-manila",
+      "name": "Manila"
+    },
+    "country": {
+      "id": "ph",
+      "name": "Philippines"
+    },
+    "point": {
+      "lon": 120.9803621,
+      "lat": 14.5904492
+    }
+  },
+  "style": {
+    "region": "east-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/philippines-261011.osm.pbf",
+      "https://ourairports.com/airports/RPLL/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/manila/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/manila/facts.ts",
+        "sha256": "5c71ce07068259b05db38a4edd4c40939e41370eddfc603cb4bae9e41c12b348"
+      },
+      {
+        "path": "src/game/cities/manila/index.ts",
+        "sha256": "25046e1752c74cac21dfd514119af8967abb7eb4f564e1b766fbf3480cfcb9a2"
+      },
+      {
+        "path": "src/game/cities/manila/places.ts",
+        "sha256": "b09b73689181edfc18011dda008fe1063effb736b29aa457443c2fb94752d445"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 120.9803621,
+        "lat": 14.5904492
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "manila-airport-manila-airport",
+      "name": "Ninoy Aquino International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.019997,
+        "lat": 14.5086
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-airport-manila-airport-1",
+        "manila-manila-airport-manila-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "manila-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-clinic",
+      "name": "St. Luke's Medical Center Global City",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.048116,
+        "lat": 14.555134
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-clinic-1",
+        "manila-manila-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/29353952"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28449124"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-community-notices",
+      "name": "Batasang Pambansa Complex",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.094535,
+        "lat": 14.693387
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-community-notices-1",
+        "manila-manila-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/36691595"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q678545"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-community-voting-game",
+      "name": "Rodriguez Municipal Hall",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.145478,
+        "lat": 14.732449
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-community-voting-game-1",
+        "manila-manila-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/233133013"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q55283296"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-community-workshop",
+      "name": "San Beda College Alabang",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.025324,
+        "lat": 14.433037
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-community-workshop-1",
+        "manila-manila-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/23378044"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7413400"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-market-game",
+      "name": "SM Center Angono",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.154455,
+        "lat": 14.530863
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-market-game-1",
+        "manila-manila-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/261385828"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17002173"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-meal-stop",
+      "name": "Zus Coffee",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 120.99578,
+        "lat": 14.578695
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-meal-stop-1",
+        "manila-manila-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12647066223"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q110811473"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-osm-node-1782932802",
+      "name": "Battle of Zapote River",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 120.966555,
+        "lat": 14.464045
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-osm-node-1782932802-1",
+        "manila-manila-osm-node-1782932802-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1782932802"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4872804"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-osm-way-108541189",
+      "name": "Playtime Filoil Centre",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.032891,
+        "lat": 14.605603
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-osm-way-108541189-1",
+        "manila-manila-osm-way-108541189-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/108541189"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5449194"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-osm-way-1234015855",
+      "name": "Musoleo De Los Veteranos De La Revolucion",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 120.989745,
+        "lat": 14.633022
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-osm-way-1234015855-1",
+        "manila-manila-osm-way-1234015855-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1234015855"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q56532735"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-osm-way-1435976373",
+      "name": "The Medical City",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.069306,
+        "lat": 14.589951
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-osm-way-1435976373-1",
+        "manila-manila-osm-way-1435976373-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1435976373"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q91231987"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-osm-way-165717167",
+      "name": "La Consolacion College of Novaliches",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.027125,
+        "lat": 14.743495
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-osm-way-165717167-1",
+        "manila-manila-osm-way-165717167-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/165717167"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6461961"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-osm-way-223179404",
+      "name": "MCCID College of Technology",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.135321,
+        "lat": 14.664847
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-osm-way-223179404-1",
+        "manila-manila-osm-way-223179404-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/223179404"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6749670"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-osm-way-231404558",
+      "name": "Philippine Children's Medical Center",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.041444,
+        "lat": 14.647587
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-osm-way-231404558-1",
+        "manila-manila-osm-way-231404558-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/231404558"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q56277032"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-osm-way-280162481",
+      "name": "Felix Y. Manalo National Historical Landmark",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.079435,
+        "lat": 14.533593
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-osm-way-280162481-1",
+        "manila-manila-osm-way-280162481-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/280162481"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q34128512"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-osm-way-28921378",
+      "name": "Cainta Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.115485,
+        "lat": 14.577957
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-osm-way-28921378-1",
+        "manila-manila-osm-way-28921378-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/28921378"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7110842"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-osm-way-308687760",
+      "name": "Old Meycauayan Station",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 120.960786,
+        "lat": 14.738726
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-osm-way-308687760-1",
+        "manila-manila-osm-way-308687760-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/308687760"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q59491697"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-osm-way-319524305",
+      "name": "168 Shopping Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 120.971753,
+        "lat": 14.604809
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-osm-way-319524305-1",
+        "manila-manila-osm-way-319524305-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/319524305"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28448970"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-osm-way-368600427",
+      "name": "SM Mall of Asia Arena",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 120.98374,
+        "lat": 14.532248
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-osm-way-368600427-1",
+        "manila-manila-osm-way-368600427-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/368600427"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6743990"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-osm-way-41374806",
+      "name": "Our Lady of the Annunciation Parish",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.031667,
+        "lat": 14.678765
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-osm-way-41374806-1",
+        "manila-manila-osm-way-41374806-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/41374806"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7110754"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-osm-way-51549859",
+      "name": "SM City Fairview",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.058309,
+        "lat": 14.733474
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-osm-way-51549859-1",
+        "manila-manila-osm-way-51549859-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/51549859"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7391465"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-osm-way-70411261",
+      "name": "Taguig City University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.055497,
+        "lat": 14.490506
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-osm-way-70411261-1",
+        "manila-manila-osm-way-70411261-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/70411261"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7675339"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-quiet-reflection",
+      "name": "Saint Mary Magdalene Parish Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 120.903573,
+        "lat": 14.44468
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-quiet-reflection-1",
+        "manila-manila-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/168831685"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7590504"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-recreation",
+      "name": "Valenzuela People's Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 120.969865,
+        "lat": 14.691496
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-recreation-1",
+        "manila-manila-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/16132673"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q25221938"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manila-transit",
+      "name": "Katipunan",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.072774,
+        "lat": 14.631064
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "manila-manila-transit-1",
+        "manila-manila-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manila/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5377269277"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3547775"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "manila-manila-airport-manila-airport-1",
+      "venueId": "manila-airport-manila-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-airport-manila-airport-2",
+      "venueId": "manila-airport-manila-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-clinic-1",
+      "venueId": "manila-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-clinic-2",
+      "venueId": "manila-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-community-notices-1",
+      "venueId": "manila-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-community-notices-2",
+      "venueId": "manila-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-community-voting-game-1",
+      "venueId": "manila-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-community-voting-game-2",
+      "venueId": "manila-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-community-workshop-1",
+      "venueId": "manila-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-community-workshop-2",
+      "venueId": "manila-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-market-game-1",
+      "venueId": "manila-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-market-game-2",
+      "venueId": "manila-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-meal-stop-1",
+      "venueId": "manila-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-meal-stop-2",
+      "venueId": "manila-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-node-1782932802-1",
+      "venueId": "manila-osm-node-1782932802",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-node-1782932802-2",
+      "venueId": "manila-osm-node-1782932802",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-108541189-1",
+      "venueId": "manila-osm-way-108541189",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-108541189-2",
+      "venueId": "manila-osm-way-108541189",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-1234015855-1",
+      "venueId": "manila-osm-way-1234015855",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-1234015855-2",
+      "venueId": "manila-osm-way-1234015855",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-1435976373-1",
+      "venueId": "manila-osm-way-1435976373",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-1435976373-2",
+      "venueId": "manila-osm-way-1435976373",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-165717167-1",
+      "venueId": "manila-osm-way-165717167",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-165717167-2",
+      "venueId": "manila-osm-way-165717167",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-223179404-1",
+      "venueId": "manila-osm-way-223179404",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-223179404-2",
+      "venueId": "manila-osm-way-223179404",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-231404558-1",
+      "venueId": "manila-osm-way-231404558",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-231404558-2",
+      "venueId": "manila-osm-way-231404558",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-280162481-1",
+      "venueId": "manila-osm-way-280162481",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-280162481-2",
+      "venueId": "manila-osm-way-280162481",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-28921378-1",
+      "venueId": "manila-osm-way-28921378",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-28921378-2",
+      "venueId": "manila-osm-way-28921378",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-308687760-1",
+      "venueId": "manila-osm-way-308687760",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-308687760-2",
+      "venueId": "manila-osm-way-308687760",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-319524305-1",
+      "venueId": "manila-osm-way-319524305",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-319524305-2",
+      "venueId": "manila-osm-way-319524305",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-368600427-1",
+      "venueId": "manila-osm-way-368600427",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-368600427-2",
+      "venueId": "manila-osm-way-368600427",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-41374806-1",
+      "venueId": "manila-osm-way-41374806",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-41374806-2",
+      "venueId": "manila-osm-way-41374806",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-51549859-1",
+      "venueId": "manila-osm-way-51549859",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-51549859-2",
+      "venueId": "manila-osm-way-51549859",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-70411261-1",
+      "venueId": "manila-osm-way-70411261",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-osm-way-70411261-2",
+      "venueId": "manila-osm-way-70411261",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-quiet-reflection-1",
+      "venueId": "manila-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-quiet-reflection-2",
+      "venueId": "manila-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-recreation-1",
+      "venueId": "manila-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-recreation-2",
+      "venueId": "manila-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-transit-1",
+      "venueId": "manila-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    },
+    {
+      "id": "manila-manila-transit-2",
+      "venueId": "manila-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manila/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "manila-airport-manila-airport",
+    "manila-clinic",
+    "manila-community-notices",
+    "manila-community-voting-game",
+    "manila-community-workshop",
+    "manila-market-game",
+    "manila-meal-stop",
+    "manila-osm-node-1782932802",
+    "manila-osm-way-108541189",
+    "manila-osm-way-1234015855",
+    "manila-osm-way-1435976373",
+    "manila-osm-way-165717167",
+    "manila-osm-way-223179404",
+    "manila-osm-way-231404558",
+    "manila-osm-way-280162481",
+    "manila-osm-way-28921378",
+    "manila-osm-way-308687760",
+    "manila-osm-way-319524305",
+    "manila-osm-way-368600427",
+    "manila-osm-way-41374806",
+    "manila-osm-way-51549859",
+    "manila-osm-way-70411261",
+    "manila-quiet-reflection",
+    "manila-recreation",
+    "manila-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "9f1c3c99dd3f94fe931b01890b1351c5c337929125ce59122349deab83fc2451",
+    "contentSha256": "7dcde045a3d5c76713e668387244c92d3dc0c8d2cb878a95a3d6e4b4bb602ccd"
+  }
+}

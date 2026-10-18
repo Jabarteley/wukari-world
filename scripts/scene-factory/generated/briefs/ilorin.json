@@ -1,0 +1,1515 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "ilorin",
+    "name": "Ilorin",
+    "state": {
+      "id": "kwara",
+      "name": "Kwara"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 4.55,
+      "lat": 8.5
+    }
+  },
+  "style": {
+    "region": "gulf-guinea",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/ilorin/content.ts",
+        "sha256": "2cb5f18357bebc71177a9bb8e1db40220402a191115641b76bc74eb477fb6f91"
+      },
+      {
+        "path": "src/game/cities/ilorin/index.ts",
+        "sha256": "b57e5cd590edae6cfde0e42fca73ff150e70fd626cafd3fa9b2d5c3e9035230d"
+      },
+      {
+        "path": "src/game/cities/ilorin/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/ilorin/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for ilorin.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "al-hikmah-university",
+      "name": "Al-Hikmah University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.504361,
+        "lat": 8.4814067
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ilorin-al-hikmah-university-1",
+        "ilorin-al-hikmah-university-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    },
+    {
+      "id": "diamond-park",
+      "name": "Diamond Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5414969,
+        "lat": 8.4545491
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Public area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Public area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ilorin-diamond-park-1",
+        "ilorin-diamond-park-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    },
+    {
+      "id": "emirs-palace",
+      "name": "Emir's Palace",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5498702,
+        "lat": 8.4958215
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ilorin-emirs-palace-1",
+        "ilorin-emirs-palace-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    },
+    {
+      "id": "flower-garden",
+      "name": "Flower Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5819063,
+        "lat": 8.4867204
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Garden"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Garden",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ilorin-flower-garden-1",
+        "ilorin-flower-garden-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.512553340615662,
+        "lat": 8.457569792547567
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    },
+    {
+      "id": "ilorin-national-museum",
+      "name": "Ilorin National Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.584396,
+        "lat": 8.4821616
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ilorin-ilorin-national-museum-1",
+        "ilorin-ilorin-national-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    },
+    {
+      "id": "ipata-market",
+      "name": "Ipata Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5616065,
+        "lat": 8.4993041
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ilorin-ipata-market-1",
+        "ilorin-ipata-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    },
+    {
+      "id": "kankatu-central-mosque",
+      "name": "Kankatu Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5419569,
+        "lat": 8.4807161
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ilorin-kankatu-central-mosque-1",
+        "ilorin-kankatu-central-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    },
+    {
+      "id": "kankatu-market",
+      "name": "Kankatu Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5464478,
+        "lat": 8.5063938
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ilorin-kankatu-market-1",
+        "ilorin-kankatu-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    },
+    {
+      "id": "kwara-government-house",
+      "name": "Kwara State Government House",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5810537,
+        "lat": 8.480534
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ilorin-kwara-government-house-1",
+        "ilorin-kwara-government-house-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    },
+    {
+      "id": "kwara-state-stadium",
+      "name": "Kwara State Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5421773,
+        "lat": 8.4756211
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ilorin-kwara-state-stadium-1",
+        "ilorin-kwara-state-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    },
+    {
+      "id": "oja-oba",
+      "name": "Oja Oba",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5459987,
+        "lat": 8.4959867
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ilorin-oja-oba-1",
+        "ilorin-oja-oba-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    },
+    {
+      "id": "soludero-bus-terminal",
+      "name": "Soludero Bus Terminal",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5644774,
+        "lat": 8.487369
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ilorin-soludero-bus-terminal-1",
+        "ilorin-soludero-bus-terminal-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    },
+    {
+      "id": "st-james-catholic-church",
+      "name": "St James' Catholic Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5685007,
+        "lat": 8.4910603
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ilorin-st-james-catholic-church-1",
+        "ilorin-st-james-catholic-church-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    },
+    {
+      "id": "take-beauty-salon",
+      "name": "Take Beauty Salon",
+      "kind": "salon",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.6067893,
+        "lat": 8.4855297
+      },
+      "spots": [
+        {
+          "id": "chair",
+          "name": "Styling chair"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "chair",
+          "name": "Styling chair",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ilorin-take-beauty-salon-1",
+        "ilorin-take-beauty-salon-2"
+      ],
+      "scene": {
+        "kind": "salon",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    },
+    {
+      "id": "uith",
+      "name": "University of Ilorin Teaching Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5321749,
+        "lat": 8.4796499
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ilorin-uith-1",
+        "ilorin-uith-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    },
+    {
+      "id": "university-of-ilorin",
+      "name": "University of Ilorin",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.6577393,
+        "lat": 8.4765988
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ilorin-university-of-ilorin-1",
+        "ilorin-university-of-ilorin-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    },
+    {
+      "id": "zenith-bank-unity-road",
+      "name": "Zenith Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.561065,
+        "lat": 8.4800223
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ilorin-zenith-bank-unity-road-1",
+        "ilorin-zenith-bank-unity-road-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ilorin."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "ilorin-al-hikmah-university-1",
+      "venueId": "al-hikmah-university",
+      "name": "Folake Balogun",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-al-hikmah-university-2",
+      "venueId": "al-hikmah-university",
+      "name": "Ayodele Afolabi",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-diamond-park-1",
+      "venueId": "diamond-park",
+      "name": "Folake Adeyemi",
+      "role": "Park caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-diamond-park-2",
+      "venueId": "diamond-park",
+      "name": "Ayodele Adeleke",
+      "role": "Morning walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-emirs-palace-1",
+      "venueId": "emirs-palace",
+      "name": "Bukola Adeyemi",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-emirs-palace-2",
+      "venueId": "emirs-palace",
+      "name": "Baba Kola",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-flower-garden-1",
+      "venueId": "flower-garden",
+      "name": "Adebayo Afolabi",
+      "role": "Garden keeper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-flower-garden-2",
+      "venueId": "flower-garden",
+      "name": "Abike Ajayi",
+      "role": "Evening walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-ilorin-national-museum-1",
+      "venueId": "ilorin-national-museum",
+      "name": "Adebayo Oladipo",
+      "role": "Museum guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-ilorin-national-museum-2",
+      "venueId": "ilorin-national-museum",
+      "name": "Abike Ogundele",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-ipata-market-1",
+      "venueId": "ipata-market",
+      "name": "Adebayo Ojo",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-ipata-market-2",
+      "venueId": "ipata-market",
+      "name": "Mama Temitope",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-kankatu-central-mosque-1",
+      "venueId": "kankatu-central-mosque",
+      "name": "Folake Lawal",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-kankatu-central-mosque-2",
+      "venueId": "kankatu-central-mosque",
+      "name": "Ayodele Ojo",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-kankatu-market-1",
+      "venueId": "kankatu-market",
+      "name": "Folake Ajayi",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-kankatu-market-2",
+      "venueId": "kankatu-market",
+      "name": "Ayodele Adesina",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-kwara-government-house-1",
+      "venueId": "kwara-government-house",
+      "name": "Folake Ogundele",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-kwara-government-house-2",
+      "venueId": "kwara-government-house",
+      "name": "Baba Ayodele",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-kwara-state-stadium-1",
+      "venueId": "kwara-state-stadium",
+      "name": "Adebayo Salami",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-kwara-state-stadium-2",
+      "venueId": "kwara-state-stadium",
+      "name": "Abike Adeyemi",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-oja-oba-1",
+      "venueId": "oja-oba",
+      "name": "Folake Akinola",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-oja-oba-2",
+      "venueId": "oja-oba",
+      "name": "Ayodele Salami",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-soludero-bus-terminal-1",
+      "venueId": "soludero-bus-terminal",
+      "name": "Folake Ogunbanjo",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-soludero-bus-terminal-2",
+      "venueId": "soludero-bus-terminal",
+      "name": "Ayodele Bakare",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-st-james-catholic-church-1",
+      "venueId": "st-james-catholic-church",
+      "name": "Adebayo Bakare",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-st-james-catholic-church-2",
+      "venueId": "st-james-catholic-church",
+      "name": "Mama Abike",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-take-beauty-salon-1",
+      "venueId": "take-beauty-salon",
+      "name": "Adebayo Akinwale",
+      "role": "Stylist",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-take-beauty-salon-2",
+      "venueId": "take-beauty-salon",
+      "name": "Abike Balogun",
+      "role": "Client",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-uith-1",
+      "venueId": "uith",
+      "name": "Adebayo Adeleke",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-uith-2",
+      "venueId": "uith",
+      "name": "Abike Olaniyan",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-university-of-ilorin-1",
+      "venueId": "university-of-ilorin",
+      "name": "Adebayo Adesina",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-university-of-ilorin-2",
+      "venueId": "university-of-ilorin",
+      "name": "Mama Omolara",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-zenith-bank-unity-road-1",
+      "venueId": "zenith-bank-unity-road",
+      "name": "Folake Olaniyan",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    },
+    {
+      "id": "ilorin-zenith-bank-unity-road-2",
+      "venueId": "zenith-bank-unity-road",
+      "name": "Baba Dapo",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ilorin/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "al-hikmah-university",
+    "diamond-park",
+    "emirs-palace",
+    "flower-garden",
+    "ilorin-national-museum",
+    "ipata-market",
+    "kankatu-central-mosque",
+    "kankatu-market",
+    "kwara-government-house",
+    "kwara-state-stadium",
+    "oja-oba",
+    "soludero-bus-terminal",
+    "st-james-catholic-church",
+    "take-beauty-salon",
+    "uith",
+    "university-of-ilorin",
+    "zenith-bank-unity-road"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "72860f980963ab2f6b620f6a5404cf81453db6c946e86b543765973456028c8c",
+    "contentSha256": "7532e87bcecbff893571d9a405ce6ffc5b7887b429a04d3a42bea5a4610bce80"
+  }
+}

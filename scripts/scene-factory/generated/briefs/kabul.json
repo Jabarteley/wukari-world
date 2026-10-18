@@ -1,0 +1,2123 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "kabul",
+    "name": "Kabul",
+    "state": {
+      "id": "af-kabul",
+      "name": "Kabul"
+    },
+    "country": {
+      "id": "af",
+      "name": "Afghanistan"
+    },
+    "point": {
+      "lon": 69.1850584,
+      "lat": 34.5269503
+    }
+  },
+  "style": {
+    "region": "south-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/afghanistan-261011.osm.pbf",
+      "https://ourairports.com/airports/OAKB/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/kabul/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/kabul/facts.ts",
+        "sha256": "e300cd63f6affbe1f7f79d6b269875ae43009f1ddea61a5bf929b7ab5cf6a783"
+      },
+      {
+        "path": "src/game/cities/kabul/index.ts",
+        "sha256": "09299f39ba7667ee06bae3fbe2b5816922b63105b9d6601e369f4f28631c3296"
+      },
+      {
+        "path": "src/game/cities/kabul/places.ts",
+        "sha256": "b09b9218ce1560ed9c7558838ff9f2a6dc90e204280310f655cd55dba1d8f670"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.1850584,
+        "lat": 34.5269503
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "kabul-airport-kabul-airport",
+      "name": "Kabul International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.212303,
+        "lat": 34.565899
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-airport-kabul-airport-1",
+        "kabul-kabul-airport-kabul-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "kabul-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-clinic",
+      "name": "French Medical Institute for Children",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.13345,
+        "lat": 34.520253
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-clinic-1",
+        "kabul-kabul-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/991171093"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5501844"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-community-notices",
+      "name": "National Assembly of Afghanistan",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.120286,
+        "lat": 34.461943
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-community-notices-1",
+        "kabul-kabul-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/5307575"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2108181"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-community-voting-game",
+      "name": "Mamoriat Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.320675,
+        "lat": 34.509045
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-community-voting-game-1",
+        "kabul-kabul-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8037609484"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-community-workshop",
+      "name": "Dawat University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.08866,
+        "lat": 34.532084
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-community-workshop-1",
+        "kabul-kabul-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/706056301"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5242285"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-market-game",
+      "name": "Kabul City Centre",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.165664,
+        "lat": 34.532444
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-market-game-1",
+        "kabul-kabul-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1392109020"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6344426"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-meal-stop",
+      "name": "China Lanzhou Beef Noodles",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.173649,
+        "lat": 34.531896
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-meal-stop-1",
+        "kabul-kabul-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13472526480"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q137831982"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-osm-node-13597152438",
+      "name": "Aqcha Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.249816,
+        "lat": 34.544525
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-osm-node-13597152438-1",
+        "kabul-kabul-osm-node-13597152438-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13597152438"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-osm-node-2551955816",
+      "name": "Minar-i Chakri",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.283167,
+        "lat": 34.583313
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-osm-node-2551955816-1",
+        "kabul-kabul-osm-node-2551955816-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2551955816"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q994423"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-osm-node-7965537558",
+      "name": "Restaurant Gharb Kabul",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.061167,
+        "lat": 34.49929
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-osm-node-7965537558-1",
+        "kabul-kabul-osm-node-7965537558-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7965537558"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-osm-way-1339181429",
+      "name": "Bala Hissar",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.191166,
+        "lat": 34.505391
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-osm-way-1339181429-1",
+        "kabul-kabul-osm-way-1339181429-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1339181429"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q804581"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-osm-way-1494767421",
+      "name": "Ghazi Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.193992,
+        "lat": 34.518499
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-osm-way-1494767421-1",
+        "kabul-kabul-osm-way-1494767421-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1494767421"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1521498"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-osm-way-199353387",
+      "name": "Gardens of Babur",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.158478,
+        "lat": 34.502607
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-osm-way-199353387-1",
+        "kabul-kabul-osm-way-199353387-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/199353387"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1900234"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-osm-way-199999770",
+      "name": "Kabul University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.134523,
+        "lat": 34.51517
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-osm-way-199999770-1",
+        "kabul-kabul-osm-way-199999770-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/199999770"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1354097"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-osm-way-200364379",
+      "name": "د داود خان نظامي روغتون",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.188832,
+        "lat": 34.541071
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-osm-way-200364379-1",
+        "kabul-kabul-osm-way-200364379-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/200364379"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q29586796"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-osm-way-201198534",
+      "name": "Zarnergar Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.175261,
+        "lat": 34.52126
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-osm-way-201198534-1",
+        "kabul-kabul-osm-way-201198534-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/201198534"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q108559372"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-osm-way-560456603",
+      "name": "Alokozay International Cricket Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.198277,
+        "lat": 34.514888
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-osm-way-560456603-1",
+        "kabul-kabul-osm-way-560456603-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/560456603"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6344444"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-osm-way-710563825",
+      "name": "شفاخانه جناح",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.098587,
+        "lat": 34.50237
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-osm-way-710563825-1",
+        "kabul-kabul-osm-way-710563825-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/710563825"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28169618"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-osm-way-772243563",
+      "name": "Guldara Stupa",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.278645,
+        "lat": 34.392765
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-osm-way-772243563-1",
+        "kabul-kabul-osm-way-772243563-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/772243563"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5617331"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-osm-way-793260749",
+      "name": "Sakhi Shrine",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.146585,
+        "lat": 34.519952
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-osm-way-793260749-1",
+        "kabul-kabul-osm-way-793260749-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/793260749"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q50844233"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-osm-way-864540700",
+      "name": "Shah-i du Shamshira",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.171494,
+        "lat": 34.515721
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-osm-way-864540700-1",
+        "kabul-kabul-osm-way-864540700-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/864540700"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7461208"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-osm-way-991169055",
+      "name": "Kabul Polytechnic University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.119847,
+        "lat": 34.535355
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-osm-way-991169055-1",
+        "kabul-kabul-osm-way-991169055-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/991169055"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2358317"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-quiet-reflection",
+      "name": "Puli Khishti Jamia Masjid",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.180533,
+        "lat": 34.515565
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-quiet-reflection-1",
+        "kabul-kabul-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/199569685"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2393709"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-recreation",
+      "name": "Chihilsitoon Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.152186,
+        "lat": 34.468506
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-recreation-1",
+        "kabul-kabul-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/387447673"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2795775"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kabul-transit",
+      "name": "Minibuses to Bamyan",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.022284,
+        "lat": 34.493494
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "kabul-kabul-transit-1",
+        "kabul-kabul-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kabul/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11137703487"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "kabul-kabul-airport-kabul-airport-1",
+      "venueId": "kabul-airport-kabul-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-airport-kabul-airport-2",
+      "venueId": "kabul-airport-kabul-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-clinic-1",
+      "venueId": "kabul-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-clinic-2",
+      "venueId": "kabul-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-community-notices-1",
+      "venueId": "kabul-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-community-notices-2",
+      "venueId": "kabul-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-community-voting-game-1",
+      "venueId": "kabul-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-community-voting-game-2",
+      "venueId": "kabul-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-community-workshop-1",
+      "venueId": "kabul-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-community-workshop-2",
+      "venueId": "kabul-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-market-game-1",
+      "venueId": "kabul-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-market-game-2",
+      "venueId": "kabul-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-meal-stop-1",
+      "venueId": "kabul-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-meal-stop-2",
+      "venueId": "kabul-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-node-13597152438-1",
+      "venueId": "kabul-osm-node-13597152438",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-node-13597152438-2",
+      "venueId": "kabul-osm-node-13597152438",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-node-2551955816-1",
+      "venueId": "kabul-osm-node-2551955816",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-node-2551955816-2",
+      "venueId": "kabul-osm-node-2551955816",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-node-7965537558-1",
+      "venueId": "kabul-osm-node-7965537558",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-node-7965537558-2",
+      "venueId": "kabul-osm-node-7965537558",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-1339181429-1",
+      "venueId": "kabul-osm-way-1339181429",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-1339181429-2",
+      "venueId": "kabul-osm-way-1339181429",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-1494767421-1",
+      "venueId": "kabul-osm-way-1494767421",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-1494767421-2",
+      "venueId": "kabul-osm-way-1494767421",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-199353387-1",
+      "venueId": "kabul-osm-way-199353387",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-199353387-2",
+      "venueId": "kabul-osm-way-199353387",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-199999770-1",
+      "venueId": "kabul-osm-way-199999770",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-199999770-2",
+      "venueId": "kabul-osm-way-199999770",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-200364379-1",
+      "venueId": "kabul-osm-way-200364379",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-200364379-2",
+      "venueId": "kabul-osm-way-200364379",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-201198534-1",
+      "venueId": "kabul-osm-way-201198534",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-201198534-2",
+      "venueId": "kabul-osm-way-201198534",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-560456603-1",
+      "venueId": "kabul-osm-way-560456603",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-560456603-2",
+      "venueId": "kabul-osm-way-560456603",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-710563825-1",
+      "venueId": "kabul-osm-way-710563825",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-710563825-2",
+      "venueId": "kabul-osm-way-710563825",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-772243563-1",
+      "venueId": "kabul-osm-way-772243563",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-772243563-2",
+      "venueId": "kabul-osm-way-772243563",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-793260749-1",
+      "venueId": "kabul-osm-way-793260749",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-793260749-2",
+      "venueId": "kabul-osm-way-793260749",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-864540700-1",
+      "venueId": "kabul-osm-way-864540700",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-864540700-2",
+      "venueId": "kabul-osm-way-864540700",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-991169055-1",
+      "venueId": "kabul-osm-way-991169055",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-osm-way-991169055-2",
+      "venueId": "kabul-osm-way-991169055",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-quiet-reflection-1",
+      "venueId": "kabul-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-quiet-reflection-2",
+      "venueId": "kabul-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-recreation-1",
+      "venueId": "kabul-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-recreation-2",
+      "venueId": "kabul-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-transit-1",
+      "venueId": "kabul-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    },
+    {
+      "id": "kabul-kabul-transit-2",
+      "venueId": "kabul-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kabul/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "kabul-airport-kabul-airport",
+    "kabul-clinic",
+    "kabul-community-notices",
+    "kabul-community-voting-game",
+    "kabul-community-workshop",
+    "kabul-market-game",
+    "kabul-meal-stop",
+    "kabul-osm-node-13597152438",
+    "kabul-osm-node-2551955816",
+    "kabul-osm-node-7965537558",
+    "kabul-osm-way-1339181429",
+    "kabul-osm-way-1494767421",
+    "kabul-osm-way-199353387",
+    "kabul-osm-way-199999770",
+    "kabul-osm-way-200364379",
+    "kabul-osm-way-201198534",
+    "kabul-osm-way-560456603",
+    "kabul-osm-way-710563825",
+    "kabul-osm-way-772243563",
+    "kabul-osm-way-793260749",
+    "kabul-osm-way-864540700",
+    "kabul-osm-way-991169055",
+    "kabul-quiet-reflection",
+    "kabul-recreation",
+    "kabul-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "c63b2503dd7a31d9b1ccc687a4b92a402f054776606472d2041387b2f4610f1a",
+    "contentSha256": "940a906bcc93e982eba61d724cddcdbc1c04ce4aedb5a28b009c170a907aee21"
+  }
+}

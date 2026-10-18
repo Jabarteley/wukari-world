@@ -1,4 +1,4 @@
-import './body/native-test-fixture.ts';
+import './recipe/node-test-fixture.ts';
 import { loadCityContent, playableCityIds, DEFAULT_CITY_ID } from '../game/cities/registry.ts';
 await Promise.all(playableCityIds().map(loadCityContent));
 // Each city's own scenes are a download of their own: the scene host awaits the default city's own download, refuses

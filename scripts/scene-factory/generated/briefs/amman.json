@@ -1,0 +1,2107 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "amman",
+    "name": "Amman",
+    "state": {
+      "id": "jo-amman",
+      "name": "Amman"
+    },
+    "country": {
+      "id": "jo",
+      "name": "Jordan"
+    },
+    "point": {
+      "lon": 35.9239625,
+      "lat": 31.9515694
+    }
+  },
+  "style": {
+    "region": "south-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/jordan-261011.osm.pbf",
+      "https://ourairports.com/airports/OJAI/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/amman/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/amman/facts.ts",
+        "sha256": "3bbf8c203d9060b6258991a8ea8768c772cf9f0897186e2787376d8f754a5873"
+      },
+      {
+        "path": "src/game/cities/amman/index.ts",
+        "sha256": "a8f6eb2dac6614595f550b9e829f1a9ecdd4157e9658e611174669fd548d6062"
+      },
+      {
+        "path": "src/game/cities/amman/places.ts",
+        "sha256": "51c674edc21932bcc7795ba5f849cd3ef63fa4ccfd01a208bed6086700e12ba9"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "amman-airport-amman-airport",
+      "name": "Queen Alia International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.9931983948,
+        "lat": 31.7226009369
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-airport-amman-airport-1",
+        "amman-amman-airport-amman-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "amman-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-clinic",
+      "name": "Arab Medical Center",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.878335,
+        "lat": 31.959639
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-clinic-1",
+        "amman-amman-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/276753162"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4783208"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-community-notices",
+      "name": "Al-Zarqaa Manucipality",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.087518,
+        "lat": 32.062378
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-community-notices-1",
+        "amman-amman-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3987031215"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-community-voting-game",
+      "name": "Hashemite Plaza",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.939168,
+        "lat": 31.952411
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-community-voting-game-1",
+        "amman-amman-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/651678324"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6727215"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-community-workshop",
+      "name": "University of Jordan",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.872955,
+        "lat": 32.013483
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-community-workshop-1",
+        "amman-amman-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/179944869"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q610253"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-market-game",
+      "name": "Taj Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.888048,
+        "lat": 31.941219
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-market-game-1",
+        "amman-amman-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/263470895"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q31076252"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-meal-stop",
+      "name": "Hekayet Nebo Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.740058,
+        "lat": 31.767245
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-meal-stop-1",
+        "amman-amman-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1193976556"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-osm-node-12395982125",
+      "name": "my resaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.976337,
+        "lat": 31.848359
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-osm-node-12395982125-1",
+        "amman-amman-osm-node-12395982125-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12395982125"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-osm-node-13128408649",
+      "name": "مزرعة اليازوري",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.946341,
+        "lat": 32.059223
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-osm-node-13128408649-1",
+        "amman-amman-osm-node-13128408649-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13128408649"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-osm-node-13391032813",
+      "name": "Abood Coffee",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.812948,
+        "lat": 32.059427
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-osm-node-13391032813-1",
+        "amman-amman-osm-node-13391032813-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13391032813"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-osm-node-1789652385",
+      "name": "Masjid Fatima Alzahraa",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.990859,
+        "lat": 31.976561
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-osm-node-1789652385-1",
+        "amman-amman-osm-node-1789652385-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1789652385"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7508203"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-osm-node-4201615774",
+      "name": "Baby Cord",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.940667,
+        "lat": 31.747647
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-osm-node-4201615774-1",
+        "amman-amman-osm-node-4201615774-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4201615774"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-osm-node-547993845",
+      "name": "Mount Nebo",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.725269,
+        "lat": 31.768168
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-osm-node-547993845-1",
+        "amman-amman-osm-node-547993845-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/547993845"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q680161"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-osm-node-6593897285",
+      "name": "شارع الستين ٦٠",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.054254,
+        "lat": 31.83904
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-osm-node-6593897285-1",
+        "amman-amman-osm-node-6593897285-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6593897285"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-osm-way-1532937257",
+      "name": "جامعة عمان العربية",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.881388,
+        "lat": 32.115875
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-osm-way-1532937257-1",
+        "amman-amman-osm-way-1532937257-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1532937257"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4747131"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-osm-way-164106288",
+      "name": "Qasr Mshatta",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.01022,
+        "lat": 31.737943
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-osm-way-164106288-1",
+        "amman-amman-osm-way-164106288-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/164106288"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1636168"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-osm-way-200734506",
+      "name": "Petra University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.875022,
+        "lat": 31.893066
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-osm-way-200734506-1",
+        "amman-amman-osm-way-200734506-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/200734506"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3551661"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-osm-way-333946090",
+      "name": "King Abdullah I Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.912844,
+        "lat": 31.96112
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-osm-way-333946090-1",
+        "amman-amman-osm-way-333946090-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/333946090"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1574587"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-osm-way-588418001",
+      "name": "German Jordanian University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.801288,
+        "lat": 31.777018
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-osm-way-588418001-1",
+        "amman-amman-osm-way-588418001-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/588418001"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q322668"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-osm-way-695615687",
+      "name": "Tell Hesban",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.809048,
+        "lat": 31.800755
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-osm-way-695615687-1",
+        "amman-amman-osm-way-695615687-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/695615687"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1615584"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-osm-way-956954592",
+      "name": "Tall al-Umayri",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.887966,
+        "lat": 31.868662
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-osm-way-956954592-1",
+        "amman-amman-osm-way-956954592-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/956954592"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12203045"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-osm-way-98868798",
+      "name": "Prince Mohammed Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 36.112923,
+        "lat": 32.099914
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-osm-way-98868798-1",
+        "amman-amman-osm-way-98868798-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/98868798"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4120140"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-quiet-reflection",
+      "name": "Great Mosque of Salt",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.725322,
+        "lat": 32.039181
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-quiet-reflection-1",
+        "amman-amman-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/696170482"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q107810622"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-recreation",
+      "name": "Hada'iq al-Malik Hussein",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.826611,
+        "lat": 31.986346
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-recreation-1",
+        "amman-amman-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/153915077"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q867789"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "amman-transit",
+      "name": "Qasr Station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.936737,
+        "lat": 31.907084
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "amman-amman-transit-1",
+        "amman-amman-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/amman/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/798905112"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 35.9239625,
+        "lat": 31.9515694
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "amman-amman-airport-amman-airport-1",
+      "venueId": "amman-airport-amman-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-airport-amman-airport-2",
+      "venueId": "amman-airport-amman-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-clinic-1",
+      "venueId": "amman-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-clinic-2",
+      "venueId": "amman-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-community-notices-1",
+      "venueId": "amman-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-community-notices-2",
+      "venueId": "amman-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-community-voting-game-1",
+      "venueId": "amman-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-community-voting-game-2",
+      "venueId": "amman-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-community-workshop-1",
+      "venueId": "amman-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-community-workshop-2",
+      "venueId": "amman-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-market-game-1",
+      "venueId": "amman-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-market-game-2",
+      "venueId": "amman-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-meal-stop-1",
+      "venueId": "amman-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-meal-stop-2",
+      "venueId": "amman-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-node-12395982125-1",
+      "venueId": "amman-osm-node-12395982125",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-node-12395982125-2",
+      "venueId": "amman-osm-node-12395982125",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-node-13128408649-1",
+      "venueId": "amman-osm-node-13128408649",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-node-13128408649-2",
+      "venueId": "amman-osm-node-13128408649",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-node-13391032813-1",
+      "venueId": "amman-osm-node-13391032813",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-node-13391032813-2",
+      "venueId": "amman-osm-node-13391032813",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-node-1789652385-1",
+      "venueId": "amman-osm-node-1789652385",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-node-1789652385-2",
+      "venueId": "amman-osm-node-1789652385",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-node-4201615774-1",
+      "venueId": "amman-osm-node-4201615774",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-node-4201615774-2",
+      "venueId": "amman-osm-node-4201615774",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-node-547993845-1",
+      "venueId": "amman-osm-node-547993845",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-node-547993845-2",
+      "venueId": "amman-osm-node-547993845",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-node-6593897285-1",
+      "venueId": "amman-osm-node-6593897285",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-node-6593897285-2",
+      "venueId": "amman-osm-node-6593897285",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-way-1532937257-1",
+      "venueId": "amman-osm-way-1532937257",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-way-1532937257-2",
+      "venueId": "amman-osm-way-1532937257",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-way-164106288-1",
+      "venueId": "amman-osm-way-164106288",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-way-164106288-2",
+      "venueId": "amman-osm-way-164106288",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-way-200734506-1",
+      "venueId": "amman-osm-way-200734506",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-way-200734506-2",
+      "venueId": "amman-osm-way-200734506",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-way-333946090-1",
+      "venueId": "amman-osm-way-333946090",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-way-333946090-2",
+      "venueId": "amman-osm-way-333946090",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-way-588418001-1",
+      "venueId": "amman-osm-way-588418001",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-way-588418001-2",
+      "venueId": "amman-osm-way-588418001",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-way-695615687-1",
+      "venueId": "amman-osm-way-695615687",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-way-695615687-2",
+      "venueId": "amman-osm-way-695615687",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-way-956954592-1",
+      "venueId": "amman-osm-way-956954592",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-way-956954592-2",
+      "venueId": "amman-osm-way-956954592",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-way-98868798-1",
+      "venueId": "amman-osm-way-98868798",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-osm-way-98868798-2",
+      "venueId": "amman-osm-way-98868798",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-quiet-reflection-1",
+      "venueId": "amman-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-quiet-reflection-2",
+      "venueId": "amman-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-recreation-1",
+      "venueId": "amman-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-recreation-2",
+      "venueId": "amman-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-transit-1",
+      "venueId": "amman-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    },
+    {
+      "id": "amman-amman-transit-2",
+      "venueId": "amman-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/amman/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "amman-airport-amman-airport",
+    "amman-clinic",
+    "amman-community-notices",
+    "amman-community-voting-game",
+    "amman-community-workshop",
+    "amman-market-game",
+    "amman-meal-stop",
+    "amman-osm-node-12395982125",
+    "amman-osm-node-13128408649",
+    "amman-osm-node-13391032813",
+    "amman-osm-node-1789652385",
+    "amman-osm-node-4201615774",
+    "amman-osm-node-547993845",
+    "amman-osm-node-6593897285",
+    "amman-osm-way-1532937257",
+    "amman-osm-way-164106288",
+    "amman-osm-way-200734506",
+    "amman-osm-way-333946090",
+    "amman-osm-way-588418001",
+    "amman-osm-way-695615687",
+    "amman-osm-way-956954592",
+    "amman-osm-way-98868798",
+    "amman-quiet-reflection",
+    "amman-recreation",
+    "amman-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "6ce060b71a9c7377d0c7c263c0f6896cc5ae82201175dcab6d5f58d73701b036",
+    "contentSha256": "3df164a2767c2b86dcf1235690f4a4c119ea029b2bc483a8d0842dc20c557cc0"
+  }
+}

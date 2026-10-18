@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "podgorica",
+  "url": "/assets/scene-heroes/podgorica.glb",
+  "sha256": "904787d77f9db5511a30a86a302bd8b55b2ad583cb03f03cb4a915e89349a402",
+  "rawBytes": 19652,
+  "brotliBytes": 16751,
+  "triangles": 550,
+  "parts": [
+    {
+      "node": "podgorica",
+      "triangles": 550,
+      "bounds": {
+        "min": [
+          -3.53572917,
+          0,
+          -2.67568684
+        ],
+        "max": [
+          3.535729079232,
+          2.500023571968,
+          2.675710301792
+        ]
+      },
+      "footprint": [
+        -3.53572917,
+        -2.67568684,
+        3.535729079232,
+        2.675710301792
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "9fbb3637a6026c42295598191f368bf185692eb853e19ab7f218c25d4e865535"
+  },
+  "inputs": {
+    "rawSha256": "e856fff90af8480257fc74e98091b36066d629eb7798a50665f96dce676228b9",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "podgorica",
+      "country": "me",
+      "name": "Gorica Hill",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://podgorica.travel/wp-content/uploads/2025/10/MICE-2025-Online.pdf"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=podgorica]",
+      "sourceLicence": "unknown",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 8.6,
+        "depth": 6,
+        "height": 2.5,
+        "seed": 18139,
+        "palette": [
+          "#c6bd9d",
+          "#695e4d",
+          "#55734b",
+          "#738b59",
+          "#4e7184",
+          "#9d986c",
+          "#c7d5cf",
+          "#37443e"
+        ],
+        "composition": "hill"
+      },
+      "evidence": "The city tourism organization identifies Gorica Hill as a natural monument in central Podgorica. Original schematic fragment of the sourced feature class. Palette, contour, tree count, spacing and dimensions are art direction, not surveyed shape, species identification or measured geography. No current access is certified.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "western-europe"
+      }
+    },
+    "styleSha256": "18e3b0f4dbb88519df26d3d51faa4960b3f4646b58f92cf029cf1a50cbcc6d9c"
+  }
+}

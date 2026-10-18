@@ -1,0 +1,2071 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "victoria",
+    "name": "Victoria",
+    "state": {
+      "id": "sc-victoria",
+      "name": "Victoria"
+    },
+    "country": {
+      "id": "sc",
+      "name": "Seychelles"
+    },
+    "point": {
+      "lon": 55.452359,
+      "lat": -4.6232085
+    }
+  },
+  "style": {
+    "region": "swahili-coast",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/africa/seychelles-261011.osm.pbf",
+      "https://ourairports.com/airports/FSIA/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/victoria/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/victoria/facts.ts",
+        "sha256": "5c8b6866b7480fa950523b9cd13b878631166dca04d0c7bee5a2f9065bcf6960"
+      },
+      {
+        "path": "src/game/cities/victoria/index.ts",
+        "sha256": "7e19aab477c83404abe535a303d7c9f74a1926451c485630edd2506208070916"
+      },
+      {
+        "path": "src/game/cities/victoria/places.ts",
+        "sha256": "0f5ce68237a38accd7ff45e830970532e0787adefb8018f33630ab49dd4ba774"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.452359,
+        "lat": -4.6232085000000005
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "victoria-airport-victoria-airport",
+      "name": "Seychelles International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.521801,
+        "lat": -4.67434
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-airport-victoria-airport-1",
+        "victoria-victoria-airport-victoria-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "victoria-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-clinic",
+      "name": "Euromedical Family Clinic (Providence branch)",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.483885,
+        "lat": -4.651253
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-clinic-1",
+        "victoria-victoria-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4397223784"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-community-notices",
+      "name": "State House",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.450947,
+        "lat": -4.62457
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-community-notices-1",
+        "victoria-victoria-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4176627383"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7603373"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-community-voting-game",
+      "name": "Beau Vallon District Administration",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.428743,
+        "lat": -4.61711
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-community-voting-game-1",
+        "victoria-victoria-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/458812934"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-community-workshop",
+      "name": "University of Seychelles",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.515021,
+        "lat": -4.740283
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-community-workshop-1",
+        "victoria-victoria-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/363504575"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7896291"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-market-game",
+      "name": "Enjoy Supermarket",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.480657,
+        "lat": -4.752083
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-market-game-1",
+        "victoria-victoria-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/616299522"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-meal-stop",
+      "name": "Anchor Cafe",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.490514,
+        "lat": -4.738981
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-meal-stop-1",
+        "victoria-victoria-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/391846396"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-osm-node-10223564817",
+      "name": "Green House",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.520635,
+        "lat": -4.709563
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-osm-node-10223564817-1",
+        "victoria-victoria-osm-node-10223564817-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10223564817"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-osm-node-1198043911",
+      "name": "Cascade Sauzier",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.415,
+        "lat": -4.657632
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-osm-node-1198043911-1",
+        "victoria-victoria-osm-node-1198043911-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1198043911"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q109628496"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-osm-node-2387375448",
+      "name": "Venn's Town",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.444377,
+        "lat": -4.654877
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-osm-node-2387375448-1",
+        "victoria-victoria-osm-node-2387375448-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2387375448"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q65936233"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-osm-node-3092794671",
+      "name": "Eureka Specialist Medical Clinic",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.455655,
+        "lat": -4.593989
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-osm-node-3092794671-1",
+        "victoria-victoria-osm-node-3092794671-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3092794671"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-osm-node-4547496634",
+      "name": "STC Hypermarket",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.460448,
+        "lat": -4.629386
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-osm-node-4547496634-1",
+        "victoria-victoria-osm-node-4547496634-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4547496634"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-osm-node-769201090",
+      "name": "Seychelles Youth Village",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.381743,
+        "lat": -4.642448
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-osm-node-769201090-1",
+        "victoria-victoria-osm-node-769201090-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/769201090"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6979522"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-osm-node-8757739017",
+      "name": "Красивый вид на залив",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.43441,
+        "lat": -4.566492
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-osm-node-8757739017-1",
+        "victoria-victoria-osm-node-8757739017-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8757739017"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-osm-node-9454112784",
+      "name": "Point de vue Sainte-Anne",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.509386,
+        "lat": -4.618201
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-osm-node-9454112784-1",
+        "victoria-victoria-osm-node-9454112784-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9454112784"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-osm-node-9694888508",
+      "name": "Basen Diri",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.522771,
+        "lat": -4.791785
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-osm-node-9694888508-1",
+        "victoria-victoria-osm-node-9694888508-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9694888508"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-osm-relation-8526443",
+      "name": "Centre de Santé d'Anse Boileau",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.478079,
+        "lat": -4.704621
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-osm-relation-8526443-1",
+        "victoria-victoria-osm-relation-8526443-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/8526443"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-osm-way-1017469211",
+      "name": "Lorizon",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.453373,
+        "lat": -4.566539
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-osm-way-1017469211-1",
+        "victoria-victoria-osm-way-1017469211-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1017469211"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-osm-way-276438928",
+      "name": "Eden plaza",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.476072,
+        "lat": -4.640714
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-osm-way-276438928-1",
+        "victoria-victoria-osm-way-276438928-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/276438928"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-osm-way-504513920",
+      "name": "Parc Bazar Victoria",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.456525,
+        "lat": -4.626608
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-osm-way-504513920-1",
+        "victoria-victoria-osm-way-504513920-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/504513920"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-osm-way-616378214",
+      "name": "Cathédrale de l'Immaculée Conception",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.451637,
+        "lat": -4.619777
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-osm-way-616378214-1",
+        "victoria-victoria-osm-way-616378214-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/616378214"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16507143"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-osm-way-699263049",
+      "name": "Parc Éden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.479954,
+        "lat": -4.64095
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-osm-way-699263049-1",
+        "victoria-victoria-osm-way-699263049-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/699263049"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-quiet-reflection",
+      "name": "Cathédrale Saint-Paul",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.451963,
+        "lat": -4.622652
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-quiet-reflection-1",
+        "victoria-victoria-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/518099006"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16627492"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-recreation",
+      "name": "Parc de la Paix",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.455642,
+        "lat": -4.622253
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-recreation-1",
+        "victoria-victoria-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/466330196"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "victoria-transit",
+      "name": "Port Launay Turning Point",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 55.401198,
+        "lat": -4.652685
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "victoria-victoria-transit-1",
+        "victoria-victoria-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/victoria/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/770076850"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "victoria-victoria-airport-victoria-airport-1",
+      "venueId": "victoria-airport-victoria-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-airport-victoria-airport-2",
+      "venueId": "victoria-airport-victoria-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-clinic-1",
+      "venueId": "victoria-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-clinic-2",
+      "venueId": "victoria-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-community-notices-1",
+      "venueId": "victoria-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-community-notices-2",
+      "venueId": "victoria-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-community-voting-game-1",
+      "venueId": "victoria-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-community-voting-game-2",
+      "venueId": "victoria-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-community-workshop-1",
+      "venueId": "victoria-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-community-workshop-2",
+      "venueId": "victoria-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-market-game-1",
+      "venueId": "victoria-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-market-game-2",
+      "venueId": "victoria-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-meal-stop-1",
+      "venueId": "victoria-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-meal-stop-2",
+      "venueId": "victoria-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-10223564817-1",
+      "venueId": "victoria-osm-node-10223564817",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-10223564817-2",
+      "venueId": "victoria-osm-node-10223564817",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-1198043911-1",
+      "venueId": "victoria-osm-node-1198043911",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-1198043911-2",
+      "venueId": "victoria-osm-node-1198043911",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-2387375448-1",
+      "venueId": "victoria-osm-node-2387375448",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-2387375448-2",
+      "venueId": "victoria-osm-node-2387375448",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-3092794671-1",
+      "venueId": "victoria-osm-node-3092794671",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-3092794671-2",
+      "venueId": "victoria-osm-node-3092794671",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-4547496634-1",
+      "venueId": "victoria-osm-node-4547496634",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-4547496634-2",
+      "venueId": "victoria-osm-node-4547496634",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-769201090-1",
+      "venueId": "victoria-osm-node-769201090",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-769201090-2",
+      "venueId": "victoria-osm-node-769201090",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-8757739017-1",
+      "venueId": "victoria-osm-node-8757739017",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-8757739017-2",
+      "venueId": "victoria-osm-node-8757739017",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-9454112784-1",
+      "venueId": "victoria-osm-node-9454112784",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-9454112784-2",
+      "venueId": "victoria-osm-node-9454112784",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-9694888508-1",
+      "venueId": "victoria-osm-node-9694888508",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-node-9694888508-2",
+      "venueId": "victoria-osm-node-9694888508",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-relation-8526443-1",
+      "venueId": "victoria-osm-relation-8526443",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-relation-8526443-2",
+      "venueId": "victoria-osm-relation-8526443",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-way-1017469211-1",
+      "venueId": "victoria-osm-way-1017469211",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-way-1017469211-2",
+      "venueId": "victoria-osm-way-1017469211",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-way-276438928-1",
+      "venueId": "victoria-osm-way-276438928",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-way-276438928-2",
+      "venueId": "victoria-osm-way-276438928",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-way-504513920-1",
+      "venueId": "victoria-osm-way-504513920",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-way-504513920-2",
+      "venueId": "victoria-osm-way-504513920",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-way-616378214-1",
+      "venueId": "victoria-osm-way-616378214",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-way-616378214-2",
+      "venueId": "victoria-osm-way-616378214",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-way-699263049-1",
+      "venueId": "victoria-osm-way-699263049",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-osm-way-699263049-2",
+      "venueId": "victoria-osm-way-699263049",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-quiet-reflection-1",
+      "venueId": "victoria-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-quiet-reflection-2",
+      "venueId": "victoria-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-recreation-1",
+      "venueId": "victoria-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-recreation-2",
+      "venueId": "victoria-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-transit-1",
+      "venueId": "victoria-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    },
+    {
+      "id": "victoria-victoria-transit-2",
+      "venueId": "victoria-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/victoria/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "victoria-airport-victoria-airport",
+    "victoria-clinic",
+    "victoria-community-notices",
+    "victoria-community-voting-game",
+    "victoria-community-workshop",
+    "victoria-market-game",
+    "victoria-meal-stop",
+    "victoria-osm-node-10223564817",
+    "victoria-osm-node-1198043911",
+    "victoria-osm-node-2387375448",
+    "victoria-osm-node-3092794671",
+    "victoria-osm-node-4547496634",
+    "victoria-osm-node-769201090",
+    "victoria-osm-node-8757739017",
+    "victoria-osm-node-9454112784",
+    "victoria-osm-node-9694888508",
+    "victoria-osm-relation-8526443",
+    "victoria-osm-way-1017469211",
+    "victoria-osm-way-276438928",
+    "victoria-osm-way-504513920",
+    "victoria-osm-way-616378214",
+    "victoria-osm-way-699263049",
+    "victoria-quiet-reflection",
+    "victoria-recreation",
+    "victoria-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "4b3290a331277c63471200f11bca73487895a721f7221e8f4b5ad778057aa432",
+    "contentSha256": "8ff3c9e5e998306d39d6c160b1011cfdc080f669b8ee5aff380ae7e43ba40577"
+  }
+}

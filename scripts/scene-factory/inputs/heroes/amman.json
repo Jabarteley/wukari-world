@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "amman",
+  "url": "/assets/scene-heroes/amman.glb",
+  "sha256": "7a07c61febdec340b36f296587ae211e9722095664f409fe8c8b95d3fa2155e2",
+  "rawBytes": 19900,
+  "brotliBytes": 16993,
+  "triangles": 550,
+  "parts": [
+    {
+      "node": "amman",
+      "triangles": 550,
+      "bounds": {
+        "min": [
+          -3.82500005,
+          0,
+          -2.79999995
+        ],
+        "max": [
+          3.8249999250520004,
+          2.6069675798520002,
+          2.800100745892
+        ]
+      },
+      "footprint": [
+        -3.82500005,
+        -2.79999995,
+        3.8249999250520004,
+        2.800100745892
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "4ecd94f61a64f4cf5481b966491528b66c62c39dd43c48e7003b72828ff66be9"
+  },
+  "inputs": {
+    "rawSha256": "5b45be7e9397c94a33b566eae842318692d818084b35bc59ad0ab1bee08732ba",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "amman",
+      "country": "jo",
+      "name": "Amman Citadel hill",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://edutravel.visitjordan.com/en/page/81/History-and-Culture"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-remaining80-primary-r2.json#records[city_id=amman]",
+      "sourceLicence": "Unknown; factual text used only. No external geometry, photos or maps reused.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 8,
+        "depth": 6,
+        "height": 2.8,
+        "seed": 5318458,
+        "palette": [
+          "#c8b28f",
+          "#7c6c53",
+          "#a99575",
+          "#9c7f5e",
+          "#8c8b83",
+          "#b9a381",
+          "#ded3bf",
+          "#554c42"
+        ],
+        "composition": "hill"
+      },
+      "evidence": "Jordan Tourism Board places Amman Citadel on a hill in downtown Amman. This chooses the underlying hill only, not its citadel, temples or palace; no L-shaped surveyed footprint is reproduced. Direct primary-source text reviewed in this round. Evidence artifact SHA256 e8e6ca71e65ebe9c195128ae6e9f5fd53dd85edab5de9ae7ebb12ea1b0f8dadd. Repository source path: none; primary alternative recorded in the pinned research artifact. Original procedural fragment, not a surveyed site, full landmark replica or current-access/operation claim. Dimensions, colours, counts and layout are art direction, not sourced measurements. No external map, photograph, sculpture or mesh copied. Unknown source rights do not confer external geometry rights. Geometry AGPL-3.0-or-later; production and decoded geometry/byte approval remain pending.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "south-asia"
+      }
+    },
+    "styleSha256": "64cbc90bfc05b51139a91eabe0f981c4f47d02ed2689be22193361f6b66af12d"
+  }
+}

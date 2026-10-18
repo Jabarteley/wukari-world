@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "purpose": "Primary-source factual leads for the three remaining natural-feature gaps; input-only review evidence.",
+  "created_on": "2026-10-18",
+  "source_catalogue": {
+    "path": "docs/agent-work/story-mode-evidence-20261017/prep/heroes-proposed-284.json",
+    "sha256": "76185721cf4e08d911440d2a5bae30c12e57d0624f81cd8e8d807a65655f9ac2",
+    "record_count": 284
+  },
+  "selection_order": [
+    "villa-las-estrellas",
+    "siachen",
+    "port-aux-francais"
+  ],
+  "counts": {
+    "requested": 3,
+    "source_backed_leads": 3,
+    "unresolved": 0,
+    "approved_for_production": 0
+  },
+  "method": "Used primary institutional or peer-reviewed sources to support exact feature identity and relationship to the existing catalogue anchor. Paraphrases only; no external images, maps, geometry, or measurements copied.",
+  "cities": [
+    {
+      "city_id": "villa-las-estrellas",
+      "candidate": {
+        "name": "Bahía Fildes",
+        "category": "natural marine feature (bay)",
+        "fact_paraphrase": "An INACH science-program publication reports biodiversity in Bahía Fildes waters a short distance from Villa Las Estrellas, explicitly linking the named bay to the settlement.",
+        "relationship_to_catalogue_anchor": "Primary source describes Bahía Fildes as “a pasos” from Villa Las Estrellas; this is proximity evidence, not a surveyed boundary or exact feature coordinate.",
+        "feature_coordinates": null,
+        "sources": [
+          {
+            "url": "https://www.inach.cl/wp-content/uploads/2010/01/procien-2011.pdf",
+            "title": "Programa Nacional de Ciencia Antártica (PROCIEN), 2011",
+            "publisher": "Instituto Antártico Chileno (INACH), Chilean Ministry of Foreign Affairs",
+            "author": "J. Plana credited in the relevant section; full authorship not established",
+            "page_locator": "p. 9, “Abundancia y diversidad de organismos antárticos”",
+            "published_date": "",
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ]
+      },
+      "review_note": "Bay/natural-feature category is supported; exact geometry, feature coordinates and reuse rights are not established.",
+      "city_name": "Villa Las Estrellas",
+      "country_iso": "aq",
+      "catalogue_anchor_coordinates": {
+        "lon": -58.965369,
+        "lat": -62.2004259
+      },
+      "catalogue_region_proposal_as_recorded": "americas-oceania",
+      "status": "primary-source lead for parent review; not accepted or approved",
+      "source_rights": "unknown",
+      "external_geometry_or_photo_reuse": "not claimed or permitted",
+      "production_approved": false,
+      "date_of_feature": "unknown",
+      "source_licence": "unknown"
+    },
+    {
+      "city_id": "siachen",
+      "candidate": {
+        "name": "Siachen Glacier",
+        "category": "natural feature (glacier)",
+        "fact_paraphrase": "A peer-reviewed Journal of Glaciology study identifies Siachen Glacier in the East Karakoram and gives its extent as 35°10′–35°42′N and 76°46′–77°25′E.",
+        "relationship_to_catalogue_anchor": "The recorded Terong Kangri catalogue point (35.3986779 N, 77.3141384 E) falls inside the article’s latitude/longitude ranges. Those ranges are not a mapped glacier polygon and do not prove exact ice overlap with the named summit.",
+        "feature_coordinates": {
+          "type": "published geographic extent range; not a polygon",
+          "latitude_min": "35°10′N",
+          "latitude_max": "35°42′N",
+          "longitude_min": "76°46′E",
+          "longitude_max": "77°25′E"
+        },
+        "sources": [
+          {
+            "url": "https://www.cambridge.org/core/journals/journal-of-glaciology/article/area-and-mass-changes-of-siachen-glacier-east-karakoram/65D24065F5F1E0965E2BA4F1F8B312DE",
+            "title": "Area and mass changes of Siachen Glacier (East Karakoram)",
+            "publisher": "Journal of Glaciology, Cambridge University Press",
+            "author": "Vibhor Agarwal, Tobias Bolch, Tajdarul H. Syed, Tino Pieczonka, Rishabh Nagaich",
+            "page_locator": "Vol. 63, no. 237 (2017), Study Area; article first published online 2016-12-08",
+            "published_date": "2017",
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ]
+      },
+      "review_note": "This supports the named glacier and a broad published extent only; it makes no sovereignty, access, exact summit-overlap or surveyed-shape claim. Current region proposal should be reviewed (Siachen is presently assigned americas-oceania in the catalogue).",
+      "city_name": "Terong Kangri",
+      "country_iso": "xg",
+      "catalogue_anchor_coordinates": {
+        "lon": 77.3141384,
+        "lat": 35.3986779
+      },
+      "catalogue_region_proposal_as_recorded": "americas-oceania",
+      "status": "primary-source lead for parent review; not accepted or approved",
+      "source_rights": "unknown",
+      "external_geometry_or_photo_reuse": "not claimed or permitted",
+      "production_approved": false,
+      "date_of_feature": "unknown",
+      "source_licence": "unknown"
+    },
+    {
+      "city_id": "port-aux-francais",
+      "candidate": {
+        "name": "Golfe du Morbihan (Kerguelen)",
+        "category": "natural marine feature (gulf)",
+        "fact_paraphrase": "TAAF states that its supply vessel positions offshore from the Port-aux-Français base in Golfe du Morbihan, Kerguelen; this directly associates the gulf and base.",
+        "relationship_to_catalogue_anchor": "TAAF explicitly locates the base of Port-aux-Français in the gulf; no exact bay boundary or feature coordinate is supplied.",
+        "feature_coordinates": null,
+        "sources": [
+          {
+            "url": "https://taaf.fr/collectivites/le-marion-dufresne/",
+            "title": "Le Marion Dufresne",
+            "publisher": "Administration des Terres australes et antarctiques françaises (TAAF)",
+            "author": "Not identified on the cited page",
+            "page_locator": "“Un navire ravitailleur” / “Ravitaillement des îles australes”",
+            "published_date": "",
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ]
+      },
+      "review_note": "The natural-gulf route avoids treating the 1950 station as a pre-1950 building. Exact geometry and reuse rights remain unknown.",
+      "city_name": "Port-aux-Français",
+      "country_iso": "tf",
+      "catalogue_anchor_coordinates": {
+        "lon": 70.2199565,
+        "lat": -49.3497607
+      },
+      "catalogue_region_proposal_as_recorded": "americas-oceania",
+      "status": "primary-source lead for parent review; not accepted or approved",
+      "source_rights": "unknown",
+      "external_geometry_or_photo_reuse": "not claimed or permitted",
+      "production_approved": false,
+      "date_of_feature": "unknown",
+      "source_licence": "unknown"
+    }
+  ]
+}

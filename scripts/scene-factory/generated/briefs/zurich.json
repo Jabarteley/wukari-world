@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "zurich",
+    "name": "Zurich",
+    "state": {
+      "id": "ch-zurich",
+      "name": "Zurich"
+    },
+    "country": {
+      "id": "ch",
+      "name": "Switzerland"
+    },
+    "point": {
+      "lon": 8.5410422,
+      "lat": 47.3744489
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/switzerland-261011.osm.pbf",
+      "https://ourairports.com/airports/LSZH/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/zurich/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/zurich/facts.ts",
+        "sha256": "55ef49ff4f608d35925e9fcbfd958e68d26745bbf4ee6d53ef3b41b49b3da7ee"
+      },
+      {
+        "path": "src/game/cities/zurich/index.ts",
+        "sha256": "fc724d05786f025071387569cdf650e4d89eda4234667c143aeca8cfc69edcdf"
+      },
+      {
+        "path": "src/game/cities/zurich/places.ts",
+        "sha256": "63935c0ee076e1650928d6fb56d83afa95164c18a639ff4afdb336bf0d853694"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5410422,
+        "lat": 47.3744489
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "zurich-airport-zurich-airport",
+      "name": "Zürich Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.548056,
+        "lat": 47.458056
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-airport-zurich-airport-1",
+        "zurich-zurich-airport-zurich-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "zurich-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-clinic",
+      "name": "Privatklinik Hohenegg",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.659839,
+        "lat": 47.274362
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-clinic-1",
+        "zurich-zurich-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/235292955"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q18629951"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-community-notices",
+      "name": "GVZ Gebäudeversicherung Kanton Zürich",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.553198,
+        "lat": 47.415962
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-community-notices-1",
+        "zurich-zurich-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5880755469"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1497389"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-community-voting-game",
+      "name": "Rathaus Bremgarten",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.342345,
+        "lat": 47.352044
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-community-voting-game-1",
+        "zurich-zurich-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/477927605"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2132405"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-community-workshop",
+      "name": "Stadtbibliothek Winterthur",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.729532,
+        "lat": 47.498674
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-community-workshop-1",
+        "zurich-zurich-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4468111183"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2585160"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-market-game",
+      "name": "Zentrum Töss",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.706005,
+        "lat": 47.49164
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-market-game-1",
+        "zurich-zurich-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/35203442"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q57585380"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-meal-stop",
+      "name": "Haus Hiltl",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.53675,
+        "lat": 47.373304
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-meal-stop-1",
+        "zurich-zurich-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/119247298"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5764402"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-osm-node-306475059",
+      "name": "Schreibmaschinenmuseum Beck",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.770814,
+        "lat": 47.370802
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-osm-node-306475059-1",
+        "zurich-zurich-osm-node-306475059-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/306475059"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20164882"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-osm-node-6419670946",
+      "name": "Erdmannliloch",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.413078,
+        "lat": 47.542177
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-osm-node-6419670946-1",
+        "zurich-zurich-osm-node-6419670946-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6419670946"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q102105508"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-osm-node-9717533158",
+      "name": "Liceo Vermigli",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.487596,
+        "lat": 47.394124
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-osm-node-9717533158-1",
+        "zurich-zurich-osm-node-9717533158-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9717533158"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q25045445"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-osm-way-117336724",
+      "name": "Gasthof zum Bären",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.763261,
+        "lat": 47.284651
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-osm-way-117336724-1",
+        "zurich-zurich-osm-way-117336724-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/117336724"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1495492"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-osm-way-163539799",
+      "name": "Schloss Horben",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.326791,
+        "lat": 47.220084
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-osm-way-163539799-1",
+        "zurich-zurich-osm-way-163539799-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/163539799"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q918607"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-osm-way-236595729",
+      "name": "Spital Männedorf",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.696052,
+        "lat": 47.250895
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-osm-way-236595729-1",
+        "zurich-zurich-osm-way-236595729-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/236595729"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q55503256"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-osm-way-28367342",
+      "name": "ETH Zürich, Hönggerberg",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.508406,
+        "lat": 47.408311
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-osm-way-28367342-1",
+        "zurich-zurich-osm-way-28367342-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/28367342"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11942"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-osm-way-30296204",
+      "name": "Gottlieb-Duttweiler-Institut",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.552684,
+        "lat": 47.302005
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-osm-way-30296204-1",
+        "zurich-zurich-osm-way-30296204-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/30296204"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q685608"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-osm-way-303186336",
+      "name": "Loorenkopf-Turm",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.598971,
+        "lat": 47.36976
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-osm-way-303186336-1",
+        "zurich-zurich-osm-way-303186336-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/303186336"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17041583"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-osm-way-312787805",
+      "name": "Aussichtsturm Irchel",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.62047,
+        "lat": 47.540565
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-osm-way-312787805-1",
+        "zurich-zurich-osm-way-312787805-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/312787805"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17048578"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-osm-way-437737781",
+      "name": "Stadlerturm",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.456966,
+        "lat": 47.534049
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-osm-way-437737781-1",
+        "zurich-zurich-osm-way-437737781-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/437737781"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17041685"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-osm-way-49895064",
+      "name": "Römisch-katholische kirchliche Zentrum St. Gabriel",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.651049,
+        "lat": 47.381437
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-osm-way-49895064-1",
+        "zurich-zurich-osm-way-49895064-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/49895064"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20012752"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-osm-way-555945140",
+      "name": "Stadtspital Triemli",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.497454,
+        "lat": 47.366477
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-osm-way-555945140-1",
+        "zurich-zurich-osm-way-555945140-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/555945140"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1535635"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-osm-way-59561172",
+      "name": "St. Peter und Paul",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.778725,
+        "lat": 47.218006
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-osm-way-59561172-1",
+        "zurich-zurich-osm-way-59561172-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/59561172"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2322732"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-osm-way-769027329",
+      "name": "Restaurant Storchen",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.38961,
+        "lat": 47.229426
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-osm-way-769027329-1",
+        "zurich-zurich-osm-way-769027329-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/769027329"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1273655"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-quiet-reflection",
+      "name": "Dreifaltigkeitskirche",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.535209,
+        "lat": 47.521333
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-quiet-reflection-1",
+        "zurich-zurich-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/12168787"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q14757745"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-recreation",
+      "name": "Kurpark",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.310622,
+        "lat": 47.479115
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-recreation-1",
+        "zurich-zurich-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/50397148"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q29015787"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zurich-transit",
+      "name": "Dietikon",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.404922,
+        "lat": 47.405805
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "zurich-zurich-transit-1",
+        "zurich-zurich-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zurich/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1219787004"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q800666"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "zurich-zurich-airport-zurich-airport-1",
+      "venueId": "zurich-airport-zurich-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-airport-zurich-airport-2",
+      "venueId": "zurich-airport-zurich-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-clinic-1",
+      "venueId": "zurich-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-clinic-2",
+      "venueId": "zurich-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-community-notices-1",
+      "venueId": "zurich-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-community-notices-2",
+      "venueId": "zurich-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-community-voting-game-1",
+      "venueId": "zurich-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-community-voting-game-2",
+      "venueId": "zurich-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-community-workshop-1",
+      "venueId": "zurich-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-community-workshop-2",
+      "venueId": "zurich-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-market-game-1",
+      "venueId": "zurich-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-market-game-2",
+      "venueId": "zurich-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-meal-stop-1",
+      "venueId": "zurich-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-meal-stop-2",
+      "venueId": "zurich-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-node-306475059-1",
+      "venueId": "zurich-osm-node-306475059",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-node-306475059-2",
+      "venueId": "zurich-osm-node-306475059",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-node-6419670946-1",
+      "venueId": "zurich-osm-node-6419670946",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-node-6419670946-2",
+      "venueId": "zurich-osm-node-6419670946",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-node-9717533158-1",
+      "venueId": "zurich-osm-node-9717533158",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-node-9717533158-2",
+      "venueId": "zurich-osm-node-9717533158",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-117336724-1",
+      "venueId": "zurich-osm-way-117336724",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-117336724-2",
+      "venueId": "zurich-osm-way-117336724",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-163539799-1",
+      "venueId": "zurich-osm-way-163539799",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-163539799-2",
+      "venueId": "zurich-osm-way-163539799",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-236595729-1",
+      "venueId": "zurich-osm-way-236595729",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-236595729-2",
+      "venueId": "zurich-osm-way-236595729",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-28367342-1",
+      "venueId": "zurich-osm-way-28367342",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-28367342-2",
+      "venueId": "zurich-osm-way-28367342",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-30296204-1",
+      "venueId": "zurich-osm-way-30296204",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-30296204-2",
+      "venueId": "zurich-osm-way-30296204",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-303186336-1",
+      "venueId": "zurich-osm-way-303186336",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-303186336-2",
+      "venueId": "zurich-osm-way-303186336",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-312787805-1",
+      "venueId": "zurich-osm-way-312787805",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-312787805-2",
+      "venueId": "zurich-osm-way-312787805",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-437737781-1",
+      "venueId": "zurich-osm-way-437737781",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-437737781-2",
+      "venueId": "zurich-osm-way-437737781",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-49895064-1",
+      "venueId": "zurich-osm-way-49895064",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-49895064-2",
+      "venueId": "zurich-osm-way-49895064",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-555945140-1",
+      "venueId": "zurich-osm-way-555945140",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-555945140-2",
+      "venueId": "zurich-osm-way-555945140",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-59561172-1",
+      "venueId": "zurich-osm-way-59561172",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-59561172-2",
+      "venueId": "zurich-osm-way-59561172",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-769027329-1",
+      "venueId": "zurich-osm-way-769027329",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-osm-way-769027329-2",
+      "venueId": "zurich-osm-way-769027329",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-quiet-reflection-1",
+      "venueId": "zurich-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-quiet-reflection-2",
+      "venueId": "zurich-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-recreation-1",
+      "venueId": "zurich-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-recreation-2",
+      "venueId": "zurich-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-transit-1",
+      "venueId": "zurich-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    },
+    {
+      "id": "zurich-zurich-transit-2",
+      "venueId": "zurich-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zurich/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "zurich-airport-zurich-airport",
+    "zurich-clinic",
+    "zurich-community-notices",
+    "zurich-community-voting-game",
+    "zurich-community-workshop",
+    "zurich-market-game",
+    "zurich-meal-stop",
+    "zurich-osm-node-306475059",
+    "zurich-osm-node-6419670946",
+    "zurich-osm-node-9717533158",
+    "zurich-osm-way-117336724",
+    "zurich-osm-way-163539799",
+    "zurich-osm-way-236595729",
+    "zurich-osm-way-28367342",
+    "zurich-osm-way-30296204",
+    "zurich-osm-way-303186336",
+    "zurich-osm-way-312787805",
+    "zurich-osm-way-437737781",
+    "zurich-osm-way-49895064",
+    "zurich-osm-way-555945140",
+    "zurich-osm-way-59561172",
+    "zurich-osm-way-769027329",
+    "zurich-quiet-reflection",
+    "zurich-recreation",
+    "zurich-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "bd72f10e1d243216af387890ff99231406add64c2096548c4481ced7747770c3",
+    "contentSha256": "291499ff6e92045c21de3bc402177353a5dcc837d8a03023e8e4866f0de4beb5"
+  }
+}

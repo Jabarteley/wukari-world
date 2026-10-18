@@ -1,0 +1,2115 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "monaco",
+    "name": "Monaco",
+    "state": {
+      "id": "mc-monaco",
+      "name": "Monaco"
+    },
+    "country": {
+      "id": "mc",
+      "name": "Monaco"
+    },
+    "point": {
+      "lon": 7.4209592,
+      "lat": 43.7310164
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/france/provence-alpes-cote-d-azur-261011.osm.pbf",
+      "https://ourairports.com/airports/LNMC/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/monaco/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/monaco/facts.ts",
+        "sha256": "cd042a38b43ff90e363ce4ff600fd6c99cf484990384dfcf364fa578acb32b12"
+      },
+      {
+        "path": "src/game/cities/monaco/index.ts",
+        "sha256": "5b3f640a5d28c3e89cab3035f1d02069fcaf9d45178c84beec2b7a74f9bc448a"
+      },
+      {
+        "path": "src/game/cities/monaco/places.ts",
+        "sha256": "cb9b57be0006a062d5e3e461c76f18badc3feb1e9d0d7cccbbd0aab8eb0be56e"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.4209592,
+        "lat": 43.7310164
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "monaco-airport-monaco-airport",
+      "name": "Monaco Heliport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.419673,
+        "lat": 43.725798
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-airport-monaco-airport-1",
+        "monaco-monaco-airport-monaco-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "monaco-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-clinic",
+      "name": "Centre Cardio Thoracique de Monaco",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.424841,
+        "lat": 43.737703
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-clinic-1",
+        "monaco-monaco-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/94252399"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2944919"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-community-notices",
+      "name": "Palais de Justice",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.422144,
+        "lat": 43.730282
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-community-notices-1",
+        "monaco-monaco-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/49209608"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q98184607"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-community-voting-game",
+      "name": "Casino Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.427687,
+        "lat": 43.739357
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-community-voting-game-1",
+        "monaco-monaco-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/11144655"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q95598843"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-community-workshop",
+      "name": "International University of Monaco",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.417878,
+        "lat": 43.734468
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-community-workshop-1",
+        "monaco-monaco-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6865960209"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2504327"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-market-game",
+      "name": "Marché de Monte-Carlo",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.426619,
+        "lat": 43.742263
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-market-game-1",
+        "monaco-monaco-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1106783860"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-meal-stop",
+      "name": "Café de Paris",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.42786,
+        "lat": 43.739587
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-meal-stop-1",
+        "monaco-monaco-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4316767531"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2932978"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-osm-node-4354597820",
+      "name": "Le Métropole",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.428257,
+        "lat": 43.741055
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-osm-node-4354597820-1",
+        "monaco-monaco-osm-node-4354597820-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4354597820"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-osm-node-4893574386",
+      "name": "Le Grill",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.427577,
+        "lat": 43.738532
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-osm-node-4893574386-1",
+        "monaco-monaco-osm-node-4893574386-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4893574386"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q65197775"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-osm-node-5919288520",
+      "name": "Musée des Timbres et des Monnaies",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.417584,
+        "lat": 43.730872
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-osm-node-5919288520-1",
+        "monaco-monaco-osm-node-5919288520-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5919288520"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3330282"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-osm-node-6461009225",
+      "name": "Jardin exotique - allée louis Barral",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.414561,
+        "lat": 43.731293
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-osm-node-6461009225-1",
+        "monaco-monaco-osm-node-6461009225-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6461009225"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-osm-node-7857077111",
+      "name": "Pavyllon",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.425641,
+        "lat": 43.737864
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-osm-node-7857077111-1",
+        "monaco-monaco-osm-node-7857077111-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7857077111"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q56062156"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-osm-node-7930513065",
+      "name": "Fondation Hector Ott",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.414525,
+        "lat": 43.734737
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-osm-node-7930513065-1",
+        "monaco-monaco-osm-node-7930513065-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7930513065"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-osm-relation-13453960",
+      "name": "New National Museum of Monaco",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.422422,
+        "lat": 43.738585
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-osm-relation-13453960-1",
+        "monaco-monaco-osm-relation-13453960-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/13453960"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3345073"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-osm-way-157719658",
+      "name": "Japanese Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.431074,
+        "lat": 43.742274
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-osm-way-157719658-1",
+        "monaco-monaco-osm-way-157719658-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/157719658"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15229360"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-osm-way-157719659",
+      "name": "Jardins de la Petite Afrique",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.426682,
+        "lat": 43.740382
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-osm-way-157719659-1",
+        "monaco-monaco-osm-way-157719659-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/157719659"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-osm-way-201286353",
+      "name": "Halles du marché de la Condamine",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.420065,
+        "lat": 43.732597
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-osm-way-201286353-1",
+        "monaco-monaco-osm-way-201286353-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/201286353"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-osm-way-23715051",
+      "name": "Oceanographic Museum of Monaco",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.425534,
+        "lat": 43.730663
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-osm-way-23715051-1",
+        "monaco-monaco-osm-way-23715051-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/23715051"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q851527"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-osm-way-49209155",
+      "name": "Louis II Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.415472,
+        "lat": 43.727553
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-osm-way-49209155-1",
+        "monaco-monaco-osm-way-49209155-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/49209155"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q318851"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-osm-way-49209406",
+      "name": "Princess Grace Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.411136,
+        "lat": 43.730288
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-osm-way-49209406-1",
+        "monaco-monaco-osm-way-49209406-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/49209406"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3886628"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-osm-way-49209644",
+      "name": "Chapelle de la Miséricorde",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.423412,
+        "lat": 43.731204
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-osm-way-49209644-1",
+        "monaco-monaco-osm-way-49209644-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/49209644"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q19600700"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-osm-way-94399398",
+      "name": "Chapelle Sainte-Dévote",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.420924,
+        "lat": 43.737517
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-osm-way-94399398-1",
+        "monaco-monaco-osm-way-94399398-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/94399398"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q584191"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-quiet-reflection",
+      "name": "Église des Carmes",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.434805,
+        "lat": 43.748799
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-quiet-reflection-1",
+        "monaco-monaco-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/334846659"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15958518"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-recreation",
+      "name": "Fontvieille Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.41895,
+        "lat": 43.726648
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-recreation-1",
+        "monaco-monaco-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/16250182"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15217983"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "monaco-transit",
+      "name": "Monaco - Monte Carlo",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.419498,
+        "lat": 43.738262
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "monaco-monaco-transit-1",
+        "monaco-monaco-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/monaco/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9952646938"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q801195"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "monaco-monaco-airport-monaco-airport-1",
+      "venueId": "monaco-airport-monaco-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-airport-monaco-airport-2",
+      "venueId": "monaco-airport-monaco-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-clinic-1",
+      "venueId": "monaco-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-clinic-2",
+      "venueId": "monaco-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-community-notices-1",
+      "venueId": "monaco-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-community-notices-2",
+      "venueId": "monaco-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-community-voting-game-1",
+      "venueId": "monaco-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-community-voting-game-2",
+      "venueId": "monaco-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-community-workshop-1",
+      "venueId": "monaco-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-community-workshop-2",
+      "venueId": "monaco-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-market-game-1",
+      "venueId": "monaco-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-market-game-2",
+      "venueId": "monaco-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-meal-stop-1",
+      "venueId": "monaco-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-meal-stop-2",
+      "venueId": "monaco-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-node-4354597820-1",
+      "venueId": "monaco-osm-node-4354597820",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-node-4354597820-2",
+      "venueId": "monaco-osm-node-4354597820",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-node-4893574386-1",
+      "venueId": "monaco-osm-node-4893574386",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-node-4893574386-2",
+      "venueId": "monaco-osm-node-4893574386",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-node-5919288520-1",
+      "venueId": "monaco-osm-node-5919288520",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-node-5919288520-2",
+      "venueId": "monaco-osm-node-5919288520",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-node-6461009225-1",
+      "venueId": "monaco-osm-node-6461009225",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-node-6461009225-2",
+      "venueId": "monaco-osm-node-6461009225",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-node-7857077111-1",
+      "venueId": "monaco-osm-node-7857077111",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-node-7857077111-2",
+      "venueId": "monaco-osm-node-7857077111",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-node-7930513065-1",
+      "venueId": "monaco-osm-node-7930513065",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-node-7930513065-2",
+      "venueId": "monaco-osm-node-7930513065",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-relation-13453960-1",
+      "venueId": "monaco-osm-relation-13453960",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-relation-13453960-2",
+      "venueId": "monaco-osm-relation-13453960",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-way-157719658-1",
+      "venueId": "monaco-osm-way-157719658",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-way-157719658-2",
+      "venueId": "monaco-osm-way-157719658",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-way-157719659-1",
+      "venueId": "monaco-osm-way-157719659",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-way-157719659-2",
+      "venueId": "monaco-osm-way-157719659",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-way-201286353-1",
+      "venueId": "monaco-osm-way-201286353",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-way-201286353-2",
+      "venueId": "monaco-osm-way-201286353",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-way-23715051-1",
+      "venueId": "monaco-osm-way-23715051",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-way-23715051-2",
+      "venueId": "monaco-osm-way-23715051",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-way-49209155-1",
+      "venueId": "monaco-osm-way-49209155",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-way-49209155-2",
+      "venueId": "monaco-osm-way-49209155",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-way-49209406-1",
+      "venueId": "monaco-osm-way-49209406",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-way-49209406-2",
+      "venueId": "monaco-osm-way-49209406",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-way-49209644-1",
+      "venueId": "monaco-osm-way-49209644",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-way-49209644-2",
+      "venueId": "monaco-osm-way-49209644",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-way-94399398-1",
+      "venueId": "monaco-osm-way-94399398",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-osm-way-94399398-2",
+      "venueId": "monaco-osm-way-94399398",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-quiet-reflection-1",
+      "venueId": "monaco-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-quiet-reflection-2",
+      "venueId": "monaco-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-recreation-1",
+      "venueId": "monaco-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-recreation-2",
+      "venueId": "monaco-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-transit-1",
+      "venueId": "monaco-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    },
+    {
+      "id": "monaco-monaco-transit-2",
+      "venueId": "monaco-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/monaco/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "monaco-airport-monaco-airport",
+    "monaco-clinic",
+    "monaco-community-notices",
+    "monaco-community-voting-game",
+    "monaco-community-workshop",
+    "monaco-market-game",
+    "monaco-meal-stop",
+    "monaco-osm-node-4354597820",
+    "monaco-osm-node-4893574386",
+    "monaco-osm-node-5919288520",
+    "monaco-osm-node-6461009225",
+    "monaco-osm-node-7857077111",
+    "monaco-osm-node-7930513065",
+    "monaco-osm-relation-13453960",
+    "monaco-osm-way-157719658",
+    "monaco-osm-way-157719659",
+    "monaco-osm-way-201286353",
+    "monaco-osm-way-23715051",
+    "monaco-osm-way-49209155",
+    "monaco-osm-way-49209406",
+    "monaco-osm-way-49209644",
+    "monaco-osm-way-94399398",
+    "monaco-quiet-reflection",
+    "monaco-recreation",
+    "monaco-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "8a9322916b78cd4dee4b7a9b3c708614b9ae40cbbad42917dd01e993a66306f2",
+    "contentSha256": "dcead45bcf4d1d8b7bbfeb498bb2b2578db452998e7ebcffdc69d7e6890f6003"
+  }
+}

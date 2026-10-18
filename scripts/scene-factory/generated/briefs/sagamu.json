@@ -1,0 +1,1317 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "sagamu",
+    "name": "Sagamu",
+    "state": {
+      "id": "ogun",
+      "name": "Ogun State"
+    },
+    "country": {
+      "id": "ng",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 3.64,
+      "lat": 6.85
+    }
+  },
+  "style": {
+    "region": "yoruba-southwest",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/sagamu/content.ts",
+        "sha256": "90de404b9784159de640a8448e7973a8eef267238468f30ee44b1a351cc82950"
+      },
+      {
+        "path": "src/game/cities/sagamu/index.ts",
+        "sha256": "949a94dfe54259c63ac20387606cd1ab89996a268e83b31bb462c801303a71eb"
+      },
+      {
+        "path": "src/game/cities/sagamu/rules.ts",
+        "sha256": "ae4b43a039771bafeb865d3ba1e1cc42c649a91c0f166d8c7c4524906aa31e2a"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for sagamu.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "babcock-university",
+      "name": "Babcock University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.7224377,
+        "lat": 6.8900559
+      },
+      "spots": [
+        {
+          "id": "lab",
+          "name": "Project lab"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "lab",
+          "name": "Project lab",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sagamu-babcock-university-1",
+        "sagamu-babcock-university-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": "campus-lawn",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for sagamu."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.6441,
+        "lat": 6.8477
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for sagamu."
+      }
+    },
+    {
+      "id": "ikenne-heritage",
+      "name": "Ikenne Heritage Walk",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.716,
+        "lat": 6.8669
+      },
+      "spots": [
+        {
+          "id": "route",
+          "name": "Heritage route"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "route",
+          "name": "Heritage route",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sagamu-ikenne-heritage-1",
+        "sagamu-ikenne-heritage-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": "heritage-house",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for sagamu."
+      }
+    },
+    {
+      "id": "ilisan-chapel",
+      "name": "Ilishan Community Chapel",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.7142,
+        "lat": 6.8921
+      },
+      "spots": [
+        {
+          "id": "hall",
+          "name": "Chapel hall"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "hall",
+          "name": "Chapel hall",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "sagamu-ilisan-chapel-1",
+        "sagamu-ilisan-chapel-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for sagamu."
+      }
+    },
+    {
+      "id": "remo-civic-hall",
+      "name": "Remo Civic Hall",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.6465,
+        "lat": 6.8461
+      },
+      "spots": [
+        {
+          "id": "hall",
+          "name": "Meeting hall"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "hall",
+          "name": "Meeting hall",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sagamu-remo-civic-hall-1",
+        "sagamu-remo-civic-hall-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": "hall-dome",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for sagamu."
+      }
+    },
+    {
+      "id": "remo-evening-garden",
+      "name": "Remo Evening Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.6492,
+        "lat": 6.8444
+      },
+      "spots": [
+        {
+          "id": "stage",
+          "name": "Garden stage"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stage",
+          "name": "Garden stage",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sagamu-remo-evening-garden-1",
+        "sagamu-remo-evening-garden-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": "evening-garden",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for sagamu."
+      }
+    },
+    {
+      "id": "remo-kitchen",
+      "name": "Remo Ofada Kitchen",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.6482,
+        "lat": 6.8517
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sagamu-remo-kitchen-1",
+        "sagamu-remo-kitchen-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for sagamu."
+      }
+    },
+    {
+      "id": "remo-stadium",
+      "name": "Remo Sports Ground",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.6532,
+        "lat": 6.8397
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Touchline stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Touchline stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sagamu-remo-stadium-1",
+        "sagamu-remo-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": "ground-terrace",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for sagamu."
+      }
+    },
+    {
+      "id": "sagamu-clinic",
+      "name": "Sagamu Community Clinic",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.65313,
+        "lat": 6.84904
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sagamu-sagamu-clinic-1",
+        "sagamu-sagamu-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for sagamu."
+      }
+    },
+    {
+      "id": "sagamu-creative-hub",
+      "name": "Sagamu Creative Hub",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.6371,
+        "lat": 6.8452
+      },
+      "spots": [
+        {
+          "id": "studio",
+          "name": "Media studio"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "studio",
+          "name": "Media studio",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sagamu-sagamu-creative-hub-1",
+        "sagamu-sagamu-creative-hub-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": "media-studio",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for sagamu."
+      }
+    },
+    {
+      "id": "sagamu-interchange",
+      "name": "Sagamu Interchange",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.5788,
+        "lat": 6.8832
+      },
+      "spots": [
+        {
+          "id": "platform",
+          "name": "Bus platform"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "platform",
+          "name": "Bus platform",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sagamu-sagamu-interchange-1",
+        "sagamu-sagamu-interchange-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": "interchange",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for sagamu."
+      }
+    },
+    {
+      "id": "sagamu-market",
+      "name": "Sagamu Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.63114,
+        "lat": 6.83316
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sagamu-sagamu-market-1",
+        "sagamu-sagamu-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": "market-kola",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for sagamu."
+      }
+    },
+    {
+      "id": "sagamu-mosque",
+      "name": "Sagamu Community Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.6398,
+        "lat": 6.8421
+      },
+      "spots": [
+        {
+          "id": "hall",
+          "name": "Prayer hall"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "hall",
+          "name": "Prayer hall",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "sagamu-sagamu-mosque-1",
+        "sagamu-sagamu-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for sagamu."
+      }
+    },
+    {
+      "id": "sagamu-neighbourhood-park",
+      "name": "Sagamu Neighbourhood Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.6441,
+        "lat": 6.8477
+      },
+      "spots": [
+        {
+          "id": "trees",
+          "name": "Under the trees"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "trees",
+          "name": "Under the trees",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sagamu-sagamu-neighbourhood-park-1",
+        "sagamu-sagamu-neighbourhood-park-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": "ayo-park",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for sagamu."
+      }
+    },
+    {
+      "id": "sagamu-polling",
+      "name": "Sagamu Civic Polling Centre",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.6409,
+        "lat": 6.8493
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Election officials"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Election officials",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "sagamu-sagamu-polling-1",
+        "sagamu-sagamu-polling-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for sagamu."
+      }
+    },
+    {
+      "id": "sagamu-salon",
+      "name": "Sagamu Junction Salon",
+      "kind": "salon",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.6428,
+        "lat": 6.8527
+      },
+      "spots": [
+        {
+          "id": "chair",
+          "name": "Styling chair"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "chair",
+          "name": "Styling chair",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sagamu-sagamu-salon-1",
+        "sagamu-sagamu-salon-2"
+      ],
+      "scene": {
+        "kind": "salon",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for sagamu."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "sagamu-babcock-university-1",
+      "venueId": "babcock-university",
+      "name": "Kemi Osinowo",
+      "role": "Babcock University guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-babcock-university-2",
+      "venueId": "babcock-university",
+      "name": "Lanre Odulate",
+      "role": "Babcock University regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-ikenne-heritage-1",
+      "venueId": "ikenne-heritage",
+      "name": "Tola Adeoti",
+      "role": "Ikenne Heritage Walk guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-ikenne-heritage-2",
+      "venueId": "ikenne-heritage",
+      "name": "Bayo Salami",
+      "role": "Ikenne Heritage Walk regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-ilisan-chapel-1",
+      "venueId": "ilisan-chapel",
+      "name": "Peju Ogunnaike",
+      "role": "Ilishan Community Chapel guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-ilisan-chapel-2",
+      "venueId": "ilisan-chapel",
+      "name": "Dayo Adebowale",
+      "role": "Ilishan Community Chapel regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-remo-civic-hall-1",
+      "venueId": "remo-civic-hall",
+      "name": "Sade Onafowokan",
+      "role": "Remo Civic Hall guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-remo-civic-hall-2",
+      "venueId": "remo-civic-hall",
+      "name": "Jide Olaitan",
+      "role": "Remo Civic Hall regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-remo-evening-garden-1",
+      "venueId": "remo-evening-garden",
+      "name": "Temi Adebiyi",
+      "role": "Remo Evening Garden guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-remo-evening-garden-2",
+      "venueId": "remo-evening-garden",
+      "name": "Yinka Soyinka",
+      "role": "Remo Evening Garden regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-remo-kitchen-1",
+      "venueId": "remo-kitchen",
+      "name": "Funmi Ojo",
+      "role": "Remo Ofada Kitchen guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-remo-kitchen-2",
+      "venueId": "remo-kitchen",
+      "name": "Wale Adetona",
+      "role": "Remo Ofada Kitchen regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-remo-stadium-1",
+      "venueId": "remo-stadium",
+      "name": "Kehinde Olatunji",
+      "role": "Remo Sports Ground guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-remo-stadium-2",
+      "venueId": "remo-stadium",
+      "name": "Lekan Akinlade",
+      "role": "Remo Sports Ground regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-sagamu-clinic-1",
+      "venueId": "sagamu-clinic",
+      "name": "Nike Odusanya",
+      "role": "Sagamu Community Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-sagamu-clinic-2",
+      "venueId": "sagamu-clinic",
+      "name": "Seyi Afolabi",
+      "role": "Sagamu Community Clinic regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-sagamu-creative-hub-1",
+      "venueId": "sagamu-creative-hub",
+      "name": "Dupe Odejimi",
+      "role": "Sagamu Creative Hub guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-sagamu-creative-hub-2",
+      "venueId": "sagamu-creative-hub",
+      "name": "Segun Arowolo",
+      "role": "Sagamu Creative Hub regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-sagamu-interchange-1",
+      "venueId": "sagamu-interchange",
+      "name": "Yetunde Akinyemi",
+      "role": "Sagamu Interchange guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-sagamu-interchange-2",
+      "venueId": "sagamu-interchange",
+      "name": "Femi Adesanya",
+      "role": "Sagamu Interchange regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-sagamu-market-1",
+      "venueId": "sagamu-market",
+      "name": "Bimpe Sonuga",
+      "role": "Sagamu Market guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-sagamu-market-2",
+      "venueId": "sagamu-market",
+      "name": "Tunde Odugbose",
+      "role": "Sagamu Market regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-sagamu-mosque-1",
+      "venueId": "sagamu-mosque",
+      "name": "Morenike Olurin",
+      "role": "Sagamu Community Mosque guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-sagamu-mosque-2",
+      "venueId": "sagamu-mosque",
+      "name": "Taiwo Bakare",
+      "role": "Sagamu Community Mosque regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-sagamu-neighbourhood-park-1",
+      "venueId": "sagamu-neighbourhood-park",
+      "name": "Adebisi Ogunleye",
+      "role": "Sagamu Neighbourhood Park guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-sagamu-neighbourhood-park-2",
+      "venueId": "sagamu-neighbourhood-park",
+      "name": "Sina Awolesi",
+      "role": "Sagamu Neighbourhood Park regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-sagamu-polling-1",
+      "venueId": "sagamu-polling",
+      "name": "Rukayat Bello",
+      "role": "Sagamu Civic Polling Centre guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-sagamu-polling-2",
+      "venueId": "sagamu-polling",
+      "name": "Kayode Adebajo",
+      "role": "Sagamu Civic Polling Centre regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-sagamu-salon-1",
+      "venueId": "sagamu-salon",
+      "name": "Ronke Lawal",
+      "role": "Sagamu Junction Salon guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    },
+    {
+      "id": "sagamu-sagamu-salon-2",
+      "venueId": "sagamu-salon",
+      "name": "Kunle Balogun",
+      "role": "Sagamu Junction Salon regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sagamu/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "ilisan-chapel",
+    "remo-kitchen",
+    "sagamu-clinic",
+    "sagamu-mosque",
+    "sagamu-polling",
+    "sagamu-salon"
+  ],
+  "preservedVenueIds": [
+    "babcock-university",
+    "ikenne-heritage",
+    "remo-civic-hall",
+    "remo-evening-garden",
+    "remo-stadium",
+    "sagamu-creative-hub",
+    "sagamu-interchange",
+    "sagamu-market",
+    "sagamu-neighbourhood-park"
+  ],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "d57e41a313f435e16576fdf645db02151fccb88d603800a88d8861610d992734",
+    "contentSha256": "fe8f88bbe2aabedb5c131f234c80ce563b2916370ef56124fed87032dc4414ac"
+  }
+}

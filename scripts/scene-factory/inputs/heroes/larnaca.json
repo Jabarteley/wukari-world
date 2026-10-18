@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "larnaca",
+  "url": "/assets/scene-heroes/larnaca.glb",
+  "sha256": "ad4a66bc2c0c59997c0d078c05189e5119d1a0da78956cf1d2ade75cf5dd87a3",
+  "rawBytes": 29144,
+  "brotliBytes": 19175,
+  "triangles": 880,
+  "parts": [
+    {
+      "node": "larnaca",
+      "triangles": 880,
+      "bounds": {
+        "min": [
+          -2.19366789,
+          0,
+          -2.15254951
+        ],
+        "max": [
+          2.193668071022999,
+          2.4998950861349996,
+          2.152572440156
+        ]
+      },
+      "footprint": [
+        -2.19366789,
+        -2.15254951,
+        2.193668071022999,
+        2.152572440156
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "9fbb3637a6026c42295598191f368bf185692eb853e19ab7f218c25d4e865535"
+  },
+  "inputs": {
+    "rawSha256": "c575561986c2b3807cfcb031da29f634e8c18d4e53c70da9ce953c5acf4a513c",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "larnaca",
+      "country": "cy",
+      "name": "Sunday Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/node/5125803724"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=larnaca]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 181128,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Exact candidate/name alias match and amenity=marketplace support feature identity/category. Object node/5125803724, version 2, timestamp 2023-08-07T09:25:13Z; response SHA256 5773c598bf290e54543412644f8d8476211748a475a9d9af4ce36e3bdbd0e283. Source path: src/game/cities/larnaca/places.ts. Empty counters, racks and awnings indicate trade. No goods, original shop plan, actual number of stalls or current operation are inferred. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "western-europe"
+      }
+    },
+    "styleSha256": "18e3b0f4dbb88519df26d3d51faa4960b3f4646b58f92cf029cf1a50cbcc6d9c"
+  }
+}

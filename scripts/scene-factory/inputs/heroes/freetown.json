@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "freetown",
+  "url": "/assets/scene-heroes/freetown.glb",
+  "sha256": "545e255835bd7388bfbee6d7aaec21597876e332a1671ee8a57d030d9e32f1a0",
+  "rawBytes": 30336,
+  "brotliBytes": 19543,
+  "triangles": 984,
+  "parts": [
+    {
+      "node": "freetown",
+      "triangles": 984,
+      "bounds": {
+        "min": [
+          -3.03343964,
+          0,
+          -1.58638549
+        ],
+        "max": [
+          3.0334398190539993,
+          2.5000001970379997,
+          1.5864780395839997
+        ]
+      },
+      "footprint": [
+        -3.03343964,
+        -1.58638549,
+        3.0334398190539993,
+        1.5864780395839997
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "fc52fcd31a6a0f6232071f06ba078fc350a270ad2e48d4d2becdff31e3e24959"
+  },
+  "inputs": {
+    "rawSha256": "b01e19efd47c1e5fa18b7b7b4f7bcc254ebed5e49194e1963c832353206e4d23",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "freetown",
+      "country": "sl",
+      "name": "Ogoo Farm Marketplace",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/314305661"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=freetown]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 181163,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Exact candidate/name alias match and amenity=marketplace support feature identity/category. Object way/314305661, version 4, timestamp 2015-03-31T11:25:40Z; response SHA256 cbdeb6d3e9a04c703891060778a199a7cbb321ab0035d7c57b98968a7040322b. Source path: src/game/cities/freetown/places.ts. Empty counters, racks and awnings indicate trade. No goods, original shop plan, actual number of stalls or current operation are inferred. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "gulf-guinea"
+      }
+    },
+    "styleSha256": "2fdffb74f7375d9e1754151b92a51e85d0f902aaa4e0c8a647b3a33364eccaa9"
+  }
+}

@@ -1,0 +1,2135 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "caracas",
+    "name": "Caracas",
+    "state": {
+      "id": "ve-caracas",
+      "name": "Caracas"
+    },
+    "country": {
+      "id": "ve",
+      "name": "Venezuela"
+    },
+    "point": {
+      "lon": -66.9146008,
+      "lat": 10.5060934
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/south-america/venezuela-261011.osm.pbf",
+      "https://ourairports.com/airports/SVMI/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/caracas/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/caracas/facts.ts",
+        "sha256": "ec2370a95f67d32e771c552e9e1da29f4c9d751bca3fcd0bc03936560a82a815"
+      },
+      {
+        "path": "src/game/cities/caracas/index.ts",
+        "sha256": "7fbb7e0a9a21daa4f02354e58a872dceedf5db242d6d5df449575e1b2a99369f"
+      },
+      {
+        "path": "src/game/cities/caracas/places.ts",
+        "sha256": "4a2693266c8edf8d3d83a706d033b8e947e851ac574afe3c56ad977ab6b00e0b"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "caracas-airport-caracas-airport",
+      "name": "Maiquetía Simón Bolívar International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.991174,
+        "lat": 10.602214
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-airport-caracas-airport-1",
+        "caracas-caracas-airport-caracas-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "caracas-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-clinic",
+      "name": "Hospital Cardiológico Infantil Latinoamericano",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.972544,
+        "lat": 10.467549
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-clinic-1",
+        "caracas-caracas-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/220598788"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16493408"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-community-notices",
+      "name": "Registro Mercantil Tercero Estado Miranda",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -67.002984,
+        "lat": 10.353373
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-community-notices-1",
+        "caracas-caracas-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2827512146"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6126010"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-community-voting-game",
+      "name": "Plaza Francia",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.848886,
+        "lat": 10.495992
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-community-voting-game-1",
+        "caracas-caracas-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/3913460"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q9060880"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-community-workshop",
+      "name": "Universidad Santa María",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.781013,
+        "lat": 10.491174
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-community-workshop-1",
+        "caracas-caracas-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/6176737"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q542248"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-market-game",
+      "name": "Centro Comercial Parque Cristal",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.843169,
+        "lat": 10.498098
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-market-game-1",
+        "caracas-caracas-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/19078807"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6062105"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-meal-stop",
+      "name": "Burger Shack",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -67.005559,
+        "lat": 10.59778
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-meal-stop-1",
+        "caracas-caracas-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7461404220"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-osm-relation-13278974",
+      "name": "Los Caobos Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.893554,
+        "lat": 10.499681
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-osm-relation-13278974-1",
+        "caracas-caracas-osm-relation-13278974-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/13278974"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6062330"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-osm-relation-13281096",
+      "name": "Universidad Simón Bolívar",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.88588,
+        "lat": 10.412113
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-osm-relation-13281096-1",
+        "caracas-caracas-osm-relation-13281096-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/13281096"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2093477"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-osm-relation-13436467",
+      "name": "Hospital Dr. José Gregorio Hernández",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.954909,
+        "lat": 10.516128
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-osm-relation-13436467-1",
+        "caracas-caracas-osm-relation-13436467-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/13436467"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16576048"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-osm-way-179958526",
+      "name": "Hospital San Juan de Dios",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.865115,
+        "lat": 10.467734
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-osm-way-179958526-1",
+        "caracas-caracas-osm-way-179958526-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/179958526"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16576133"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-osm-way-191586173",
+      "name": "Museo de Artes Visuales Alejandro Otero",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.928307,
+        "lat": 10.433589
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-osm-way-191586173-1",
+        "caracas-caracas-osm-way-191586173-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/191586173"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16494152"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-osm-way-216503320",
+      "name": "Parque Zoológico El Pinar",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.93898,
+        "lat": 10.480665
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-osm-way-216503320-1",
+        "caracas-caracas-osm-way-216503320-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/216503320"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6062582"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-osm-way-217701255",
+      "name": "Plaza Italia",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.929289,
+        "lat": 10.49704
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-osm-way-217701255-1",
+        "caracas-caracas-osm-way-217701255-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/217701255"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16620050"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-osm-way-226086260",
+      "name": "Parque Zoológico de Caricuao",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.967511,
+        "lat": 10.429551
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-osm-way-226086260-1",
+        "caracas-caracas-osm-way-226086260-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/226086260"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7139676"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-osm-way-226265822",
+      "name": "Centro Comercial El Valle",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.9047,
+        "lat": 10.467311
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-osm-way-226265822-1",
+        "caracas-caracas-osm-way-226265822-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/226265822"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16545633"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-osm-way-240655511",
+      "name": "C.C. City Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.877873,
+        "lat": 10.494258
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-osm-way-240655511-1",
+        "caracas-caracas-osm-way-240655511-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/240655511"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q52565232"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-osm-way-249082946",
+      "name": "Universidad Monteávila",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.817013,
+        "lat": 10.502692
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-osm-way-249082946-1",
+        "caracas-caracas-osm-way-249082946-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/249082946"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7894290"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-osm-way-276063096",
+      "name": "Caracas Venezuela Temple",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.837257,
+        "lat": 10.470755
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-osm-way-276063096-1",
+        "caracas-caracas-osm-way-276063096-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/276063096"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5037576"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-osm-way-306847206",
+      "name": "Universidad Nacional Experimental Marítima del Caribe",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -67.031556,
+        "lat": 10.59886
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-osm-way-306847206-1",
+        "caracas-caracas-osm-way-306847206-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/306847206"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16644499"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-osm-way-378723909",
+      "name": "Domo José María Vargas",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.969249,
+        "lat": 10.600656
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-osm-way-378723909-1",
+        "caracas-caracas-osm-way-378723909-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/378723909"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5813064"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-osm-way-783746298",
+      "name": "Estadio Fórum La Guaira",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.905862,
+        "lat": 10.603301
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-osm-way-783746298-1",
+        "caracas-caracas-osm-way-783746298-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/783746298"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q107334977"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-quiet-reflection",
+      "name": "Biserica Ortodoxă Română „Sf. Împ. Constantin și Elena”",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.821244,
+        "lat": 10.418387
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-quiet-reflection-1",
+        "caracas-caracas-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/712547967"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5910043"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-recreation",
+      "name": "Parque Vinicio Adames",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.893264,
+        "lat": 10.396462
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-recreation-1",
+        "caracas-caracas-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/6464064"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6062567"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "caracas-transit",
+      "name": "La Hoyada",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.910527,
+        "lat": 10.50337
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "caracas-caracas-transit-1",
+        "caracas-caracas-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/caracas/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2055473614"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11347683"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -66.9146008,
+        "lat": 10.5060934
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "caracas-caracas-airport-caracas-airport-1",
+      "venueId": "caracas-airport-caracas-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-airport-caracas-airport-2",
+      "venueId": "caracas-airport-caracas-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-clinic-1",
+      "venueId": "caracas-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-clinic-2",
+      "venueId": "caracas-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-community-notices-1",
+      "venueId": "caracas-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-community-notices-2",
+      "venueId": "caracas-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-community-voting-game-1",
+      "venueId": "caracas-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-community-voting-game-2",
+      "venueId": "caracas-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-community-workshop-1",
+      "venueId": "caracas-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-community-workshop-2",
+      "venueId": "caracas-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-market-game-1",
+      "venueId": "caracas-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-market-game-2",
+      "venueId": "caracas-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-meal-stop-1",
+      "venueId": "caracas-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-meal-stop-2",
+      "venueId": "caracas-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-relation-13278974-1",
+      "venueId": "caracas-osm-relation-13278974",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-relation-13278974-2",
+      "venueId": "caracas-osm-relation-13278974",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-relation-13281096-1",
+      "venueId": "caracas-osm-relation-13281096",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-relation-13281096-2",
+      "venueId": "caracas-osm-relation-13281096",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-relation-13436467-1",
+      "venueId": "caracas-osm-relation-13436467",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-relation-13436467-2",
+      "venueId": "caracas-osm-relation-13436467",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-179958526-1",
+      "venueId": "caracas-osm-way-179958526",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-179958526-2",
+      "venueId": "caracas-osm-way-179958526",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-191586173-1",
+      "venueId": "caracas-osm-way-191586173",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-191586173-2",
+      "venueId": "caracas-osm-way-191586173",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-216503320-1",
+      "venueId": "caracas-osm-way-216503320",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-216503320-2",
+      "venueId": "caracas-osm-way-216503320",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-217701255-1",
+      "venueId": "caracas-osm-way-217701255",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-217701255-2",
+      "venueId": "caracas-osm-way-217701255",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-226086260-1",
+      "venueId": "caracas-osm-way-226086260",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-226086260-2",
+      "venueId": "caracas-osm-way-226086260",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-226265822-1",
+      "venueId": "caracas-osm-way-226265822",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-226265822-2",
+      "venueId": "caracas-osm-way-226265822",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-240655511-1",
+      "venueId": "caracas-osm-way-240655511",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-240655511-2",
+      "venueId": "caracas-osm-way-240655511",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-249082946-1",
+      "venueId": "caracas-osm-way-249082946",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-249082946-2",
+      "venueId": "caracas-osm-way-249082946",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-276063096-1",
+      "venueId": "caracas-osm-way-276063096",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-276063096-2",
+      "venueId": "caracas-osm-way-276063096",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-306847206-1",
+      "venueId": "caracas-osm-way-306847206",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-306847206-2",
+      "venueId": "caracas-osm-way-306847206",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-378723909-1",
+      "venueId": "caracas-osm-way-378723909",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-378723909-2",
+      "venueId": "caracas-osm-way-378723909",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-783746298-1",
+      "venueId": "caracas-osm-way-783746298",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-osm-way-783746298-2",
+      "venueId": "caracas-osm-way-783746298",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-quiet-reflection-1",
+      "venueId": "caracas-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-quiet-reflection-2",
+      "venueId": "caracas-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-recreation-1",
+      "venueId": "caracas-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-recreation-2",
+      "venueId": "caracas-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-transit-1",
+      "venueId": "caracas-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    },
+    {
+      "id": "caracas-caracas-transit-2",
+      "venueId": "caracas-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/caracas/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "caracas-airport-caracas-airport",
+    "caracas-clinic",
+    "caracas-community-notices",
+    "caracas-community-voting-game",
+    "caracas-community-workshop",
+    "caracas-market-game",
+    "caracas-meal-stop",
+    "caracas-osm-relation-13278974",
+    "caracas-osm-relation-13281096",
+    "caracas-osm-relation-13436467",
+    "caracas-osm-way-179958526",
+    "caracas-osm-way-191586173",
+    "caracas-osm-way-216503320",
+    "caracas-osm-way-217701255",
+    "caracas-osm-way-226086260",
+    "caracas-osm-way-226265822",
+    "caracas-osm-way-240655511",
+    "caracas-osm-way-249082946",
+    "caracas-osm-way-276063096",
+    "caracas-osm-way-306847206",
+    "caracas-osm-way-378723909",
+    "caracas-osm-way-783746298",
+    "caracas-quiet-reflection",
+    "caracas-recreation",
+    "caracas-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "9d331fa1437ff3b49e3478b8ad795be24888b6fcc51d65b59861290c0b77d042",
+    "contentSha256": "ede98cc8594a302e14405b1c212c9fe27e6b6c24e20780aef5390a7d41a5f611"
+  }
+}

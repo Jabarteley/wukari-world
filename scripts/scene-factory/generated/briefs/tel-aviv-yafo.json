@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "tel-aviv-yafo",
+    "name": "Tel Aviv",
+    "state": {
+      "id": "il-tel-aviv-yafo",
+      "name": "Tel Aviv"
+    },
+    "country": {
+      "id": "il",
+      "name": "Israel"
+    },
+    "point": {
+      "lon": 34.7818064,
+      "lat": 32.0852997
+    }
+  },
+  "style": {
+    "region": "south-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/israel-and-palestine-261011.osm.pbf",
+      "https://ourairports.com/airports/LLBG/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/tel-aviv-yafo/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/tel-aviv-yafo/facts.ts",
+        "sha256": "03432cef15b1f59e59a3049603da94356dc33e91ed1b405d1300f2a625066437"
+      },
+      {
+        "path": "src/game/cities/tel-aviv-yafo/index.ts",
+        "sha256": "27a887de09e021718ffe0925e25089fafe795727ee4cb69059c355acf91cb000"
+      },
+      {
+        "path": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sha256": "9822f170307fefe53c3719c3366231de562508a5b0a4bcc8a526f7242dd9c543"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.7818064,
+        "lat": 32.0852997
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-airport-tel-aviv-yafo-airport",
+      "name": "Ben Gurion International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.8867,
+        "lat": 32.011398
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-airport-tel-aviv-yafo-airport-1",
+        "tel-aviv-yafo-tel-aviv-yafo-airport-tel-aviv-yafo-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "tel-aviv-yafo-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-clinic",
+      "name": "Rabin Medical Center – Beilinson Campus",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.867396,
+        "lat": 32.088938
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-clinic-1",
+        "tel-aviv-yafo-tel-aviv-yafo-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/30750762"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2071553"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-community-notices",
+      "name": "Bituach Leumi",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.869317,
+        "lat": 31.928031
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-community-notices-1",
+        "tel-aviv-yafo-tel-aviv-yafo-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/683209656"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2893576"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-community-voting-game",
+      "name": "Drom HaSharon Regional Council",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.911091,
+        "lat": 32.133552
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-community-voting-game-1",
+        "tel-aviv-yafo-tel-aviv-yafo-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/494477045"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2249100"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-community-workshop",
+      "name": "The Open University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.887673,
+        "lat": 32.188018
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-community-workshop-1",
+        "tel-aviv-yafo-tel-aviv-yafo-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/77161070"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1423960"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-market-game",
+      "name": "Shuk HaPishpeshim",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.75635,
+        "lat": 32.053461
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-market-game-1",
+        "tel-aviv-yafo-tel-aviv-yafo-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/84092298"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6771448"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-meal-stop",
+      "name": "Mul-Yam",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.774621,
+        "lat": 32.100349
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-meal-stop-1",
+        "tel-aviv-yafo-tel-aviv-yafo-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/558702490"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6933698"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-osm-node-1443153708",
+      "name": "Izbet Sartah",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.964471,
+        "lat": 32.104671
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-osm-node-1443153708-1",
+        "tel-aviv-yafo-tel-aviv-yafo-osm-node-1443153708-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1443153708"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17347088"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-osm-node-2467107746",
+      "name": "Memorial of the 8th Brigade",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.902709,
+        "lat": 31.990713
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-osm-node-2467107746-1",
+        "tel-aviv-yafo-tel-aviv-yafo-osm-node-2467107746-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2467107746"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16132668"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-osm-node-4172995826",
+      "name": "Tel Hadid",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.95083,
+        "lat": 31.964159
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-osm-node-4172995826-1",
+        "tel-aviv-yafo-tel-aviv-yafo-osm-node-4172995826-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4172995826"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12412089"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-osm-node-8312911961",
+      "name": "Tel Zureikya",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.875081,
+        "lat": 32.246572
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-osm-node-8312911961-1",
+        "tel-aviv-yafo-tel-aviv-yafo-osm-node-8312911961-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8312911961"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6594329"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-osm-relation-13435489",
+      "name": "Sidna Ali Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.805824,
+        "lat": 32.187829
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-osm-relation-13435489-1",
+        "tel-aviv-yafo-tel-aviv-yafo-osm-relation-13435489-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/13435489"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2975910"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-osm-way-228281988",
+      "name": "בית הכנסת הגדול",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.795722,
+        "lat": 31.926904
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-228281988-1",
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-228281988-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/228281988"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q45835604"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-osm-way-284108856",
+      "name": "Sarona Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.787061,
+        "lat": 32.071107
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-284108856-1",
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-284108856-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/284108856"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q63790641"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-osm-way-294635033",
+      "name": "Ayalon Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.826732,
+        "lat": 32.100317
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-294635033-1",
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-294635033-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/294635033"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4830883"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-osm-way-45556106",
+      "name": "HaPark HaLeumi",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.823049,
+        "lat": 32.049413
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-45556106-1",
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-45556106-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/45556106"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3738170"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-osm-way-48949522",
+      "name": "Yitzhak Shamir Medical Center – Assaf HaRofeh Campus",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.839812,
+        "lat": 31.966215
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-48949522-1",
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-48949522-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/48949522"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2067213"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-osm-way-762309552",
+      "name": "Raanana Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.849415,
+        "lat": 32.188524
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-762309552-1",
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-762309552-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/762309552"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6970507"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-osm-way-80798213",
+      "name": "Haberfeld Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.752713,
+        "lat": 31.974967
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-80798213-1",
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-80798213-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/80798213"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q641841"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-osm-way-84530824",
+      "name": "Beit Berl Academic college",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.926424,
+        "lat": 32.201402
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-84530824-1",
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-84530824-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/84530824"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q25488222"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-osm-way-932979208",
+      "name": "Mazor",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.946152,
+        "lat": 32.046618
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-932979208-1",
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-932979208-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/932979208"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2900217"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-osm-way-95215506",
+      "name": "Seminar HaKibuzzim",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.791168,
+        "lat": 32.101017
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-95215506-1",
+        "tel-aviv-yafo-tel-aviv-yafo-osm-way-95215506-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/95215506"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7219274"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-quiet-reflection",
+      "name": "Nabi Rubin",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.733638,
+        "lat": 31.929132
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-quiet-reflection-1",
+        "tel-aviv-yafo-tel-aviv-yafo-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1262192646"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2911822"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-recreation",
+      "name": "Hosmasa \"yad la Haganah\" Musuem",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.785488,
+        "lat": 32.007219
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-recreation-1",
+        "tel-aviv-yafo-tel-aviv-yafo-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/107456924"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6989818"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-transit",
+      "name": "Kfar Chabad",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 34.853323,
+        "lat": 31.992896
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tel-aviv-yafo-tel-aviv-yafo-transit-1",
+        "tel-aviv-yafo-tel-aviv-yafo-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/461613375"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q339967"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-airport-tel-aviv-yafo-airport-1",
+      "venueId": "tel-aviv-yafo-airport-tel-aviv-yafo-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-airport-tel-aviv-yafo-airport-2",
+      "venueId": "tel-aviv-yafo-airport-tel-aviv-yafo-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-clinic-1",
+      "venueId": "tel-aviv-yafo-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-clinic-2",
+      "venueId": "tel-aviv-yafo-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-community-notices-1",
+      "venueId": "tel-aviv-yafo-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-community-notices-2",
+      "venueId": "tel-aviv-yafo-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-community-voting-game-1",
+      "venueId": "tel-aviv-yafo-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-community-voting-game-2",
+      "venueId": "tel-aviv-yafo-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-community-workshop-1",
+      "venueId": "tel-aviv-yafo-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-community-workshop-2",
+      "venueId": "tel-aviv-yafo-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-market-game-1",
+      "venueId": "tel-aviv-yafo-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-market-game-2",
+      "venueId": "tel-aviv-yafo-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-meal-stop-1",
+      "venueId": "tel-aviv-yafo-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-meal-stop-2",
+      "venueId": "tel-aviv-yafo-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-node-1443153708-1",
+      "venueId": "tel-aviv-yafo-osm-node-1443153708",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-node-1443153708-2",
+      "venueId": "tel-aviv-yafo-osm-node-1443153708",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-node-2467107746-1",
+      "venueId": "tel-aviv-yafo-osm-node-2467107746",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-node-2467107746-2",
+      "venueId": "tel-aviv-yafo-osm-node-2467107746",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-node-4172995826-1",
+      "venueId": "tel-aviv-yafo-osm-node-4172995826",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-node-4172995826-2",
+      "venueId": "tel-aviv-yafo-osm-node-4172995826",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-node-8312911961-1",
+      "venueId": "tel-aviv-yafo-osm-node-8312911961",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-node-8312911961-2",
+      "venueId": "tel-aviv-yafo-osm-node-8312911961",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-relation-13435489-1",
+      "venueId": "tel-aviv-yafo-osm-relation-13435489",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-relation-13435489-2",
+      "venueId": "tel-aviv-yafo-osm-relation-13435489",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-228281988-1",
+      "venueId": "tel-aviv-yafo-osm-way-228281988",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-228281988-2",
+      "venueId": "tel-aviv-yafo-osm-way-228281988",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-284108856-1",
+      "venueId": "tel-aviv-yafo-osm-way-284108856",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-284108856-2",
+      "venueId": "tel-aviv-yafo-osm-way-284108856",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-294635033-1",
+      "venueId": "tel-aviv-yafo-osm-way-294635033",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-294635033-2",
+      "venueId": "tel-aviv-yafo-osm-way-294635033",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-45556106-1",
+      "venueId": "tel-aviv-yafo-osm-way-45556106",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-45556106-2",
+      "venueId": "tel-aviv-yafo-osm-way-45556106",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-48949522-1",
+      "venueId": "tel-aviv-yafo-osm-way-48949522",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-48949522-2",
+      "venueId": "tel-aviv-yafo-osm-way-48949522",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-762309552-1",
+      "venueId": "tel-aviv-yafo-osm-way-762309552",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-762309552-2",
+      "venueId": "tel-aviv-yafo-osm-way-762309552",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-80798213-1",
+      "venueId": "tel-aviv-yafo-osm-way-80798213",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-80798213-2",
+      "venueId": "tel-aviv-yafo-osm-way-80798213",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-84530824-1",
+      "venueId": "tel-aviv-yafo-osm-way-84530824",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-84530824-2",
+      "venueId": "tel-aviv-yafo-osm-way-84530824",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-932979208-1",
+      "venueId": "tel-aviv-yafo-osm-way-932979208",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-932979208-2",
+      "venueId": "tel-aviv-yafo-osm-way-932979208",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-95215506-1",
+      "venueId": "tel-aviv-yafo-osm-way-95215506",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-osm-way-95215506-2",
+      "venueId": "tel-aviv-yafo-osm-way-95215506",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-quiet-reflection-1",
+      "venueId": "tel-aviv-yafo-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-quiet-reflection-2",
+      "venueId": "tel-aviv-yafo-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-recreation-1",
+      "venueId": "tel-aviv-yafo-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-recreation-2",
+      "venueId": "tel-aviv-yafo-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-transit-1",
+      "venueId": "tel-aviv-yafo-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    },
+    {
+      "id": "tel-aviv-yafo-tel-aviv-yafo-transit-2",
+      "venueId": "tel-aviv-yafo-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tel-aviv-yafo/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "tel-aviv-yafo-airport-tel-aviv-yafo-airport",
+    "tel-aviv-yafo-clinic",
+    "tel-aviv-yafo-community-notices",
+    "tel-aviv-yafo-community-voting-game",
+    "tel-aviv-yafo-community-workshop",
+    "tel-aviv-yafo-market-game",
+    "tel-aviv-yafo-meal-stop",
+    "tel-aviv-yafo-osm-node-1443153708",
+    "tel-aviv-yafo-osm-node-2467107746",
+    "tel-aviv-yafo-osm-node-4172995826",
+    "tel-aviv-yafo-osm-node-8312911961",
+    "tel-aviv-yafo-osm-relation-13435489",
+    "tel-aviv-yafo-osm-way-228281988",
+    "tel-aviv-yafo-osm-way-284108856",
+    "tel-aviv-yafo-osm-way-294635033",
+    "tel-aviv-yafo-osm-way-45556106",
+    "tel-aviv-yafo-osm-way-48949522",
+    "tel-aviv-yafo-osm-way-762309552",
+    "tel-aviv-yafo-osm-way-80798213",
+    "tel-aviv-yafo-osm-way-84530824",
+    "tel-aviv-yafo-osm-way-932979208",
+    "tel-aviv-yafo-osm-way-95215506",
+    "tel-aviv-yafo-quiet-reflection",
+    "tel-aviv-yafo-recreation",
+    "tel-aviv-yafo-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "62bdd850f0c2b398b6d886202c248eacef61bf7be53a0a5afb823ff50f58eade",
+    "contentSha256": "5b90a3b435bf875f1a446907ad5a8459640e2c984c170a31131bbff2eec7df08"
+  }
+}

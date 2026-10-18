@@ -4,6 +4,7 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, w
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { isDeepStrictEqual } from 'node:util';
 import { brotliCompressSync, constants } from 'node:zlib';
 import { MeshoptDecoder } from 'meshoptimizer';
 import { Matrix4, Quaternion, Vector3 } from 'three';
@@ -18,6 +19,13 @@ export const LANDMARK_COMPOSITIONS = ['three-figures', 'terraced-fort', 'masonry
 const restrictedBuildingCountries = ['ng', 'gh', 'fr', 'gf', 'gp', 'mq', 're', 'yt', 'bl', 'mf', 'pm', 'pf', 'nc', 'wf', 'tf', 'cp'];
 const repo = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const LIMITS = { propTriangles: 1500, heroTriangles: 4000, kitBrotli: 300_000, heroBytes: 60_000, rawBytes: 2 * 1024 * 1024, decodedBytes: 16 * 1024 * 1024 } as const;
+const PHYSICAL_HERO_SOURCES = [
+  'scripts/scene-factory/assets.ts', 'scripts/scene-factory/blender/physical_hero.py',
+  'scripts/scene-factory/blender/physical_landscape.py', 'scripts/scene-factory/blender/physical_retail.py',
+  'scripts/scene-factory/blender/physical_landmarks.py', 'scripts/scene-factory/blender/kit.py',
+  'scripts/scene-factory/blender/construction.py', 'scripts/scene-factory/blender/shared.py',
+  'scripts/assets/blender/common.py', 'scripts/assets/glb.ts', 'scripts/assets/prepare.ts',
+] as const;
 type Triple = [number, number, number];
 type Kind = 'kit' | 'hero';
 export interface HeroAtlasBinding { region: (typeof REGIONS)[number]; sha256: string }
@@ -281,8 +289,11 @@ export async function prepareAsset(input: Buffer, kind: Kind, id: string, bindin
     const normalized = rebuild(doc, { clips: {}, ...(images ? { images } : {}) });
     const bytes = gltfpack(writeGlb(normalized));
     const report = await validateAsset(bytes, kind, id, undefined, binding);
-    const scripts = ['scripts/scene-factory/assets.ts', 'scripts/scene-factory/blender/shared.py', `scripts/scene-factory/blender/${kind}.py`, 'scripts/assets/blender/common.py', 'scripts/assets/glb.ts', 'scripts/assets/prepare.ts'];
-    scripts.push('scripts/scene-factory/blender/market_sample.py', 'scripts/scene-factory/blender/construction.py');
+    const scripts: readonly string[] = kind === 'hero' && binding ? PHYSICAL_HERO_SOURCES : [
+      'scripts/scene-factory/assets.ts', 'scripts/scene-factory/blender/shared.py', `scripts/scene-factory/blender/${kind}.py`,
+      'scripts/assets/blender/common.py', 'scripts/assets/glb.ts', 'scripts/assets/prepare.ts',
+      'scripts/scene-factory/blender/market_sample.py', 'scripts/scene-factory/blender/construction.py',
+    ];
     report.inputs = { rawSha256: hash(input), scriptsSha256: hash(Buffer.from(scripts.map(path => `${path}:${hash(readFileSync(join(repo, path)))}`).join('\n'))), node: process.version, packer: 'gltfpack@1.3.0' };
     return { bytes, report };
   } finally { rmSync(work, { recursive: true, force: true }); }
@@ -336,7 +347,7 @@ async function cli(): Promise<void> {
   check(out !== reportPath, 'Asset and report paths must differ');
   const work = mkdtempSync(join(tmpdir(), 'allworld-scene-build-'));
   try {
-    let input = option('file'), provenance: HeroRecord | undefined, styleSha256: string | undefined;
+    let input = option('file'), provenance: HeroRecord | undefined, styleSha256: string | undefined, rawReceipt: string | undefined;
     const extra: string[] = [];
     if (kind === 'kit') {
       check((REGIONS as readonly string[]).includes(id), 'Unknown region');
@@ -352,15 +363,32 @@ async function cli(): Promise<void> {
       check(matching.length === 1, 'Expected exactly one sourced hero for this city');
       validateHeroRecord(matching[0]); provenance = matching[0];
       const recordFile = join(work, 'hero.json'); writeFileSync(recordFile, JSON.stringify(provenance)); extra.push('--record', recordFile);
+      if (provenance.surface) {
+        const canonicalRows = JSON.parse(readFileSync(join(repo, 'scripts/scene-factory/heroes.json'), 'utf8')) as HeroRecord[];
+        const canonical = canonicalRows.filter(row => row.city === id);
+        check(canonical.length === 1 && isDeepStrictEqual(provenance, canonical[0]), 'Regional-atlas provenance must exactly match the canonical hero record');
+        const style = resolve(option('style') ?? fail('--style required for a regional-atlas hero'));
+        const styleBytes = readFileSync(style), durableStyle = readFileSync(join(repo, `scripts/scene-factory/styles/${provenance.surface.region}.json`));
+        check(styleBytes.equals(durableStyle), 'Hero style must exactly match its durable surface region');
+        styleSha256 = hash(styleBytes);
+        rawReceipt = join(work, 'physical-hero-receipt.json');
+        extra.push('--style', style, '--region', provenance.surface.region,
+          '--profile', id === 'accra' ? 'accra-v5-exact' : 'physical-v1', '--receipt', rawReceipt);
+      }
     }
+    const binding = await atlasBinding(provenance);
     if (command === 'build') {
-      check(!provenance?.surface, 'Regional-atlas construction requires an explicit raw export with prepare');
       const blender = option('blender') ?? process.env.BLENDER ?? '/Applications/Blender.app/Contents/MacOS/Blender';
       check(existsSync(blender), 'Set --blender to an installed binary');
       input = join(work, 'raw.glb');
-      execFileSync(blender, ['--background', '--factory-startup', '--threads', '2', '--python-exit-code', '1', '--python', join(repo, 'scripts/scene-factory/blender', `${kind}.py`), '--', '--out', input, ...extra], { stdio: ['ignore', 'ignore', 'pipe'], timeout: 300_000 });
+      const script = kind === 'hero' && provenance?.surface ? 'physical_hero.py' : `${kind}.py`;
+      execFileSync(blender, ['--background', '--factory-startup', '--threads', '2', '--python-exit-code', '1', '--python', join(repo, 'scripts/scene-factory/blender', script), '--', '--out', input, ...extra], { stdio: ['ignore', 'ignore', 'pipe'], timeout: 300_000 });
+      if (rawReceipt) {
+        const receipt = JSON.parse(readFileSync(rawReceipt, 'utf8')) as { schema?: unknown; city?: unknown; rawSha256?: unknown; record?: unknown };
+        check(receipt.schema === 'physical-hero-raw-export' && receipt.city === id && receipt.rawSha256 === hash(readFileSync(input)) && isDeepStrictEqual(receipt.record, provenance), 'Physical hero raw receipt differs from the current export or canonical provenance');
+      }
     }
-    const prepared = await prepareAsset(readFileSync(input ?? fail('--file required')), kind, id, await atlasBinding(provenance));
+    const prepared = await prepareAsset(readFileSync(input ?? fail('--file required')), kind, id, binding);
     if (prepared.report.inputs) { if (provenance) prepared.report.inputs.provenance = provenance; if (styleSha256) prepared.report.inputs.styleSha256 = styleSha256; }
     writeAtomic(out, prepared.bytes); writeAtomic(reportPath, `${JSON.stringify(prepared.report, null, 2)}\n`);
     console.log(JSON.stringify(prepared.report));

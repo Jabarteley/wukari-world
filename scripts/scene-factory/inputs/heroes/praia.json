@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "praia",
+  "url": "/assets/scene-heroes/praia.glb",
+  "sha256": "8805ae54d723f10954e85b6eec4a151de8466d66103e769d4b58806c5e1de89c",
+  "rawBytes": 25204,
+  "brotliBytes": 17421,
+  "triangles": 584,
+  "parts": [
+    {
+      "node": "praia",
+      "triangles": 584,
+      "bounds": {
+        "min": [
+          -2.20214844,
+          0,
+          -2.16959643
+        ],
+        "max": [
+          2.202148529646,
+          2.4998814332380004,
+          2.169642866042001
+        ]
+      },
+      "footprint": [
+        -2.20214844,
+        -2.16959643,
+        2.202148529646,
+        2.169642866042001
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "fc52fcd31a6a0f6232071f06ba078fc350a270ad2e48d4d2becdff31e3e24959"
+  },
+  "inputs": {
+    "rawSha256": "75febde02a8b52e14f1bdcfc8e9b453949859dc34786c45d8170835f5d1f137b",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "praia",
+      "country": "cv",
+      "name": "Mercado Municipal",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/node/8069363808"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=praia]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 181099,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Exact candidate/name alias match and amenity=marketplace support feature identity/category. Object node/8069363808, version 1, timestamp 2020-10-31T17:53:59Z; response SHA256 753b1079d3f72fd7a6c576314f0b839e9afc5f05312bb66244d47eae10215410. Source path: src/game/cities/praia/places.ts. Empty counters, racks and awnings indicate trade. No goods, original shop plan, actual number of stalls or current operation are inferred. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "gulf-guinea"
+      }
+    },
+    "styleSha256": "2fdffb74f7375d9e1754151b92a51e85d0f902aaa4e0c8a647b3a33364eccaa9"
+  }
+}

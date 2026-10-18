@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "athens",
+    "name": "Athens",
+    "state": {
+      "id": "gr-athens",
+      "name": "Athens"
+    },
+    "country": {
+      "id": "gr",
+      "name": "Greece"
+    },
+    "point": {
+      "lon": 23.7348324,
+      "lat": 37.9755648
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/greece-261011.osm.pbf",
+      "https://ourairports.com/airports/LGAV/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/athens/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/athens/facts.ts",
+        "sha256": "469ae2955c214de166e29987f29351e7f230fa9ec420a6928ea74edc57032980"
+      },
+      {
+        "path": "src/game/cities/athens/index.ts",
+        "sha256": "af4e87c3395a151bb862382105b7a42ea7222b11ad928e74e684c90719a46a33"
+      },
+      {
+        "path": "src/game/cities/athens/places.ts",
+        "sha256": "a920eb87df3c15c8a604697eec83d2e18cffb99bdb7ec88cb02abd1e87a506f7"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "athens-airport-athens-airport",
+      "name": "Athens Eleftherios Venizelos International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.9445,
+        "lat": 37.936401
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-airport-athens-airport-1",
+        "athens-athens-airport-athens-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "athens-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-clinic",
+      "name": "Εθνικό Κέντρο Αποκατάστασης",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.717697,
+        "lat": 38.049615
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-clinic-1",
+        "athens-athens-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/669746894"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q112285923"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-community-notices",
+      "name": "Hellenic National Meteorological Service",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.74239,
+        "lat": 37.890255
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-community-notices-1",
+        "athens-athens-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/191315065"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q406531"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-community-voting-game",
+      "name": "Πλατεία Μεταξουργείου",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.719639,
+        "lat": 37.98519
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-community-voting-game-1",
+        "athens-athens-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/81783120"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q58102897"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-community-workshop",
+      "name": "Drossinis Museum",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.811913,
+        "lat": 38.071192
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-community-workshop-1",
+        "athens-athens-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/299059456"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12881253"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-market-game",
+      "name": "The Mall Athens",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.79039,
+        "lat": 38.044596
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-market-game-1",
+        "athens-athens-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/44000881"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7749761"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-meal-stop",
+      "name": "Varoulko Seaside",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.658529,
+        "lat": 37.937305
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-meal-stop-1",
+        "athens-athens-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2902095151"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q88389150"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-osm-node-1008013053",
+      "name": "Δρομοκαΐτειο",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.662691,
+        "lat": 38.000241
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-osm-node-1008013053-1",
+        "athens-athens-osm-node-1008013053-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1008013053"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q21626565"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-osm-node-3565807234",
+      "name": "Ιερός Ναός Κοιμήσεως Θεοτόκου (16ου-17ου αιώνα)",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.878574,
+        "lat": 38.125308
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-osm-node-3565807234-1",
+        "athens-athens-osm-node-3565807234-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3565807234"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q111193027"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-osm-node-4729929890",
+      "name": "City Link",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.734587,
+        "lat": 37.977338
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-osm-node-4729929890-1",
+        "athens-athens-osm-node-4729929890-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4729929890"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q108716904"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-osm-node-6506548450",
+      "name": "Battle of Salamis Memorial",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.52767,
+        "lat": 37.951754
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-osm-node-6506548450-1",
+        "athens-athens-osm-node-6506548450-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6506548450"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q178850"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-osm-node-9385908004",
+      "name": "Ναός Αγίου Λουκά Λαμπρικών",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.85476,
+        "lat": 37.871147
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-osm-node-9385908004-1",
+        "athens-athens-osm-node-9385908004-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9385908004"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q56397800"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-osm-relation-1626837",
+      "name": "Nea Smyrni Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.709302,
+        "lat": 37.943021
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-osm-relation-1626837-1",
+        "athens-athens-osm-relation-1626837-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/1626837"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1196095"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-osm-relation-2022511",
+      "name": "Τελεστήριον",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.538581,
+        "lat": 38.04086
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-osm-relation-2022511-1",
+        "athens-athens-osm-relation-2022511-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/2022511"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1819712"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-osm-relation-3568067",
+      "name": "National and Kapodistrian University of Athens",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.774133,
+        "lat": 37.970039
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-osm-relation-3568067-1",
+        "athens-athens-osm-relation-3568067-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/3568067"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q547867"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-osm-way-1566325327",
+      "name": "Pedion Areos",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.736877,
+        "lat": 37.993389
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-osm-way-1566325327-1",
+        "athens-athens-osm-way-1566325327-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1566325327"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q932606"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-osm-way-160307906",
+      "name": "University of West Attica - Ancient Grove Campus",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.672393,
+        "lat": 37.978417
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-osm-way-160307906-1",
+        "athens-athens-osm-way-160307906-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/160307906"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q50359480"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-osm-way-316732250",
+      "name": "Γενικό Νοσοκομείο Νοσημάτων Θώρακος \"Η Σωτηρία\"",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.7835,
+        "lat": 37.993798
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-osm-way-316732250-1",
+        "athens-athens-osm-way-316732250-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/316732250"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q21626598"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-osm-way-319084318",
+      "name": "Australian Archaeological Institute at Athens",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.723965,
+        "lat": 37.96567
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-osm-way-319084318-1",
+        "athens-athens-osm-way-319084318-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/319084318"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q781330"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-osm-way-412135808",
+      "name": "Αττικό Ζωολογικό Πάρκο",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.908684,
+        "lat": 37.981141
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-osm-way-412135808-1",
+        "athens-athens-osm-way-412135808-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/412135808"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2917115"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-osm-way-432559442",
+      "name": "Αστεροσκοπείο Πεντέλης",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.864458,
+        "lat": 38.047204
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-osm-way-432559442-1",
+        "athens-athens-osm-way-432559442-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/432559442"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q113302232"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-osm-way-948091319",
+      "name": "Peristeri Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.689819,
+        "lat": 38.005017
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-osm-way-948091319-1",
+        "athens-athens-osm-way-948091319-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/948091319"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3499490"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-quiet-reflection",
+      "name": "Monastère de Daphni",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.635926,
+        "lat": 38.012977
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-quiet-reflection-1",
+        "athens-athens-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/208889169"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q500444"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-recreation",
+      "name": "Άλσος Βεΐκου",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.765386,
+        "lat": 38.0275
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-recreation-1",
+        "athens-athens-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/89943258"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3559333"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "athens-transit",
+      "name": "Megaro Mousikis",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.753009,
+        "lat": 37.979032
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "athens-athens-transit-1",
+        "athens-athens-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/athens/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/250702349"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6808839"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 23.7348324,
+        "lat": 37.9755648
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "athens-athens-airport-athens-airport-1",
+      "venueId": "athens-airport-athens-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-airport-athens-airport-2",
+      "venueId": "athens-airport-athens-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-clinic-1",
+      "venueId": "athens-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-clinic-2",
+      "venueId": "athens-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-community-notices-1",
+      "venueId": "athens-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-community-notices-2",
+      "venueId": "athens-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-community-voting-game-1",
+      "venueId": "athens-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-community-voting-game-2",
+      "venueId": "athens-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-community-workshop-1",
+      "venueId": "athens-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-community-workshop-2",
+      "venueId": "athens-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-market-game-1",
+      "venueId": "athens-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-market-game-2",
+      "venueId": "athens-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-meal-stop-1",
+      "venueId": "athens-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-meal-stop-2",
+      "venueId": "athens-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-node-1008013053-1",
+      "venueId": "athens-osm-node-1008013053",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-node-1008013053-2",
+      "venueId": "athens-osm-node-1008013053",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-node-3565807234-1",
+      "venueId": "athens-osm-node-3565807234",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-node-3565807234-2",
+      "venueId": "athens-osm-node-3565807234",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-node-4729929890-1",
+      "venueId": "athens-osm-node-4729929890",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-node-4729929890-2",
+      "venueId": "athens-osm-node-4729929890",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-node-6506548450-1",
+      "venueId": "athens-osm-node-6506548450",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-node-6506548450-2",
+      "venueId": "athens-osm-node-6506548450",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-node-9385908004-1",
+      "venueId": "athens-osm-node-9385908004",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-node-9385908004-2",
+      "venueId": "athens-osm-node-9385908004",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-relation-1626837-1",
+      "venueId": "athens-osm-relation-1626837",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-relation-1626837-2",
+      "venueId": "athens-osm-relation-1626837",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-relation-2022511-1",
+      "venueId": "athens-osm-relation-2022511",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-relation-2022511-2",
+      "venueId": "athens-osm-relation-2022511",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-relation-3568067-1",
+      "venueId": "athens-osm-relation-3568067",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-relation-3568067-2",
+      "venueId": "athens-osm-relation-3568067",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-way-1566325327-1",
+      "venueId": "athens-osm-way-1566325327",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-way-1566325327-2",
+      "venueId": "athens-osm-way-1566325327",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-way-160307906-1",
+      "venueId": "athens-osm-way-160307906",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-way-160307906-2",
+      "venueId": "athens-osm-way-160307906",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-way-316732250-1",
+      "venueId": "athens-osm-way-316732250",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-way-316732250-2",
+      "venueId": "athens-osm-way-316732250",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-way-319084318-1",
+      "venueId": "athens-osm-way-319084318",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-way-319084318-2",
+      "venueId": "athens-osm-way-319084318",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-way-412135808-1",
+      "venueId": "athens-osm-way-412135808",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-way-412135808-2",
+      "venueId": "athens-osm-way-412135808",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-way-432559442-1",
+      "venueId": "athens-osm-way-432559442",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-way-432559442-2",
+      "venueId": "athens-osm-way-432559442",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-way-948091319-1",
+      "venueId": "athens-osm-way-948091319",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-osm-way-948091319-2",
+      "venueId": "athens-osm-way-948091319",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-quiet-reflection-1",
+      "venueId": "athens-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-quiet-reflection-2",
+      "venueId": "athens-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-recreation-1",
+      "venueId": "athens-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-recreation-2",
+      "venueId": "athens-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-transit-1",
+      "venueId": "athens-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    },
+    {
+      "id": "athens-athens-transit-2",
+      "venueId": "athens-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/athens/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "athens-airport-athens-airport",
+    "athens-clinic",
+    "athens-community-notices",
+    "athens-community-voting-game",
+    "athens-community-workshop",
+    "athens-market-game",
+    "athens-meal-stop",
+    "athens-osm-node-1008013053",
+    "athens-osm-node-3565807234",
+    "athens-osm-node-4729929890",
+    "athens-osm-node-6506548450",
+    "athens-osm-node-9385908004",
+    "athens-osm-relation-1626837",
+    "athens-osm-relation-2022511",
+    "athens-osm-relation-3568067",
+    "athens-osm-way-1566325327",
+    "athens-osm-way-160307906",
+    "athens-osm-way-316732250",
+    "athens-osm-way-319084318",
+    "athens-osm-way-412135808",
+    "athens-osm-way-432559442",
+    "athens-osm-way-948091319",
+    "athens-quiet-reflection",
+    "athens-recreation",
+    "athens-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "25a33180c976085bb1d65b8c7b06f6b497aec2e45d9a852faf0ded21623a69ab",
+    "contentSha256": "70b224658612b907631a7560baaf90585a8831594233cb48be37f6a459312150"
+  }
+}

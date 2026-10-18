@@ -1,0 +1,1404 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "cockburn-town",
+    "name": "Cockburn Town",
+    "state": {
+      "id": "tc",
+      "name": "Cockburn Town"
+    },
+    "country": {
+      "id": "tc",
+      "name": "Turks & Caicos Is"
+    },
+    "point": {
+      "lon": -71.1399956,
+      "lat": 21.4607723
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "https://ourairports.com/airports/MBGT/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/cockburn-town/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/cockburn-town/facts.ts",
+        "sha256": "0778e9e6ecb27361db1f69b504b39fabfea0ee00f740b6e3a5d928c7daab341c"
+      },
+      {
+        "path": "src/game/cities/cockburn-town/index.ts",
+        "sha256": "1d2f61c826417214046d5c57b86524d5db7c9a47b171287b9114618434935760"
+      },
+      {
+        "path": "src/game/cities/cockburn-town/places.ts",
+        "sha256": "42641bde610fbccdfa63a7bb33937b83dce412c701fd39ed9909bf7b112b2398"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue cockburn-town-quiet-reflection has no mapped place source record.",
+      "Venue cockburn-town-transit has no mapped place source record.",
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "cockburn-town-airport-cockburn-town-airport",
+      "name": "JAGS McCartney International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -71.142303,
+        "lat": 21.4445
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cockburn-town-cockburn-town-airport-cockburn-town-airport-1",
+        "cockburn-town-cockburn-town-airport-cockburn-town-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cockburn-town/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "cockburn-town-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "cockburn-town-clinic",
+      "name": "Cockburn Town Medical Centre",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -71.144032,
+        "lat": 21.480087
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cockburn-town-cockburn-town-clinic-1",
+        "cockburn-town-cockburn-town-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cockburn-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/410152908"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cockburn-town-community-notices",
+      "name": "Govermental Information Service",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -71.146145,
+        "lat": 21.462273
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cockburn-town-cockburn-town-community-notices-1",
+        "cockburn-town-cockburn-town-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cockburn-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4134580201"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cockburn-town-community-voting-game",
+      "name": "Attorney General's Chambers",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -71.148227,
+        "lat": 21.442191
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cockburn-town-cockburn-town-community-voting-game-1",
+        "cockburn-town-cockburn-town-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cockburn-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4120352294"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cockburn-town-community-workshop",
+      "name": "Victoria Public Library",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -71.14658,
+        "lat": 21.468539
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cockburn-town-cockburn-town-community-workshop-1",
+        "cockburn-town-cockburn-town-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cockburn-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/412178556"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cockburn-town-market-game",
+      "name": "Windmills Plaza",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -71.140616,
+        "lat": 21.46689
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cockburn-town-cockburn-town-market-game-1",
+        "cockburn-town-cockburn-town-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cockburn-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/410413537"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cockburn-town-meal-stop",
+      "name": "The Inn Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -71.146398,
+        "lat": 21.465645
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cockburn-town-cockburn-town-meal-stop-1",
+        "cockburn-town-cockburn-town-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cockburn-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4090974932"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cockburn-town-osm-node-12828526601",
+      "name": "Boaby Rock Point Snorkeling",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -71.14147,
+        "lat": 21.423786
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cockburn-town-cockburn-town-osm-node-12828526601-1",
+        "cockburn-town-cockburn-town-osm-node-12828526601-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cockburn-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12828526601"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cockburn-town-osm-node-5662570237",
+      "name": "Reef Shark Bay and Grill",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -71.146222,
+        "lat": 21.430777
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cockburn-town-cockburn-town-osm-node-5662570237-1",
+        "cockburn-town-cockburn-town-osm-node-5662570237-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cockburn-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5662570237"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cockburn-town-osm-way-410322609",
+      "name": "Turks and Caicos National Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -71.147399,
+        "lat": 21.471334
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cockburn-town-cockburn-town-osm-way-410322609-1",
+        "cockburn-town-cockburn-town-osm-way-410322609-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cockburn-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/410322609"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13525325"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cockburn-town-osm-way-410381421",
+      "name": "Grand Turk Lighthouse",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -71.133611,
+        "lat": 21.51159
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cockburn-town-cockburn-town-osm-way-410381421-1",
+        "cockburn-town-cockburn-town-osm-way-410381421-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cockburn-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/410381421"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13525311"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cockburn-town-osm-way-411579609",
+      "name": "Breeza Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -71.142125,
+        "lat": 21.473582
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cockburn-town-cockburn-town-osm-way-411579609-1",
+        "cockburn-town-cockburn-town-osm-way-411579609-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cockburn-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/411579609"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cockburn-town-osm-way-411904621",
+      "name": "Lester Williams Community Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -71.144378,
+        "lat": 21.453293
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cockburn-town-cockburn-town-osm-way-411904621-1",
+        "cockburn-town-cockburn-town-osm-way-411904621-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cockburn-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/411904621"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cockburn-town-quiet-reflection",
+      "name": "Quiet reflection space (game venue)",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -71.14090613050519,
+        "lat": 21.459872979636273
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cockburn-town-cockburn-town-quiet-reflection-1",
+        "cockburn-town-cockburn-town-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue cockburn-town-quiet-reflection has no mapped place source record."
+      }
+    },
+    {
+      "id": "cockburn-town-recreation",
+      "name": "Historic Lighthouse Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -71.133486,
+        "lat": 21.511643
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cockburn-town-cockburn-town-recreation-1",
+        "cockburn-town-cockburn-town-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cockburn-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/410381414"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cockburn-town-transit",
+      "name": "City transit stop (game venue)",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -71.13908506949483,
+        "lat": 21.4607723
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cockburn-town-cockburn-town-transit-1",
+        "cockburn-town-cockburn-town-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue cockburn-town-transit has no mapped place source record."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -71.1399956,
+        "lat": 21.4607723
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "cockburn-town-cockburn-town-airport-cockburn-town-airport-1",
+      "venueId": "cockburn-town-airport-cockburn-town-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-airport-cockburn-town-airport-2",
+      "venueId": "cockburn-town-airport-cockburn-town-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-clinic-1",
+      "venueId": "cockburn-town-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-clinic-2",
+      "venueId": "cockburn-town-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-community-notices-1",
+      "venueId": "cockburn-town-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-community-notices-2",
+      "venueId": "cockburn-town-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-community-voting-game-1",
+      "venueId": "cockburn-town-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-community-voting-game-2",
+      "venueId": "cockburn-town-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-community-workshop-1",
+      "venueId": "cockburn-town-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-community-workshop-2",
+      "venueId": "cockburn-town-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-market-game-1",
+      "venueId": "cockburn-town-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-market-game-2",
+      "venueId": "cockburn-town-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-meal-stop-1",
+      "venueId": "cockburn-town-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-meal-stop-2",
+      "venueId": "cockburn-town-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-osm-node-12828526601-1",
+      "venueId": "cockburn-town-osm-node-12828526601",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-osm-node-12828526601-2",
+      "venueId": "cockburn-town-osm-node-12828526601",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-osm-node-5662570237-1",
+      "venueId": "cockburn-town-osm-node-5662570237",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-osm-node-5662570237-2",
+      "venueId": "cockburn-town-osm-node-5662570237",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-osm-way-410322609-1",
+      "venueId": "cockburn-town-osm-way-410322609",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-osm-way-410322609-2",
+      "venueId": "cockburn-town-osm-way-410322609",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-osm-way-410381421-1",
+      "venueId": "cockburn-town-osm-way-410381421",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-osm-way-410381421-2",
+      "venueId": "cockburn-town-osm-way-410381421",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-osm-way-411579609-1",
+      "venueId": "cockburn-town-osm-way-411579609",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-osm-way-411579609-2",
+      "venueId": "cockburn-town-osm-way-411579609",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-osm-way-411904621-1",
+      "venueId": "cockburn-town-osm-way-411904621",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-osm-way-411904621-2",
+      "venueId": "cockburn-town-osm-way-411904621",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-quiet-reflection-1",
+      "venueId": "cockburn-town-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-quiet-reflection-2",
+      "venueId": "cockburn-town-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-recreation-1",
+      "venueId": "cockburn-town-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-recreation-2",
+      "venueId": "cockburn-town-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-transit-1",
+      "venueId": "cockburn-town-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    },
+    {
+      "id": "cockburn-town-cockburn-town-transit-2",
+      "venueId": "cockburn-town-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cockburn-town/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "cockburn-town-airport-cockburn-town-airport",
+    "cockburn-town-clinic",
+    "cockburn-town-community-notices",
+    "cockburn-town-community-voting-game",
+    "cockburn-town-community-workshop",
+    "cockburn-town-market-game",
+    "cockburn-town-meal-stop",
+    "cockburn-town-osm-node-12828526601",
+    "cockburn-town-osm-node-5662570237",
+    "cockburn-town-osm-way-410322609",
+    "cockburn-town-osm-way-410381421",
+    "cockburn-town-osm-way-411579609",
+    "cockburn-town-osm-way-411904621",
+    "cockburn-town-quiet-reflection",
+    "cockburn-town-recreation",
+    "cockburn-town-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "5b24cd3a9a0e9f28e220f3d606da083a348f5c38187310bea65f32e956ddaa6e",
+    "contentSha256": "15e890c36420dc07528ac9ae43f76116ca86ac843015b7cec6c8e6773449da56"
+  }
+}

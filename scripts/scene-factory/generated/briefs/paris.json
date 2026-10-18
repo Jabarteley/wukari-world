@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "paris",
+    "name": "Paris",
+    "state": {
+      "id": "fr-paris",
+      "name": "Paris"
+    },
+    "country": {
+      "id": "fr",
+      "name": "France"
+    },
+    "point": {
+      "lon": 2.3483915,
+      "lat": 48.8534951
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/france/ile-de-france-261011.osm.pbf",
+      "https://ourairports.com/airports/LFPG/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/paris/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/paris/facts.ts",
+        "sha256": "fd3e7cda79b4465769d1e706fcc02e0a71a1a507cd695f7cdd770e2b45abe8bf"
+      },
+      {
+        "path": "src/game/cities/paris/index.ts",
+        "sha256": "155f2414e90026134836c694d9a22e0fa9fdb75c94716100024f2e844bb13f02"
+      },
+      {
+        "path": "src/game/cities/paris/places.ts",
+        "sha256": "0cd0df228d998c55bb7f505c40ed023da83cbf6f7b2d4a516b01bd9695e8c84a"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.3483915,
+        "lat": 48.8534951
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "paris-airport-paris-airport",
+      "name": "Charles de Gaulle International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.554117,
+        "lat": 49.00896
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-airport-paris-airport-1",
+        "paris-paris-airport-paris-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "paris-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-clinic",
+      "name": "Hôpital Henri Mondor",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.452986,
+        "lat": 48.796392
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-clinic-1",
+        "paris-paris-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/1773821"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2945751"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-community-notices",
+      "name": "Préfecture des Hauts-de-Seine",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.215551,
+        "lat": 48.897211
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-community-notices-1",
+        "paris-paris-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/4187796"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3408911"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-community-voting-game",
+      "name": "Mairie de Noisy-le-Grand",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.552485,
+        "lat": 48.849259
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-community-voting-game-1",
+        "paris-paris-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/19802284"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q72839805"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-community-workshop",
+      "name": "Institut supérieur de mécanique de Paris",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.332784,
+        "lat": 48.919949
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-community-workshop-1",
+        "paris-paris-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/267355578"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1267711"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-market-game",
+      "name": "Aéroville",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.521367,
+        "lat": 48.991921
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-market-game-1",
+        "paris-paris-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/3294447"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2876177"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-meal-stop",
+      "name": "Maison du Val",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.106218,
+        "lat": 48.921155
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-meal-stop-1",
+        "paris-paris-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/132248181"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2434153"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-osm-node-1906996216",
+      "name": "Menhirs de la propiété Talma, dits la femme et la fille de Loth",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.503509,
+        "lat": 48.695671
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-osm-node-1906996216-1",
+        "paris-paris-osm-node-1906996216-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1906996216"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q21559222"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-osm-node-2295902532",
+      "name": "Pyramide de Juvisy",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.372133,
+        "lat": 48.698194
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-osm-node-2295902532-1",
+        "paris-paris-osm-node-2295902532-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2295902532"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q19826662"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-osm-node-6698144969",
+      "name": "Télécom Paris",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.199685,
+        "lat": 48.713111
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-osm-node-6698144969-1",
+        "paris-paris-osm-node-6698144969-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6698144969"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2311820"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-osm-relation-1223157",
+      "name": "Institut hospitalier franco-britannique - Site Kléber",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.279386,
+        "lat": 48.891611
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-osm-relation-1223157-1",
+        "paris-paris-osm-relation-1223157-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/1223157"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3152318"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-osm-way-111365747",
+      "name": "Parc de Ladoucette",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.443886,
+        "lat": 48.925376
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-osm-way-111365747-1",
+        "paris-paris-osm-way-111365747-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/111365747"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q60849143"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-osm-way-130808774",
+      "name": "Rungis International Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.355587,
+        "lat": 48.757112
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-osm-way-130808774-1",
+        "paris-paris-osm-way-130808774-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/130808774"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2917661"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-osm-way-1415157895",
+      "name": "École Nationale Supérieure d'Architecture de Paris La Villette",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.382434,
+        "lat": 48.892991
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-osm-way-1415157895-1",
+        "paris-paris-osm-way-1415157895-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1415157895"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3578185"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-osm-way-252506849",
+      "name": "Accor Arena",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.378804,
+        "lat": 48.838722
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-osm-way-252506849-1",
+        "paris-paris-osm-way-252506849-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/252506849"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q537720"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-osm-way-346302141",
+      "name": "Église Saint-Didier",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.389234,
+        "lat": 49.008302
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-osm-way-346302141-1",
+        "paris-paris-osm-way-346302141-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/346302141"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2212382"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-osm-way-365579410",
+      "name": "Parc Montreau",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.472245,
+        "lat": 48.865511
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-osm-way-365579410-1",
+        "paris-paris-osm-way-365579410-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/365579410"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q60852892"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-osm-way-39316077",
+      "name": "Stade Roland-Garros",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.247059,
+        "lat": 48.846808
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-osm-way-39316077-1",
+        "paris-paris-osm-way-39316077-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/39316077"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1613027"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-osm-way-46173452",
+      "name": "Hôpital Émile Roux",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.485436,
+        "lat": 48.749083
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-osm-way-46173452-1",
+        "paris-paris-osm-way-46173452-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/46173452"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3145367"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-osm-way-678745793",
+      "name": "Westfield Vélizy 2",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.220167,
+        "lat": 48.782632
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-osm-way-678745793-1",
+        "paris-paris-osm-way-678745793-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/678745793"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3564063"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-osm-way-85301687",
+      "name": "Église Saint-Martin",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.160123,
+        "lat": 48.987451
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-osm-way-85301687-1",
+        "paris-paris-osm-way-85301687-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/85301687"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q18819884"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-osm-way-976068267",
+      "name": "Fort de Vaujours",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.598335,
+        "lat": 48.925413
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-osm-way-976068267-1",
+        "paris-paris-osm-way-976068267-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/976068267"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3078272"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-quiet-reflection",
+      "name": "Église Saint-Flaive",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.258883,
+        "lat": 48.98994
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-quiet-reflection-1",
+        "paris-paris-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/43014678"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15958327"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-recreation",
+      "name": "Parc de Versailles",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.101527,
+        "lat": 48.80907
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-recreation-1",
+        "paris-paris-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/6697690"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2340684"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "paris-transit",
+      "name": "Malakoff - Rue Étienne Dolet",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.297342,
+        "lat": 48.815193
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "paris-paris-transit-1",
+        "paris-paris-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/paris/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12388534"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1731762"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "paris-paris-airport-paris-airport-1",
+      "venueId": "paris-airport-paris-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-airport-paris-airport-2",
+      "venueId": "paris-airport-paris-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-clinic-1",
+      "venueId": "paris-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-clinic-2",
+      "venueId": "paris-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-community-notices-1",
+      "venueId": "paris-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-community-notices-2",
+      "venueId": "paris-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-community-voting-game-1",
+      "venueId": "paris-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-community-voting-game-2",
+      "venueId": "paris-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-community-workshop-1",
+      "venueId": "paris-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-community-workshop-2",
+      "venueId": "paris-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-market-game-1",
+      "venueId": "paris-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-market-game-2",
+      "venueId": "paris-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-meal-stop-1",
+      "venueId": "paris-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-meal-stop-2",
+      "venueId": "paris-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-node-1906996216-1",
+      "venueId": "paris-osm-node-1906996216",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-node-1906996216-2",
+      "venueId": "paris-osm-node-1906996216",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-node-2295902532-1",
+      "venueId": "paris-osm-node-2295902532",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-node-2295902532-2",
+      "venueId": "paris-osm-node-2295902532",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-node-6698144969-1",
+      "venueId": "paris-osm-node-6698144969",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-node-6698144969-2",
+      "venueId": "paris-osm-node-6698144969",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-relation-1223157-1",
+      "venueId": "paris-osm-relation-1223157",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-relation-1223157-2",
+      "venueId": "paris-osm-relation-1223157",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-111365747-1",
+      "venueId": "paris-osm-way-111365747",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-111365747-2",
+      "venueId": "paris-osm-way-111365747",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-130808774-1",
+      "venueId": "paris-osm-way-130808774",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-130808774-2",
+      "venueId": "paris-osm-way-130808774",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-1415157895-1",
+      "venueId": "paris-osm-way-1415157895",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-1415157895-2",
+      "venueId": "paris-osm-way-1415157895",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-252506849-1",
+      "venueId": "paris-osm-way-252506849",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-252506849-2",
+      "venueId": "paris-osm-way-252506849",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-346302141-1",
+      "venueId": "paris-osm-way-346302141",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-346302141-2",
+      "venueId": "paris-osm-way-346302141",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-365579410-1",
+      "venueId": "paris-osm-way-365579410",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-365579410-2",
+      "venueId": "paris-osm-way-365579410",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-39316077-1",
+      "venueId": "paris-osm-way-39316077",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-39316077-2",
+      "venueId": "paris-osm-way-39316077",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-46173452-1",
+      "venueId": "paris-osm-way-46173452",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-46173452-2",
+      "venueId": "paris-osm-way-46173452",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-678745793-1",
+      "venueId": "paris-osm-way-678745793",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-678745793-2",
+      "venueId": "paris-osm-way-678745793",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-85301687-1",
+      "venueId": "paris-osm-way-85301687",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-85301687-2",
+      "venueId": "paris-osm-way-85301687",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-976068267-1",
+      "venueId": "paris-osm-way-976068267",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-osm-way-976068267-2",
+      "venueId": "paris-osm-way-976068267",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-quiet-reflection-1",
+      "venueId": "paris-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-quiet-reflection-2",
+      "venueId": "paris-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-recreation-1",
+      "venueId": "paris-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-recreation-2",
+      "venueId": "paris-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-transit-1",
+      "venueId": "paris-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    },
+    {
+      "id": "paris-paris-transit-2",
+      "venueId": "paris-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/paris/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "paris-airport-paris-airport",
+    "paris-clinic",
+    "paris-community-notices",
+    "paris-community-voting-game",
+    "paris-community-workshop",
+    "paris-market-game",
+    "paris-meal-stop",
+    "paris-osm-node-1906996216",
+    "paris-osm-node-2295902532",
+    "paris-osm-node-6698144969",
+    "paris-osm-relation-1223157",
+    "paris-osm-way-111365747",
+    "paris-osm-way-130808774",
+    "paris-osm-way-1415157895",
+    "paris-osm-way-252506849",
+    "paris-osm-way-346302141",
+    "paris-osm-way-365579410",
+    "paris-osm-way-39316077",
+    "paris-osm-way-46173452",
+    "paris-osm-way-678745793",
+    "paris-osm-way-85301687",
+    "paris-osm-way-976068267",
+    "paris-quiet-reflection",
+    "paris-recreation",
+    "paris-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "1c4043721a5cffb34adca74747ec0a67da1a288309529668c0b71a43fc5810ef",
+    "contentSha256": "dc6377f68c3cd8802634b4fe5f0132480de6dfc619d0ce3a383db36fb3a4bf05"
+  }
+}

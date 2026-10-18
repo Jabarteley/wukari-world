@@ -1,0 +1,2127 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "quito",
+    "name": "Quito",
+    "state": {
+      "id": "ec-quito",
+      "name": "Quito"
+    },
+    "country": {
+      "id": "ec",
+      "name": "Ecuador"
+    },
+    "point": {
+      "lon": -78.5123274,
+      "lat": -0.2201641
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/south-america/ecuador-261011.osm.pbf",
+      "https://ourairports.com/airports/SEQM/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/quito/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/quito/facts.ts",
+        "sha256": "83774522376df4f0a527487deb23154870f0fc2e3fde32f59d4a830c5332dbb0"
+      },
+      {
+        "path": "src/game/cities/quito/index.ts",
+        "sha256": "d0f278936b3a54f23bb63d1f1751a485db6074b0d18a3ca727200c2536431e93"
+      },
+      {
+        "path": "src/game/cities/quito/places.ts",
+        "sha256": "958c0b4cd3565b80b143052a8cb8ee682b0784920faf80d5ece27729df836782"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.5123274,
+        "lat": -0.22016409999999986
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "quito-airport-quito-airport",
+      "name": "Mariscal Sucre International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.354306,
+        "lat": -0.125399
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-airport-quito-airport-1",
+        "quito-quito-airport-quito-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "quito-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-clinic",
+      "name": "Hospital Carlos Andrade Marin",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.504798,
+        "lat": -0.205139
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-clinic-1",
+        "quito-quito-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1101691224"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5908371"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-community-notices",
+      "name": "Palacio de Carondelet",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.512608,
+        "lat": -0.21974
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-community-notices-1",
+        "quito-quito-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/381053952"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3288157"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-community-voting-game",
+      "name": "ESPE",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.444701,
+        "lat": -0.314484
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-community-voting-game-1",
+        "quito-quito-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1855823883"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5397474"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-community-workshop",
+      "name": "ESCUELA POLITECNICA DEL EJERCITO",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.443692,
+        "lat": -0.314536
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-community-workshop-1",
+        "quito-quito-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4150084999"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q97574388"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-market-game",
+      "name": "Palacio Arzobispal",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.511569,
+        "lat": -0.219638
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-market-game-1",
+        "quito-quito-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/424993603"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6057565"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-meal-stop",
+      "name": "California",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.421004,
+        "lat": -0.189242
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-meal-stop-1",
+        "quito-quito-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/499513295"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-osm-node-2137276238",
+      "name": "Batalla de Pichincha",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.52755,
+        "lat": -0.218714
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-osm-node-2137276238-1",
+        "quito-quito-osm-node-2137276238-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2137276238"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1402751"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-osm-node-6124047644",
+      "name": "Cevichería y Delicia Manabita",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.344817,
+        "lat": -0.050693
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-osm-node-6124047644-1",
+        "quito-quito-osm-node-6124047644-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6124047644"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-osm-node-899994089",
+      "name": "Las Palmas",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.650714,
+        "lat": -0.220167
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-osm-node-899994089-1",
+        "quito-quito-osm-node-899994089-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/899994089"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-osm-relation-4104543",
+      "name": "Estadio Rodrigo Paz Delgado",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.489071,
+        "lat": -0.107716
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-osm-relation-4104543-1",
+        "quito-quito-osm-relation-4104543-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/4104543"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1369320"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-osm-way-1077119324",
+      "name": "Estadio Banco Guayaquil",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.470582,
+        "lat": -0.349332
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-osm-way-1077119324-1",
+        "quito-quito-osm-way-1077119324-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1077119324"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q106054690"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-osm-way-1090509480",
+      "name": "Quito Ecuador Temple",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.441195,
+        "lat": -0.214096
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-osm-way-1090509480-1",
+        "quito-quito-osm-way-1090509480-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1090509480"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24949684"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-osm-way-161111197",
+      "name": "Universidad UTE",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.50647,
+        "lat": -0.179638
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-osm-way-161111197-1",
+        "quito-quito-osm-way-161111197-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/161111197"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2495708"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-osm-way-24680928",
+      "name": "La Alameda",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.502433,
+        "lat": -0.214731
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-osm-way-24680928-1",
+        "quito-quito-osm-way-24680928-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/24680928"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6062294"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-osm-way-26216680",
+      "name": "Estadio Gonzalo Pozo Ripalda",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.546161,
+        "lat": -0.278872
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-osm-way-26216680-1",
+        "quito-quito-osm-way-26216680-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/26216680"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2450040"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-osm-way-31152844",
+      "name": "Museo Capilla del Hombre",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.469469,
+        "lat": -0.190814
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-osm-way-31152844-1",
+        "quito-quito-osm-way-31152844-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/31152844"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5640065"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-osm-way-31281127",
+      "name": "Casa de la Cultura Ecuatoriana",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.495388,
+        "lat": -0.210136
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-osm-way-31281127-1",
+        "quito-quito-osm-way-31281127-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/31281127"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q386927"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-osm-way-341560247",
+      "name": "Colegio Academia Cotopaxi",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.460371,
+        "lat": -0.159706
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-osm-way-341560247-1",
+        "quito-quito-osm-way-341560247-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/341560247"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4671056"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-osm-way-463806835",
+      "name": "Universidad San Francisco de Quito",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.435745,
+        "lat": -0.196861
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-osm-way-463806835-1",
+        "quito-quito-osm-way-463806835-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/463806835"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2495713"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-osm-way-63058770",
+      "name": "Vulqano Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.516975,
+        "lat": -0.192596
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-osm-way-63058770-1",
+        "quito-quito-osm-way-63058770-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/63058770"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7943581"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-osm-way-673325435",
+      "name": "Iglesia de Santo Domingo",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.512507,
+        "lat": -0.224306
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-osm-way-673325435-1",
+        "quito-quito-osm-way-673325435-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/673325435"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6447145"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-quiet-reflection",
+      "name": "Cimborio \"Virgen Del Cisne\"",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.440545,
+        "lat": -0.076444
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-quiet-reflection-1",
+        "quito-quito-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4858916958"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q25403267"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-recreation",
+      "name": "Parque La Carolina",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.484353,
+        "lat": -0.183621
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-recreation-1",
+        "quito-quito-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/31133611"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q9055813"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "quito-transit",
+      "name": "TelefériQo",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -78.537087,
+        "lat": -0.186835
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "quito-quito-transit-1",
+        "quito-quito-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/quito/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/783649627"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2401537"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "quito-quito-airport-quito-airport-1",
+      "venueId": "quito-airport-quito-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-airport-quito-airport-2",
+      "venueId": "quito-airport-quito-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-clinic-1",
+      "venueId": "quito-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-clinic-2",
+      "venueId": "quito-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-community-notices-1",
+      "venueId": "quito-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-community-notices-2",
+      "venueId": "quito-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-community-voting-game-1",
+      "venueId": "quito-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-community-voting-game-2",
+      "venueId": "quito-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-community-workshop-1",
+      "venueId": "quito-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-community-workshop-2",
+      "venueId": "quito-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-market-game-1",
+      "venueId": "quito-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-market-game-2",
+      "venueId": "quito-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-meal-stop-1",
+      "venueId": "quito-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-meal-stop-2",
+      "venueId": "quito-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-node-2137276238-1",
+      "venueId": "quito-osm-node-2137276238",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-node-2137276238-2",
+      "venueId": "quito-osm-node-2137276238",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-node-6124047644-1",
+      "venueId": "quito-osm-node-6124047644",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-node-6124047644-2",
+      "venueId": "quito-osm-node-6124047644",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-node-899994089-1",
+      "venueId": "quito-osm-node-899994089",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-node-899994089-2",
+      "venueId": "quito-osm-node-899994089",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-relation-4104543-1",
+      "venueId": "quito-osm-relation-4104543",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-relation-4104543-2",
+      "venueId": "quito-osm-relation-4104543",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-1077119324-1",
+      "venueId": "quito-osm-way-1077119324",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-1077119324-2",
+      "venueId": "quito-osm-way-1077119324",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-1090509480-1",
+      "venueId": "quito-osm-way-1090509480",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-1090509480-2",
+      "venueId": "quito-osm-way-1090509480",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-161111197-1",
+      "venueId": "quito-osm-way-161111197",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-161111197-2",
+      "venueId": "quito-osm-way-161111197",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-24680928-1",
+      "venueId": "quito-osm-way-24680928",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-24680928-2",
+      "venueId": "quito-osm-way-24680928",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-26216680-1",
+      "venueId": "quito-osm-way-26216680",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-26216680-2",
+      "venueId": "quito-osm-way-26216680",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-31152844-1",
+      "venueId": "quito-osm-way-31152844",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-31152844-2",
+      "venueId": "quito-osm-way-31152844",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-31281127-1",
+      "venueId": "quito-osm-way-31281127",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-31281127-2",
+      "venueId": "quito-osm-way-31281127",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-341560247-1",
+      "venueId": "quito-osm-way-341560247",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-341560247-2",
+      "venueId": "quito-osm-way-341560247",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-463806835-1",
+      "venueId": "quito-osm-way-463806835",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-463806835-2",
+      "venueId": "quito-osm-way-463806835",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-63058770-1",
+      "venueId": "quito-osm-way-63058770",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-63058770-2",
+      "venueId": "quito-osm-way-63058770",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-673325435-1",
+      "venueId": "quito-osm-way-673325435",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-osm-way-673325435-2",
+      "venueId": "quito-osm-way-673325435",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-quiet-reflection-1",
+      "venueId": "quito-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-quiet-reflection-2",
+      "venueId": "quito-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-recreation-1",
+      "venueId": "quito-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-recreation-2",
+      "venueId": "quito-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-transit-1",
+      "venueId": "quito-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    },
+    {
+      "id": "quito-quito-transit-2",
+      "venueId": "quito-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/quito/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "quito-airport-quito-airport",
+    "quito-clinic",
+    "quito-community-notices",
+    "quito-community-voting-game",
+    "quito-community-workshop",
+    "quito-market-game",
+    "quito-meal-stop",
+    "quito-osm-node-2137276238",
+    "quito-osm-node-6124047644",
+    "quito-osm-node-899994089",
+    "quito-osm-relation-4104543",
+    "quito-osm-way-1077119324",
+    "quito-osm-way-1090509480",
+    "quito-osm-way-161111197",
+    "quito-osm-way-24680928",
+    "quito-osm-way-26216680",
+    "quito-osm-way-31152844",
+    "quito-osm-way-31281127",
+    "quito-osm-way-341560247",
+    "quito-osm-way-463806835",
+    "quito-osm-way-63058770",
+    "quito-osm-way-673325435",
+    "quito-quiet-reflection",
+    "quito-recreation",
+    "quito-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "769a5d6cf5ccf8896c98532fafff2e6ebca2520c8173f1d4b309bac30ea30b65",
+    "contentSha256": "721f3939ad504d03a7c6ce7f7ce858c81ac825001fb1b3b7556d9aefdc5dd54c"
+  }
+}

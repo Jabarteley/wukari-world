@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "palikir",
+  "url": "/assets/scene-heroes/palikir.glb",
+  "sha256": "1242d17e136ba7e00643b9bd8cbb3c72db6fc31b10b9a4c7e6d60f7621b9217c",
+  "rawBytes": 33972,
+  "brotliBytes": 19052,
+  "triangles": 1152,
+  "parts": [
+    {
+      "node": "palikir",
+      "triangles": 1152,
+      "bounds": {
+        "min": [
+          -3.33887029,
+          0,
+          -2.84053159
+        ],
+        "max": [
+          3.338870376209,
+          2.9999494172800003,
+          2.8406226189740003
+        ]
+      },
+      "footprint": [
+        -3.33887029,
+        -2.84053159,
+        3.338870376209,
+        2.8406226189740003
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "18aa1e981b2b3a48497816c0a4367ef6be104b47b82ad3d018b08063fe4f27c9",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "palikir",
+      "country": "fm",
+      "name": "Palikir Capitol Complex",
+      "category": "building",
+      "sourceUrls": [
+        "https://personnel.gov.fm/disclaimer/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=palikir]; hero-inputs-r4.md defining-form review",
+      "sourceLicence": "Source text rights unknown unless the publisher states otherwise; factual identity only. No external photo, map, mesh, texture, sculpture surface or plan reused. Original generated geometry is AGPL-3.0-or-later; third-party marks and landmark rights are not cleared by this record.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landmark",
+      "parameters": {
+        "width": 7,
+        "depth": 6,
+        "height": 3,
+        "seed": 6114,
+        "palette": [
+          "#dbcdb6",
+          "#62584a",
+          "#8f8a74",
+          "#af593f",
+          "#c8b68c",
+          "#8caa99",
+          "#d2bd91",
+          "#2e3c43"
+        ],
+        "composition": "civic-pavilions"
+      },
+      "evidence": "The FSM government PIO says its office is located in the Palikir Capitol Complex. This supports complex identity/location, not a particular designed building. Official address establishes a civic complex only. The original low civic pavilions are a symbolic category interpretation, not a factual exterior depiction; individual-building recognizability remains unverified. All dimensions, colours, simplifications and composition proportions are original art direction, not source measurements. No surveyed-location, current-access, production-quality or legal-rights approval is asserted.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

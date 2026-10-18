@@ -1,0 +1,75 @@
+{
+  "schema": "allworld-recipe-runtime-test-fixture",
+  "version": 1,
+  "scope": {
+    "use": "decoded geometry and recipe runtime tests",
+    "productionApproved": false,
+    "visualFleetApproved": false,
+    "note": "These are byte-identical real pilot assets retained as a durable non-production fixture. They prove decoder and runtime behavior only."
+  },
+  "files": [
+    {
+      "path": "gulf-guinea.glb",
+      "sha256": "e23701456dab835707d6710c3f28b8c209be96e9eeb49f74a74a4284bc3bbe7f",
+      "bytes": 91668,
+      "sourcePath": "docs/agent-work/story-mode-evidence-20261017/prep/pilot-assets-v4/final/gulf-guinea.glb",
+      "sourceSha256": "e23701456dab835707d6710c3f28b8c209be96e9eeb49f74a74a4284bc3bbe7f"
+    },
+    {
+      "path": "gulf-guinea.measurement.json",
+      "sha256": "7c030cdc6ef12dc7e7d7d0cae311230063fc389eac311c5a288cfbfe180f57ae",
+      "bytes": 6320,
+      "sourcePath": "docs/agent-work/story-mode-evidence-20261017/prep/pilot-assets-v4/reports/gulf-guinea.json",
+      "sourceSha256": "f83036a0c04f128028121e5c6acebe971ed50bee8e08b49a926d442d79e20ac4",
+      "projection": "MeasuredAsset fields consumed by the runtime tests only"
+    },
+    {
+      "path": "accra.glb",
+      "sha256": "615ab02286fc0d2584d95831edaede8d35d47d4a8ced5932ae082b5d5ead0237",
+      "bytes": 28072,
+      "sourcePath": "docs/agent-work/story-mode-evidence-20261017/prep/pilot-assets-v2/final/accra.glb",
+      "sourceSha256": "615ab02286fc0d2584d95831edaede8d35d47d4a8ced5932ae082b5d5ead0237"
+    },
+    {
+      "path": "accra.measurement.json",
+      "sha256": "50fccdc9ba05791a41493ed33aaa5106bab67e9a1710cc4065ebfe81ce28cd11",
+      "bytes": 496,
+      "sourcePath": "docs/agent-work/story-mode-evidence-20261017/prep/pilot-assets-v2/reports/pilot-v2.json#asset",
+      "sourceSha256": "312de752b8957d4e08f4918d9235fe3a7033ef6f1269042f84aaa2b187042d8e",
+      "projection": "MeasuredAsset fields consumed by the runtime tests only"
+    },
+    {
+      "path": "accra.brief.json",
+      "sha256": "7ee389249569509693265d32dd223da45aa1532c134e38a15c168f1cbea0ec88",
+      "bytes": 47380,
+      "sourcePath": "docs/agent-work/story-mode-evidence-20261017/prep/city-brief-effective-20261018-r1/accra.json",
+      "sourceSha256": "7ee389249569509693265d32dd223da45aa1532c134e38a15c168f1cbea0ec88"
+    }
+  ],
+  "provenance": {
+    "kit": {
+      "referenceCity": "accra",
+      "referenceFeature": "Makola Market",
+      "sourceUrl": "https://www.openstreetmap.org/node/7514623108",
+      "sourceScope": "Mapped identity and activity context only; no source geometry copied and no region-wide architectural claim.",
+      "inputPath": "docs/agent-work/story-mode-evidence-20261017/prep/pilot-assets-v4/inputs/gulf-guinea.json",
+      "inputSha256": "2fdffb74f7375d9e1754151b92a51e85d0f902aaa4e0c8a647b3a33364eccaa9"
+    },
+    "hero": {
+      "referenceFeature": "Makola Market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/node/7514623108",
+        "https://www.ama.gov.gh/news-details.php?n=OG4zNTZuOHFybzMwc28yNXJvcTVxNDE3Njc3Mm5uMDMxMW5xMTI1Nw%3D%3D"
+      ],
+      "sourceRef": "src/game/cities/accra/places.ts#PLACES[5]",
+      "geometryOrigin": "Original boxes, cylinders and procedural low-poly primitives; no external model, surveyed plan or photograph."
+    },
+    "geometryRights": "Original procedural geometry AGPL-3.0-or-later; factual-source rights do not imply geometry reuse rights.",
+    "sourceResearchPath": "docs/agent-work/story-mode-evidence-20261017/prep/pilot-assets-v4/reports/source-research.json",
+    "sourceResearchSha256": "4e561e9db3c47f6f7f2b3a306cde81378bd3bcc8c4e2563f174f8faf3acce83c"
+  },
+  "runtimeInputs": {
+    "hostScenery": "scripts/scene-factory/host-scenery.json",
+    "hostSceneryPolicy": "The tests intentionally read the current canonical per-venue map instead of a frozen copy."
+  }
+}

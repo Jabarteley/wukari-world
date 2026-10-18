@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "kingston-nf",
+  "url": "/assets/scene-heroes/kingston-nf.glb",
+  "sha256": "df98eabbfa55860ee293995e76fa1d8c28a32689f7fa37a20d4cd8c25ea0ad07",
+  "rawBytes": 39644,
+  "brotliBytes": 22167,
+  "triangles": 1552,
+  "parts": [
+    {
+      "node": "kingston-nf",
+      "triangles": 1552,
+      "bounds": {
+        "min": [
+          -3.33887029,
+          0,
+          -2.84053159
+        ],
+        "max": [
+          3.338870376209,
+          2.9999494172800003,
+          2.8406226189740003
+        ]
+      },
+      "footprint": [
+        -3.33887029,
+        -2.84053159,
+        3.338870376209,
+        2.8406226189740003
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "8e90cd8454a95d0f30ccc0a007d413d58fb31175f9c0c7e4a70110147807a42b",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "kingston-nf",
+      "country": "nf",
+      "name": "New Military Barracks, Kingston",
+      "category": "building",
+      "sourceUrls": [
+        "https://whc.unesco.org/en/list/1306/maps/",
+        "https://kingston.norfolkisland.gov.au/sites/default/files/documents/cp_for_mp_20180208.pdf",
+        "https://www.dcceew.gov.au/parks-heritage/heritage/places/national/kavha",
+        "https://kingston.norfolkisland.gov.au/explore-the-layers-of-history/second-settlement-1825-1855"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=kingston-nf]; hero-inputs-r4.md defining-form review",
+      "sourceLicence": "Source text rights unknown unless the publisher states otherwise; factual identity only. No external photo, map, mesh, texture, sculpture surface or plan reused. Original generated geometry is AGPL-3.0-or-later; third-party marks and landmark rights are not cleared by this record.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landmark",
+      "parameters": {
+        "width": 7,
+        "depth": 6,
+        "height": 3,
+        "seed": 6124,
+        "palette": [
+          "#dbcdb6",
+          "#62584a",
+          "#8f8a74",
+          "#af593f",
+          "#c8b68c",
+          "#8caa99",
+          "#d2bd91",
+          "#2e3c43"
+        ],
+        "composition": "barracks-court"
+      },
+      "evidence": "UNESCO map table lists the Kingston and Arthur’s Vale Historic Area on Norfolk Island with coordinates in the Kingston locality. Government site conservation masterplan identifies New Military Barracks as a central complex in KAVHA. Candidate narrowed to this specific complex. Original barracks/courtyard symbol, no traced plan or exact architectural facade. All dimensions, colours, simplifications and composition proportions are original art direction, not source measurements. No surveyed-location, current-access, production-quality or legal-rights approval is asserted. Federal heritage listing and government site history directly identify New Military Barracks at Kingston; the detailed conservation PDF download timed out.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

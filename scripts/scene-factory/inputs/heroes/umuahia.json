@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "umuahia",
+  "url": "/assets/scene-heroes/umuahia.glb",
+  "sha256": "2feb5feb927c074c23a5c2989932e28125deb34c169c7891bfa47e5a9a23c53a",
+  "rawBytes": 34492,
+  "brotliBytes": 25126,
+  "triangles": 1488,
+  "parts": [
+    {
+      "node": "umuahia",
+      "triangles": 1488,
+      "bounds": {
+        "min": [
+          -3.32588029,
+          0,
+          -2.43585587
+        ],
+        "max": [
+          3.3258800673619997,
+          2.399960658754,
+          2.435930281986
+        ]
+      },
+      "footprint": [
+        -3.32588029,
+        -2.43585587,
+        3.3258800673619997,
+        2.435930281986
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "2e0f96c41117603fa25828c6edb1628f9964a498c269ce1a5d15546b947a7d29"
+  },
+  "inputs": {
+    "rawSha256": "d6167469fb7659d8dc39903cccf8027055a8ef96532446731e90eb84e7c90e77",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "umuahia",
+      "country": "ng",
+      "name": "Ulo ama Umuochoko",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/node/8143692581"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=umuahia]",
+      "sourceLicence": "ODbL 1.0; no geometry reused.; factual evidence only, no external geometry/image licence inferred.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 8,
+        "depth": 6,
+        "height": 2.4,
+        "seed": 9938031,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "open-park"
+      },
+      "evidence": "name=Ulo ama Umuochoko; leisure=park. Repository localUnitId is umuahia-north. Inherited direct primary read recorded in R4: Direct OSM API XML fetched; selected tags only, no coordinates/geometry copied. SHA-256 cafb1c6b0d181ba6f43b51520e0edb5ea08d670e858a9f8dd4dad7df22aff01a. Source artifact SHA256 ec5e9e5faaa619cc69dcb1856b6160ea45951eaa528958abe2e715f1c46326e5. Repository source: src/game/cities/umuahia/spec.ts. Original schematic landscape only: dimensions, palette, counts, slope, vegetation shapes and layout are art direction. A park is not interpreted as forest or a pond. Riverbank uses open water and one simple bare bank with no inferred species or surveyed channel. No exact anchor overlap, water level, current access or ownership claim. Geometry original procedural AGPL-3.0-or-later; production approval pending.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "igbo-southeast"
+      }
+    },
+    "styleSha256": "e521f5975c9ebb265348861734083b151b3fb45cee72a594cea4548a3ff36a4e"
+  }
+}

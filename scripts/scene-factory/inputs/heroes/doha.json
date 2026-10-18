@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "doha",
+  "url": "/assets/scene-heroes/doha.glb",
+  "sha256": "7357b2574eb57ede45da4acff11509795b847a7d4d73ba56a8215e09cec93266",
+  "rawBytes": 34492,
+  "brotliBytes": 25493,
+  "triangles": 1488,
+  "parts": [
+    {
+      "node": "doha",
+      "triangles": 1488,
+      "bounds": {
+        "min": [
+          -3.54999995,
+          0,
+          -2.5
+        ],
+        "max": [
+          3.550000024597,
+          2.462876143297,
+          2.4998595926830003
+        ]
+      },
+      "footprint": [
+        -3.54999995,
+        -2.5,
+        3.550000024597,
+        2.4998595926830003
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "4ecd94f61a64f4cf5481b966491528b66c62c39dd43c48e7003b72828ff66be9"
+  },
+  "inputs": {
+    "rawSha256": "0daa9d1de88d7f70f927712b877ae8ef3958501b930c604e370749a1e9d3f9c0",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "doha",
+      "country": "qa",
+      "name": "Al Bidda Park",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/relation/12719187"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=doha]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 8,
+        "depth": 5.5,
+        "height": 2.6,
+        "seed": 181117,
+        "palette": [
+          "#b9bca1",
+          "#6b604e",
+          "#607953",
+          "#8b9b70",
+          "#6e868d",
+          "#c0b18d",
+          "#d9dfd4",
+          "#415044"
+        ],
+        "composition": "open-park"
+      },
+      "evidence": "Exact candidate/name alias match and leisure=park support feature identity/category. Object relation/12719187, version 7, timestamp 2024-10-08T07:53:46Z; response SHA256 564e7f8755963ddcfa91647bc0a0cdc66c7feb3c175fcb070b77658a2f64748e. Source path: src/game/cities/doha/places.ts. Original park vegetation and clearing fragment. Tree count, species, placement and dimensions are art direction; no pond, building or copied landscape plan is added. Natural-feature is the existing schema route for the vegetated park fragment, not a claim that the designed park is wilderness. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "south-asia"
+      }
+    },
+    "styleSha256": "64cbc90bfc05b51139a91eabe0f981c4f47d02ed2689be22193361f6b66af12d"
+  }
+}

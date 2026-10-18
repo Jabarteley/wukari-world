@@ -1,0 +1,2012 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "koror",
+    "name": "Koror",
+    "state": {
+      "id": "pw-koror",
+      "name": "Koror"
+    },
+    "country": {
+      "id": "pw",
+      "name": "Palau"
+    },
+    "point": {
+      "lon": 134.4766767,
+      "lat": 7.343275
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/australia-oceania/palau-261011.osm.pbf",
+      "https://ourairports.com/airports/PTRO/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/koror/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/koror/facts.ts",
+        "sha256": "5a7b0175a2afbeee2a434481ae9d420c3467474c67d7dc1af6ce404b4e62f3e5"
+      },
+      {
+        "path": "src/game/cities/koror/index.ts",
+        "sha256": "9f62f85b0cefeb8def092add9922fa2fc7576930df3810e2e5268f15bfbff553"
+      },
+      {
+        "path": "src/game/cities/koror/places.ts",
+        "sha256": "58a54c26a6ad735b7c06006ea62af5c4861513c2b819cfbc5e6ad0c3f332c407"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.4766767,
+        "lat": 7.343275
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "koror-airport-koror-airport",
+      "name": "Roman Tmetuchl International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.544085,
+        "lat": 7.366965
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-airport-koror-airport-1",
+        "koror-koror-airport-koror-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "koror-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-clinic",
+      "name": "Belau National Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.464061,
+        "lat": 7.354008
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-clinic-1",
+        "koror-koror-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/515651236"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-community-notices",
+      "name": "Capitol",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.62427,
+        "lat": 7.500195
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-community-notices-1",
+        "koror-koror-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1178068090"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q29878034"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-community-voting-game",
+      "name": "Palau Supreme Court",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.470011,
+        "lat": 7.34138
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-community-voting-game-1",
+        "koror-koror-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/367695820"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-community-workshop",
+      "name": "Palau Public Library",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.470679,
+        "lat": 7.341142
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-community-workshop-1",
+        "koror-koror-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/436679194"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q55628436"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-market-game",
+      "name": "WCTC Shopping Center",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.477973,
+        "lat": 7.342535
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-market-game-1",
+        "koror-koror-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/515653366"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q55669179"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-meal-stop",
+      "name": "Okemii Cafe",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.635561,
+        "lat": 7.499474
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-meal-stop-1",
+        "koror-koror-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1385949667"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-osm-node-13333745401",
+      "name": "Sakura",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.451123,
+        "lat": 7.335745
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-osm-node-13333745401-1",
+        "koror-koror-osm-node-13333745401-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13333745401"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-osm-node-1384146475",
+      "name": "Elilai",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.462692,
+        "lat": 7.341776
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-osm-node-1384146475-1",
+        "koror-koror-osm-node-1384146475-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1384146475"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-osm-node-357256713",
+      "name": "Palau Crocodile Preserves",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.4978,
+        "lat": 7.358035
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-osm-node-357256713-1",
+        "koror-koror-osm-node-357256713-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/357256713"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-osm-node-357256793",
+      "name": "Ngaremeduu Bay Conservation Area",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.462549,
+        "lat": 7.336685
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-osm-node-357256793-1",
+        "koror-koror-osm-node-357256793-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/357256793"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-osm-node-4031085076",
+      "name": "Airai Bai",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.560276,
+        "lat": 7.361149
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-osm-node-4031085076-1",
+        "koror-koror-osm-node-4031085076-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4031085076"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q19871758"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-osm-node-4080475589",
+      "name": "Belau Medical Clinic",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.478402,
+        "lat": 7.342211
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-osm-node-4080475589-1",
+        "koror-koror-osm-node-4080475589-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4080475589"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-osm-node-6257235485",
+      "name": "Airport Entrance",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.545244,
+        "lat": 7.368273
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-osm-node-6257235485-1",
+        "koror-koror-osm-node-6257235485-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6257235485"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-osm-node-6257235586",
+      "name": "Natinal",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.522953,
+        "lat": 7.365125
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-osm-node-6257235586-1",
+        "koror-koror-osm-node-6257235586-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6257235586"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-osm-node-9049179001",
+      "name": "Meteu 'L Klechem",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.636194,
+        "lat": 7.49243
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-osm-node-9049179001-1",
+        "koror-koror-osm-node-9049179001-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9049179001"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q23023797"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-osm-node-9530641571",
+      "name": "Fish Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.463551,
+        "lat": 7.341643
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-osm-node-9530641571-1",
+        "koror-koror-osm-node-9530641571-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9530641571"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-osm-way-35783457",
+      "name": "National Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.47247,
+        "lat": 7.343266
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-osm-way-35783457-1",
+        "koror-koror-osm-way-35783457-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/35783457"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1638468"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-osm-way-436679166",
+      "name": "Belau National Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.476344,
+        "lat": 7.336578
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-osm-way-436679166-1",
+        "koror-koror-osm-way-436679166-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/436679166"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4881995"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-osm-way-436679168",
+      "name": "Sacred Heart Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.484952,
+        "lat": 7.345218
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-osm-way-436679168-1",
+        "koror-koror-osm-way-436679168-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/436679168"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28740160"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-osm-way-441805822",
+      "name": "Surangel's Supercenter",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.478437,
+        "lat": 7.341789
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-osm-way-441805822-1",
+        "koror-koror-osm-way-441805822-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/441805822"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-quiet-reflection",
+      "name": "Nan'yō Shinto Shrine",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.496873,
+        "lat": 7.339665
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-quiet-reflection-1",
+        "koror-koror-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9530465481"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q712958"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-recreation",
+      "name": "Asahi Baseball Field",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.47446,
+        "lat": 7.340791
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-recreation-1",
+        "koror-koror-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/54438039"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16530390"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "koror-transit",
+      "name": "Koror Port",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 134.457393,
+        "lat": 7.333676
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "koror-koror-transit-1",
+        "koror-koror-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/koror/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1389401974"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "koror-koror-airport-koror-airport-1",
+      "venueId": "koror-airport-koror-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-airport-koror-airport-2",
+      "venueId": "koror-airport-koror-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-clinic-1",
+      "venueId": "koror-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-clinic-2",
+      "venueId": "koror-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-community-notices-1",
+      "venueId": "koror-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-community-notices-2",
+      "venueId": "koror-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-community-voting-game-1",
+      "venueId": "koror-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-community-voting-game-2",
+      "venueId": "koror-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-community-workshop-1",
+      "venueId": "koror-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-community-workshop-2",
+      "venueId": "koror-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-market-game-1",
+      "venueId": "koror-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-market-game-2",
+      "venueId": "koror-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-meal-stop-1",
+      "venueId": "koror-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-meal-stop-2",
+      "venueId": "koror-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-13333745401-1",
+      "venueId": "koror-osm-node-13333745401",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-13333745401-2",
+      "venueId": "koror-osm-node-13333745401",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-1384146475-1",
+      "venueId": "koror-osm-node-1384146475",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-1384146475-2",
+      "venueId": "koror-osm-node-1384146475",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-357256713-1",
+      "venueId": "koror-osm-node-357256713",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-357256713-2",
+      "venueId": "koror-osm-node-357256713",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-357256793-1",
+      "venueId": "koror-osm-node-357256793",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-357256793-2",
+      "venueId": "koror-osm-node-357256793",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-4031085076-1",
+      "venueId": "koror-osm-node-4031085076",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-4031085076-2",
+      "venueId": "koror-osm-node-4031085076",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-4080475589-1",
+      "venueId": "koror-osm-node-4080475589",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-4080475589-2",
+      "venueId": "koror-osm-node-4080475589",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-6257235485-1",
+      "venueId": "koror-osm-node-6257235485",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-6257235485-2",
+      "venueId": "koror-osm-node-6257235485",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-6257235586-1",
+      "venueId": "koror-osm-node-6257235586",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-6257235586-2",
+      "venueId": "koror-osm-node-6257235586",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-9049179001-1",
+      "venueId": "koror-osm-node-9049179001",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-9049179001-2",
+      "venueId": "koror-osm-node-9049179001",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-9530641571-1",
+      "venueId": "koror-osm-node-9530641571",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-node-9530641571-2",
+      "venueId": "koror-osm-node-9530641571",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-way-35783457-1",
+      "venueId": "koror-osm-way-35783457",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-way-35783457-2",
+      "venueId": "koror-osm-way-35783457",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-way-436679166-1",
+      "venueId": "koror-osm-way-436679166",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-way-436679166-2",
+      "venueId": "koror-osm-way-436679166",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-way-436679168-1",
+      "venueId": "koror-osm-way-436679168",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-way-436679168-2",
+      "venueId": "koror-osm-way-436679168",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-way-441805822-1",
+      "venueId": "koror-osm-way-441805822",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-osm-way-441805822-2",
+      "venueId": "koror-osm-way-441805822",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-quiet-reflection-1",
+      "venueId": "koror-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-quiet-reflection-2",
+      "venueId": "koror-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-recreation-1",
+      "venueId": "koror-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-recreation-2",
+      "venueId": "koror-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-transit-1",
+      "venueId": "koror-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    },
+    {
+      "id": "koror-koror-transit-2",
+      "venueId": "koror-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/koror/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "koror-airport-koror-airport",
+    "koror-clinic",
+    "koror-community-notices",
+    "koror-community-voting-game",
+    "koror-community-workshop",
+    "koror-market-game",
+    "koror-meal-stop",
+    "koror-osm-node-13333745401",
+    "koror-osm-node-1384146475",
+    "koror-osm-node-357256713",
+    "koror-osm-node-357256793",
+    "koror-osm-node-4031085076",
+    "koror-osm-node-4080475589",
+    "koror-osm-node-6257235485",
+    "koror-osm-node-6257235586",
+    "koror-osm-node-9049179001",
+    "koror-osm-node-9530641571",
+    "koror-osm-way-35783457",
+    "koror-osm-way-436679166",
+    "koror-osm-way-436679168",
+    "koror-osm-way-441805822",
+    "koror-quiet-reflection",
+    "koror-recreation",
+    "koror-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "2fc427496fea34863f730c11d8a66503500b1d23483acea3a4d3710b25b42aa6",
+    "contentSha256": "330f55dd00608d86ea812c28849eca7404a66137ba7a78b0cb4d2eaa5d866bd8"
+  }
+}

@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "rome",
+    "name": "Rome",
+    "state": {
+      "id": "it-rome",
+      "name": "Rome"
+    },
+    "country": {
+      "id": "it",
+      "name": "Italy"
+    },
+    "point": {
+      "lon": 12.4829321,
+      "lat": 41.8933203
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/italy-261010.osm.pbf",
+      "https://ourairports.com/airports/LIRF/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/rome/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/rome/facts.ts",
+        "sha256": "c93bf2fb2c093062dc563de72956add90b156a80ae0e247124a8689a7fe69d07"
+      },
+      {
+        "path": "src/game/cities/rome/index.ts",
+        "sha256": "120ed2d33f36f388d5bcf739226b5ec82a522a2356b6daf89fe93b1ec4782905"
+      },
+      {
+        "path": "src/game/cities/rome/places.ts",
+        "sha256": "14a2f704a605c169f7491e5d2f7a3a094212a0d600d5daf5732946732e4f6558"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.4829321,
+        "lat": 41.8933203
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "rome-airport-rome-airport",
+      "name": "Rome–Fiumicino Leonardo da Vinci International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.251998,
+        "lat": 41.804532
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-airport-rome-airport-1",
+        "rome-rome-airport-rome-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "rome-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-clinic",
+      "name": "Ospedale Sant'Andrea",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.47048,
+        "lat": 41.983225
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-clinic-1",
+        "rome-rome-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/14312289"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16530334"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-community-notices",
+      "name": "Palazzo Orsini",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.616646,
+        "lat": 42.051704
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-community-notices-1",
+        "rome-rome-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/186037229"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q242998"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-community-voting-game",
+      "name": "Municipio Roma VI",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.633613,
+        "lat": 41.869232
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-community-voting-game-1",
+        "rome-rome-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/431374177"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16481961"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-community-workshop",
+      "name": "Villa Mondragone",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.696442,
+        "lat": 41.809114
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-community-workshop-1",
+        "rome-rome-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/5763542"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1241849"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-market-game",
+      "name": "Porta di Roma",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.539867,
+        "lat": 41.970637
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-market-game-1",
+        "rome-rome-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/204398096"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3908919"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-meal-stop",
+      "name": "Cencio la Parolaccia",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.468894,
+        "lat": 41.890453
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-meal-stop-1",
+        "rome-rome-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2138753806"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3664378"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-osm-node-1172691363",
+      "name": "Babington's",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.482371,
+        "lat": 41.906039
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-osm-node-1172691363-1",
+        "rome-rome-osm-node-1172691363-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1172691363"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2892984"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-osm-node-618491090",
+      "name": "Galeria",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.299937,
+        "lat": 42.024985
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-osm-node-618491090-1",
+        "rome-rome-osm-node-618491090-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/618491090"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3862725"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-osm-node-8413119694",
+      "name": "Castel Savello",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.638031,
+        "lat": 41.723176
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-osm-node-8413119694-1",
+        "rome-rome-osm-node-8413119694-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8413119694"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3662144"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-osm-relation-11558912",
+      "name": "Parco degli Acquedotti",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.562818,
+        "lat": 41.844933
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-osm-relation-11558912-1",
+        "rome-rome-osm-relation-11558912-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/11558912"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3895477"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-osm-relation-1517075",
+      "name": "International University of Rome",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.496852,
+        "lat": 41.860288
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-osm-relation-1517075-1",
+        "rome-rome-osm-relation-1517075-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/1517075"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q939801"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-osm-relation-17854343",
+      "name": "Pontificia Facoltà di Scienze dell'Educazione",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.37155,
+        "lat": 41.932651
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-osm-relation-17854343-1",
+        "rome-rome-osm-relation-17854343-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/17854343"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16591402"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-osm-relation-1876703",
+      "name": "Ospedale San Giovanni – Presidio Santa Maria",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.503272,
+        "lat": 41.888063
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-osm-relation-1876703-1",
+        "rome-rome-osm-relation-1876703-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/1876703"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3145226"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-osm-relation-2819550",
+      "name": "Ippodromo di Tor di Valle",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.43216,
+        "lat": 41.824111
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-osm-relation-2819550-1",
+        "rome-rome-osm-relation-2819550-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/2819550"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3801694"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-osm-relation-6533345",
+      "name": "Castello",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.400208,
+        "lat": 41.743774
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-osm-relation-6533345-1",
+        "rome-rome-osm-relation-6533345-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/6533345"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15803378"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-osm-way-23951383",
+      "name": "Stadio dei Marmi",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.457457,
+        "lat": 41.934203
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-osm-way-23951383-1",
+        "rome-rome-osm-way-23951383-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/23951383"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q125290"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-osm-way-27036246",
+      "name": "Ospedale San Filippo Neri",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.413663,
+        "lat": 41.947784
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-osm-way-27036246-1",
+        "rome-rome-osm-way-27036246-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/27036246"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3886634"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-osm-way-370461335",
+      "name": "LUISS",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.513074,
+        "lat": 41.921499
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-osm-way-370461335-1",
+        "rome-rome-osm-way-370461335-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/370461335"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1122851"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-osm-way-499070475",
+      "name": "Parrocchia Santa Maria e San Biagio",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.71221,
+        "lat": 42.035425
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-osm-way-499070475-1",
+        "rome-rome-osm-way-499070475-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/499070475"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q55187603"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-osm-way-878963031",
+      "name": "Piazzale degli Eroi",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.662843,
+        "lat": 41.76957
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-osm-way-878963031-1",
+        "rome-rome-osm-way-878963031-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/878963031"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3902482"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-osm-way-880583236",
+      "name": "Nuovo Santuario Divino Amore",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.543798,
+        "lat": 41.778756
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-osm-way-880583236-1",
+        "rome-rome-osm-way-880583236-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/880583236"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2373648"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-quiet-reflection",
+      "name": "Chiesa di Sant'Ippolito e Lucia a Porto",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.262898,
+        "lat": 41.775626
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-quiet-reflection-1",
+        "rome-rome-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6861964837"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2942661"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-recreation",
+      "name": "Parco Centrale del Lago",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.466423,
+        "lat": 41.828613
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-recreation-1",
+        "rome-rome-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/2426556"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3895410"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "rome-transit",
+      "name": "Roma Prenestina",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.546052,
+        "lat": 41.89786
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "rome-rome-transit-1",
+        "rome-rome-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/rome/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/24694686"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3970708"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "rome-rome-airport-rome-airport-1",
+      "venueId": "rome-airport-rome-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-airport-rome-airport-2",
+      "venueId": "rome-airport-rome-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-clinic-1",
+      "venueId": "rome-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-clinic-2",
+      "venueId": "rome-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-community-notices-1",
+      "venueId": "rome-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-community-notices-2",
+      "venueId": "rome-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-community-voting-game-1",
+      "venueId": "rome-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-community-voting-game-2",
+      "venueId": "rome-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-community-workshop-1",
+      "venueId": "rome-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-community-workshop-2",
+      "venueId": "rome-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-market-game-1",
+      "venueId": "rome-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-market-game-2",
+      "venueId": "rome-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-meal-stop-1",
+      "venueId": "rome-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-meal-stop-2",
+      "venueId": "rome-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-node-1172691363-1",
+      "venueId": "rome-osm-node-1172691363",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-node-1172691363-2",
+      "venueId": "rome-osm-node-1172691363",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-node-618491090-1",
+      "venueId": "rome-osm-node-618491090",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-node-618491090-2",
+      "venueId": "rome-osm-node-618491090",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-node-8413119694-1",
+      "venueId": "rome-osm-node-8413119694",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-node-8413119694-2",
+      "venueId": "rome-osm-node-8413119694",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-relation-11558912-1",
+      "venueId": "rome-osm-relation-11558912",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-relation-11558912-2",
+      "venueId": "rome-osm-relation-11558912",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-relation-1517075-1",
+      "venueId": "rome-osm-relation-1517075",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-relation-1517075-2",
+      "venueId": "rome-osm-relation-1517075",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-relation-17854343-1",
+      "venueId": "rome-osm-relation-17854343",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-relation-17854343-2",
+      "venueId": "rome-osm-relation-17854343",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-relation-1876703-1",
+      "venueId": "rome-osm-relation-1876703",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-relation-1876703-2",
+      "venueId": "rome-osm-relation-1876703",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-relation-2819550-1",
+      "venueId": "rome-osm-relation-2819550",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-relation-2819550-2",
+      "venueId": "rome-osm-relation-2819550",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-relation-6533345-1",
+      "venueId": "rome-osm-relation-6533345",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-relation-6533345-2",
+      "venueId": "rome-osm-relation-6533345",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-way-23951383-1",
+      "venueId": "rome-osm-way-23951383",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-way-23951383-2",
+      "venueId": "rome-osm-way-23951383",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-way-27036246-1",
+      "venueId": "rome-osm-way-27036246",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-way-27036246-2",
+      "venueId": "rome-osm-way-27036246",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-way-370461335-1",
+      "venueId": "rome-osm-way-370461335",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-way-370461335-2",
+      "venueId": "rome-osm-way-370461335",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-way-499070475-1",
+      "venueId": "rome-osm-way-499070475",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-way-499070475-2",
+      "venueId": "rome-osm-way-499070475",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-way-878963031-1",
+      "venueId": "rome-osm-way-878963031",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-way-878963031-2",
+      "venueId": "rome-osm-way-878963031",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-way-880583236-1",
+      "venueId": "rome-osm-way-880583236",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-osm-way-880583236-2",
+      "venueId": "rome-osm-way-880583236",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-quiet-reflection-1",
+      "venueId": "rome-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-quiet-reflection-2",
+      "venueId": "rome-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-recreation-1",
+      "venueId": "rome-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-recreation-2",
+      "venueId": "rome-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-transit-1",
+      "venueId": "rome-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    },
+    {
+      "id": "rome-rome-transit-2",
+      "venueId": "rome-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/rome/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "rome-airport-rome-airport",
+    "rome-clinic",
+    "rome-community-notices",
+    "rome-community-voting-game",
+    "rome-community-workshop",
+    "rome-market-game",
+    "rome-meal-stop",
+    "rome-osm-node-1172691363",
+    "rome-osm-node-618491090",
+    "rome-osm-node-8413119694",
+    "rome-osm-relation-11558912",
+    "rome-osm-relation-1517075",
+    "rome-osm-relation-17854343",
+    "rome-osm-relation-1876703",
+    "rome-osm-relation-2819550",
+    "rome-osm-relation-6533345",
+    "rome-osm-way-23951383",
+    "rome-osm-way-27036246",
+    "rome-osm-way-370461335",
+    "rome-osm-way-499070475",
+    "rome-osm-way-878963031",
+    "rome-osm-way-880583236",
+    "rome-quiet-reflection",
+    "rome-recreation",
+    "rome-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "510f6904b4254126e43436ff810bf6098d67256a4df0fbda93dd0d3641bb863f",
+    "contentSha256": "792f04405131d1cbc553df64ba649af383bd3fbaf5d9acc02f96384a9ba830bc"
+  }
+}

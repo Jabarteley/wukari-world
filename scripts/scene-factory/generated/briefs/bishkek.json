@@ -1,0 +1,2099 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "bishkek",
+    "name": "Bishkek",
+    "state": {
+      "id": "kg-bishkek",
+      "name": "Bishkek"
+    },
+    "country": {
+      "id": "kg",
+      "name": "Kyrgyzstan"
+    },
+    "point": {
+      "lon": 74.6036724,
+      "lat": 42.8761424
+    }
+  },
+  "style": {
+    "region": "south-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/kyrgyzstan-261011.osm.pbf",
+      "https://ourairports.com/airports/UAFM/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/bishkek/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/bishkek/facts.ts",
+        "sha256": "63015e6063af301c05b9dcb88f6fecfe06dc11c54a2a317e9508dab51d6f3509"
+      },
+      {
+        "path": "src/game/cities/bishkek/index.ts",
+        "sha256": "0798868a166628046bc63d6ace7987d54b7f377f72a4c2f2adf2e6318872b59d"
+      },
+      {
+        "path": "src/game/cities/bishkek/places.ts",
+        "sha256": "5fb1f05a34e0f1e343fe60a0621a4ee4f3dd45b02123ef1fa60a4c5ab6efe7b9"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "bishkek-airport-bishkek-airport",
+      "name": "Manas International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.4776,
+        "lat": 43.061298
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-airport-bishkek-airport-1",
+        "bishkek-bishkek-airport-bishkek-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "bishkek-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-clinic",
+      "name": "Амбулатория",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.438369,
+        "lat": 42.995502
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-clinic-1",
+        "bishkek-bishkek-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3423325424"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-community-notices",
+      "name": "Кантский энергосбыт",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.83407,
+        "lat": 42.880954
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-community-notices-1",
+        "bishkek-bishkek-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4704895397"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-community-voting-game",
+      "name": "Байтик акимиаты",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.544795,
+        "lat": 42.736492
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-community-voting-game-1",
+        "bishkek-bishkek-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4406838990"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-community-workshop",
+      "name": "Ala-Too International University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.679039,
+        "lat": 42.856585
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-community-workshop-1",
+        "bishkek-bishkek-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/341105734"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4811129"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-market-game",
+      "name": "Dordoi Bazaar",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.618496,
+        "lat": 42.938386
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-market-game-1",
+        "bishkek-bishkek-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/25491570"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5297637"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-meal-stop",
+      "name": "Royal Fish",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.65172,
+        "lat": 42.727334
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-meal-stop-1",
+        "bishkek-bishkek-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3105696426"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-osm-node-11758597705",
+      "name": "Obryv Artura",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.76665,
+        "lat": 42.732443
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-osm-node-11758597705-1",
+        "bishkek-bishkek-osm-node-11758597705-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11758597705"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-osm-node-11865797560",
+      "name": "Найманбай манасчы",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.587043,
+        "lat": 42.877198
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-osm-node-11865797560-1",
+        "bishkek-bishkek-osm-node-11865797560-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11865797560"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13171824"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-osm-node-1224398024",
+      "name": "Панорама",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.645529,
+        "lat": 42.79859
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-osm-node-1224398024-1",
+        "bishkek-bishkek-osm-node-1224398024-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1224398024"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-osm-node-12617822550",
+      "name": "FIELD",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.388951,
+        "lat": 42.972028
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-osm-node-12617822550-1",
+        "bishkek-bishkek-osm-node-12617822550-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12617822550"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-osm-node-4085389965",
+      "name": "Зоологический музей",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.580347,
+        "lat": 42.877482
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-osm-node-4085389965-1",
+        "bishkek-bishkek-osm-node-4085389965-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4085389965"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16654433"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-osm-node-6786453658",
+      "name": "УНПК Международный Университет Кыргызстана Центральный Кампус",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.57066,
+        "lat": 42.866373
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-osm-node-6786453658-1",
+        "bishkek-bishkek-osm-node-6786453658-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6786453658"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6054169"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-osm-node-9805150731",
+      "name": "Sultan Hall",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.448222,
+        "lat": 42.873563
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-osm-node-9805150731-1",
+        "bishkek-bishkek-osm-node-9805150731-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9805150731"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-osm-relation-4775068",
+      "name": "Osh Bazaar",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.568669,
+        "lat": 42.875163
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-osm-relation-4775068-1",
+        "bishkek-bishkek-osm-relation-4775068-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/4775068"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7106560"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-osm-way-1025447782",
+      "name": "стадион",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.512432,
+        "lat": 42.780071
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-osm-way-1025447782-1",
+        "bishkek-bishkek-osm-way-1025447782-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1025447782"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-osm-way-1448008187",
+      "name": "Овощной сектор",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.504815,
+        "lat": 42.919625
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-osm-way-1448008187-1",
+        "bishkek-bishkek-osm-way-1448008187-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1448008187"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-osm-way-165833844",
+      "name": "Кара-Жыгач багы",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.621072,
+        "lat": 42.905825
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-osm-way-165833844-1",
+        "bishkek-bishkek-osm-way-165833844-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/165833844"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q118808714"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-osm-way-25487169",
+      "name": "Dolen Omurzakov Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.597972,
+        "lat": 42.880071
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-osm-way-25487169-1",
+        "bishkek-bishkek-osm-way-25487169-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/25487169"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3108699"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-osm-way-329702889",
+      "name": "Kyrgyz-Russian Slavic University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.614083,
+        "lat": 42.87359
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-osm-way-329702889-1",
+        "bishkek-bishkek-osm-way-329702889-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/329702889"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1743431"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-osm-way-49130695",
+      "name": "Mikhail Frunze Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.60542,
+        "lat": 42.880459
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-osm-way-49130695-1",
+        "bishkek-bishkek-osm-way-49130695-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/49130695"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q84737699"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-osm-way-769141527",
+      "name": "Kyrgyz-Turkish Manas University Campus",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.5763,
+        "lat": 42.83514
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-osm-way-769141527-1",
+        "bishkek-bishkek-osm-way-769141527-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/769141527"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4250914"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-quiet-reflection",
+      "name": "Resurrection Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.597467,
+        "lat": 42.884165
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-quiet-reflection-1",
+        "bishkek-bishkek-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/177274786"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4126235"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-recreation",
+      "name": "Panfilov Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.599557,
+        "lat": 42.879145
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-recreation-1",
+        "bishkek-bishkek-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/25487201"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q48805246"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bishkek-transit",
+      "name": "Bishkek 2",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.605704,
+        "lat": 42.863832
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bishkek-bishkek-transit-1",
+        "bishkek-bishkek-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bishkek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/240449433"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q9172267"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 74.6036724,
+        "lat": 42.8761424
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "bishkek-bishkek-airport-bishkek-airport-1",
+      "venueId": "bishkek-airport-bishkek-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-airport-bishkek-airport-2",
+      "venueId": "bishkek-airport-bishkek-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-clinic-1",
+      "venueId": "bishkek-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-clinic-2",
+      "venueId": "bishkek-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-community-notices-1",
+      "venueId": "bishkek-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-community-notices-2",
+      "venueId": "bishkek-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-community-voting-game-1",
+      "venueId": "bishkek-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-community-voting-game-2",
+      "venueId": "bishkek-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-community-workshop-1",
+      "venueId": "bishkek-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-community-workshop-2",
+      "venueId": "bishkek-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-market-game-1",
+      "venueId": "bishkek-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-market-game-2",
+      "venueId": "bishkek-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-meal-stop-1",
+      "venueId": "bishkek-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-meal-stop-2",
+      "venueId": "bishkek-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-node-11758597705-1",
+      "venueId": "bishkek-osm-node-11758597705",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-node-11758597705-2",
+      "venueId": "bishkek-osm-node-11758597705",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-node-11865797560-1",
+      "venueId": "bishkek-osm-node-11865797560",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-node-11865797560-2",
+      "venueId": "bishkek-osm-node-11865797560",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-node-1224398024-1",
+      "venueId": "bishkek-osm-node-1224398024",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-node-1224398024-2",
+      "venueId": "bishkek-osm-node-1224398024",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-node-12617822550-1",
+      "venueId": "bishkek-osm-node-12617822550",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-node-12617822550-2",
+      "venueId": "bishkek-osm-node-12617822550",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-node-4085389965-1",
+      "venueId": "bishkek-osm-node-4085389965",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-node-4085389965-2",
+      "venueId": "bishkek-osm-node-4085389965",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-node-6786453658-1",
+      "venueId": "bishkek-osm-node-6786453658",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-node-6786453658-2",
+      "venueId": "bishkek-osm-node-6786453658",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-node-9805150731-1",
+      "venueId": "bishkek-osm-node-9805150731",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-node-9805150731-2",
+      "venueId": "bishkek-osm-node-9805150731",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-relation-4775068-1",
+      "venueId": "bishkek-osm-relation-4775068",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-relation-4775068-2",
+      "venueId": "bishkek-osm-relation-4775068",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-way-1025447782-1",
+      "venueId": "bishkek-osm-way-1025447782",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-way-1025447782-2",
+      "venueId": "bishkek-osm-way-1025447782",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-way-1448008187-1",
+      "venueId": "bishkek-osm-way-1448008187",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-way-1448008187-2",
+      "venueId": "bishkek-osm-way-1448008187",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-way-165833844-1",
+      "venueId": "bishkek-osm-way-165833844",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-way-165833844-2",
+      "venueId": "bishkek-osm-way-165833844",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-way-25487169-1",
+      "venueId": "bishkek-osm-way-25487169",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-way-25487169-2",
+      "venueId": "bishkek-osm-way-25487169",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-way-329702889-1",
+      "venueId": "bishkek-osm-way-329702889",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-way-329702889-2",
+      "venueId": "bishkek-osm-way-329702889",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-way-49130695-1",
+      "venueId": "bishkek-osm-way-49130695",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-way-49130695-2",
+      "venueId": "bishkek-osm-way-49130695",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-way-769141527-1",
+      "venueId": "bishkek-osm-way-769141527",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-osm-way-769141527-2",
+      "venueId": "bishkek-osm-way-769141527",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-quiet-reflection-1",
+      "venueId": "bishkek-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-quiet-reflection-2",
+      "venueId": "bishkek-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-recreation-1",
+      "venueId": "bishkek-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-recreation-2",
+      "venueId": "bishkek-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-transit-1",
+      "venueId": "bishkek-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    },
+    {
+      "id": "bishkek-bishkek-transit-2",
+      "venueId": "bishkek-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bishkek/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "bishkek-airport-bishkek-airport",
+    "bishkek-clinic",
+    "bishkek-community-notices",
+    "bishkek-community-voting-game",
+    "bishkek-community-workshop",
+    "bishkek-market-game",
+    "bishkek-meal-stop",
+    "bishkek-osm-node-11758597705",
+    "bishkek-osm-node-11865797560",
+    "bishkek-osm-node-1224398024",
+    "bishkek-osm-node-12617822550",
+    "bishkek-osm-node-4085389965",
+    "bishkek-osm-node-6786453658",
+    "bishkek-osm-node-9805150731",
+    "bishkek-osm-relation-4775068",
+    "bishkek-osm-way-1025447782",
+    "bishkek-osm-way-1448008187",
+    "bishkek-osm-way-165833844",
+    "bishkek-osm-way-25487169",
+    "bishkek-osm-way-329702889",
+    "bishkek-osm-way-49130695",
+    "bishkek-osm-way-769141527",
+    "bishkek-quiet-reflection",
+    "bishkek-recreation",
+    "bishkek-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "598318f2de8d5cb4de5adabdbfbbe206e1d7fb96d1f47f01d9cf4a4a07e4205e",
+    "contentSha256": "c1e488b9b44f65496e138074662ad64dce9281a0eb93e81226818843dbb39bed"
+  }
+}

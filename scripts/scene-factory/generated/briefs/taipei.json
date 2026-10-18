@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "taipei",
+    "name": "Taipei",
+    "state": {
+      "id": "tw-taipei",
+      "name": "Taipei"
+    },
+    "country": {
+      "id": "tw",
+      "name": "Taiwan"
+    },
+    "point": {
+      "lon": 121.5636796,
+      "lat": 25.0375198
+    }
+  },
+  "style": {
+    "region": "east-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/taiwan-261011.osm.pbf",
+      "https://ourairports.com/airports/RCSS/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/taipei/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/taipei/facts.ts",
+        "sha256": "e8729d6f644578217b07b2836a11bbb89fa907ee8c01cd04852d2f51be15700b"
+      },
+      {
+        "path": "src/game/cities/taipei/index.ts",
+        "sha256": "ecd34b082bd450f486b65795bc82c65b791e72ae14a3851a08a6aa508d1fe5ae"
+      },
+      {
+        "path": "src/game/cities/taipei/places.ts",
+        "sha256": "ad0c2d531bf5d6ab268cf18817de56f47a452ad841793449fcfaf1ec1f7cfc81"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.5636796,
+        "lat": 25.0375198
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "taipei-airport-taipei-airport",
+      "name": "Taipei Songshan International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.552822,
+        "lat": 25.067244
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-airport-taipei-airport-1",
+        "taipei-taipei-airport-taipei-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "taipei-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-clinic",
+      "name": "衛生福利部基隆醫院",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.748442,
+        "lat": 25.130558
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-clinic-1",
+        "taipei-taipei-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/367812162"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q18119145"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-community-notices",
+      "name": "Central Engraving and Printing Plant",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.486817,
+        "lat": 24.949285
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-community-notices-1",
+        "taipei-taipei-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/6296197"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q9384429"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-community-voting-game",
+      "name": "New Taipei City Hall",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.465428,
+        "lat": 25.012521
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-community-voting-game-1",
+        "taipei-taipei-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/4202253"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7012020"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-community-workshop",
+      "name": "Ming Chi University of Technology",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.420399,
+        "lat": 25.041484
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-community-workshop-1",
+        "taipei-taipei-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/5456014"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11087869"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-market-game",
+      "name": "Mitsui Shopping Park LaLaport 南港",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.617951,
+        "lat": 25.059349
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-market-game-1",
+        "taipei-taipei-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1009409905"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q48901384"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-meal-stop",
+      "name": "藍白小鎮",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.450547,
+        "lat": 25.176709
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-meal-stop-1",
+        "taipei-taipei-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/295946611"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q131263043"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-osm-node-12077731973",
+      "name": "土地公山遺址",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.434113,
+        "lat": 24.969612
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-osm-node-12077731973-1",
+        "taipei-taipei-osm-node-12077731973-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12077731973"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q10927666"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-osm-node-2003037499",
+      "name": "芝山岩",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.53019,
+        "lat": 25.103269
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-osm-node-2003037499-1",
+        "taipei-taipei-osm-node-2003037499-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2003037499"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15915573"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-osm-node-4199791991",
+      "name": "Queen's Head",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.693133,
+        "lat": 25.208781
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-osm-node-4199791991-1",
+        "taipei-taipei-osm-node-4199791991-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4199791991"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q10942787"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-osm-relation-4612518",
+      "name": "Fu Hsing Kang College, National Defense University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.494098,
+        "lat": 25.141015
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-osm-relation-4612518-1",
+        "taipei-taipei-osm-relation-4612518-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/4612518"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5506838"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-osm-way-1197004281",
+      "name": "Yes!Life Yulon City",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.546796,
+        "lat": 24.978123
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-osm-way-1197004281-1",
+        "taipei-taipei-osm-way-1197004281-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1197004281"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q48927996"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-osm-way-1329940449",
+      "name": "天恩宮",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.592324,
+        "lat": 24.970364
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-osm-way-1329940449-1",
+        "taipei-taipei-osm-way-1329940449-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1329940449"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q10001030"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-osm-way-261330789",
+      "name": "台北海洋科技大學士林校區",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.471018,
+        "lat": 25.108646
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-osm-way-261330789-1",
+        "taipei-taipei-osm-way-261330789-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/261330789"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5099770"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-osm-way-263590699",
+      "name": "Hsing Xiu Kong",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.401311,
+        "lat": 24.905168
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-osm-way-263590699-1",
+        "taipei-taipei-osm-way-263590699-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/263590699"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16926466"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-osm-way-287104550",
+      "name": "Huafan University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.69137,
+        "lat": 24.980749
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-osm-way-287104550-1",
+        "taipei-taipei-osm-way-287104550-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/287104550"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5925062"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-osm-way-354534871",
+      "name": "Shuang Ho Hospital, MOHW",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.493521,
+        "lat": 24.992568
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-osm-way-354534871-1",
+        "taipei-taipei-osm-way-354534871-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/354534871"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15902806"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-osm-way-385941045",
+      "name": "Yingfeng Riverside Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.557967,
+        "lat": 25.073316
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-osm-way-385941045-1",
+        "taipei-taipei-osm-way-385941045-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/385941045"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15932184"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-osm-way-396909006",
+      "name": "Taipei City Psychiatric Center (TCPC)",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.57439,
+        "lat": 25.029496
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-osm-way-396909006-1",
+        "taipei-taipei-osm-way-396909006-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/396909006"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15903734"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-osm-way-456206409",
+      "name": "National Archives",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.374114,
+        "lat": 25.073448
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-osm-way-456206409-1",
+        "taipei-taipei-osm-way-456206409-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/456206409"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q124259497"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-osm-way-619916134",
+      "name": "國順公園",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.510079,
+        "lat": 25.066111
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-osm-way-619916134-1",
+        "taipei-taipei-osm-way-619916134-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/619916134"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q109437921"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-osm-way-773559279",
+      "name": "三板橋",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.517886,
+        "lat": 25.20716
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-osm-way-773559279-1",
+        "taipei-taipei-osm-way-773559279-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/773559279"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q101507963"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-quiet-reflection",
+      "name": "保坪宮",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.711457,
+        "lat": 24.936977
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-quiet-reflection-1",
+        "taipei-taipei-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/242726461"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q109349226"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-recreation",
+      "name": "Floriculture Experiment Center",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.544274,
+        "lat": 25.135107
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-recreation-1",
+        "taipei-taipei-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/8410958"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q10499981"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "taipei-transit",
+      "name": "Taipower Building",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 121.528208,
+        "lat": 25.020669
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "taipei-taipei-transit-1",
+        "taipei-taipei-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/taipei/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/253559357"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q708952"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "taipei-taipei-airport-taipei-airport-1",
+      "venueId": "taipei-airport-taipei-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-airport-taipei-airport-2",
+      "venueId": "taipei-airport-taipei-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-clinic-1",
+      "venueId": "taipei-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-clinic-2",
+      "venueId": "taipei-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-community-notices-1",
+      "venueId": "taipei-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-community-notices-2",
+      "venueId": "taipei-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-community-voting-game-1",
+      "venueId": "taipei-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-community-voting-game-2",
+      "venueId": "taipei-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-community-workshop-1",
+      "venueId": "taipei-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-community-workshop-2",
+      "venueId": "taipei-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-market-game-1",
+      "venueId": "taipei-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-market-game-2",
+      "venueId": "taipei-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-meal-stop-1",
+      "venueId": "taipei-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-meal-stop-2",
+      "venueId": "taipei-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-node-12077731973-1",
+      "venueId": "taipei-osm-node-12077731973",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-node-12077731973-2",
+      "venueId": "taipei-osm-node-12077731973",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-node-2003037499-1",
+      "venueId": "taipei-osm-node-2003037499",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-node-2003037499-2",
+      "venueId": "taipei-osm-node-2003037499",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-node-4199791991-1",
+      "venueId": "taipei-osm-node-4199791991",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-node-4199791991-2",
+      "venueId": "taipei-osm-node-4199791991",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-relation-4612518-1",
+      "venueId": "taipei-osm-relation-4612518",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-relation-4612518-2",
+      "venueId": "taipei-osm-relation-4612518",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-1197004281-1",
+      "venueId": "taipei-osm-way-1197004281",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-1197004281-2",
+      "venueId": "taipei-osm-way-1197004281",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-1329940449-1",
+      "venueId": "taipei-osm-way-1329940449",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-1329940449-2",
+      "venueId": "taipei-osm-way-1329940449",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-261330789-1",
+      "venueId": "taipei-osm-way-261330789",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-261330789-2",
+      "venueId": "taipei-osm-way-261330789",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-263590699-1",
+      "venueId": "taipei-osm-way-263590699",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-263590699-2",
+      "venueId": "taipei-osm-way-263590699",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-287104550-1",
+      "venueId": "taipei-osm-way-287104550",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-287104550-2",
+      "venueId": "taipei-osm-way-287104550",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-354534871-1",
+      "venueId": "taipei-osm-way-354534871",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-354534871-2",
+      "venueId": "taipei-osm-way-354534871",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-385941045-1",
+      "venueId": "taipei-osm-way-385941045",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-385941045-2",
+      "venueId": "taipei-osm-way-385941045",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-396909006-1",
+      "venueId": "taipei-osm-way-396909006",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-396909006-2",
+      "venueId": "taipei-osm-way-396909006",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-456206409-1",
+      "venueId": "taipei-osm-way-456206409",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-456206409-2",
+      "venueId": "taipei-osm-way-456206409",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-619916134-1",
+      "venueId": "taipei-osm-way-619916134",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-619916134-2",
+      "venueId": "taipei-osm-way-619916134",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-773559279-1",
+      "venueId": "taipei-osm-way-773559279",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-osm-way-773559279-2",
+      "venueId": "taipei-osm-way-773559279",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-quiet-reflection-1",
+      "venueId": "taipei-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-quiet-reflection-2",
+      "venueId": "taipei-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-recreation-1",
+      "venueId": "taipei-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-recreation-2",
+      "venueId": "taipei-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-transit-1",
+      "venueId": "taipei-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    },
+    {
+      "id": "taipei-taipei-transit-2",
+      "venueId": "taipei-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/taipei/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "taipei-airport-taipei-airport",
+    "taipei-clinic",
+    "taipei-community-notices",
+    "taipei-community-voting-game",
+    "taipei-community-workshop",
+    "taipei-market-game",
+    "taipei-meal-stop",
+    "taipei-osm-node-12077731973",
+    "taipei-osm-node-2003037499",
+    "taipei-osm-node-4199791991",
+    "taipei-osm-relation-4612518",
+    "taipei-osm-way-1197004281",
+    "taipei-osm-way-1329940449",
+    "taipei-osm-way-261330789",
+    "taipei-osm-way-263590699",
+    "taipei-osm-way-287104550",
+    "taipei-osm-way-354534871",
+    "taipei-osm-way-385941045",
+    "taipei-osm-way-396909006",
+    "taipei-osm-way-456206409",
+    "taipei-osm-way-619916134",
+    "taipei-osm-way-773559279",
+    "taipei-quiet-reflection",
+    "taipei-recreation",
+    "taipei-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "8fe2bb69ffa14a9d4855dc1dae55762975d269a8d4c9ca2379a48f9e5afab4f7",
+    "contentSha256": "1c81e5c9beada1d04d51b010bc624560124a1e68fcbb76dffa477c3559d73e95"
+  }
+}

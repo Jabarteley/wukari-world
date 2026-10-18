@@ -1,0 +1,2071 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "roseau",
+    "name": "Roseau",
+    "state": {
+      "id": "dm-roseau",
+      "name": "Roseau"
+    },
+    "country": {
+      "id": "dm",
+      "name": "Dominica"
+    },
+    "point": {
+      "lon": -61.3872868,
+      "lat": 15.2991923
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "https://ourairports.com/airports/TDPD/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/roseau/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/roseau/facts.ts",
+        "sha256": "29581a8c55faab0556721a43f311eb605d19c62e1af841a4d2328f816f000b76"
+      },
+      {
+        "path": "src/game/cities/roseau/index.ts",
+        "sha256": "13c003d07846146246472c40f04ff21f1d2ac50f8dea3120721ff0d3011a9fe5"
+      },
+      {
+        "path": "src/game/cities/roseau/places.ts",
+        "sha256": "619a0934da92aaaf0afe464da71a47db77b1986b5c289dd5b3e1f23d8ed78c4f"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.3872868,
+        "lat": 15.2991923
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "roseau-airport-roseau-airport",
+      "name": "Douglas-Charles Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.301082,
+        "lat": 15.546673
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-airport-roseau-airport-1",
+        "roseau-roseau-airport-roseau-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "roseau-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-clinic",
+      "name": "Marigot Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.282853,
+        "lat": 15.540018
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-clinic-1",
+        "roseau-roseau-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/370396285"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-community-notices",
+      "name": "pas de jonction",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.413115,
+        "lat": 15.436926
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-community-notices-1",
+        "roseau-roseau-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6366091386"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-community-voting-game",
+      "name": "Grand Fond Community Center",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.275932,
+        "lat": 15.360841
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-community-voting-game-1",
+        "roseau-roseau-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/271661481"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-community-workshop",
+      "name": "Dominica State College",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.378525,
+        "lat": 15.309497
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-community-workshop-1",
+        "roseau-roseau-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/5963855"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5290700"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-market-game",
+      "name": "Bellevue Chopin Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.345887,
+        "lat": 15.266709
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-market-game-1",
+        "roseau-roseau-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1033304908"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-meal-stop",
+      "name": "Molly's Food Spot",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.461396,
+        "lat": 15.48454
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-meal-stop-1",
+        "roseau-roseau-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4650862590"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-osm-node-11977639451",
+      "name": "Windsor Park",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.384461,
+        "lat": 15.30187
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-osm-node-11977639451-1",
+        "roseau-roseau-osm-node-11977639451-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11977639451"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1354676"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-osm-node-1418090286",
+      "name": "Victoria Falls",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.271724,
+        "lat": 15.290725
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-osm-node-1418090286-1",
+        "roseau-roseau-osm-node-1418090286-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1418090286"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q61278383"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-osm-node-3661886297",
+      "name": "Trafalgar Falls",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.334045,
+        "lat": 15.327708
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-osm-node-3661886297-1",
+        "roseau-roseau-osm-node-3661886297-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3661886297"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q23755365"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-osm-node-4568918989",
+      "name": "View of Trafalgar Falls",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.345324,
+        "lat": 15.324304
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-osm-node-4568918989-1",
+        "roseau-roseau-osm-node-4568918989-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4568918989"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-osm-node-4650862492",
+      "name": "3D Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.368178,
+        "lat": 15.212533
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-osm-node-4650862492-1",
+        "roseau-roseau-osm-node-4650862492-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4650862492"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-osm-node-5238480521",
+      "name": "Islet view",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.258682,
+        "lat": 15.446876
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-osm-node-5238480521-1",
+        "roseau-roseau-osm-node-5238480521-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5238480521"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-osm-node-5779237653",
+      "name": "House of the president",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.384893,
+        "lat": 15.29602
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-osm-node-5779237653-1",
+        "roseau-roseau-osm-node-5779237653-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5779237653"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5588875"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-osm-node-9682732830",
+      "name": "Morne Bruce",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.379251,
+        "lat": 15.298926
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-osm-node-9682732830-1",
+        "roseau-roseau-osm-node-9682732830-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9682732830"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-osm-way-1102696829",
+      "name": "Concord Playing Feild",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.276794,
+        "lat": 15.489837
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-osm-way-1102696829-1",
+        "roseau-roseau-osm-way-1102696829-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1102696829"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-osm-way-145400476",
+      "name": "Botanical Gardens",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.382617,
+        "lat": 15.299612
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-osm-way-145400476-1",
+        "roseau-roseau-osm-way-145400476-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/145400476"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3456644"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-osm-way-198518720",
+      "name": "Pierre Charles Secondary School",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.315068,
+        "lat": 15.246323
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-osm-way-198518720-1",
+        "roseau-roseau-osm-way-198518720-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/198518720"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-osm-way-361451994",
+      "name": "Old Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.38733,
+        "lat": 15.296728
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-osm-way-361451994-1",
+        "roseau-roseau-osm-way-361451994-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/361451994"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-osm-way-389821142",
+      "name": "All Saints University School of Medicine",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.387928,
+        "lat": 15.2999
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-osm-way-389821142-1",
+        "roseau-roseau-osm-way-389821142-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/389821142"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-osm-way-396804252",
+      "name": "The University of the West Indies Open Campus",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.381342,
+        "lat": 15.301285
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-osm-way-396804252-1",
+        "roseau-roseau-osm-way-396804252-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/396804252"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-osm-way-396970462",
+      "name": "Dominica-China Friendship Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.384507,
+        "lat": 15.306516
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-osm-way-396970462-1",
+        "roseau-roseau-osm-way-396970462-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/396970462"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-quiet-reflection",
+      "name": "Our Lady of Fair Haven Cthedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.385473,
+        "lat": 15.297404
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-quiet-reflection-1",
+        "roseau-roseau-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/361451997"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-recreation",
+      "name": "Lindo Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.38563,
+        "lat": 15.304843
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-recreation-1",
+        "roseau-roseau-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/142324885"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q23756125"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "roseau-transit",
+      "name": "Roseau",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -61.389642,
+        "lat": 15.29747
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "roseau-roseau-transit-1",
+        "roseau-roseau-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/roseau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4882864440"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "roseau-roseau-airport-roseau-airport-1",
+      "venueId": "roseau-airport-roseau-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-airport-roseau-airport-2",
+      "venueId": "roseau-airport-roseau-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-clinic-1",
+      "venueId": "roseau-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-clinic-2",
+      "venueId": "roseau-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-community-notices-1",
+      "venueId": "roseau-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-community-notices-2",
+      "venueId": "roseau-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-community-voting-game-1",
+      "venueId": "roseau-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-community-voting-game-2",
+      "venueId": "roseau-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-community-workshop-1",
+      "venueId": "roseau-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-community-workshop-2",
+      "venueId": "roseau-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-market-game-1",
+      "venueId": "roseau-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-market-game-2",
+      "venueId": "roseau-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-meal-stop-1",
+      "venueId": "roseau-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-meal-stop-2",
+      "venueId": "roseau-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-node-11977639451-1",
+      "venueId": "roseau-osm-node-11977639451",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-node-11977639451-2",
+      "venueId": "roseau-osm-node-11977639451",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-node-1418090286-1",
+      "venueId": "roseau-osm-node-1418090286",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-node-1418090286-2",
+      "venueId": "roseau-osm-node-1418090286",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-node-3661886297-1",
+      "venueId": "roseau-osm-node-3661886297",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-node-3661886297-2",
+      "venueId": "roseau-osm-node-3661886297",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-node-4568918989-1",
+      "venueId": "roseau-osm-node-4568918989",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-node-4568918989-2",
+      "venueId": "roseau-osm-node-4568918989",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-node-4650862492-1",
+      "venueId": "roseau-osm-node-4650862492",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-node-4650862492-2",
+      "venueId": "roseau-osm-node-4650862492",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-node-5238480521-1",
+      "venueId": "roseau-osm-node-5238480521",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-node-5238480521-2",
+      "venueId": "roseau-osm-node-5238480521",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-node-5779237653-1",
+      "venueId": "roseau-osm-node-5779237653",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-node-5779237653-2",
+      "venueId": "roseau-osm-node-5779237653",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-node-9682732830-1",
+      "venueId": "roseau-osm-node-9682732830",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-node-9682732830-2",
+      "venueId": "roseau-osm-node-9682732830",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-way-1102696829-1",
+      "venueId": "roseau-osm-way-1102696829",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-way-1102696829-2",
+      "venueId": "roseau-osm-way-1102696829",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-way-145400476-1",
+      "venueId": "roseau-osm-way-145400476",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-way-145400476-2",
+      "venueId": "roseau-osm-way-145400476",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-way-198518720-1",
+      "venueId": "roseau-osm-way-198518720",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-way-198518720-2",
+      "venueId": "roseau-osm-way-198518720",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-way-361451994-1",
+      "venueId": "roseau-osm-way-361451994",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-way-361451994-2",
+      "venueId": "roseau-osm-way-361451994",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-way-389821142-1",
+      "venueId": "roseau-osm-way-389821142",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-way-389821142-2",
+      "venueId": "roseau-osm-way-389821142",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-way-396804252-1",
+      "venueId": "roseau-osm-way-396804252",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-way-396804252-2",
+      "venueId": "roseau-osm-way-396804252",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-way-396970462-1",
+      "venueId": "roseau-osm-way-396970462",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-osm-way-396970462-2",
+      "venueId": "roseau-osm-way-396970462",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-quiet-reflection-1",
+      "venueId": "roseau-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-quiet-reflection-2",
+      "venueId": "roseau-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-recreation-1",
+      "venueId": "roseau-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-recreation-2",
+      "venueId": "roseau-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-transit-1",
+      "venueId": "roseau-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    },
+    {
+      "id": "roseau-roseau-transit-2",
+      "venueId": "roseau-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/roseau/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "roseau-airport-roseau-airport",
+    "roseau-clinic",
+    "roseau-community-notices",
+    "roseau-community-voting-game",
+    "roseau-community-workshop",
+    "roseau-market-game",
+    "roseau-meal-stop",
+    "roseau-osm-node-11977639451",
+    "roseau-osm-node-1418090286",
+    "roseau-osm-node-3661886297",
+    "roseau-osm-node-4568918989",
+    "roseau-osm-node-4650862492",
+    "roseau-osm-node-5238480521",
+    "roseau-osm-node-5779237653",
+    "roseau-osm-node-9682732830",
+    "roseau-osm-way-1102696829",
+    "roseau-osm-way-145400476",
+    "roseau-osm-way-198518720",
+    "roseau-osm-way-361451994",
+    "roseau-osm-way-389821142",
+    "roseau-osm-way-396804252",
+    "roseau-osm-way-396970462",
+    "roseau-quiet-reflection",
+    "roseau-recreation",
+    "roseau-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "6a8339606f2a7220b61d8d1eb4b72fb6dd42002e7fab0727bd5e85307da41c5e",
+    "contentSha256": "2b8161e0d552352677d1b591f8b35b79c543832953b0b5cc2db15081a6e5aee6"
+  }
+}

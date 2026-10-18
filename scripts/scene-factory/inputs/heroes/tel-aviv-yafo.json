@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "tel-aviv-yafo",
+  "url": "/assets/scene-heroes/tel-aviv-yafo.glb",
+  "sha256": "5f4aa456644d27737f470a52f8a8f7e1841f740a1c404a23be2f2d2a3a3d72b1",
+  "rawBytes": 33436,
+  "brotliBytes": 18484,
+  "triangles": 1164,
+  "parts": [
+    {
+      "node": "tel-aviv-yafo",
+      "triangles": 1164,
+      "bounds": {
+        "min": [
+          -2.53048801,
+          0,
+          -2.01600599
+        ],
+        "max": [
+          2.5304880933260003,
+          2.5000597939460003,
+          2.015969844744
+        ]
+      },
+      "footprint": [
+        -2.53048801,
+        -2.01600599,
+        2.5304880933260003,
+        2.015969844744
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "4ecd94f61a64f4cf5481b966491528b66c62c39dd43c48e7003b72828ff66be9"
+  },
+  "inputs": {
+    "rawSha256": "02add06e093a7e5f85bd6dc917b3012accc511b11828b2a541f6ec30506210e2",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "tel-aviv-yafo",
+      "country": "il",
+      "name": "Shuk HaPishpeshim",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/84092298"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=tel-aviv-yafo]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 181217,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Exact candidate/name alias match and amenity=marketplace support feature identity/category. Object way/84092298, version 15, timestamp 2026-05-27T15:55:01Z; response SHA256 17e4d5da1fa1bd75196b13c995a3ac60a89e637f20132abe260365b255174409. Source path: src/game/cities/tel-aviv-yafo/places.ts. Empty counters, racks and awnings indicate trade. No goods, original shop plan, actual number of stalls or current operation are inferred. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "south-asia"
+      }
+    },
+    "styleSha256": "64cbc90bfc05b51139a91eabe0f981c4f47d02ed2689be22193361f6b66af12d"
+  }
+}

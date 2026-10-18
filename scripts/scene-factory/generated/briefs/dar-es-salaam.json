@@ -1,0 +1,1925 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "dar-es-salaam",
+    "name": "Dar es Salaam",
+    "state": {
+      "id": "tz-dar-es-salaam",
+      "name": "Dar es Salaam"
+    },
+    "country": {
+      "id": "tz",
+      "name": "Tanzania"
+    },
+    "point": {
+      "lon": 39.266396,
+      "lat": -6.798067
+    }
+  },
+  "style": {
+    "region": "swahili-coast",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap contributors and OurAirports dataset",
+    "sourceUrls": [
+      "https://www.openstreetmap.org/copyright",
+      "https://www.taa.go.tz/services/jnia"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/dar-es-salaam/content.ts",
+        "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+      },
+      {
+        "path": "src/game/cities/dar-es-salaam/facts.ts",
+        "sha256": "197956fe7cda69df2274fa9125419072efdd2fb84404d089861fe9624696e461"
+      },
+      {
+        "path": "src/game/cities/dar-es-salaam/index.ts",
+        "sha256": "7b314bc24e6f0b98c7891b96bb2475e60f250d0fdadef8a00d883bf99dc4c239"
+      },
+      {
+        "path": "src/game/cities/dar-es-salaam/places.ts",
+        "sha256": "a5ad91b8e6588dcd63c836df303698a97b3401ddba7456765336caf779cca0ac"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "dar-es-salaam-airport-dar-es-salaam-airport",
+      "name": "Julius Nyerere International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.207288,
+        "lat": -6.873499
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-airport-dar-es-salaam-airport-1",
+        "dar-es-salaam-dar-es-salaam-airport-dar-es-salaam-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "dar-es-salaam-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-ardhi-university",
+      "name": "Ardhi University",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.213745,
+        "lat": -6.766411
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-ardhi-university-1",
+        "dar-es-salaam-dar-es-salaam-ardhi-university-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/924394602"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-askari-monument",
+      "name": "Askari Monument",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.289479,
+        "lat": -6.816633
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-askari-monument-1",
+        "dar-es-salaam-dar-es-salaam-askari-monument-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/273348341"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3862643"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-botanical-garden",
+      "name": "ex Botanical Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.294321,
+        "lat": -6.812205
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-botanical-garden-1",
+        "dar-es-salaam-dar-es-salaam-botanical-garden-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/151205893"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-clinic",
+      "name": "Ocean Road Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.296399,
+        "lat": -6.81106
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-clinic-1",
+        "dar-es-salaam-dar-es-salaam-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/369844321"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q941557"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-community-notices",
+      "name": "Kigamboni Municipal Council",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.391461,
+        "lat": -6.864897
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-community-notices-1",
+        "dar-es-salaam-dar-es-salaam-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1192591949"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-community-voting-game",
+      "name": "City Hall [9]",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.286856,
+        "lat": -6.820626
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-community-voting-game-1",
+        "dar-es-salaam-dar-es-salaam-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4303477590"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-community-workshop",
+      "name": "Dar es Salaam Institute of Technology",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.280164,
+        "lat": -6.814087
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-community-workshop-1",
+        "dar-es-salaam-dar-es-salaam-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/382872691"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-kenyatta-grounds",
+      "name": "Kenyatta Grounds",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.284699,
+        "lat": -6.78139
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-kenyatta-grounds-1",
+        "dar-es-salaam-dar-es-salaam-kenyatta-grounds-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/338010299"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-leaders-club",
+      "name": "Leaders Club",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.275698,
+        "lat": -6.786303
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-leaders-club-1",
+        "dar-es-salaam-dar-es-salaam-leaders-club-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/360823149"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-market-game",
+      "name": "Kariakoo Market Cooperation",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.275303,
+        "lat": -6.819286
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-market-game-1",
+        "dar-es-salaam-dar-es-salaam-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7615449194"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-meal-stop",
+      "name": "Akemi Revolving Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.289427,
+        "lat": -6.813853
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-meal-stop-1",
+        "dar-es-salaam-dar-es-salaam-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5863597485"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-mkapa-stadium",
+      "name": "Benjamin Mkapa Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.273289,
+        "lat": -6.853684
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-mkapa-stadium-1",
+        "dar-es-salaam-dar-es-salaam-mkapa-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/665368011"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q850225"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-mlimani-city",
+      "name": "Mlimani city",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.22013,
+        "lat": -6.772384
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-mlimani-city-1",
+        "dar-es-salaam-dar-es-salaam-mlimani-city-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1558156568"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-nafasi-art-space",
+      "name": "Nafasi Art Space",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.240766,
+        "lat": -6.763358
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-nafasi-art-space-1",
+        "dar-es-salaam-dar-es-salaam-nafasi-art-space-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1137577719"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-national-museum",
+      "name": "National Museum of Tanzania",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.294787,
+        "lat": -6.813584
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-national-museum-1",
+        "dar-es-salaam-dar-es-salaam-national-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/451985626"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-open-university",
+      "name": "The Open University of Tanzania",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.265641,
+        "lat": -6.782877
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-open-university-1",
+        "dar-es-salaam-dar-es-salaam-open-university-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/669083772"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7755195"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-quiet-reflection",
+      "name": "St. Joseph Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.287988,
+        "lat": -6.819303
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-quiet-reflection-1",
+        "dar-es-salaam-dar-es-salaam-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/688369839"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13123235"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-recreation",
+      "name": "Posta ya Zamani Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.289955,
+        "lat": -6.818274
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-recreation-1",
+        "dar-es-salaam-dar-es-salaam-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/368997802"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-tandale-market",
+      "name": "Tandale Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.237463,
+        "lat": -6.799302
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-tandale-market-1",
+        "dar-es-salaam-dar-es-salaam-tandale-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3446148877"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-transit",
+      "name": "Old Central Railway Station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.284558,
+        "lat": -6.822714
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-transit-1",
+        "dar-es-salaam-dar-es-salaam-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/769690792"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-uhuru-stadium",
+      "name": "Uhuru Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.272839,
+        "lat": -6.855942
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-uhuru-stadium-1",
+        "dar-es-salaam-dar-es-salaam-uhuru-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/665368000"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3568832"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dar-es-salaam-village-museum",
+      "name": "Village Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.245581,
+        "lat": -6.775989
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dar-es-salaam-dar-es-salaam-village-museum-1",
+        "dar-es-salaam-dar-es-salaam-village-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dar-es-salaam/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/921494687"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 39.266396,
+        "lat": -6.798067000000001
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "dar-es-salaam-dar-es-salaam-airport-dar-es-salaam-airport-1",
+      "venueId": "dar-es-salaam-airport-dar-es-salaam-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-airport-dar-es-salaam-airport-2",
+      "venueId": "dar-es-salaam-airport-dar-es-salaam-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-ardhi-university-1",
+      "venueId": "dar-es-salaam-ardhi-university",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-ardhi-university-2",
+      "venueId": "dar-es-salaam-ardhi-university",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-askari-monument-1",
+      "venueId": "dar-es-salaam-askari-monument",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-askari-monument-2",
+      "venueId": "dar-es-salaam-askari-monument",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-botanical-garden-1",
+      "venueId": "dar-es-salaam-botanical-garden",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-botanical-garden-2",
+      "venueId": "dar-es-salaam-botanical-garden",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-clinic-1",
+      "venueId": "dar-es-salaam-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-clinic-2",
+      "venueId": "dar-es-salaam-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-community-notices-1",
+      "venueId": "dar-es-salaam-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-community-notices-2",
+      "venueId": "dar-es-salaam-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-community-voting-game-1",
+      "venueId": "dar-es-salaam-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-community-voting-game-2",
+      "venueId": "dar-es-salaam-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-community-workshop-1",
+      "venueId": "dar-es-salaam-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-community-workshop-2",
+      "venueId": "dar-es-salaam-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-kenyatta-grounds-1",
+      "venueId": "dar-es-salaam-kenyatta-grounds",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-kenyatta-grounds-2",
+      "venueId": "dar-es-salaam-kenyatta-grounds",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-leaders-club-1",
+      "venueId": "dar-es-salaam-leaders-club",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-leaders-club-2",
+      "venueId": "dar-es-salaam-leaders-club",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-market-game-1",
+      "venueId": "dar-es-salaam-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-market-game-2",
+      "venueId": "dar-es-salaam-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-meal-stop-1",
+      "venueId": "dar-es-salaam-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-meal-stop-2",
+      "venueId": "dar-es-salaam-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-mkapa-stadium-1",
+      "venueId": "dar-es-salaam-mkapa-stadium",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-mkapa-stadium-2",
+      "venueId": "dar-es-salaam-mkapa-stadium",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-mlimani-city-1",
+      "venueId": "dar-es-salaam-mlimani-city",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-mlimani-city-2",
+      "venueId": "dar-es-salaam-mlimani-city",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-nafasi-art-space-1",
+      "venueId": "dar-es-salaam-nafasi-art-space",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-nafasi-art-space-2",
+      "venueId": "dar-es-salaam-nafasi-art-space",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-national-museum-1",
+      "venueId": "dar-es-salaam-national-museum",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-national-museum-2",
+      "venueId": "dar-es-salaam-national-museum",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-open-university-1",
+      "venueId": "dar-es-salaam-open-university",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-open-university-2",
+      "venueId": "dar-es-salaam-open-university",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-quiet-reflection-1",
+      "venueId": "dar-es-salaam-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-quiet-reflection-2",
+      "venueId": "dar-es-salaam-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-recreation-1",
+      "venueId": "dar-es-salaam-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-recreation-2",
+      "venueId": "dar-es-salaam-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-tandale-market-1",
+      "venueId": "dar-es-salaam-tandale-market",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-tandale-market-2",
+      "venueId": "dar-es-salaam-tandale-market",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-transit-1",
+      "venueId": "dar-es-salaam-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-transit-2",
+      "venueId": "dar-es-salaam-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-uhuru-stadium-1",
+      "venueId": "dar-es-salaam-uhuru-stadium",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-uhuru-stadium-2",
+      "venueId": "dar-es-salaam-uhuru-stadium",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-village-museum-1",
+      "venueId": "dar-es-salaam-village-museum",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    },
+    {
+      "id": "dar-es-salaam-dar-es-salaam-village-museum-2",
+      "venueId": "dar-es-salaam-village-museum",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dar-es-salaam/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "dar-es-salaam-airport-dar-es-salaam-airport",
+    "dar-es-salaam-ardhi-university",
+    "dar-es-salaam-askari-monument",
+    "dar-es-salaam-botanical-garden",
+    "dar-es-salaam-clinic",
+    "dar-es-salaam-community-notices",
+    "dar-es-salaam-community-voting-game",
+    "dar-es-salaam-community-workshop",
+    "dar-es-salaam-kenyatta-grounds",
+    "dar-es-salaam-leaders-club",
+    "dar-es-salaam-market-game",
+    "dar-es-salaam-meal-stop",
+    "dar-es-salaam-mkapa-stadium",
+    "dar-es-salaam-mlimani-city",
+    "dar-es-salaam-nafasi-art-space",
+    "dar-es-salaam-national-museum",
+    "dar-es-salaam-open-university",
+    "dar-es-salaam-quiet-reflection",
+    "dar-es-salaam-recreation",
+    "dar-es-salaam-tandale-market",
+    "dar-es-salaam-transit",
+    "dar-es-salaam-uhuru-stadium",
+    "dar-es-salaam-village-museum"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "189b8302efeeeaff50a71e4de9627aeb6f59ca35bfae823e7a87da78001f24ea",
+    "contentSha256": "e7597717595abdd55561039eff3bcb2cb13ed48fa363aadcaff3325af8403df0"
+  }
+}

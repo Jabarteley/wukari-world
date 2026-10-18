@@ -1,0 +1,2107 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "larnaca",
+    "name": "Larnaca",
+    "state": {
+      "id": "cy-larnaca",
+      "name": "Larnaca"
+    },
+    "country": {
+      "id": "cy",
+      "name": "Cyprus"
+    },
+    "point": {
+      "lon": 33.6236184,
+      "lat": 34.9236095
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/cyprus-261011.osm.pbf",
+      "https://ourairports.com/airports/LCLK/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/larnaca/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/larnaca/facts.ts",
+        "sha256": "c4310120d4cbb8ae5e52acdbc273038a11bcbcf3506825162570e8ab73e3766d"
+      },
+      {
+        "path": "src/game/cities/larnaca/index.ts",
+        "sha256": "bfa58c287caa54724843f9adf49425014d51f629d8feb91e0c9ada7c0a0e2a7c"
+      },
+      {
+        "path": "src/game/cities/larnaca/places.ts",
+        "sha256": "4617d4cf8fb6e613ef1448e18a8acc108420e5bdc7eb11fa066925f4ab88681f"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.6236184,
+        "lat": 34.9236095
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "larnaca-airport-larnaca-airport",
+      "name": "Larnaca International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.624901,
+        "lat": 34.875099
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-airport-larnaca-airport-1",
+        "larnaca-larnaca-airport-larnaca-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "larnaca-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-clinic",
+      "name": "Larnaca General Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.605018,
+        "lat": 34.921149
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-clinic-1",
+        "larnaca-larnaca-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/91496088"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q117260648"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-community-notices",
+      "name": "Beyarmudu Border Gate",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.707046,
+        "lat": 35.038466
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-community-notices-1",
+        "larnaca-larnaca-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/453895869"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q91100546"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-community-voting-game",
+      "name": "Europe square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.637852,
+        "lat": 34.917029
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-community-voting-game-1",
+        "larnaca-larnaca-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/26958238"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q70009481"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-community-workshop",
+      "name": "University of Central Lancashire Cyprus",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.696559,
+        "lat": 35.00806
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-community-workshop-1",
+        "larnaca-larnaca-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1465359719"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30263664"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-market-game",
+      "name": "Sunday Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.632909,
+        "lat": 34.964901
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-market-game-1",
+        "larnaca-larnaca-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5125803724"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-meal-stop",
+      "name": "Coast of India",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.580327,
+        "lat": 34.828785
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-meal-stop-1",
+        "larnaca-larnaca-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1615700362"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-osm-node-4361248690",
+      "name": "Ayia Anna taverna",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.480227,
+        "lat": 34.942151
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-osm-node-4361248690-1",
+        "larnaca-larnaca-osm-node-4361248690-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4361248690"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-osm-node-4401051294",
+      "name": "Girokomio Athienou",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.535054,
+        "lat": 35.064698
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-osm-node-4401051294-1",
+        "larnaca-larnaca-osm-node-4401051294-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4401051294"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-osm-node-9852870606",
+      "name": "Beach Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.461103,
+        "lat": 34.774029
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-osm-node-9852870606-1",
+        "larnaca-larnaca-osm-node-9852870606-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9852870606"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-osm-relation-20507958",
+      "name": "Kamares Aqueduct",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.589408,
+        "lat": 34.901809
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-osm-relation-20507958-1",
+        "larnaca-larnaca-osm-relation-20507958-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/20507958"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2102612"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-osm-way-1033582203",
+      "name": "Avgorou Community Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.828261,
+        "lat": 35.020811
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-osm-way-1033582203-1",
+        "larnaca-larnaca-osm-way-1033582203-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1033582203"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28133329"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-osm-way-1251246319",
+      "name": "Park of Georgia Kyriakidou",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.501285,
+        "lat": 34.865463
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-osm-way-1251246319-1",
+        "larnaca-larnaca-osm-way-1251246319-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1251246319"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-osm-way-1492777202",
+      "name": "Hala Sultan Tekke",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.60994,
+        "lat": 34.885361
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-osm-way-1492777202-1",
+        "larnaca-larnaca-osm-way-1492777202-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1492777202"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1570185"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-osm-way-149466626",
+      "name": "Panagia Aggeloktisti",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.570987,
+        "lat": 34.847587
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-osm-way-149466626-1",
+        "larnaca-larnaca-osm-way-149466626-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/149466626"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24914520"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-osm-way-186575346",
+      "name": "Chalkanoras Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.418294,
+        "lat": 35.02689
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-osm-way-186575346-1",
+        "larnaca-larnaca-osm-way-186575346-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/186575346"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16660343"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-osm-way-256609297",
+      "name": "Stavrovouni Monastery",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.436052,
+        "lat": 34.886371
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-osm-way-256609297-1",
+        "larnaca-larnaca-osm-way-256609297-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/256609297"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2426066"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-osm-way-493412494",
+      "name": "Old GSZ Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.62841,
+        "lat": 34.914334
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-osm-way-493412494-1",
+        "larnaca-larnaca-osm-way-493412494-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/493412494"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5514641"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-osm-way-513953442",
+      "name": "Larnaca College",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.635606,
+        "lat": 34.910611
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-osm-way-513953442-1",
+        "larnaca-larnaca-osm-way-513953442-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/513953442"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30263538"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-osm-way-513962296",
+      "name": "Catholic Church of The Virgin Mary of The Graces",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.626309,
+        "lat": 34.923215
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-osm-way-513962296-1",
+        "larnaca-larnaca-osm-way-513962296-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/513962296"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q103065404"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-osm-way-536939636",
+      "name": "Alexander College",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.597735,
+        "lat": 34.932491
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-osm-way-536939636-1",
+        "larnaca-larnaca-osm-way-536939636-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/536939636"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30263461"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-osm-way-759244399",
+      "name": "Akıncılar Sağlık Merkezi",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.465957,
+        "lat": 35.015616
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-osm-way-759244399-1",
+        "larnaca-larnaca-osm-way-759244399-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/759244399"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-quiet-reflection",
+      "name": "Church of Saint Euphemianos",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.66472,
+        "lat": 35.085713
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-quiet-reflection-1",
+        "larnaca-larnaca-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/190662188"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4245084"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-recreation",
+      "name": "Fountain & Statue of Artemis",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.627281,
+        "lat": 34.915339
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-recreation-1",
+        "larnaca-larnaca-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/558250319"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q69523115"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "larnaca-transit",
+      "name": "Larnaca Central Station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.637797,
+        "lat": 34.919344
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "larnaca-larnaca-transit-1",
+        "larnaca-larnaca-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/larnaca/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3216499349"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "larnaca-larnaca-airport-larnaca-airport-1",
+      "venueId": "larnaca-airport-larnaca-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-airport-larnaca-airport-2",
+      "venueId": "larnaca-airport-larnaca-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-clinic-1",
+      "venueId": "larnaca-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-clinic-2",
+      "venueId": "larnaca-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-community-notices-1",
+      "venueId": "larnaca-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-community-notices-2",
+      "venueId": "larnaca-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-community-voting-game-1",
+      "venueId": "larnaca-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-community-voting-game-2",
+      "venueId": "larnaca-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-community-workshop-1",
+      "venueId": "larnaca-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-community-workshop-2",
+      "venueId": "larnaca-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-market-game-1",
+      "venueId": "larnaca-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-market-game-2",
+      "venueId": "larnaca-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-meal-stop-1",
+      "venueId": "larnaca-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-meal-stop-2",
+      "venueId": "larnaca-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-node-4361248690-1",
+      "venueId": "larnaca-osm-node-4361248690",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-node-4361248690-2",
+      "venueId": "larnaca-osm-node-4361248690",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-node-4401051294-1",
+      "venueId": "larnaca-osm-node-4401051294",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-node-4401051294-2",
+      "venueId": "larnaca-osm-node-4401051294",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-node-9852870606-1",
+      "venueId": "larnaca-osm-node-9852870606",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-node-9852870606-2",
+      "venueId": "larnaca-osm-node-9852870606",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-relation-20507958-1",
+      "venueId": "larnaca-osm-relation-20507958",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-relation-20507958-2",
+      "venueId": "larnaca-osm-relation-20507958",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-1033582203-1",
+      "venueId": "larnaca-osm-way-1033582203",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-1033582203-2",
+      "venueId": "larnaca-osm-way-1033582203",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-1251246319-1",
+      "venueId": "larnaca-osm-way-1251246319",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-1251246319-2",
+      "venueId": "larnaca-osm-way-1251246319",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-1492777202-1",
+      "venueId": "larnaca-osm-way-1492777202",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-1492777202-2",
+      "venueId": "larnaca-osm-way-1492777202",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-149466626-1",
+      "venueId": "larnaca-osm-way-149466626",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-149466626-2",
+      "venueId": "larnaca-osm-way-149466626",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-186575346-1",
+      "venueId": "larnaca-osm-way-186575346",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-186575346-2",
+      "venueId": "larnaca-osm-way-186575346",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-256609297-1",
+      "venueId": "larnaca-osm-way-256609297",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-256609297-2",
+      "venueId": "larnaca-osm-way-256609297",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-493412494-1",
+      "venueId": "larnaca-osm-way-493412494",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-493412494-2",
+      "venueId": "larnaca-osm-way-493412494",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-513953442-1",
+      "venueId": "larnaca-osm-way-513953442",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-513953442-2",
+      "venueId": "larnaca-osm-way-513953442",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-513962296-1",
+      "venueId": "larnaca-osm-way-513962296",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-513962296-2",
+      "venueId": "larnaca-osm-way-513962296",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-536939636-1",
+      "venueId": "larnaca-osm-way-536939636",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-536939636-2",
+      "venueId": "larnaca-osm-way-536939636",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-759244399-1",
+      "venueId": "larnaca-osm-way-759244399",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-osm-way-759244399-2",
+      "venueId": "larnaca-osm-way-759244399",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-quiet-reflection-1",
+      "venueId": "larnaca-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-quiet-reflection-2",
+      "venueId": "larnaca-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-recreation-1",
+      "venueId": "larnaca-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-recreation-2",
+      "venueId": "larnaca-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-transit-1",
+      "venueId": "larnaca-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    },
+    {
+      "id": "larnaca-larnaca-transit-2",
+      "venueId": "larnaca-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/larnaca/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "larnaca-airport-larnaca-airport",
+    "larnaca-clinic",
+    "larnaca-community-notices",
+    "larnaca-community-voting-game",
+    "larnaca-community-workshop",
+    "larnaca-market-game",
+    "larnaca-meal-stop",
+    "larnaca-osm-node-4361248690",
+    "larnaca-osm-node-4401051294",
+    "larnaca-osm-node-9852870606",
+    "larnaca-osm-relation-20507958",
+    "larnaca-osm-way-1033582203",
+    "larnaca-osm-way-1251246319",
+    "larnaca-osm-way-1492777202",
+    "larnaca-osm-way-149466626",
+    "larnaca-osm-way-186575346",
+    "larnaca-osm-way-256609297",
+    "larnaca-osm-way-493412494",
+    "larnaca-osm-way-513953442",
+    "larnaca-osm-way-513962296",
+    "larnaca-osm-way-536939636",
+    "larnaca-osm-way-759244399",
+    "larnaca-quiet-reflection",
+    "larnaca-recreation",
+    "larnaca-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "f685b742372bf7a2466639c0899c4a6c4759e7e174117e3b8dce3dcbd54c858b",
+    "contentSha256": "17291e6abf0f249a49c64564d105aebc946087cd6d5a4250e654d67cc68bb982"
+  }
+}

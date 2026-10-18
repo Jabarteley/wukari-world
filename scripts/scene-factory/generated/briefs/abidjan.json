@@ -1,0 +1,1937 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "abidjan",
+    "name": "Abidjan",
+    "state": {
+      "id": "ci-starter",
+      "name": "Abidjan"
+    },
+    "country": {
+      "id": "ci",
+      "name": "Côte d’Ivoire"
+    },
+    "point": {
+      "lon": -4.020207,
+      "lat": 5.323126
+    }
+  },
+  "style": {
+    "region": "gulf-guinea",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "Natural Earth, OpenStreetMap contributors and cited aeronautical information sources",
+    "sourceUrls": [
+      "https://aim.asecna.aero/html/eAIP/FR-_06AD-2.DIAP-fr-FR.html",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; Airport reference points: cited aeronautical information sources",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/abidjan/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/abidjan/facts.ts",
+        "sha256": "45af348ac25ee9214942f53e7e69f5c0ad90cba76f4b280c126388fc14cd0023"
+      },
+      {
+        "path": "src/game/cities/abidjan/index.ts",
+        "sha256": "2c7959e0cc1aa020c69980afefdc86d3220687ceb1bd71cd458a04197aafe0e0"
+      },
+      {
+        "path": "src/game/cities/abidjan/places.ts",
+        "sha256": "d189fbf1f2adf93a14aa4c79cbd7d86324fb700d249e041dd1ac3dff3d40fb38"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "abidjan-airport-abidjan-airport",
+      "name": "AEROPORT INTERNATIONAL FELIX HOUPHOUET BOIGNY D'ABIDJAN",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -3.928655556,
+        "lat": 5.254502778
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-airport-abidjan-airport-1",
+        "abidjan-abidjan-airport-abidjan-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "abidjan-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-banco-national-park",
+      "name": "Banco National Park",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -4.052701,
+        "lat": 5.392366
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-banco-national-park-1",
+        "abidjan-abidjan-banco-national-park-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/3377821"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1858100"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-cap-nord",
+      "name": "Cap Nord",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -3.966621,
+        "lat": 5.355998
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-cap-nord-1",
+        "abidjan-abidjan-cap-nord-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2082665580"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-clinic",
+      "name": "Centre Hospitalier Universitaire de Treichville",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -4.003569,
+        "lat": 5.291583
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-clinic-1",
+        "abidjan-abidjan-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/91274323"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2945775"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-community-notices",
+      "name": "Bloc Ministériel",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -4.022265,
+        "lat": 5.322036
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-community-notices-1",
+        "abidjan-abidjan-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/1344808"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-community-voting-game",
+      "name": "Place des Martyrs",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -4.012718,
+        "lat": 5.35121
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-community-voting-game-1",
+        "abidjan-abidjan-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/584158320"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-community-workshop",
+      "name": "Université Félix Houphouët-Boigny",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -3.987387,
+        "lat": 5.342517
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-community-workshop-1",
+        "abidjan-abidjan-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/327345646"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1583390"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-market-game",
+      "name": "Grand Marché de Treichville",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -4.013619,
+        "lat": 5.308881
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-market-game-1",
+        "abidjan-abidjan-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/1732512"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-meal-stop",
+      "name": "Le Debarcadère",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -4.014366,
+        "lat": 5.311504
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-meal-stop-1",
+        "abidjan-abidjan-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/326541451"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-mosquee-aboubakar-sidik",
+      "name": "Mosquée Aboubakar Sidik",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -4.087766,
+        "lat": 5.354058
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-mosquee-aboubakar-sidik-1",
+        "abidjan-abidjan-mosquee-aboubakar-sidik-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/272893784"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-musee-des-civilisations",
+      "name": "Musée des Civilisations de Côte d’Ivoire",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -4.024175,
+        "lat": 5.333551
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-musee-des-civilisations-1",
+        "abidjan-abidjan-musee-des-civilisations-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3784811219"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16888110"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-orcaland",
+      "name": "Orcaland",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -3.984315,
+        "lat": 5.298253
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-orcaland-1",
+        "abidjan-abidjan-orcaland-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11607694461"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-palais-de-la-culture",
+      "name": "Palais de la Culture d'Abidjan",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -4.011919,
+        "lat": 5.312263
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-palais-de-la-culture-1",
+        "abidjan-abidjan-palais-de-la-culture-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/147068724"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3361061"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-place-de-la-republique",
+      "name": "Place de la République",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -4.019533,
+        "lat": 5.316651
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-place-de-la-republique-1",
+        "abidjan-abidjan-place-de-la-republique-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/62380367"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-playce-marcory",
+      "name": "PlaYce Marcory",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -3.992184,
+        "lat": 5.302399
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-playce-marcory-1",
+        "abidjan-abidjan-playce-marcory-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3883840736"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-polygone",
+      "name": "Centre comercial Polygone",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -3.984633,
+        "lat": 5.29837
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-polygone-1",
+        "abidjan-abidjan-polygone-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/235965601"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-quiet-reflection",
+      "name": "Cathédrale Saint Paul d'Abidjan",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -4.02008,
+        "lat": 5.332938
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-quiet-reflection-1",
+        "abidjan-abidjan-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/331571796"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-recreation",
+      "name": "Mandela Peace Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -4.018219,
+        "lat": 5.315233
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-recreation-1",
+        "abidjan-abidjan-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/757286787"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-stade-felix-houphouet-boigny",
+      "name": "Stade Félix Houphouët-Boigny",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -4.018369,
+        "lat": 5.328276
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-stade-felix-houphouet-boigny-1",
+        "abidjan-abidjan-stade-felix-houphouet-boigny-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/340354132"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1999706"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-stade-robert-champroux",
+      "name": "Stade Robert Champroux",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -3.992594,
+        "lat": 5.305089
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-stade-robert-champroux-1",
+        "abidjan-abidjan-stade-robert-champroux-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/70010701"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q781453"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-temple-d-abidjan",
+      "name": "Temple d’Abidjan (Côte d’Ivoire)",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -3.976866,
+        "lat": 5.362314
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-temple-d-abidjan-1",
+        "abidjan-abidjan-temple-d-abidjan-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1259768622"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q19871402"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-transit",
+      "name": "Gare de Treichville",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -4.014435,
+        "lat": 5.300957
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-transit-1",
+        "abidjan-abidjan-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/402531561"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "abidjan-universite-nangui-abrogoua",
+      "name": "Université Nangui Abrogoua",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -4.015021,
+        "lat": 5.388529
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "abidjan-abidjan-universite-nangui-abrogoua-1",
+        "abidjan-abidjan-universite-nangui-abrogoua-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/abidjan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/238216693"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3551460"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -4.020206999999999,
+        "lat": 5.323126
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "abidjan-abidjan-airport-abidjan-airport-1",
+      "venueId": "abidjan-airport-abidjan-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-airport-abidjan-airport-2",
+      "venueId": "abidjan-airport-abidjan-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-banco-national-park-1",
+      "venueId": "abidjan-banco-national-park",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-banco-national-park-2",
+      "venueId": "abidjan-banco-national-park",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-cap-nord-1",
+      "venueId": "abidjan-cap-nord",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-cap-nord-2",
+      "venueId": "abidjan-cap-nord",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-clinic-1",
+      "venueId": "abidjan-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-clinic-2",
+      "venueId": "abidjan-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-community-notices-1",
+      "venueId": "abidjan-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-community-notices-2",
+      "venueId": "abidjan-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-community-voting-game-1",
+      "venueId": "abidjan-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-community-voting-game-2",
+      "venueId": "abidjan-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-community-workshop-1",
+      "venueId": "abidjan-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-community-workshop-2",
+      "venueId": "abidjan-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-market-game-1",
+      "venueId": "abidjan-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-market-game-2",
+      "venueId": "abidjan-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-meal-stop-1",
+      "venueId": "abidjan-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-meal-stop-2",
+      "venueId": "abidjan-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-mosquee-aboubakar-sidik-1",
+      "venueId": "abidjan-mosquee-aboubakar-sidik",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-mosquee-aboubakar-sidik-2",
+      "venueId": "abidjan-mosquee-aboubakar-sidik",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-musee-des-civilisations-1",
+      "venueId": "abidjan-musee-des-civilisations",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-musee-des-civilisations-2",
+      "venueId": "abidjan-musee-des-civilisations",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-orcaland-1",
+      "venueId": "abidjan-orcaland",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-orcaland-2",
+      "venueId": "abidjan-orcaland",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-palais-de-la-culture-1",
+      "venueId": "abidjan-palais-de-la-culture",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-palais-de-la-culture-2",
+      "venueId": "abidjan-palais-de-la-culture",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-place-de-la-republique-1",
+      "venueId": "abidjan-place-de-la-republique",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-place-de-la-republique-2",
+      "venueId": "abidjan-place-de-la-republique",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-playce-marcory-1",
+      "venueId": "abidjan-playce-marcory",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-playce-marcory-2",
+      "venueId": "abidjan-playce-marcory",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-polygone-1",
+      "venueId": "abidjan-polygone",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-polygone-2",
+      "venueId": "abidjan-polygone",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-quiet-reflection-1",
+      "venueId": "abidjan-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-quiet-reflection-2",
+      "venueId": "abidjan-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-recreation-1",
+      "venueId": "abidjan-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-recreation-2",
+      "venueId": "abidjan-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-stade-felix-houphouet-boigny-1",
+      "venueId": "abidjan-stade-felix-houphouet-boigny",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-stade-felix-houphouet-boigny-2",
+      "venueId": "abidjan-stade-felix-houphouet-boigny",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-stade-robert-champroux-1",
+      "venueId": "abidjan-stade-robert-champroux",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-stade-robert-champroux-2",
+      "venueId": "abidjan-stade-robert-champroux",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-temple-d-abidjan-1",
+      "venueId": "abidjan-temple-d-abidjan",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-temple-d-abidjan-2",
+      "venueId": "abidjan-temple-d-abidjan",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-transit-1",
+      "venueId": "abidjan-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-transit-2",
+      "venueId": "abidjan-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-universite-nangui-abrogoua-1",
+      "venueId": "abidjan-universite-nangui-abrogoua",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    },
+    {
+      "id": "abidjan-abidjan-universite-nangui-abrogoua-2",
+      "venueId": "abidjan-universite-nangui-abrogoua",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/abidjan/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "abidjan-airport-abidjan-airport",
+    "abidjan-banco-national-park",
+    "abidjan-cap-nord",
+    "abidjan-clinic",
+    "abidjan-community-notices",
+    "abidjan-community-voting-game",
+    "abidjan-community-workshop",
+    "abidjan-market-game",
+    "abidjan-meal-stop",
+    "abidjan-mosquee-aboubakar-sidik",
+    "abidjan-musee-des-civilisations",
+    "abidjan-orcaland",
+    "abidjan-palais-de-la-culture",
+    "abidjan-place-de-la-republique",
+    "abidjan-playce-marcory",
+    "abidjan-polygone",
+    "abidjan-quiet-reflection",
+    "abidjan-recreation",
+    "abidjan-stade-felix-houphouet-boigny",
+    "abidjan-stade-robert-champroux",
+    "abidjan-temple-d-abidjan",
+    "abidjan-transit",
+    "abidjan-universite-nangui-abrogoua"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "c626520b38b58fcd3a03ad1ed7a7abbce6e0a269443139748b91057014e10290",
+    "contentSha256": "e101738f8ff96efbd3b2db7db4c135fed6de3938425977fda9bcb00b7291608d"
+  }
+}

@@ -1,0 +1,1440 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "osogbo",
+    "name": "Osogbo",
+    "state": {
+      "id": "osun",
+      "name": "Osun"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 4.5666666666667,
+      "lat": 7.7666666666667
+    }
+  },
+  "style": {
+    "region": "yoruba-southwest",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/osogbo/content.ts",
+        "sha256": "670af835243f3645f28734a9a64019db9eddecf2276623a4b0ee4a429ca1d4b4"
+      },
+      {
+        "path": "src/game/cities/osogbo/index.ts",
+        "sha256": "0ef1b4122574b4b516de6e799b6527d971d554054b9e6c5361d257aaadf43494"
+      },
+      {
+        "path": "src/game/cities/osogbo/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/osogbo/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for osogbo.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "abegi-anu-bar",
+      "name": "ABEGI ANU",
+      "kind": "club",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5408071,
+        "lat": 7.7981331
+      },
+      "spots": [
+        {
+          "id": "stage",
+          "name": "Stage"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stage",
+          "name": "Stage",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "osogbo-abegi-anu-bar-1",
+        "osogbo-abegi-anu-bar-2"
+      ],
+      "scene": {
+        "kind": "club",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for osogbo."
+      }
+    },
+    {
+      "id": "ayegbaju-market",
+      "name": "Ayegbaju International Modern Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5384396,
+        "lat": 7.7654034
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "osogbo-ayegbaju-market-1",
+        "osogbo-ayegbaju-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for osogbo."
+      }
+    },
+    {
+      "id": "calvary-baptist-church",
+      "name": "Calvary Baptist Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5449961,
+        "lat": 7.7692683
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "osogbo-calvary-baptist-church-1",
+        "osogbo-calvary-baptist-church-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for osogbo."
+      }
+    },
+    {
+      "id": "fountain-university",
+      "name": "Fountain University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5456978,
+        "lat": 7.7437299
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "osogbo-fountain-university-1",
+        "osogbo-fountain-university-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for osogbo."
+      }
+    },
+    {
+      "id": "gtbank-osogbo",
+      "name": "GTBank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.534034,
+        "lat": 7.7635172
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "osogbo-gtbank-osogbo-1",
+        "osogbo-gtbank-osogbo-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for osogbo."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.551837345592004,
+        "lat": 7.75429811744755
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for osogbo."
+      }
+    },
+    {
+      "id": "igboona-market",
+      "name": "Igboona Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5577879,
+        "lat": 7.7807451
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "osogbo-igboona-market-1",
+        "osogbo-igboona-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for osogbo."
+      }
+    },
+    {
+      "id": "lautech-teaching-hospital",
+      "name": "LAUTECH Teaching Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5514558,
+        "lat": 7.7785564
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "osogbo-lautech-teaching-hospital-1",
+        "osogbo-lautech-teaching-hospital-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for osogbo."
+      }
+    },
+    {
+      "id": "nelson-mandela-freedom-park",
+      "name": "Nelson Mandela Freedom Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.546762,
+        "lat": 7.779317
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Public area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Public area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "osogbo-nelson-mandela-freedom-park-1",
+        "osogbo-nelson-mandela-freedom-park-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for osogbo."
+      }
+    },
+    {
+      "id": "new-orisunbare-market",
+      "name": "New Orisunbare Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5483043,
+        "lat": 7.7785499
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "osogbo-new-orisunbare-market-1",
+        "osogbo-new-orisunbare-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for osogbo."
+      }
+    },
+    {
+      "id": "noun-osogbo",
+      "name": "National Open University of Nigeria",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5682033,
+        "lat": 7.7514995
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "osogbo-noun-osogbo-1",
+        "osogbo-noun-osogbo-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for osogbo."
+      }
+    },
+    {
+      "id": "osogbo-township-stadium",
+      "name": "Osogbo Township Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5721467,
+        "lat": 7.7937375
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "osogbo-osogbo-township-stadium-1",
+        "osogbo-osogbo-township-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for osogbo."
+      }
+    },
+    {
+      "id": "osun-house-of-assembly",
+      "name": "Osun State House of Assembly",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5204537,
+        "lat": 7.7399552
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "osogbo-osun-house-of-assembly-1",
+        "osogbo-osun-house-of-assembly-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for osogbo."
+      }
+    },
+    {
+      "id": "osun-osogbo-sacred-grove",
+      "name": "Osun-Osogbo Sacred Grove",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5506394,
+        "lat": 7.7551115
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "osogbo-osun-osogbo-sacred-grove-1",
+        "osogbo-osun-osogbo-sacred-grove-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for osogbo."
+      }
+    },
+    {
+      "id": "our-lady-of-fatima-hospital",
+      "name": "Our Lady of Fatima Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5488489,
+        "lat": 7.7693131
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "osogbo-our-lady-of-fatima-hospital-1",
+        "osogbo-our-lady-of-fatima-hospital-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for osogbo."
+      }
+    },
+    {
+      "id": "susanne-wenger-house",
+      "name": "Susanne Wenger House",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5607842,
+        "lat": 7.7666598
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "osogbo-susanne-wenger-house-1",
+        "osogbo-susanne-wenger-house-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for osogbo."
+      }
+    },
+    {
+      "id": "union-baptist-church",
+      "name": "Union Baptist Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 4.5450695,
+        "lat": 7.7733145
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "osogbo-union-baptist-church-1",
+        "osogbo-union-baptist-church-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for osogbo."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "osogbo-abegi-anu-bar-1",
+      "venueId": "abegi-anu-bar",
+      "name": "Dapo Oladipo",
+      "role": "Musician",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-abegi-anu-bar-2",
+      "venueId": "abegi-anu-bar",
+      "name": "Bukola Salami",
+      "role": "Regular listener",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-ayegbaju-market-1",
+      "venueId": "ayegbaju-market",
+      "name": "Temitope Akinola",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-ayegbaju-market-2",
+      "venueId": "ayegbaju-market",
+      "name": "Tunde Lawal",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-calvary-baptist-church-1",
+      "venueId": "calvary-baptist-church",
+      "name": "Temitope Lawal",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-calvary-baptist-church-2",
+      "venueId": "calvary-baptist-church",
+      "name": "Tunde Balogun",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-fountain-university-1",
+      "venueId": "fountain-university",
+      "name": "Dapo Salami",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-fountain-university-2",
+      "venueId": "fountain-university",
+      "name": "Bukola Ojo",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-gtbank-osogbo-1",
+      "venueId": "gtbank-osogbo",
+      "name": "Dapo Akinwale",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-gtbank-osogbo-2",
+      "venueId": "gtbank-osogbo",
+      "name": "Bukola Adeleke",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-igboona-market-1",
+      "venueId": "igboona-market",
+      "name": "Dapo Ojo",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-igboona-market-2",
+      "venueId": "igboona-market",
+      "name": "Mama Yetunde",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-lautech-teaching-hospital-1",
+      "venueId": "lautech-teaching-hospital",
+      "name": "Temitope Ogundele",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-lautech-teaching-hospital-2",
+      "venueId": "lautech-teaching-hospital",
+      "name": "Baba Tunde",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-nelson-mandela-freedom-park-1",
+      "venueId": "nelson-mandela-freedom-park",
+      "name": "Temitope Adeyemi",
+      "role": "Park caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-nelson-mandela-freedom-park-2",
+      "venueId": "nelson-mandela-freedom-park",
+      "name": "Tunde Ogunbanjo",
+      "role": "Morning walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-new-orisunbare-market-1",
+      "venueId": "new-orisunbare-market",
+      "name": "Temitope Ajayi",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-new-orisunbare-market-2",
+      "venueId": "new-orisunbare-market",
+      "name": "Tunde Ogundele",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-noun-osogbo-1",
+      "venueId": "noun-osogbo",
+      "name": "Temitope Ogunbanjo",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-noun-osogbo-2",
+      "venueId": "noun-osogbo",
+      "name": "Tunde Ajayi",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-osogbo-township-stadium-1",
+      "venueId": "osogbo-township-stadium",
+      "name": "Temitope Olaniyan",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-osogbo-township-stadium-2",
+      "venueId": "osogbo-township-stadium",
+      "name": "Baba Olumide",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-osun-house-of-assembly-1",
+      "venueId": "osun-house-of-assembly",
+      "name": "Dapo Afolabi",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-osun-house-of-assembly-2",
+      "venueId": "osun-house-of-assembly",
+      "name": "Bukola Oladipo",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-osun-osogbo-sacred-grove-1",
+      "venueId": "osun-osogbo-sacred-grove",
+      "name": "Dapo Adesina",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-osun-osogbo-sacred-grove-2",
+      "venueId": "osun-osogbo-sacred-grove",
+      "name": "Mama Funmilayo",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-our-lady-of-fatima-hospital-1",
+      "venueId": "our-lady-of-fatima-hospital",
+      "name": "Dapo Adeleke",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-our-lady-of-fatima-hospital-2",
+      "venueId": "our-lady-of-fatima-hospital",
+      "name": "Bukola Bakare",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-susanne-wenger-house-1",
+      "venueId": "susanne-wenger-house",
+      "name": "Temitope Balogun",
+      "role": "Museum guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-susanne-wenger-house-2",
+      "venueId": "susanne-wenger-house",
+      "name": "Tunde Olaniyan",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-union-baptist-church-1",
+      "venueId": "union-baptist-church",
+      "name": "Dapo Bakare",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    },
+    {
+      "id": "osogbo-union-baptist-church-2",
+      "venueId": "union-baptist-church",
+      "name": "Mama Bukola",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/osogbo/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "abegi-anu-bar",
+    "ayegbaju-market",
+    "calvary-baptist-church",
+    "fountain-university",
+    "gtbank-osogbo",
+    "igboona-market",
+    "lautech-teaching-hospital",
+    "nelson-mandela-freedom-park",
+    "new-orisunbare-market",
+    "noun-osogbo",
+    "osogbo-township-stadium",
+    "osun-house-of-assembly",
+    "osun-osogbo-sacred-grove",
+    "our-lady-of-fatima-hospital",
+    "susanne-wenger-house",
+    "union-baptist-church"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "a5b01378abe24b31324c273a379bdf34f55b11d2f9d38de8a3fd364721c9facf",
+    "contentSha256": "6338ff52ba7ed059f190a401530eee89e6954b002ac18f67b6e8359ca04a61b9"
+  }
+}

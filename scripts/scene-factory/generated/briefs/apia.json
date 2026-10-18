@@ -1,0 +1,2067 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "apia",
+    "name": "Apia",
+    "state": {
+      "id": "ws-apia",
+      "name": "Apia"
+    },
+    "country": {
+      "id": "ws",
+      "name": "Samoa (western)"
+    },
+    "point": {
+      "lon": -171.7630955,
+      "lat": -13.8345235
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/australia-oceania/samoa-261009.osm.pbf",
+      "https://ourairports.com/airports/NSFA/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/apia/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/apia/facts.ts",
+        "sha256": "6de7ff0d0ebf767a7582ea8639768aa55ea33b8b240c8a09607bf95c6e88950d"
+      },
+      {
+        "path": "src/game/cities/apia/index.ts",
+        "sha256": "137edaa01345dd216fc0118d5d6ac3c9cd29ae34a348d76fe9357c0b4c30766a"
+      },
+      {
+        "path": "src/game/cities/apia/places.ts",
+        "sha256": "1672cf39d431ac0c23093a798cd834549a0eac42133d1092fc749d425001b178"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "apia-airport-apia-airport",
+      "name": "Faleolo International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -172.007996,
+        "lat": -13.83
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-airport-apia-airport-1",
+        "apia-apia-airport-apia-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "apia-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-clinic",
+      "name": "Faleolo District Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.99673,
+        "lat": -13.836617
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-clinic-1",
+        "apia-apia-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1386013126"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-community-notices",
+      "name": "Fale Fono (Parliament House)",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.778586,
+        "lat": -13.819362
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-community-notices-1",
+        "apia-apia-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/191009596"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1269555"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-community-voting-game",
+      "name": "Sagaga 3 District Office",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.872966,
+        "lat": -13.79878
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-community-voting-game-1",
+        "apia-apia-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1489966432"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-community-workshop",
+      "name": "Mulivai Primary School Library and Technology Center",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.799005,
+        "lat": -14.003013
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-community-workshop-1",
+        "apia-apia-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/139537638"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-market-game",
+      "name": "Satui Fleamarket",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.945189,
+        "lat": -13.814905
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-market-game-1",
+        "apia-apia-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1433132284"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-meal-stop",
+      "name": "Restaurant and Bar",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.897289,
+        "lat": -13.801392
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-meal-stop-1",
+        "apia-apia-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1388403945"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-osm-node-12898274696",
+      "name": "Laumua O Tumua Farmers Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.854677,
+        "lat": -13.79966
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-osm-node-12898274696-1",
+        "apia-apia-osm-node-12898274696-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12898274696"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-osm-node-1550608240",
+      "name": "Sopo'aga Waterfalls",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.586496,
+        "lat": -14.007334
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-osm-node-1550608240-1",
+        "apia-apia-osm-node-1550608240-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1550608240"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q32022830"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-osm-node-5586769194",
+      "name": "Fuipisia Waterfalls",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.590874,
+        "lat": -13.977543
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-osm-node-5586769194-1",
+        "apia-apia-osm-node-5586769194-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5586769194"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-osm-node-6593037804",
+      "name": "Lanoto'o Viewing Platform",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.825828,
+        "lat": -13.910436
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-osm-node-6593037804-1",
+        "apia-apia-osm-node-6593037804-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6593037804"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-osm-node-687792042",
+      "name": "Museum of Samoa",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.762695,
+        "lat": -13.839718
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-osm-node-687792042-1",
+        "apia-apia-osm-node-687792042-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/687792042"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q106628284"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-osm-node-689554231",
+      "name": "Papapapaitai-falls",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.775693,
+        "lat": -13.942487
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-osm-node-689554231-1",
+        "apia-apia-osm-node-689554231-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/689554231"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-osm-node-994447379",
+      "name": "Wesley College",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.822581,
+        "lat": -13.799673
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-osm-node-994447379-1",
+        "apia-apia-osm-node-994447379-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/994447379"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-osm-way-1124777338",
+      "name": "Western Samoa Trust Estates Corporation Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.724472,
+        "lat": -13.848584
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-osm-way-1124777338-1",
+        "apia-apia-osm-way-1124777338-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1124777338"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-osm-way-1408954851",
+      "name": "USP School of Agriculture & Food Technology",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.793009,
+        "lat": -13.862666
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-osm-way-1408954851-1",
+        "apia-apia-osm-way-1408954851-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1408954851"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-osm-way-141190639",
+      "name": "Bahá'í House of Worship",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.778275,
+        "lat": -13.896564
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-osm-way-141190639-1",
+        "apia-apia-osm-way-141190639-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/141190639"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4842965"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-osm-way-1418195769",
+      "name": "Farmer Joes Tanumapua",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.812855,
+        "lat": -13.848625
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-osm-way-1418195769-1",
+        "apia-apia-osm-way-1418195769-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1418195769"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-osm-way-142503177",
+      "name": "SMDA Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.743229,
+        "lat": -13.838519
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-osm-way-142503177-1",
+        "apia-apia-osm-way-142503177-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/142503177"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-osm-way-1446121761",
+      "name": "Lefaga District Medical Centre",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.939896,
+        "lat": -13.94422
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-osm-way-1446121761-1",
+        "apia-apia-osm-way-1446121761-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1446121761"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-osm-way-1459400895",
+      "name": "Anoamaa District Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.600608,
+        "lat": -13.874047
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-osm-way-1459400895-1",
+        "apia-apia-osm-way-1459400895-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1459400895"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-osm-way-374404905",
+      "name": "Robert Louis Stevenson's Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.765615,
+        "lat": -13.866614
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-osm-way-374404905-1",
+        "apia-apia-osm-way-374404905-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/374404905"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q106913447"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-quiet-reflection",
+      "name": "Apia Samoa Temple",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.783043,
+        "lat": -13.838128
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-quiet-reflection-1",
+        "apia-apia-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/190324852"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q618565"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-recreation",
+      "name": "Vaitele Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.804801,
+        "lat": -13.820577
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-recreation-1",
+        "apia-apia-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1445626446"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "apia-transit",
+      "name": "Apia Ferry Terminal",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.759898,
+        "lat": -13.827244
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "apia-apia-transit-1",
+        "apia-apia-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/apia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/142609045"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -171.7630955,
+        "lat": -13.8345235
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "apia-apia-airport-apia-airport-1",
+      "venueId": "apia-airport-apia-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-airport-apia-airport-2",
+      "venueId": "apia-airport-apia-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-clinic-1",
+      "venueId": "apia-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-clinic-2",
+      "venueId": "apia-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-community-notices-1",
+      "venueId": "apia-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-community-notices-2",
+      "venueId": "apia-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-community-voting-game-1",
+      "venueId": "apia-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-community-voting-game-2",
+      "venueId": "apia-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-community-workshop-1",
+      "venueId": "apia-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-community-workshop-2",
+      "venueId": "apia-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-market-game-1",
+      "venueId": "apia-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-market-game-2",
+      "venueId": "apia-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-meal-stop-1",
+      "venueId": "apia-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-meal-stop-2",
+      "venueId": "apia-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-node-12898274696-1",
+      "venueId": "apia-osm-node-12898274696",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-node-12898274696-2",
+      "venueId": "apia-osm-node-12898274696",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-node-1550608240-1",
+      "venueId": "apia-osm-node-1550608240",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-node-1550608240-2",
+      "venueId": "apia-osm-node-1550608240",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-node-5586769194-1",
+      "venueId": "apia-osm-node-5586769194",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-node-5586769194-2",
+      "venueId": "apia-osm-node-5586769194",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-node-6593037804-1",
+      "venueId": "apia-osm-node-6593037804",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-node-6593037804-2",
+      "venueId": "apia-osm-node-6593037804",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-node-687792042-1",
+      "venueId": "apia-osm-node-687792042",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-node-687792042-2",
+      "venueId": "apia-osm-node-687792042",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-node-689554231-1",
+      "venueId": "apia-osm-node-689554231",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-node-689554231-2",
+      "venueId": "apia-osm-node-689554231",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-node-994447379-1",
+      "venueId": "apia-osm-node-994447379",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-node-994447379-2",
+      "venueId": "apia-osm-node-994447379",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-way-1124777338-1",
+      "venueId": "apia-osm-way-1124777338",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-way-1124777338-2",
+      "venueId": "apia-osm-way-1124777338",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-way-1408954851-1",
+      "venueId": "apia-osm-way-1408954851",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-way-1408954851-2",
+      "venueId": "apia-osm-way-1408954851",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-way-141190639-1",
+      "venueId": "apia-osm-way-141190639",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-way-141190639-2",
+      "venueId": "apia-osm-way-141190639",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-way-1418195769-1",
+      "venueId": "apia-osm-way-1418195769",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-way-1418195769-2",
+      "venueId": "apia-osm-way-1418195769",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-way-142503177-1",
+      "venueId": "apia-osm-way-142503177",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-way-142503177-2",
+      "venueId": "apia-osm-way-142503177",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-way-1446121761-1",
+      "venueId": "apia-osm-way-1446121761",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-way-1446121761-2",
+      "venueId": "apia-osm-way-1446121761",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-way-1459400895-1",
+      "venueId": "apia-osm-way-1459400895",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-way-1459400895-2",
+      "venueId": "apia-osm-way-1459400895",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-way-374404905-1",
+      "venueId": "apia-osm-way-374404905",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-osm-way-374404905-2",
+      "venueId": "apia-osm-way-374404905",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-quiet-reflection-1",
+      "venueId": "apia-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-quiet-reflection-2",
+      "venueId": "apia-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-recreation-1",
+      "venueId": "apia-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-recreation-2",
+      "venueId": "apia-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-transit-1",
+      "venueId": "apia-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    },
+    {
+      "id": "apia-apia-transit-2",
+      "venueId": "apia-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/apia/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "apia-airport-apia-airport",
+    "apia-clinic",
+    "apia-community-notices",
+    "apia-community-voting-game",
+    "apia-community-workshop",
+    "apia-market-game",
+    "apia-meal-stop",
+    "apia-osm-node-12898274696",
+    "apia-osm-node-1550608240",
+    "apia-osm-node-5586769194",
+    "apia-osm-node-6593037804",
+    "apia-osm-node-687792042",
+    "apia-osm-node-689554231",
+    "apia-osm-node-994447379",
+    "apia-osm-way-1124777338",
+    "apia-osm-way-1408954851",
+    "apia-osm-way-141190639",
+    "apia-osm-way-1418195769",
+    "apia-osm-way-142503177",
+    "apia-osm-way-1446121761",
+    "apia-osm-way-1459400895",
+    "apia-osm-way-374404905",
+    "apia-quiet-reflection",
+    "apia-recreation",
+    "apia-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "ce64fe3f10934fff29636f3163f3a7e7ec2343c1fedc955b8ae434467966e3a7",
+    "contentSha256": "4938eb8db7961faaeb4eedca924c97a2c4903f5019c5da5b9c8898adcba0fd5f"
+  }
+}

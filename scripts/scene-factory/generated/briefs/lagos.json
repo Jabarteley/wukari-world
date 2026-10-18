@@ -1,0 +1,3067 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "lagos",
+    "name": "Lagos",
+    "state": {
+      "id": "lagos",
+      "name": "Lagos State"
+    },
+    "country": {
+      "id": "ng",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 3.38,
+      "lat": 6.52
+    }
+  },
+  "style": {
+    "region": "yoruba-southwest",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/lagos/content.ts",
+        "sha256": "cefaa1bb0f99327c2f81e1b85e570ddaceac6198c1c13cd9a476ed05d4a8c1b4"
+      },
+      {
+        "path": "src/game/cities/lagos/index.ts",
+        "sha256": "3e4ce952a377d3879e76774e68074a1ddc71296a560393144233f9df1187d4f3"
+      },
+      {
+        "path": "src/game/cities/lagos/regulars.ts",
+        "sha256": "6080f4010e8b3df98aead2a7bcc840e5bfb6aa9afcbd9c59fd1eec969eb0b195"
+      },
+      {
+        "path": "src/game/cities/lagos/rules.ts",
+        "sha256": "05b87e0988f7701b627fbd0b0b2d243d437d28d9cee065e63a5ea77ebde3eb35"
+      },
+      {
+        "path": "src/game/cities/lagos/venues.ts",
+        "sha256": "977d00ee827a46ebc0574a2feedb572251fbfac360e3cb90fb245ff33dbe5b98"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for lagos.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "airport",
+      "name": "Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "legacy-map",
+        "x": 7,
+        "y": 13
+      },
+      "spots": [
+        {
+          "id": "arrivals",
+          "name": "Arrivals"
+        },
+        {
+          "id": "deck",
+          "name": "Viewing deck"
+        },
+        {
+          "id": "departures",
+          "name": "Departures hall"
+        },
+        {
+          "id": "desk",
+          "name": "Travel desk"
+        },
+        {
+          "id": "lounge",
+          "name": "Food court"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrivals",
+          "name": "Arrivals",
+          "source": "content"
+        },
+        {
+          "id": "deck",
+          "name": "Viewing deck",
+          "source": "content"
+        },
+        {
+          "id": "departures",
+          "name": "Departures hall",
+          "source": "content"
+        },
+        {
+          "id": "desk",
+          "name": "Travel desk",
+          "source": "content"
+        },
+        {
+          "id": "lounge",
+          "name": "Food court",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "agent-bimpe",
+        "porter-sule"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "amala-shitta",
+      "name": "Amala Shitta",
+      "kind": "buka",
+      "position": {
+        "kind": "legacy-map",
+        "x": 44,
+        "y": 13
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Buka counter"
+        },
+        {
+          "id": "kitchen",
+          "name": "Mama’s kitchen"
+        },
+        {
+          "id": "wash",
+          "name": "Wash bowl"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Buka counter",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Mama’s kitchen",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "wash",
+          "name": "Wash bowl",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Work",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "amaka",
+        "baba-sege"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "beach",
+      "name": "Beach",
+      "kind": "beach",
+      "position": {
+        "kind": "legacy-map",
+        "x": 89,
+        "y": 82
+      },
+      "spots": [
+        {
+          "id": "cabanas",
+          "name": "Cabanas"
+        },
+        {
+          "id": "grill",
+          "name": "Fish grill"
+        },
+        {
+          "id": "pitch",
+          "name": "Sand pitch"
+        },
+        {
+          "id": "shore",
+          "name": "Shoreline"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "cabanas",
+          "name": "Cabanas",
+          "source": "content"
+        },
+        {
+          "id": "grill",
+          "name": "Fish grill",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch",
+          "name": "Sand pitch",
+          "source": "content"
+        },
+        {
+          "id": "shore",
+          "name": "Shoreline",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "blessing",
+        "captain-jide"
+      ],
+      "scene": {
+        "kind": "beach",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "canopy-walk",
+      "name": "Canopy Walk",
+      "kind": "walk",
+      "position": {
+        "kind": "legacy-map",
+        "x": 89,
+        "y": 56
+      },
+      "spots": [
+        {
+          "id": "huts",
+          "name": "Picnic huts"
+        },
+        {
+          "id": "trail",
+          "name": "Nature trail"
+        },
+        {
+          "id": "walkway",
+          "name": "Canopy walkway"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "huts",
+          "name": "Picnic huts",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "trail",
+          "name": "Nature trail",
+          "source": "content"
+        },
+        {
+          "id": "walkway",
+          "name": "Canopy walkway",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Work",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ranger-musa",
+        "tolu"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "cchub",
+      "name": "CcHub",
+      "kind": "hub",
+      "position": {
+        "kind": "legacy-map",
+        "x": 62,
+        "y": 13
+      },
+      "spots": [
+        {
+          "id": "cafe",
+          "name": "Café corner"
+        },
+        {
+          "id": "desks",
+          "name": "Hot desks"
+        },
+        {
+          "id": "stage",
+          "name": "Pitch stage"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "cafe",
+          "name": "Café corner",
+          "source": "content"
+        },
+        {
+          "id": "desks",
+          "name": "Hot desks",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "stage",
+          "name": "Pitch stage",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Work",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "halima",
+        "tega"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "church",
+      "name": "Church",
+      "kind": "worship",
+      "position": {
+        "kind": "legacy-map",
+        "x": 11,
+        "y": 58
+      },
+      "spots": [
+        {
+          "id": "choir",
+          "name": "Choir stand"
+        },
+        {
+          "id": "hall",
+          "name": "Fellowship hall"
+        },
+        {
+          "id": "pews",
+          "name": "Pews"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "choir",
+          "name": "Choir stand",
+          "source": "content"
+        },
+        {
+          "id": "hall",
+          "name": "Fellowship hall",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pews",
+          "name": "Pews",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sister-grace",
+        "usher-ben"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "legacy-map",
+        "x": 53,
+        "y": 29
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "hospital",
+      "name": "General Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "legacy-map",
+        "x": 72,
+        "y": 28
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "pharmacy",
+          "name": "Pharmacy"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pharmacy",
+          "name": "Pharmacy",
+          "source": "content"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Work",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "nurse-kemi",
+        "papa-john"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "i-fitness",
+      "name": "i-Fitness",
+      "kind": "gym",
+      "position": {
+        "kind": "legacy-map",
+        "x": 52,
+        "y": 58
+      },
+      "spots": [
+        {
+          "id": "bar",
+          "name": "Smoothie bar"
+        },
+        {
+          "id": "showers",
+          "name": "Showers"
+        },
+        {
+          "id": "studio",
+          "name": "Studio"
+        },
+        {
+          "id": "weights",
+          "name": "Weights floor"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bar",
+          "name": "Smoothie bar",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "showers",
+          "name": "Showers",
+          "source": "content"
+        },
+        {
+          "id": "studio",
+          "name": "Studio",
+          "source": "content"
+        },
+        {
+          "id": "weights",
+          "name": "Weights floor",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Work",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "coach-bayo",
+        "ngozi"
+      ],
+      "scene": {
+        "kind": "gym",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "library",
+      "name": "The Library",
+      "kind": "club",
+      "position": {
+        "kind": "legacy-map",
+        "x": 64,
+        "y": 82
+      },
+      "spots": [
+        {
+          "id": "bar",
+          "name": "Cocktail bar"
+        },
+        {
+          "id": "bookcase",
+          "name": "Secret bookcase"
+        },
+        {
+          "id": "dance",
+          "name": "Dance floor"
+        },
+        {
+          "id": "lounge",
+          "name": "Lounge"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bar",
+          "name": "Cocktail bar",
+          "source": "content"
+        },
+        {
+          "id": "bookcase",
+          "name": "Secret bookcase",
+          "source": "content"
+        },
+        {
+          "id": "dance",
+          "name": "Dance floor",
+          "source": "content"
+        },
+        {
+          "id": "lounge",
+          "name": "Lounge",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "deji",
+        "zainab"
+      ],
+      "scene": {
+        "kind": "club",
+        "variant": "speakeasy",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "market",
+      "name": "Market",
+      "kind": "market",
+      "position": {
+        "kind": "legacy-map",
+        "x": 24,
+        "y": 82
+      },
+      "spots": [
+        {
+          "id": "food",
+          "name": "Food lane"
+        },
+        {
+          "id": "spice",
+          "name": "Pepper sellers"
+        },
+        {
+          "id": "stalls",
+          "name": "Fabric stalls"
+        },
+        {
+          "id": "wholesale",
+          "name": "Wholesale row"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "food",
+          "name": "Food lane",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "spice",
+          "name": "Pepper sellers",
+          "source": "content"
+        },
+        {
+          "id": "stalls",
+          "name": "Fabric stalls",
+          "source": "content"
+        },
+        {
+          "id": "wholesale",
+          "name": "Wholesale row",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Work",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "emeka",
+        "iya-bose"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "mosque",
+      "name": "Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "legacy-map",
+        "x": 17,
+        "y": 70
+      },
+      "spots": [
+        {
+          "id": "ablution",
+          "name": "Ablution area"
+        },
+        {
+          "id": "courtyard",
+          "name": "Courtyard"
+        },
+        {
+          "id": "hall",
+          "name": "Prayer hall"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "ablution",
+          "name": "Ablution area",
+          "source": "content"
+        },
+        {
+          "id": "courtyard",
+          "name": "Courtyard",
+          "source": "content"
+        },
+        {
+          "id": "hall",
+          "name": "Prayer hall",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "alhaji-sani",
+        "mallam-isa"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "office",
+      "name": "Office",
+      "kind": "office",
+      "position": {
+        "kind": "legacy-map",
+        "x": 58,
+        "y": 70
+      },
+      "spots": [
+        {
+          "id": "boardroom",
+          "name": "Boardroom"
+        },
+        {
+          "id": "canteen",
+          "name": "Canteen"
+        },
+        {
+          "id": "floor",
+          "name": "Open floor"
+        },
+        {
+          "id": "lobby",
+          "name": "Lobby"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "boardroom",
+          "name": "Boardroom",
+          "source": "content"
+        },
+        {
+          "id": "canteen",
+          "name": "Canteen",
+          "source": "content"
+        },
+        {
+          "id": "floor",
+          "name": "Open floor",
+          "source": "content"
+        },
+        {
+          "id": "lobby",
+          "name": "Lobby",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Work",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "dapo",
+        "mrs-okafor"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "palms",
+      "name": "The Palms",
+      "kind": "mall",
+      "position": {
+        "kind": "legacy-map",
+        "x": 93,
+        "y": 69
+      },
+      "spots": [
+        {
+          "id": "arcade",
+          "name": "Arcade"
+        },
+        {
+          "id": "cinema",
+          "name": "Cinema"
+        },
+        {
+          "id": "food",
+          "name": "Food court"
+        },
+        {
+          "id": "shops",
+          "name": "Shops"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arcade",
+          "name": "Arcade",
+          "source": "content"
+        },
+        {
+          "id": "cinema",
+          "name": "Cinema",
+          "source": "content"
+        },
+        {
+          "id": "food",
+          "name": "Food court",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "shops",
+          "name": "Shops",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Work",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "aisha",
+        "uche"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "park",
+      "name": "Freedom Park",
+      "kind": "park",
+      "position": {
+        "kind": "legacy-map",
+        "x": 45,
+        "y": 82
+      },
+      "spots": [
+        {
+          "id": "amphitheatre",
+          "name": "Amphitheatre"
+        },
+        {
+          "id": "art",
+          "name": "Art gallery"
+        },
+        {
+          "id": "drinks",
+          "name": "Drinks kiosk"
+        },
+        {
+          "id": "people",
+          "name": "People"
+        },
+        {
+          "id": "trees",
+          "name": "Under the trees"
+        },
+        {
+          "id": "work",
+          "name": "Community desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "amphitheatre",
+          "name": "Amphitheatre",
+          "source": "content"
+        },
+        {
+          "id": "art",
+          "name": "Art gallery",
+          "source": "content"
+        },
+        {
+          "id": "drinks",
+          "name": "Drinks kiosk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "content"
+        },
+        {
+          "id": "trees",
+          "name": "Under the trees",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Community desk",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kunle",
+        "mama-ronke"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "police",
+      "name": "Police Station",
+      "kind": "police",
+      "position": {
+        "kind": "legacy-map",
+        "x": 31,
+        "y": 58
+      },
+      "spots": [
+        {
+          "id": "community",
+          "name": "Community room"
+        },
+        {
+          "id": "desk",
+          "name": "Front desk"
+        },
+        {
+          "id": "yard",
+          "name": "Parade yard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "community",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "desk",
+          "name": "Front desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "yard",
+          "name": "Parade yard",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "corporal-ife",
+        "sergeant-audu"
+      ],
+      "scene": {
+        "kind": "police",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "polling-unit",
+      "name": "Polling Unit",
+      "kind": "polling",
+      "position": {
+        "kind": "legacy-map",
+        "x": 38,
+        "y": 70
+      },
+      "spots": [
+        {
+          "id": "canopy",
+          "name": "Shade canopy"
+        },
+        {
+          "id": "queue",
+          "name": "The queue"
+        },
+        {
+          "id": "table",
+          "name": "Registration table"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "canopy",
+          "name": "Shade canopy",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "queue",
+          "name": "The queue",
+          "source": "content"
+        },
+        {
+          "id": "table",
+          "name": "Registration table",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "agent-wale",
+        "mrs-bello"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "quilox",
+      "name": "Quilox",
+      "kind": "club",
+      "position": {
+        "kind": "legacy-map",
+        "x": 70,
+        "y": 58
+      },
+      "spots": [
+        {
+          "id": "bar",
+          "name": "Bar"
+        },
+        {
+          "id": "floor",
+          "name": "Dance floor"
+        },
+        {
+          "id": "rope",
+          "name": "Velvet rope"
+        },
+        {
+          "id": "vip",
+          "name": "VIP section"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bar",
+          "name": "Bar",
+          "source": "content"
+        },
+        {
+          "id": "floor",
+          "name": "Dance floor",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "rope",
+          "name": "Velvet rope",
+          "source": "content"
+        },
+        {
+          "id": "vip",
+          "name": "VIP section",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Work",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "dj-kay",
+        "simi-vip"
+      ],
+      "scene": {
+        "kind": "club",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "radio",
+      "name": "Naija Radio",
+      "kind": "radio",
+      "position": {
+        "kind": "legacy-map",
+        "x": 16,
+        "y": 27
+      },
+      "spots": [
+        {
+          "id": "booth",
+          "name": "Recording booth"
+        },
+        {
+          "id": "newsroom",
+          "name": "Newsroom"
+        },
+        {
+          "id": "reception",
+          "name": "Reception"
+        },
+        {
+          "id": "studio",
+          "name": "Live studio"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "booth",
+          "name": "Recording booth",
+          "source": "content"
+        },
+        {
+          "id": "newsroom",
+          "name": "Newsroom",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "reception",
+          "name": "Reception",
+          "source": "content"
+        },
+        {
+          "id": "studio",
+          "name": "Live studio",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "oap-tobi",
+        "sound-ada"
+      ],
+      "scene": {
+        "kind": "radio",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "refinery",
+      "name": "Refinery",
+      "kind": "refinery",
+      "position": {
+        "kind": "legacy-map",
+        "x": 96,
+        "y": 78
+      },
+      "spots": [
+        {
+          "id": "canteen",
+          "name": "Canteen"
+        },
+        {
+          "id": "control",
+          "name": "Control room"
+        },
+        {
+          "id": "gate",
+          "name": "Main gate"
+        },
+        {
+          "id": "loading",
+          "name": "Loading bay"
+        },
+        {
+          "id": "view",
+          "name": "Viewpoint"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "canteen",
+          "name": "Canteen",
+          "source": "content"
+        },
+        {
+          "id": "control",
+          "name": "Control room",
+          "source": "content"
+        },
+        {
+          "id": "gate",
+          "name": "Main gate",
+          "source": "content"
+        },
+        {
+          "id": "loading",
+          "name": "Loading bay",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "view",
+          "name": "Viewpoint",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "driver-mustapha",
+        "engineer-chioma"
+      ],
+      "scene": {
+        "kind": "refinery",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "rooftop",
+      "name": "Ivory Rooftop",
+      "kind": "rooftop",
+      "position": {
+        "kind": "legacy-map",
+        "x": 76,
+        "y": 70
+      },
+      "spots": [
+        {
+          "id": "bar",
+          "name": "Sky bar"
+        },
+        {
+          "id": "pool",
+          "name": "Pool deck"
+        },
+        {
+          "id": "stage",
+          "name": "Acoustic stage"
+        },
+        {
+          "id": "terrace",
+          "name": "Terrace"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bar",
+          "name": "Sky bar",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pool",
+          "name": "Pool deck",
+          "source": "content"
+        },
+        {
+          "id": "stage",
+          "name": "Acoustic stage",
+          "source": "content"
+        },
+        {
+          "id": "terrace",
+          "name": "Terrace",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Work",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lola",
+        "somto"
+      ],
+      "scene": {
+        "kind": "rooftop",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "salon",
+      "name": "Mama Bisi’s Salon",
+      "kind": "salon",
+      "position": {
+        "kind": "legacy-map",
+        "x": 83,
+        "y": 14
+      },
+      "spots": [
+        {
+          "id": "basin",
+          "name": "Wash basin"
+        },
+        {
+          "id": "bench",
+          "name": "Waiting bench"
+        },
+        {
+          "id": "chairs",
+          "name": "Styling chairs"
+        },
+        {
+          "id": "nails",
+          "name": "Nail table"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "basin",
+          "name": "Wash basin",
+          "source": "content"
+        },
+        {
+          "id": "bench",
+          "name": "Waiting bench",
+          "source": "content"
+        },
+        {
+          "id": "chairs",
+          "name": "Styling chairs",
+          "source": "content"
+        },
+        {
+          "id": "nails",
+          "name": "Nail table",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Work",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "funke",
+        "mama-bisi"
+      ],
+      "scene": {
+        "kind": "salon",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "shrine",
+      "name": "Afrika Shrine",
+      "kind": "shrine",
+      "position": {
+        "kind": "legacy-map",
+        "x": 26,
+        "y": 13
+      },
+      "spots": [
+        {
+          "id": "bar",
+          "name": "Palm wine bar"
+        },
+        {
+          "id": "floor",
+          "name": "Dance floor"
+        },
+        {
+          "id": "stage",
+          "name": "Main stage"
+        },
+        {
+          "id": "yard",
+          "name": "Drum circle"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bar",
+          "name": "Palm wine bar",
+          "source": "content"
+        },
+        {
+          "id": "floor",
+          "name": "Dance floor",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stage",
+          "name": "Main stage",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Work",
+          "source": "system"
+        },
+        {
+          "id": "yard",
+          "name": "Drum circle",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "femi-sax",
+        "yeni"
+      ],
+      "scene": {
+        "kind": "shrine",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "state-house",
+      "name": "Lagos State House",
+      "kind": "statehouse",
+      "position": {
+        "kind": "legacy-map",
+        "x": 35,
+        "y": 95
+      },
+      "spots": [
+        {
+          "id": "gallery",
+          "name": "Public gallery"
+        },
+        {
+          "id": "gardens",
+          "name": "Gardens"
+        },
+        {
+          "id": "gate",
+          "name": "Front gate"
+        },
+        {
+          "id": "press",
+          "name": "Press room"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "gallery",
+          "name": "Public gallery",
+          "source": "content"
+        },
+        {
+          "id": "gardens",
+          "name": "Gardens",
+          "source": "content"
+        },
+        {
+          "id": "gate",
+          "name": "Front gate",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "press",
+          "name": "Press room",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "madam-secretary",
+        "protocol-segun"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "unilag",
+      "name": "University of Lagos",
+      "kind": "unilag",
+      "position": {
+        "kind": "legacy-map",
+        "x": 56,
+        "y": 30
+      },
+      "spots": [
+        {
+          "id": "access-bank",
+          "name": "Access Bank"
+        },
+        {
+          "id": "amphitheatre",
+          "name": "Amphitheatre"
+        },
+        {
+          "id": "arts",
+          "name": "Faculty of Arts"
+        },
+        {
+          "id": "auditorium",
+          "name": "Main Auditorium"
+        },
+        {
+          "id": "biobaku-hall",
+          "name": "Saburi Biobaku Hall"
+        },
+        {
+          "id": "cafeteria",
+          "name": "2001 Café"
+        },
+        {
+          "id": "central-mosque",
+          "name": "University Mosque"
+        },
+        {
+          "id": "dli-building",
+          "name": "Distance Learning Institute"
+        },
+        {
+          "id": "education",
+          "name": "Faculty of Education"
+        },
+        {
+          "id": "education-chapel",
+          "name": "University Chapel"
+        },
+        {
+          "id": "el-kanemi-hall",
+          "name": "El-Kanemi Hall"
+        },
+        {
+          "id": "engineering",
+          "name": "Faculty of Engineering"
+        },
+        {
+          "id": "eni-njoku-hall",
+          "name": "Professor Eni Njoku Hall"
+        },
+        {
+          "id": "environmental",
+          "name": "Faculty of Environmental Sciences"
+        },
+        {
+          "id": "fagunwa-hall",
+          "name": "Fagunwa Hall"
+        },
+        {
+          "id": "henry-carr-hall",
+          "name": "Henry Carr Hall"
+        },
+        {
+          "id": "honours-hall",
+          "name": "Honours Hall"
+        },
+        {
+          "id": "jaja-hall",
+          "name": "King Jaja Hall"
+        },
+        {
+          "id": "kofo-hall",
+          "name": "Kofo Ademola Hall"
+        },
+        {
+          "id": "lagoon-front",
+          "name": "Lagoon Front"
+        },
+        {
+          "id": "law",
+          "name": "Faculty of Law"
+        },
+        {
+          "id": "library",
+          "name": "University Library"
+        },
+        {
+          "id": "main-gate",
+          "name": "UNILAG Main Gate"
+        },
+        {
+          "id": "makama-hall",
+          "name": "Makama Bida Hall"
+        },
+        {
+          "id": "management",
+          "name": "Faculty of Management Sciences"
+        },
+        {
+          "id": "mariere-hall",
+          "name": "Mariere Hall"
+        },
+        {
+          "id": "medical-centre",
+          "name": "UNILAG Medical Centre"
+        },
+        {
+          "id": "medical-gardens",
+          "name": "Medical Gardens"
+        },
+        {
+          "id": "moremi-hall",
+          "name": "Moremi Hall"
+        },
+        {
+          "id": "multipurpose-hall",
+          "name": "Multipurpose Hall"
+        },
+        {
+          "id": "new-hall-shopping",
+          "name": "New Hall Shopping Complex"
+        },
+        {
+          "id": "people",
+          "name": "Campus people"
+        },
+        {
+          "id": "pharmacy",
+          "name": "Faculty of Pharmacy"
+        },
+        {
+          "id": "queen-amina-hall",
+          "name": "Queen Amina Hall"
+        },
+        {
+          "id": "science",
+          "name": "Faculty of Science"
+        },
+        {
+          "id": "second-gate",
+          "name": "UNILAG Second Gate"
+        },
+        {
+          "id": "senate",
+          "name": "Senate House"
+        },
+        {
+          "id": "social-sciences",
+          "name": "Faculty of Social Sciences"
+        },
+        {
+          "id": "sodeinde-hall",
+          "name": "Sodeinde Hall"
+        },
+        {
+          "id": "sports-centre",
+          "name": "Sports Centre & Stadium"
+        },
+        {
+          "id": "student-union",
+          "name": "Student Union Building"
+        },
+        {
+          "id": "swimming-pool",
+          "name": "UNILAG Swimming Pool"
+        },
+        {
+          "id": "tinubu-hall",
+          "name": "Madame Tinubu Hall"
+        },
+        {
+          "id": "uba-bank",
+          "name": "UBA"
+        },
+        {
+          "id": "university-bookshop",
+          "name": "University Bookshop"
+        },
+        {
+          "id": "wema-bank",
+          "name": "Wema Bank"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "access-bank",
+          "name": "Access Bank",
+          "source": "content"
+        },
+        {
+          "id": "amphitheatre",
+          "name": "Amphitheatre",
+          "source": "content"
+        },
+        {
+          "id": "arts",
+          "name": "Faculty of Arts",
+          "source": "content"
+        },
+        {
+          "id": "auditorium",
+          "name": "Main Auditorium",
+          "source": "content"
+        },
+        {
+          "id": "biobaku-hall",
+          "name": "Saburi Biobaku Hall",
+          "source": "content"
+        },
+        {
+          "id": "cafeteria",
+          "name": "2001 Café",
+          "source": "content"
+        },
+        {
+          "id": "central-mosque",
+          "name": "University Mosque",
+          "source": "content"
+        },
+        {
+          "id": "dli-building",
+          "name": "Distance Learning Institute",
+          "source": "content"
+        },
+        {
+          "id": "education",
+          "name": "Faculty of Education",
+          "source": "content"
+        },
+        {
+          "id": "education-chapel",
+          "name": "University Chapel",
+          "source": "content"
+        },
+        {
+          "id": "el-kanemi-hall",
+          "name": "El-Kanemi Hall",
+          "source": "content"
+        },
+        {
+          "id": "engineering",
+          "name": "Faculty of Engineering",
+          "source": "content"
+        },
+        {
+          "id": "eni-njoku-hall",
+          "name": "Professor Eni Njoku Hall",
+          "source": "content"
+        },
+        {
+          "id": "environmental",
+          "name": "Faculty of Environmental Sciences",
+          "source": "content"
+        },
+        {
+          "id": "fagunwa-hall",
+          "name": "Fagunwa Hall",
+          "source": "content"
+        },
+        {
+          "id": "henry-carr-hall",
+          "name": "Henry Carr Hall",
+          "source": "content"
+        },
+        {
+          "id": "honours-hall",
+          "name": "Honours Hall",
+          "source": "content"
+        },
+        {
+          "id": "jaja-hall",
+          "name": "King Jaja Hall",
+          "source": "content"
+        },
+        {
+          "id": "kofo-hall",
+          "name": "Kofo Ademola Hall",
+          "source": "content"
+        },
+        {
+          "id": "lagoon-front",
+          "name": "Lagoon Front",
+          "source": "content"
+        },
+        {
+          "id": "law",
+          "name": "Faculty of Law",
+          "source": "content"
+        },
+        {
+          "id": "library",
+          "name": "University Library",
+          "source": "content"
+        },
+        {
+          "id": "main-gate",
+          "name": "UNILAG Main Gate",
+          "source": "content"
+        },
+        {
+          "id": "makama-hall",
+          "name": "Makama Bida Hall",
+          "source": "content"
+        },
+        {
+          "id": "management",
+          "name": "Faculty of Management Sciences",
+          "source": "content"
+        },
+        {
+          "id": "mariere-hall",
+          "name": "Mariere Hall",
+          "source": "content"
+        },
+        {
+          "id": "medical-centre",
+          "name": "UNILAG Medical Centre",
+          "source": "content"
+        },
+        {
+          "id": "medical-gardens",
+          "name": "Medical Gardens",
+          "source": "content"
+        },
+        {
+          "id": "moremi-hall",
+          "name": "Moremi Hall",
+          "source": "content"
+        },
+        {
+          "id": "multipurpose-hall",
+          "name": "Multipurpose Hall",
+          "source": "content"
+        },
+        {
+          "id": "new-hall-shopping",
+          "name": "New Hall Shopping Complex",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "Campus people",
+          "source": "content"
+        },
+        {
+          "id": "pharmacy",
+          "name": "Faculty of Pharmacy",
+          "source": "content"
+        },
+        {
+          "id": "queen-amina-hall",
+          "name": "Queen Amina Hall",
+          "source": "content"
+        },
+        {
+          "id": "science",
+          "name": "Faculty of Science",
+          "source": "content"
+        },
+        {
+          "id": "second-gate",
+          "name": "UNILAG Second Gate",
+          "source": "content"
+        },
+        {
+          "id": "senate",
+          "name": "Senate House",
+          "source": "content"
+        },
+        {
+          "id": "social-sciences",
+          "name": "Faculty of Social Sciences",
+          "source": "content"
+        },
+        {
+          "id": "sodeinde-hall",
+          "name": "Sodeinde Hall",
+          "source": "content"
+        },
+        {
+          "id": "sports-centre",
+          "name": "Sports Centre & Stadium",
+          "source": "content"
+        },
+        {
+          "id": "student-union",
+          "name": "Student Union Building",
+          "source": "content"
+        },
+        {
+          "id": "swimming-pool",
+          "name": "UNILAG Swimming Pool",
+          "source": "content"
+        },
+        {
+          "id": "tinubu-hall",
+          "name": "Madame Tinubu Hall",
+          "source": "content"
+        },
+        {
+          "id": "uba-bank",
+          "name": "UBA",
+          "source": "content"
+        },
+        {
+          "id": "university-bookshop",
+          "name": "University Bookshop",
+          "source": "content"
+        },
+        {
+          "id": "wema-bank",
+          "name": "Wema Bank",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "aunty-ngozi",
+        "bisi-reader",
+        "coach-yemi",
+        "driver-sola",
+        "kola-union",
+        "lecturer-ada",
+        "mariam-lagoon",
+        "porter-bayo",
+        "security-efe",
+        "seun-stage",
+        "sister-ade",
+        "tunde-code"
+      ],
+      "scene": {
+        "kind": "unilag",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    },
+    {
+      "id": "viewing-centre",
+      "name": "Viewing Centre",
+      "kind": "viewing",
+      "position": {
+        "kind": "legacy-map",
+        "x": 35,
+        "y": 28
+      },
+      "spots": [
+        {
+          "id": "benches",
+          "name": "Back benches"
+        },
+        {
+          "id": "kiosk",
+          "name": "Snack kiosk"
+        },
+        {
+          "id": "pitch",
+          "name": "Five-a-side pitch"
+        },
+        {
+          "id": "screen",
+          "name": "Big screen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "benches",
+          "name": "Back benches",
+          "source": "content"
+        },
+        {
+          "id": "kiosk",
+          "name": "Snack kiosk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch",
+          "name": "Five-a-side pitch",
+          "source": "content"
+        },
+        {
+          "id": "screen",
+          "name": "Big screen",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Work",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "chidi",
+        "oga-tunde"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for lagos."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "agent-bimpe",
+      "venueId": "airport",
+      "name": "Bimpe",
+      "role": "Travel desk agent",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "agent-wale",
+      "venueId": "polling-unit",
+      "name": "Agent Wale",
+      "role": "Party agent",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "aisha",
+      "venueId": "palms",
+      "name": "Aisha",
+      "role": "Window shopping",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "alhaji-sani",
+      "venueId": "mosque",
+      "name": "Alhaji Sani",
+      "role": "After prayers",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "amaka",
+      "venueId": "amala-shitta",
+      "name": "Amaka",
+      "role": "Serving",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "aunty-ngozi",
+      "venueId": "unilag",
+      "name": "Aunty Ngozi",
+      "role": "Food seller at 2001",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "baba-sege",
+      "venueId": "amala-shitta",
+      "name": "Baba Sege",
+      "role": "Regular customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "bisi-reader",
+      "venueId": "unilag",
+      "name": "Bisi",
+      "role": "Library regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "blessing",
+      "venueId": "beach",
+      "name": "Blessing",
+      "role": "Selling coconuts",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "captain-jide",
+      "venueId": "beach",
+      "name": "Captain Jide",
+      "role": "Boat operator",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "chidi",
+      "venueId": "viewing-centre",
+      "name": "Chidi",
+      "role": "Arguing about football",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "coach-bayo",
+      "venueId": "i-fitness",
+      "name": "Coach Bayo",
+      "role": "Personal trainer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "coach-yemi",
+      "venueId": "unilag",
+      "name": "Coach Yemi",
+      "role": "Five-a-side captain",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "corporal-ife",
+      "venueId": "police",
+      "name": "Corporal Ife",
+      "role": "On gate duty",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "dapo",
+      "venueId": "office",
+      "name": "Dapo",
+      "role": "On a tea break",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "deji",
+      "venueId": "library",
+      "name": "Deji",
+      "role": "Behind the bar",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "dj-kay",
+      "venueId": "quilox",
+      "name": "DJ Kay",
+      "role": "On the decks",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "driver-mustapha",
+      "venueId": "refinery",
+      "name": "Mustapha",
+      "role": "Tanker driver",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "driver-sola",
+      "venueId": "unilag",
+      "name": "Sola",
+      "role": "Shuttle driver",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "emeka",
+      "venueId": "market",
+      "name": "Emeka",
+      "role": "Phone accessories",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "engineer-chioma",
+      "venueId": "refinery",
+      "name": "Engr Chioma",
+      "role": "Shift engineer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "femi-sax",
+      "venueId": "shrine",
+      "name": "Femi Sax",
+      "role": "Tuning up",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "funke",
+      "venueId": "salon",
+      "name": "Funke",
+      "role": "Under the dryer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "halima",
+      "venueId": "cchub",
+      "name": "Halima",
+      "role": "Pitching a startup",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "iya-bose",
+      "venueId": "market",
+      "name": "Iya Bose",
+      "role": "Selling pepper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "kola-union",
+      "venueId": "unilag",
+      "name": "Kola",
+      "role": "Student Union volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "kunle",
+      "venueId": "park",
+      "name": "Kunle",
+      "role": "Sketching by the trees",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "lecturer-ada",
+      "venueId": "unilag",
+      "name": "Dr Ada",
+      "role": "Engineering lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "lola",
+      "venueId": "rooftop",
+      "name": "Lola",
+      "role": "Hosting tonight",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "madam-secretary",
+      "venueId": "state-house",
+      "name": "Madam Abike",
+      "role": "Secretary",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "mallam-isa",
+      "venueId": "mosque",
+      "name": "Mallam Isa",
+      "role": "Teaching",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "mama-bisi",
+      "venueId": "salon",
+      "name": "Mama Bisi",
+      "role": "Braiding hair",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "mama-ronke",
+      "venueId": "park",
+      "name": "Mama Ronke",
+      "role": "Selling zobo",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "mariam-lagoon",
+      "venueId": "unilag",
+      "name": "Mariam",
+      "role": "Lagoon sketcher",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "mrs-bello",
+      "venueId": "polling-unit",
+      "name": "Mrs Bello",
+      "role": "Electoral officer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "mrs-okafor",
+      "venueId": "office",
+      "name": "Mrs Okafor",
+      "role": "Front desk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "ngozi",
+      "venueId": "i-fitness",
+      "name": "Ngozi",
+      "role": "On the treadmill",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "nurse-kemi",
+      "venueId": "hospital",
+      "name": "Nurse Kemi",
+      "role": "On duty",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "oap-tobi",
+      "venueId": "radio",
+      "name": "OAP Tobi",
+      "role": "On air soon",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "oga-tunde",
+      "venueId": "viewing-centre",
+      "name": "Oga Tunde",
+      "role": "Running the screen",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "papa-john",
+      "venueId": "hospital",
+      "name": "Papa John",
+      "role": "Waiting his turn",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "porter-bayo",
+      "venueId": "unilag",
+      "name": "Mr Bayo",
+      "role": "Hall porter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "porter-sule",
+      "venueId": "airport",
+      "name": "Sule",
+      "role": "Porter at Arrivals",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "protocol-segun",
+      "venueId": "state-house",
+      "name": "Segun",
+      "role": "Protocol officer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "ranger-musa",
+      "venueId": "canopy-walk",
+      "name": "Ranger Musa",
+      "role": "Guiding visitors",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "security-efe",
+      "venueId": "unilag",
+      "name": "Efe",
+      "role": "Gate security officer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "sergeant-audu",
+      "venueId": "police",
+      "name": "Sergeant Audu",
+      "role": "At the counter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "seun-stage",
+      "venueId": "unilag",
+      "name": "Seun",
+      "role": "Student performer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "simi-vip",
+      "venueId": "quilox",
+      "name": "Simi",
+      "role": "In the VIP queue",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "sister-ade",
+      "venueId": "unilag",
+      "name": "Sister Ade",
+      "role": "Chapel volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "sister-grace",
+      "venueId": "church",
+      "name": "Sister Grace",
+      "role": "Choir practice",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "somto",
+      "venueId": "rooftop",
+      "name": "Somto",
+      "role": "Watching the skyline",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "sound-ada",
+      "venueId": "radio",
+      "name": "Ada",
+      "role": "Sound engineer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "tega",
+      "venueId": "cchub",
+      "name": "Tega",
+      "role": "Debugging",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "tolu",
+      "venueId": "canopy-walk",
+      "name": "Tolu",
+      "role": "Taking pictures",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "tunde-code",
+      "venueId": "unilag",
+      "name": "Tunde",
+      "role": "Engineering student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "uche",
+      "venueId": "palms",
+      "name": "Uche",
+      "role": "Cinema usher",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "usher-ben",
+      "venueId": "church",
+      "name": "Usher Ben",
+      "role": "Arranging chairs",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "yeni",
+      "venueId": "shrine",
+      "name": "Yeni",
+      "role": "Dancing near the stage",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    },
+    {
+      "id": "zainab",
+      "venueId": "library",
+      "name": "Zainab",
+      "role": "Reading in the lounge",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lagos/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [],
+  "preservedVenueIds": [
+    "airport",
+    "amala-shitta",
+    "beach",
+    "canopy-walk",
+    "cchub",
+    "church",
+    "hospital",
+    "i-fitness",
+    "library",
+    "market",
+    "mosque",
+    "office",
+    "palms",
+    "park",
+    "police",
+    "polling-unit",
+    "quilox",
+    "radio",
+    "refinery",
+    "rooftop",
+    "salon",
+    "shrine",
+    "state-house",
+    "unilag",
+    "viewing-centre"
+  ],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "ab9b83d76f5f13b8d36e369185a02a7332bba1ab0520398124827b3ca882da32",
+    "contentSha256": "bdd212f52719ba1088e85f7de6068995733ee79f332945dcbf1dd3c52ed0f257"
+  }
+}

@@ -36,7 +36,7 @@ const FETCH = {
   kano: async (): Promise<ScenePart> => ({ variants: (await import('./venues-kano.ts')).VARIANTS }),
   parametric: async (): Promise<ScenePart> => ({ parametric: await import('./parametric-venue.ts') }),
 } satisfies Record<string, () => Promise<ScenePart>>;
-type PartId = keyof typeof FETCH;
+type PartId = keyof typeof FETCH | `recipe:${string}`;
 
 /** Explicit city pieces, searched before the shared pieces selected from its content. */
 const CITY_PARTS: Readonly<Record<string, readonly PartId[]>> = Object.freeze({
@@ -51,15 +51,16 @@ export const CITY_KINDS: Readonly<Record<string, string>> = Object.freeze({ quad
 const loaded = new Map<PartId, ScenePart>(), pending = new Map<PartId, Promise<ScenePart>>();
 const hasKind = (cityId: string, kind: string): boolean => cachedCityContent(cityId)?.venues.some((venue) => venue.definition.scene.kind === kind) === true;
 const hasParametricVenues = (cityId: string): boolean => cachedCityContent(cityId)?.venues.some((venue) => venue.definition.scene.design !== undefined) === true;
-const partsOf = (cityId: string): readonly PartId[] => [
+const partsOf = (cityId: string, authored = false): readonly PartId[] => [
   ...(Object.hasOwn(CITY_PARTS, cityId) ? CITY_PARTS[cityId]! : []),
   ...(hasKind(cityId, 'quad') ? ['campus' as const] : []),
   ...(hasKind(cityId, 'hilltop') ? ['viewpoint' as const] : []),
   ...(hasParametricVenues(cityId) ? ['parametric' as const] : []),
+  ...(!authored && playableCityIds().includes(cityId) ? [`recipe:${cityId}` as const] : []),
 ];
 
 /** Cities with scenes of their own. */
-export const sceneCityIds = (): readonly string[] => [...new Set([...Object.keys(CITY_PARTS), ...playableCityIds().filter((cityId) => hasKind(cityId, 'quad') || hasKind(cityId, 'hilltop') || hasParametricVenues(cityId))])];
+export const sceneCityIds = (): readonly string[] => playableCityIds();
 // Transport venues draw their departure boards from the world network (src/scene/venues-transport.ts): a scene waits for it.
 export const cityScenesReady = (cityId: string): boolean => cityNetworkReady() && partsOf(cityId).every((part) => loaded.has(part));
 
@@ -68,23 +69,35 @@ function loadPart(part: PartId): Promise<ScenePart> {
   if (ready) return Promise.resolve(ready);
   const waiting = pending.get(part);
   if (waiting) return waiting;
-  const work = FETCH[part]().then((value) => { loaded.set(part, value); return value; }).finally(() => { if (pending.get(part) === work) pending.delete(part); });
+  const fetch = async () => {
+    if (!part.startsWith('recipe:')) return FETCH[part as keyof typeof FETCH]();
+    const city = part.slice(7);
+    await Promise.all(partsOf(city, true).map(loadPart));
+    return (await import('./recipe/load.ts')).loadRecipePart(city, (kind, variant) => {
+      const found = citySceneDef(city, kind, variant, true);
+      const shared = kind === 'quad' ? 'campus' : kind === 'hilltop' ? 'viewpoint' : null;
+      return shared && CITY_KINDS[kind] !== city && found === loaded.get(shared)?.kinds?.[kind] ? null : found;
+    });
+  };
+  const work = fetch().then((value) => { loaded.set(part, value); return value; }).finally(() => { if (pending.get(part) === work) pending.delete(part); });
   pending.set(part, work);
   return work;
 }
 /** Fetch a city's own scenes. Content comes first because it declares the shared lazy parts this city needs. */
-export async function loadCityScenes(cityId: string): Promise<void> { await Promise.all([loadCityContent(cityId), loadCityNetwork()]); await Promise.all(partsOf(cityId).map(loadPart)); }
+export async function loadCityScenes(cityId: string, authored = false): Promise<void> { await Promise.all([loadCityContent(cityId), loadCityNetwork()]); await Promise.all(partsOf(cityId, authored).map(loadPart)); }
+/** Factory input extraction must not depend on its own generated output. */
+export const loadAuthoredCityScenes = (cityId: string): Promise<void> => loadCityScenes(cityId, true);
 /** Fetch the shared parametric adapter explicitly (unit scene probes that construct a design without city content). */
 export async function loadParametricScenes(): Promise<void> { await loadPart('parametric'); }
 /** Every city's scenes (the scene viewer and the tests), including parts discovered only after content loads. */
-export async function loadAllCityScenes(): Promise<void> { await Promise.all(playableCityIds().map(loadCityScenes)); }
+export async function loadAllCityScenes(): Promise<void> { await Promise.all(playableCityIds().map(city => loadCityScenes(city))); }
 
 /** The synchronous adapter after loadCityScenes/loadParametricScenes has prepared it. */
 export const parametricSceneAdapter = (): ParametricSceneAdapter | null => loaded.get('parametric')?.parametric ?? null;
 
 /** The city's own scene for a kind: the variant it asked for, else the kind itself where the city added it. Null: the shared kind is drawn. */
-export function citySceneDef(cityId: string, kind: string, variant: string): SceneDef | null {
-  const parts = partsOf(cityId);
+export function citySceneDef(cityId: string, kind: string, variant: string, authored = false): SceneDef | null {
+  const parts = partsOf(cityId, authored);
   if (cityId === 'lagos' && kind === 'market' && !variant) return loaded.get('nigeria-runtime')?.variants?.market?.['nigeria-broad-street'] ?? null;
   for (const part of parts) { const variants = loaded.get(part)?.variants, own = variants && Object.hasOwn(variants, kind) ? variants[kind]! : null; if (own && Object.hasOwn(own, variant)) return own[variant]!; }
   for (const part of parts) { const kinds = loaded.get(part)?.kinds; if (kinds && Object.hasOwn(kinds, kind)) return kinds[kind]!; }

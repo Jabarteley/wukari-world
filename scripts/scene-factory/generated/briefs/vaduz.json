@@ -1,0 +1,2103 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "vaduz",
+    "name": "Vaduz",
+    "state": {
+      "id": "li-vaduz",
+      "name": "Vaduz"
+    },
+    "country": {
+      "id": "li",
+      "name": "Liechtenstein"
+    },
+    "point": {
+      "lon": 9.5227962,
+      "lat": 47.1392862
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/liechtenstein-261011.osm.pbf",
+      "https://ourairports.com/airports/LSXB/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/vaduz/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/vaduz/facts.ts",
+        "sha256": "a889a18f7c02ebb1f701fa668279cea11a1dee9c90327c86502c3e78502652fa"
+      },
+      {
+        "path": "src/game/cities/vaduz/index.ts",
+        "sha256": "64b961660b69d2be760a6ab24454300703dc1c99991257925a3c7f179b00f068"
+      },
+      {
+        "path": "src/game/cities/vaduz/places.ts",
+        "sha256": "139a605f97309c001c07e3e5e4a8ada0caeb512fd130d13a59e89d5ca7cac514"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.5227962,
+        "lat": 47.1392862
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "vaduz-airport-vaduz-airport",
+      "name": "Balzers Heliport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.480774,
+        "lat": 47.067908
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-airport-vaduz-airport-1",
+        "vaduz-vaduz-airport-vaduz-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "vaduz-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-clinic",
+      "name": "Liechtensteinisches Landesspital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.522689,
+        "lat": 47.134646
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-clinic-1",
+        "vaduz-vaduz-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/486420157"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15825831"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-community-notices",
+      "name": "Landtag of the Principality of Liechtenstein",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.522688,
+        "lat": 47.137731
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-community-notices-1",
+        "vaduz-vaduz-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/935278222"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1149644"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-community-voting-game",
+      "name": "Rathaus Vaduz",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.521895,
+        "lat": 47.140709
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-community-voting-game-1",
+        "vaduz-vaduz-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/28712183"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1795304"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-community-workshop",
+      "name": "Private Universität im Fürstentum Liechtenstein (UFL)",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.526329,
+        "lat": 47.108067
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-community-workshop-1",
+        "vaduz-vaduz-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/280027827"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2111101"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-market-game",
+      "name": "Mühleholzmarkt",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.509918,
+        "lat": 47.154679
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-market-game-1",
+        "vaduz-vaduz-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1058105046"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-meal-stop",
+      "name": "Restaurant Torkel",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.519501,
+        "lat": 47.144223
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-meal-stop-1",
+        "vaduz-vaduz-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/326059436"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q90314481"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-osm-node-11381640081",
+      "name": "Rhistaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.502678,
+        "lat": 47.20615
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-osm-node-11381640081-1",
+        "vaduz-vaduz-osm-node-11381640081-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11381640081"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-osm-node-300209696",
+      "name": "Mattlerjoch",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.625438,
+        "lat": 47.132041
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-osm-node-300209696-1",
+        "vaduz-vaduz-osm-node-300209696-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/300209696"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q21874719"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-osm-node-354435079",
+      "name": "Vogelparadies Birka",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.550738,
+        "lat": 47.215569
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-osm-node-354435079-1",
+        "vaduz-vaduz-osm-node-354435079-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/354435079"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q65552703"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-osm-node-498566336",
+      "name": "Wildschloss",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.53355,
+        "lat": 47.150846
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-osm-node-498566336-1",
+        "vaduz-vaduz-osm-node-498566336-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/498566336"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-osm-node-5752404321",
+      "name": "Russian Monument",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.560854,
+        "lat": 47.241677
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-osm-node-5752404321-1",
+        "vaduz-vaduz-osm-node-5752404321-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5752404321"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4400826"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-osm-way-1324954458",
+      "name": "Kräutergarten",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.545421,
+        "lat": 47.218644
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-osm-way-1324954458-1",
+        "vaduz-vaduz-osm-way-1324954458-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1324954458"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-osm-way-243055673",
+      "name": "Familienpark Äule",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.520794,
+        "lat": 47.138962
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-osm-way-243055673-1",
+        "vaduz-vaduz-osm-way-243055673-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/243055673"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-osm-way-298855541",
+      "name": "Alp Valüna-Säss",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.587867,
+        "lat": 47.085104
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-osm-way-298855541-1",
+        "vaduz-vaduz-osm-way-298855541-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/298855541"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-osm-way-330503932",
+      "name": "Pfarrkirche Sankt Josef",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.543836,
+        "lat": 47.118002
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-osm-way-330503932-1",
+        "vaduz-vaduz-osm-way-330503932-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/330503932"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q61747431"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-osm-way-47003798",
+      "name": "Aussenstelle der Universität Liechtenstein - Wachterhaus",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.506332,
+        "lat": 47.15604
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-osm-way-47003798-1",
+        "vaduz-vaduz-osm-way-47003798-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/47003798"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-osm-way-484271148",
+      "name": "Universität Liechtenstein",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.516549,
+        "lat": 47.149663
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-osm-way-484271148-1",
+        "vaduz-vaduz-osm-way-484271148-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/484271148"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q974328"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-osm-way-485353483",
+      "name": "Universität Liechtenstein - Wachterhaus",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.506087,
+        "lat": 47.156078
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-osm-way-485353483-1",
+        "vaduz-vaduz-osm-way-485353483-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/485353483"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-osm-way-491625232",
+      "name": "Freizeitpark Blumenau",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.519918,
+        "lat": 47.110935
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-osm-way-491625232-1",
+        "vaduz-vaduz-osm-way-491625232-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/491625232"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3036865"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-osm-way-977381553",
+      "name": "St. Fridolin",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.528753,
+        "lat": 47.241017
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-osm-way-977381553-1",
+        "vaduz-vaduz-osm-way-977381553-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/977381553"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q63338699"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-osm-way-979391092",
+      "name": "Biedermannhaus",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.547828,
+        "lat": 47.232749
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-osm-way-979391092-1",
+        "vaduz-vaduz-osm-way-979391092-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/979391092"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q63088604"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-quiet-reflection",
+      "name": "Jubiläumskirche",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.502182,
+        "lat": 47.065321
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-quiet-reflection-1",
+        "vaduz-vaduz-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/165294627"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1414588"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-recreation",
+      "name": "Wasserpark Walserbünt",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.505943,
+        "lat": 47.166971
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-recreation-1",
+        "vaduz-vaduz-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/480023561"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vaduz-transit",
+      "name": "Nendeln",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.541605,
+        "lat": 47.200406
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vaduz-vaduz-transit-1",
+        "vaduz-vaduz-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vaduz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1353606655"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q978912"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "vaduz-vaduz-airport-vaduz-airport-1",
+      "venueId": "vaduz-airport-vaduz-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-airport-vaduz-airport-2",
+      "venueId": "vaduz-airport-vaduz-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-clinic-1",
+      "venueId": "vaduz-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-clinic-2",
+      "venueId": "vaduz-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-community-notices-1",
+      "venueId": "vaduz-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-community-notices-2",
+      "venueId": "vaduz-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-community-voting-game-1",
+      "venueId": "vaduz-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-community-voting-game-2",
+      "venueId": "vaduz-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-community-workshop-1",
+      "venueId": "vaduz-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-community-workshop-2",
+      "venueId": "vaduz-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-market-game-1",
+      "venueId": "vaduz-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-market-game-2",
+      "venueId": "vaduz-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-meal-stop-1",
+      "venueId": "vaduz-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-meal-stop-2",
+      "venueId": "vaduz-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-node-11381640081-1",
+      "venueId": "vaduz-osm-node-11381640081",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-node-11381640081-2",
+      "venueId": "vaduz-osm-node-11381640081",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-node-300209696-1",
+      "venueId": "vaduz-osm-node-300209696",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-node-300209696-2",
+      "venueId": "vaduz-osm-node-300209696",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-node-354435079-1",
+      "venueId": "vaduz-osm-node-354435079",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-node-354435079-2",
+      "venueId": "vaduz-osm-node-354435079",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-node-498566336-1",
+      "venueId": "vaduz-osm-node-498566336",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-node-498566336-2",
+      "venueId": "vaduz-osm-node-498566336",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-node-5752404321-1",
+      "venueId": "vaduz-osm-node-5752404321",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-node-5752404321-2",
+      "venueId": "vaduz-osm-node-5752404321",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-1324954458-1",
+      "venueId": "vaduz-osm-way-1324954458",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-1324954458-2",
+      "venueId": "vaduz-osm-way-1324954458",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-243055673-1",
+      "venueId": "vaduz-osm-way-243055673",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-243055673-2",
+      "venueId": "vaduz-osm-way-243055673",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-298855541-1",
+      "venueId": "vaduz-osm-way-298855541",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-298855541-2",
+      "venueId": "vaduz-osm-way-298855541",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-330503932-1",
+      "venueId": "vaduz-osm-way-330503932",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-330503932-2",
+      "venueId": "vaduz-osm-way-330503932",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-47003798-1",
+      "venueId": "vaduz-osm-way-47003798",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-47003798-2",
+      "venueId": "vaduz-osm-way-47003798",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-484271148-1",
+      "venueId": "vaduz-osm-way-484271148",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-484271148-2",
+      "venueId": "vaduz-osm-way-484271148",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-485353483-1",
+      "venueId": "vaduz-osm-way-485353483",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-485353483-2",
+      "venueId": "vaduz-osm-way-485353483",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-491625232-1",
+      "venueId": "vaduz-osm-way-491625232",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-491625232-2",
+      "venueId": "vaduz-osm-way-491625232",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-977381553-1",
+      "venueId": "vaduz-osm-way-977381553",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-977381553-2",
+      "venueId": "vaduz-osm-way-977381553",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-979391092-1",
+      "venueId": "vaduz-osm-way-979391092",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-osm-way-979391092-2",
+      "venueId": "vaduz-osm-way-979391092",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-quiet-reflection-1",
+      "venueId": "vaduz-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-quiet-reflection-2",
+      "venueId": "vaduz-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-recreation-1",
+      "venueId": "vaduz-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-recreation-2",
+      "venueId": "vaduz-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-transit-1",
+      "venueId": "vaduz-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    },
+    {
+      "id": "vaduz-vaduz-transit-2",
+      "venueId": "vaduz-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vaduz/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "vaduz-airport-vaduz-airport",
+    "vaduz-clinic",
+    "vaduz-community-notices",
+    "vaduz-community-voting-game",
+    "vaduz-community-workshop",
+    "vaduz-market-game",
+    "vaduz-meal-stop",
+    "vaduz-osm-node-11381640081",
+    "vaduz-osm-node-300209696",
+    "vaduz-osm-node-354435079",
+    "vaduz-osm-node-498566336",
+    "vaduz-osm-node-5752404321",
+    "vaduz-osm-way-1324954458",
+    "vaduz-osm-way-243055673",
+    "vaduz-osm-way-298855541",
+    "vaduz-osm-way-330503932",
+    "vaduz-osm-way-47003798",
+    "vaduz-osm-way-484271148",
+    "vaduz-osm-way-485353483",
+    "vaduz-osm-way-491625232",
+    "vaduz-osm-way-977381553",
+    "vaduz-osm-way-979391092",
+    "vaduz-quiet-reflection",
+    "vaduz-recreation",
+    "vaduz-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "a8270cac90f9e5ee87604f929ea7de5fb56f3c408fdf6616f790670f106dd59a",
+    "contentSha256": "0fd82eaac4c12c335217b6a7ee4cdcddf18e13be8676432db6c0b8a4cf223cd4"
+  }
+}

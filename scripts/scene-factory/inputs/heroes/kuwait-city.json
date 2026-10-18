@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "kuwait-city",
+  "url": "/assets/scene-heroes/kuwait-city.glb",
+  "sha256": "9cf182080a590efb938b45e0dbbc65487fca841bf143dfc418a9eeb4f2fb359b",
+  "rawBytes": 41312,
+  "brotliBytes": 23680,
+  "triangles": 2484,
+  "parts": [
+    {
+      "node": "kuwait-city",
+      "triangles": 2484,
+      "bounds": {
+        "min": [
+          -2.75,
+          0,
+          -2.20000005
+        ],
+        "max": [
+          2.749999971784,
+          4.95010068876,
+          2.1998656418879996
+        ]
+      },
+      "footprint": [
+        -2.75,
+        -2.20000005,
+        2.749999971784,
+        2.1998656418879996
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "4ecd94f61a64f4cf5481b966491528b66c62c39dd43c48e7003b72828ff66be9"
+  },
+  "inputs": {
+    "rawSha256": "cc5d5ae064d7239cff9c559cab566d55c737e0b39cb3231b3a9fb5c6bdedfff3",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "kuwait-city",
+      "country": "kw",
+      "name": "Kuwait Towers",
+      "category": "monument",
+      "sourceUrls": [
+        "https://www.tec.com.kw/Attractions/detail/Kuwait-Tower",
+        "https://arab-architecture.org/db/building/the-kuwait-water-towers"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=kuwait-city]; hero-inputs-r4.md defining-form review",
+      "sourceLicence": "Source text rights unknown unless the publisher states otherwise; factual identity only. No external photo, map, mesh, texture, sculpture surface or plan reused. Original generated geometry is AGPL-3.0-or-later; third-party marks and landmark rights are not cleared by this record.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landmark",
+      "parameters": {
+        "width": 6,
+        "depth": 4.933333333333333,
+        "height": 5.2,
+        "seed": 6104,
+        "palette": [
+          "#dbcdb6",
+          "#62584a",
+          "#8f8a74",
+          "#70a9af",
+          "#c8b68c",
+          "#8caa99",
+          "#d2bd91",
+          "#2e3c43"
+        ],
+        "composition": "sphere-towers"
+      },
+      "evidence": "The official operator identifies Kuwait Towers as a national symbol integral to the Kuwait City skyline and located on Arabian Gulf Road. Kuwait Government Online separately identifies the towers as a famous landmark in the Sharq district on Arabian Gulf Road. Architectural project archive describes three towers, two spheres on the main shaft and one sphere on the second. Original reduced sphere-and-shaft treatment. All dimensions, colours, simplifications and composition proportions are original art direction, not source measurements. No surveyed-location, current-access, production-quality or legal-rights approval is asserted. Prototype correction preserves sphere aspect ratio; dimensions still stylized.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "south-asia"
+      }
+    },
+    "styleSha256": "64cbc90bfc05b51139a91eabe0f981c4f47d02ed2689be22193361f6b66af12d"
+  }
+}

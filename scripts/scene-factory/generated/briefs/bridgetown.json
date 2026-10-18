@@ -1,0 +1,2119 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "bridgetown",
+    "name": "Bridgetown",
+    "state": {
+      "id": "bb-bridgetown",
+      "name": "Bridgetown"
+    },
+    "country": {
+      "id": "bb",
+      "name": "Barbados"
+    },
+    "point": {
+      "lon": -59.6184184,
+      "lat": 13.0977832
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "https://ourairports.com/airports/TBPB/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/bridgetown/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/bridgetown/facts.ts",
+        "sha256": "7cac02bd1ded9b9e651fb90793d458e0aeb2baba1d20c8cf17d14495afae362a"
+      },
+      {
+        "path": "src/game/cities/bridgetown/index.ts",
+        "sha256": "c61838d96244892a763e6c394038fc73148ae841c862fd7f62f638534d7ebffc"
+      },
+      {
+        "path": "src/game/cities/bridgetown/places.ts",
+        "sha256": "dfdfa547907c4cdc50368fb8cd890911911e86964840cae275a4b05ada05cdb9"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "bridgetown-airport-bridgetown-airport",
+      "name": "Grantley Adams International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.491034,
+        "lat": 13.074667
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-airport-bridgetown-airport-1",
+        "bridgetown-bridgetown-airport-bridgetown-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "bridgetown-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-clinic",
+      "name": "Queen Elizabeth Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.606732,
+        "lat": 13.095629
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-clinic-1",
+        "bridgetown-bridgetown-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/440523260"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7270337"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-community-notices",
+      "name": "Caribbean Examinations Council (CXC)",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.594249,
+        "lat": 13.094657
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-community-notices-1",
+        "bridgetown-bridgetown-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/479780102"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5039378"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-community-voting-game",
+      "name": "Barbados Supreme Court Complex",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.613814,
+        "lat": 13.102086
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-community-voting-game-1",
+        "bridgetown-bridgetown-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/235142705"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7644922"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-community-workshop",
+      "name": "Samuel Jackman Prescod Institute of Technology",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.577269,
+        "lat": 13.096386
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-community-workshop-1",
+        "bridgetown-bridgetown-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/231339988"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q60764138"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-market-game",
+      "name": "Sheraton Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.567124,
+        "lat": 13.083437
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-market-game-1",
+        "bridgetown-bridgetown-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/95179441"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7494675"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-meal-stop",
+      "name": "Round House Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.525159,
+        "lat": 13.214992
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-meal-stop-1",
+        "bridgetown-bridgetown-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/608405858"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-osm-node-11686666569",
+      "name": "mamu's cafe",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.507234,
+        "lat": 13.052541
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-osm-node-11686666569-1",
+        "bridgetown-bridgetown-osm-node-11686666569-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11686666569"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-osm-node-13686266671",
+      "name": "Franz Phillips Memorial Picture Hole",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.550713,
+        "lat": 13.24093
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-osm-node-13686266671-1",
+        "bridgetown-bridgetown-osm-node-13686266671-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13686266671"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-osm-node-8393535458",
+      "name": "L'Azure Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.444675,
+        "lat": 13.105415
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-osm-node-8393535458-1",
+        "bridgetown-bridgetown-osm-node-8393535458-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8393535458"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-osm-way-1042768231",
+      "name": "Erdiston Teachers' Training College",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.599844,
+        "lat": 13.097224
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-osm-way-1042768231-1",
+        "bridgetown-bridgetown-osm-way-1042768231-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1042768231"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q60764292"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-osm-way-1137316499",
+      "name": "National Stadium and Sports Center",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.604875,
+        "lat": 13.12012
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-osm-way-1137316499-1",
+        "bridgetown-bridgetown-osm-way-1137316499-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1137316499"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q807307"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-osm-way-1432859122",
+      "name": "Saint Joseph Hospital",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.632917,
+        "lat": 13.261754
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-osm-way-1432859122-1",
+        "bridgetown-bridgetown-osm-way-1432859122-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1432859122"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7401556"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-osm-way-255443003",
+      "name": "Fort Charles",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.612523,
+        "lat": 13.078651
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-osm-way-255443003-1",
+        "bridgetown-bridgetown-osm-way-255443003-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/255443003"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q122991874"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-osm-way-37935746",
+      "name": "National Heroes Square",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.614001,
+        "lat": 13.096757
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-osm-way-37935746-1",
+        "bridgetown-bridgetown-osm-way-37935746-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/37935746"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6973060"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-osm-way-384916728",
+      "name": "St. James Parish Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.638404,
+        "lat": 13.190826
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-osm-way-384916728-1",
+        "bridgetown-bridgetown-osm-way-384916728-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/384916728"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7588447"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-osm-way-385052120",
+      "name": "Queen's College",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.623618,
+        "lat": 13.14578
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-osm-way-385052120-1",
+        "bridgetown-bridgetown-osm-way-385052120-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/385052120"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7269953"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-osm-way-440434642",
+      "name": "St. Margaret's Anglican Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.501593,
+        "lat": 13.1997
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-osm-way-440434642-1",
+        "bridgetown-bridgetown-osm-way-440434642-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/440434642"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7589856"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-osm-way-480461489",
+      "name": "Barbados Community College (BCC)",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.58855,
+        "lat": 13.1051
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-osm-way-480461489-1",
+        "bridgetown-bridgetown-osm-way-480461489-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/480461489"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4858597"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-osm-way-576678586",
+      "name": "Kensington Oval",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.622622,
+        "lat": 13.105307
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-osm-way-576678586-1",
+        "bridgetown-bridgetown-osm-way-576678586-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/576678586"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q167042"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-osm-way-864190108",
+      "name": "Gun Hill Signal Station",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.55758,
+        "lat": 13.143235
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-osm-way-864190108-1",
+        "bridgetown-bridgetown-osm-way-864190108-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/864190108"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5618328"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-osm-way-93917192",
+      "name": "Queen's Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.609304,
+        "lat": 13.099138
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-osm-way-93917192-1",
+        "bridgetown-bridgetown-osm-way-93917192-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/93917192"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7270058"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-quiet-reflection",
+      "name": "St. Philip's Parish Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.488566,
+        "lat": 13.13696
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-quiet-reflection-1",
+        "bridgetown-bridgetown-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/741736399"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q98098852"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-recreation",
+      "name": "Farley Hill National Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.59495,
+        "lat": 13.264811
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-recreation-1",
+        "bridgetown-bridgetown-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/471281496"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q21746104"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bridgetown-transit",
+      "name": "Speightstown Bus Terminal",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.6425,
+        "lat": 13.252015
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bridgetown-bridgetown-transit-1",
+        "bridgetown-bridgetown-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bridgetown/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/12724653"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -59.618418399999996,
+        "lat": 13.0977832
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "bridgetown-bridgetown-airport-bridgetown-airport-1",
+      "venueId": "bridgetown-airport-bridgetown-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-airport-bridgetown-airport-2",
+      "venueId": "bridgetown-airport-bridgetown-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-clinic-1",
+      "venueId": "bridgetown-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-clinic-2",
+      "venueId": "bridgetown-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-community-notices-1",
+      "venueId": "bridgetown-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-community-notices-2",
+      "venueId": "bridgetown-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-community-voting-game-1",
+      "venueId": "bridgetown-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-community-voting-game-2",
+      "venueId": "bridgetown-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-community-workshop-1",
+      "venueId": "bridgetown-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-community-workshop-2",
+      "venueId": "bridgetown-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-market-game-1",
+      "venueId": "bridgetown-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-market-game-2",
+      "venueId": "bridgetown-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-meal-stop-1",
+      "venueId": "bridgetown-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-meal-stop-2",
+      "venueId": "bridgetown-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-node-11686666569-1",
+      "venueId": "bridgetown-osm-node-11686666569",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-node-11686666569-2",
+      "venueId": "bridgetown-osm-node-11686666569",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-node-13686266671-1",
+      "venueId": "bridgetown-osm-node-13686266671",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-node-13686266671-2",
+      "venueId": "bridgetown-osm-node-13686266671",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-node-8393535458-1",
+      "venueId": "bridgetown-osm-node-8393535458",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-node-8393535458-2",
+      "venueId": "bridgetown-osm-node-8393535458",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-1042768231-1",
+      "venueId": "bridgetown-osm-way-1042768231",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-1042768231-2",
+      "venueId": "bridgetown-osm-way-1042768231",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-1137316499-1",
+      "venueId": "bridgetown-osm-way-1137316499",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-1137316499-2",
+      "venueId": "bridgetown-osm-way-1137316499",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-1432859122-1",
+      "venueId": "bridgetown-osm-way-1432859122",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-1432859122-2",
+      "venueId": "bridgetown-osm-way-1432859122",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-255443003-1",
+      "venueId": "bridgetown-osm-way-255443003",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-255443003-2",
+      "venueId": "bridgetown-osm-way-255443003",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-37935746-1",
+      "venueId": "bridgetown-osm-way-37935746",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-37935746-2",
+      "venueId": "bridgetown-osm-way-37935746",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-384916728-1",
+      "venueId": "bridgetown-osm-way-384916728",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-384916728-2",
+      "venueId": "bridgetown-osm-way-384916728",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-385052120-1",
+      "venueId": "bridgetown-osm-way-385052120",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-385052120-2",
+      "venueId": "bridgetown-osm-way-385052120",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-440434642-1",
+      "venueId": "bridgetown-osm-way-440434642",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-440434642-2",
+      "venueId": "bridgetown-osm-way-440434642",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-480461489-1",
+      "venueId": "bridgetown-osm-way-480461489",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-480461489-2",
+      "venueId": "bridgetown-osm-way-480461489",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-576678586-1",
+      "venueId": "bridgetown-osm-way-576678586",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-576678586-2",
+      "venueId": "bridgetown-osm-way-576678586",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-864190108-1",
+      "venueId": "bridgetown-osm-way-864190108",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-864190108-2",
+      "venueId": "bridgetown-osm-way-864190108",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-93917192-1",
+      "venueId": "bridgetown-osm-way-93917192",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-osm-way-93917192-2",
+      "venueId": "bridgetown-osm-way-93917192",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-quiet-reflection-1",
+      "venueId": "bridgetown-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-quiet-reflection-2",
+      "venueId": "bridgetown-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-recreation-1",
+      "venueId": "bridgetown-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-recreation-2",
+      "venueId": "bridgetown-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-transit-1",
+      "venueId": "bridgetown-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    },
+    {
+      "id": "bridgetown-bridgetown-transit-2",
+      "venueId": "bridgetown-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bridgetown/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "bridgetown-airport-bridgetown-airport",
+    "bridgetown-clinic",
+    "bridgetown-community-notices",
+    "bridgetown-community-voting-game",
+    "bridgetown-community-workshop",
+    "bridgetown-market-game",
+    "bridgetown-meal-stop",
+    "bridgetown-osm-node-11686666569",
+    "bridgetown-osm-node-13686266671",
+    "bridgetown-osm-node-8393535458",
+    "bridgetown-osm-way-1042768231",
+    "bridgetown-osm-way-1137316499",
+    "bridgetown-osm-way-1432859122",
+    "bridgetown-osm-way-255443003",
+    "bridgetown-osm-way-37935746",
+    "bridgetown-osm-way-384916728",
+    "bridgetown-osm-way-385052120",
+    "bridgetown-osm-way-440434642",
+    "bridgetown-osm-way-480461489",
+    "bridgetown-osm-way-576678586",
+    "bridgetown-osm-way-864190108",
+    "bridgetown-osm-way-93917192",
+    "bridgetown-quiet-reflection",
+    "bridgetown-recreation",
+    "bridgetown-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "014849f8c1dbe01ea54e286acd9b4e68645b8af537c97887a6e7577c549c825d",
+    "contentSha256": "0f02eb7795fe3ce2d2364872e7e1c5ace30e600e2e6878c7e6cf5d0973c0418d"
+  }
+}

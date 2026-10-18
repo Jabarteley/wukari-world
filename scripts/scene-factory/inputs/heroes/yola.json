@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "yola",
+  "url": "/assets/scene-heroes/yola.glb",
+  "sha256": "2761fbc60b50b19e76e70822c3986f3b0c9118631983a10d5a071165dc84cf73",
+  "rawBytes": 24280,
+  "brotliBytes": 16856,
+  "triangles": 504,
+  "parts": [
+    {
+      "node": "yola",
+      "triangles": 504,
+      "bounds": {
+        "min": [
+          -2.03290319,
+          0,
+          -1.98467755
+        ],
+        "max": [
+          2.0329029783459998,
+          2.3000605242159997,
+          1.984589608428
+        ]
+      },
+      "footprint": [
+        -2.03290319,
+        -1.98467755,
+        2.0329029783459998,
+        1.984589608428
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "b1c07280067fb9bd9cdc7abab3d0df7b8ae93eba6cdf54daa5774c2c98531453"
+  },
+  "inputs": {
+    "rawSha256": "6684436a573fc740736bbb23864f94ce13883332e7fec9c842f8e35782fe63b1",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "yola",
+      "country": "ng",
+      "name": "Modibbo Adama Modern Market, Yola (MAMMY)",
+      "category": "market",
+      "sourceUrls": [
+        "https://adamawastate.gov.ng/gov-fintiri-commissions-ultra-modern-yola-market-names-landmark-project-after-modibbo-adama/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-final20-primary-r5.json#records[city_id=yola]; hero-inputs-r4.md final decisions",
+      "sourceLicence": "OpenStreetMap ODbL1.0 for exact object facts where cited; other source text rights unknown. No external image, map, mesh, texture, floor plan or geometry is reused.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 6,
+        "depth": 5,
+        "height": 2.3,
+        "seed": 6305,
+        "palette": [
+          "#c7b58d",
+          "#685748",
+          "#718b61",
+          "#bd7f55",
+          "#679aa7",
+          "#bdad83",
+          "#e1ddd0",
+          "#35444a"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Adamawa State names the rebuilt market in Yola “Modibbo Adama Modern Market” and reports that it was opened for business. Original schematic category interpretation only. Dimensions, palette and layout are art direction, not surveyed measurements. Empty trade displays do not infer local merchandise, precise current access or operation. No production or external-rights approval.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "sahel-north"
+      }
+    },
+    "styleSha256": "841610ddb65f0adc85cdf982569f93afa1e49f617d77f89f3911c0d2de1a83f4"
+  }
+}

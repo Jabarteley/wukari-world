@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "accra",
+  "url": "/assets/scene-heroes/accra.glb",
+  "sha256": "963572c102fe770373c28f406a019302410c0b6e0051d69808371dc08b802de0",
+  "rawBytes": 59304,
+  "brotliBytes": 32075,
+  "triangles": 3728,
+  "parts": [
+    {
+      "node": "accra",
+      "triangles": 3728,
+      "bounds": {
+        "min": [
+          -2.32999992,
+          0,
+          -1.46449995
+        ],
+        "max": [
+          2.330000161302,
+          2.4470475919820003,
+          1.464391024618
+        ]
+      },
+      "footprint": [
+        -2.32999992,
+        -1.46449995,
+        2.330000161302,
+        1.464391024618
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "fc52fcd31a6a0f6232071f06ba078fc350a270ad2e48d4d2becdff31e3e24959"
+  },
+  "inputs": {
+    "rawSha256": "6915df489533fdc18dc799bdbced1fcb24cce163bf0355733f6b9764be553a50",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "accra",
+      "country": "gh",
+      "name": "Makola Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/node/7514623108",
+        "https://www.ama.gov.gh/news-details.php?n=OG4zNTZuOHFybzMwc28yNXJvcTVxNDE3Njc3Mm5uMDMxMW5xMTI1Nw%3D%3D"
+      ],
+      "sourceRef": "src/game/cities/accra/places.ts#PLACES[5]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual identity only; no source geometry copied; AMA publication: Publisher reuse licence not established; only factual identity/category/date paraphrased; no prose, images, maps or geometry copied",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 8.4,
+        "depth": 5.1,
+        "height": 2.9,
+        "seed": 20261020,
+        "palette": [
+          "#eee0bd",
+          "#7c513b",
+          "#397352",
+          "#c05b32",
+          "#357f96",
+          "#e8b52e",
+          "#768185",
+          "#273438"
+        ]
+      },
+      "evidence": "Repository maps Makola Market; Accra Metropolitan Assembly describes its alleys and vendors selling textiles, crafts, spices and produce. Generic stall rows represent market activity without reproducing a particular building.",
+      "provenance": {
+        "sourcePath": "src/game/cities/accra/places.ts#PLACES[5]",
+        "authority": "Accra Metropolitan Assembly 12 September 2023 report and repository OSM place record",
+        "restrictionRationale": "Ghana: an actual market, independently corroborated by its municipal authority.",
+        "dimensionBasis": "Original stylized target bounds in metres; not surveyed or sourced dimensions",
+        "sourcedMeasurements": [],
+        "geometryOrigin": "Original boxes, cylinders and procedural low-poly primitives only; no external model or photograph",
+        "sourceGeometryLicence": "Not used; factual-source licences confer no imported geometry rights",
+        "regionProposal": "gulf-guinea",
+        "currentInventoryRegion": "gulf-guinea",
+        "placementStatus": "Decorative city reference; no accurate geographic placement or surveyed entrance claimed",
+        "unknowns": [
+          "Precise stall layout is unknown",
+          "AMA has announced redevelopment; this selection makes no claim about the current buildings or trader relocation status"
+        ],
+        "artDirection": {
+          "composition": "open-lane-mixed-goods-v2",
+          "seed": 20261020,
+          "goods": [
+            "fabric bolts and hanging cloth",
+            "produce trays",
+            "spice containers",
+            "simple craft vessels"
+          ],
+          "layout": "Original five-display market fragment with a clear central lane and an open foreground junction; not a copied or surveyed plan",
+          "variation": "Bounded seeded palette order; varied awning heights/forms and merchandise silhouettes",
+          "measurements": "Existing width/depth/height are stylized target bounds, not sourced measurements"
+        }
+      },
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "gulf-guinea"
+      }
+    },
+    "styleSha256": "2fdffb74f7375d9e1754151b92a51e85d0f902aaa4e0c8a647b3a33364eccaa9"
+  }
+}

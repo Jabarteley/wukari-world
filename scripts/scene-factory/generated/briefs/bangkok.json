@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "bangkok",
+    "name": "Bangkok",
+    "state": {
+      "id": "th-bangkok",
+      "name": "Bangkok"
+    },
+    "country": {
+      "id": "th",
+      "name": "Thailand"
+    },
+    "point": {
+      "lon": 100.4935089,
+      "lat": 13.7524938
+    }
+  },
+  "style": {
+    "region": "east-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/thailand-261011.osm.pbf",
+      "https://ourairports.com/airports/VTBS/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/bangkok/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/bangkok/facts.ts",
+        "sha256": "36a1ee2cf09076960c3d5d026b354186af2c0f57bbbdab80e522690face16acd"
+      },
+      {
+        "path": "src/game/cities/bangkok/index.ts",
+        "sha256": "7719aad9d86ec417935c4dbe2a0c6661fab177f2418647e31c34279e1d1b9222"
+      },
+      {
+        "path": "src/game/cities/bangkok/places.ts",
+        "sha256": "320ea24cf542a544464d151fc0f8863122ad6be4936d3259e74d9fa1d1e33b3a"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "bangkok-airport-bangkok-airport",
+      "name": "Suvarnabhumi Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.747002,
+        "lat": 13.6811
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-airport-bangkok-airport-1",
+        "bangkok-bangkok-airport-bangkok-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "bangkok-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-clinic",
+      "name": "Nakornthon Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.434319,
+        "lat": 13.660606
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-clinic-1",
+        "bangkok-bangkok-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3040931236"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6960693"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-community-notices",
+      "name": "The Thai Bar",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.40804,
+        "lat": 13.760422
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-community-notices-1",
+        "bangkok-bangkok-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/200187184"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13025451"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-community-voting-game",
+      "name": "ศาลาว่าการกรุงเทพมหานคร 2",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.553922,
+        "lat": 13.770772
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-community-voting-game-1",
+        "bangkok-bangkok-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1319861844"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q132744152"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-community-workshop",
+      "name": "Dhurakij Pundit University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.551039,
+        "lat": 13.870619
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-community-workshop-1",
+        "bangkok-bangkok-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/2840322"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1132082"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-market-game",
+      "name": "Central Westgate",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.411664,
+        "lat": 13.876793
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-market-game-1",
+        "bangkok-bangkok-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/359413315"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20575563"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-meal-stop",
+      "name": "Sirocco",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.516873,
+        "lat": 13.721292
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-meal-stop-1",
+        "bangkok-bangkok-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/358876587"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4923611"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-osm-node-1641043367",
+      "name": "Bang Nam Pheung Floating Market",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.576055,
+        "lat": 13.680271
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-osm-node-1641043367-1",
+        "bangkok-bangkok-osm-node-1641043367-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1641043367"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q18398194"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-osm-node-1645930798",
+      "name": "Panyananthaphikkhu Chonprathan Medical Center",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.502017,
+        "lat": 13.899912
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-osm-node-1645930798-1",
+        "bangkok-bangkok-osm-node-1645930798-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1645930798"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13021490"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-osm-node-1669417525",
+      "name": "Wat Rat Burana",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.744353,
+        "lat": 13.580705
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-osm-node-1669417525-1",
+        "bangkok-bangkok-osm-node-1669417525-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1669417525"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13020818"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-osm-node-2962259464",
+      "name": "Lumpinee Boxing Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.608727,
+        "lat": 13.867004
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-osm-node-2962259464-1",
+        "bangkok-bangkok-osm-node-2962259464-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2962259464"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2427500"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-osm-node-6169672727",
+      "name": "MK Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.480555,
+        "lat": 13.823934
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-osm-node-6169672727-1",
+        "bangkok-bangkok-osm-node-6169672727-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6169672727"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6583351"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-osm-relation-20313115",
+      "name": "Thawiwanarom Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.352472,
+        "lat": 13.74445
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-osm-relation-20313115-1",
+        "bangkok-bangkok-osm-relation-20313115-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/20313115"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13022353"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-osm-way-1464119566",
+      "name": "Royal Thai Air Force Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.621721,
+        "lat": 13.91998
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-osm-way-1464119566-1",
+        "bangkok-bangkok-osm-way-1464119566-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1464119566"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4922129"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-osm-way-1543169884",
+      "name": "National Institute of Development Administration",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.653669,
+        "lat": 13.770217
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-osm-way-1543169884-1",
+        "bangkok-bangkok-osm-way-1543169884-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1543169884"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1528410"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-osm-way-175314200",
+      "name": "Thunder Dome",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.548398,
+        "lat": 13.9181
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-osm-way-175314200-1",
+        "bangkok-bangkok-osm-way-175314200-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/175314200"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30339185"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-osm-way-177938414",
+      "name": "Siam University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.453195,
+        "lat": 13.720833
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-osm-way-177938414-1",
+        "bangkok-bangkok-osm-way-177938414-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/177938414"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4381437"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-osm-way-203011799",
+      "name": "Suan Luang Rama VIII Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.494838,
+        "lat": 13.768442
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-osm-way-203011799-1",
+        "bangkok-bangkok-osm-way-203011799-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/203011799"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13022383"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-osm-way-341749639",
+      "name": "Nopparat Rajathanee Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.688346,
+        "lat": 13.817364
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-osm-way-341749639-1",
+        "bangkok-bangkok-osm-way-341749639-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/341749639"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20582973"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-osm-way-378636213",
+      "name": "Wat Nong Khaem",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.338784,
+        "lat": 13.676467
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-osm-way-378636213-1",
+        "bangkok-bangkok-osm-way-378636213-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/378636213"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q98840907"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-osm-way-420312611",
+      "name": "King Mongkut's University of Technology, Thonburi",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.49384,
+        "lat": 13.651776
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-osm-way-420312611-1",
+        "bangkok-bangkok-osm-way-420312611-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/420312611"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q476521"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-osm-way-706259602",
+      "name": "Safari World",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.70315,
+        "lat": 13.865374
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-osm-way-706259602-1",
+        "bangkok-bangkok-osm-way-706259602-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/706259602"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2033070"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-quiet-reflection",
+      "name": "Wat Khae",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.564825,
+        "lat": 13.606456
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-quiet-reflection-1",
+        "bangkok-bangkok-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1669113342"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q99518970"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-recreation",
+      "name": "Suan Luang Rama IX",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.663784,
+        "lat": 13.685093
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-recreation-1",
+        "bangkok-bangkok-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/33042465"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1795947"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bangkok-transit",
+      "name": "Sala Ya",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.324334,
+        "lat": 13.802502
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bangkok-bangkok-transit-1",
+        "bangkok-bangkok-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bangkok/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/249644272"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13021768"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 100.4935089,
+        "lat": 13.7524938
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "bangkok-bangkok-airport-bangkok-airport-1",
+      "venueId": "bangkok-airport-bangkok-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-airport-bangkok-airport-2",
+      "venueId": "bangkok-airport-bangkok-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-clinic-1",
+      "venueId": "bangkok-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-clinic-2",
+      "venueId": "bangkok-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-community-notices-1",
+      "venueId": "bangkok-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-community-notices-2",
+      "venueId": "bangkok-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-community-voting-game-1",
+      "venueId": "bangkok-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-community-voting-game-2",
+      "venueId": "bangkok-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-community-workshop-1",
+      "venueId": "bangkok-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-community-workshop-2",
+      "venueId": "bangkok-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-market-game-1",
+      "venueId": "bangkok-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-market-game-2",
+      "venueId": "bangkok-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-meal-stop-1",
+      "venueId": "bangkok-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-meal-stop-2",
+      "venueId": "bangkok-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-node-1641043367-1",
+      "venueId": "bangkok-osm-node-1641043367",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-node-1641043367-2",
+      "venueId": "bangkok-osm-node-1641043367",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-node-1645930798-1",
+      "venueId": "bangkok-osm-node-1645930798",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-node-1645930798-2",
+      "venueId": "bangkok-osm-node-1645930798",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-node-1669417525-1",
+      "venueId": "bangkok-osm-node-1669417525",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-node-1669417525-2",
+      "venueId": "bangkok-osm-node-1669417525",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-node-2962259464-1",
+      "venueId": "bangkok-osm-node-2962259464",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-node-2962259464-2",
+      "venueId": "bangkok-osm-node-2962259464",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-node-6169672727-1",
+      "venueId": "bangkok-osm-node-6169672727",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-node-6169672727-2",
+      "venueId": "bangkok-osm-node-6169672727",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-relation-20313115-1",
+      "venueId": "bangkok-osm-relation-20313115",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-relation-20313115-2",
+      "venueId": "bangkok-osm-relation-20313115",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-1464119566-1",
+      "venueId": "bangkok-osm-way-1464119566",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-1464119566-2",
+      "venueId": "bangkok-osm-way-1464119566",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-1543169884-1",
+      "venueId": "bangkok-osm-way-1543169884",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-1543169884-2",
+      "venueId": "bangkok-osm-way-1543169884",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-175314200-1",
+      "venueId": "bangkok-osm-way-175314200",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-175314200-2",
+      "venueId": "bangkok-osm-way-175314200",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-177938414-1",
+      "venueId": "bangkok-osm-way-177938414",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-177938414-2",
+      "venueId": "bangkok-osm-way-177938414",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-203011799-1",
+      "venueId": "bangkok-osm-way-203011799",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-203011799-2",
+      "venueId": "bangkok-osm-way-203011799",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-341749639-1",
+      "venueId": "bangkok-osm-way-341749639",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-341749639-2",
+      "venueId": "bangkok-osm-way-341749639",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-378636213-1",
+      "venueId": "bangkok-osm-way-378636213",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-378636213-2",
+      "venueId": "bangkok-osm-way-378636213",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-420312611-1",
+      "venueId": "bangkok-osm-way-420312611",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-420312611-2",
+      "venueId": "bangkok-osm-way-420312611",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-706259602-1",
+      "venueId": "bangkok-osm-way-706259602",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-osm-way-706259602-2",
+      "venueId": "bangkok-osm-way-706259602",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-quiet-reflection-1",
+      "venueId": "bangkok-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-quiet-reflection-2",
+      "venueId": "bangkok-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-recreation-1",
+      "venueId": "bangkok-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-recreation-2",
+      "venueId": "bangkok-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-transit-1",
+      "venueId": "bangkok-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    },
+    {
+      "id": "bangkok-bangkok-transit-2",
+      "venueId": "bangkok-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bangkok/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "bangkok-airport-bangkok-airport",
+    "bangkok-clinic",
+    "bangkok-community-notices",
+    "bangkok-community-voting-game",
+    "bangkok-community-workshop",
+    "bangkok-market-game",
+    "bangkok-meal-stop",
+    "bangkok-osm-node-1641043367",
+    "bangkok-osm-node-1645930798",
+    "bangkok-osm-node-1669417525",
+    "bangkok-osm-node-2962259464",
+    "bangkok-osm-node-6169672727",
+    "bangkok-osm-relation-20313115",
+    "bangkok-osm-way-1464119566",
+    "bangkok-osm-way-1543169884",
+    "bangkok-osm-way-175314200",
+    "bangkok-osm-way-177938414",
+    "bangkok-osm-way-203011799",
+    "bangkok-osm-way-341749639",
+    "bangkok-osm-way-378636213",
+    "bangkok-osm-way-420312611",
+    "bangkok-osm-way-706259602",
+    "bangkok-quiet-reflection",
+    "bangkok-recreation",
+    "bangkok-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "3f1117b7efa01f086ac28d8c475566786a5027de1c56cc209f32fb4c7328d037",
+    "contentSha256": "9d46c120ee700544384d9979ccc0b30550e2829d5e629b56068b80a10c96791b"
+  }
+}

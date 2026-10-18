@@ -1,0 +1,2115 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "bauchi",
+    "name": "Bauchi",
+    "state": {
+      "id": "bauchi",
+      "name": "Bauchi"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 9.8410189,
+      "lat": 10.3168749
+    }
+  },
+  "style": {
+    "region": "sahel-north",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/bauchi/content.ts",
+        "sha256": "52657c0b64fc17e6e88ee5dc4353ff29c3b81342a59b39491ceb2766b4978bb9"
+      },
+      {
+        "path": "src/game/cities/bauchi/index.ts",
+        "sha256": "0481fb97894d3d4b056a4d6fe6cedbc086f66fcdb67f295926026ee7b89b582f"
+      },
+      {
+        "path": "src/game/cities/bauchi/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/bauchi/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for bauchi.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "alhamus-restaurant-bauchi",
+      "name": "Alhamus",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.7924401,
+        "lat": 10.2788724
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-alhamus-restaurant-bauchi-1",
+        "bauchi-alhamus-restaurant-bauchi-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "atbu-stadium-bauchi",
+      "name": "Abubakar Tafawa Balewa Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.83527778,
+        "lat": 10.31944444
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-atbu-stadium-bauchi-1",
+        "bauchi-atbu-stadium-bauchi-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "atbu-teaching-hospital-bauchi",
+      "name": "Abubakar Tafawa Balewa University Teaching Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.83088,
+        "lat": 10.32429
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-atbu-teaching-hospital-bauchi-1",
+        "bauchi-atbu-teaching-hospital-bauchi-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "atbu-yelwa-campus-bauchi",
+      "name": "ATBU Yelwa Campus",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.7948111,
+        "lat": 10.2783566
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-atbu-yelwa-campus-bauchi-1",
+        "bauchi-atbu-yelwa-campus-bauchi-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "bauchi-central-mosque",
+      "name": "Bauchi Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.845391,
+        "lat": 10.310204
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-bauchi-central-mosque-1",
+        "bauchi-bauchi-central-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "bauchi-government-house",
+      "name": "Government House",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.8114124,
+        "lat": 10.3069641
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-bauchi-government-house-1",
+        "bauchi-bauchi-government-house-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "bauchi-local-government-secretariat",
+      "name": "Local Government Secretariat",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.8459799,
+        "lat": 10.3121305
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-bauchi-local-government-secretariat-1",
+        "bauchi-bauchi-local-government-secretariat-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "bauchi-state-secretariat",
+      "name": "State Secretariat",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.8263423,
+        "lat": 10.3046297
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-bauchi-state-secretariat-1",
+        "bauchi-bauchi-state-secretariat-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "bauchi-state-university-bauchi",
+      "name": "Bauchi State University, Bauchi Campus",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.8256244,
+        "lat": 10.313457
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-bauchi-state-university-bauchi-1",
+        "bauchi-bauchi-state-university-bauchi-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "emirs-palace-bauchi",
+      "name": "Emir's Palace",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.8464981,
+        "lat": 10.3099226
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-emirs-palace-bauchi-1",
+        "bauchi-emirs-palace-bauchi-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "federal-polytechnic-bauchi",
+      "name": "Federal Polytechnic, Bauchi",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.768,
+        "lat": 10.257
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-federal-polytechnic-bauchi-1",
+        "bauchi-federal-polytechnic-bauchi-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "first-bank-bauchi",
+      "name": "First Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.8225201,
+        "lat": 10.3061497
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-first-bank-bauchi-1",
+        "bauchi-first-bank-bauchi-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "general-hospital-specialist-bauchi",
+      "name": "General Hospital (Specialist)",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.8413021,
+        "lat": 10.3336375
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-general-hospital-specialist-bauchi-1",
+        "bauchi-general-hospital-specialist-bauchi-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "gtb-bauchi",
+      "name": "GTB",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.8327957,
+        "lat": 10.3138448
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-gtb-bauchi-1",
+        "bauchi-gtb-bauchi-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.904970336786223,
+        "lat": 10.239566054976436
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "masallacin-rimi-bauchi",
+      "name": "Masallacin Rimi",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.7884471,
+        "lat": 10.2915048
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-masallacin-rimi-bauchi-1",
+        "bauchi-masallacin-rimi-bauchi-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "methodist-church-bauchi",
+      "name": "Methodist Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.8324701,
+        "lat": 10.3200621
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-methodist-church-bauchi-1",
+        "bauchi-methodist-church-bauchi-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "mobil-car-station-bauchi",
+      "name": "Mobil Car station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.8215429,
+        "lat": 10.3209257
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-mobil-car-station-bauchi-1",
+        "bauchi-mobil-car-station-bauchi-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "muda-lawal-market-bauchi",
+      "name": "Muda lawal market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.841,
+        "lat": 10.3307
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-muda-lawal-market-bauchi-1",
+        "bauchi-muda-lawal-market-bauchi-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "shadawanka-rock-painting-bauchi",
+      "name": "Shadawanka Rock Painting",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.8238333333333,
+        "lat": 10.300805555556
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-shadawanka-rock-painting-bauchi-1",
+        "bauchi-shadawanka-rock-painting-bauchi-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "shukurah-restaurant-bauchi",
+      "name": "SHUKURAH RESTAURANT BAUCHI",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.831275,
+        "lat": 10.316589
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-shukurah-restaurant-bauchi-1",
+        "bauchi-shukurah-restaurant-bauchi-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "st-john-catholic-church-bauchi",
+      "name": "St. John Catholic Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.8337778,
+        "lat": 10.318549
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-st-john-catholic-church-bauchi-1",
+        "bauchi-st-john-catholic-church-bauchi-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "tafawa-balewa-mausoleum-bauchi",
+      "name": "Abubakar Tafawa Balewa Mausoleum, Bauchi",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.846187,
+        "lat": 10.318725
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-tafawa-balewa-mausoleum-bauchi-1",
+        "bauchi-tafawa-balewa-mausoleum-bauchi-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "unity-park-bauchi",
+      "name": "Unity Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.8308821,
+        "lat": 10.3162139
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Public area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Public area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-unity-park-bauchi-1",
+        "bauchi-unity-park-bauchi-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "yankari-motor-park-bauchi",
+      "name": "Yankari Motor park",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.8441618,
+        "lat": 10.3079133
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-yankari-motor-park-bauchi-1",
+        "bauchi-yankari-motor-park-bauchi-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    },
+    {
+      "id": "yelwa-market-bauchi",
+      "name": "Yelwa market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 9.795404,
+        "lat": 10.272967
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bauchi-yelwa-market-bauchi-1",
+        "bauchi-yelwa-market-bauchi-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for bauchi."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "bauchi-alhamus-restaurant-bauchi-1",
+      "venueId": "alhamus-restaurant-bauchi",
+      "name": "Ismail Sadiq",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-alhamus-restaurant-bauchi-2",
+      "venueId": "alhamus-restaurant-bauchi",
+      "name": "Aisha Bala",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-atbu-stadium-bauchi-1",
+      "venueId": "atbu-stadium-bauchi",
+      "name": "Binta Bello",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-atbu-stadium-bauchi-2",
+      "venueId": "atbu-stadium-bauchi",
+      "name": "Abdullahi Kabir",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-atbu-teaching-hospital-bauchi-1",
+      "venueId": "atbu-teaching-hospital-bauchi",
+      "name": "Ismail Suleiman",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-atbu-teaching-hospital-bauchi-2",
+      "venueId": "atbu-teaching-hospital-bauchi",
+      "name": "Aisha Mohammed",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-atbu-yelwa-campus-bauchi-1",
+      "venueId": "atbu-yelwa-campus-bauchi",
+      "name": "Usman Tanko",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-atbu-yelwa-campus-bauchi-2",
+      "venueId": "atbu-yelwa-campus-bauchi",
+      "name": "Hajiya Zainab",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-bauchi-central-mosque-1",
+      "venueId": "bauchi-central-mosque",
+      "name": "Rabi Abubakar",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-bauchi-central-mosque-2",
+      "venueId": "bauchi-central-mosque",
+      "name": "Malam Musa",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-bauchi-government-house-1",
+      "venueId": "bauchi-government-house",
+      "name": "Rabi Magaji",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-bauchi-government-house-2",
+      "venueId": "bauchi-government-house",
+      "name": "Musa Abubakar",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-bauchi-local-government-secretariat-1",
+      "venueId": "bauchi-local-government-secretariat",
+      "name": "Ismail Umar",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-bauchi-local-government-secretariat-2",
+      "venueId": "bauchi-local-government-secretariat",
+      "name": "Aisha Sadiq",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-bauchi-state-secretariat-1",
+      "venueId": "bauchi-state-secretariat",
+      "name": "Ismail Mohammed",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-bauchi-state-secretariat-2",
+      "venueId": "bauchi-state-secretariat",
+      "name": "Hajiya Hauwa",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-bauchi-state-university-bauchi-1",
+      "venueId": "bauchi-state-university-bauchi",
+      "name": "Binta Abubakar",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-bauchi-state-university-bauchi-2",
+      "venueId": "bauchi-state-university-bauchi",
+      "name": "Musa Yakubu",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-emirs-palace-bauchi-1",
+      "venueId": "emirs-palace-bauchi",
+      "name": "Binta Salihu",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-emirs-palace-bauchi-2",
+      "venueId": "emirs-palace-bauchi",
+      "name": "Malam Aliyu",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-federal-polytechnic-bauchi-1",
+      "venueId": "federal-polytechnic-bauchi",
+      "name": "Usman Sadiq",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-federal-polytechnic-bauchi-2",
+      "venueId": "federal-polytechnic-bauchi",
+      "name": "Hauwa Bala",
+      "role": "Instructor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-first-bank-bauchi-1",
+      "venueId": "first-bank-bauchi",
+      "name": "Usman Bala",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-first-bank-bauchi-2",
+      "venueId": "first-bank-bauchi",
+      "name": "Aisha Danladi",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-general-hospital-specialist-bauchi-1",
+      "venueId": "general-hospital-specialist-bauchi",
+      "name": "Rabi Idris",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-general-hospital-specialist-bauchi-2",
+      "venueId": "general-hospital-specialist-bauchi",
+      "name": "Malam Abdullahi",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-gtb-bauchi-1",
+      "venueId": "gtb-bauchi",
+      "name": "Binta Yakubu",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-gtb-bauchi-2",
+      "venueId": "gtb-bauchi",
+      "name": "Malam Ibrahim",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-masallacin-rimi-bauchi-1",
+      "venueId": "masallacin-rimi-bauchi",
+      "name": "Ismail Tanko",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-masallacin-rimi-bauchi-2",
+      "venueId": "masallacin-rimi-bauchi",
+      "name": "Aisha Gwarzo",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-methodist-church-bauchi-1",
+      "venueId": "methodist-church-bauchi",
+      "name": "Rabi Bello",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-methodist-church-bauchi-2",
+      "venueId": "methodist-church-bauchi",
+      "name": "Musa Kabir",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-mobil-car-station-bauchi-1",
+      "venueId": "mobil-car-station-bauchi",
+      "name": "Ismail Gwarzo",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-mobil-car-station-bauchi-2",
+      "venueId": "mobil-car-station-bauchi",
+      "name": "Aisha Suleiman",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-muda-lawal-market-bauchi-1",
+      "venueId": "muda-lawal-market-bauchi",
+      "name": "Rabi Gambo",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-muda-lawal-market-bauchi-2",
+      "venueId": "muda-lawal-market-bauchi",
+      "name": "Musa Magaji",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-shadawanka-rock-painting-bauchi-1",
+      "venueId": "shadawanka-rock-painting-bauchi",
+      "name": "Binta Magaji",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-shadawanka-rock-painting-bauchi-2",
+      "venueId": "shadawanka-rock-painting-bauchi",
+      "name": "Abdullahi Abubakar",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-shukurah-restaurant-bauchi-1",
+      "venueId": "shukurah-restaurant-bauchi",
+      "name": "Rabi Salihu",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-shukurah-restaurant-bauchi-2",
+      "venueId": "shukurah-restaurant-bauchi",
+      "name": "Musa Bello",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-st-john-catholic-church-bauchi-1",
+      "venueId": "st-john-catholic-church-bauchi",
+      "name": "Ismail Bala",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-st-john-catholic-church-bauchi-2",
+      "venueId": "st-john-catholic-church-bauchi",
+      "name": "Hajiya Aisha",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-tafawa-balewa-mausoleum-bauchi-1",
+      "venueId": "tafawa-balewa-mausoleum-bauchi",
+      "name": "Usman Mohammed",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-tafawa-balewa-mausoleum-bauchi-2",
+      "venueId": "tafawa-balewa-mausoleum-bauchi",
+      "name": "Aisha Tanko",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-unity-park-bauchi-1",
+      "venueId": "unity-park-bauchi",
+      "name": "Rabi Yakubu",
+      "role": "Park caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-unity-park-bauchi-2",
+      "venueId": "unity-park-bauchi",
+      "name": "Musa Gambo",
+      "role": "Morning walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-yankari-motor-park-bauchi-1",
+      "venueId": "yankari-motor-park-bauchi",
+      "name": "Rabi Kabir",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-yankari-motor-park-bauchi-2",
+      "venueId": "yankari-motor-park-bauchi",
+      "name": "Musa Idris",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-yelwa-market-bauchi-1",
+      "venueId": "yelwa-market-bauchi",
+      "name": "Ismail Danladi",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    },
+    {
+      "id": "bauchi-yelwa-market-bauchi-2",
+      "venueId": "yelwa-market-bauchi",
+      "name": "Hajiya Fatima",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bauchi/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "alhamus-restaurant-bauchi",
+    "atbu-stadium-bauchi",
+    "atbu-teaching-hospital-bauchi",
+    "atbu-yelwa-campus-bauchi",
+    "bauchi-central-mosque",
+    "bauchi-government-house",
+    "bauchi-local-government-secretariat",
+    "bauchi-state-secretariat",
+    "bauchi-state-university-bauchi",
+    "emirs-palace-bauchi",
+    "federal-polytechnic-bauchi",
+    "first-bank-bauchi",
+    "general-hospital-specialist-bauchi",
+    "gtb-bauchi",
+    "masallacin-rimi-bauchi",
+    "methodist-church-bauchi",
+    "mobil-car-station-bauchi",
+    "muda-lawal-market-bauchi",
+    "shadawanka-rock-painting-bauchi",
+    "shukurah-restaurant-bauchi",
+    "st-john-catholic-church-bauchi",
+    "tafawa-balewa-mausoleum-bauchi",
+    "unity-park-bauchi",
+    "yankari-motor-park-bauchi",
+    "yelwa-market-bauchi"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "c6f3fa83ea4dbe1a765ad4d1992bb2f60a18ce5de6298ce295dc65aba8a3a373",
+    "contentSha256": "8274063541593aecf6809916b36d6d5c1ac043fada820ad7b70994ea9be774c9"
+  }
+}

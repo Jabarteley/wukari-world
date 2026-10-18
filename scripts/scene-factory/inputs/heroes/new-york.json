@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "new-york",
+  "url": "/assets/scene-heroes/new-york.glb",
+  "sha256": "01064b99fbce9ee7502ba7b77b975ee6b86677a4a80c2777b2c3986f73da2ab9",
+  "rawBytes": 34492,
+  "brotliBytes": 25126,
+  "triangles": 1488,
+  "parts": [
+    {
+      "node": "new-york",
+      "triangles": 1488,
+      "bounds": {
+        "min": [
+          -3.54999995,
+          0,
+          -2.5999999
+        ],
+        "max": [
+          3.550000024597,
+          2.575553918637,
+          2.600079431941
+        ]
+      },
+      "footprint": [
+        -3.54999995,
+        -2.5999999,
+        3.550000024597,
+        2.600079431941
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "e183810cb98fd77bcecd15e41bef714d693fb4eaafbf9196c618c79182829d0a",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "new-york",
+      "country": "us",
+      "name": "Central Park",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://www.nps.gov/places/central-park.htm"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=new-york]",
+      "sourceLicence": "unknown",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 8.4,
+        "depth": 5.6,
+        "height": 2.6,
+        "seed": 18214,
+        "palette": [
+          "#c6bd9d",
+          "#695e4d",
+          "#55734b",
+          "#738b59",
+          "#4e7184",
+          "#9d986c",
+          "#c7d5cf",
+          "#37443e"
+        ],
+        "composition": "open-park"
+      },
+      "evidence": "NPS identifies Central Park as an urban park in New York City. Original schematic fragment of the sourced feature class. Palette, contour, tree count, spacing and dimensions are art direction, not surveyed shape, species identification or measured geography. No current access is certified.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

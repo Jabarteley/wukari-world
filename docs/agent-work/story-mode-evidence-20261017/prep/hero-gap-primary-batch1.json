@@ -1,0 +1,509 @@
+{
+  "schema_version": 1,
+  "purpose": "Primary-source gap triage for parent review only. No candidate is approved for factual production use, art, image/geometry reuse, or licensing.",
+  "created_on": "2026-10-18",
+  "selection_policy": "First 12 genuine gaps in hero-source-readiness-20261018.json queue order; exactly these 12 ids are listed below. Up to two targeted search steps per city; Koror remains unresolved because cited protected area is offshore/regional.",
+  "input_pins_sha256": {
+    "docs/agent-work/story-mode-evidence-20261017/prep/hero-source-readiness-20261018.json": "19e904291c1fc81f981caeade4c2875683574797586685f4f0d7944794683d65",
+    "docs/agent-work/story-mode-evidence-20261017/prep/hero-candidates-ranked.json": "c23c59677660b1b84ca8503cb839724371d2b95c9b1171ff1db8841a763278d9"
+  },
+  "coverage": {
+    "selected_city_count": 12,
+    "candidate_sources_found": 11,
+    "unresolved_city_count": 1,
+    "candidate_statuses": "All are review inputs only; dates omitted where exact year unsupported or ambiguous.",
+    "source_excerpt_limit": "Each page excerpt is <=25 words; paraphrases are separate."
+  },
+  "cities": [
+    {
+      "city_id": "gaborone",
+      "status": "candidate-for-parent-review",
+      "candidate": {
+        "name": "Three Dikgosi Monument",
+        "category": "monument",
+        "fact_paraphrase": "Botswana DailyNews reports the Three Dikgosi monument in Gaborone and describes a presidential wreath-laying there. This supports a public monument identity; no construction date or sculpture geometry is asserted.",
+        "source": {
+          "url": "https://dailynews.gov.bw/news-detail/47630",
+          "title": "In memory of fallen heroes",
+          "publisher": "DailyNews, Government of Botswana",
+          "page_locator": "Article, published 27 February 2019; lines 58–59 in accessible text",
+          "author": "not named",
+          "published_date": "2019-02-27",
+          "access_date": "2026-10-18",
+          "source_excerpt": "“Three Dikgosi monument in Gaborone”",
+          "excerpt_word_count": 5,
+          "license": "unknown"
+        },
+        "source_path": "",
+        "source_field_pointers": [],
+        "source_id": "",
+        "coordinates": {
+          "lon": 25.9088474,
+          "lat": -24.6581357
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "review_note": "The source supports name/city/category, not a specific statue design, dimensions, materials, ownership, or asset rights."
+      },
+      "catalogue_identity": {
+        "city_id": "gaborone",
+        "city_name": "Gaborone",
+        "country_iso": "bw",
+        "coordinates": {
+          "lon": 25.9088474,
+          "lat": -24.6581357
+        },
+        "region_proposal": "southern-africa"
+      }
+    },
+    {
+      "city_id": "tripoli",
+      "status": "candidate-for-parent-review",
+      "candidate": {
+        "name": "Red Castle (Assaraya al-Hamra)",
+        "category": "historic castle / landmark",
+        "fact_paraphrase": "The Libyan National Museum identifies the Red Castle at Martyrs’ Square in Tripoli’s Old City. Use the identity and historic-landmark category only; no date or exact architecture claim is taken from this page.",
+        "source": {
+          "url": "https://museum.ly/",
+          "title": "Libyan National Museum",
+          "publisher": "Libyan National Museum (official museum site; institutional authorship not named on page)",
+          "page_locator": "Home page, Location block",
+          "author": "not named",
+          "published_date": "unknown",
+          "access_date": "2026-10-18",
+          "source_excerpt": "“Red Castle”",
+          "excerpt_word_count": 2,
+          "license": "unknown"
+        },
+        "source_path": "",
+        "source_field_pointers": [],
+        "source_id": "",
+        "coordinates": {
+          "lon": 13.18,
+          "lat": 32.89
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "review_note": "Correct country is Libya (ISO ly). Not the Tripoli in Lebanon. The page supports location/name, not castle geometry or reuse rights."
+      },
+      "catalogue_identity": {
+        "city_id": "tripoli",
+        "city_name": "Tripoli",
+        "country_iso": "ly",
+        "coordinates": {
+          "lon": 13.18,
+          "lat": 32.89
+        },
+        "region_proposal": "maghreb"
+      }
+    },
+    {
+      "city_id": "santiago",
+      "status": "candidate-for-parent-review",
+      "candidate": {
+        "name": "Cerro San Cristóbal / Metropolitan Park",
+        "category": "hill and urban park",
+        "fact_paraphrase": "Chile Travel places Cerro San Cristóbal within Metropolitan Park in Santiago and describes the hill as the park’s defining landmark. It supports a generic hill/park theme, not a copied map or exact terrain mesh.",
+        "source": {
+          "url": "https://chile.travel/en/attractions/cerro-san-cristobal/",
+          "title": "Cerro San Cristóbal",
+          "publisher": "Chile Travel official destination website",
+          "page_locator": "Page section “Santiago’s green lung”",
+          "author": "not named",
+          "published_date": "unknown; page updated 2025-11-24",
+          "access_date": "2026-10-18",
+          "source_excerpt": "“The Metropolitan Park, dominated by the emblematic Cerro San Cristóbal”",
+          "excerpt_word_count": 9,
+          "license": "unknown"
+        },
+        "source_path": "",
+        "source_field_pointers": [],
+        "source_id": "",
+        "coordinates": {
+          "lon": -70.6510671,
+          "lat": -33.4376995
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "review_note": "The current catalogue coordinate is the city anchor, not a verified hill entrance or exact model location."
+      },
+      "catalogue_identity": {
+        "city_id": "santiago",
+        "city_name": "Santiago",
+        "country_iso": "cl",
+        "coordinates": {
+          "lon": -70.6510671,
+          "lat": -33.4376995
+        },
+        "region_proposal": "americas-oceania"
+      }
+    },
+    {
+      "city_id": "dublin",
+      "status": "candidate-for-parent-review",
+      "candidate": {
+        "name": "Phoenix Park",
+        "category": "public park",
+        "fact_paraphrase": "Heritage Ireland identifies Phoenix Park as a public park in Dublin and records its creation as a royal deer-hunting park in the 1660s.",
+        "source": {
+          "url": "https://heritageireland.ie/visit/places-to-visit/phoenix-park/",
+          "title": "Phoenix Park",
+          "publisher": "Heritage Ireland / Office of Public Works, Ireland",
+          "page_locator": "Page body and contact address, Dublin 8",
+          "author": "not named",
+          "published_date": "unknown",
+          "access_date": "2026-10-18",
+          "source_excerpt": "“created as a royal deer-hunting park in the 1660s”",
+          "excerpt_word_count": 9,
+          "license": "unknown"
+        },
+        "source_path": "",
+        "source_field_pointers": [],
+        "source_id": "",
+        "coordinates": {
+          "lon": -6.2605593,
+          "lat": 53.3493795
+        },
+        "date_fact": "Park creation stated as 1660s; not a building year.",
+        "rights_status": "unknown",
+        "review_note": "Public-park identity/date only; no specific landscape, park map, or asset geometry reuse."
+      },
+      "catalogue_identity": {
+        "city_id": "dublin",
+        "city_name": "Dublin",
+        "country_iso": "ie",
+        "coordinates": {
+          "lon": -6.2605593,
+          "lat": 53.3493795
+        },
+        "region_proposal": "western-europe"
+      }
+    },
+    {
+      "city_id": "wellington",
+      "status": "candidate-for-parent-review",
+      "candidate": {
+        "name": "Zealandia Te Māra a Tāne",
+        "category": "conservation sanctuary / forest",
+        "fact_paraphrase": "New Zealand’s Department of Conservation lists Zealandia in Wellington as a conservation project restoring biodiversity across 225 hectares of forest.",
+        "source": {
+          "url": "https://www.doc.govt.nz/our-work/takahe-recovery-programme/visit-a-takahe/",
+          "title": "Visit a takahē: Takahē Recovery Programme",
+          "publisher": "Department of Conservation, New Zealand Government",
+          "page_locator": "Section “Zealandia”",
+          "author": "not named",
+          "published_date": "unknown",
+          "access_date": "2026-10-18",
+          "source_excerpt": "“in Wellington where the biodiversity of 225 ha of forest is being restored”",
+          "excerpt_word_count": 13,
+          "license": "unknown"
+        },
+        "source_path": "",
+        "source_field_pointers": [],
+        "source_id": "",
+        "coordinates": {
+          "lon": 174.7772114,
+          "lat": -41.2887953
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "review_note": "Supports sanctuary/forest identity; the catalogue coordinate is not a surveyed sanctuary entrance."
+      },
+      "catalogue_identity": {
+        "city_id": "wellington",
+        "city_name": "Wellington",
+        "country_iso": "nz",
+        "coordinates": {
+          "lon": 174.7772114,
+          "lat": -41.2887953
+        },
+        "region_proposal": "americas-oceania"
+      }
+    },
+    {
+      "city_id": "victoria",
+      "status": "candidate-for-parent-review",
+      "candidate": {
+        "name": "Sir Selwyn Selwyn-Clarke Market",
+        "category": "public market",
+        "fact_paraphrase": "A Mahé map hosted by the Seychelles tourism administration labels Sir Selwyn Selwyn Clarke Market among attractions in the inset map of Victoria.",
+        "source": {
+          "url": "https://admin.seychelles.com/sites/default/files/2024-02/Map%20of%20Mahe.pdf",
+          "title": "Map of Mahe",
+          "publisher": "Seychelles tourism administration host; map author not identified in extracted text",
+          "page_locator": "Single-page map; Victoria inset, attraction 2",
+          "author": "not identified",
+          "published_date": "unknown (file path indicates 2024-02 but date not confirmed)",
+          "access_date": "2026-10-18",
+          "source_excerpt": "“SIR SELWYN SELWYN CLARKE MARKET”",
+          "excerpt_word_count": 5,
+          "license": "unknown"
+        },
+        "source_path": "",
+        "source_field_pointers": [],
+        "source_id": "",
+        "coordinates": {
+          "lon": 55.452359,
+          "lat": -4.6232085
+        },
+        "date_fact": null,
+        "rights_status": "unknown",
+        "review_note": "Map label only supports place identity/category, not market layout, coordinates, ownership, or image/map reuse."
+      },
+      "catalogue_identity": {
+        "city_id": "victoria",
+        "city_name": "Victoria",
+        "country_iso": "sc",
+        "coordinates": {
+          "lon": 55.452359,
+          "lat": -4.6232085
+        },
+        "region_proposal": "swahili-coast"
+      }
+    },
+    {
+      "city_id": "amman",
+      "status": "candidate-for-parent-review",
+      "candidate": {
+        "name": "Amman Citadel",
+        "category": "historic citadel / archaeological landmark",
+        "fact_paraphrase": "Jordan’s official tourism education portal places the Amman Citadel on a hill in downtown Amman and describes its multi-period occupation and archaeological remains.",
+        "source": {
+          "url": "https://edutravel.visitjordan.com/en/page/81/History-and-Culture",
+          "title": "History and Culture",
+          "publisher": "Visit Jordan / tourism education portal",
+          "page_locator": "Section “Amman Citadel”",
+          "author": "not named",
+          "published_date": "unknown",
+          "access_date": "2026-10-18",
+          "source_excerpt": "“On one of the L-shaped hills in downtown Amman sits the magnificent Amman Citadel.”",
+          "excerpt_word_count": 13,
+          "license": "unknown"
+        },
+        "source_path": "",
+        "source_field_pointers": [],
+        "source_id": "",
+        "coordinates": {
+          "lon": 35.9239625,
+          "lat": 31.9515694
+        },
+        "date_fact": "The page attributes Bronze Age phases and later occupation; no single construction year is asserted.",
+        "rights_status": "unknown",
+        "review_note": "Could support a generic archaeological hilltop/citadel motif; no surveyed site plan or imported structure geometry."
+      },
+      "catalogue_identity": {
+        "city_id": "amman",
+        "city_name": "Amman",
+        "country_iso": "jo",
+        "coordinates": {
+          "lon": 35.9239625,
+          "lat": 31.9515694
+        },
+        "region_proposal": "south-asia"
+      }
+    },
+    {
+      "city_id": "baku",
+      "status": "candidate-for-parent-review",
+      "candidate": {
+        "name": "Maiden Tower (Qız Qalası)",
+        "category": "historic monument / tower",
+        "fact_paraphrase": "Azerbaijan’s government information page lists the Maiden Tower among monuments of Baku’s Old City and locates it in Icheri Sheher. The page gives disputed phases/dates, so this record does not select a single construction year.",
+        "source": {
+          "url": "https://azerbaijan.az/en/related-information/2",
+          "title": "Information on historical cultural monuments of Baku city",
+          "publisher": "Azerbaijan.az government information portal",
+          "page_locator": "Baku monuments page; Maiden Tower paragraph",
+          "author": "not named",
+          "published_date": "unknown",
+          "access_date": "2026-10-18",
+          "source_excerpt": "“The Maiden Tower”",
+          "excerpt_word_count": 3,
+          "license": "unknown"
+        },
+        "source_path": "",
+        "source_field_pointers": [],
+        "source_id": "",
+        "coordinates": {
+          "lon": 49.8328009,
+          "lat": 40.3755885
+        },
+        "date_fact": "Not selected: same page reports different phases; avoid a single year claim.",
+        "rights_status": "unknown",
+        "review_note": "Identity/category only; do not reproduce exact elevation, dimensions, or tower silhouette without separate approval."
+      },
+      "catalogue_identity": {
+        "city_id": "baku",
+        "city_name": "Baku",
+        "country_iso": "az",
+        "coordinates": {
+          "lon": 49.8328009,
+          "lat": 40.3755885
+        },
+        "region_proposal": "western-europe"
+      }
+    },
+    {
+      "city_id": "belgrade",
+      "status": "candidate-for-parent-review",
+      "candidate": {
+        "name": "Belgrade Fortress / Kalemegdan",
+        "category": "fortress and public park",
+        "fact_paraphrase": "The City of Belgrade describes the fortress as a historic defensive site and states that the Belgrade Fortress forms a spatial whole with Kalemegdan Park.",
+        "source": {
+          "url": "https://www.beograd.rs/en/discover-belgrade/a80019/Sights.html",
+          "title": "Sights",
+          "publisher": "City of Belgrade official website",
+          "page_locator": "Fortress on Kalemegdan section",
+          "author": "not named",
+          "published_date": "unknown",
+          "access_date": "2026-10-18",
+          "source_excerpt": "“Today, the Belgrade Fortress forms a spatial whole with Kalemegdan Park.”",
+          "excerpt_word_count": 11,
+          "license": "unknown"
+        },
+        "source_path": "",
+        "source_field_pointers": [],
+        "source_id": "",
+        "coordinates": {
+          "lon": 20.4568974,
+          "lat": 44.8178131
+        },
+        "date_fact": "The page describes Roman-period and later phases; no single construction year is asserted.",
+        "rights_status": "unknown",
+        "review_note": "Exact site name and public park relationship supported; no particular structure geometry or layout is prescribed."
+      },
+      "catalogue_identity": {
+        "city_id": "belgrade",
+        "city_name": "Belgrade",
+        "country_iso": "rs",
+        "coordinates": {
+          "lon": 20.4568974,
+          "lat": 44.8178131
+        },
+        "region_proposal": "western-europe"
+      }
+    },
+    {
+      "city_id": "bratislava",
+      "status": "candidate-for-parent-review",
+      "candidate": {
+        "name": "Bratislava Castle",
+        "category": "historic castle / fortress",
+        "fact_paraphrase": "Visit Bratislava identifies the castle as a symbol of the city, records its history from the 13th century, and notes its later reconstructions.",
+        "source": {
+          "url": "https://www.visitbratislava.com/places/bratislava-castle/",
+          "title": "Bratislava Castle",
+          "publisher": "Visit Bratislava official city-destination portal",
+          "page_locator": "Page body, castle history",
+          "author": "not named",
+          "published_date": "unknown",
+          "access_date": "2026-10-18",
+          "source_excerpt": "“Its history dates back to the 13th century”",
+          "excerpt_word_count": 8,
+          "license": "unknown"
+        },
+        "source_path": "",
+        "source_field_pointers": [],
+        "source_id": "",
+        "coordinates": {
+          "lon": 17.1082867,
+          "lat": 48.1435026
+        },
+        "date_fact": "13th century is the source’s history statement; not a precise construction completion year.",
+        "rights_status": "unknown",
+        "review_note": "Historic identity only; current castle geometry was extensively reconstructed, and is not being asserted here."
+      },
+      "catalogue_identity": {
+        "city_id": "bratislava",
+        "city_name": "Bratislava",
+        "country_iso": "sk",
+        "coordinates": {
+          "lon": 17.1082867,
+          "lat": 48.1435026
+        },
+        "region_proposal": "western-europe"
+      }
+    },
+    {
+      "city_id": "colombo",
+      "status": "candidate-for-parent-review",
+      "candidate": {
+        "name": "Galle Face Green",
+        "category": "seafront esplanade / public green",
+        "fact_paraphrase": "Sri Lanka’s tourism site locates Galle Face Green on the Colombo–Galle road in Colombo and says it was initially planned in 1859.",
+        "source": {
+          "url": "https://www.srilanka.travel/attraction?attraction_id=210",
+          "title": "Galle Face Green",
+          "publisher": "Sri Lanka Tourism official destination portal",
+          "page_locator": "Attraction description, lines 221–226 in accessible text",
+          "author": "not named",
+          "published_date": "unknown",
+          "access_date": "2026-10-18",
+          "source_excerpt": "“area was initially put to plan by Governor Sir Henry George Ward in 1859”",
+          "excerpt_word_count": 14,
+          "license": "unknown"
+        },
+        "source_path": "",
+        "source_field_pointers": [],
+        "source_id": "",
+        "coordinates": {
+          "lon": 79.8542005,
+          "lat": 6.9388614
+        },
+        "date_fact": "Initial planning date given as 1859; not a building date.",
+        "rights_status": "unknown",
+        "review_note": "Public space identity/date only; no copied map, shoreline geometry, or current conditions."
+      },
+      "catalogue_identity": {
+        "city_id": "colombo",
+        "city_name": "Colombo",
+        "country_iso": "lk",
+        "coordinates": {
+          "lon": 79.8542005,
+          "lat": 6.9388614
+        },
+        "region_proposal": "south-asia"
+      }
+    },
+    {
+      "city_id": "koror",
+      "status": "unresolved-location-scope",
+      "candidate": null,
+      "nearby_or_regional_lead": {
+        "name": "Rock Islands Southern Lagoon",
+        "category": "natural landform / protected marine landscape",
+        "source": {
+          "url": "https://www.kororstategov.com/tourist.html",
+          "title": "Information for Tourists",
+          "publisher": "Koror State Government",
+          "page_locator": "Rock Islands and Jellyfish Lake sections",
+          "author": "not named",
+          "published_date": "unknown (site footer copyright 2017)",
+          "access_date": "2026-10-18",
+          "source_excerpt": "“It is a 45 minute boat ride from downtown Koror”",
+          "excerpt_word_count": 10,
+          "license": "unknown"
+        },
+        "fact_paraphrase": "Koror State Government describes Rock Islands between Koror and Peleliu and says Jellyfish Lake is 45 minutes by boat from downtown Koror. This confirms a regional natural feature but puts the cited attraction offshore/outside the city-centre setting.",
+        "source_path": "",
+        "source_field_pointers": [],
+        "source_id": "",
+        "coordinates": null,
+        "date_fact": null,
+        "rights_status": "unknown",
+        "review_note": "Do not use as a city-local hero without a parent decision to allow a clearly regional/island-group scene. No nearby feature has been relabelled as within Koror."
+      },
+      "catalogue_identity": {
+        "city_id": "koror",
+        "city_name": "Koror",
+        "country_iso": "pw",
+        "coordinates": {
+          "lon": 134.4766767,
+          "lat": 7.343275
+        },
+        "region_proposal": "americas-oceania"
+      }
+    }
+  ]
+}

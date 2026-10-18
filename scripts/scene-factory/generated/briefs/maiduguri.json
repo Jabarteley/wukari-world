@@ -1,0 +1,1740 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "maiduguri",
+    "name": "Maiduguri",
+    "state": {
+      "id": "borno",
+      "name": "Borno"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 13.15,
+      "lat": 11.833333333333
+    }
+  },
+  "style": {
+    "region": "sahel-north",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/maiduguri/content.ts",
+        "sha256": "9b90b9c46d41debc82c0889c5154e318b775252e1dcc44ac799fa8ffe9bfd038"
+      },
+      {
+        "path": "src/game/cities/maiduguri/index.ts",
+        "sha256": "a66ef99882ceb43e148cd65c1feb7d9bc6a0b4de763cd8a8391e166fa57ac34a"
+      },
+      {
+        "path": "src/game/cities/maiduguri/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/maiduguri/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for maiduguri.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "access-bank-maiduguri",
+      "name": "Access Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.145363,
+        "lat": 11.839223
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-access-bank-maiduguri-1",
+        "maiduguri-access-bank-maiduguri-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "adamawa-sunshine-motor-park",
+      "name": "Adamwa Sunshine Motor Park",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.1468342,
+        "lat": 11.8393647
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-adamawa-sunshine-motor-park-1",
+        "maiduguri-adamawa-sunshine-motor-park-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "al-ansar-university",
+      "name": "Al-Ansar University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.1262051,
+        "lat": 11.8681256
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-al-ansar-university-1",
+        "maiduguri-al-ansar-university-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "bexil-gardens",
+      "name": "BEXIL GARDENS",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.1548582,
+        "lat": 11.8258028
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Garden"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Garden",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-bexil-gardens-1",
+        "maiduguri-bexil-gardens-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "borno-government-house",
+      "name": "Government House",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.1566093,
+        "lat": 11.8213411
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-borno-government-house-1",
+        "maiduguri-borno-government-house-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "borno-house-of-assembly",
+      "name": "BornoState House of Assembly",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.1585634,
+        "lat": 11.8470598
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-borno-house-of-assembly-1",
+        "maiduguri-borno-house-of-assembly-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "borno-state-specialist-hospital",
+      "name": "Borno State Specialist Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.1501826,
+        "lat": 11.8393876
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-borno-state-specialist-hospital-1",
+        "maiduguri-borno-state-specialist-hospital-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "el-kanemi-stadium",
+      "name": "El-Kanemi Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.1437508,
+        "lat": 11.850095
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-el-kanemi-stadium-1",
+        "maiduguri-el-kanemi-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "gamboru-market",
+      "name": "Gamboru Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.1736787,
+        "lat": 11.8528045
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-gamboru-market-1",
+        "maiduguri-gamboru-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "hannas-restaurant",
+      "name": "HANNAS RESTAURANT",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.1492845,
+        "lat": 11.8308213
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-hannas-restaurant-1",
+        "maiduguri-hannas-restaurant-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.124958945232564,
+        "lat": 11.836504429873338
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "kasuwan-shanu",
+      "name": "Kasuwan Shanu",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.17666,
+        "lat": 11.8597948
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-kasuwan-shanu-1",
+        "maiduguri-kasuwan-shanu-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "kayat-restaurant",
+      "name": "KAYAT RESTAURANT",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.1505801,
+        "lat": 11.8074893
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-kayat-restaurant-1",
+        "maiduguri-kayat-restaurant-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "maiduguri-central-mosque",
+      "name": "Maiduguri Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.1592709,
+        "lat": 11.848293
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-maiduguri-central-mosque-1",
+        "maiduguri-maiduguri-central-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "maiduguri-international-park",
+      "name": "maiduguri international park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.1556524,
+        "lat": 11.8724038
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Public area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Public area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-maiduguri-international-park-1",
+        "maiduguri-maiduguri-international-park-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "maiduguri-monday-market",
+      "name": "Maiduguri Monday Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.1535094,
+        "lat": 11.8363842
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-maiduguri-monday-market-1",
+        "maiduguri-maiduguri-monday-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "shehu-of-borno-palace",
+      "name": "Shehu of Borno's Palace",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.1603631,
+        "lat": 11.8481309
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-shehu-of-borno-palace-1",
+        "maiduguri-shehu-of-borno-palace-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "st-patricks-cathedral-maiduguri",
+      "name": "St. Patrick's Catholic Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.1421061,
+        "lat": 11.8373667
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-st-patricks-cathedral-maiduguri-1",
+        "maiduguri-st-patricks-cathedral-maiduguri-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "uba-maiduguri",
+      "name": "UBA",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.146773,
+        "lat": 11.8422276
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-uba-maiduguri-1",
+        "maiduguri-uba-maiduguri-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "umth-maiduguri",
+      "name": "University Of Maiduguri Teaching Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.1865647,
+        "lat": 11.8245445
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-umth-maiduguri-1",
+        "maiduguri-umth-maiduguri-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    },
+    {
+      "id": "university-of-maiduguri",
+      "name": "University of Maiduguri",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 13.197004421912943,
+        "lat": 11.804931635864225
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maiduguri-university-of-maiduguri-1",
+        "maiduguri-university-of-maiduguri-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for maiduguri."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "maiduguri-access-bank-maiduguri-1",
+      "venueId": "access-bank-maiduguri",
+      "name": "Falmata Mustapha",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-access-bank-maiduguri-2",
+      "venueId": "access-bank-maiduguri",
+      "name": "Baba Kyari",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-adamawa-sunshine-motor-park-1",
+      "venueId": "adamawa-sunshine-motor-park",
+      "name": "Modu Lawan",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-adamawa-sunshine-motor-park-2",
+      "venueId": "adamawa-sunshine-motor-park",
+      "name": "Zara Mamman",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-al-ansar-university-1",
+      "venueId": "al-ansar-university",
+      "name": "Modu Kolo",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-al-ansar-university-2",
+      "venueId": "al-ansar-university",
+      "name": "Zara Bukar",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-bexil-gardens-1",
+      "venueId": "bexil-gardens",
+      "name": "Kachalla Abatcha",
+      "role": "Garden keeper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-bexil-gardens-2",
+      "venueId": "bexil-gardens",
+      "name": "Hadiza Waziri",
+      "role": "Evening walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-borno-government-house-1",
+      "venueId": "borno-government-house",
+      "name": "Modu Mala",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-borno-government-house-2",
+      "venueId": "borno-government-house",
+      "name": "Zara Ali",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-borno-house-of-assembly-1",
+      "venueId": "borno-house-of-assembly",
+      "name": "Aisa Bukar",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-borno-house-of-assembly-2",
+      "venueId": "borno-house-of-assembly",
+      "name": "Ali Lawan",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-borno-state-specialist-hospital-1",
+      "venueId": "borno-state-specialist-hospital",
+      "name": "Modu Gana",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-borno-state-specialist-hospital-2",
+      "venueId": "borno-state-specialist-hospital",
+      "name": "Zara Mustapha",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-el-kanemi-stadium-1",
+      "venueId": "el-kanemi-stadium",
+      "name": "Falmata Ali",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-el-kanemi-stadium-2",
+      "venueId": "el-kanemi-stadium",
+      "name": "Baba Gana",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-gamboru-market-1",
+      "venueId": "gamboru-market",
+      "name": "Modu Zannah",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-gamboru-market-2",
+      "venueId": "gamboru-market",
+      "name": "Zara Goni",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-hannas-restaurant-1",
+      "venueId": "hannas-restaurant",
+      "name": "Kachalla Kyari",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-hannas-restaurant-2",
+      "venueId": "hannas-restaurant",
+      "name": "Hadiza Bulama",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-kasuwan-shanu-1",
+      "venueId": "kasuwan-shanu",
+      "name": "Falmata Bulama",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-kasuwan-shanu-2",
+      "venueId": "kasuwan-shanu",
+      "name": "Baba Modu",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-kayat-restaurant-1",
+      "venueId": "kayat-restaurant",
+      "name": "Aisa Mohammed",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-kayat-restaurant-2",
+      "venueId": "kayat-restaurant",
+      "name": "Ali Zannah",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-maiduguri-central-mosque-1",
+      "venueId": "maiduguri-central-mosque",
+      "name": "Modu Abatcha",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-maiduguri-central-mosque-2",
+      "venueId": "maiduguri-central-mosque",
+      "name": "Zara Waziri",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-maiduguri-international-park-1",
+      "venueId": "maiduguri-international-park",
+      "name": "Falmata Bukar",
+      "role": "Park caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-maiduguri-international-park-2",
+      "venueId": "maiduguri-international-park",
+      "name": "Baba Lawan",
+      "role": "Morning walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-maiduguri-monday-market-1",
+      "venueId": "maiduguri-monday-market",
+      "name": "Falmata Waziri",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-maiduguri-monday-market-2",
+      "venueId": "maiduguri-monday-market",
+      "name": "Baba Kolo",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-shehu-of-borno-palace-1",
+      "venueId": "shehu-of-borno-palace",
+      "name": "Falmata Mohammed",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-shehu-of-borno-palace-2",
+      "venueId": "shehu-of-borno-palace",
+      "name": "Baba Zannah",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-st-patricks-cathedral-maiduguri-1",
+      "venueId": "st-patricks-cathedral-maiduguri",
+      "name": "Modu Kyari",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-st-patricks-cathedral-maiduguri-2",
+      "venueId": "st-patricks-cathedral-maiduguri",
+      "name": "Zara Bulama",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-uba-maiduguri-1",
+      "venueId": "uba-maiduguri",
+      "name": "Modu Modu",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-uba-maiduguri-2",
+      "venueId": "uba-maiduguri",
+      "name": "Zara Mohammed",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-umth-maiduguri-1",
+      "venueId": "umth-maiduguri",
+      "name": "Falmata Mamman",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-umth-maiduguri-2",
+      "venueId": "umth-maiduguri",
+      "name": "Baba Mala",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-university-of-maiduguri-1",
+      "venueId": "university-of-maiduguri",
+      "name": "Falmata Goni",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    },
+    {
+      "id": "maiduguri-university-of-maiduguri-2",
+      "venueId": "university-of-maiduguri",
+      "name": "Baba Abatcha",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maiduguri/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "access-bank-maiduguri",
+    "adamawa-sunshine-motor-park",
+    "al-ansar-university",
+    "bexil-gardens",
+    "borno-government-house",
+    "borno-house-of-assembly",
+    "borno-state-specialist-hospital",
+    "el-kanemi-stadium",
+    "gamboru-market",
+    "hannas-restaurant",
+    "kasuwan-shanu",
+    "kayat-restaurant",
+    "maiduguri-central-mosque",
+    "maiduguri-international-park",
+    "maiduguri-monday-market",
+    "shehu-of-borno-palace",
+    "st-patricks-cathedral-maiduguri",
+    "uba-maiduguri",
+    "umth-maiduguri",
+    "university-of-maiduguri"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "faf14e771df660b3a98703ecf271d81b1b7c262bdf5f514aae933fd5634bf054",
+    "contentSha256": "e44f14442e030addaed4f6d34af83d8962250b53c5b437e618b934e88eaa40c2"
+  }
+}

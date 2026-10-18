@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "brussels",
+  "url": "/assets/scene-heroes/brussels.glb",
+  "sha256": "ae8c68b0f68ab4b4e421c3886b84327d4191fe8215cd3a482bb0d344e41146b4",
+  "rawBytes": 50740,
+  "brotliBytes": 26226,
+  "triangles": 2380,
+  "parts": [
+    {
+      "node": "brussels",
+      "triangles": 2380,
+      "bounds": {
+        "min": [
+          -3.8499999,
+          0,
+          -3.3499999
+        ],
+        "max": [
+          3.8500000736040003,
+          4.999853489544,
+          3.34984137594
+        ]
+      },
+      "footprint": [
+        -3.8499999,
+        -3.3499999,
+        3.8500000736040003,
+        3.34984137594
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "9fbb3637a6026c42295598191f368bf185692eb853e19ab7f218c25d4e865535"
+  },
+  "inputs": {
+    "rawSha256": "3073341f7ca020564e91d5c4476448fd474c5907d8e9b085c3632307ad8d3389",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "brussels",
+      "country": "be",
+      "name": "Grand-Place",
+      "category": "monument",
+      "sourceUrls": [
+        "https://www.visit.brussels/en/visitors/venue-details.3743",
+        "https://www.visit.brussels/en/visitors/plan-your-trip/architecture-walks/from-medieval-to-eclectic/etape-2"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=brussels]; hero-inputs-r4.md defining-form review",
+      "sourceLicence": "Source text rights unknown unless the publisher states otherwise; factual identity only. No external photo, map, mesh, texture, sculpture surface or plan reused. Original generated geometry is AGPL-3.0-or-later; third-party marks and landmark rights are not cleared by this record.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landmark",
+      "parameters": {
+        "width": 8,
+        "depth": 7,
+        "height": 5,
+        "seed": 6113,
+        "palette": [
+          "#dbcdb6",
+          "#62584a",
+          "#8f8a74",
+          "#af593f",
+          "#c8b68c",
+          "#8caa99",
+          "#d2bd91",
+          "#2e3c43"
+        ],
+        "composition": "guildhall-square"
+      },
+      "evidence": "The official city destination portal identifies Grand-Place in Brussels and its historical market-square role. Official city destination describes the Gothic and Baroque ensemble and City Hall tower. Original square-edge gabled massing and spire, not replicas of individual guild facades. All dimensions, colours, simplifications and composition proportions are original art direction, not source measurements. No surveyed-location, current-access, production-quality or legal-rights approval is asserted.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "western-europe"
+      }
+    },
+    "styleSha256": "18e3b0f4dbb88519df26d3d51faa4960b3f4646b58f92cf029cf1a50cbcc6d9c"
+  }
+}

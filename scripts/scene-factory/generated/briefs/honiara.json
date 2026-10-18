@@ -1,0 +1,2000 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "honiara",
+    "name": "Honiara",
+    "state": {
+      "id": "sb-honiara",
+      "name": "Honiara"
+    },
+    "country": {
+      "id": "sb",
+      "name": "Solomon Islands"
+    },
+    "point": {
+      "lon": 159.9552552,
+      "lat": -9.4310769
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/australia-oceania/solomon-islands-261011.osm.pbf",
+      "https://ourairports.com/airports/AGGH/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/honiara/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/honiara/facts.ts",
+        "sha256": "7d38bc3f236ad9bb772cad27f6b98aac4bd15c8747fc25b3f27f348b11fbd553"
+      },
+      {
+        "path": "src/game/cities/honiara/index.ts",
+        "sha256": "e23b83849a45c29996302ddbed35c2a47ed02c17b41420d9e3223db7748170c2"
+      },
+      {
+        "path": "src/game/cities/honiara/places.ts",
+        "sha256": "3ff8dbc22a2e0b6b1961276831fd4293ece0c6fca966152a195eafdcea3db6aa"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 159.9552552,
+        "lat": -9.4310769
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "honiara-airport-honiara-airport",
+      "name": "Honiara International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 160.054993,
+        "lat": -9.428
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-airport-honiara-airport-1",
+        "honiara-honiara-airport-honiara-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "honiara-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-clinic",
+      "name": "National Referal Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 159.970413,
+        "lat": -9.435222
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-clinic-1",
+        "honiara-honiara-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/730959655"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-community-notices",
+      "name": "National Parliament of Solomon Islands",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 159.955996,
+        "lat": -9.433689
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-community-notices-1",
+        "honiara-honiara-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/55093093"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q727851"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-community-voting-game",
+      "name": "Honiara City Council",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 159.962721,
+        "lat": -9.435086
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-community-voting-game-1",
+        "honiara-honiara-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5256850143"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-community-workshop",
+      "name": "National Library Area",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 159.964463,
+        "lat": -9.436874
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-community-workshop-1",
+        "honiara-honiara-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/726022073"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q130718410"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-market-game",
+      "name": "Panatina Plaza",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 159.993643,
+        "lat": -9.431134
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-market-game-1",
+        "honiara-honiara-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/281733741"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-meal-stop",
+      "name": "The Ofis",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 159.919855,
+        "lat": -9.423745
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-meal-stop-1",
+        "honiara-honiara-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4245819491"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-osm-node-12097880001",
+      "name": "Cozy Cove Café",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 160.04748,
+        "lat": -9.426466
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-osm-node-12097880001-1",
+        "honiara-honiara-osm-node-12097880001-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12097880001"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-osm-node-1958123256",
+      "name": "National Referral Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 159.970313,
+        "lat": -9.435347
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-osm-node-1958123256-1",
+        "honiara-honiara-osm-node-1958123256-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1958123256"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-osm-node-1958123258",
+      "name": "Jina Resturant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 159.979069,
+        "lat": -9.432471
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-osm-node-1958123258-1",
+        "honiara-honiara-osm-node-1958123258-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1958123258"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-osm-node-1958150211",
+      "name": "Solomon Islands National University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 159.989028,
+        "lat": -9.432929
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-osm-node-1958150211-1",
+        "honiara-honiara-osm-node-1958150211-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1958150211"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q110442979"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-osm-node-4959354922",
+      "name": "Vilu War Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 159.793544,
+        "lat": -9.318983
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-osm-node-4959354922-1",
+        "honiara-honiara-osm-node-4959354922-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4959354922"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q104882482"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-osm-node-5489888721",
+      "name": "Hells Point",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 160.069888,
+        "lat": -9.428824
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-osm-node-5489888721-1",
+        "honiara-honiara-osm-node-5489888721-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5489888721"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-osm-node-5591435621",
+      "name": "Red Beach",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 160.121561,
+        "lat": -9.426502
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-osm-node-5591435621-1",
+        "honiara-honiara-osm-node-5591435621-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5591435621"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-osm-node-5834144885",
+      "name": "Sinking ship",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 159.870254,
+        "lat": -9.379076
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-osm-node-5834144885-1",
+        "honiara-honiara-osm-node-5834144885-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5834144885"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-osm-node-7138527971",
+      "name": "Ausmart",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 159.949636,
+        "lat": -9.430355
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-osm-node-7138527971-1",
+        "honiara-honiara-osm-node-7138527971-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7138527971"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-osm-way-1204579380",
+      "name": "National Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 160.014453,
+        "lat": -9.427357
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-osm-way-1204579380-1",
+        "honiara-honiara-osm-way-1204579380-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1204579380"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-osm-way-1370454204",
+      "name": "Ranadi Campus",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 160.000043,
+        "lat": -9.42857
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-osm-way-1370454204-1",
+        "honiara-honiara-osm-way-1370454204-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1370454204"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q110442979"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-osm-way-613190463",
+      "name": "Lawson Tama Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 159.971399,
+        "lat": -9.436237
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-osm-way-613190463-1",
+        "honiara-honiara-osm-way-613190463-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/613190463"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q333549"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-osm-way-730970960",
+      "name": "Bulkshop",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 159.984234,
+        "lat": -9.432301
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-osm-way-730970960-1",
+        "honiara-honiara-osm-way-730970960-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/730970960"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-osm-way-730970978",
+      "name": "Solomon Islands National University - Panatina Campus",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 160.010569,
+        "lat": -9.431657
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-osm-way-730970978-1",
+        "honiara-honiara-osm-way-730970978-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/730970978"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q110442979"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-quiet-reflection",
+      "name": "Holy Cross Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 159.963417,
+        "lat": -9.43624
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-quiet-reflection-1",
+        "honiara-honiara-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/271790885"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-recreation",
+      "name": "Children's Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 159.942378,
+        "lat": -9.428194
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-recreation-1",
+        "honiara-honiara-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/330742477"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "honiara-transit",
+      "name": "Lunga",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 160.029694,
+        "lat": -9.427915
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "honiara-honiara-transit-1",
+        "honiara-honiara-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/honiara/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4960849349"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "honiara-honiara-airport-honiara-airport-1",
+      "venueId": "honiara-airport-honiara-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-airport-honiara-airport-2",
+      "venueId": "honiara-airport-honiara-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-clinic-1",
+      "venueId": "honiara-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-clinic-2",
+      "venueId": "honiara-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-community-notices-1",
+      "venueId": "honiara-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-community-notices-2",
+      "venueId": "honiara-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-community-voting-game-1",
+      "venueId": "honiara-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-community-voting-game-2",
+      "venueId": "honiara-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-community-workshop-1",
+      "venueId": "honiara-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-community-workshop-2",
+      "venueId": "honiara-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-market-game-1",
+      "venueId": "honiara-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-market-game-2",
+      "venueId": "honiara-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-meal-stop-1",
+      "venueId": "honiara-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-meal-stop-2",
+      "venueId": "honiara-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-12097880001-1",
+      "venueId": "honiara-osm-node-12097880001",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-12097880001-2",
+      "venueId": "honiara-osm-node-12097880001",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-1958123256-1",
+      "venueId": "honiara-osm-node-1958123256",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-1958123256-2",
+      "venueId": "honiara-osm-node-1958123256",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-1958123258-1",
+      "venueId": "honiara-osm-node-1958123258",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-1958123258-2",
+      "venueId": "honiara-osm-node-1958123258",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-1958150211-1",
+      "venueId": "honiara-osm-node-1958150211",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-1958150211-2",
+      "venueId": "honiara-osm-node-1958150211",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-4959354922-1",
+      "venueId": "honiara-osm-node-4959354922",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-4959354922-2",
+      "venueId": "honiara-osm-node-4959354922",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-5489888721-1",
+      "venueId": "honiara-osm-node-5489888721",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-5489888721-2",
+      "venueId": "honiara-osm-node-5489888721",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-5591435621-1",
+      "venueId": "honiara-osm-node-5591435621",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-5591435621-2",
+      "venueId": "honiara-osm-node-5591435621",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-5834144885-1",
+      "venueId": "honiara-osm-node-5834144885",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-5834144885-2",
+      "venueId": "honiara-osm-node-5834144885",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-7138527971-1",
+      "venueId": "honiara-osm-node-7138527971",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-node-7138527971-2",
+      "venueId": "honiara-osm-node-7138527971",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-way-1204579380-1",
+      "venueId": "honiara-osm-way-1204579380",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-way-1204579380-2",
+      "venueId": "honiara-osm-way-1204579380",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-way-1370454204-1",
+      "venueId": "honiara-osm-way-1370454204",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-way-1370454204-2",
+      "venueId": "honiara-osm-way-1370454204",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-way-613190463-1",
+      "venueId": "honiara-osm-way-613190463",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-way-613190463-2",
+      "venueId": "honiara-osm-way-613190463",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-way-730970960-1",
+      "venueId": "honiara-osm-way-730970960",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-way-730970960-2",
+      "venueId": "honiara-osm-way-730970960",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-way-730970978-1",
+      "venueId": "honiara-osm-way-730970978",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-osm-way-730970978-2",
+      "venueId": "honiara-osm-way-730970978",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-quiet-reflection-1",
+      "venueId": "honiara-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-quiet-reflection-2",
+      "venueId": "honiara-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-recreation-1",
+      "venueId": "honiara-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-recreation-2",
+      "venueId": "honiara-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-transit-1",
+      "venueId": "honiara-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    },
+    {
+      "id": "honiara-honiara-transit-2",
+      "venueId": "honiara-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/honiara/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "honiara-airport-honiara-airport",
+    "honiara-clinic",
+    "honiara-community-notices",
+    "honiara-community-voting-game",
+    "honiara-community-workshop",
+    "honiara-market-game",
+    "honiara-meal-stop",
+    "honiara-osm-node-12097880001",
+    "honiara-osm-node-1958123256",
+    "honiara-osm-node-1958123258",
+    "honiara-osm-node-1958150211",
+    "honiara-osm-node-4959354922",
+    "honiara-osm-node-5489888721",
+    "honiara-osm-node-5591435621",
+    "honiara-osm-node-5834144885",
+    "honiara-osm-node-7138527971",
+    "honiara-osm-way-1204579380",
+    "honiara-osm-way-1370454204",
+    "honiara-osm-way-613190463",
+    "honiara-osm-way-730970960",
+    "honiara-osm-way-730970978",
+    "honiara-quiet-reflection",
+    "honiara-recreation",
+    "honiara-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "94e1a94f803761f16a2ce97f9bfaa64491ac6b9acebc1b4f92c3e283e2d04aba",
+    "contentSha256": "891aedee2dd93152bd618842e160ae77317a70a02c2d98cc15378590707b59df"
+  }
+}

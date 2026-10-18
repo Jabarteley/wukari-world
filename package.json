@@ -46,7 +46,7 @@
     "predev": "npm run -s preflight",
     "predev:open": "npm run -s preflight",
     "prestart:open": "npm run -s preflight",
-    "prebuild": "npm run -s preflight && npm run -s cities:catalogue -- --check && npm run -s cities:land:check && npm run -s progression:check && npm run -s progression:assets -- --check && npm run -s campus:navigation -- --check && node --experimental-strip-types scripts/assets/versions.ts --check",
+    "prebuild": "npm run -s preflight && npm run -s cities:catalogue -- --check && npm run -s cities:land:check && npm run -s progression:check && npm run -s progression:assets -- --check && npm run -s campus:navigation -- --check && node --experimental-strip-types scripts/assets/versions.ts --check && npm run -s scenes:check",
     "pretypecheck": "npm run -s preflight",
     "pretest": "npm run -s preflight && npm run -s cities:land:check && npm run -s cities:assets && npm run -s words:assets && npm run -s progression:assets && npm run -s campus:navigation -- --check",
     "prestart": "npm run -s preflight",
@@ -64,7 +64,7 @@
     "body:build": "node --experimental-strip-types scripts/body/build-body.ts",
     "body:lod": "node --experimental-strip-types scripts/body/build-lod.ts",
     "typecheck": "node --experimental-strip-types scripts/typecheck.ts --serial",
-    "test": "node --experimental-strip-types --test --test-concurrency=1 \"src/**/*.test.js\" \"src/**/*.test.ts\" \"server/**/*.test.js\" \"server/**/*.test.ts\" \"scripts/city/*.test.ts\" \"scripts/stt-bench/*.test.ts\" \"scripts/agent-slot.test.ts\" \"scripts/typecheck.test.ts\" \"scripts/download-budget.test.ts\" \"scripts/cartridge-check.test.ts\" \"scripts/clip.test.ts\" \"scripts/build-dictionary-asset.test.ts\" \"scripts/assets/*.test.ts\" \"scripts/vite/*.test.ts\"",
+    "test": "node --experimental-strip-types --test --test-concurrency=1 \"src/**/*.test.js\" \"src/**/*.test.ts\" \"server/**/*.test.js\" \"server/**/*.test.ts\" \"scripts/city/*.test.ts\" \"scripts/scene-factory/*.test.ts\" \"scripts/stt-bench/*.test.ts\" \"scripts/agent-slot.test.ts\" \"scripts/typecheck.test.ts\" \"scripts/download-budget.test.ts\" \"scripts/cartridge-check.test.ts\" \"scripts/clip.test.ts\" \"scripts/build-dictionary-asset.test.ts\" \"scripts/assets/*.test.ts\" \"scripts/vite/*.test.ts\"",
     "slot": "node --experimental-strip-types scripts/agent-slot.ts",
     "check:slot": "node --experimental-strip-types scripts/agent-slot.ts heavy -- npm run check",
     "test:slot": "node --experimental-strip-types scripts/agent-slot.ts heavy -- npm test",
@@ -101,7 +101,9 @@
     "campus:navigation": "node --experimental-strip-types scripts/campus/build-navigation-data.ts",
     "assets:versions": "node --experimental-strip-types scripts/assets/versions.ts",
     "assets:budget": "node --experimental-strip-types scripts/assets/budget.ts",
-    "assets:credits": "node --experimental-strip-types scripts/assets/credits.ts"
+    "assets:credits": "node --experimental-strip-types scripts/assets/credits.ts",
+    "scenes:build": "node --max-old-space-size=512 --experimental-strip-types scripts/scene-factory/scenes.ts build",
+    "scenes:check": "node --max-old-space-size=512 --experimental-strip-types scripts/scene-factory/scenes.ts check"
   },
   "dependencies": {
     "@dimforge/rapier3d-compat": "0.21.0",

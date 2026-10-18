@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Accra runtime sample</title>
+<style>
+:root{--font:system-ui,sans-serif;font:14px system-ui,sans-serif;color:#e9edf0;background:#192127}*{box-sizing:border-box}body{margin:0}header{padding:12px 18px;background:#10171c}h1{font-size:18px;margin:0 0 5px}p{margin:5px 0;color:#bdc8d0}main{display:grid;grid-template-columns:minmax(0,1fr) 330px;height:calc(100dvh - 112px);min-height:420px}#viewport{position:relative;overflow:hidden;min-width:0}canvas{display:block;width:100%;height:100%}aside{padding:14px;overflow:auto;background:#10171c}aside>button{font:inherit;padding:8px 12px;margin:0 6px 8px 0;cursor:pointer}pre{font:11px ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere}#status{color:#f3ce8c}@media(max-width:720px){main{grid-template-columns:1fr;height:auto}#viewport{height:65dvh;min-height:340px}aside{max-height:35dvh}}
+.scene-tags{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.scene-tag{position:absolute;transform:translate(-50%,-100%);padding:2px 7px;border:0;border-radius:999px;font:700 11px/1.3 var(--font);white-space:nowrap;max-width:140px;overflow:hidden;text-overflow:ellipsis;pointer-events:auto;cursor:pointer;background:rgba(18,32,48,.82);color:#d6ebff;box-shadow:0 1px 3px rgba(0,0,0,.35)}
+.scene-tag.is-npc{background:transparent;box-shadow:none;color:#58d68a;font-size:15px;padding:6px 8px;text-shadow:0 0 3px rgba(0,0,0,.7)}
+.scene-tag.is-self{background:transparent;box-shadow:none;color:#ffd34d;font-size:17px;pointer-events:none;cursor:default;text-shadow:0 0 3px rgba(0,0,0,.7)}
+.scene-tag.is-bark{background:rgba(255,255,255,.95);color:#1d2a26;font-weight:600;font-size:12px;white-space:normal;text-align:center;max-width:min(190px,52vw);padding:5px 9px;border-radius:12px;pointer-events:none;cursor:default;box-shadow:0 2px 6px rgba(0,0,0,.3);transform:translate(-50%,-100%);overflow:visible}
+.scene-tag.is-bark::before{content:attr(data-npc);display:block;margin-bottom:1px;font:700 9px/1.2 var(--font);letter-spacing:.04em;color:#4a5560}
+.scene-tag.is-table{background:rgba(24,59,42,.9);color:#fff3c4;max-width:190px}
+.scene-tag.is-table.is-hover{outline:2px solid #fff3c4;outline-offset:1px}
+.scene-tag:focus-visible{outline:2px solid #fff;outline-offset:1px}
+.scene-tag{touch-action:none;user-select:none;-webkit-user-select:none}
+.scene-tag.is-hover{outline:2px solid #ffd34d;outline-offset:1px}
+.scene-tag svg{display:block;width:18px;height:18px}
+.scene-tag i{display:block;width:10px;height:10px;border-radius:50%;background:currentColor;box-shadow:0 0 3px rgba(0,0,0,.7)}
+.scene-tag.is-npc.has-npc-word{display:inline-flex;align-items:center;gap:5px;padding:3px 8px 3px 7px;background:rgba(18,32,48,.82);box-shadow:0 1px 3px rgba(0,0,0,.35);text-shadow:none}
+.scene-tag .npc-word{color:#d6ebff;font:700 11px/1.2 var(--font,system-ui,sans-serif);letter-spacing:.03em}
+
+</style></head>
+<body><header><h1>Accra · actual renderer sample</h1><p>Isolated sample fixture. Materials and whole composition await visual review. No fleet or gameplay acceptance.</p><p id="status" role="status">Loading sample configuration…</p></header>
+<main><div id="viewport"></div><aside><button id="walk" type="button" disabled>Walk to market work spot</button><button id="refresh" type="button">Refresh evidence</button><button id="reset" type="button">Reset camera</button><p>Scene mode uses the game’s own orbit and zoom controls.</p><pre id="evidence">No measurement yet.</pre></aside></main>
+<script type="module" src="/src/scene/recipe/sample/client.ts"></script></body></html>

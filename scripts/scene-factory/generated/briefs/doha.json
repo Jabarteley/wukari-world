@@ -1,0 +1,2135 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "doha",
+    "name": "Doha",
+    "state": {
+      "id": "qa-doha",
+      "name": "Doha"
+    },
+    "country": {
+      "id": "qa",
+      "name": "Qatar"
+    },
+    "point": {
+      "lon": 51.5264162,
+      "lat": 25.2856329
+    }
+  },
+  "style": {
+    "region": "south-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/gcc-states-261011.osm.pbf",
+      "https://ourairports.com/airports/OTHH/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/doha/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/doha/facts.ts",
+        "sha256": "5cb43b400f8dd37f540ad62b7c1dbed7738cfc0d9d08490f466a84fc5dc0fc31"
+      },
+      {
+        "path": "src/game/cities/doha/index.ts",
+        "sha256": "3517686a0aea8e3bbacbac3f0656d4e5010e50e2fc795a1872dbeb3ad635784b"
+      },
+      {
+        "path": "src/game/cities/doha/places.ts",
+        "sha256": "feac8c8b98e9fd4aef1c687c8d2edb9848d96c096ae67a21f13a72178d55fd1b"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "doha-airport-doha-airport",
+      "name": "Hamad International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.608056,
+        "lat": 25.273056
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-airport-doha-airport-1",
+        "doha-doha-airport-doha-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "doha-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-clinic",
+      "name": "Al Ahli Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.500078,
+        "lat": 25.307719
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-clinic-1",
+        "doha-doha-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/247909086"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30260308"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-community-notices",
+      "name": "Embassy of India",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.517317,
+        "lat": 25.329561
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-community-notices-1",
+        "doha-doha-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/490598248"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5369723"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-community-voting-game",
+      "name": "Katara Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.524901,
+        "lat": 25.360919
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-community-voting-game-1",
+        "doha-doha-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/154195867"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-community-workshop",
+      "name": "Qatar National Convention Center",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.437355,
+        "lat": 25.321921
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-community-workshop-1",
+        "doha-doha-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/10725661"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7267112"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-market-game",
+      "name": "Mall of Qatar",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.349878,
+        "lat": 25.32666
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-market-game-1",
+        "doha-doha-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/463697424"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q22948422"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-meal-stop",
+      "name": "Levantine Doha",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.539912,
+        "lat": 25.374877
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-meal-stop-1",
+        "doha-doha-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6785051839"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q82730398"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-osm-node-13278587089",
+      "name": "Site of the 2022 FIFA World Cup Final",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.491171,
+        "lat": 25.421967
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-osm-node-13278587089-1",
+        "doha-doha-osm-node-13278587089-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13278587089"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q55620455"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-osm-node-3424940793",
+      "name": "Souq Waqif",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.532861,
+        "lat": 25.287058
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-osm-node-3424940793-1",
+        "doha-doha-osm-node-3424940793-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3424940793"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4117959"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-osm-node-6785101974",
+      "name": "The Kitchen Doha",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.540058,
+        "lat": 25.374797
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-osm-node-6785101974-1",
+        "doha-doha-osm-node-6785101974-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6785101974"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q82692847"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-osm-relation-10664399",
+      "name": "Fanar Qatar Islamic Cultural Center",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.535659,
+        "lat": 25.288976
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-osm-relation-10664399-1",
+        "doha-doha-osm-relation-10664399-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/10664399"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3057368"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-osm-relation-13338453",
+      "name": "NCCCR (Al Amal Hospital)",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.510959,
+        "lat": 25.292954
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-osm-relation-13338453-1",
+        "doha-doha-osm-relation-13338453-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/13338453"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30263872"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-osm-way-103002122",
+      "name": "Landmark Shopping Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.466375,
+        "lat": 25.334174
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-osm-way-103002122-1",
+        "doha-doha-osm-way-103002122-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/103002122"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17067835"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-osm-way-154525758",
+      "name": "Qatar University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.489112,
+        "lat": 25.37305
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-osm-way-154525758-1",
+        "doha-doha-osm-way-154525758-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/154525758"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1574578"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-osm-way-154923131",
+      "name": "Jassim bin Hamad Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.483973,
+        "lat": 25.267369
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-osm-way-154923131-1",
+        "doha-doha-osm-way-154923131-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/154923131"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1073161"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-osm-way-155039774",
+      "name": "Saoud bin Abdulrahman Al-Thani Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.596219,
+        "lat": 25.180313
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-osm-way-155039774-1",
+        "doha-doha-osm-way-155039774-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/155039774"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q38250455"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-osm-way-238026555",
+      "name": "Hamad Medical City",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.502167,
+        "lat": 25.293767
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-osm-way-238026555-1",
+        "doha-doha-osm-way-238026555-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/238026555"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30254334"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-osm-way-239171216",
+      "name": "West End Park International Cricket Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.460279,
+        "lat": 25.189394
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-osm-way-239171216-1",
+        "doha-doha-osm-way-239171216-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/239171216"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q18378601"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-osm-way-256250988",
+      "name": "Barzan Towers",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.413188,
+        "lat": 25.418085
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-osm-way-256250988-1",
+        "doha-doha-osm-way-256250988-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/256250988"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4866084"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-osm-way-684144291",
+      "name": "Northwestern University in Qatar",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.445643,
+        "lat": 25.317852
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-osm-way-684144291-1",
+        "doha-doha-osm-way-684144291-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/684144291"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q890759"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-osm-way-684407873",
+      "name": "Virginia Commonwealth University - Qatar",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.432865,
+        "lat": 25.314746
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-osm-way-684407873-1",
+        "doha-doha-osm-way-684407873-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/684407873"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24896812"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-osm-way-770633250",
+      "name": "Aspire Tower",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.444747,
+        "lat": 25.262525
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-osm-way-770633250-1",
+        "doha-doha-osm-way-770633250-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/770633250"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q737602"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-quiet-reflection",
+      "name": "Church of Our Lady of the Rosary",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.52192,
+        "lat": 25.212673
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-quiet-reflection-1",
+        "doha-doha-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/239713638"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q630655"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-recreation",
+      "name": "Al Bidda Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.514097,
+        "lat": 25.300878
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-recreation-1",
+        "doha-doha-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/12719187"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q22948531"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "doha-transit",
+      "name": "National Museum",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.549337,
+        "lat": 25.284693
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "doha-doha-transit-1",
+        "doha-doha-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/doha/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9960498797"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q108463897"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.5264162,
+        "lat": 25.2856329
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "doha-doha-airport-doha-airport-1",
+      "venueId": "doha-airport-doha-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-airport-doha-airport-2",
+      "venueId": "doha-airport-doha-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-clinic-1",
+      "venueId": "doha-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-clinic-2",
+      "venueId": "doha-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-community-notices-1",
+      "venueId": "doha-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-community-notices-2",
+      "venueId": "doha-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-community-voting-game-1",
+      "venueId": "doha-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-community-voting-game-2",
+      "venueId": "doha-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-community-workshop-1",
+      "venueId": "doha-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-community-workshop-2",
+      "venueId": "doha-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-market-game-1",
+      "venueId": "doha-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-market-game-2",
+      "venueId": "doha-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-meal-stop-1",
+      "venueId": "doha-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-meal-stop-2",
+      "venueId": "doha-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-node-13278587089-1",
+      "venueId": "doha-osm-node-13278587089",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-node-13278587089-2",
+      "venueId": "doha-osm-node-13278587089",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-node-3424940793-1",
+      "venueId": "doha-osm-node-3424940793",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-node-3424940793-2",
+      "venueId": "doha-osm-node-3424940793",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-node-6785101974-1",
+      "venueId": "doha-osm-node-6785101974",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-node-6785101974-2",
+      "venueId": "doha-osm-node-6785101974",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-relation-10664399-1",
+      "venueId": "doha-osm-relation-10664399",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-relation-10664399-2",
+      "venueId": "doha-osm-relation-10664399",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-relation-13338453-1",
+      "venueId": "doha-osm-relation-13338453",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-relation-13338453-2",
+      "venueId": "doha-osm-relation-13338453",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-103002122-1",
+      "venueId": "doha-osm-way-103002122",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-103002122-2",
+      "venueId": "doha-osm-way-103002122",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-154525758-1",
+      "venueId": "doha-osm-way-154525758",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-154525758-2",
+      "venueId": "doha-osm-way-154525758",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-154923131-1",
+      "venueId": "doha-osm-way-154923131",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-154923131-2",
+      "venueId": "doha-osm-way-154923131",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-155039774-1",
+      "venueId": "doha-osm-way-155039774",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-155039774-2",
+      "venueId": "doha-osm-way-155039774",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-238026555-1",
+      "venueId": "doha-osm-way-238026555",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-238026555-2",
+      "venueId": "doha-osm-way-238026555",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-239171216-1",
+      "venueId": "doha-osm-way-239171216",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-239171216-2",
+      "venueId": "doha-osm-way-239171216",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-256250988-1",
+      "venueId": "doha-osm-way-256250988",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-256250988-2",
+      "venueId": "doha-osm-way-256250988",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-684144291-1",
+      "venueId": "doha-osm-way-684144291",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-684144291-2",
+      "venueId": "doha-osm-way-684144291",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-684407873-1",
+      "venueId": "doha-osm-way-684407873",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-684407873-2",
+      "venueId": "doha-osm-way-684407873",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-770633250-1",
+      "venueId": "doha-osm-way-770633250",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-osm-way-770633250-2",
+      "venueId": "doha-osm-way-770633250",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-quiet-reflection-1",
+      "venueId": "doha-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-quiet-reflection-2",
+      "venueId": "doha-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-recreation-1",
+      "venueId": "doha-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-recreation-2",
+      "venueId": "doha-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-transit-1",
+      "venueId": "doha-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    },
+    {
+      "id": "doha-doha-transit-2",
+      "venueId": "doha-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/doha/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "doha-airport-doha-airport",
+    "doha-clinic",
+    "doha-community-notices",
+    "doha-community-voting-game",
+    "doha-community-workshop",
+    "doha-market-game",
+    "doha-meal-stop",
+    "doha-osm-node-13278587089",
+    "doha-osm-node-3424940793",
+    "doha-osm-node-6785101974",
+    "doha-osm-relation-10664399",
+    "doha-osm-relation-13338453",
+    "doha-osm-way-103002122",
+    "doha-osm-way-154525758",
+    "doha-osm-way-154923131",
+    "doha-osm-way-155039774",
+    "doha-osm-way-238026555",
+    "doha-osm-way-239171216",
+    "doha-osm-way-256250988",
+    "doha-osm-way-684144291",
+    "doha-osm-way-684407873",
+    "doha-osm-way-770633250",
+    "doha-quiet-reflection",
+    "doha-recreation",
+    "doha-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "3537cf13248980c81b36e07644f69fc73de3eefc6b05b6440d5d9d3f680a385a",
+    "contentSha256": "88d171e0f27edf8a2ea5d5ef90950413999d7679ac8b60d6428699b8ecb0e773"
+  }
+}

@@ -1,0 +1,2004 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "garapan",
+    "name": "Garapan",
+    "state": {
+      "id": "mp-garapan",
+      "name": "Garapan"
+    },
+    "country": {
+      "id": "mp",
+      "name": "Northern Mariana Islands"
+    },
+    "point": {
+      "lon": 145.7208608,
+      "lat": 15.2070851
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/australia-oceania/american-oceania-261011.osm.pbf",
+      "https://ourairports.com/airports/PGSN/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/garapan/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/garapan/facts.ts",
+        "sha256": "7a75aa884155a8c1dd99aacee4251c94a62281e97da22bff09f04a750a3b17af"
+      },
+      {
+        "path": "src/game/cities/garapan/index.ts",
+        "sha256": "479828f76d1f7b505c31a3025abfe9d50c20d4aaa97296d38ae9036eba7bd85e"
+      },
+      {
+        "path": "src/game/cities/garapan/places.ts",
+        "sha256": "dfb881963561c9181e845dc56757f9dedc0325c3340e1d190c13371486018abb"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue garapan-transit has no mapped place source record.",
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "garapan-airport-garapan-airport",
+      "name": "Saipan International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.728848,
+        "lat": 15.119384
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-airport-garapan-airport-1",
+        "garapan-garapan-airport-garapan-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "garapan-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-clinic",
+      "name": "Commonwealth Healthcare Corporation",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.723836,
+        "lat": 15.210614
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-clinic-1",
+        "garapan-garapan-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/252530342"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-community-notices",
+      "name": "United States District Court for the Northern Mariana Islands",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.718711,
+        "lat": 15.194866
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-community-notices-1",
+        "garapan-garapan-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/637982059"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-community-voting-game",
+      "name": "CNMI Legislature",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.754597,
+        "lat": 15.211748
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-community-voting-game-1",
+        "garapan-garapan-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1306334756"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-community-workshop",
+      "name": "Northern Marianas College",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.721628,
+        "lat": 15.152056
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-community-workshop-1",
+        "garapan-garapan-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/461386554"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-market-game",
+      "name": "Public Farmer's Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.716904,
+        "lat": 15.201785
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-market-game-1",
+        "garapan-garapan-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/810905538"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-meal-stop",
+      "name": "Kinpachi Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.72059,
+        "lat": 15.214367
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-meal-stop-1",
+        "garapan-garapan-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1306225955"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-osm-node-10666101305",
+      "name": "Forbidden Island Lookout",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.787518,
+        "lat": 15.156
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-osm-node-10666101305-1",
+        "garapan-garapan-osm-node-10666101305-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10666101305"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-osm-node-1306225992",
+      "name": "DFS Galleria",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.718083,
+        "lat": 15.210201
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-osm-node-1306225992-1",
+        "garapan-garapan-osm-node-1306225992-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1306225992"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-osm-node-1306235400",
+      "name": "Bird Island Overlook",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.810445,
+        "lat": 15.255439
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-osm-node-1306235400-1",
+        "garapan-garapan-osm-node-1306235400-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1306235400"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-osm-node-1306334759",
+      "name": "Coffee Care",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.748598,
+        "lat": 15.222889
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-osm-node-1306334759-1",
+        "garapan-garapan-osm-node-1306334759-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1306334759"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-osm-node-2628135393",
+      "name": "Suicide Cliff",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.810122,
+        "lat": 15.277118
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-osm-node-2628135393-1",
+        "garapan-garapan-osm-node-2628135393-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2628135393"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q14192457"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-osm-node-2894726822",
+      "name": "Overlook Point",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.783522,
+        "lat": 15.218455
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-osm-node-2894726822-1",
+        "garapan-garapan-osm-node-2894726822-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2894726822"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-osm-node-358021658",
+      "name": "Civic Center Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.706974,
+        "lat": 15.162322
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-osm-node-358021658-1",
+        "garapan-garapan-osm-node-358021658-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/358021658"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q27728307"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-osm-node-5526308198",
+      "name": "Japanese Lighthouse",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.731663,
+        "lat": 15.211765
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-osm-node-5526308198-1",
+        "garapan-garapan-osm-node-5526308198-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5526308198"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15229363"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-osm-way-1111959454",
+      "name": "Kristo Rai Parish",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.717842,
+        "lat": 15.202604
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-osm-way-1111959454-1",
+        "garapan-garapan-osm-way-1111959454-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1111959454"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24302348"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-osm-way-165351798",
+      "name": "North Field",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.639183,
+        "lat": 15.073337
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-osm-way-165351798-1",
+        "garapan-garapan-osm-way-165351798-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/165351798"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11326323"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-osm-way-257214501",
+      "name": "Thursday Night Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.716792,
+        "lat": 15.203026
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-osm-way-257214501-1",
+        "garapan-garapan-osm-way-257214501-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/257214501"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-osm-way-345101524",
+      "name": "Our Lady of Mount Carmel Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.702483,
+        "lat": 15.151171
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-osm-way-345101524-1",
+        "garapan-garapan-osm-way-345101524-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/345101524"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15043774"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-osm-way-469267324",
+      "name": "Sugar King Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.721622,
+        "lat": 15.201589
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-osm-way-469267324-1",
+        "garapan-garapan-osm-way-469267324-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/469267324"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11587497"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-osm-way-643265134",
+      "name": "Ador Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.697812,
+        "lat": 15.134964
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-osm-way-643265134-1",
+        "garapan-garapan-osm-way-643265134-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/643265134"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-quiet-reflection",
+      "name": "彩帆八幡神社",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.764077,
+        "lat": 15.1816
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-quiet-reflection-1",
+        "garapan-garapan-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12797505559"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q19867376"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-recreation",
+      "name": "Saipan Botanical Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.748967,
+        "lat": 15.172608
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-recreation-1",
+        "garapan-garapan-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/garapan/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/461385907"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q27728668"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "garapan-transit",
+      "name": "City transit stop (game venue)",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.72177133050516,
+        "lat": 15.2070851
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "garapan-garapan-transit-1",
+        "garapan-garapan-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue garapan-transit has no mapped place source record."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 145.7208608,
+        "lat": 15.2070851
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "garapan-garapan-airport-garapan-airport-1",
+      "venueId": "garapan-airport-garapan-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-airport-garapan-airport-2",
+      "venueId": "garapan-airport-garapan-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-clinic-1",
+      "venueId": "garapan-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-clinic-2",
+      "venueId": "garapan-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-community-notices-1",
+      "venueId": "garapan-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-community-notices-2",
+      "venueId": "garapan-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-community-voting-game-1",
+      "venueId": "garapan-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-community-voting-game-2",
+      "venueId": "garapan-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-community-workshop-1",
+      "venueId": "garapan-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-community-workshop-2",
+      "venueId": "garapan-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-market-game-1",
+      "venueId": "garapan-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-market-game-2",
+      "venueId": "garapan-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-meal-stop-1",
+      "venueId": "garapan-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-meal-stop-2",
+      "venueId": "garapan-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-node-10666101305-1",
+      "venueId": "garapan-osm-node-10666101305",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-node-10666101305-2",
+      "venueId": "garapan-osm-node-10666101305",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-node-1306225992-1",
+      "venueId": "garapan-osm-node-1306225992",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-node-1306225992-2",
+      "venueId": "garapan-osm-node-1306225992",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-node-1306235400-1",
+      "venueId": "garapan-osm-node-1306235400",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-node-1306235400-2",
+      "venueId": "garapan-osm-node-1306235400",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-node-1306334759-1",
+      "venueId": "garapan-osm-node-1306334759",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-node-1306334759-2",
+      "venueId": "garapan-osm-node-1306334759",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-node-2628135393-1",
+      "venueId": "garapan-osm-node-2628135393",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-node-2628135393-2",
+      "venueId": "garapan-osm-node-2628135393",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-node-2894726822-1",
+      "venueId": "garapan-osm-node-2894726822",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-node-2894726822-2",
+      "venueId": "garapan-osm-node-2894726822",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-node-358021658-1",
+      "venueId": "garapan-osm-node-358021658",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-node-358021658-2",
+      "venueId": "garapan-osm-node-358021658",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-node-5526308198-1",
+      "venueId": "garapan-osm-node-5526308198",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-node-5526308198-2",
+      "venueId": "garapan-osm-node-5526308198",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-way-1111959454-1",
+      "venueId": "garapan-osm-way-1111959454",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-way-1111959454-2",
+      "venueId": "garapan-osm-way-1111959454",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-way-165351798-1",
+      "venueId": "garapan-osm-way-165351798",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-way-165351798-2",
+      "venueId": "garapan-osm-way-165351798",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-way-257214501-1",
+      "venueId": "garapan-osm-way-257214501",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-way-257214501-2",
+      "venueId": "garapan-osm-way-257214501",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-way-345101524-1",
+      "venueId": "garapan-osm-way-345101524",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-way-345101524-2",
+      "venueId": "garapan-osm-way-345101524",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-way-469267324-1",
+      "venueId": "garapan-osm-way-469267324",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-way-469267324-2",
+      "venueId": "garapan-osm-way-469267324",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-way-643265134-1",
+      "venueId": "garapan-osm-way-643265134",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-osm-way-643265134-2",
+      "venueId": "garapan-osm-way-643265134",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-quiet-reflection-1",
+      "venueId": "garapan-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-quiet-reflection-2",
+      "venueId": "garapan-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-recreation-1",
+      "venueId": "garapan-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-recreation-2",
+      "venueId": "garapan-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-transit-1",
+      "venueId": "garapan-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    },
+    {
+      "id": "garapan-garapan-transit-2",
+      "venueId": "garapan-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/garapan/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "garapan-airport-garapan-airport",
+    "garapan-clinic",
+    "garapan-community-notices",
+    "garapan-community-voting-game",
+    "garapan-community-workshop",
+    "garapan-market-game",
+    "garapan-meal-stop",
+    "garapan-osm-node-10666101305",
+    "garapan-osm-node-1306225992",
+    "garapan-osm-node-1306235400",
+    "garapan-osm-node-1306334759",
+    "garapan-osm-node-2628135393",
+    "garapan-osm-node-2894726822",
+    "garapan-osm-node-358021658",
+    "garapan-osm-node-5526308198",
+    "garapan-osm-way-1111959454",
+    "garapan-osm-way-165351798",
+    "garapan-osm-way-257214501",
+    "garapan-osm-way-345101524",
+    "garapan-osm-way-469267324",
+    "garapan-osm-way-643265134",
+    "garapan-quiet-reflection",
+    "garapan-recreation",
+    "garapan-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "061f8bb9958edd5b5ad9369e30159fbbce268570e830917c5fdb47de133a5dd0",
+    "contentSha256": "e32ad6344ee7b99b47c4439a8cbc887aaf5a0e7d0831453644761817b9aa6257"
+  }
+}

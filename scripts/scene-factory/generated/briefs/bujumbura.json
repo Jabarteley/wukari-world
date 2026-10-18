@@ -1,0 +1,2075 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "bujumbura",
+    "name": "Bujumbura",
+    "state": {
+      "id": "bi-starter",
+      "name": "Bujumbura"
+    },
+    "country": {
+      "id": "bi",
+      "name": "Burundi"
+    },
+    "point": {
+      "lon": 29.3675028,
+      "lat": -3.3638125
+    }
+  },
+  "style": {
+    "region": "east-africa",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "Natural Earth, OpenStreetMap contributors via Geofabrik Burundi 2026-10-09, and OurAirports dataset",
+    "sourceUrls": [
+      "https://download.geofabrik.de/africa/burundi-261009.osm.pbf",
+      "https://ourairports.com/airports/HBBA/"
+    ],
+    "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/bujumbura/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/bujumbura/facts.ts",
+        "sha256": "e445765731a473c08fd0d36d49aba48ea990f4e8e6de709d6850173b31591866"
+      },
+      {
+        "path": "src/game/cities/bujumbura/index.ts",
+        "sha256": "08afa98c8a1143eb3b1df2f9aa507d459051496bab7fe0819401aaf3439f770e"
+      },
+      {
+        "path": "src/game/cities/bujumbura/places.ts",
+        "sha256": "246a84d3017eb80e10fd079ee5a6ea59df66bcb7828807d801a5c21e3033c2c4"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "bujumbura-airport-bujumbura-airport",
+      "name": "Bujumbura Melchior Ndadaye International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.318501,
+        "lat": -3.32402
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-airport-bujumbura-airport-1",
+        "bujumbura-bujumbura-airport-bujumbura-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "bujumbura-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-clinic",
+      "name": "Hopital Militaire De Kamenge",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.38696,
+        "lat": -3.36972
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-clinic-1",
+        "bujumbura-bujumbura-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/122956893"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q125218513"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-community-notices",
+      "name": "Palais présidentiel Ntare Rushatsi",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.412827,
+        "lat": -3.334116
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-community-notices-1",
+        "bujumbura-bujumbura-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6862969717"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-community-voting-game",
+      "name": "Palais des Congres de Kigobe",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.373003,
+        "lat": -3.359829
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-community-voting-game-1",
+        "bujumbura-bujumbura-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1420210976"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-community-workshop",
+      "name": "Hope Africa University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.371236,
+        "lat": -3.347357
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-community-workshop-1",
+        "bujumbura-bujumbura-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1006372439"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2687972"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-market-game",
+      "name": "KANYOSHA MARKET",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.360824,
+        "lat": -3.431508
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-market-game-1",
+        "bujumbura-bujumbura-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/325686721"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-meal-stop",
+      "name": "Maman Ngabo",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.269272,
+        "lat": -3.338287
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-meal-stop-1",
+        "bujumbura-bujumbura-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2188525265"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-osm-node-1343582898",
+      "name": "Marché Musaga",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.371575,
+        "lat": -3.416543
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-osm-node-1343582898-1",
+        "bujumbura-bujumbura-osm-node-1343582898-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1343582898"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-osm-node-2135030807",
+      "name": "Lumière",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.349226,
+        "lat": -3.334724
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-osm-node-2135030807-1",
+        "bujumbura-bujumbura-osm-node-2135030807-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2135030807"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-osm-node-2174030720",
+      "name": "Geny's Beach",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.314235,
+        "lat": -3.350887
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-osm-node-2174030720-1",
+        "bujumbura-bujumbura-osm-node-2174030720-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2174030720"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-osm-node-3349652326",
+      "name": "Université des Grands Lacs",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.36623,
+        "lat": -3.378887
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-osm-node-3349652326-1",
+        "bujumbura-bujumbura-osm-node-3349652326-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3349652326"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30294313"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-osm-node-4169751891",
+      "name": "Kwa Johnson Chez Johnson",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.394326,
+        "lat": -3.354628
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-osm-node-4169751891-1",
+        "bujumbura-bujumbura-osm-node-4169751891-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4169751891"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-osm-node-5542555221",
+      "name": "Pagode Pascasia",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.341723,
+        "lat": -3.416738
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-osm-node-5542555221-1",
+        "bujumbura-bujumbura-osm-node-5542555221-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5542555221"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-osm-node-5648265555",
+      "name": "Isoko Gatumba",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.250635,
+        "lat": -3.333375
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-osm-node-5648265555-1",
+        "bujumbura-bujumbura-osm-node-5648265555-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5648265555"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-osm-way-10630191",
+      "name": "Stade Intwari",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.373686,
+        "lat": -3.383364
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-osm-way-10630191-1",
+        "bujumbura-bujumbura-osm-way-10630191-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/10630191"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1585283"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-osm-way-121963993",
+      "name": "STADE OLIMPIQUE",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.34726,
+        "lat": -3.45262
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-osm-way-121963993-1",
+        "bujumbura-bujumbura-osm-way-121963993-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/121963993"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-osm-way-124316871",
+      "name": "Université du Burundi",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.384394,
+        "lat": -3.378849
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-osm-way-124316871-1",
+        "bujumbura-bujumbura-osm-way-124316871-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/124316871"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q719925"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-osm-way-209975003",
+      "name": "CDS KOMEZA GUSENGA",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.47177,
+        "lat": -3.32738
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-osm-way-209975003-1",
+        "bujumbura-bujumbura-osm-way-209975003-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/209975003"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-osm-way-211284748",
+      "name": "Lake Tanganyika University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.381183,
+        "lat": -3.357513
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-osm-way-211284748-1",
+        "bujumbura-bujumbura-osm-way-211284748-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/211284748"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3551752"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-osm-way-425918156",
+      "name": "Musée Vivant",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.353822,
+        "lat": -3.387696
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-osm-way-425918156-1",
+        "bujumbura-bujumbura-osm-way-425918156-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/425918156"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5000987"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-osm-way-46692291",
+      "name": "Place de l'Indépendance",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.361488,
+        "lat": -3.382521
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-osm-way-46692291-1",
+        "bujumbura-bujumbura-osm-way-46692291-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/46692291"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-osm-way-784755483",
+      "name": "Izere",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.41423,
+        "lat": -3.459094
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-osm-way-784755483-1",
+        "bujumbura-bujumbura-osm-way-784755483-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/784755483"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-quiet-reflection",
+      "name": "Regina Mundi Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.36377,
+        "lat": -3.392163
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-quiet-reflection-1",
+        "bujumbura-bujumbura-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/92028037"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16964613"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-recreation",
+      "name": "Jardin Public",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.375439,
+        "lat": -3.392092
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-recreation-1",
+        "bujumbura-bujumbura-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/29863497"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "bujumbura-transit",
+      "name": "Bujumbura Bus Station (Siyoni)",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.357378,
+        "lat": -3.363777
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "bujumbura-bujumbura-transit-1",
+        "bujumbura-bujumbura-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/bujumbura/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1344199948"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 29.3675028,
+        "lat": -3.3638125
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "bujumbura-bujumbura-airport-bujumbura-airport-1",
+      "venueId": "bujumbura-airport-bujumbura-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-airport-bujumbura-airport-2",
+      "venueId": "bujumbura-airport-bujumbura-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-clinic-1",
+      "venueId": "bujumbura-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-clinic-2",
+      "venueId": "bujumbura-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-community-notices-1",
+      "venueId": "bujumbura-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-community-notices-2",
+      "venueId": "bujumbura-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-community-voting-game-1",
+      "venueId": "bujumbura-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-community-voting-game-2",
+      "venueId": "bujumbura-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-community-workshop-1",
+      "venueId": "bujumbura-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-community-workshop-2",
+      "venueId": "bujumbura-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-market-game-1",
+      "venueId": "bujumbura-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-market-game-2",
+      "venueId": "bujumbura-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-meal-stop-1",
+      "venueId": "bujumbura-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-meal-stop-2",
+      "venueId": "bujumbura-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-node-1343582898-1",
+      "venueId": "bujumbura-osm-node-1343582898",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-node-1343582898-2",
+      "venueId": "bujumbura-osm-node-1343582898",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-node-2135030807-1",
+      "venueId": "bujumbura-osm-node-2135030807",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-node-2135030807-2",
+      "venueId": "bujumbura-osm-node-2135030807",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-node-2174030720-1",
+      "venueId": "bujumbura-osm-node-2174030720",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-node-2174030720-2",
+      "venueId": "bujumbura-osm-node-2174030720",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-node-3349652326-1",
+      "venueId": "bujumbura-osm-node-3349652326",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-node-3349652326-2",
+      "venueId": "bujumbura-osm-node-3349652326",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-node-4169751891-1",
+      "venueId": "bujumbura-osm-node-4169751891",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-node-4169751891-2",
+      "venueId": "bujumbura-osm-node-4169751891",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-node-5542555221-1",
+      "venueId": "bujumbura-osm-node-5542555221",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-node-5542555221-2",
+      "venueId": "bujumbura-osm-node-5542555221",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-node-5648265555-1",
+      "venueId": "bujumbura-osm-node-5648265555",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-node-5648265555-2",
+      "venueId": "bujumbura-osm-node-5648265555",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-way-10630191-1",
+      "venueId": "bujumbura-osm-way-10630191",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-way-10630191-2",
+      "venueId": "bujumbura-osm-way-10630191",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-way-121963993-1",
+      "venueId": "bujumbura-osm-way-121963993",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-way-121963993-2",
+      "venueId": "bujumbura-osm-way-121963993",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-way-124316871-1",
+      "venueId": "bujumbura-osm-way-124316871",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-way-124316871-2",
+      "venueId": "bujumbura-osm-way-124316871",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-way-209975003-1",
+      "venueId": "bujumbura-osm-way-209975003",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-way-209975003-2",
+      "venueId": "bujumbura-osm-way-209975003",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-way-211284748-1",
+      "venueId": "bujumbura-osm-way-211284748",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-way-211284748-2",
+      "venueId": "bujumbura-osm-way-211284748",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-way-425918156-1",
+      "venueId": "bujumbura-osm-way-425918156",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-way-425918156-2",
+      "venueId": "bujumbura-osm-way-425918156",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-way-46692291-1",
+      "venueId": "bujumbura-osm-way-46692291",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-way-46692291-2",
+      "venueId": "bujumbura-osm-way-46692291",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-way-784755483-1",
+      "venueId": "bujumbura-osm-way-784755483",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-osm-way-784755483-2",
+      "venueId": "bujumbura-osm-way-784755483",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-quiet-reflection-1",
+      "venueId": "bujumbura-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-quiet-reflection-2",
+      "venueId": "bujumbura-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-recreation-1",
+      "venueId": "bujumbura-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-recreation-2",
+      "venueId": "bujumbura-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-transit-1",
+      "venueId": "bujumbura-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    },
+    {
+      "id": "bujumbura-bujumbura-transit-2",
+      "venueId": "bujumbura-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/bujumbura/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "bujumbura-airport-bujumbura-airport",
+    "bujumbura-clinic",
+    "bujumbura-community-notices",
+    "bujumbura-community-voting-game",
+    "bujumbura-community-workshop",
+    "bujumbura-market-game",
+    "bujumbura-meal-stop",
+    "bujumbura-osm-node-1343582898",
+    "bujumbura-osm-node-2135030807",
+    "bujumbura-osm-node-2174030720",
+    "bujumbura-osm-node-3349652326",
+    "bujumbura-osm-node-4169751891",
+    "bujumbura-osm-node-5542555221",
+    "bujumbura-osm-node-5648265555",
+    "bujumbura-osm-way-10630191",
+    "bujumbura-osm-way-121963993",
+    "bujumbura-osm-way-124316871",
+    "bujumbura-osm-way-209975003",
+    "bujumbura-osm-way-211284748",
+    "bujumbura-osm-way-425918156",
+    "bujumbura-osm-way-46692291",
+    "bujumbura-osm-way-784755483",
+    "bujumbura-quiet-reflection",
+    "bujumbura-recreation",
+    "bujumbura-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "f474100e0333ce1605de5330141e7ef25c71dad906daee7a95f05153f7b63400",
+    "contentSha256": "d3e67d17b32695ccf98838ed0fe62cb2d2f286011c38b7652c23b8fe5a1f656c"
+  }
+}

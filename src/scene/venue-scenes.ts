@@ -391,13 +391,15 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   const shared = kitResources(kit);
   const materials: SkyMaterials = shared.materials;
   if (!materials.sky) materials.sky = new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.BackSide, depthWrite: false, fog: false });
-  const options: SceneOptions = venue?.scene && typeof venue.scene === 'object' ? venue.scene : {};
+  const recipe = venue?.id ? citySceneDef(drawnAs, `recipe:${venue.id}`, '') : null;
+  const supplied: SceneOptions = venue?.scene && typeof venue.scene === 'object' ? venue.scene : {};
+  const options: SceneOptions = recipe ? { ...supplied, design: undefined } : supplied;
   const parametric = options.design ? parametricSceneAdapter() : null;
   if (options.design && !parametric) throw new Error('Parametric venue scenes have not been loaded');
   // A venue may ask for a variant that is a scene of its own city (venues-ibadan-b.ts); the kind's walkable description then yields to the variant's.
   // A kind neither shared nor this city's is the generic plaza.
   const variantKey = typeof options.variant === 'string' ? options.variant : defaultVariant ?? '';
-  const cityDef = citySceneDef(drawnAs, wanted, variantKey);
+  const cityDef = recipe ?? citySceneDef(drawnAs, wanted, variantKey);
   // A designed venue keeps its own configurable shell, palette, props and layout.
   const own = (cityDef?.runtime && options.design ? null : cityDef) ?? (Object.hasOwn(DEFS, wanted) ? DEFS[wanted] : null);
   const kind = own ? wanted : 'generic', found = own ?? DEFS.generic;

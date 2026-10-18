@@ -1,0 +1,1290 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "makurdi",
+    "name": "Makurdi",
+    "state": {
+      "id": "benue",
+      "name": "Benue"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 8.5361111111111,
+      "lat": 7.7305555555556
+    }
+  },
+  "style": {
+    "region": "gulf-guinea",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/makurdi/content.ts",
+        "sha256": "19cd99404b1d7ba227cec8b92f59b85cd3707eae4164f9186280eb3e8225280f"
+      },
+      {
+        "path": "src/game/cities/makurdi/index.ts",
+        "sha256": "0d6a91129d51e5659752516cd53da8bb5b7574754ffe5d7fc7e5fbe4789144b9"
+      },
+      {
+        "path": "src/game/cities/makurdi/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/makurdi/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for makurdi.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "aper-aku-stadium",
+      "name": "Aper Aku Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5180556,
+        "lat": 7.7416667
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "makurdi-aper-aku-stadium-1",
+        "makurdi-aper-aku-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for makurdi."
+      }
+    },
+    {
+      "id": "benue-ministry-of-information-culture-tourism",
+      "name": "Benue State Ministry of Information, Culture & Tourism",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5229381,
+        "lat": 7.7141953
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "makurdi-benue-ministry-of-information-culture-tourism-1",
+        "makurdi-benue-ministry-of-information-culture-tourism-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for makurdi."
+      }
+    },
+    {
+      "id": "benue-state-university",
+      "name": "Benue State University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.556275,
+        "lat": 7.726538
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "makurdi-benue-state-university-1",
+        "makurdi-benue-state-university-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for makurdi."
+      }
+    },
+    {
+      "id": "bsu-teaching-hospital",
+      "name": "Benue State University Teaching Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5684491,
+        "lat": 7.7252404
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "makurdi-bsu-teaching-hospital-1",
+        "makurdi-bsu-teaching-hospital-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for makurdi."
+      }
+    },
+    {
+      "id": "dajo-pottery",
+      "name": "Dajo Pottery",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.586733,
+        "lat": 7.715693
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "makurdi-dajo-pottery-1",
+        "makurdi-dajo-pottery-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for makurdi."
+      }
+    },
+    {
+      "id": "federal-medical-centre-makurdi",
+      "name": "Federal Medical Centre Makurdi",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5179091,
+        "lat": 7.7374082
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "makurdi-federal-medical-centre-makurdi-1",
+        "makurdi-federal-medical-centre-makurdi-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for makurdi."
+      }
+    },
+    {
+      "id": "first-baptist-church-makurdi",
+      "name": "First Baptist Church Makurdi",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.522621,
+        "lat": 7.739296
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "makurdi-first-baptist-church-makurdi-1",
+        "makurdi-first-baptist-church-makurdi-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for makurdi."
+      }
+    },
+    {
+      "id": "golden-plate-restaurant",
+      "name": "Golden Plate Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.538186,
+        "lat": 7.72329
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "makurdi-golden-plate-restaurant-1",
+        "makurdi-golden-plate-restaurant-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for makurdi."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.53845296487209,
+        "lat": 7.6622455087624335
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for makurdi."
+      }
+    },
+    {
+      "id": "makurdi-central-mosque",
+      "name": "Makurdi Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.513326,
+        "lat": 7.742895
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "makurdi-makurdi-central-mosque-1",
+        "makurdi-makurdi-central-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for makurdi."
+      }
+    },
+    {
+      "id": "north-bank-market",
+      "name": "North bank market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5464724,
+        "lat": 7.7543618
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "makurdi-north-bank-market-1",
+        "makurdi-north-bank-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for makurdi."
+      }
+    },
+    {
+      "id": "our-lady-of-perpetual-help-cathedral",
+      "name": "Our Lady of Perpetual Help Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.50494,
+        "lat": 7.71756
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "makurdi-our-lady-of-perpetual-help-cathedral-1",
+        "makurdi-our-lady-of-perpetual-help-cathedral-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for makurdi."
+      }
+    },
+    {
+      "id": "university-of-agriculture-makurdi",
+      "name": "University of Agriculture, Makurdi",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5391474,
+        "lat": 7.7321865
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "makurdi-university-of-agriculture-makurdi-1",
+        "makurdi-university-of-agriculture-makurdi-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for makurdi."
+      }
+    },
+    {
+      "id": "wurukum-market",
+      "name": "Wurukum market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5529289,
+        "lat": 7.7247534
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "makurdi-wurukum-market-1",
+        "makurdi-wurukum-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for makurdi."
+      }
+    },
+    {
+      "id": "zion-microfinance-bank",
+      "name": "Zion Microfinance Bank Limited",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.5105528,
+        "lat": 7.737717
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "makurdi-zion-microfinance-bank-1",
+        "makurdi-zion-microfinance-bank-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for makurdi."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "makurdi-aper-aku-stadium-1",
+      "venueId": "aper-aku-stadium",
+      "name": "Rose Ugbe",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-aper-aku-stadium-2",
+      "venueId": "aper-aku-stadium",
+      "name": "Terhemba Idoko",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-benue-ministry-of-information-culture-tourism-1",
+      "venueId": "benue-ministry-of-information-culture-tourism",
+      "name": "Aondover Igbe",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-benue-ministry-of-information-culture-tourism-2",
+      "venueId": "benue-ministry-of-information-culture-tourism",
+      "name": "Doosuur Shima",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-benue-state-university-1",
+      "venueId": "benue-state-university",
+      "name": "Rose Akaahan",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-benue-state-university-2",
+      "venueId": "benue-state-university",
+      "name": "Terhemba Ugbe",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-bsu-teaching-hospital-1",
+      "venueId": "bsu-teaching-hospital",
+      "name": "Rose Gbilla",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-bsu-teaching-hospital-2",
+      "venueId": "bsu-teaching-hospital",
+      "name": "Terhemba Ode",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-dajo-pottery-1",
+      "venueId": "dajo-pottery",
+      "name": "Rose Ayila",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-dajo-pottery-2",
+      "venueId": "dajo-pottery",
+      "name": "Terhemba Gbilla",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-federal-medical-centre-makurdi-1",
+      "venueId": "federal-medical-centre-makurdi",
+      "name": "Aondover Ejeh",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-federal-medical-centre-makurdi-2",
+      "venueId": "federal-medical-centre-makurdi",
+      "name": "Doosuur Tarkaa",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-first-baptist-church-makurdi-1",
+      "venueId": "first-baptist-church-makurdi",
+      "name": "Rose Mbaka",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-first-baptist-church-makurdi-2",
+      "venueId": "first-baptist-church-makurdi",
+      "name": "Terhemba Akaahan",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-golden-plate-restaurant-1",
+      "venueId": "golden-plate-restaurant",
+      "name": "Aondover Shima",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-golden-plate-restaurant-2",
+      "venueId": "golden-plate-restaurant",
+      "name": "Doosuur Ityavyar",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-makurdi-central-mosque-1",
+      "venueId": "makurdi-central-mosque",
+      "name": "Aondover Agbo",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-makurdi-central-mosque-2",
+      "venueId": "makurdi-central-mosque",
+      "name": "Doosuur Ejeh",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-north-bank-market-1",
+      "venueId": "north-bank-market",
+      "name": "Aondover Tsav",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-north-bank-market-2",
+      "venueId": "north-bank-market",
+      "name": "Doosuur Agbo",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-our-lady-of-perpetual-help-cathedral-1",
+      "venueId": "our-lady-of-perpetual-help-cathedral",
+      "name": "Aondover Ityavyar",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-our-lady-of-perpetual-help-cathedral-2",
+      "venueId": "our-lady-of-perpetual-help-cathedral",
+      "name": "Doosuur Ogbu",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-university-of-agriculture-makurdi-1",
+      "venueId": "university-of-agriculture-makurdi",
+      "name": "Aondover Ogbu",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-university-of-agriculture-makurdi-2",
+      "venueId": "university-of-agriculture-makurdi",
+      "name": "Doosuur Igbe",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-wurukum-market-1",
+      "venueId": "wurukum-market",
+      "name": "Rose Ochai",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-wurukum-market-2",
+      "venueId": "wurukum-market",
+      "name": "Terhemba Ayila",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-zion-microfinance-bank-1",
+      "venueId": "zion-microfinance-bank",
+      "name": "Rose Idoko",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    },
+    {
+      "id": "makurdi-zion-microfinance-bank-2",
+      "venueId": "zion-microfinance-bank",
+      "name": "Terhemba Mbaka",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/makurdi/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "aper-aku-stadium",
+    "benue-ministry-of-information-culture-tourism",
+    "benue-state-university",
+    "bsu-teaching-hospital",
+    "dajo-pottery",
+    "federal-medical-centre-makurdi",
+    "first-baptist-church-makurdi",
+    "golden-plate-restaurant",
+    "makurdi-central-mosque",
+    "north-bank-market",
+    "our-lady-of-perpetual-help-cathedral",
+    "university-of-agriculture-makurdi",
+    "wurukum-market",
+    "zion-microfinance-bank"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "1fd3e014dd704819e997bd65780b79ace085feb5c40146c2791f5e910c5e2eed",
+    "contentSha256": "d0dcdd9cbcd8bd4235a2b8ff5269534e387affc77db2f997d20096030ab28881"
+  }
+}

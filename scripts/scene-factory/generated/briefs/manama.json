@@ -1,0 +1,2123 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "manama",
+    "name": "Manama",
+    "state": {
+      "id": "bh-manama",
+      "name": "Manama"
+    },
+    "country": {
+      "id": "bh",
+      "name": "Bahrain"
+    },
+    "point": {
+      "lon": 50.5822436,
+      "lat": 26.2235041
+    }
+  },
+  "style": {
+    "region": "south-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/gcc-states-261011.osm.pbf",
+      "https://ourairports.com/airports/OBBI/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/manama/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/manama/facts.ts",
+        "sha256": "b224067d5c9b0f4e6a29e2272b59862c98158bc2f5f743d81d279bed4b32d7f2"
+      },
+      {
+        "path": "src/game/cities/manama/index.ts",
+        "sha256": "0cc1d2b498eaffc45caae669a14875337ef69d768ce6b22f9e6209d0dfe7f736"
+      },
+      {
+        "path": "src/game/cities/manama/places.ts",
+        "sha256": "8ae190ede50721b3229333bdcf85b08a0e8f127baf0155c465d972d5b522297e"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.5822436,
+        "lat": 26.2235041
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "manama-airport-manama-airport",
+      "name": "Bahrain International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.63764,
+        "lat": 26.267295
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-airport-manama-airport-1",
+        "manama-manama-airport-manama-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "manama-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-clinic",
+      "name": "International Hospital of Bahrain",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.526165,
+        "lat": 26.219455
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-clinic-1",
+        "manama-manama-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/350373165"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12060763"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-community-notices",
+      "name": "Ministry of Interior",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.575391,
+        "lat": 26.222013
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-community-notices-1",
+        "manama-manama-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/487845013"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4294294"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-community-voting-game",
+      "name": "Northern Area Municipality",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.455601,
+        "lat": 26.21195
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-community-voting-game-1",
+        "manama-manama-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/485963597"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-community-workshop",
+      "name": "University of Bahrain and Bahrain Polytechnic",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.54744,
+        "lat": 26.165068
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-community-workshop-1",
+        "manama-manama-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/6026618"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1707779"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-market-game",
+      "name": "Juffair Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.607716,
+        "lat": 26.217805
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-market-game-1",
+        "manama-manama-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/485941188"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24211432"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-meal-stop",
+      "name": "Light House Cafe",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.665185,
+        "lat": 26.278902
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-meal-stop-1",
+        "manama-manama-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2276730546"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-osm-node-3885140913",
+      "name": "Khamis Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.54832,
+        "lat": 26.20817
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-osm-node-3885140913-1",
+        "manama-manama-osm-node-3885140913-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3885140913"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4119263"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-osm-node-811103543",
+      "name": "College of Health and Sports Sciences",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.573951,
+        "lat": 26.216862
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-osm-node-811103543-1",
+        "manama-manama-osm-node-811103543-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/811103543"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5146725"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-osm-relation-7188720",
+      "name": "American Mission Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.582488,
+        "lat": 26.231435
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-osm-relation-7188720-1",
+        "manama-manama-osm-relation-7188720-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/7188720"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28221035"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-osm-way-1536562298",
+      "name": "Dilmun Burial Mounds (Hamad Town Roundabout 1)",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.50351,
+        "lat": 26.140163
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-osm-way-1536562298-1",
+        "manama-manama-osm-way-1536562298-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1536562298"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5276996"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-osm-way-174275472",
+      "name": "Barbar Temple",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.48416,
+        "lat": 26.226161
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-osm-way-174275472-1",
+        "manama-manama-osm-way-174275472-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/174275472"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q807317"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-osm-way-174275928",
+      "name": "Rifa Fort",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.56295,
+        "lat": 26.117821
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-osm-way-174275928-1",
+        "manama-manama-osm-way-174275928-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/174275928"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2189330"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-osm-way-175197568",
+      "name": "City Centre Bahrain",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.553865,
+        "lat": 26.233559
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-osm-way-175197568-1",
+        "manama-manama-osm-way-175197568-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/175197568"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4842738"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-osm-way-28655847",
+      "name": "Bahrain National Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.54351,
+        "lat": 26.153611
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-osm-way-28655847-1",
+        "manama-manama-osm-way-28655847-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/28655847"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1548284"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-osm-way-29253447",
+      "name": "Al Fateh Grand Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.598332,
+        "lat": 26.218965
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-osm-way-29253447-1",
+        "manama-manama-osm-way-29253447-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/29253447"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2086076"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-osm-way-344196655",
+      "name": "Royal College of Surgeons' Ireland",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.596844,
+        "lat": 26.26179
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-osm-way-344196655-1",
+        "manama-manama-osm-way-344196655-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/344196655"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12204409"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-osm-way-488543824",
+      "name": "Applied Science University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.614501,
+        "lat": 26.143559
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-osm-way-488543824-1",
+        "manama-manama-osm-way-488543824-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/488543824"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4781578"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-osm-way-61402688",
+      "name": "Seef Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.536733,
+        "lat": 26.232644
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-osm-way-61402688-1",
+        "manama-manama-osm-way-61402688-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/61402688"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7445722"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-osm-way-665595615",
+      "name": "Al Muharraq Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.627532,
+        "lat": 26.257767
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-osm-way-665595615-1",
+        "manama-manama-osm-way-665595615-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/665595615"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4120509"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-osm-way-673312758",
+      "name": "Khalifa Sports City Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.54852,
+        "lat": 26.175031
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-osm-way-673312758-1",
+        "manama-manama-osm-way-673312758-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/673312758"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2492375"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-osm-way-991874984",
+      "name": "Bahrain Specialist Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.61467,
+        "lat": 26.219501
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-osm-way-991874984-1",
+        "manama-manama-osm-way-991874984-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/991874984"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4842761"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-quiet-reflection",
+      "name": "The Cathedral of Our Lady of Arabia",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.54533,
+        "lat": 26.078919
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-quiet-reflection-1",
+        "manama-manama-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1011051487"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q18416916"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-recreation",
+      "name": "Askar Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.618075,
+        "lat": 26.057167
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-recreation-1",
+        "manama-manama-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/489098808"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "manama-transit",
+      "name": "Manama Bus Terminal",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 50.570467,
+        "lat": 26.231191
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "manama-manama-transit-1",
+        "manama-manama-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/manama/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/794031791"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "manama-manama-airport-manama-airport-1",
+      "venueId": "manama-airport-manama-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-airport-manama-airport-2",
+      "venueId": "manama-airport-manama-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-clinic-1",
+      "venueId": "manama-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-clinic-2",
+      "venueId": "manama-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-community-notices-1",
+      "venueId": "manama-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-community-notices-2",
+      "venueId": "manama-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-community-voting-game-1",
+      "venueId": "manama-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-community-voting-game-2",
+      "venueId": "manama-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-community-workshop-1",
+      "venueId": "manama-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-community-workshop-2",
+      "venueId": "manama-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-market-game-1",
+      "venueId": "manama-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-market-game-2",
+      "venueId": "manama-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-meal-stop-1",
+      "venueId": "manama-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-meal-stop-2",
+      "venueId": "manama-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-node-3885140913-1",
+      "venueId": "manama-osm-node-3885140913",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-node-3885140913-2",
+      "venueId": "manama-osm-node-3885140913",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-node-811103543-1",
+      "venueId": "manama-osm-node-811103543",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-node-811103543-2",
+      "venueId": "manama-osm-node-811103543",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-relation-7188720-1",
+      "venueId": "manama-osm-relation-7188720",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-relation-7188720-2",
+      "venueId": "manama-osm-relation-7188720",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-1536562298-1",
+      "venueId": "manama-osm-way-1536562298",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-1536562298-2",
+      "venueId": "manama-osm-way-1536562298",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-174275472-1",
+      "venueId": "manama-osm-way-174275472",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-174275472-2",
+      "venueId": "manama-osm-way-174275472",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-174275928-1",
+      "venueId": "manama-osm-way-174275928",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-174275928-2",
+      "venueId": "manama-osm-way-174275928",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-175197568-1",
+      "venueId": "manama-osm-way-175197568",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-175197568-2",
+      "venueId": "manama-osm-way-175197568",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-28655847-1",
+      "venueId": "manama-osm-way-28655847",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-28655847-2",
+      "venueId": "manama-osm-way-28655847",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-29253447-1",
+      "venueId": "manama-osm-way-29253447",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-29253447-2",
+      "venueId": "manama-osm-way-29253447",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-344196655-1",
+      "venueId": "manama-osm-way-344196655",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-344196655-2",
+      "venueId": "manama-osm-way-344196655",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-488543824-1",
+      "venueId": "manama-osm-way-488543824",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-488543824-2",
+      "venueId": "manama-osm-way-488543824",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-61402688-1",
+      "venueId": "manama-osm-way-61402688",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-61402688-2",
+      "venueId": "manama-osm-way-61402688",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-665595615-1",
+      "venueId": "manama-osm-way-665595615",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-665595615-2",
+      "venueId": "manama-osm-way-665595615",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-673312758-1",
+      "venueId": "manama-osm-way-673312758",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-673312758-2",
+      "venueId": "manama-osm-way-673312758",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-991874984-1",
+      "venueId": "manama-osm-way-991874984",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-osm-way-991874984-2",
+      "venueId": "manama-osm-way-991874984",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-quiet-reflection-1",
+      "venueId": "manama-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-quiet-reflection-2",
+      "venueId": "manama-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-recreation-1",
+      "venueId": "manama-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-recreation-2",
+      "venueId": "manama-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-transit-1",
+      "venueId": "manama-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    },
+    {
+      "id": "manama-manama-transit-2",
+      "venueId": "manama-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/manama/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "manama-airport-manama-airport",
+    "manama-clinic",
+    "manama-community-notices",
+    "manama-community-voting-game",
+    "manama-community-workshop",
+    "manama-market-game",
+    "manama-meal-stop",
+    "manama-osm-node-3885140913",
+    "manama-osm-node-811103543",
+    "manama-osm-relation-7188720",
+    "manama-osm-way-1536562298",
+    "manama-osm-way-174275472",
+    "manama-osm-way-174275928",
+    "manama-osm-way-175197568",
+    "manama-osm-way-28655847",
+    "manama-osm-way-29253447",
+    "manama-osm-way-344196655",
+    "manama-osm-way-488543824",
+    "manama-osm-way-61402688",
+    "manama-osm-way-665595615",
+    "manama-osm-way-673312758",
+    "manama-osm-way-991874984",
+    "manama-quiet-reflection",
+    "manama-recreation",
+    "manama-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "5f6a85716a88045e8beda29f3f6642f30d4b124c7e62ba8bd9bd9c5023a87e25",
+    "contentSha256": "a59198c1a2fa26f5bb365fd9d4bd0449e440c7f86df8b3507e61854f63ebb7ae"
+  }
+}

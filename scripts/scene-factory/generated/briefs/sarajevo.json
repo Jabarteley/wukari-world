@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "sarajevo",
+    "name": "Sarajevo",
+    "state": {
+      "id": "ba-sarajevo",
+      "name": "Sarajevo"
+    },
+    "country": {
+      "id": "ba",
+      "name": "Bosnia & Herzegovina"
+    },
+    "point": {
+      "lon": 18.4126147,
+      "lat": 43.8570713
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/bosnia-herzegovina-261011.osm.pbf",
+      "https://ourairports.com/airports/LQSA/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/sarajevo/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/sarajevo/facts.ts",
+        "sha256": "3d83b5bae5f1f23c69fd705c1e61b5424ec32e6154497457c3360d420a86558b"
+      },
+      {
+        "path": "src/game/cities/sarajevo/index.ts",
+        "sha256": "2460092c52022ab4728708bc54ce930c72d547021bd9b8e98e2f6e4c4cf73b0d"
+      },
+      {
+        "path": "src/game/cities/sarajevo/places.ts",
+        "sha256": "3c0c85e28432a75487df2e807cc2d79fb210ed82bbf96b2c20c3adbbd8879765"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.4126147,
+        "lat": 43.8570713
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "sarajevo-airport-sarajevo-airport",
+      "name": "Sarajevo International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.331499,
+        "lat": 43.8246
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-airport-sarajevo-airport-1",
+        "sarajevo-sarajevo-airport-sarajevo-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "sarajevo-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-clinic",
+      "name": "Klinički centar Univerziteta u Sarajevu",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.415965,
+        "lat": 43.869731
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-clinic-1",
+        "sarajevo-sarajevo-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/375862791"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24702947"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-community-notices",
+      "name": "Administrativni centar grada Istočno Sarajevo",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.365947,
+        "lat": 43.822455
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-community-notices-1",
+        "sarajevo-sarajevo-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/183545337"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q25462754"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-community-voting-game",
+      "name": "Municipality of Novi Grad Sarajevo",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.354814,
+        "lat": 43.846704
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-community-voting-game-1",
+        "sarajevo-sarajevo-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/44788668"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12756677"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-community-workshop",
+      "name": "International University in Sarajevo",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.309434,
+        "lat": 43.821545
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-community-workshop-1",
+        "sarajevo-sarajevo-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/793104957"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3443302"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-market-game",
+      "name": "ARIA",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.416533,
+        "lat": 43.858336
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-market-game-1",
+        "sarajevo-sarajevo-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7909276377"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4835047"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-meal-stop",
+      "name": "Inat kuća",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.43425,
+        "lat": 43.858559
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-meal-stop-1",
+        "sarajevo-sarajevo-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/191388836"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1257066"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-osm-node-6368640905",
+      "name": "Muzička akademija Sarajevo",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.424987,
+        "lat": 43.860469
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-osm-node-6368640905-1",
+        "sarajevo-sarajevo-osm-node-6368640905-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6368640905"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6471353"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-osm-relation-8425673",
+      "name": "Morića Han",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.430107,
+        "lat": 43.859672
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-osm-relation-8425673-1",
+        "sarajevo-sarajevo-osm-relation-8425673-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/8425673"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1260699"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-osm-way-118942247",
+      "name": "Église Saint-Joseph",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.406965,
+        "lat": 43.856501
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-osm-way-118942247-1",
+        "sarajevo-sarajevo-osm-way-118942247-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/118942247"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3509703"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-osm-way-140482805",
+      "name": "Grbavica Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.387506,
+        "lat": 43.846559
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-osm-way-140482805-1",
+        "sarajevo-sarajevo-osm-way-140482805-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/140482805"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1649384"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-osm-way-181388997",
+      "name": "Visoki",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.176331,
+        "lat": 43.976838
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-osm-way-181388997-1",
+        "sarajevo-sarajevo-osm-way-181388997-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/181388997"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3395456"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-osm-way-188836329",
+      "name": "Gazi Husrev Bey's Bezistan",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.42807,
+        "lat": 43.858819
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-osm-way-188836329-1",
+        "sarajevo-sarajevo-osm-way-188836329-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/188836329"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1566076"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-osm-way-224740343",
+      "name": "Cekovića kuća",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.568156,
+        "lat": 43.819293
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-osm-way-224740343-1",
+        "sarajevo-sarajevo-osm-way-224740343-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/224740343"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q19951118"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-osm-way-23480568",
+      "name": "Olimpijski stadion Koševo – Asim Ferhatović-Hase",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.408582,
+        "lat": 43.873749
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-osm-way-23480568-1",
+        "sarajevo-sarajevo-osm-way-23480568-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/23480568"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q903860"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-osm-way-23697320",
+      "name": "Vraca Memorial Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.399097,
+        "lat": 43.843538
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-osm-way-23697320-1",
+        "sarajevo-sarajevo-osm-way-23697320-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/23697320"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1278015"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-osm-way-27298226",
+      "name": "City Stadium SRC Slavija",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.367134,
+        "lat": 43.829359
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-osm-way-27298226-1",
+        "sarajevo-sarajevo-osm-way-27298226-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/27298226"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2618577"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-osm-way-28784587",
+      "name": "Vrelo Bosne",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.272191,
+        "lat": 43.82197
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-osm-way-28784587-1",
+        "sarajevo-sarajevo-osm-way-28784587-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/28784587"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3273035"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-osm-way-588118276",
+      "name": "Dubrovnik Castle",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.335882,
+        "lat": 43.993135
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-osm-way-588118276-1",
+        "sarajevo-sarajevo-osm-way-588118276-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/588118276"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28729828"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-osm-way-622818140",
+      "name": "University of Sarajevo Campus",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.396382,
+        "lat": 43.85667
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-osm-way-622818140-1",
+        "sarajevo-sarajevo-osm-way-622818140-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/622818140"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1276330"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-osm-way-777985963",
+      "name": "Crkva Svetog sveštenomučenika Petra Dabrobosanskog",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.349522,
+        "lat": 43.79801
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-osm-way-777985963-1",
+        "sarajevo-sarajevo-osm-way-777985963-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/777985963"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12761045"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-osm-way-840206905",
+      "name": "Univerzitet u Istočnom Sarajevu",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.374073,
+        "lat": 43.823952
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-osm-way-840206905-1",
+        "sarajevo-sarajevo-osm-way-840206905-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/840206905"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6470528"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-quiet-reflection",
+      "name": "Crkva Svetog Pantelejmona",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.521253,
+        "lat": 43.919366
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-quiet-reflection-1",
+        "sarajevo-sarajevo-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/778627920"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q31181384"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-recreation",
+      "name": "Bike Park Evolution",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.363966,
+        "lat": 43.798883
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-recreation-1",
+        "sarajevo-sarajevo-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10933440915"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q137646857"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "sarajevo-transit",
+      "name": "Sarajevo",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.39895,
+        "lat": 43.860459
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "sarajevo-sarajevo-transit-1",
+        "sarajevo-sarajevo-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/sarajevo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/942406094"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q9333848"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "sarajevo-sarajevo-airport-sarajevo-airport-1",
+      "venueId": "sarajevo-airport-sarajevo-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-airport-sarajevo-airport-2",
+      "venueId": "sarajevo-airport-sarajevo-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-clinic-1",
+      "venueId": "sarajevo-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-clinic-2",
+      "venueId": "sarajevo-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-community-notices-1",
+      "venueId": "sarajevo-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-community-notices-2",
+      "venueId": "sarajevo-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-community-voting-game-1",
+      "venueId": "sarajevo-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-community-voting-game-2",
+      "venueId": "sarajevo-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-community-workshop-1",
+      "venueId": "sarajevo-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-community-workshop-2",
+      "venueId": "sarajevo-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-market-game-1",
+      "venueId": "sarajevo-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-market-game-2",
+      "venueId": "sarajevo-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-meal-stop-1",
+      "venueId": "sarajevo-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-meal-stop-2",
+      "venueId": "sarajevo-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-node-6368640905-1",
+      "venueId": "sarajevo-osm-node-6368640905",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-node-6368640905-2",
+      "venueId": "sarajevo-osm-node-6368640905",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-relation-8425673-1",
+      "venueId": "sarajevo-osm-relation-8425673",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-relation-8425673-2",
+      "venueId": "sarajevo-osm-relation-8425673",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-118942247-1",
+      "venueId": "sarajevo-osm-way-118942247",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-118942247-2",
+      "venueId": "sarajevo-osm-way-118942247",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-140482805-1",
+      "venueId": "sarajevo-osm-way-140482805",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-140482805-2",
+      "venueId": "sarajevo-osm-way-140482805",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-181388997-1",
+      "venueId": "sarajevo-osm-way-181388997",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-181388997-2",
+      "venueId": "sarajevo-osm-way-181388997",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-188836329-1",
+      "venueId": "sarajevo-osm-way-188836329",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-188836329-2",
+      "venueId": "sarajevo-osm-way-188836329",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-224740343-1",
+      "venueId": "sarajevo-osm-way-224740343",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-224740343-2",
+      "venueId": "sarajevo-osm-way-224740343",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-23480568-1",
+      "venueId": "sarajevo-osm-way-23480568",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-23480568-2",
+      "venueId": "sarajevo-osm-way-23480568",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-23697320-1",
+      "venueId": "sarajevo-osm-way-23697320",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-23697320-2",
+      "venueId": "sarajevo-osm-way-23697320",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-27298226-1",
+      "venueId": "sarajevo-osm-way-27298226",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-27298226-2",
+      "venueId": "sarajevo-osm-way-27298226",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-28784587-1",
+      "venueId": "sarajevo-osm-way-28784587",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-28784587-2",
+      "venueId": "sarajevo-osm-way-28784587",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-588118276-1",
+      "venueId": "sarajevo-osm-way-588118276",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-588118276-2",
+      "venueId": "sarajevo-osm-way-588118276",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-622818140-1",
+      "venueId": "sarajevo-osm-way-622818140",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-622818140-2",
+      "venueId": "sarajevo-osm-way-622818140",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-777985963-1",
+      "venueId": "sarajevo-osm-way-777985963",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-777985963-2",
+      "venueId": "sarajevo-osm-way-777985963",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-840206905-1",
+      "venueId": "sarajevo-osm-way-840206905",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-osm-way-840206905-2",
+      "venueId": "sarajevo-osm-way-840206905",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-quiet-reflection-1",
+      "venueId": "sarajevo-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-quiet-reflection-2",
+      "venueId": "sarajevo-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-recreation-1",
+      "venueId": "sarajevo-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-recreation-2",
+      "venueId": "sarajevo-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-transit-1",
+      "venueId": "sarajevo-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    },
+    {
+      "id": "sarajevo-sarajevo-transit-2",
+      "venueId": "sarajevo-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/sarajevo/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "sarajevo-airport-sarajevo-airport",
+    "sarajevo-clinic",
+    "sarajevo-community-notices",
+    "sarajevo-community-voting-game",
+    "sarajevo-community-workshop",
+    "sarajevo-market-game",
+    "sarajevo-meal-stop",
+    "sarajevo-osm-node-6368640905",
+    "sarajevo-osm-relation-8425673",
+    "sarajevo-osm-way-118942247",
+    "sarajevo-osm-way-140482805",
+    "sarajevo-osm-way-181388997",
+    "sarajevo-osm-way-188836329",
+    "sarajevo-osm-way-224740343",
+    "sarajevo-osm-way-23480568",
+    "sarajevo-osm-way-23697320",
+    "sarajevo-osm-way-27298226",
+    "sarajevo-osm-way-28784587",
+    "sarajevo-osm-way-588118276",
+    "sarajevo-osm-way-622818140",
+    "sarajevo-osm-way-777985963",
+    "sarajevo-osm-way-840206905",
+    "sarajevo-quiet-reflection",
+    "sarajevo-recreation",
+    "sarajevo-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "58d2f3a2e8fd4c21994d7513be9f3e1d77bc2ef5d72d57aa41b2f784cdce08a9",
+    "contentSha256": "8b256f5760204db592eb5d1fe728423e6f82fd9744b91f92a28ccc65108d8117"
+  }
+}

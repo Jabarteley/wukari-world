@@ -1,0 +1,1215 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "damaturu",
+    "name": "Damaturu",
+    "state": {
+      "id": "yobe",
+      "name": "Yobe"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 11.966666666667,
+      "lat": 11.75
+    }
+  },
+  "style": {
+    "region": "sahel-north",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/damaturu/content.ts",
+        "sha256": "a753cc1a1de4c66329bfebbbac61d61b8aa066fe3cc2d7cbd14e36855e87cda1"
+      },
+      {
+        "path": "src/game/cities/damaturu/index.ts",
+        "sha256": "fc75ec3768992ac101be5876fa564d64e4f9e6fcd7690b3848b69593a965c08f"
+      },
+      {
+        "path": "src/game/cities/damaturu/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/damaturu/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for damaturu.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "august-27-stadium",
+      "name": "August 27 stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.9916,
+        "lat": 11.745
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damaturu-august-27-stadium-1",
+        "damaturu-august-27-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for damaturu."
+      }
+    },
+    {
+      "id": "bayan-tasha-market",
+      "name": "Bayan Tasha market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.961976265912483,
+        "lat": 11.745123285279607
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damaturu-bayan-tasha-market-1",
+        "damaturu-bayan-tasha-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for damaturu."
+      }
+    },
+    {
+      "id": "damaturu-central-mosque",
+      "name": "Damaturu Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.973888888888888,
+        "lat": 11.7425
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damaturu-damaturu-central-mosque-1",
+        "damaturu-damaturu-central-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for damaturu."
+      }
+    },
+    {
+      "id": "damaturu-modern-market",
+      "name": "DAMATURU MODERN MARKET",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.9521939,
+        "lat": 11.7405122
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damaturu-damaturu-modern-market-1",
+        "damaturu-damaturu-modern-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for damaturu."
+      }
+    },
+    {
+      "id": "federal-polytechnic-damaturu",
+      "name": "Federal Polytechnic Damaturu",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.983944895417537,
+        "lat": 11.74755995018884
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damaturu-federal-polytechnic-damaturu-1",
+        "damaturu-federal-polytechnic-damaturu-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for damaturu."
+      }
+    },
+    {
+      "id": "general-sani-abacha-specialist-hospital",
+      "name": "General Sani Abacha State Specialist Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.9565398,
+        "lat": 11.7296659
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damaturu-general-sani-abacha-specialist-hospital-1",
+        "damaturu-general-sani-abacha-specialist-hospital-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for damaturu."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 12.033692284437326,
+        "lat": 11.853137579865033
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for damaturu."
+      }
+    },
+    {
+      "id": "national-museum-damaturu",
+      "name": "National Museum, Damaturu",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.96256711295252,
+        "lat": 11.743669060519835
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damaturu-national-museum-damaturu-1",
+        "damaturu-national-museum-damaturu-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for damaturu."
+      }
+    },
+    {
+      "id": "st-marys-catholic-church-damaturu",
+      "name": "St. Mary's Catholic Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.96403762267574,
+        "lat": 11.730982100827283
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damaturu-st-marys-catholic-church-damaturu-1",
+        "damaturu-st-marys-catholic-church-damaturu-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for damaturu."
+      }
+    },
+    {
+      "id": "state-teaching-hospital-damaturu",
+      "name": "State Teaching Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.9216627,
+        "lat": 11.7366991
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damaturu-state-teaching-hospital-damaturu-1",
+        "damaturu-state-teaching-hospital-damaturu-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for damaturu."
+      }
+    },
+    {
+      "id": "yobe-islamic-centre",
+      "name": "Yobe Islamic Centre",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.9737687,
+        "lat": 11.7424816
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damaturu-yobe-islamic-centre-1",
+        "damaturu-yobe-islamic-centre-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for damaturu."
+      }
+    },
+    {
+      "id": "yobe-line-motor-park",
+      "name": "Yobe Line Motor Park",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.956642858952451,
+        "lat": 11.740906265582705
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damaturu-yobe-line-motor-park-1",
+        "damaturu-yobe-line-motor-park-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for damaturu."
+      }
+    },
+    {
+      "id": "yobe-state-house-of-assembly",
+      "name": "Yobe State House of Assembly",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.994374021624072,
+        "lat": 11.744787781296406
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damaturu-yobe-state-house-of-assembly-1",
+        "damaturu-yobe-state-house-of-assembly-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for damaturu."
+      }
+    },
+    {
+      "id": "yobe-state-university",
+      "name": "Yobe State University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.9444078,
+        "lat": 11.6834448
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "damaturu-yobe-state-university-1",
+        "damaturu-yobe-state-university-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for damaturu."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "damaturu-august-27-stadium-1",
+      "venueId": "august-27-stadium",
+      "name": "Hauwa Bukar",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-august-27-stadium-2",
+      "venueId": "august-27-stadium",
+      "name": "Umar Lawan",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-bayan-tasha-market-1",
+      "venueId": "bayan-tasha-market",
+      "name": "Hauwa Bulama",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-bayan-tasha-market-2",
+      "venueId": "bayan-tasha-market",
+      "name": "Umar Modu",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-damaturu-central-mosque-1",
+      "venueId": "damaturu-central-mosque",
+      "name": "Bukar Abatcha",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-damaturu-central-mosque-2",
+      "venueId": "damaturu-central-mosque",
+      "name": "Maryam Waziri",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-damaturu-modern-market-1",
+      "venueId": "damaturu-modern-market",
+      "name": "Bukar Zannah",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-damaturu-modern-market-2",
+      "venueId": "damaturu-modern-market",
+      "name": "Maryam Goni",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-federal-polytechnic-damaturu-1",
+      "venueId": "federal-polytechnic-damaturu",
+      "name": "Hauwa Ali",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-federal-polytechnic-damaturu-2",
+      "venueId": "federal-polytechnic-damaturu",
+      "name": "Umar Gana",
+      "role": "Instructor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-general-sani-abacha-specialist-hospital-1",
+      "venueId": "general-sani-abacha-specialist-hospital",
+      "name": "Bukar Kolo",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-general-sani-abacha-specialist-hospital-2",
+      "venueId": "general-sani-abacha-specialist-hospital",
+      "name": "Maryam Bukar",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-national-museum-damaturu-1",
+      "venueId": "national-museum-damaturu",
+      "name": "Hauwa Waziri",
+      "role": "Museum guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-national-museum-damaturu-2",
+      "venueId": "national-museum-damaturu",
+      "name": "Umar Kolo",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-st-marys-catholic-church-damaturu-1",
+      "venueId": "st-marys-catholic-church-damaturu",
+      "name": "Bukar Kyari",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-st-marys-catholic-church-damaturu-2",
+      "venueId": "st-marys-catholic-church-damaturu",
+      "name": "Maryam Bulama",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-state-teaching-hospital-damaturu-1",
+      "venueId": "state-teaching-hospital-damaturu",
+      "name": "Hauwa Goni",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-state-teaching-hospital-damaturu-2",
+      "venueId": "state-teaching-hospital-damaturu",
+      "name": "Umar Abatcha",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-yobe-islamic-centre-1",
+      "venueId": "yobe-islamic-centre",
+      "name": "Hauwa Mohammed",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-yobe-islamic-centre-2",
+      "venueId": "yobe-islamic-centre",
+      "name": "Umar Zannah",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-yobe-line-motor-park-1",
+      "venueId": "yobe-line-motor-park",
+      "name": "Bukar Gana",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-yobe-line-motor-park-2",
+      "venueId": "yobe-line-motor-park",
+      "name": "Maryam Mustapha",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-yobe-state-house-of-assembly-1",
+      "venueId": "yobe-state-house-of-assembly",
+      "name": "Hauwa Mamman",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-yobe-state-house-of-assembly-2",
+      "venueId": "yobe-state-house-of-assembly",
+      "name": "Umar Mala",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-yobe-state-university-1",
+      "venueId": "yobe-state-university",
+      "name": "Bukar Lawan",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    },
+    {
+      "id": "damaturu-yobe-state-university-2",
+      "venueId": "yobe-state-university",
+      "name": "Maryam Mamman",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/damaturu/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "august-27-stadium",
+    "bayan-tasha-market",
+    "damaturu-central-mosque",
+    "damaturu-modern-market",
+    "federal-polytechnic-damaturu",
+    "general-sani-abacha-specialist-hospital",
+    "national-museum-damaturu",
+    "st-marys-catholic-church-damaturu",
+    "state-teaching-hospital-damaturu",
+    "yobe-islamic-centre",
+    "yobe-line-motor-park",
+    "yobe-state-house-of-assembly",
+    "yobe-state-university"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "d95196072011ed9dde7cc7dbb9f87d4ac415deed2c6b1ea097310da96addbd9b",
+    "contentSha256": "bc549781cfc9f470fcde1fa7187573804a1d0e27a3c67766a75442ac14c565b8"
+  }
+}

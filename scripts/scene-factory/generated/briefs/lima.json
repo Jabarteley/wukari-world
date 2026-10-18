@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "lima",
+    "name": "Lima",
+    "state": {
+      "id": "pe-lima",
+      "name": "Lima"
+    },
+    "country": {
+      "id": "pe",
+      "name": "Peru"
+    },
+    "point": {
+      "lon": -77.0305912,
+      "lat": -12.0459808
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/south-america/peru-261010.osm.pbf",
+      "https://ourairports.com/airports/SPIM/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/lima/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/lima/facts.ts",
+        "sha256": "ee1becdf5b0049bcb09df1b532731643fa38c698a79dd572ffeb660e23b1daa9"
+      },
+      {
+        "path": "src/game/cities/lima/index.ts",
+        "sha256": "bd1b48ec39bc279208db65c5a72af153c99741d615230b7f66d2dcd80d72da06"
+      },
+      {
+        "path": "src/game/cities/lima/places.ts",
+        "sha256": "d62beb22d4b11b478711220b3cfbd5169c964a1a4316cdc97a4c5640e9b16c9e"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.0305912,
+        "lat": -12.045980800000002
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "lima-airport-lima-airport",
+      "name": "Jorge Chávez International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.114305,
+        "lat": -12.0219
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-airport-lima-airport-1",
+        "lima-lima-airport-lima-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "lima-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-clinic",
+      "name": "Hospital Nacional Daniel Alcides Carrión",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.124118,
+        "lat": -12.063268
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-clinic-1",
+        "lima-lima-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/777346012"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q44952951"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-community-notices",
+      "name": "Instituto Geofísico del Perú",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -76.966507,
+        "lat": -12.069555
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-community-notices-1",
+        "lima-lima-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1239679416"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5917342"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-community-voting-game",
+      "name": "Municipalidad de San Juan de Miraflores",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -76.963579,
+        "lat": -12.163239
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-community-voting-game-1",
+        "lima-lima-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/271265001"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3303734"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-community-workshop",
+      "name": "National Technological University of South Lima",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -76.93242,
+        "lat": -12.213363
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-community-workshop-1",
+        "lima-lima-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/126861408"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6156576"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-market-game",
+      "name": "Real Plaza Pro",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.069766,
+        "lat": -11.940093
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-market-game-1",
+        "lima-lima-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/285826118"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q128549238"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-meal-stop",
+      "name": "Central",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.02254,
+        "lat": -12.152571
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-meal-stop-1",
+        "lima-lima-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6228532187"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13435929"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-osm-node-10294326057",
+      "name": "Huaca Templo Con Con",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.022272,
+        "lat": -11.879346
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-osm-node-10294326057-1",
+        "lima-lima-osm-node-10294326057-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10294326057"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q115868426"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-osm-node-1459528357",
+      "name": "Santo Cristo",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.012217,
+        "lat": -12.044988
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-osm-node-1459528357-1",
+        "lima-lima-osm-node-1459528357-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1459528357"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5912871"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-osm-node-1728415463",
+      "name": "Cajamarquilla",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -76.896667,
+        "lat": -11.981111
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-osm-node-1728415463-1",
+        "lima-lima-osm-node-1728415463-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1728415463"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3394965"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-osm-relation-12280616",
+      "name": "National University of Engineering",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.04832,
+        "lat": -12.01832
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-osm-relation-12280616-1",
+        "lima-lima-osm-relation-12280616-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/12280616"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5202403"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-osm-relation-6252388",
+      "name": "Ciudad Universitaria de la Universidad Nacional Mayor de San Marcos",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.083835,
+        "lat": -12.056448
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-osm-relation-6252388-1",
+        "lima-lima-osm-relation-6252388-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/6252388"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5770740"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-osm-way-375577634",
+      "name": "Estadio Municipal de la Molina",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -76.890506,
+        "lat": -12.085233
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-osm-way-375577634-1",
+        "lima-lima-osm-way-375577634-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/375577634"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5848217"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-osm-way-379394923",
+      "name": "Estadio Municipal de Chorrillos",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.027565,
+        "lat": -12.172132
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-osm-way-379394923-1",
+        "lima-lima-osm-way-379394923-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/379394923"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5400406"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-osm-way-401294974",
+      "name": "Estadio Atlético de la Villa Deportiva Nacional",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -76.998414,
+        "lat": -12.081632
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-osm-way-401294974-1",
+        "lima-lima-osm-way-401294974-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/401294974"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q62718479"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-osm-way-401854468",
+      "name": "Centro Comercial Caminos del Inca",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -76.991553,
+        "lat": -12.11328
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-osm-way-401854468-1",
+        "lima-lima-osm-way-401854468-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/401854468"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5856645"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-osm-way-436738985",
+      "name": "Iglesia Evangelica Coreana",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.026816,
+        "lat": -12.109497
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-osm-way-436738985-1",
+        "lima-lima-osm-way-436738985-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/436738985"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6432069"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-osm-way-437330220",
+      "name": "Universidad San Juan Bautista",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.007059,
+        "lat": -12.196512
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-osm-way-437330220-1",
+        "lima-lima-osm-way-437330220-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/437330220"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7894308"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-osm-way-68674787",
+      "name": "Royal Plaza",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.062677,
+        "lat": -11.990603
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-osm-way-68674787-1",
+        "lima-lima-osm-way-68674787-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/68674787"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6113028"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-osm-way-76554673",
+      "name": "Plaza Ramón Castilla",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.042987,
+        "lat": -12.04337
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-osm-way-76554673-1",
+        "lima-lima-osm-way-76554673-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/76554673"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20747901"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-osm-way-76738820",
+      "name": "Love Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.03642,
+        "lat": -12.126805
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-osm-way-76738820-1",
+        "lima-lima-osm-way-76738820-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/76738820"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q50643122"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-osm-way-808110260",
+      "name": "San Juan Bautista Penitentiary Center",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.181966,
+        "lat": -12.112505
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-osm-way-808110260-1",
+        "lima-lima-osm-way-808110260-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/808110260"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q580861"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-quiet-reflection",
+      "name": "Islamic Association of Peru",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.072127,
+        "lat": -12.093876
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-quiet-reflection-1",
+        "lima-lima-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1315440869"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q73716007"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-recreation",
+      "name": "Capilla Santa Rosa",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -76.929763,
+        "lat": -12.051159
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-recreation-1",
+        "lima-lima-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/320407571"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q233807"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lima-transit",
+      "name": "Estación Estadio Nacional",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.032139,
+        "lat": -12.06853
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lima-lima-transit-1",
+        "lima-lima-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lima/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1278915817"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17631553"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "lima-lima-airport-lima-airport-1",
+      "venueId": "lima-airport-lima-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-airport-lima-airport-2",
+      "venueId": "lima-airport-lima-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-clinic-1",
+      "venueId": "lima-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-clinic-2",
+      "venueId": "lima-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-community-notices-1",
+      "venueId": "lima-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-community-notices-2",
+      "venueId": "lima-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-community-voting-game-1",
+      "venueId": "lima-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-community-voting-game-2",
+      "venueId": "lima-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-community-workshop-1",
+      "venueId": "lima-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-community-workshop-2",
+      "venueId": "lima-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-market-game-1",
+      "venueId": "lima-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-market-game-2",
+      "venueId": "lima-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-meal-stop-1",
+      "venueId": "lima-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-meal-stop-2",
+      "venueId": "lima-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-node-10294326057-1",
+      "venueId": "lima-osm-node-10294326057",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-node-10294326057-2",
+      "venueId": "lima-osm-node-10294326057",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-node-1459528357-1",
+      "venueId": "lima-osm-node-1459528357",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-node-1459528357-2",
+      "venueId": "lima-osm-node-1459528357",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-node-1728415463-1",
+      "venueId": "lima-osm-node-1728415463",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-node-1728415463-2",
+      "venueId": "lima-osm-node-1728415463",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-relation-12280616-1",
+      "venueId": "lima-osm-relation-12280616",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-relation-12280616-2",
+      "venueId": "lima-osm-relation-12280616",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-relation-6252388-1",
+      "venueId": "lima-osm-relation-6252388",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-relation-6252388-2",
+      "venueId": "lima-osm-relation-6252388",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-375577634-1",
+      "venueId": "lima-osm-way-375577634",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-375577634-2",
+      "venueId": "lima-osm-way-375577634",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-379394923-1",
+      "venueId": "lima-osm-way-379394923",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-379394923-2",
+      "venueId": "lima-osm-way-379394923",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-401294974-1",
+      "venueId": "lima-osm-way-401294974",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-401294974-2",
+      "venueId": "lima-osm-way-401294974",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-401854468-1",
+      "venueId": "lima-osm-way-401854468",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-401854468-2",
+      "venueId": "lima-osm-way-401854468",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-436738985-1",
+      "venueId": "lima-osm-way-436738985",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-436738985-2",
+      "venueId": "lima-osm-way-436738985",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-437330220-1",
+      "venueId": "lima-osm-way-437330220",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-437330220-2",
+      "venueId": "lima-osm-way-437330220",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-68674787-1",
+      "venueId": "lima-osm-way-68674787",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-68674787-2",
+      "venueId": "lima-osm-way-68674787",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-76554673-1",
+      "venueId": "lima-osm-way-76554673",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-76554673-2",
+      "venueId": "lima-osm-way-76554673",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-76738820-1",
+      "venueId": "lima-osm-way-76738820",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-76738820-2",
+      "venueId": "lima-osm-way-76738820",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-808110260-1",
+      "venueId": "lima-osm-way-808110260",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-osm-way-808110260-2",
+      "venueId": "lima-osm-way-808110260",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-quiet-reflection-1",
+      "venueId": "lima-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-quiet-reflection-2",
+      "venueId": "lima-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-recreation-1",
+      "venueId": "lima-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-recreation-2",
+      "venueId": "lima-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-transit-1",
+      "venueId": "lima-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    },
+    {
+      "id": "lima-lima-transit-2",
+      "venueId": "lima-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lima/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "lima-airport-lima-airport",
+    "lima-clinic",
+    "lima-community-notices",
+    "lima-community-voting-game",
+    "lima-community-workshop",
+    "lima-market-game",
+    "lima-meal-stop",
+    "lima-osm-node-10294326057",
+    "lima-osm-node-1459528357",
+    "lima-osm-node-1728415463",
+    "lima-osm-relation-12280616",
+    "lima-osm-relation-6252388",
+    "lima-osm-way-375577634",
+    "lima-osm-way-379394923",
+    "lima-osm-way-401294974",
+    "lima-osm-way-401854468",
+    "lima-osm-way-436738985",
+    "lima-osm-way-437330220",
+    "lima-osm-way-68674787",
+    "lima-osm-way-76554673",
+    "lima-osm-way-76738820",
+    "lima-osm-way-808110260",
+    "lima-quiet-reflection",
+    "lima-recreation",
+    "lima-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "463184d00c9efe1abc790661744c898572338a968ac189d31e4797800bdccb42",
+    "contentSha256": "c3eb8d047287da378f58270bf1a872177f60e54c8cf64db758a11f593535dd52"
+  }
+}

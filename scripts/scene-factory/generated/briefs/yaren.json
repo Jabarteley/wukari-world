@@ -1,0 +1,1621 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "yaren",
+    "name": "Yaren",
+    "state": {
+      "id": "nr-yaren",
+      "name": "Yaren"
+    },
+    "country": {
+      "id": "nr",
+      "name": "Nauru"
+    },
+    "point": {
+      "lon": 166.9163479,
+      "lat": -0.5471064
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/australia-oceania/nauru-261011.osm.pbf",
+      "https://ourairports.com/airports/ANYN/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/yaren/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/yaren/facts.ts",
+        "sha256": "abb5fcbf4e5ffecb9d6659f7e4d9d85f9924e8bf40ad8aa2accf43a67a126abb"
+      },
+      {
+        "path": "src/game/cities/yaren/index.ts",
+        "sha256": "c044a399b10dd2b0f0901c6a192f524dcef7da536ef319ab16103277a90debfb"
+      },
+      {
+        "path": "src/game/cities/yaren/places.ts",
+        "sha256": "27eca6a28e33175e58d1c3bfffdfc7458d2a8d9653ddc12135bca4e6210f44ff"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record.",
+      "Venue yaren-market-game has no mapped place source record.",
+      "Venue yaren-transit has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.9163479,
+        "lat": -0.5471064000000005
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "yaren-airport-yaren-airport",
+      "name": "Nauru International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.919525,
+        "lat": -0.547893
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-airport-yaren-airport-1",
+        "yaren-yaren-airport-yaren-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/yaren/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "yaren-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "yaren-clinic",
+      "name": "Nauru Medical Centre",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.914996,
+        "lat": -0.523863
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-clinic-1",
+        "yaren-yaren-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/yaren/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/520015485"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q64098422"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "yaren-community-notices",
+      "name": "Government Building",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.917317,
+        "lat": -0.547435
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-community-notices-1",
+        "yaren-yaren-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/yaren/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/160603356"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "yaren-community-voting-game",
+      "name": "Civic Centre",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.911941,
+        "lat": -0.538806
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-community-voting-game-1",
+        "yaren-yaren-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/yaren/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/126994205"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "yaren-community-workshop",
+      "name": "Nauru College",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.914581,
+        "lat": -0.522239
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-community-workshop-1",
+        "yaren-yaren-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/yaren/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/357945014"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "yaren-market-game",
+      "name": "Market game (game venue)",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.9154373694948,
+        "lat": -0.5462070796362752
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-market-game-1",
+        "yaren-yaren-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue yaren-market-game has no mapped place source record."
+      }
+    },
+    {
+      "id": "yaren-meal-stop",
+      "name": "Bondi Beach",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.927763,
+        "lat": -0.553243
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-meal-stop-1",
+        "yaren-yaren-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/yaren/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5749424707"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "yaren-osm-node-10994324451",
+      "name": "Tropicana Cafe",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.938618,
+        "lat": -0.503537
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-osm-node-10994324451-1",
+        "yaren-yaren-osm-node-10994324451-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/yaren/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10994324451"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "yaren-osm-node-10994460231",
+      "name": "Japanese WWII guns and bunker",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.92438,
+        "lat": -0.543957
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-osm-node-10994460231-1",
+        "yaren-yaren-osm-node-10994460231-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/yaren/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10994460231"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "yaren-osm-node-12057081469",
+      "name": "Crystal’s restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.949314,
+        "lat": -0.540265
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-osm-node-12057081469-1",
+        "yaren-yaren-osm-node-12057081469-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/yaren/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12057081469"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "yaren-osm-node-4898470422",
+      "name": "Japanese WWII Gun",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.916773,
+        "lat": -0.530941
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-osm-node-4898470422-1",
+        "yaren-yaren-osm-node-4898470422-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/yaren/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4898470422"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "yaren-osm-node-5943958387",
+      "name": "Lagoon viewpoint",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.923022,
+        "lat": -0.534968
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-osm-node-5943958387-1",
+        "yaren-yaren-osm-node-5943958387-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/yaren/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5943958387"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "yaren-osm-node-6715040385",
+      "name": "Gun",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.921971,
+        "lat": -0.548699
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-osm-node-6715040385-1",
+        "yaren-yaren-osm-node-6715040385-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/yaren/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6715040385"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "yaren-osm-node-6717696888",
+      "name": "Bunker",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.952703,
+        "lat": -0.528116
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-osm-node-6717696888-1",
+        "yaren-yaren-osm-node-6717696888-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/yaren/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6717696888"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "yaren-osm-node-6936364885",
+      "name": "Naoero Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.914786,
+        "lat": -0.545113
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-osm-node-6936364885-1",
+        "yaren-yaren-osm-node-6936364885-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/yaren/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6936364885"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q106510196"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "yaren-osm-way-1184110658",
+      "name": "University of the South Pacific (Nauru Campus)",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.915084,
+        "lat": -0.545767
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-osm-way-1184110658-1",
+        "yaren-yaren-osm-way-1184110658-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/yaren/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1184110658"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "yaren-quiet-reflection",
+      "name": "Church of Christ the King",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.931583,
+        "lat": -0.505813
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-quiet-reflection-1",
+        "yaren-yaren-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/yaren/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/160584951"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28740164"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "yaren-recreation",
+      "name": "Ella Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.921225,
+        "lat": -0.550448
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-recreation-1",
+        "yaren-yaren-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/yaren/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1184486003"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "yaren-transit",
+      "name": "City transit stop (game venue)",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 166.91725843050517,
+        "lat": -0.5471064000000005
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "yaren-yaren-transit-1",
+        "yaren-yaren-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue yaren-transit has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "yaren-yaren-airport-yaren-airport-1",
+      "venueId": "yaren-airport-yaren-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-airport-yaren-airport-2",
+      "venueId": "yaren-airport-yaren-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-clinic-1",
+      "venueId": "yaren-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-clinic-2",
+      "venueId": "yaren-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-community-notices-1",
+      "venueId": "yaren-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-community-notices-2",
+      "venueId": "yaren-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-community-voting-game-1",
+      "venueId": "yaren-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-community-voting-game-2",
+      "venueId": "yaren-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-community-workshop-1",
+      "venueId": "yaren-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-community-workshop-2",
+      "venueId": "yaren-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-market-game-1",
+      "venueId": "yaren-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-market-game-2",
+      "venueId": "yaren-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-meal-stop-1",
+      "venueId": "yaren-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-meal-stop-2",
+      "venueId": "yaren-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-node-10994324451-1",
+      "venueId": "yaren-osm-node-10994324451",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-node-10994324451-2",
+      "venueId": "yaren-osm-node-10994324451",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-node-10994460231-1",
+      "venueId": "yaren-osm-node-10994460231",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-node-10994460231-2",
+      "venueId": "yaren-osm-node-10994460231",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-node-12057081469-1",
+      "venueId": "yaren-osm-node-12057081469",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-node-12057081469-2",
+      "venueId": "yaren-osm-node-12057081469",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-node-4898470422-1",
+      "venueId": "yaren-osm-node-4898470422",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-node-4898470422-2",
+      "venueId": "yaren-osm-node-4898470422",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-node-5943958387-1",
+      "venueId": "yaren-osm-node-5943958387",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-node-5943958387-2",
+      "venueId": "yaren-osm-node-5943958387",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-node-6715040385-1",
+      "venueId": "yaren-osm-node-6715040385",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-node-6715040385-2",
+      "venueId": "yaren-osm-node-6715040385",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-node-6717696888-1",
+      "venueId": "yaren-osm-node-6717696888",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-node-6717696888-2",
+      "venueId": "yaren-osm-node-6717696888",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-node-6936364885-1",
+      "venueId": "yaren-osm-node-6936364885",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-node-6936364885-2",
+      "venueId": "yaren-osm-node-6936364885",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-way-1184110658-1",
+      "venueId": "yaren-osm-way-1184110658",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-osm-way-1184110658-2",
+      "venueId": "yaren-osm-way-1184110658",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-quiet-reflection-1",
+      "venueId": "yaren-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-quiet-reflection-2",
+      "venueId": "yaren-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-recreation-1",
+      "venueId": "yaren-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-recreation-2",
+      "venueId": "yaren-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-transit-1",
+      "venueId": "yaren-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    },
+    {
+      "id": "yaren-yaren-transit-2",
+      "venueId": "yaren-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yaren/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "yaren-airport-yaren-airport",
+    "yaren-clinic",
+    "yaren-community-notices",
+    "yaren-community-voting-game",
+    "yaren-community-workshop",
+    "yaren-market-game",
+    "yaren-meal-stop",
+    "yaren-osm-node-10994324451",
+    "yaren-osm-node-10994460231",
+    "yaren-osm-node-12057081469",
+    "yaren-osm-node-4898470422",
+    "yaren-osm-node-5943958387",
+    "yaren-osm-node-6715040385",
+    "yaren-osm-node-6717696888",
+    "yaren-osm-node-6936364885",
+    "yaren-osm-way-1184110658",
+    "yaren-quiet-reflection",
+    "yaren-recreation",
+    "yaren-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "930b00aeeeb588eb37a48968a49b3962e2b8b5cbbed29c5dc5775833926ee583",
+    "contentSha256": "45e5e02e8cdac80a576c5eb710dc0cc69ad462ab20ddc08d82befca5db06c3d7"
+  }
+}

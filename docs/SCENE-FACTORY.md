@@ -1,6 +1,6 @@
 # Scene factory reference
 
-This integration is in progress. The final asset index, fleet generation and acceptance gates below are still open.
+Integration is in progress. The final 284-hero, 14-kit asset index exists at `scripts/scene-factory/asset-index.json` (SHA-256 `48ea810e2833795d166605d7fadb2ff6dc0eb8667e2fd2b7f59fd76c0ee0f631`). The installed selection contains 238 corrected reviewed models (476 files), 568 backed-up original files, and 46 retained GLB/report pairs (92 files). Parent review covered all 476 front/side views; shared design families and quiet materials remain, so this is not evidence of surveyed forms, photorealism or unique visuals in every city.
 
 The scene factory prepares deterministic city recipe data and measured GLBs offline. Runtime loading remains lazy: speculative neighbor warming imports generated city data modules and streams their exact GLBs into the browser HTTP cache without preparing or decoding a scene.
 
@@ -8,7 +8,7 @@ The scene factory prepares deterministic city recipe data and measured GLBs offl
 
 `scripts/scene-factory/kit-inputs.json` identifies fourteen real regional GLBs and their measurement reports under `scripts/scene-factory/inputs/kits/`. Each contains twenty physical prop classes, at most 1,460 triangles per prop. The current kits are 140,641 to 141,446 bytes Brotli, below the unchanged 300,000-byte limit.
 
-The current regional variation changes textile colours in three atlas cells. Geometry and the other material cells are shared. These are art palettes, not evidence of local architectural forms. Component renders and palette contact sheets are accepted for inspection inside the game; actual phone composition and the city landmark fleet remain separate gates.
+The current regional variation changes textile colours in three atlas cells. Geometry and the other material cells are shared. These are art palettes, not evidence of local architectural forms. Component renders and palette contact sheets are accepted for inspection inside the game; actual phone composition and in-game fleet acceptance remain separate gates.
 
 Rebuild one kit with installed Node dependencies, Blender and `cwebp`:
 
@@ -20,9 +20,29 @@ node --experimental-strip-types scripts/scene-factory/assets.ts build \
   --blender /path/to/blender
 ```
 
-The command uses two Blender threads and validates actual packed geometry, its embedded 1K WebP atlas and byte limits before writing outputs. `assets.ts self-test` exercises malformed documents, hierarchy and provenance refusals without generating assets. Source input files are offline regeneration inputs; they are not production public URLs or an approved full-fleet asset index.
+The command uses two Blender threads and validates actual packed geometry, its embedded 1K WebP atlas and byte limits before writing outputs. `assets.ts self-test` exercises malformed documents, hierarchy and provenance refusals without generating assets. Source input files are offline regeneration inputs, not production public URLs. The selected fleet is recorded in the asset index above.
 
 ## Inputs and compiler
+
+### Physical city heroes
+
+Every canonical row in `scripts/scene-factory/heroes.json` now declares its regional atlas. Adding this field preserved all existing source facts, licences, names and art bounds. The physical builder dispatches explicitly to market, natural-feature, retail and landmark construction. Unsupported forms fail; there is no legacy geometry fallback. These are original art fragments associated with sourced places, not surveyed replicas.
+
+Build a hero through the same prepare and validation path as its regional kit:
+
+```sh
+node --experimental-strip-types scripts/scene-factory/assets.ts build \
+  --kind hero --id tokyo \
+  --heroes scripts/scene-factory/heroes.json \
+  --style scripts/scene-factory/styles/east-asia.json \
+  --atlas-kit scripts/scene-factory/inputs/kits/east-asia.glb \
+  --out /tmp/tokyo.glb --report /tmp/tokyo.json \
+  --blender /path/to/blender
+```
+
+Regional heroes require the exact canonical record, durable style and validated kit atlas. The build verifies the raw export receipt before packing; reports record the raw hash, physical source closure, canonical provenance and style hash. The world planner refuses regional hero reports without provenance or style identity. Accra uses a compatibility profile that retains the previously inspected Makola fragment exactly.
+
+The source dispatch and provenance checks are implemented. The installed 284-city selection preserves exact canonical provenance and the original 46-pair historical source closure. Parent reviewed all 238 corrective models in front and side views; the retained pairs keep their historical verification records. This review does not establish surveyed or photorealistic construction or visual uniqueness across all cities; shared design families and restrained materials remain visible.
 
 `scripts/scene-factory/facts.ts` extracts a `CityBriefV1` from an exact city ID and explicit region ID. Each public venue is classified as `preserve-authored`, `target-recipe`, or `exclude-home`. Source URLs, licences and file hashes are copied where present; unknown provenance stays unknown.
 
@@ -37,20 +57,24 @@ The command uses two Blender threads and validates actual packed geometry, its e
 - content-addressed kits and heroes under `public/assets/scene-factory/`;
 - `scripts/scene-factory/generated/world-manifest.json`, which records every owned output hash and size.
 
-The world planner requires `scripts/scene-factory/asset-index.json`. That approved full-fleet index does not exist yet, so the repository is not ready for a real whole-world build or check.
+The world planner requires `scripts/scene-factory/asset-index.json`. The current index supplies 284 city hero selections and fourteen regional kits. Its SHA-256 is recorded above; a hash identifies the selected inputs, not successful world installation or runtime acceptance.
 
 ## Installation commands
 
 - `npm run scenes:build` plans the world and atomically installs only the factory-owned paths. It refuses foreign or changed files, removes only verified obsolete outputs, and writes the world manifest last.
 - `npm run scenes:check` rebuilds the plan in memory and compares the installed inventory and bytes without creating files or temporary directories.
 
-Both commands run Node with a 512 MiB heap limit. `prebuild` runs `scenes:check`, so an ordinary application build cannot proceed with missing or stale generated scene outputs. Do not treat a failed check caused by the missing asset index as production evidence, and do not run `scenes:build` until the fleet selection is approved.
+Both commands run Node with a 512 MiB heap limit. `prebuild` runs `scenes:check`, so an ordinary application build cannot proceed with missing or stale generated scene outputs. The actual world build installed 1,436 files. A fresh `scenes:check` matched all 1,436 without writing or deleting files; both report world manifest `cb35bc0819634e7f79b1c3f2c2b54349555136599730336c813c332ea95ce47e`.
+
+The first actual checks exposed two integration issues. Narrow normalization for the legacy Nigerian country alias (`nigeria`/`ng`) now passes its focused 20/20 cases. A wider hero could obstruct activity; rear-band reservation now passes its actual-venue 19/19 cases. The full build and mutation-free check now pass; browser and release acceptance remain separate.
+
+The refreshed host audit covers 284 cities, 6,423 targets and 34 configurations, with zero failures and 1,223 source pins. The measured case is 1,264 triangles, seven meshes, three lights and a maximum of nine draw calls. Within-venue measured-state triangle drift is 3.2718%; the separate global cross-venue comparison is 27.78% and is not an equivalent pass condition.
 
 ## Runtime boundary
 
 `src/scene/city-scenes.ts` loads authored city parts first. It then imports `src/scene/recipe/load.ts` only for a playable city's generated recipe part. `loadRecipePart` imports that city's registry entry, validates the pack and target classification, prepares its measured assets, and compiles the venue definitions. A failed load is not remembered, so normal navigation retries it.
 
-After the first scene and the existing UI preloads are ready, `src/app/state/idlePreload.ts` lazily starts `src/scene/recipe/prefetch.ts`. For open links from the current city, it imports one neighboring data module per idle turn and consumes the exact content-addressed GLBs into the same-origin browser cache. It stops speculative work on Light mode, Save-Data, 2G and slow-2G, discards stale queues when the current city changes, and never decodes images, textures or geometry. Actual venue loading still performs the authoritative validation and preparation.
+After the first scene and the existing UI preloads are ready, `src/app/state/idlePreload.ts` imports `src/scene/recipe/idle.ts`. That lazy module owns the city watcher and starts the neighbor prefetcher. For open links from the current city, it imports one neighboring data module per idle turn and consumes the exact content-addressed GLBs into the same-origin browser cache. It stops speculative work on Light mode, Save-Data, 2G and slow-2G, discards stale queues when the current city changes, and never decodes images, textures or geometry. Actual venue loading still performs the authoritative validation and preparation.
 
 ## Asset and runtime limits
 
@@ -60,14 +84,12 @@ After the first scene and the existing UI preloads are ready, `src/app/state/idl
 
 ## Open acceptance gates
 
-The compiler, runtime contract and installer have focused fixture coverage. The current host map covers 284 cities and 6,423 target venues, including an empty authored-only Lagos map. These facts do not approve the visual fleet.
+The compiler, runtime contract and installer have focused fixture coverage. The refreshed host map covers 284 cities and 6,423 target venues, including an empty authored-only Lagos map. The full-world build and mutation-free check pass; runtime and delivery gates below remain open.
 
-Production remains blocked on:
+The following acceptance gates remain open:
 
-- an approved `asset-index.json` with the final regional kits, city heroes and placement selections;
-- actual phone composition and material acceptance for the regional kits, plus source-bound landmark forms and independent review of the hero fleet;
-- one real 284-city build followed by a mutation-free check and exact inventory review;
-- hosted bundle and download-budget evidence for the generated lazy modules and registry;
-- browser journeys proving authored-scene precedence, linked-city prefetch behavior, first-load retry, disposal and representative phone performance.
+- completion of the required all-city and scene suites (full typecheck now passes all five projects with zero errors);
+- exact hosted-bundle review, mobile review across four cities, and Save-Data/2G, retry, disposal and learning-UI evidence;
+- release acceptance.
 
-No external geometry or photo reuse is implied by the factual source records. Source facts, original procedural geometry, runtime correctness and visual acceptance remain separate evidence.
+The reviewed front/side views do not certify phone composition or materials in game, surveyed or photorealistic forms, or visual uniqueness for every city. No external geometry or photo reuse is implied by the factual source records. Source facts and licences, original procedural geometry, runtime correctness and visual acceptance remain separate evidence.

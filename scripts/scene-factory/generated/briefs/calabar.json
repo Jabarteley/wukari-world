@@ -1,0 +1,1519 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "calabar",
+    "name": "Calabar",
+    "state": {
+      "id": "cross-river",
+      "name": "Cross River"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 8.3373597,
+      "lat": 4.9795999
+    }
+  },
+  "style": {
+    "region": "niger-delta",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/calabar/cast.ts",
+        "sha256": "638d8638098bd02a4f6d4af9607a024af91babe8c9a8e58f3511387c5d32477a"
+      },
+      {
+        "path": "src/game/cities/calabar/content.ts",
+        "sha256": "0b2c9c22ff0623ccbc3c566c1880a1bfa2266f091f551ba54f67d1f08845f023"
+      },
+      {
+        "path": "src/game/cities/calabar/index.ts",
+        "sha256": "ae9f90bed7d002e84608e2c11917ecb5c912da2ae41e41d69299324eb917db1e"
+      },
+      {
+        "path": "src/game/cities/calabar/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/calabar/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for calabar.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "apostolic-church-calabar",
+      "name": "The Apostolic Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.331169,
+        "lat": 4.9430465
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "calabar-apostolic-church-calabar-1",
+        "calabar-apostolic-church-calabar-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    },
+    {
+      "id": "bassey-duke-statue",
+      "name": "Bassey Duke Statue",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.3202855,
+        "lat": 4.9575144
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor point"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor point",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "calabar-bassey-duke-statue-1",
+        "calabar-bassey-duke-statue-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    },
+    {
+      "id": "calabar-municipal-gardens",
+      "name": "Calabar Municipal Gardens",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.3412195,
+        "lat": 4.9744708
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Garden"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Garden",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "calabar-calabar-municipal-gardens-1",
+        "calabar-calabar-municipal-gardens-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    },
+    {
+      "id": "calabar-municipal-hq",
+      "name": "Calabar Municipal Government Headquarters",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.3424987,
+        "lat": 4.9742849
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "calabar-calabar-municipal-hq-1",
+        "calabar-calabar-municipal-hq-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    },
+    {
+      "id": "chef-green-local-cuisine-hub",
+      "name": "Chef Green Signature Local Cuisine Hub",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.3421674,
+        "lat": 4.9808568
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "calabar-chef-green-local-cuisine-hub-1",
+        "calabar-chef-green-local-cuisine-hub-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    },
+    {
+      "id": "first-bank-calabar",
+      "name": "First Bank Nigeria",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.3335317,
+        "lat": 4.9965075
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "calabar-first-bank-calabar-1",
+        "calabar-first-bank-calabar-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.336016994134397,
+        "lat": 5.005114009783732
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    },
+    {
+      "id": "millennium-park-calabar",
+      "name": "Millennium Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.3251373,
+        "lat": 4.9648708
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Public area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Public area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "calabar-millennium-park-calabar-1",
+        "calabar-millennium-park-calabar-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    },
+    {
+      "id": "national-museum-calabar",
+      "name": "National Museum, Calabar",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.321,
+        "lat": 4.9672
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "calabar-national-museum-calabar-1",
+        "calabar-national-museum-calabar-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    },
+    {
+      "id": "native-delicacies-food",
+      "name": "Native Delicacies Food",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.333519,
+        "lat": 4.9954235
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "calabar-native-delicacies-food-1",
+        "calabar-native-delicacies-food-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    },
+    {
+      "id": "navy-reference-hospital",
+      "name": "Nigerian Navy Reference Hospital Calabar",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.3329796,
+        "lat": 5.0010496
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "calabar-navy-reference-hospital-1",
+        "calabar-navy-reference-hospital-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    },
+    {
+      "id": "polaris-bank-calabar",
+      "name": "Polaris Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.3211682,
+        "lat": 4.9569418
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "calabar-polaris-bank-calabar-1",
+        "calabar-polaris-bank-calabar-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    },
+    {
+      "id": "sacred-heart-cathedral",
+      "name": "Sacred Heart Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.3180258,
+        "lat": 4.9574735
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "calabar-sacred-heart-cathedral-1",
+        "calabar-sacred-heart-cathedral-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    },
+    {
+      "id": "slave-history-museum",
+      "name": "Slave History Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.3184062,
+        "lat": 4.966256
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "calabar-slave-history-museum-1",
+        "calabar-slave-history-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    },
+    {
+      "id": "ucth-calabar",
+      "name": "University of Calabar Teaching Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.3502891,
+        "lat": 4.9553439
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "calabar-ucth-calabar-1",
+        "calabar-ucth-calabar-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    },
+    {
+      "id": "uj-esuene-stadium",
+      "name": "UJ Esuene Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.3268055,
+        "lat": 4.9676208
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "calabar-uj-esuene-stadium-1",
+        "calabar-uj-esuene-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    },
+    {
+      "id": "unicross-main-campus",
+      "name": "University of Cross River State, Calabar Main Campus",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.329466,
+        "lat": 4.9313584
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "calabar-unicross-main-campus-1",
+        "calabar-unicross-main-campus-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    },
+    {
+      "id": "watt-market",
+      "name": "Watt Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.321507,
+        "lat": 4.957642
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "calabar-watt-market-1",
+        "calabar-watt-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for calabar."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "calabar-apostolic-church-calabar-1",
+      "venueId": "apostolic-church-calabar",
+      "name": "Ete Ekpenyong",
+      "role": "Church elder",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-apostolic-church-calabar-2",
+      "venueId": "apostolic-church-calabar",
+      "name": "Ime Etim",
+      "role": "Church usher",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-bassey-duke-statue-1",
+      "venueId": "bassey-duke-statue",
+      "name": "Ofonime Bassey",
+      "role": "Street photographer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-bassey-duke-statue-2",
+      "venueId": "bassey-duke-statue",
+      "name": "Ete Edet",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-calabar-municipal-gardens-1",
+      "venueId": "calabar-municipal-gardens",
+      "name": "Ete Udoh",
+      "role": "Garden keeper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-calabar-municipal-gardens-2",
+      "venueId": "calabar-municipal-gardens",
+      "name": "Imaobong Eyo",
+      "role": "Evening walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-calabar-municipal-hq-1",
+      "venueId": "calabar-municipal-hq",
+      "name": "Uduak Ekpo",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-calabar-municipal-hq-2",
+      "venueId": "calabar-municipal-hq",
+      "name": "Ete Efiom",
+      "role": "Retired civil servant",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-chef-green-local-cuisine-hub-1",
+      "venueId": "chef-green-local-cuisine-hub",
+      "name": "Etim Asuquo",
+      "role": "Chef",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-chef-green-local-cuisine-hub-2",
+      "venueId": "chef-green-local-cuisine-hub",
+      "name": "Nkoyo Effiong",
+      "role": "Kitchen assistant",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-first-bank-calabar-1",
+      "venueId": "first-bank-calabar",
+      "name": "Utibe Akpabio",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-first-bank-calabar-2",
+      "venueId": "first-bank-calabar",
+      "name": "Mma Ofon",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-millennium-park-calabar-1",
+      "venueId": "millennium-park-calabar",
+      "name": "Atim Okpo",
+      "role": "Park caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-millennium-park-calabar-2",
+      "venueId": "millennium-park-calabar",
+      "name": "Aniekan Udo",
+      "role": "Morning jogger",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-national-museum-calabar-1",
+      "venueId": "national-museum-calabar",
+      "name": "Ekanem Asuquo",
+      "role": "Collections assistant",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-national-museum-calabar-2",
+      "venueId": "national-museum-calabar",
+      "name": "Ete Archibong",
+      "role": "Retired teacher",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-native-delicacies-food-1",
+      "venueId": "native-delicacies-food",
+      "name": "Ima Archibong",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-native-delicacies-food-2",
+      "venueId": "native-delicacies-food",
+      "name": "Mma Ekaette",
+      "role": "Regular customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-navy-reference-hospital-1",
+      "venueId": "navy-reference-hospital",
+      "name": "Akpan Inyang",
+      "role": "Hospital orderly",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-navy-reference-hospital-2",
+      "venueId": "navy-reference-hospital",
+      "name": "Mfon Edem",
+      "role": "Medical student on placement",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-polaris-bank-calabar-1",
+      "venueId": "polaris-bank-calabar",
+      "name": "Edidiong Ntia",
+      "role": "Customer service officer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-polaris-bank-calabar-2",
+      "venueId": "polaris-bank-calabar",
+      "name": "Ete Ibok",
+      "role": "Retired trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-sacred-heart-cathedral-1",
+      "venueId": "sacred-heart-cathedral",
+      "name": "Mma Affiong",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-sacred-heart-cathedral-2",
+      "venueId": "sacred-heart-cathedral",
+      "name": "Edikan Bassey",
+      "role": "Youth choir singer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-slave-history-museum-1",
+      "venueId": "slave-history-museum",
+      "name": "Mma Iniobong",
+      "role": "Museum guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-slave-history-museum-2",
+      "venueId": "slave-history-museum",
+      "name": "Okon Ita",
+      "role": "Visitor attendant",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-ucth-calabar-1",
+      "venueId": "ucth-calabar",
+      "name": "Idara Ekpo",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-ucth-calabar-2",
+      "venueId": "ucth-calabar",
+      "name": "Ete Ita",
+      "role": "Waiting patient",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-uj-esuene-stadium-1",
+      "venueId": "uj-esuene-stadium",
+      "name": "Bassey Etim",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-uj-esuene-stadium-2",
+      "venueId": "uj-esuene-stadium",
+      "name": "Nsa Okon",
+      "role": "Football fan",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-unicross-main-campus-1",
+      "venueId": "unicross-main-campus",
+      "name": "Inyang Ekong",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-unicross-main-campus-2",
+      "venueId": "unicross-main-campus",
+      "name": "Ete Eyo",
+      "role": "Retired lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-watt-market-1",
+      "venueId": "watt-market",
+      "name": "Mma Uyai",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    },
+    {
+      "id": "calabar-watt-market-2",
+      "venueId": "watt-market",
+      "name": "Nse Etuk",
+      "role": "Phone accessories seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/calabar/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "apostolic-church-calabar",
+    "bassey-duke-statue",
+    "calabar-municipal-gardens",
+    "calabar-municipal-hq",
+    "chef-green-local-cuisine-hub",
+    "first-bank-calabar",
+    "millennium-park-calabar",
+    "national-museum-calabar",
+    "native-delicacies-food",
+    "navy-reference-hospital",
+    "polaris-bank-calabar",
+    "sacred-heart-cathedral",
+    "slave-history-museum",
+    "ucth-calabar",
+    "uj-esuene-stadium",
+    "unicross-main-campus",
+    "watt-market"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "50c0519f4e480a385debeab9e337d4b5754550ffabd1aefaed8fc1923127c7da",
+    "contentSha256": "4a9f878d968f66347f14c1dc46d87cfb2becf67db9981ad3c3a4cd9ef2709f90"
+  }
+}

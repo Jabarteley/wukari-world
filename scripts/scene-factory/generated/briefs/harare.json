@@ -1,0 +1,1862 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "harare",
+    "name": "Harare",
+    "state": {
+      "id": "zw-harare",
+      "name": "Harare"
+    },
+    "country": {
+      "id": "zw",
+      "name": "Zimbabwe"
+    },
+    "point": {
+      "lon": 31.045686,
+      "lat": -17.831773
+    }
+  },
+  "style": {
+    "region": "southern-africa",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap contributors and OurAirports dataset",
+    "sourceUrls": [
+      "https://ourairports.com/airports/FVHA/",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/harare/content.ts",
+        "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+      },
+      {
+        "path": "src/game/cities/harare/facts.ts",
+        "sha256": "41349017f038ae7ad133c0fec12ba73dc782da25d814501ed0a209908beb5cad"
+      },
+      {
+        "path": "src/game/cities/harare/index.ts",
+        "sha256": "a80f0782cfb2910b19feaa4d833c71efbfefe46aa3a91972df54d3b7379f09b3"
+      },
+      {
+        "path": "src/game/cities/harare/places.ts",
+        "sha256": "661349e7c063a82cd610059c27232f1d02dc403323784c80e8915b5ec0e1bae4"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "harare-african-liberation-museum",
+      "name": "Museum of African liberation",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 30.982357,
+        "lat": -17.824064
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-african-liberation-museum-1",
+        "harare-harare-african-liberation-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8300714917"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-airport-harare-airport",
+      "name": "Robert Gabriel Mugabe International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.0928,
+        "lat": -17.931801
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-airport-harare-airport-1",
+        "harare-harare-airport-harare-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "harare-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-chiremba-balancing-rocks",
+      "name": "Chiremba Balancing Rocks",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.127671,
+        "lat": -17.88507
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-chiremba-balancing-rocks-1",
+        "harare-harare-chiremba-balancing-rocks-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/5130480"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4850004"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-clinic",
+      "name": "Parirenyatwa Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.043039,
+        "lat": -17.811968
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-clinic-1",
+        "harare-harare-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/399300868"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7137157"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-community-notices",
+      "name": "Constitutional Court and Supreme Court of Zimbabwe",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.05225,
+        "lat": -17.825562
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-community-notices-1",
+        "harare-harare-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/376750979"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-community-voting-game",
+      "name": "Africa Unity Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.052025,
+        "lat": -17.82932
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-community-voting-game-1",
+        "harare-harare-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/25821085"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-community-workshop",
+      "name": "Université du Zimbabwe",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.053105,
+        "lat": -17.785369
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-community-workshop-1",
+        "harare-harare-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/391946437"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q581954"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-eastgate-mall",
+      "name": "Eastgate Shopping Mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.0526,
+        "lat": -17.831497
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-eastgate-mall-1",
+        "harare-harare-eastgate-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/136596487"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1278256"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-harare-city-library",
+      "name": "Harare City Library",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.038875,
+        "lat": -17.831387
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-harare-city-library-1",
+        "harare-harare-harare-city-library-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/8153276"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-human-sciences-museum",
+      "name": "Zimbabwe Museum of Human Sciences",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.038859,
+        "lat": -17.832331
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-human-sciences-museum-1",
+        "harare-harare-human-sciences-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/8153277"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-market-game",
+      "name": "Mbare Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.039563,
+        "lat": -17.857245
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-market-game-1",
+        "harare-harare-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/214613002"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-meal-stop",
+      "name": "Afrotopia Café @ The Gallery",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.048681,
+        "lat": -17.824799
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-meal-stop-1",
+        "harare-harare-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5397709292"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-national-archives",
+      "name": "National Archives of Zimbabwe",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.063934,
+        "lat": -17.794896
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-national-archives-1",
+        "harare-harare-national-archives-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5397707516"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-national-gallery",
+      "name": "National Gallery of Zimbabwe",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.048851,
+        "lat": -17.824907
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-national-gallery-1",
+        "harare-harare-national-gallery-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/297170048"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-national-sports-stadium",
+      "name": "National Sports Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 30.995073,
+        "lat": -17.821416
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-national-sports-stadium-1",
+        "harare-harare-national-sports-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/612953862"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1658746"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-queen-victoria-library",
+      "name": "Queen Victoria Memorial Library",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.128561,
+        "lat": -17.810491
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-queen-victoria-library-1",
+        "harare-harare-queen-victoria-library-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/402494651"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-quiet-reflection",
+      "name": "Cathedral of the Sacred Heart",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.053195,
+        "lat": -17.820978
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-quiet-reflection-1",
+        "harare-harare-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/363592914"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q23754273"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-recreation",
+      "name": "Greenwood Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.057539,
+        "lat": -17.817478
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-recreation-1",
+        "harare-harare-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/25512063"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-reps-theatre",
+      "name": "Reps Theatre",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.043741,
+        "lat": -17.79488
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-reps-theatre-1",
+        "harare-harare-reps-theatre-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/25446865"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-rufaro-stadium",
+      "name": "Rufaro Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.037548,
+        "lat": -17.853731
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-rufaro-stadium-1",
+        "harare-harare-rufaro-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/6094331"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2671557"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-seven-arts",
+      "name": "7 Arts",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.038525,
+        "lat": -17.802253
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-seven-arts-1",
+        "harare-harare-seven-arts-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/529841246"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "harare-transit",
+      "name": "Harare",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.052215,
+        "lat": -17.835067
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "harare-harare-transit-1",
+        "harare-harare-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/harare/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9243653549"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q9286332"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.045686,
+        "lat": -17.831773
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "harare-harare-african-liberation-museum-1",
+      "venueId": "harare-african-liberation-museum",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-african-liberation-museum-2",
+      "venueId": "harare-african-liberation-museum",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-airport-harare-airport-1",
+      "venueId": "harare-airport-harare-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-airport-harare-airport-2",
+      "venueId": "harare-airport-harare-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-chiremba-balancing-rocks-1",
+      "venueId": "harare-chiremba-balancing-rocks",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-chiremba-balancing-rocks-2",
+      "venueId": "harare-chiremba-balancing-rocks",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-clinic-1",
+      "venueId": "harare-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-clinic-2",
+      "venueId": "harare-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-community-notices-1",
+      "venueId": "harare-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-community-notices-2",
+      "venueId": "harare-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-community-voting-game-1",
+      "venueId": "harare-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-community-voting-game-2",
+      "venueId": "harare-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-community-workshop-1",
+      "venueId": "harare-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-community-workshop-2",
+      "venueId": "harare-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-eastgate-mall-1",
+      "venueId": "harare-eastgate-mall",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-eastgate-mall-2",
+      "venueId": "harare-eastgate-mall",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-harare-city-library-1",
+      "venueId": "harare-harare-city-library",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-harare-city-library-2",
+      "venueId": "harare-harare-city-library",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-human-sciences-museum-1",
+      "venueId": "harare-human-sciences-museum",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-human-sciences-museum-2",
+      "venueId": "harare-human-sciences-museum",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-market-game-1",
+      "venueId": "harare-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-market-game-2",
+      "venueId": "harare-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-meal-stop-1",
+      "venueId": "harare-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-meal-stop-2",
+      "venueId": "harare-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-national-archives-1",
+      "venueId": "harare-national-archives",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-national-archives-2",
+      "venueId": "harare-national-archives",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-national-gallery-1",
+      "venueId": "harare-national-gallery",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-national-gallery-2",
+      "venueId": "harare-national-gallery",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-national-sports-stadium-1",
+      "venueId": "harare-national-sports-stadium",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-national-sports-stadium-2",
+      "venueId": "harare-national-sports-stadium",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-queen-victoria-library-1",
+      "venueId": "harare-queen-victoria-library",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-queen-victoria-library-2",
+      "venueId": "harare-queen-victoria-library",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-quiet-reflection-1",
+      "venueId": "harare-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-quiet-reflection-2",
+      "venueId": "harare-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-recreation-1",
+      "venueId": "harare-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-recreation-2",
+      "venueId": "harare-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-reps-theatre-1",
+      "venueId": "harare-reps-theatre",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-reps-theatre-2",
+      "venueId": "harare-reps-theatre",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-rufaro-stadium-1",
+      "venueId": "harare-rufaro-stadium",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-rufaro-stadium-2",
+      "venueId": "harare-rufaro-stadium",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-seven-arts-1",
+      "venueId": "harare-seven-arts",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-seven-arts-2",
+      "venueId": "harare-seven-arts",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-transit-1",
+      "venueId": "harare-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    },
+    {
+      "id": "harare-harare-transit-2",
+      "venueId": "harare-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/harare/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "harare-african-liberation-museum",
+    "harare-airport-harare-airport",
+    "harare-chiremba-balancing-rocks",
+    "harare-clinic",
+    "harare-community-notices",
+    "harare-community-voting-game",
+    "harare-community-workshop",
+    "harare-eastgate-mall",
+    "harare-harare-city-library",
+    "harare-human-sciences-museum",
+    "harare-market-game",
+    "harare-meal-stop",
+    "harare-national-archives",
+    "harare-national-gallery",
+    "harare-national-sports-stadium",
+    "harare-queen-victoria-library",
+    "harare-quiet-reflection",
+    "harare-recreation",
+    "harare-reps-theatre",
+    "harare-rufaro-stadium",
+    "harare-seven-arts",
+    "harare-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "029eec9201715567f457dab80bb4447361d5fbccda4c62a0aec89ab6b0499505",
+    "contentSha256": "143e07f620e43d0ef5db373c5587153ca55c778cbeb2ea37a3f2fe8b7e664ea5"
+  }
+}

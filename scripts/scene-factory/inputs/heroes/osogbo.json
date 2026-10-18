@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "osogbo",
+  "url": "/assets/scene-heroes/osogbo.glb",
+  "sha256": "944cdc85021a41305de6d03e46248d275433c6efd2e02ab2f223b01533967b4d",
+  "rawBytes": 36248,
+  "brotliBytes": 19966,
+  "triangles": 1372,
+  "parts": [
+    {
+      "node": "osogbo",
+      "triangles": 1372,
+      "bounds": {
+        "min": [
+          -2.63801289,
+          0,
+          -2.10567856
+        ],
+        "max": [
+          2.638012696866,
+          2.500017495626,
+          2.105673854054
+        ]
+      },
+      "footprint": [
+        -2.63801289,
+        -2.10567856,
+        2.638012696866,
+        2.105673854054
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "6fc43fa5cc7c3140c288e04db270c62da48fbee42a6e3123f4b055512f6b539d"
+  },
+  "inputs": {
+    "rawSha256": "7b66de736e5eff34af8159cd5b8c2cf62ab81c4377b2e884bf840fb71ba59f42",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "osogbo",
+      "country": "ng",
+      "name": "Ayegbaju International Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.osunstate.gov.ng/2014/07/aregbesolas-commercial-revolution-osun/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-final40-primary-r3.json#records[city_id=osogbo]",
+      "sourceLicence": "Unknown; factual text used only. No external geometry, photos or maps reused.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 14288806,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "The state says Ayegbaju International Market was commissioned in Osogbo. Market activity only; no architecture or actual goods/layout reproduced. Direct primary text opened in this round: page body, opening paragraphs. Fresh HTTP200 response SHA256 e09dac9699a12de97dd8f08c6a2fa407ca38eaed22f4cbe7853a3102ea0b1dc6. Evidence artifact SHA256 6694bdd3e4c9b76c462cf1cf30a1d817fcf931346b3e93d3d651fc95c022e875. Repository source path: src/game/cities/osogbo/spec.ts. Original procedural fragment, not a surveyed site, full landmark replica or current-access/operation claim. Dimensions, colours, counts and layout are art direction, not sourced measurements. No external map, photograph, sculpture or mesh copied. Unknown source rights do not confer external geometry rights. Geometry AGPL-3.0-or-later; production and decoded geometry/byte approval remain pending.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "yoruba-southwest"
+      }
+    },
+    "styleSha256": "6bca7f81e5a0566559c88554f069e4e0f246ddca068d86b1efc31b249d7c8ee5"
+  }
+}

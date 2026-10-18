@@ -1,0 +1,2135 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "havana",
+    "name": "Havana",
+    "state": {
+      "id": "cu-havana",
+      "name": "Havana"
+    },
+    "country": {
+      "id": "cu",
+      "name": "Cuba"
+    },
+    "point": {
+      "lon": -82.3589631,
+      "lat": 23.135305
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/central-america/cuba-261011.osm.pbf",
+      "https://ourairports.com/airports/MUHA/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/havana/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/havana/facts.ts",
+        "sha256": "15973008cdaaa0623d30404352aa7137fbcaf7e41c9808b1a9118f25e628b4da"
+      },
+      {
+        "path": "src/game/cities/havana/index.ts",
+        "sha256": "bfa410a335a777d7353330ebde09c898fa109853c033a2d9cfcfc2d76359f123"
+      },
+      {
+        "path": "src/game/cities/havana/places.ts",
+        "sha256": "7704181c51d5e5920a3ae6bbe6a385cd768f1f5a50079c58f932da2aa50a6732"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "havana-airport-havana-airport",
+      "name": "José Martí International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.40910339355469,
+        "lat": 22.989200592041016
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-airport-havana-airport-1",
+        "havana-havana-airport-havana-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "havana-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-clinic",
+      "name": "Hospital Militar Dr. Carlos J. Finlay",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.433164,
+        "lat": 23.082074
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-clinic-1",
+        "havana-havana-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/38804278"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17514597"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-community-notices",
+      "name": "National Capitol",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.359707,
+        "lat": 23.135244
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-community-notices-1",
+        "havana-havana-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/12639209"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1352908"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-community-voting-game",
+      "name": "Revolution Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.385945,
+        "lat": 23.12455
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-community-voting-game-1",
+        "havana-havana-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/319925515"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q60826781"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-community-workshop",
+      "name": "Academia de las FAR General Máximo Gómez",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.247401,
+        "lat": 23.173838
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-community-workshop-1",
+        "havana-havana-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/367375102"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15966138"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-market-game",
+      "name": "Mercado Agropecuario",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.4636,
+        "lat": 22.984419
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-market-game-1",
+        "havana-havana-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3903174200"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-meal-stop",
+      "name": "El Cuarto de Tula",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.377276,
+        "lat": 23.138464
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-meal-stop-1",
+        "havana-havana-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5029240527"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q111121814"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-osm-node-2199414676",
+      "name": "Hemingway House Havana",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.296407,
+        "lat": 23.067768
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-osm-node-2199414676-1",
+        "havana-havana-osm-node-2199414676-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2199414676"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5449801"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-osm-node-4157873423",
+      "name": "Instituto Neurología y Neurocirugía",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.387964,
+        "lat": 23.131463
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-osm-node-4157873423-1",
+        "havana-havana-osm-node-4157873423-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4157873423"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30281893"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-osm-node-993692568",
+      "name": "Paladar La Guarida",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.368335,
+        "lat": 23.13834
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-osm-node-993692568-1",
+        "havana-havana-osm-node-993692568-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/993692568"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q105981336"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-osm-relation-17595359",
+      "name": "Universidad Tecnológica de la Habana \"José Antonio Echeverría\" (CUJAE)",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.41577,
+        "lat": 23.051437
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-osm-relation-17595359-1",
+        "havana-havana-osm-relation-17595359-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/17595359"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7227041"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-osm-way-1170872914",
+      "name": "Estadio Pedro Marrero",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.412957,
+        "lat": 23.107446
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-osm-way-1170872914-1",
+        "havana-havana-osm-way-1170872914-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1170872914"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1369571"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-osm-way-1419495076",
+      "name": "Leonor Pérez",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.33835,
+        "lat": 23.104177
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-osm-way-1419495076-1",
+        "havana-havana-osm-way-1419495076-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1419495076"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5484785"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-osm-way-1490900566",
+      "name": "Pan American Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.316842,
+        "lat": 23.157687
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-osm-way-1490900566-1",
+        "havana-havana-osm-way-1490900566-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1490900566"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3058822"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-osm-way-23919819",
+      "name": "John Lennon Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.400193,
+        "lat": 23.131924
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-osm-way-23919819-1",
+        "havana-havana-osm-way-23919819-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/23919819"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1144587"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-osm-way-245349429",
+      "name": "Fraternity park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.360487,
+        "lat": 23.133179
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-osm-way-245349429-1",
+        "havana-havana-osm-way-245349429-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/245349429"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6062740"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-osm-way-257926030",
+      "name": "National Aquarium",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.43655,
+        "lat": 23.11509
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-osm-way-257926030-1",
+        "havana-havana-osm-way-257926030-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/257926030"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q31505"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-osm-way-312320219",
+      "name": "Templo Beth Shalom",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.389299,
+        "lat": 23.141776
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-osm-way-312320219-1",
+        "havana-havana-osm-way-312320219-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/312320219"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4897631"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-osm-way-331472906",
+      "name": "Instituto Superior de Arte (ISA)",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.447009,
+        "lat": 23.08858
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-osm-way-331472906-1",
+        "havana-havana-osm-way-331472906-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/331472906"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1665233"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-osm-way-379448607",
+      "name": "Parroquia de San Juan Bosco",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.37892,
+        "lat": 23.096493
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-osm-way-379448607-1",
+        "havana-havana-osm-way-379448607-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/379448607"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q118533831"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-osm-way-385503017",
+      "name": "Instituto Superior de Ciencias y Tecnologías Aplicadas",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.381293,
+        "lat": 23.131698
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-osm-way-385503017-1",
+        "havana-havana-osm-way-385503017-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/385503017"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q837320"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-osm-way-665673095",
+      "name": "Latin American Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.375999,
+        "lat": 23.118385
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-osm-way-665673095-1",
+        "havana-havana-osm-way-665673095-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/665673095"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1369326"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-quiet-reflection",
+      "name": "Basilica Menor de San Francisco de Asís",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.348475,
+        "lat": 23.137085
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-quiet-reflection-1",
+        "havana-havana-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/38575195"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4703397"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-recreation",
+      "name": "Havana Zoological Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.397172,
+        "lat": 23.110574
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-recreation-1",
+        "havana-havana-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/231769366"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6171782"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "havana-transit",
+      "name": "Havana",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.354541,
+        "lat": 23.12994
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "havana-havana-transit-1",
+        "havana-havana-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/havana/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/23872644"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3545062"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -82.3589631,
+        "lat": 23.135305
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "havana-havana-airport-havana-airport-1",
+      "venueId": "havana-airport-havana-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-airport-havana-airport-2",
+      "venueId": "havana-airport-havana-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-clinic-1",
+      "venueId": "havana-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-clinic-2",
+      "venueId": "havana-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-community-notices-1",
+      "venueId": "havana-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-community-notices-2",
+      "venueId": "havana-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-community-voting-game-1",
+      "venueId": "havana-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-community-voting-game-2",
+      "venueId": "havana-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-community-workshop-1",
+      "venueId": "havana-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-community-workshop-2",
+      "venueId": "havana-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-market-game-1",
+      "venueId": "havana-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-market-game-2",
+      "venueId": "havana-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-meal-stop-1",
+      "venueId": "havana-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-meal-stop-2",
+      "venueId": "havana-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-node-2199414676-1",
+      "venueId": "havana-osm-node-2199414676",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-node-2199414676-2",
+      "venueId": "havana-osm-node-2199414676",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-node-4157873423-1",
+      "venueId": "havana-osm-node-4157873423",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-node-4157873423-2",
+      "venueId": "havana-osm-node-4157873423",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-node-993692568-1",
+      "venueId": "havana-osm-node-993692568",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-node-993692568-2",
+      "venueId": "havana-osm-node-993692568",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-relation-17595359-1",
+      "venueId": "havana-osm-relation-17595359",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-relation-17595359-2",
+      "venueId": "havana-osm-relation-17595359",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-1170872914-1",
+      "venueId": "havana-osm-way-1170872914",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-1170872914-2",
+      "venueId": "havana-osm-way-1170872914",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-1419495076-1",
+      "venueId": "havana-osm-way-1419495076",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-1419495076-2",
+      "venueId": "havana-osm-way-1419495076",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-1490900566-1",
+      "venueId": "havana-osm-way-1490900566",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-1490900566-2",
+      "venueId": "havana-osm-way-1490900566",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-23919819-1",
+      "venueId": "havana-osm-way-23919819",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-23919819-2",
+      "venueId": "havana-osm-way-23919819",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-245349429-1",
+      "venueId": "havana-osm-way-245349429",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-245349429-2",
+      "venueId": "havana-osm-way-245349429",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-257926030-1",
+      "venueId": "havana-osm-way-257926030",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-257926030-2",
+      "venueId": "havana-osm-way-257926030",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-312320219-1",
+      "venueId": "havana-osm-way-312320219",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-312320219-2",
+      "venueId": "havana-osm-way-312320219",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-331472906-1",
+      "venueId": "havana-osm-way-331472906",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-331472906-2",
+      "venueId": "havana-osm-way-331472906",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-379448607-1",
+      "venueId": "havana-osm-way-379448607",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-379448607-2",
+      "venueId": "havana-osm-way-379448607",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-385503017-1",
+      "venueId": "havana-osm-way-385503017",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-385503017-2",
+      "venueId": "havana-osm-way-385503017",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-665673095-1",
+      "venueId": "havana-osm-way-665673095",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-osm-way-665673095-2",
+      "venueId": "havana-osm-way-665673095",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-quiet-reflection-1",
+      "venueId": "havana-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-quiet-reflection-2",
+      "venueId": "havana-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-recreation-1",
+      "venueId": "havana-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-recreation-2",
+      "venueId": "havana-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-transit-1",
+      "venueId": "havana-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    },
+    {
+      "id": "havana-havana-transit-2",
+      "venueId": "havana-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/havana/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "havana-airport-havana-airport",
+    "havana-clinic",
+    "havana-community-notices",
+    "havana-community-voting-game",
+    "havana-community-workshop",
+    "havana-market-game",
+    "havana-meal-stop",
+    "havana-osm-node-2199414676",
+    "havana-osm-node-4157873423",
+    "havana-osm-node-993692568",
+    "havana-osm-relation-17595359",
+    "havana-osm-way-1170872914",
+    "havana-osm-way-1419495076",
+    "havana-osm-way-1490900566",
+    "havana-osm-way-23919819",
+    "havana-osm-way-245349429",
+    "havana-osm-way-257926030",
+    "havana-osm-way-312320219",
+    "havana-osm-way-331472906",
+    "havana-osm-way-379448607",
+    "havana-osm-way-385503017",
+    "havana-osm-way-665673095",
+    "havana-quiet-reflection",
+    "havana-recreation",
+    "havana-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "9d33ce4a9bf58869849d86c839b6004e8768af7d168280466580ddd0a6fc920a",
+    "contentSha256": "b42c5aebef43f76859aa112d53da2e267b4909795d8dbf9c2fa5916f4cf7f7bc"
+  }
+}

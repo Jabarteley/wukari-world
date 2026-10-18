@@ -1,0 +1,2131 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "tunis",
+    "name": "Tunis",
+    "state": {
+      "id": "tn-tunis",
+      "name": "Tunis"
+    },
+    "country": {
+      "id": "tn",
+      "name": "Tunisia"
+    },
+    "point": {
+      "lon": 10.179678,
+      "lat": 36.802778
+    }
+  },
+  "style": {
+    "region": "maghreb",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap contributors via Geofabrik Tunisia 2026-10-09 PBF; OurAirports dataset",
+    "sourceUrls": [
+      "https://download.geofabrik.de/africa/tunisia-261009.osm.pbf",
+      "https://ourairports.com/airports/DTTA/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/tunis/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/tunis/facts.ts",
+        "sha256": "665a13dc148f316b30f5a50827541f615abb4536872e524a90f958bac68ab37e"
+      },
+      {
+        "path": "src/game/cities/tunis/index.ts",
+        "sha256": "d9d95add331676cba390b448ef3c1f29640d9bcc47f29886ea06c36dc4291939"
+      },
+      {
+        "path": "src/game/cities/tunis/places.ts",
+        "sha256": "b36382cf61dc7746487ba05576dfed0d67448c9121c85b469611377d6238558d"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.179678,
+        "lat": 36.802778
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "tunis-airport-tunis-airport",
+      "name": "Tunis Carthage International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.2272,
+        "lat": 36.851002
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-airport-tunis-airport-1",
+        "tunis-tunis-airport-tunis-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "tunis-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-clinic",
+      "name": "Hospital Mongi Slim",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.291253,
+        "lat": 36.867059
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-clinic-1",
+        "tunis-tunis-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/93674308"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12242626"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-community-notices",
+      "name": "Centre Nationnal de la cartographie et de la Télédétection",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.25873,
+        "lat": 36.848012
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-community-notices-1",
+        "tunis-tunis-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/93721724"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2945920"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-community-voting-game",
+      "name": "Tunis City Hall",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.16512,
+        "lat": 36.797102
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-community-voting-game-1",
+        "tunis-tunis-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/95130064"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3146200"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-community-workshop",
+      "name": "Mediterranean School of Business",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.230431,
+        "lat": 36.8315
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-community-workshop-1",
+        "tunis-tunis-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2613810514"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3304063"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-market-game",
+      "name": "Tunis City",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.123161,
+        "lat": 36.900277
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-market-game-1",
+        "tunis-tunis-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/34392127"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-meal-stop",
+      "name": "Lucullus",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.30531,
+        "lat": 36.81709
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-meal-stop-1",
+        "tunis-tunis-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/567484227"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-osm-node-483108304",
+      "name": "IPEIEM Institut Prépartoire des études d'ingénieur El Manar",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.143632,
+        "lat": 36.82933
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-osm-node-483108304-1",
+        "tunis-tunis-osm-node-483108304-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/483108304"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3152495"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-osm-node-5669470129",
+      "name": "Mosquée khelloua de Sidi Mahrez",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.171649,
+        "lat": 36.792682
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-osm-node-5669470129-1",
+        "tunis-tunis-osm-node-5669470129-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5669470129"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28027809"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-osm-node-7713167960",
+      "name": "Université libre de Tunis",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.187144,
+        "lat": 36.820475
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-osm-node-7713167960-1",
+        "tunis-tunis-osm-node-7713167960-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7713167960"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3551799"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-osm-relation-1431423",
+      "name": "Ministère du Tourisme",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.186919,
+        "lat": 36.801283
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-osm-relation-1431423-1",
+        "tunis-tunis-osm-relation-1431423-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/1431423"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3315445"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-osm-relation-2401476",
+      "name": "Bardo National Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.134246,
+        "lat": 36.80932
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-osm-relation-2401476-1",
+        "tunis-tunis-osm-relation-2401476-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/2401476"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1429003"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-osm-relation-5405848",
+      "name": "Stade El Menzah",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.185231,
+        "lat": 36.83984
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-osm-relation-5405848-1",
+        "tunis-tunis-osm-relation-5405848-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/5405848"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q983916"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-osm-way-104343343",
+      "name": "Place Pasteur",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.178686,
+        "lat": 36.821761
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-osm-way-104343343-1",
+        "tunis-tunis-osm-way-104343343-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/104343343"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12214996"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-osm-way-105588055",
+      "name": "INSAT - Institut National des Sciences Appliquées et de Technologies",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.196194,
+        "lat": 36.842916
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-osm-way-105588055-1",
+        "tunis-tunis-osm-way-105588055-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/105588055"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3152441"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-osm-way-109431591",
+      "name": "Place de Barcelone",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.180421,
+        "lat": 36.796547
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-osm-way-109431591-1",
+        "tunis-tunis-osm-way-109431591-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/109431591"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3390221"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-osm-way-179953386",
+      "name": "Musée de la Mémoire Nationale",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.171835,
+        "lat": 36.772221
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-osm-way-179953386-1",
+        "tunis-tunis-osm-way-179953386-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/179953386"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3330045"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-osm-way-180268053",
+      "name": "Institut Salah-Azaïz",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.158348,
+        "lat": 36.807191
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-osm-way-180268053-1",
+        "tunis-tunis-osm-way-180268053-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/180268053"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3151812"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-osm-way-34573429",
+      "name": "Stade Chedli Zouiten",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.170186,
+        "lat": 36.828882
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-osm-way-34573429-1",
+        "tunis-tunis-osm-way-34573429-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/34573429"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1133198"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-osm-way-95134307",
+      "name": "Grand Synagogue of Tunis",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.180111,
+        "lat": 36.81038
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-osm-way-95134307-1",
+        "tunis-tunis-osm-way-95134307-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/95134307"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3115134"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-osm-way-95199308",
+      "name": "Hôpital Militaire Principal d'Instruction de Tunis",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.178562,
+        "lat": 36.785902
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-osm-way-95199308-1",
+        "tunis-tunis-osm-way-95199308-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/95199308"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16508249"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-osm-way-96994557",
+      "name": "Stade Ali-Belhouane",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.153128,
+        "lat": 36.799228
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-osm-way-96994557-1",
+        "tunis-tunis-osm-way-96994557-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/96994557"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q62307237"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-quiet-reflection",
+      "name": "Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.166604,
+        "lat": 36.80763
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-quiet-reflection-1",
+        "tunis-tunis-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/95132593"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3324882"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-recreation",
+      "name": "Belvedere Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.169075,
+        "lat": 36.82338
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-recreation-1",
+        "tunis-tunis-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/48720329"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3364339"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tunis-transit",
+      "name": "Tunis Station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 10.180582,
+        "lat": 36.795245
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tunis-tunis-transit-1",
+        "tunis-tunis-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tunis/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/29993446"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q19802368"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "tunis-tunis-airport-tunis-airport-1",
+      "venueId": "tunis-airport-tunis-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-airport-tunis-airport-2",
+      "venueId": "tunis-airport-tunis-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-clinic-1",
+      "venueId": "tunis-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-clinic-2",
+      "venueId": "tunis-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-community-notices-1",
+      "venueId": "tunis-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-community-notices-2",
+      "venueId": "tunis-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-community-voting-game-1",
+      "venueId": "tunis-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-community-voting-game-2",
+      "venueId": "tunis-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-community-workshop-1",
+      "venueId": "tunis-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-community-workshop-2",
+      "venueId": "tunis-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-market-game-1",
+      "venueId": "tunis-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-market-game-2",
+      "venueId": "tunis-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-meal-stop-1",
+      "venueId": "tunis-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-meal-stop-2",
+      "venueId": "tunis-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-node-483108304-1",
+      "venueId": "tunis-osm-node-483108304",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-node-483108304-2",
+      "venueId": "tunis-osm-node-483108304",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-node-5669470129-1",
+      "venueId": "tunis-osm-node-5669470129",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-node-5669470129-2",
+      "venueId": "tunis-osm-node-5669470129",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-node-7713167960-1",
+      "venueId": "tunis-osm-node-7713167960",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-node-7713167960-2",
+      "venueId": "tunis-osm-node-7713167960",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-relation-1431423-1",
+      "venueId": "tunis-osm-relation-1431423",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-relation-1431423-2",
+      "venueId": "tunis-osm-relation-1431423",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-relation-2401476-1",
+      "venueId": "tunis-osm-relation-2401476",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-relation-2401476-2",
+      "venueId": "tunis-osm-relation-2401476",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-relation-5405848-1",
+      "venueId": "tunis-osm-relation-5405848",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-relation-5405848-2",
+      "venueId": "tunis-osm-relation-5405848",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-104343343-1",
+      "venueId": "tunis-osm-way-104343343",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-104343343-2",
+      "venueId": "tunis-osm-way-104343343",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-105588055-1",
+      "venueId": "tunis-osm-way-105588055",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-105588055-2",
+      "venueId": "tunis-osm-way-105588055",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-109431591-1",
+      "venueId": "tunis-osm-way-109431591",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-109431591-2",
+      "venueId": "tunis-osm-way-109431591",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-179953386-1",
+      "venueId": "tunis-osm-way-179953386",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-179953386-2",
+      "venueId": "tunis-osm-way-179953386",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-180268053-1",
+      "venueId": "tunis-osm-way-180268053",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-180268053-2",
+      "venueId": "tunis-osm-way-180268053",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-34573429-1",
+      "venueId": "tunis-osm-way-34573429",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-34573429-2",
+      "venueId": "tunis-osm-way-34573429",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-95134307-1",
+      "venueId": "tunis-osm-way-95134307",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-95134307-2",
+      "venueId": "tunis-osm-way-95134307",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-95199308-1",
+      "venueId": "tunis-osm-way-95199308",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-95199308-2",
+      "venueId": "tunis-osm-way-95199308",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-96994557-1",
+      "venueId": "tunis-osm-way-96994557",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-osm-way-96994557-2",
+      "venueId": "tunis-osm-way-96994557",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-quiet-reflection-1",
+      "venueId": "tunis-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-quiet-reflection-2",
+      "venueId": "tunis-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-recreation-1",
+      "venueId": "tunis-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-recreation-2",
+      "venueId": "tunis-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-transit-1",
+      "venueId": "tunis-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    },
+    {
+      "id": "tunis-tunis-transit-2",
+      "venueId": "tunis-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tunis/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "tunis-airport-tunis-airport",
+    "tunis-clinic",
+    "tunis-community-notices",
+    "tunis-community-voting-game",
+    "tunis-community-workshop",
+    "tunis-market-game",
+    "tunis-meal-stop",
+    "tunis-osm-node-483108304",
+    "tunis-osm-node-5669470129",
+    "tunis-osm-node-7713167960",
+    "tunis-osm-relation-1431423",
+    "tunis-osm-relation-2401476",
+    "tunis-osm-relation-5405848",
+    "tunis-osm-way-104343343",
+    "tunis-osm-way-105588055",
+    "tunis-osm-way-109431591",
+    "tunis-osm-way-179953386",
+    "tunis-osm-way-180268053",
+    "tunis-osm-way-34573429",
+    "tunis-osm-way-95134307",
+    "tunis-osm-way-95199308",
+    "tunis-osm-way-96994557",
+    "tunis-quiet-reflection",
+    "tunis-recreation",
+    "tunis-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "8a375e617a91f04e7c0e073df299dc8e6e3b17543f479076b74f0fdbe0595028",
+    "contentSha256": "7d8b31f99a7a33ca836542a3250106ccf823bb13bb59fec651a8a665e7a43280"
+  }
+}

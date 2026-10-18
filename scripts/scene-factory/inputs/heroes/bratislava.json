@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "bratislava",
+  "url": "/assets/scene-heroes/bratislava.glb",
+  "sha256": "6b4b78b8a6b630e8000c9efd02d18c977a4565730f6f6ab7834cb0e2c5f50d9f",
+  "rawBytes": 22292,
+  "brotliBytes": 17470,
+  "triangles": 376,
+  "parts": [
+    {
+      "node": "bratislava",
+      "triangles": 376,
+      "bounds": {
+        "min": [
+          -3.28999996,
+          0,
+          -2.72000003
+        ],
+        "max": [
+          3.289999826507,
+          4.620016940987,
+          2.720157273805
+        ]
+      },
+      "footprint": [
+        -3.28999996,
+        -2.72000003,
+        3.289999826507,
+        2.720157273805
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "9fbb3637a6026c42295598191f368bf185692eb853e19ab7f218c25d4e865535"
+  },
+  "inputs": {
+    "rawSha256": "08c49aaebc2adc86db3094f8de450546d8a6b0e5ff039aaf5cb1fb12d4d890e3",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "bratislava",
+      "country": "sk",
+      "name": "Bratislava Castle",
+      "category": "building",
+      "sourceUrls": [
+        "https://www.visitbratislava.com/places/bratislava-castle/",
+        "https://www.visitbratislava.com/wp-content/uploads/2019/11/4DL_hrad_2020_EN_web.pdf"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=bratislava]; hero-inputs-r4.md defining-form review",
+      "sourceLicence": "Source text rights unknown unless the publisher states otherwise; factual identity only. No external photo, map, mesh, texture, sculpture surface or plan reused. Original generated geometry is AGPL-3.0-or-later; third-party marks and landmark rights are not cleared by this record.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landmark",
+      "parameters": {
+        "width": 7,
+        "depth": 6,
+        "height": 5,
+        "seed": 6103,
+        "palette": [
+          "#dbcdb6",
+          "#62584a",
+          "#8f8a74",
+          "#af593f",
+          "#c8b68c",
+          "#8caa99",
+          "#d2bd91",
+          "#2e3c43"
+        ],
+        "composition": "four-tower-castle"
+      },
+      "evidence": "Visit Bratislava identifies the castle as a symbol of the city, records its history from the 13th century, and notes its later reconstructions. Official city brochure identifies the oldest Crown Tower and the other three corner towers. Original four-corner courtyard massing; no traced ground plan. All dimensions, colours, simplifications and composition proportions are original art direction, not source measurements. No surveyed-location, current-access, production-quality or legal-rights approval is asserted.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "western-europe"
+      }
+    },
+    "styleSha256": "18e3b0f4dbb88519df26d3d51faa4960b3f4646b58f92cf029cf1a50cbcc6d9c"
+  }
+}

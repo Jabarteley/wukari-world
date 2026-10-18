@@ -1,0 +1,2115 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "katsina",
+    "name": "Katsina",
+    "state": {
+      "id": "katsina",
+      "name": "Katsina"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 7.6006278,
+      "lat": 12.9894283
+    }
+  },
+  "style": {
+    "region": "sahel-north",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/katsina/content.ts",
+        "sha256": "34edf19cff62e928d92e8adc6cf4377c080f4de6ea59808894b82384866016af"
+      },
+      {
+        "path": "src/game/cities/katsina/index.ts",
+        "sha256": "6dd6610c9ac37b81ceaf634488cb7cfe956dd6b74cda65341a67d7c3d24e8fcb"
+      },
+      {
+        "path": "src/game/cities/katsina/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/katsina/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for katsina.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "baptist-church-katsina",
+      "name": "Baptist Church katsina",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.622488999277737,
+        "lat": 13.004060645873208
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-baptist-church-katsina-1",
+        "katsina-baptist-church-katsina-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "central-market-katsina",
+      "name": "Central Market, Katsina",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.6016692,
+        "lat": 12.9712284
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-central-market-katsina-1",
+        "katsina-central-market-katsina-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "central-mosque-katsina",
+      "name": "Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.599064,
+        "lat": 12.9926255
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-central-mosque-katsina-1",
+        "katsina-central-mosque-katsina-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "central-motor-park-katsina",
+      "name": "Central Motor Park",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.6008343,
+        "lat": 12.9698971
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-central-motor-park-katsina-1",
+        "katsina-central-motor-park-katsina-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "general-hospital-katsina",
+      "name": "General Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.6028051,
+        "lat": 13.0013745
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-general-hospital-katsina-1",
+        "katsina-general-hospital-katsina-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "gobarau-minaret",
+      "name": "Gobarau Minaret",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.595517,
+        "lat": 12.997977
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-gobarau-minaret-1",
+        "katsina-gobarau-minaret-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.620474330180409,
+        "lat": 13.012698770144421
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "kano-motor-park-katsina",
+      "name": "Kano motor park",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.5997189,
+        "lat": 12.9695418
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-kano-motor-park-katsina-1",
+        "katsina-kano-motor-park-katsina-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "kasuwar-kofar-kaura-katsina",
+      "name": "Kasuwar kofar kaura",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.6112401,
+        "lat": 12.9764289
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-kasuwar-kofar-kaura-katsina-1",
+        "katsina-kasuwar-kofar-kaura-katsina-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "katsina-eye-clinic",
+      "name": "Katsina Eye Clinic",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.5946175,
+        "lat": 12.9954267
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-katsina-eye-clinic-1",
+        "katsina-katsina-eye-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "katsina-lga-council",
+      "name": "Katsina Local Government Area Council",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.6098811,
+        "lat": 12.9953918
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-katsina-lga-council-1",
+        "katsina-katsina-lga-council-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "katsina-new-government-house",
+      "name": "Katsina State New Government House",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.6346626,
+        "lat": 13.0128082
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-katsina-new-government-house-1",
+        "katsina-katsina-new-government-house-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "katsina-polo-ground",
+      "name": "Katsina Polo Ground",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.5819886,
+        "lat": 12.9842337
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Public area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Public area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-katsina-polo-ground-1",
+        "katsina-katsina-polo-ground-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "katsina-state-house-of-assembly",
+      "name": "Katsina State House of Assembly",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.6255387,
+        "lat": 13.0158413
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-katsina-state-house-of-assembly-1",
+        "katsina-katsina-state-house-of-assembly-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "katsina-township-stadium",
+      "name": "Katsina Township Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.6049264,
+        "lat": 12.9962374
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-katsina-township-stadium-1",
+        "katsina-katsina-township-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "kofar-soro-katsina",
+      "name": "Kofar Soro",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.5992825,
+        "lat": 12.9946706
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-kofar-soro-katsina-1",
+        "katsina-kofar-soro-katsina-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "lady-m-katsina",
+      "name": "Lady m",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.6216988,
+        "lat": 12.9730239
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-lady-m-katsina-1",
+        "katsina-lady-m-katsina-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "maryam-park-katsina",
+      "name": "Maryam Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.6301656,
+        "lat": 12.9988443
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Public area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Public area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-maryam-park-katsina-1",
+        "katsina-maryam-park-katsina-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "modoji-central-mosque-katsina",
+      "name": "Modoji Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.6423433,
+        "lat": 13.0100826
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-modoji-central-mosque-katsina-1",
+        "katsina-modoji-central-mosque-katsina-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "muhammadu-dikko-stadium",
+      "name": "Muhammadu Dikko Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.6379534,
+        "lat": 12.9769254
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-muhammadu-dikko-stadium-1",
+        "katsina-muhammadu-dikko-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "national-museum-katsina",
+      "name": "National Museum, Katsina",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.604067,
+        "lat": 13.005413
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-national-museum-katsina-1",
+        "katsina-national-museum-katsina-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "s-cafe-katsina",
+      "name": "S-cafe fast food and restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.627551,
+        "lat": 12.994566
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-s-cafe-katsina-1",
+        "katsina-s-cafe-katsina-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "st-martin-de-porres-cathedral-katsina",
+      "name": "Cathedral of St. Martin de Porres",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.62019,
+        "lat": 12.99419
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-st-martin-de-porres-cathedral-katsina-1",
+        "katsina-st-martin-de-porres-cathedral-katsina-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "uba-katsina",
+      "name": "United Bank for Africa",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.6145091,
+        "lat": 12.9748391
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-uba-katsina-1",
+        "katsina-uba-katsina-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "yusuf-bala-usman-college-katsina",
+      "name": "Yusuf Bala Usman College of Legal and General Studies",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.62227,
+        "lat": 12.98156
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-yusuf-bala-usman-college-katsina-1",
+        "katsina-yusuf-bala-usman-college-katsina-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    },
+    {
+      "id": "zenith-bank-katsina",
+      "name": "Zenith Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.6034597,
+        "lat": 12.9833228
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "katsina-zenith-bank-katsina-1",
+        "katsina-zenith-bank-katsina-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for katsina."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "katsina-baptist-church-katsina-1",
+      "venueId": "baptist-church-katsina",
+      "name": "Asmau Danladi",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-baptist-church-katsina-2",
+      "venueId": "baptist-church-katsina",
+      "name": "Yusuf Umar",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-central-market-katsina-1",
+      "venueId": "central-market-katsina",
+      "name": "Asmau Mohammed",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-central-market-katsina-2",
+      "venueId": "central-market-katsina",
+      "name": "Yusuf Tanko",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-central-mosque-katsina-1",
+      "venueId": "central-mosque-katsina",
+      "name": "Mustapha Kabir",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-central-mosque-katsina-2",
+      "venueId": "central-mosque-katsina",
+      "name": "Hadiza Idris",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-central-motor-park-katsina-1",
+      "venueId": "central-motor-park-katsina",
+      "name": "Mustapha Idris",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-central-motor-park-katsina-2",
+      "venueId": "central-motor-park-katsina",
+      "name": "Hadiza Salihu",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-general-hospital-katsina-1",
+      "venueId": "general-hospital-katsina",
+      "name": "Asmau Sadiq",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-general-hospital-katsina-2",
+      "venueId": "general-hospital-katsina",
+      "name": "Malam Bashir",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-gobarau-minaret-1",
+      "venueId": "gobarau-minaret",
+      "name": "Jamila Bala",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-gobarau-minaret-2",
+      "venueId": "gobarau-minaret",
+      "name": "Malam Usman",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-kano-motor-park-katsina-1",
+      "venueId": "kano-motor-park-katsina",
+      "name": "Jamila Suleiman",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-kano-motor-park-katsina-2",
+      "venueId": "kano-motor-park-katsina",
+      "name": "Malam Ismail",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-kasuwar-kofar-kaura-katsina-1",
+      "venueId": "kasuwar-kofar-kaura-katsina",
+      "name": "Mustapha Magaji",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-kasuwar-kofar-kaura-katsina-2",
+      "venueId": "kasuwar-kofar-kaura-katsina",
+      "name": "Hajiya Rabi",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-katsina-eye-clinic-1",
+      "venueId": "katsina-eye-clinic",
+      "name": "Mustapha Salihu",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-katsina-eye-clinic-2",
+      "venueId": "katsina-eye-clinic",
+      "name": "Hadiza Bello",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-katsina-lga-council-1",
+      "venueId": "katsina-lga-council",
+      "name": "Asmau Tanko",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-katsina-lga-council-2",
+      "venueId": "katsina-lga-council",
+      "name": "Yusuf Gwarzo",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-katsina-new-government-house-1",
+      "venueId": "katsina-new-government-house",
+      "name": "Mustapha Abubakar",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-katsina-new-government-house-2",
+      "venueId": "katsina-new-government-house",
+      "name": "Hadiza Yakubu",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-katsina-polo-ground-1",
+      "venueId": "katsina-polo-ground",
+      "name": "Asmau Umar",
+      "role": "Park caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-katsina-polo-ground-2",
+      "venueId": "katsina-polo-ground",
+      "name": "Yusuf Sadiq",
+      "role": "Morning walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-katsina-state-house-of-assembly-1",
+      "venueId": "katsina-state-house-of-assembly",
+      "name": "Mustapha Bello",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-katsina-state-house-of-assembly-2",
+      "venueId": "katsina-state-house-of-assembly",
+      "name": "Hajiya Safiya",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-katsina-township-stadium-1",
+      "venueId": "katsina-township-stadium",
+      "name": "Jamila Gwarzo",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-katsina-township-stadium-2",
+      "venueId": "katsina-township-stadium",
+      "name": "Yusuf Suleiman",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-kofar-soro-katsina-1",
+      "venueId": "kofar-soro-katsina",
+      "name": "Shehu Bello",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-kofar-soro-katsina-2",
+      "venueId": "kofar-soro-katsina",
+      "name": "Hadiza Kabir",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-lady-m-katsina-1",
+      "venueId": "lady-m-katsina",
+      "name": "Mustapha Yakubu",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-lady-m-katsina-2",
+      "venueId": "lady-m-katsina",
+      "name": "Hadiza Gambo",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-maryam-park-katsina-1",
+      "venueId": "maryam-park-katsina",
+      "name": "Asmau Suleiman",
+      "role": "Park caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-maryam-park-katsina-2",
+      "venueId": "maryam-park-katsina",
+      "name": "Yusuf Mohammed",
+      "role": "Morning walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-modoji-central-mosque-katsina-1",
+      "venueId": "modoji-central-mosque-katsina",
+      "name": "Asmau Gwarzo",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-modoji-central-mosque-katsina-2",
+      "venueId": "modoji-central-mosque-katsina",
+      "name": "Malam Yusuf",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-muhammadu-dikko-stadium-1",
+      "venueId": "muhammadu-dikko-stadium",
+      "name": "Shehu Kabir",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-muhammadu-dikko-stadium-2",
+      "venueId": "muhammadu-dikko-stadium",
+      "name": "Hajiya Binta",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-national-museum-katsina-1",
+      "venueId": "national-museum-katsina",
+      "name": "Jamila Tanko",
+      "role": "Museum guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-national-museum-katsina-2",
+      "venueId": "national-museum-katsina",
+      "name": "Bashir Gwarzo",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-s-cafe-katsina-1",
+      "venueId": "s-cafe-katsina",
+      "name": "Asmau Bala",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-s-cafe-katsina-2",
+      "venueId": "s-cafe-katsina",
+      "name": "Yusuf Danladi",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-st-martin-de-porres-cathedral-katsina-1",
+      "venueId": "st-martin-de-porres-cathedral-katsina",
+      "name": "Mustapha Gambo",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-st-martin-de-porres-cathedral-katsina-2",
+      "venueId": "st-martin-de-porres-cathedral-katsina",
+      "name": "Hajiya Hadiza",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-uba-katsina-1",
+      "venueId": "uba-katsina",
+      "name": "Shehu Gambo",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-uba-katsina-2",
+      "venueId": "uba-katsina",
+      "name": "Hadiza Magaji",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-yusuf-bala-usman-college-katsina-1",
+      "venueId": "yusuf-bala-usman-college-katsina",
+      "name": "Shehu Yakubu",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-yusuf-bala-usman-college-katsina-2",
+      "venueId": "yusuf-bala-usman-college-katsina",
+      "name": "Safiya Gambo",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-zenith-bank-katsina-1",
+      "venueId": "zenith-bank-katsina",
+      "name": "Jamila Danladi",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    },
+    {
+      "id": "katsina-zenith-bank-katsina-2",
+      "venueId": "zenith-bank-katsina",
+      "name": "Bashir Umar",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/katsina/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "baptist-church-katsina",
+    "central-market-katsina",
+    "central-mosque-katsina",
+    "central-motor-park-katsina",
+    "general-hospital-katsina",
+    "gobarau-minaret",
+    "kano-motor-park-katsina",
+    "kasuwar-kofar-kaura-katsina",
+    "katsina-eye-clinic",
+    "katsina-lga-council",
+    "katsina-new-government-house",
+    "katsina-polo-ground",
+    "katsina-state-house-of-assembly",
+    "katsina-township-stadium",
+    "kofar-soro-katsina",
+    "lady-m-katsina",
+    "maryam-park-katsina",
+    "modoji-central-mosque-katsina",
+    "muhammadu-dikko-stadium",
+    "national-museum-katsina",
+    "s-cafe-katsina",
+    "st-martin-de-porres-cathedral-katsina",
+    "uba-katsina",
+    "yusuf-bala-usman-college-katsina",
+    "zenith-bank-katsina"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "adba674cdcc612916813d111ca3aa408961cd060b7ad40e7169cfca8effa7d96",
+    "contentSha256": "ff5756c93e586acb621a15815878591d59d733258e5d76d16ce6760bb864cfb2"
+  }
+}

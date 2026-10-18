@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "zagreb",
+    "name": "Zagreb",
+    "state": {
+      "id": "hr-zagreb",
+      "name": "Zagreb"
+    },
+    "country": {
+      "id": "hr",
+      "name": "Croatia"
+    },
+    "point": {
+      "lon": 15.9772795,
+      "lat": 45.8130967
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/croatia-261011.osm.pbf",
+      "https://ourairports.com/airports/LDZA/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/zagreb/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/zagreb/facts.ts",
+        "sha256": "96e82382a41e239d9f605880bf834d709751a0e02abf4902a4e70d5eb1cf925f"
+      },
+      {
+        "path": "src/game/cities/zagreb/index.ts",
+        "sha256": "5c0087e9793dc885db3326cfcc7943822210d15d43b316fd448f4ac533cbe802"
+      },
+      {
+        "path": "src/game/cities/zagreb/places.ts",
+        "sha256": "2d111dcca293bf26f5c69eda503d5d4e7184b80c5f2846f883723a2e6b6ed374"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.9772795,
+        "lat": 45.8130967
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "zagreb-airport-zagreb-airport",
+      "name": "Zagreb Franjo Tuđman International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.0688,
+        "lat": 45.742901
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-airport-zagreb-airport-1",
+        "zagreb-zagreb-airport-zagreb-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "zagreb-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-clinic",
+      "name": "University Psychiatric Hospital Vrapče",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.897714,
+        "lat": 45.816829
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-clinic-1",
+        "zagreb-zagreb-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/77485340"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30280455"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-community-notices",
+      "name": "Općina Kraljevec na Sutli",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.72776,
+        "lat": 45.985135
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-community-notices-1",
+        "zagreb-zagreb-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/609611254"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1067896"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-community-voting-game",
+      "name": "Općina Stubičke Toplice",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.930065,
+        "lat": 45.977438
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-community-voting-game-1",
+        "zagreb-zagreb-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/584600486"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q921726"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-community-workshop",
+      "name": "Kineziološki fakultet",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.944147,
+        "lat": 45.78603
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-community-workshop-1",
+        "zagreb-zagreb-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/320797178"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12634481"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-market-game",
+      "name": "King Cross Jankomir",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.855758,
+        "lat": 45.796585
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-market-game-1",
+        "zagreb-zagreb-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/29281136"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q38251371"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-meal-stop",
+      "name": "Noel",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.988276,
+        "lat": 45.810991
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-meal-stop-1",
+        "zagreb-zagreb-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2164248255"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q88297540"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-osm-relation-2086542",
+      "name": "Dvorac Lukavec",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.000367,
+        "lat": 45.701702
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-osm-relation-2086542-1",
+        "zagreb-zagreb-osm-relation-2086542-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/2086542"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q31200764"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-osm-relation-2680527",
+      "name": "Fakultet strojarstva i brodogradnje",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.972146,
+        "lat": 45.796392
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-osm-relation-2680527-1",
+        "zagreb-zagreb-osm-relation-2680527-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/2680527"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12630898"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-osm-way-151506756",
+      "name": "Dvorac Brezovica",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.908841,
+        "lat": 45.730244
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-osm-way-151506756-1",
+        "zagreb-zagreb-osm-way-151506756-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/151506756"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12630296"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-osm-way-261119216",
+      "name": "Stjepan Spajić",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.972165,
+        "lat": 45.771133
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-osm-way-261119216-1",
+        "zagreb-zagreb-osm-way-261119216-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/261119216"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2326106"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-osm-way-29023160",
+      "name": "Bundek",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.9908,
+        "lat": 45.784811
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-osm-way-29023160-1",
+        "zagreb-zagreb-osm-way-29023160-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/29023160"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4997513"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-osm-way-296100147",
+      "name": "Stadion Lučko",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.867818,
+        "lat": 45.76048
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-osm-way-296100147-1",
+        "zagreb-zagreb-osm-way-296100147-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/296100147"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7596318"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-osm-way-30014192",
+      "name": "Gradski stadion Velika Gorica",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.073092,
+        "lat": 45.723963
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-osm-way-30014192-1",
+        "zagreb-zagreb-osm-way-30014192-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/30014192"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7596329"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-osm-way-350664499",
+      "name": "Zdravstveno veleučilište",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.977759,
+        "lat": 45.827344
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-osm-way-350664499-1",
+        "zagreb-zagreb-osm-way-350664499-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/350664499"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12645671"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-osm-way-589021801",
+      "name": "Klinička bolnica Merkur",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.997019,
+        "lat": 45.820442
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-osm-way-589021801-1",
+        "zagreb-zagreb-osm-way-589021801-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/589021801"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30253891"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-osm-way-676820357",
+      "name": "crkva Presvetog Trojstva",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.168143,
+        "lat": 45.937152
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-osm-way-676820357-1",
+        "zagreb-zagreb-osm-way-676820357-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/676820357"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q132247610"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-osm-way-713274174",
+      "name": "kapelica Uzvišenja Svetog Križa",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.029734,
+        "lat": 45.928736
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-osm-way-713274174-1",
+        "zagreb-zagreb-osm-way-713274174-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/713274174"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q133733187"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-osm-way-761095793",
+      "name": "kapela svetog Roka",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.748984,
+        "lat": 45.743969
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-osm-way-761095793-1",
+        "zagreb-zagreb-osm-way-761095793-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/761095793"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q97288690"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-osm-way-78326996",
+      "name": "Klinička bolnica Dubrava",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.035409,
+        "lat": 45.834625
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-osm-way-78326996-1",
+        "zagreb-zagreb-osm-way-78326996-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/78326996"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5133765"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-osm-way-875744638",
+      "name": "Park mladenaca",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.966955,
+        "lat": 45.773654
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-osm-way-875744638-1",
+        "zagreb-zagreb-osm-way-875744638-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/875744638"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20526534"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-osm-way-880362547",
+      "name": "Faculty of Economics and Business",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.011509,
+        "lat": 45.816365
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-osm-way-880362547-1",
+        "zagreb-zagreb-osm-way-880362547-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/880362547"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3499665"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-quiet-reflection",
+      "name": "kapela svete Terezije od Djeteta Isusa u Trnju",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.109824,
+        "lat": 45.828281
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-quiet-reflection-1",
+        "zagreb-zagreb-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13304771994"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q132087369"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-recreation",
+      "name": "Novi dvori",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.805671,
+        "lat": 45.872001
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-recreation-1",
+        "zagreb-zagreb-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/940677492"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12638607"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "zagreb-transit",
+      "name": "Zagreb Zapadni kolodvor",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 15.954226,
+        "lat": 45.809113
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "zagreb-zagreb-transit-1",
+        "zagreb-zagreb-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/zagreb/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5627130421"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12645488"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "zagreb-zagreb-airport-zagreb-airport-1",
+      "venueId": "zagreb-airport-zagreb-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-airport-zagreb-airport-2",
+      "venueId": "zagreb-airport-zagreb-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-clinic-1",
+      "venueId": "zagreb-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-clinic-2",
+      "venueId": "zagreb-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-community-notices-1",
+      "venueId": "zagreb-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-community-notices-2",
+      "venueId": "zagreb-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-community-voting-game-1",
+      "venueId": "zagreb-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-community-voting-game-2",
+      "venueId": "zagreb-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-community-workshop-1",
+      "venueId": "zagreb-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-community-workshop-2",
+      "venueId": "zagreb-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-market-game-1",
+      "venueId": "zagreb-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-market-game-2",
+      "venueId": "zagreb-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-meal-stop-1",
+      "venueId": "zagreb-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-meal-stop-2",
+      "venueId": "zagreb-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-relation-2086542-1",
+      "venueId": "zagreb-osm-relation-2086542",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-relation-2086542-2",
+      "venueId": "zagreb-osm-relation-2086542",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-relation-2680527-1",
+      "venueId": "zagreb-osm-relation-2680527",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-relation-2680527-2",
+      "venueId": "zagreb-osm-relation-2680527",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-151506756-1",
+      "venueId": "zagreb-osm-way-151506756",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-151506756-2",
+      "venueId": "zagreb-osm-way-151506756",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-261119216-1",
+      "venueId": "zagreb-osm-way-261119216",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-261119216-2",
+      "venueId": "zagreb-osm-way-261119216",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-29023160-1",
+      "venueId": "zagreb-osm-way-29023160",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-29023160-2",
+      "venueId": "zagreb-osm-way-29023160",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-296100147-1",
+      "venueId": "zagreb-osm-way-296100147",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-296100147-2",
+      "venueId": "zagreb-osm-way-296100147",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-30014192-1",
+      "venueId": "zagreb-osm-way-30014192",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-30014192-2",
+      "venueId": "zagreb-osm-way-30014192",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-350664499-1",
+      "venueId": "zagreb-osm-way-350664499",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-350664499-2",
+      "venueId": "zagreb-osm-way-350664499",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-589021801-1",
+      "venueId": "zagreb-osm-way-589021801",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-589021801-2",
+      "venueId": "zagreb-osm-way-589021801",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-676820357-1",
+      "venueId": "zagreb-osm-way-676820357",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-676820357-2",
+      "venueId": "zagreb-osm-way-676820357",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-713274174-1",
+      "venueId": "zagreb-osm-way-713274174",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-713274174-2",
+      "venueId": "zagreb-osm-way-713274174",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-761095793-1",
+      "venueId": "zagreb-osm-way-761095793",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-761095793-2",
+      "venueId": "zagreb-osm-way-761095793",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-78326996-1",
+      "venueId": "zagreb-osm-way-78326996",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-78326996-2",
+      "venueId": "zagreb-osm-way-78326996",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-875744638-1",
+      "venueId": "zagreb-osm-way-875744638",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-875744638-2",
+      "venueId": "zagreb-osm-way-875744638",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-880362547-1",
+      "venueId": "zagreb-osm-way-880362547",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-osm-way-880362547-2",
+      "venueId": "zagreb-osm-way-880362547",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-quiet-reflection-1",
+      "venueId": "zagreb-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-quiet-reflection-2",
+      "venueId": "zagreb-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-recreation-1",
+      "venueId": "zagreb-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-recreation-2",
+      "venueId": "zagreb-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-transit-1",
+      "venueId": "zagreb-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    },
+    {
+      "id": "zagreb-zagreb-transit-2",
+      "venueId": "zagreb-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/zagreb/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "zagreb-airport-zagreb-airport",
+    "zagreb-clinic",
+    "zagreb-community-notices",
+    "zagreb-community-voting-game",
+    "zagreb-community-workshop",
+    "zagreb-market-game",
+    "zagreb-meal-stop",
+    "zagreb-osm-relation-2086542",
+    "zagreb-osm-relation-2680527",
+    "zagreb-osm-way-151506756",
+    "zagreb-osm-way-261119216",
+    "zagreb-osm-way-29023160",
+    "zagreb-osm-way-296100147",
+    "zagreb-osm-way-30014192",
+    "zagreb-osm-way-350664499",
+    "zagreb-osm-way-589021801",
+    "zagreb-osm-way-676820357",
+    "zagreb-osm-way-713274174",
+    "zagreb-osm-way-761095793",
+    "zagreb-osm-way-78326996",
+    "zagreb-osm-way-875744638",
+    "zagreb-osm-way-880362547",
+    "zagreb-quiet-reflection",
+    "zagreb-recreation",
+    "zagreb-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "8810867793091794655326eb6e46b6a641e5df7b26013f456fcd8aa90f8cb290",
+    "contentSha256": "db7286f176d4b2d133ba59ad8233d2b1ffcec76ad35d33fdf7ca54ffce4a95b8"
+  }
+}

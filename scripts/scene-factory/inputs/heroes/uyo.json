@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "uyo",
+  "url": "/assets/scene-heroes/uyo.glb",
+  "sha256": "24ee8d28e6390471dd006d8b70b9565344941f5a54a47ceab88cf383926f50d0",
+  "rawBytes": 27292,
+  "brotliBytes": 18162,
+  "triangles": 724,
+  "parts": [
+    {
+      "node": "uyo",
+      "triangles": 724,
+      "bounds": {
+        "min": [
+          -2.16138816,
+          0,
+          -1.70653629
+        ],
+        "max": [
+          2.1613879846259993,
+          2.50004907345,
+          1.7064594635699997
+        ]
+      },
+      "footprint": [
+        -2.16138816,
+        -1.70653629,
+        2.1613879846259993,
+        1.7064594635699997
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "29d7cfc3953c4039dcb93540d585dbaf0415a2e3c8070300d5da9fc4f160a4a1"
+  },
+  "inputs": {
+    "rawSha256": "cafd67be49095d580ed58406b308cbf547402edcdb519d120253b49e68616f8f",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "uyo",
+      "country": "ng",
+      "name": "Akpan Andem Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://akwaibomstate.gov.ng/construction-of-ndiya-streets-internal-roads-drainages-and-installation-of-solar-lighting-in-akpan-andem-market-in-uyo/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-final40-primary-r3.json#records[city_id=uyo]",
+      "sourceLicence": "Unknown; factual text used only. No external geometry, photos or maps reused.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 4714807,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "State project page documents internal street/road works within Akpan Andem Market, Uyo. Market activity only; no architecture or actual goods/layout reproduced. Direct primary text opened in this round: project page title and opening text. Evidence artifact SHA256 6694bdd3e4c9b76c462cf1cf30a1d817fcf931346b3e93d3d651fc95c022e875. Repository source path: src/game/cities/uyo/spec.ts. Original procedural fragment, not a surveyed site, full landmark replica or current-access/operation claim. Dimensions, colours, counts and layout are art direction, not sourced measurements. No external map, photograph, sculpture or mesh copied. Unknown source rights do not confer external geometry rights. Geometry AGPL-3.0-or-later; production and decoded geometry/byte approval remain pending.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "niger-delta"
+      }
+    },
+    "styleSha256": "1902dd85951c318abbc7c314dd156b4b99571d7c04678c0b6d3eb727b98a78a4"
+  }
+}

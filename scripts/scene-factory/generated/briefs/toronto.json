@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "toronto",
+    "name": "Toronto",
+    "state": {
+      "id": "ca-toronto",
+      "name": "Toronto"
+    },
+    "country": {
+      "id": "ca",
+      "name": "Canada"
+    },
+    "point": {
+      "lon": -79.3839347,
+      "lat": 43.6534817
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/north-america/canada/ontario-261011.osm.pbf",
+      "https://ourairports.com/airports/CYYZ/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/toronto/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/toronto/facts.ts",
+        "sha256": "b0fa71ec6082d189fed419790ffb197e5cb44ba47d995e7f814a3a95e3bf1705"
+      },
+      {
+        "path": "src/game/cities/toronto/index.ts",
+        "sha256": "5e87cd16273c77d319f51cc18ae023ad46078ace147313f82ac6afa1ca14b724"
+      },
+      {
+        "path": "src/game/cities/toronto/places.ts",
+        "sha256": "58d234e5bb56f7317a72f4b096ceca1148afef602d727061c22a94a5585aab6f"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.3839347,
+        "lat": 43.6534817
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "toronto-airport-toronto-airport",
+      "name": "Toronto Pearson International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.629421,
+        "lat": 43.675935
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-airport-toronto-airport-1",
+        "toronto-toronto-airport-toronto-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "toronto-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-clinic",
+      "name": "Scarborough Health Network - Centenary Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.204445,
+        "lat": 43.780469
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-clinic-1",
+        "toronto-toronto-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/5520155"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7370778"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-community-notices",
+      "name": "Archives of Ontario",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.500381,
+        "lat": 43.775062
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-community-notices-1",
+        "toronto-toronto-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8153684524"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2860571"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-community-voting-game",
+      "name": "Etobicoke Civic Centre",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.565292,
+        "lat": 43.643606
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-community-voting-game-1",
+        "toronto-toronto-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/79664993"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5404735"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-community-workshop",
+      "name": "Toronto Public Library - North York Central Library",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.414799,
+        "lat": 43.768131
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-community-workshop-1",
+        "toronto-toronto-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/349203862"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7057444"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-market-game",
+      "name": "Woodbine Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.600081,
+        "lat": 43.720484
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-market-game-1",
+        "toronto-toronto-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/29466121"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q8032368"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-meal-stop",
+      "name": "Tiflisi",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.301594,
+        "lat": 43.66981
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-meal-stop-1",
+        "toronto-toronto-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10866107005"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q123134287"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-osm-node-2424870841",
+      "name": "Legoland Discovery Centre",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.535428,
+        "lat": 43.825167
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-osm-node-2424870841-1",
+        "toronto-toronto-osm-node-2424870841-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2424870841"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q303439"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-osm-node-5369170123",
+      "name": "Shoushin",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.404099,
+        "lat": 43.731448
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-osm-node-5369170123-1",
+        "toronto-toronto-osm-node-5369170123-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5369170123"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q121335400"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-osm-relation-11005099",
+      "name": "Centreville",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.372884,
+        "lat": 43.620192
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-osm-relation-11005099-1",
+        "toronto-toronto-osm-relation-11005099-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/11005099"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5062718"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-osm-way-299944185",
+      "name": "Mississauga Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.608369,
+        "lat": 43.571654
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-osm-way-299944185-1",
+        "toronto-toronto-osm-way-299944185-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/299944185"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7842042"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-osm-way-30082934",
+      "name": "Lawrence Allen Centre",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.447191,
+        "lat": 43.716767
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-osm-way-30082934-1",
+        "toronto-toronto-osm-way-30082934-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/30082934"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6504607"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-osm-way-33711256",
+      "name": "Colonel Samuel Smith Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.513894,
+        "lat": 43.593044
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-osm-way-33711256-1",
+        "toronto-toronto-osm-way-33711256-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/33711256"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5148172"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-osm-way-35545706",
+      "name": "Birchmount Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.260721,
+        "lat": 43.695824
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-osm-way-35545706-1",
+        "toronto-toronto-osm-way-35545706-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/35545706"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4915761"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-osm-way-60483157",
+      "name": "Toronto and Region Islamic Congregation",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.51598,
+        "lat": 43.717965
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-osm-way-60483157-1",
+        "toronto-toronto-osm-way-60483157-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/60483157"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7826581"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-osm-way-61956858",
+      "name": "Heintzman House",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.416305,
+        "lat": 43.823834
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-osm-way-61956858-1",
+        "toronto-toronto-osm-way-61956858-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/61956858"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5700514"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-osm-way-656128849",
+      "name": "Edwards Gardens",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.358766,
+        "lat": 43.731429
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-osm-way-656128849-1",
+        "toronto-toronto-osm-way-656128849-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/656128849"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3048736"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-osm-way-661050155",
+      "name": "Pacific Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.306281,
+        "lat": 43.826192
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-osm-way-661050155-1",
+        "toronto-toronto-osm-way-661050155-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/661050155"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7122551"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-osm-way-681295729",
+      "name": "Scarborough Health Network - General Campus",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.248282,
+        "lat": 43.756475
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-osm-way-681295729-1",
+        "toronto-toronto-osm-way-681295729-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/681295729"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7762393"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-osm-way-702100748",
+      "name": "Tyndale University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.390782,
+        "lat": 43.797941
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-osm-way-702100748-1",
+        "toronto-toronto-osm-way-702100748-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/702100748"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13428647"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-osm-way-703666033",
+      "name": "Seneca Polytechnic",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.349845,
+        "lat": 43.796693
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-osm-way-703666033-1",
+        "toronto-toronto-osm-way-703666033-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/703666033"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7450279"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-osm-way-85544826",
+      "name": "Holy Family Catholic Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.434517,
+        "lat": 43.637734
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-osm-way-85544826-1",
+        "toronto-toronto-osm-way-85544826-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/85544826"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5885505"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-quiet-reflection",
+      "name": "Knox Presbyterian Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.281387,
+        "lat": 43.785296
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-quiet-reflection-1",
+        "toronto-toronto-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/67140605"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6423579"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-recreation",
+      "name": "Étienne Brûlé Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.490348,
+        "lat": 43.651916
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-recreation-1",
+        "toronto-toronto-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/364925801"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q14875147"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "toronto-transit",
+      "name": "Bay",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -79.390269,
+        "lat": 43.670185
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "toronto-toronto-transit-1",
+        "toronto-toronto-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/toronto/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/25991314"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q812059"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "toronto-toronto-airport-toronto-airport-1",
+      "venueId": "toronto-airport-toronto-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-airport-toronto-airport-2",
+      "venueId": "toronto-airport-toronto-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-clinic-1",
+      "venueId": "toronto-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-clinic-2",
+      "venueId": "toronto-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-community-notices-1",
+      "venueId": "toronto-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-community-notices-2",
+      "venueId": "toronto-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-community-voting-game-1",
+      "venueId": "toronto-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-community-voting-game-2",
+      "venueId": "toronto-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-community-workshop-1",
+      "venueId": "toronto-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-community-workshop-2",
+      "venueId": "toronto-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-market-game-1",
+      "venueId": "toronto-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-market-game-2",
+      "venueId": "toronto-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-meal-stop-1",
+      "venueId": "toronto-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-meal-stop-2",
+      "venueId": "toronto-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-node-2424870841-1",
+      "venueId": "toronto-osm-node-2424870841",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-node-2424870841-2",
+      "venueId": "toronto-osm-node-2424870841",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-node-5369170123-1",
+      "venueId": "toronto-osm-node-5369170123",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-node-5369170123-2",
+      "venueId": "toronto-osm-node-5369170123",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-relation-11005099-1",
+      "venueId": "toronto-osm-relation-11005099",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-relation-11005099-2",
+      "venueId": "toronto-osm-relation-11005099",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-299944185-1",
+      "venueId": "toronto-osm-way-299944185",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-299944185-2",
+      "venueId": "toronto-osm-way-299944185",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-30082934-1",
+      "venueId": "toronto-osm-way-30082934",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-30082934-2",
+      "venueId": "toronto-osm-way-30082934",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-33711256-1",
+      "venueId": "toronto-osm-way-33711256",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-33711256-2",
+      "venueId": "toronto-osm-way-33711256",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-35545706-1",
+      "venueId": "toronto-osm-way-35545706",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-35545706-2",
+      "venueId": "toronto-osm-way-35545706",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-60483157-1",
+      "venueId": "toronto-osm-way-60483157",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-60483157-2",
+      "venueId": "toronto-osm-way-60483157",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-61956858-1",
+      "venueId": "toronto-osm-way-61956858",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-61956858-2",
+      "venueId": "toronto-osm-way-61956858",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-656128849-1",
+      "venueId": "toronto-osm-way-656128849",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-656128849-2",
+      "venueId": "toronto-osm-way-656128849",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-661050155-1",
+      "venueId": "toronto-osm-way-661050155",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-661050155-2",
+      "venueId": "toronto-osm-way-661050155",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-681295729-1",
+      "venueId": "toronto-osm-way-681295729",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-681295729-2",
+      "venueId": "toronto-osm-way-681295729",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-702100748-1",
+      "venueId": "toronto-osm-way-702100748",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-702100748-2",
+      "venueId": "toronto-osm-way-702100748",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-703666033-1",
+      "venueId": "toronto-osm-way-703666033",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-703666033-2",
+      "venueId": "toronto-osm-way-703666033",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-85544826-1",
+      "venueId": "toronto-osm-way-85544826",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-osm-way-85544826-2",
+      "venueId": "toronto-osm-way-85544826",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-quiet-reflection-1",
+      "venueId": "toronto-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-quiet-reflection-2",
+      "venueId": "toronto-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-recreation-1",
+      "venueId": "toronto-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-recreation-2",
+      "venueId": "toronto-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-transit-1",
+      "venueId": "toronto-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    },
+    {
+      "id": "toronto-toronto-transit-2",
+      "venueId": "toronto-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/toronto/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "toronto-airport-toronto-airport",
+    "toronto-clinic",
+    "toronto-community-notices",
+    "toronto-community-voting-game",
+    "toronto-community-workshop",
+    "toronto-market-game",
+    "toronto-meal-stop",
+    "toronto-osm-node-2424870841",
+    "toronto-osm-node-5369170123",
+    "toronto-osm-relation-11005099",
+    "toronto-osm-way-299944185",
+    "toronto-osm-way-30082934",
+    "toronto-osm-way-33711256",
+    "toronto-osm-way-35545706",
+    "toronto-osm-way-60483157",
+    "toronto-osm-way-61956858",
+    "toronto-osm-way-656128849",
+    "toronto-osm-way-661050155",
+    "toronto-osm-way-681295729",
+    "toronto-osm-way-702100748",
+    "toronto-osm-way-703666033",
+    "toronto-osm-way-85544826",
+    "toronto-quiet-reflection",
+    "toronto-recreation",
+    "toronto-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "43dc8e840103a3e77c5b5291cb86af6a818a96eeaa91fa8aa893daa3e57e62b7",
+    "contentSha256": "cd35126016de8b09bf4d324fcee50672e188fc7243e16da6de244c182896b7ee"
+  }
+}

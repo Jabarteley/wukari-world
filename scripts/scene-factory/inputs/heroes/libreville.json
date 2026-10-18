@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "libreville",
+  "url": "/assets/scene-heroes/libreville.glb",
+  "sha256": "d5ef6937b6090e67a8b428dbd9583d7c20e9c83c5dade4c5711af00392bc5ae8",
+  "rawBytes": 33536,
+  "brotliBytes": 19667,
+  "triangles": 1168,
+  "parts": [
+    {
+      "node": "libreville",
+      "triangles": 1168,
+      "bounds": {
+        "min": [
+          -1.67338717,
+          0,
+          -1.8817203
+        ],
+        "max": [
+          1.673348133231,
+          2.500001393717,
+          1.8817201882169998
+        ]
+      },
+      "footprint": [
+        -1.67338717,
+        -1.8817203,
+        1.673348133231,
+        1.8817201882169998
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "fc52fcd31a6a0f6232071f06ba078fc350a270ad2e48d4d2becdff31e3e24959"
+  },
+  "inputs": {
+    "rawSha256": "57bcfbca1559529571fe0c465b784fc870a10eaa8c85009c8d6a061cbb42d1bf",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "libreville",
+      "country": "ga",
+      "name": "Marché Mont-Bouët",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/node/14082088074"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=libreville]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 181067,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Exact candidate/name alias match and amenity=marketplace support feature identity/category. Object node/14082088074, version 1, timestamp 2026-08-09T13:29:30Z; response SHA256 75865d0af0d6ec3772537b184d58062ba4a14c5a16a601b211a37ae8e925a84f. Source path: src/game/cities/libreville/places.ts. Empty counters, racks and awnings indicate trade. No goods, original shop plan, actual number of stalls or current operation are inferred. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "gulf-guinea"
+      }
+    },
+    "styleSha256": "2fdffb74f7375d9e1754151b92a51e85d0f902aaa4e0c8a647b3a33364eccaa9"
+  }
+}

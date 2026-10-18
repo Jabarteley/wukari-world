@@ -1,0 +1,1013 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "chagos",
+    "name": "Île Boddam",
+    "state": {
+      "id": "io",
+      "name": "Île Boddam"
+    },
+    "country": {
+      "id": "io",
+      "name": "British Indian Ocean Territory"
+    },
+    "point": {
+      "lon": 72.2049217,
+      "lat": -5.3574343
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF",
+    "sourceUrls": [
+      "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-british-indian-ocean-territory-261013.osm.pbf",
+      "https://www.openstreetmap.org/node/6436644966"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/chagos/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/chagos/facts.ts",
+        "sha256": "cc61721114ad9706e494fba8bf3d4d272c9694a7ce39ab41afbf860756297d87"
+      },
+      {
+        "path": "src/game/cities/chagos/index.ts",
+        "sha256": "0582e865f6dd1e8ef49bf4ede43531ca5c655fba632cddb1f5ee1550d891855b"
+      },
+      {
+        "path": "src/game/cities/chagos/places.ts",
+        "sha256": "c40b6dc6406e4733e5fa8c38dfbf9533b1513e6439fddb80346376a46cc985ee"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue chagos-clinic has no mapped place source record.",
+      "Venue chagos-community-notices has no mapped place source record.",
+      "Venue chagos-community-voting-game has no mapped place source record.",
+      "Venue chagos-community-workshop has no mapped place source record.",
+      "Venue chagos-market-game has no mapped place source record.",
+      "Venue chagos-meal-stop has no mapped place source record.",
+      "Venue chagos-quiet-reflection has no mapped place source record.",
+      "Venue chagos-recreation has no mapped place source record.",
+      "Venue chagos-transit has no mapped place source record.",
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "chagos-airport-chagos-airport",
+      "name": "Île Boddam",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 72.207191,
+        "lat": -5.3556818
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "chagos-chagos-airport-chagos-airport-1",
+        "chagos-chagos-airport-chagos-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/chagos/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "chagos-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "chagos-clinic",
+      "name": "Clinic (game venue)",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 72.2049217,
+        "lat": -5.358333620363727
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "chagos-chagos-clinic-1",
+        "chagos-chagos-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue chagos-clinic has no mapped place source record."
+      }
+    },
+    {
+      "id": "chagos-community-notices",
+      "name": "Community notices (game venue)",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 72.2049217,
+        "lat": -5.3556356592725525
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "chagos-chagos-community-notices-1",
+        "chagos-chagos-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue chagos-community-notices has no mapped place source record."
+      }
+    },
+    {
+      "id": "chagos-community-voting-game",
+      "name": "Community voting simulation (game venue)",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 72.20674276101037,
+        "lat": -5.357434300000001
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "chagos-chagos-community-voting-game-1",
+        "chagos-chagos-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue chagos-community-voting-game has no mapped place source record."
+      }
+    },
+    {
+      "id": "chagos-community-workshop",
+      "name": "Community workshop (game venue)",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 72.2049217,
+        "lat": -5.356534979636276
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "chagos-chagos-community-workshop-1",
+        "chagos-chagos-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue chagos-community-workshop has no mapped place source record."
+      }
+    },
+    {
+      "id": "chagos-market-game",
+      "name": "Market game (game venue)",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 72.20401116949482,
+        "lat": -5.356534979636276
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "chagos-chagos-market-game-1",
+        "chagos-chagos-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue chagos-market-game has no mapped place source record."
+      }
+    },
+    {
+      "id": "chagos-meal-stop",
+      "name": "Visitor meal stop (game venue)",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 72.20401116949482,
+        "lat": -5.357434300000001
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "chagos-chagos-meal-stop-1",
+        "chagos-chagos-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue chagos-meal-stop has no mapped place source record."
+      }
+    },
+    {
+      "id": "chagos-osm-node-5194716720",
+      "name": "Black Rose",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 72.267292,
+        "lat": -5.335827
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "chagos-chagos-osm-node-5194716720-1",
+        "chagos-chagos-osm-node-5194716720-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/chagos/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5194716720"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "chagos-quiet-reflection",
+      "name": "Quiet reflection space (game venue)",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 72.20401116949482,
+        "lat": -5.358333620363727
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "chagos-chagos-quiet-reflection-1",
+        "chagos-chagos-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue chagos-quiet-reflection has no mapped place source record."
+      }
+    },
+    {
+      "id": "chagos-recreation",
+      "name": "Recreation area (game venue)",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 72.20583223050518,
+        "lat": -5.356534979636276
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "chagos-chagos-recreation-1",
+        "chagos-chagos-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue chagos-recreation has no mapped place source record."
+      }
+    },
+    {
+      "id": "chagos-transit",
+      "name": "City transit stop (game venue)",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 72.20583223050518,
+        "lat": -5.357434300000001
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "chagos-chagos-transit-1",
+        "chagos-chagos-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue chagos-transit has no mapped place source record."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 72.2049217,
+        "lat": -5.357434300000001
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "chagos-chagos-airport-chagos-airport-1",
+      "venueId": "chagos-airport-chagos-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-airport-chagos-airport-2",
+      "venueId": "chagos-airport-chagos-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-clinic-1",
+      "venueId": "chagos-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-clinic-2",
+      "venueId": "chagos-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-community-notices-1",
+      "venueId": "chagos-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-community-notices-2",
+      "venueId": "chagos-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-community-voting-game-1",
+      "venueId": "chagos-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-community-voting-game-2",
+      "venueId": "chagos-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-community-workshop-1",
+      "venueId": "chagos-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-community-workshop-2",
+      "venueId": "chagos-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-market-game-1",
+      "venueId": "chagos-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-market-game-2",
+      "venueId": "chagos-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-meal-stop-1",
+      "venueId": "chagos-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-meal-stop-2",
+      "venueId": "chagos-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-osm-node-5194716720-1",
+      "venueId": "chagos-osm-node-5194716720",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-osm-node-5194716720-2",
+      "venueId": "chagos-osm-node-5194716720",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-quiet-reflection-1",
+      "venueId": "chagos-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-quiet-reflection-2",
+      "venueId": "chagos-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-recreation-1",
+      "venueId": "chagos-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-recreation-2",
+      "venueId": "chagos-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-transit-1",
+      "venueId": "chagos-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    },
+    {
+      "id": "chagos-chagos-transit-2",
+      "venueId": "chagos-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/chagos/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "chagos-airport-chagos-airport",
+    "chagos-clinic",
+    "chagos-community-notices",
+    "chagos-community-voting-game",
+    "chagos-community-workshop",
+    "chagos-market-game",
+    "chagos-meal-stop",
+    "chagos-osm-node-5194716720",
+    "chagos-quiet-reflection",
+    "chagos-recreation",
+    "chagos-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "48b9da2540aabe84aee18c7be591bb0838e60f9957fe6f7fb070a40c328e016c",
+    "contentSha256": "fc638c597d393fa97c9c5334af41fe894d7e791f1ec971e572b756d550e42193"
+  }
+}

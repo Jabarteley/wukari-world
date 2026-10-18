@@ -1,0 +1,2340 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "yenagoa",
+    "name": "Yenagoa",
+    "state": {
+      "id": "bayelsa",
+      "name": "Bayelsa"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 6.2747786,
+      "lat": 4.9334651
+    }
+  },
+  "style": {
+    "region": "niger-delta",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/yenagoa/content.ts",
+        "sha256": "7f91bd1959ad4877f91d0f824faf78fad41b3b480c6c8ae1f4b9616009f1e6b7"
+      },
+      {
+        "path": "src/game/cities/yenagoa/index.ts",
+        "sha256": "38daf197e114fdfe3f8b9d2a8c486d32872505ff1092e2e1f29bce8e33d74bd1"
+      },
+      {
+        "path": "src/game/cities/yenagoa/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/yenagoa/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for yenagoa.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "alamieyesiegha-castle",
+      "name": "Alamieyesiegha Castle",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.3432974,
+        "lat": 4.9488503
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-alamieyesiegha-castle-1",
+        "yenagoa-alamieyesiegha-castle-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "bayelsa-state-government-house",
+      "name": "Bayelsa State Government House",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.273777777777778,
+        "lat": 4.941916666666667
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-bayelsa-state-government-house-1",
+        "yenagoa-bayelsa-state-government-house-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "bayelsa-state-high-court",
+      "name": "Bayelsa State High Court of Justice",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.2723455,
+        "lat": 4.9342665
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-bayelsa-state-high-court-1",
+        "yenagoa-bayelsa-state-high-court-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "bayelsa-state-secretariat",
+      "name": "State Secretariat Complex",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.2729758,
+        "lat": 4.9375265
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-bayelsa-state-secretariat-1",
+        "yenagoa-bayelsa-state-secretariat-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "braids-salon-yenagoa",
+      "name": "Braids",
+      "kind": "salon",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.332413,
+        "lat": 4.9477395
+      },
+      "spots": [
+        {
+          "id": "chair",
+          "name": "Styling chair"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "chair",
+          "name": "Styling chair",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-braids-salon-yenagoa-1",
+        "yenagoa-braids-salon-yenagoa-2"
+      ],
+      "scene": {
+        "kind": "salon",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "crunchies-yenagoa",
+      "name": "Crunchies",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.3122889,
+        "lat": 4.9374678
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-crunchies-yenagoa-1",
+        "yenagoa-crunchies-yenagoa-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "diete-koki-memorial-hospital",
+      "name": "Diete-Koki Memorial Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.3373897,
+        "lat": 4.9448553
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-diete-koki-memorial-hospital-1",
+        "yenagoa-diete-koki-memorial-hospital-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "ekeki-central-mosque",
+      "name": "Ekeki Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.297072,
+        "lat": 4.927757
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-ekeki-central-mosque-1",
+        "yenagoa-ekeki-central-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "ekeki-motor-park",
+      "name": "Ekeki Motor Park",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.29521,
+        "lat": 4.9289213
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-ekeki-motor-park-1",
+        "yenagoa-ekeki-motor-park-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "first-bank-yenagoa",
+      "name": "First Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.2844911,
+        "lat": 4.9342131
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-first-bank-yenagoa-1",
+        "yenagoa-first-bank-yenagoa-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "gabriel-okara-cultural-centre",
+      "name": "Gabriel Okara Cultural Centre",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.2690585,
+        "lat": 4.9345428
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor point"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor point",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-gabriel-okara-cultural-centre-1",
+        "yenagoa-gabriel-okara-cultural-centre-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.394087533691932,
+        "lat": 5.067402288709624
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "igbogene-field",
+      "name": "Igbogene Field",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.398331,
+        "lat": 5.0351929
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Public area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Public area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-igbogene-field-1",
+        "yenagoa-igbogene-field-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "institute-of-science-technology-yenagoa",
+      "name": "Institute of Science and Technology, Yenagoa",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.2818633,
+        "lat": 4.9317639
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-institute-of-science-technology-yenagoa-1",
+        "yenagoa-institute-of-science-technology-yenagoa-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "may-exclusive-paradise-yenagoa",
+      "name": "May Exclusive Paradise",
+      "kind": "salon",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.3530307,
+        "lat": 4.9538716
+      },
+      "spots": [
+        {
+          "id": "chair",
+          "name": "Styling chair"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "chair",
+          "name": "Styling chair",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-may-exclusive-paradise-yenagoa-1",
+        "yenagoa-may-exclusive-paradise-yenagoa-2"
+      ],
+      "scene": {
+        "kind": "salon",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "melford-okilo-memorial-hospital",
+      "name": "Melford Okilo Memorial Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.279358,
+        "lat": 4.9320159
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-melford-okilo-memorial-hospital-1",
+        "yenagoa-melford-okilo-memorial-hospital-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "national-museum-yenagoa",
+      "name": "National Museum, Yenagoa",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.271741727507022,
+        "lat": 4.935923817645316
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-national-museum-yenagoa-1",
+        "yenagoa-national-museum-yenagoa-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "onopa-market-yenagoa",
+      "name": "Onopa Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.280834,
+        "lat": 4.941019
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-onopa-market-yenagoa-1",
+        "yenagoa-onopa-market-yenagoa-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "opolo-mosque-yenagoa",
+      "name": "Opolo Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.3365863,
+        "lat": 4.9439049
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-opolo-mosque-yenagoa-1",
+        "yenagoa-opolo-mosque-yenagoa-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "opolo-motor-park",
+      "name": "Opolo Motor Park",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.334159,
+        "lat": 4.9484499
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-opolo-motor-park-1",
+        "yenagoa-opolo-motor-park-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "pepperoni-yenagoa",
+      "name": "Pepperoni",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.339907,
+        "lat": 4.9503242
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-pepperoni-yenagoa-1",
+        "yenagoa-pepperoni-yenagoa-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "samson-siasia-stadium",
+      "name": "Samson Siasia Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.2668956,
+        "lat": 4.9327913
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-samson-siasia-stadium-1",
+        "yenagoa-samson-siasia-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "st-johns-catholic-yenagoa",
+      "name": "St John's Catholic Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.4029474,
+        "lat": 5.034969
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-st-johns-catholic-yenagoa-1",
+        "yenagoa-st-johns-catholic-yenagoa-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "st-lukes-anglican-yenagoa",
+      "name": "St Lukes Anglican Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.3028337,
+        "lat": 4.9270008
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-st-lukes-anglican-yenagoa-1",
+        "yenagoa-st-lukes-anglican-yenagoa-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "st-patrick-catholic-yenagoa",
+      "name": "St. Patrick Catholic Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.3065703,
+        "lat": 4.9260513
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-st-patrick-catholic-yenagoa-1",
+        "yenagoa-st-patrick-catholic-yenagoa-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "swale-market-yenagoa",
+      "name": "Swale Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.266774,
+        "lat": 4.918839
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-swale-market-yenagoa-1",
+        "yenagoa-swale-market-yenagoa-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "uba-bank-yenagoa",
+      "name": "UBA Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.2897329,
+        "lat": 4.9305819
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-uba-bank-yenagoa-1",
+        "yenagoa-uba-bank-yenagoa-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "university-of-africa-toru-orua",
+      "name": "University of Africa, Toru-Orua",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.2748,
+        "lat": 4.9212
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-university-of-africa-toru-orua-1",
+        "yenagoa-university-of-africa-toru-orua-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    },
+    {
+      "id": "zenith-bank-yenagoa",
+      "name": "Zenith Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.3141554,
+        "lat": 4.9383942
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "yenagoa-zenith-bank-yenagoa-1",
+        "yenagoa-zenith-bank-yenagoa-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for yenagoa."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "yenagoa-alamieyesiegha-castle-1",
+      "venueId": "alamieyesiegha-castle",
+      "name": "Ebi Ikoli",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-alamieyesiegha-castle-2",
+      "venueId": "alamieyesiegha-castle",
+      "name": "Dimiebi Oweikpodor",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-bayelsa-state-government-house-1",
+      "venueId": "bayelsa-state-government-house",
+      "name": "Ine Biriyai",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-bayelsa-state-government-house-2",
+      "venueId": "bayelsa-state-government-house",
+      "name": "Boma Ebiegberi",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-bayelsa-state-high-court-1",
+      "venueId": "bayelsa-state-high-court",
+      "name": "Tamuno Preowei",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-bayelsa-state-high-court-2",
+      "venueId": "bayelsa-state-high-court",
+      "name": "Tonyeme Egbe",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-bayelsa-state-secretariat-1",
+      "venueId": "bayelsa-state-secretariat",
+      "name": "Ine Ogoriba",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-bayelsa-state-secretariat-2",
+      "venueId": "bayelsa-state-secretariat",
+      "name": "Boma Dikio",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-braids-salon-yenagoa-1",
+      "venueId": "braids-salon-yenagoa",
+      "name": "Tamuno Okoko",
+      "role": "Stylist",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-braids-salon-yenagoa-2",
+      "venueId": "braids-salon-yenagoa",
+      "name": "Tonyeme Amgbare",
+      "role": "Client",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-crunchies-yenagoa-1",
+      "venueId": "crunchies-yenagoa",
+      "name": "Ine Ebiegberi",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-crunchies-yenagoa-2",
+      "venueId": "crunchies-yenagoa",
+      "name": "Boma Ekiyor",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-diete-koki-memorial-hospital-1",
+      "venueId": "diete-koki-memorial-hospital",
+      "name": "Ine Ere",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-diete-koki-memorial-hospital-2",
+      "venueId": "diete-koki-memorial-hospital",
+      "name": "Boma Ogoriba",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-ekeki-central-mosque-1",
+      "venueId": "ekeki-central-mosque",
+      "name": "Ine Dikio",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-ekeki-central-mosque-2",
+      "venueId": "ekeki-central-mosque",
+      "name": "Boma Pere",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-ekeki-motor-park-1",
+      "venueId": "ekeki-motor-park",
+      "name": "Biriyai Ebiegberi",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-ekeki-motor-park-2",
+      "venueId": "ekeki-motor-park",
+      "name": "Tarila Ekiyor",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-first-bank-yenagoa-1",
+      "venueId": "first-bank-yenagoa",
+      "name": "Ebi Oweikpodor",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-first-bank-yenagoa-2",
+      "venueId": "first-bank-yenagoa",
+      "name": "Dimiebi Okoko",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-gabriel-okara-cultural-centre-1",
+      "venueId": "gabriel-okara-cultural-centre",
+      "name": "Biriyai Ogoriba",
+      "role": "Site attendant",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-gabriel-okara-cultural-centre-2",
+      "venueId": "gabriel-okara-cultural-centre",
+      "name": "Tarila Dikio",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-igbogene-field-1",
+      "venueId": "igbogene-field",
+      "name": "Ine Pere",
+      "role": "Park caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-igbogene-field-2",
+      "venueId": "igbogene-field",
+      "name": "Boma Ere",
+      "role": "Morning walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-institute-of-science-technology-yenagoa-1",
+      "venueId": "institute-of-science-technology-yenagoa",
+      "name": "Biriyai Biriyai",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-institute-of-science-technology-yenagoa-2",
+      "venueId": "institute-of-science-technology-yenagoa",
+      "name": "Tarila Ebiegberi",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-may-exclusive-paradise-yenagoa-1",
+      "venueId": "may-exclusive-paradise-yenagoa",
+      "name": "Biriyai Pere",
+      "role": "Stylist",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-may-exclusive-paradise-yenagoa-2",
+      "venueId": "may-exclusive-paradise-yenagoa",
+      "name": "Tarila Ere",
+      "role": "Client",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-melford-okilo-memorial-hospital-1",
+      "venueId": "melford-okilo-memorial-hospital",
+      "name": "Tamuno Amgbare",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-melford-okilo-memorial-hospital-2",
+      "venueId": "melford-okilo-memorial-hospital",
+      "name": "Tonyeme Ikoli",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-national-museum-yenagoa-1",
+      "venueId": "national-museum-yenagoa",
+      "name": "Ebi Preowei",
+      "role": "Museum guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-national-museum-yenagoa-2",
+      "venueId": "national-museum-yenagoa",
+      "name": "Dimiebi Egbe",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-onopa-market-yenagoa-1",
+      "venueId": "onopa-market-yenagoa",
+      "name": "Ine Tubonemi",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-onopa-market-yenagoa-2",
+      "venueId": "onopa-market-yenagoa",
+      "name": "Boma Biriyai",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-opolo-mosque-yenagoa-1",
+      "venueId": "opolo-mosque-yenagoa",
+      "name": "Tamuno Egbe",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-opolo-mosque-yenagoa-2",
+      "venueId": "opolo-mosque-yenagoa",
+      "name": "Tonyeme Eferebo",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-opolo-motor-park-1",
+      "venueId": "opolo-motor-park",
+      "name": "Ebi Egbe",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-opolo-motor-park-2",
+      "venueId": "opolo-motor-park",
+      "name": "Dimiebi Eferebo",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-pepperoni-yenagoa-1",
+      "venueId": "pepperoni-yenagoa",
+      "name": "Tamuno Ikoli",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-pepperoni-yenagoa-2",
+      "venueId": "pepperoni-yenagoa",
+      "name": "Tonyeme Oweikpodor",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-samson-siasia-stadium-1",
+      "venueId": "samson-siasia-stadium",
+      "name": "Biriyai Dikio",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-samson-siasia-stadium-2",
+      "venueId": "samson-siasia-stadium",
+      "name": "Tarila Pere",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-st-johns-catholic-yenagoa-1",
+      "venueId": "st-johns-catholic-yenagoa",
+      "name": "Tamuno Eferebo",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-st-johns-catholic-yenagoa-2",
+      "venueId": "st-johns-catholic-yenagoa",
+      "name": "Tonyeme Perezi",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-st-lukes-anglican-yenagoa-1",
+      "venueId": "st-lukes-anglican-yenagoa",
+      "name": "Ine Ekiyor",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-st-lukes-anglican-yenagoa-2",
+      "venueId": "st-lukes-anglican-yenagoa",
+      "name": "Boma Tubonemi",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-st-patrick-catholic-yenagoa-1",
+      "venueId": "st-patrick-catholic-yenagoa",
+      "name": "Tamuno Oweikpodor",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-st-patrick-catholic-yenagoa-2",
+      "venueId": "st-patrick-catholic-yenagoa",
+      "name": "Tonyeme Okoko",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-swale-market-yenagoa-1",
+      "venueId": "swale-market-yenagoa",
+      "name": "Tamuno Perezi",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-swale-market-yenagoa-2",
+      "venueId": "swale-market-yenagoa",
+      "name": "Tonyeme Preowei",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-uba-bank-yenagoa-1",
+      "venueId": "uba-bank-yenagoa",
+      "name": "Biriyai Ekiyor",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-uba-bank-yenagoa-2",
+      "venueId": "uba-bank-yenagoa",
+      "name": "Tarila Tubonemi",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-university-of-africa-toru-orua-1",
+      "venueId": "university-of-africa-toru-orua",
+      "name": "Ebi Amgbare",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-university-of-africa-toru-orua-2",
+      "venueId": "university-of-africa-toru-orua",
+      "name": "Dimiebi Ikoli",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-zenith-bank-yenagoa-1",
+      "venueId": "zenith-bank-yenagoa",
+      "name": "Ebi Eferebo",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    },
+    {
+      "id": "yenagoa-zenith-bank-yenagoa-2",
+      "venueId": "zenith-bank-yenagoa",
+      "name": "Dimiebi Perezi",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/yenagoa/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "alamieyesiegha-castle",
+    "bayelsa-state-government-house",
+    "bayelsa-state-high-court",
+    "bayelsa-state-secretariat",
+    "braids-salon-yenagoa",
+    "crunchies-yenagoa",
+    "diete-koki-memorial-hospital",
+    "ekeki-central-mosque",
+    "ekeki-motor-park",
+    "first-bank-yenagoa",
+    "gabriel-okara-cultural-centre",
+    "igbogene-field",
+    "institute-of-science-technology-yenagoa",
+    "may-exclusive-paradise-yenagoa",
+    "melford-okilo-memorial-hospital",
+    "national-museum-yenagoa",
+    "onopa-market-yenagoa",
+    "opolo-mosque-yenagoa",
+    "opolo-motor-park",
+    "pepperoni-yenagoa",
+    "samson-siasia-stadium",
+    "st-johns-catholic-yenagoa",
+    "st-lukes-anglican-yenagoa",
+    "st-patrick-catholic-yenagoa",
+    "swale-market-yenagoa",
+    "uba-bank-yenagoa",
+    "university-of-africa-toru-orua",
+    "zenith-bank-yenagoa"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "6dcc4384b44787cb9d751055681d2671b77af9ea12c389c0b2cf3d4373c1b9a6",
+    "contentSha256": "ae093f175a83f1cbd131d2291c3de3455221065e2eedf84dd6e6946b53493600"
+  }
+}

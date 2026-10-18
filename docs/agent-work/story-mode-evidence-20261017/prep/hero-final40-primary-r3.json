@@ -1,0 +1,1934 @@
+{
+  "schema_version": 1,
+  "status": "source-triage-input-only",
+  "created_on": "2026-10-18",
+  "source_pins": {
+    "r2_path": "docs/agent-work/story-mode-evidence-20261017/prep/hero-remaining80-primary-r2.json",
+    "r2_sha256": "e8e6ca71e65ebe9c195128ae6e9f5fd53dd85edab5de9ae7ebb12ea1b0f8dadd",
+    "art_direction_path": "docs/agent-work/story-mode-evidence-20261017/prep/hero-art-direction-284.json",
+    "art_direction_sha256": "975847ad67c8c6cac55bf08d1491ec57c99f14d66fc8040e1835c13a4bc09348",
+    "r1_sha256": "cd007719b14cf283e8fb1f3b2ea4c229f4d65e54ea7642d4583291acbe52237d"
+  },
+  "scope": "Only the 40 records marked unresolved-primary-source-gap in R2; all city IDs, country codes, catalogue anchor coordinates and candidate names copied unchanged.",
+  "method": {
+    "one_primary_search_query_per_city": true,
+    "opens_used": "Selected promising result pages/PDFs only, within two opens per city; no second query. Search-result facts without an opened page are explicitly labeled as such in evidence_basis.",
+    "access_date": "2026-10-18",
+    "selection_rule": "Accept candidate only where source explicitly supports named identity, market category and city association. Source-backed alternative never silently replaces original candidate. A generic commercial centre, shopping complex, or mismatched nearby place is not a market.",
+    "name_conflicts": "All five prior candidate-vs-OSM display-name differences are separately recorded. Only primary name/city evidence is reported; no translation or spelling alias is inferred. Ilorin market name is supported but exact object binding remains unverified."
+  },
+  "osm_retrieval_clarification": {
+    "exact_object_endpoint_pattern": "https://api.openstreetmap.org/api/0.6/{node|way|relation}/{id}.json",
+    "public_object_reference_pattern": "https://www.openstreetmap.org/{node|way|relation}/{id}",
+    "name_lookup_pattern": "https://nominatim.openstreetmap.org/search?...format=jsonv2&limit=1&extratags=1&namedetails=1",
+    "saved_material": "Previous audit retained selected object name/tags/version/timestamp plus response SHA-256; raw map geometry/user data were not retained. Nominatim no-result or weak tags were discovery outcomes only, not authoritative absence evidence. Exact source artifact: hero-object-audit-20261018.json.",
+    "prior_audit_sha256": "b912f5983a6a27aafad3f3e839cdc67759650c0909e34b77935422f9de722973"
+  },
+  "counts": {
+    "requested": 40,
+    "unique_city_ids": 40,
+    "candidate_supported": 13,
+    "source_backed_alternative_needs_parent_review": 2,
+    "mismatch_unresolved": 3,
+    "unresolved_primary_source_gap": 22
+  },
+  "all_rights_unknown": true,
+  "all_production_approval_false": true,
+  "records": [
+    {
+      "city_id": "ibadan",
+      "city_name": "Ibadan",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 3.95,
+        "lat": 7.38
+      },
+      "region_as_recorded": "yoruba-southwest",
+      "source_path": "src/game/cities/ibadan/landmarks.ts",
+      "source_field_pointers": [
+        "landmark name",
+        "kind",
+        "source",
+        "licence",
+        "note"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Bodija Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "site:gov.ng Bodija Market Ibadan Oyo State official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "source-backed-candidate",
+      "source": {
+        "url": "https://oyrlea.oyostate.gov.ng/2026/09/05/oyrlea-launches-mobile-court-enforcement-at-bodija-market-prosecutes-traders-over-illegal-street-trading/",
+        "title": "OYRLEA Launches Mobile Court Enforcement At Bodija Market, Prosecutes Traders Over Illegal Street Trading",
+        "publisher": "Oyo State Rule of Law Enforcement Authority (OYRLEA)",
+        "locator": "page text; opening paragraphs",
+        "category": "market",
+        "association": "explicitly says Bodija Market, Ibadan",
+        "fact": "Oyo State authority identifies Bodija Market in Ibadan and reports commercial traders there.",
+        "form": "Neutral market trading fragment only; original schematic, no goods/layout claims.",
+        "accessed": "2026-10-18",
+        "licence": "Unknown; no external image, map, or geometry reused.",
+        "evidence_basis": "Search-result extract only; the direct source page was not opened in this pass."
+      },
+      "gap_or_conflict": null,
+      "exact_city_association": "explicitly says Bodija Market, Ibadan",
+      "form_scope": "Neutral market trading fragment only; original schematic, no goods/layout claims.",
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "abuja",
+      "city_name": "Abuja",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.49,
+        "lat": 9.06
+      },
+      "region_as_recorded": "gulf-guinea",
+      "source_path": "src/game/cities/abuja/landmarks.ts",
+      "source_field_pointers": [
+        "landmark name",
+        "kind",
+        "source",
+        "licence",
+        "note"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Arts and Craft Village",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "site:gov.ng \"Arts and Craft Village\" Abuja market official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "port-harcourt",
+      "city_name": "Port Harcourt",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.03,
+        "lat": 4.82
+      },
+      "region_as_recorded": "niger-delta",
+      "source_path": "src/game/cities/port-harcourt/landmarks.ts",
+      "source_field_pointers": [
+        "landmark name",
+        "kind",
+        "source",
+        "licence",
+        "note"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Mile Three Market locality",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "site:gov.ng \"Mile Three Market\" Port Harcourt official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "abeokuta",
+      "city_name": "Abeokuta",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 3.35,
+        "lat": 7.15
+      },
+      "region_as_recorded": "yoruba-southwest",
+      "source_path": "src/game/cities/ogun/landmarks.ts",
+      "source_field_pointers": [
+        "landmark name",
+        "kind",
+        "source",
+        "licence",
+        "note"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Itoku Adire Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "site:gov.ng \"Itoku Adire Market\" Abeokuta official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "enugu",
+      "city_name": "Enugu",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.5136856,
+        "lat": 6.4496519
+      },
+      "region_as_recorded": "igbo-southeast",
+      "source_path": "src/game/cities/enugu/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[6].name",
+        "CITY_SPEC.places[6].kind",
+        "CITY_SPEC.places[6].description",
+        "CITY_SPEC.places[6].sourceIds",
+        "CITY_SPEC.places[6].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Ogbete main Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "site:gov.ng \"Ogbete Main Market\" Enugu",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "source-backed-candidate",
+      "source": {
+        "url": "https://enugunorthlga.en.gov.ng/about-us-parent/our-team/",
+        "title": "About Us - Enugu North Local Government",
+        "publisher": "Enugu North Local Government",
+        "locator": "section “A Thriving City for Commercial and Economic Activities”",
+        "category": "market",
+        "association": "explicitly lists Ogbete Main Market among Enugu North LGA marketplaces",
+        "fact": "The LGA identifies Ogbete Main Market as one of its marketplaces.",
+        "form": "Neutral market trading fragment only; original schematic.",
+        "accessed": "2026-10-18",
+        "licence": "Unknown; no external image, map, or geometry reused.",
+        "evidence_basis": "Search-result extract only; the direct source page was not opened in this pass."
+      },
+      "gap_or_conflict": null,
+      "exact_city_association": "explicitly lists Ogbete Main Market among Enugu North LGA marketplaces",
+      "form_scope": "Neutral market trading fragment only; original schematic.",
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "calabar",
+      "city_name": "Calabar",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 8.3373597,
+        "lat": 4.9795999
+      },
+      "region_as_recorded": "niger-delta",
+      "source_path": "src/game/cities/calabar/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[16].name",
+        "CITY_SPEC.places[16].kind",
+        "CITY_SPEC.places[16].description",
+        "CITY_SPEC.places[16].sourceIds",
+        "CITY_SPEC.places[16].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Watt Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "site:crossriverstate.gov.ng Watt Market Calabar market attraction",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "source-backed-candidate",
+      "source": {
+        "url": "https://www.crossriverstate.gov.ng/download/Bureau%20of%20Statistics/STATISTICAL%20YEAR%20BOOK%202024%20EDITION.pdf",
+        "title": "Statistical Year Book 2024 Edition",
+        "publisher": "Cross River State Bureau of Statistics",
+        "locator": "Table 14.1, Comprehensive Inventory of Sites and Attractions, Calabar South",
+        "category": "market (named in attraction inventory)",
+        "association": "lists “Prince Bassey Duke Ephriam’s IX Effigy/Watt Market” at Calabar Road, Calabar",
+        "fact": "The state statistical yearbook lists Watt Market in a Calabar attraction inventory and names Calabar Road.",
+        "form": "Schematic market fragment; avoid depicting the effigy absent separate evidence.",
+        "accessed": "2026-10-18",
+        "licence": "Unknown; no external image, map, or geometry reused.",
+        "evidence_basis": "Search-result extract only; the direct source page was not opened in this pass."
+      },
+      "gap_or_conflict": null,
+      "exact_city_association": "lists “Prince Bassey Duke Ephriam’s IX Effigy/Watt Market” at Calabar Road, Calabar",
+      "form_scope": "Schematic market fragment; avoid depicting the effigy absent separate evidence.",
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "uyo",
+      "city_name": "Uyo",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.924791,
+        "lat": 5.0322447
+      },
+      "region_as_recorded": "niger-delta",
+      "source_path": "src/game/cities/uyo/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[14].name",
+        "CITY_SPEC.places[14].kind",
+        "CITY_SPEC.places[14].description",
+        "CITY_SPEC.places[14].sourceIds",
+        "CITY_SPEC.places[14].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Akpan Andem Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "site:akwaibomstate.gov.ng \"Akpan Andem Market\"",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "source-backed-candidate",
+      "source": {
+        "url": "https://akwaibomstate.gov.ng/construction-of-ndiya-streets-internal-roads-drainages-and-installation-of-solar-lighting-in-akpan-andem-market-in-uyo/",
+        "title": "Construction of Ndiya Street’s internal roads, drainages, and installation of solar lighting in Akpan Andem Market, in Uyo",
+        "publisher": "Akwa Ibom State Government",
+        "locator": "project page title and opening text",
+        "category": "market",
+        "association": "explicitly names Akpan Andem Market in Uyo",
+        "fact": "State project page documents internal street/road works within Akpan Andem Market, Uyo.",
+        "form": "Neutral market fragment; no reproduction of source images or site plan.",
+        "accessed": "2026-10-18",
+        "licence": "Unknown; no external image, map, or geometry reused.",
+        "evidence_basis": "Search-result extract only; the direct source page was not opened in this pass."
+      },
+      "gap_or_conflict": null,
+      "exact_city_association": "explicitly names Akpan Andem Market in Uyo",
+      "form_scope": "Neutral market fragment; no reproduction of source images or site plan.",
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "umuahia",
+      "city_name": "Umuahia",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.4924165,
+        "lat": 5.5324032
+      },
+      "region_as_recorded": "igbo-southeast",
+      "source_path": "src/game/cities/umuahia/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[17].name",
+        "CITY_SPEC.places[17].kind",
+        "CITY_SPEC.places[17].description",
+        "CITY_SPEC.places[17].sourceIds",
+        "CITY_SPEC.places[17].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Orie Ugba Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Umuahia Orie Ugba Market Abia State government market",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "owerri",
+      "city_name": "Owerri",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.0341973,
+        "lat": 5.489736
+      },
+      "region_as_recorded": "igbo-southeast",
+      "source_path": "src/game/cities/owerri/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[18].name",
+        "CITY_SPEC.places[18].kind",
+        "CITY_SPEC.places[18].description",
+        "CITY_SPEC.places[18].sourceIds",
+        "CITY_SPEC.places[18].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Nkwo Emeke",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Owerri Nkwo Emeke market Imo State government",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "mismatch-unresolved",
+      "source": null,
+      "gap_or_conflict": "Search result for Nkwo Emeke associates it with Emekuku, not Owerri; the official Imo budget refers instead to Eke Ukwu Market in Owerri. No primary evidence links these identities, so no substitution.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "yenagoa",
+      "city_name": "Yenagoa",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 6.2747786,
+        "lat": 4.9334651
+      },
+      "region_as_recorded": "niger-delta",
+      "source_path": "src/game/cities/yenagoa/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[13].name",
+        "CITY_SPEC.places[13].kind",
+        "CITY_SPEC.places[13].description",
+        "CITY_SPEC.places[13].sourceIds",
+        "CITY_SPEC.places[13].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Onopa Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Yenagoa Onopa Market Bayelsa government",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "awka",
+      "city_name": "Awka",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.0774372,
+        "lat": 6.218947
+      },
+      "region_as_recorded": "igbo-southeast",
+      "source_path": "src/game/cities/awka/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[6].name",
+        "CITY_SPEC.places[6].kind",
+        "CITY_SPEC.places[6].description",
+        "CITY_SPEC.places[6].sourceIds",
+        "CITY_SPEC.places[6].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Eke Awka Main Market, Awka",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Awka Eke Awka Main Market Anambra government",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "source-backed-candidate",
+      "source": {
+        "url": "https://unhabitat.org/sites/default/files/download-manager-files/1405318829wpdm_STRUCTURE%20PLAN%20FOR%20AWKA%20AND%20SATELLITE%20TOWNS.pdf",
+        "title": "Structure Plan for Awka and Satellite Towns",
+        "publisher": "UN-Habitat / Awka Capital Territory Development Authority",
+        "locator": "market flow section; existing markets discussion",
+        "category": "market",
+        "association": "explicitly names Eke Awka among existing Awka markets",
+        "fact": "The Awka structure plan discusses existing Eke Awka market and its potential modernization.",
+        "form": "Neutral market fragment; no copied plan/map/layout.",
+        "accessed": "2026-10-18",
+        "licence": "Unknown; no external image, map, or geometry reused.",
+        "evidence_basis": "Search-result extract only; the direct source page was not opened in this pass."
+      },
+      "gap_or_conflict": null,
+      "exact_city_association": "explicitly names Eke Awka among existing Awka markets",
+      "form_scope": "Neutral market fragment; no copied plan/map/layout.",
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "kaduna",
+      "city_name": "Kaduna",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.4402777777778,
+        "lat": 10.523055555556
+      },
+      "region_as_recorded": "sahel-north",
+      "source_path": "src/game/cities/kaduna/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[7].name",
+        "CITY_SPEC.places[7].kind",
+        "CITY_SPEC.places[7].description",
+        "CITY_SPEC.places[7].sourceIds",
+        "CITY_SPEC.places[7].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Chechinya Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Kaduna State government Chechinya Market Kaduna official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "maiduguri",
+      "city_name": "Maiduguri",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 13.15,
+        "lat": 11.833333333333
+      },
+      "region_as_recorded": "sahel-north",
+      "source_path": "src/game/cities/maiduguri/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[6].name",
+        "CITY_SPEC.places[6].kind",
+        "CITY_SPEC.places[6].description",
+        "CITY_SPEC.places[6].sourceIds",
+        "CITY_SPEC.places[6].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Gamboru Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Borno State government Gamboru Market Maiduguri official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "source-backed-candidate",
+      "source": {
+        "url": "https://pfm.bo.gov.ng/wp-content/uploads/2023/10/BORNO-Q3-2023-BPR.pdf",
+        "title": "Budget Performance Report - 2023 Quarter 3",
+        "publisher": "Borno State Ministry of Budget and Planning",
+        "locator": "PDF p.3, revenue performance paragraph",
+        "category": "market",
+        "association": "explicitly names Gamboru Market as one of Borno State markets; Maiduguri association is corroborated by exact R2 candidate/object identity, but PDF itself does not say Maiduguri",
+        "fact": "The state report names Gamboru Market among state markets and says it was rehabilitated and in use.",
+        "form": "Market fragment only; note source does not itself locate it in Maiduguri.",
+        "accessed": "2026-10-18",
+        "licence": "Unknown; no external image, map, or geometry reused.",
+        "evidence_basis": "opened direct state PDF; p.3 lines 54-67"
+      },
+      "gap_or_conflict": null,
+      "exact_city_association": "explicitly names Gamboru Market as one of Borno State markets; Maiduguri association is corroborated by exact R2 candidate/object identity, but PDF itself does not say Maiduguri",
+      "form_scope": "Market fragment only; note source does not itself locate it in Maiduguri.",
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "gombe",
+      "city_name": "Gombe",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 11.1667,
+        "lat": 10.2833
+      },
+      "region_as_recorded": "sahel-north",
+      "source_path": "src/game/cities/gombe/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[8].name",
+        "CITY_SPEC.places[8].kind",
+        "CITY_SPEC.places[8].description",
+        "CITY_SPEC.places[8].sourceIds",
+        "CITY_SPEC.places[8].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "KASUWAR MATA",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Gombe State government Kasuwar Mata market official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "yola",
+      "city_name": "Yola",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 12.483333333333,
+        "lat": 9.2
+      },
+      "region_as_recorded": "sahel-north",
+      "source_path": "src/game/cities/yola/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[9].name",
+        "CITY_SPEC.places[9].kind",
+        "CITY_SPEC.places[9].description",
+        "CITY_SPEC.places[9].sourceIds",
+        "CITY_SPEC.places[9].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Jimeta ultra modern market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Adamawa State government Jimeta ultra modern market Yola official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "mismatch-unresolved",
+      "source": null,
+      "gap_or_conflict": "Official Adamawa source names Jimeta Shopping Complex and describes it as a commercial hub, while the repository candidate says “Jimeta ultra modern market.” This does not establish market activity/category and the shopping-complex building would be ineligible under Nigeria’s restricted-theme rule absent another eligible category/date.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "ilorin",
+      "city_name": "Ilorin",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 4.55,
+        "lat": 8.5
+      },
+      "region_as_recorded": "gulf-guinea",
+      "source_path": "src/game/cities/ilorin/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[7].name",
+        "CITY_SPEC.places[7].kind",
+        "CITY_SPEC.places[7].description",
+        "CITY_SPEC.places[7].sourceIds",
+        "CITY_SPEC.places[7].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Ipata Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Ilorin Ipata Market Kwara State government official market",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "source-backed-candidate",
+      "source": {
+        "url": "https://irs.kw.gov.ng/ministries-partner-kw-irs-on-cleanliness-campaign-in-markets/",
+        "title": "Ministries Partner KW-IRS on Cleanliness Campaign in Markets",
+        "publisher": "Kwara State Internal Revenue Service",
+        "locator": "page body, list of markets visited",
+        "category": "market",
+        "association": "explicitly names Ipata among markets in Ilorin metropolis",
+        "fact": "The state service says a campaign team visited Ipata and other markets in Ilorin metropolis.",
+        "form": "Neutral market-trading fragment only.",
+        "accessed": "2026-10-18",
+        "licence": "Unknown; no external image, map, or geometry reused.",
+        "evidence_basis": "Search-result extract only; the direct source page was not opened in this pass."
+      },
+      "gap_or_conflict": "State source supports the named Ipata market in Ilorin. Prior OSM display name adds an address descriptor; exact object-to-candidate coordinate binding remains unverified. Do not claim the source proves alias/object identity.",
+      "exact_city_association": "explicitly names Ipata among markets in Ilorin metropolis",
+      "form_scope": "Neutral market-trading fragment only.",
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": "Candidate “Ipata Market” vs OSM object display name “Ipata Market., Amilegbe Road, Ilorin, Nigeria”; state source corroborates the market name/city but does not tie that OSM object to the candidate coordinate."
+    },
+    {
+      "city_id": "minna",
+      "city_name": "Minna",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 6.5569444444444,
+        "lat": 9.6138888888889
+      },
+      "region_as_recorded": "gulf-guinea",
+      "source_path": "src/game/cities/minna/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[7].name",
+        "CITY_SPEC.places[7].kind",
+        "CITY_SPEC.places[7].description",
+        "CITY_SPEC.places[7].sourceIds",
+        "CITY_SPEC.places[7].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Kure Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Minna Kure Market Niger State government official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "osogbo",
+      "city_name": "Osogbo",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 4.5666666666667,
+        "lat": 7.7666666666667
+      },
+      "region_as_recorded": "yoruba-southwest",
+      "source_path": "src/game/cities/osogbo/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[6].name",
+        "CITY_SPEC.places[6].kind",
+        "CITY_SPEC.places[6].description",
+        "CITY_SPEC.places[6].sourceIds",
+        "CITY_SPEC.places[6].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Ayegbaju International Modern Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Osogbo Ayegbaju Modern Market Osun State official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "source-backed-candidate",
+      "source": {
+        "url": "https://www.osunstate.gov.ng/2014/07/aregbesolas-commercial-revolution-osun/",
+        "title": "Aregbesola’s Commercial Revolution In Osun",
+        "publisher": "Osun State Government",
+        "locator": "page body, opening paragraphs",
+        "category": "market",
+        "association": "explicitly calls Ayegbaju International Market the market in Osogbo, state capital",
+        "fact": "The state says Ayegbaju International Market was commissioned in Osogbo.",
+        "form": "Neutral market fragment; modern architecture if depicted should follow only separate sourced facts.",
+        "accessed": "2026-10-18",
+        "licence": "Unknown; no external image, map, or geometry reused.",
+        "evidence_basis": "Search-result extract only; the direct source page was not opened in this pass."
+      },
+      "gap_or_conflict": null,
+      "exact_city_association": "explicitly calls Ayegbaju International Market the market in Osogbo, state capital",
+      "form_scope": "Neutral market fragment; modern architecture if depicted should follow only separate sourced facts.",
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "damaturu",
+      "city_name": "Damaturu",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 11.966666666667,
+        "lat": 11.75
+      },
+      "region_as_recorded": "sahel-north",
+      "source_path": "src/game/cities/damaturu/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[7].name",
+        "CITY_SPEC.places[7].kind",
+        "CITY_SPEC.places[7].description",
+        "CITY_SPEC.places[7].sourceIds",
+        "CITY_SPEC.places[7].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Bayan Tasha market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Damaturu Bayan Tasha market Yobe State government",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "jalingo",
+      "city_name": "Jalingo",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 11.366666666667,
+        "lat": 8.9
+      },
+      "region_as_recorded": "sahel-north",
+      "source_path": "src/game/cities/jalingo/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[10].name",
+        "CITY_SPEC.places[10].kind",
+        "CITY_SPEC.places[10].description",
+        "CITY_SPEC.places[10].sourceIds",
+        "CITY_SPEC.places[10].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Bando Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Taraba State government Bando Market Jalingo official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "akure",
+      "city_name": "Akure",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 5.1932647,
+        "lat": 7.2525595
+      },
+      "region_as_recorded": "yoruba-southwest",
+      "source_path": "src/game/cities/akure/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[6].name",
+        "CITY_SPEC.places[6].kind",
+        "CITY_SPEC.places[6].description",
+        "CITY_SPEC.places[6].sourceIds",
+        "CITY_SPEC.places[6].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Akure Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Ondo State government Akure Market official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "ado-ekiti",
+      "city_name": "Ado-Ekiti",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 5.22274,
+        "lat": 7.6232482
+      },
+      "region_as_recorded": "yoruba-southwest",
+      "source_path": "src/game/cities/ado-ekiti/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[4].name",
+        "CITY_SPEC.places[4].kind",
+        "CITY_SPEC.places[4].description",
+        "CITY_SPEC.places[4].sourceIds",
+        "CITY_SPEC.places[4].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Bisi Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Ekiti State government Bisi Market Ado Ekiti official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "source-backed-candidate",
+      "source": {
+        "url": "https://www.ekitistate.gov.ng/archives/31191",
+        "title": "EKSG Issues Two-Week Ultimatum To Road Side Traders",
+        "publisher": "Ekiti State Government",
+        "locator": "paragraphs 61-64",
+        "category": "market",
+        "association": "explicitly identifies Bisi Market in Ado-Ekiti",
+        "fact": "The state governor’s notice names Bisi Market among trading places in Ado-Ekiti.",
+        "form": "Neutral market fragment only.",
+        "accessed": "2026-10-18",
+        "licence": "Unknown; no external image, map, or geometry reused.",
+        "evidence_basis": "opened direct state page; paragraphs 61-64"
+      },
+      "gap_or_conflict": null,
+      "exact_city_association": "explicitly identifies Bisi Market in Ado-Ekiti",
+      "form_scope": "Neutral market fragment only.",
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "asaba",
+      "city_name": "Asaba",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 6.7297071,
+        "lat": 6.1858825
+      },
+      "region_as_recorded": "niger-delta",
+      "source_path": "src/game/cities/asaba/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[6].name",
+        "CITY_SPEC.places[6].kind",
+        "CITY_SPEC.places[6].description",
+        "CITY_SPEC.places[6].sourceIds",
+        "CITY_SPEC.places[6].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Ogbeogonogo Modern Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Delta State government Ogbeogonogo Modern Market Asaba official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "lokoja",
+      "city_name": "Lokoja",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 6.7441666666667,
+        "lat": 7.8019444444444
+      },
+      "region_as_recorded": "gulf-guinea",
+      "source_path": "src/game/cities/lokoja/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[9].name",
+        "CITY_SPEC.places[9].kind",
+        "CITY_SPEC.places[9].description",
+        "CITY_SPEC.places[9].sourceIds",
+        "CITY_SPEC.places[9].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Old Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Kogi State government Old Market Lokoja official market",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "jos",
+      "city_name": "Jos",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 8.8833333333333,
+        "lat": 9.9333333333333
+      },
+      "region_as_recorded": "gulf-guinea",
+      "source_path": "src/game/cities/jos/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[8].name",
+        "CITY_SPEC.places[8].kind",
+        "CITY_SPEC.places[8].description",
+        "CITY_SPEC.places[8].sourceIds",
+        "CITY_SPEC.places[8].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Angwan Rukuba Park",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Plateau State government Angwan Rukuba Park Jos market",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "lafia",
+      "city_name": "Lafia",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 8.5147636,
+        "lat": 8.4960459
+      },
+      "region_as_recorded": "gulf-guinea",
+      "source_path": "src/game/cities/lafia/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[10].name",
+        "CITY_SPEC.places[10].kind",
+        "CITY_SPEC.places[10].description",
+        "CITY_SPEC.places[10].sourceIds",
+        "CITY_SPEC.places[10].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Lafia Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Nasarawa State government Lafia Market official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "katsina",
+      "city_name": "Katsina",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.6006278,
+        "lat": 12.9894283
+      },
+      "region_as_recorded": "sahel-north",
+      "source_path": "src/game/cities/katsina/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[11].name",
+        "CITY_SPEC.places[11].kind",
+        "CITY_SPEC.places[11].description",
+        "CITY_SPEC.places[11].sourceIds",
+        "CITY_SPEC.places[11].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Central Market, Katsina",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Katsina State government Central Market Katsina official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "source-backed-candidate",
+      "source": {
+        "url": "https://kipa.kt.gov.ng/wp-content/uploads/2023/12/Information-on-Infrastructural-Facilities-in-Katsina-State-1.pdf",
+        "title": "Information on Infrastructural Facilities in Katsina State",
+        "publisher": "Katsina Investment Promotion Agency (KIPA)",
+        "locator": "PDF p.14, markets list",
+        "category": "market",
+        "association": "lists “Katsina Central Market”",
+        "fact": "The state investment agency lists Katsina Central Market among markets.",
+        "form": "Neutral market fragment only.",
+        "accessed": "2026-10-18",
+        "licence": "Unknown; no external image, map, or geometry reused.",
+        "evidence_basis": "opened direct state investment PDF; p.14 lines 381-396"
+      },
+      "gap_or_conflict": null,
+      "exact_city_association": "lists “Katsina Central Market”",
+      "form_scope": "Neutral market fragment only.",
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "sokoto",
+      "city_name": "Sokoto",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 5.2373194,
+        "lat": 13.0610588
+      },
+      "region_as_recorded": "sahel-north",
+      "source_path": "src/game/cities/sokoto/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[9].name",
+        "CITY_SPEC.places[9].kind",
+        "CITY_SPEC.places[9].description",
+        "CITY_SPEC.places[9].sourceIds",
+        "CITY_SPEC.places[9].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Central Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Sokoto State government Central Market Sokoto official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "source-backed-candidate",
+      "source": {
+        "url": "https://sokotostate.gov.ng/sokoto-govt-to-terminate-contracts-of-36-companies-for-defaulting/",
+        "title": "Burnt Sokoto Market: SOSG Vows Work Completion, Revokes Erring Contracts",
+        "publisher": "Sokoto State Government",
+        "locator": "page title/body",
+        "category": "market",
+        "association": "explicitly names Sokoto Central Market",
+        "fact": "State article reports reconstruction work concerning Sokoto Central Market.",
+        "form": "Neutral market fragment only.",
+        "accessed": "2026-10-18",
+        "licence": "Unknown; no external image, map, or geometry reused.",
+        "evidence_basis": "Search-result extract only; the direct source page was not opened in this pass."
+      },
+      "gap_or_conflict": null,
+      "exact_city_association": "explicitly names Sokoto Central Market",
+      "form_scope": "Neutral market fragment only.",
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "birnin-kebbi",
+      "city_name": "Birnin Kebbi",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 4.2006114,
+        "lat": 12.4573462
+      },
+      "region_as_recorded": "sahel-north",
+      "source_path": "src/game/cities/birnin-kebbi/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[10].name",
+        "CITY_SPEC.places[10].kind",
+        "CITY_SPEC.places[10].description",
+        "CITY_SPEC.places[10].sourceIds",
+        "CITY_SPEC.places[10].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Yaryara mini market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Kebbi State government Yaryara mini market Birnin Kebbi",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "gusau",
+      "city_name": "Gusau",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 6.6606398,
+        "lat": 12.1658358
+      },
+      "region_as_recorded": "sahel-north",
+      "source_path": "src/game/cities/gusau/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[8].name",
+        "CITY_SPEC.places[8].kind",
+        "CITY_SPEC.places[8].description",
+        "CITY_SPEC.places[8].sourceIds",
+        "CITY_SPEC.places[8].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Gusau central market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Zamfara State government Gusau central market official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "source-backed-candidate",
+      "source": {
+        "url": "https://zamfara.gov.ng/2024/02/01/gov-dauda-lawal-visits-gusau-market-destroyed-by-fire-pledges-support-for-victims/",
+        "title": "Gov. Dauda Lawal Visits Gusau Market Destroyed by Fire, Pledges Support for Victims",
+        "publisher": "Zamfara State Government",
+        "locator": "paragraphs 23-31",
+        "category": "market",
+        "association": "explicitly identifies Gusau Central Market",
+        "fact": "State report identifies Gusau Central Market and its market leadership.",
+        "form": "Neutral market fragment only.",
+        "accessed": "2026-10-18",
+        "licence": "Unknown; no external image, map, or geometry reused.",
+        "evidence_basis": "opened direct state page; paragraphs 23-31"
+      },
+      "gap_or_conflict": null,
+      "exact_city_association": "explicitly identifies Gusau Central Market",
+      "form_scope": "Neutral market fragment only.",
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "dutse",
+      "city_name": "Dutse",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 9.3390747,
+        "lat": 11.6909859
+      },
+      "region_as_recorded": "sahel-north",
+      "source_path": "src/game/cities/dutse/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[8].name",
+        "CITY_SPEC.places[8].kind",
+        "CITY_SPEC.places[8].description",
+        "CITY_SPEC.places[8].sourceIds",
+        "CITY_SPEC.places[8].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Dutse Ultra Modern Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Jigawa State government Dutse Ultra Modern Market official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "bauchi",
+      "city_name": "Bauchi",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 9.8410189,
+        "lat": 10.3168749
+      },
+      "region_as_recorded": "sahel-north",
+      "source_path": "src/game/cities/bauchi/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[11].name",
+        "CITY_SPEC.places[11].kind",
+        "CITY_SPEC.places[11].description",
+        "CITY_SPEC.places[11].sourceIds",
+        "CITY_SPEC.places[11].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Muda lawal market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Bauchi State government Muda Lawal Market official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "source-backed-candidate",
+      "source": {
+        "url": "https://www.bauchistate.gov.ng/?download_id=3474&sdm_process_download=1",
+        "title": "2025 Business Enabling Reforms Progress Report",
+        "publisher": "Bauchi State Government",
+        "locator": "PDF p.11",
+        "category": "market",
+        "association": "lists Muda Lawal Market, Bauchi",
+        "fact": "State progress report associates Muda Lawal Market with Bauchi.",
+        "form": "Neutral market fragment only.",
+        "accessed": "2026-10-18",
+        "licence": "Unknown; no external image, map, or geometry reused.",
+        "evidence_basis": "Search-result extract only; the direct source page was not opened in this pass."
+      },
+      "gap_or_conflict": null,
+      "exact_city_association": "lists Muda Lawal Market, Bauchi",
+      "form_scope": "Neutral market fragment only.",
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "makurdi",
+      "city_name": "Makurdi",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 8.5361111111111,
+        "lat": 7.7305555555556
+      },
+      "region_as_recorded": "gulf-guinea",
+      "source_path": "src/game/cities/makurdi/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[10].name",
+        "CITY_SPEC.places[10].kind",
+        "CITY_SPEC.places[10].description",
+        "CITY_SPEC.places[10].sourceIds",
+        "CITY_SPEC.places[10].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "North bank market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Benue State government North Bank Market Makurdi",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "abakaliki",
+      "city_name": "Abakaliki",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 8.1133202,
+        "lat": 6.3208897
+      },
+      "region_as_recorded": "igbo-southeast",
+      "source_path": "src/game/cities/abakaliki/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[9].name",
+        "CITY_SPEC.places[9].kind",
+        "CITY_SPEC.places[9].description",
+        "CITY_SPEC.places[9].sourceIds",
+        "CITY_SPEC.places[9].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Abakaliki Rice Processing Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Ebonyi State government Abakaliki Rice Processing Market",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "djibouti",
+      "city_name": "Djibouti",
+      "country_iso": "dj",
+      "catalogue_anchor_coordinates": {
+        "lon": 43.1472724,
+        "lat": 11.5936903
+      },
+      "region_as_recorded": "east-africa",
+      "source_path": "src/game/cities/djibouti/places.ts",
+      "source_field_pointers": [
+        "PLACES[5].name",
+        "PLACES[5].kind",
+        "PLACES[5].line",
+        "PLACES[5].osm"
+      ],
+      "source_ref_as_recorded": "node/7270748069",
+      "candidate": {
+        "name_as_recorded": "Djiba Djibouti",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Djibouti City official government Djiba market marketplace",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": "Candidate “Djiba Djibouti” vs OSM object display name “Djiba Djibouti جيبة جيبوتي”; no primary source found for the mixed-script alias/object identity."
+    },
+    {
+      "city_id": "serekunda",
+      "city_name": "Serrekunda",
+      "country_iso": "gm",
+      "catalogue_anchor_coordinates": {
+        "lon": -16.674807,
+        "lat": 13.438762
+      },
+      "region_as_recorded": "gulf-guinea",
+      "source_path": "src/game/cities/serekunda/places.ts",
+      "source_field_pointers": [
+        "PLACES[5].name",
+        "PLACES[5].kind",
+        "PLACES[5].line",
+        "PLACES[5].osm"
+      ],
+      "source_ref_as_recorded": "way/255666858",
+      "candidate": {
+        "name_as_recorded": "Marché Albert",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Serrekunda Marché Albert market official Gambia",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": "Candidate “Marché Albert” vs OSM object “Albert Market”; do not assume translation/reordering is a documented alias."
+    },
+    {
+      "city_id": "male",
+      "city_name": "Malé",
+      "country_iso": "mv",
+      "catalogue_anchor_coordinates": {
+        "lon": 73.5107387,
+        "lat": 4.1779879
+      },
+      "region_as_recorded": "americas-oceania",
+      "source_path": "src/game/cities/male/places.ts",
+      "source_field_pointers": [
+        "PLACES[5].name",
+        "PLACES[5].kind",
+        "PLACES[5].line",
+        "PLACES[5].osm"
+      ],
+      "source_ref_as_recorded": "way/153106623",
+      "candidate": {
+        "name_as_recorded": "Marché Local",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Malé Maldives Marché Local market official government municipal",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "source-backed-alternative-candidate-unresolved",
+      "source": {
+        "url": "https://cdn.malecity.gov.mv/website/documents/6zqnEssfa8YfgaNZkf_I0-VLR_Male_Small%20file%20size.pdf",
+        "title": "Voluntary Local Review Report of Malé City Council, Maldives 2025: Moving towards a Safe, Inclusive, Equitable, Resilient and Sustainable Island City",
+        "publisher": "Malé City Council",
+        "locator": "PDF p.18, city socio-economic characteristics",
+        "category": "fish market (unnamed)",
+        "association": "explicitly says the local fish market attracts fishing vessels daily in Malé city",
+        "fact": "Council report describes a local fish market in Malé city; it does not establish that this is the candidate “Marché Local.”",
+        "form": "Unlabelled alternate only; cannot bind candidate identity without additional review.",
+        "accessed": "2026-10-18",
+        "licence": "Unknown; no external image, map, or geometry reused.",
+        "evidence_basis": "opened direct council PDF; p.18 lines 575-578"
+      },
+      "gap_or_conflict": "Council supports an unnamed local fish market in Malé; does not identify “Marché Local” as that place.",
+      "exact_city_association": "explicitly says the local fish market attracts fishing vessels daily in Malé city",
+      "form_scope": "Unlabelled alternate only; cannot bind candidate identity without additional review.",
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": "Candidate “Marché Local” vs OSM object “Travellers’ Market”; council source only identifies an unnamed local fish market, no name equivalence."
+    },
+    {
+      "city_id": "helsinki",
+      "city_name": "Helsinki",
+      "country_iso": "fi",
+      "catalogue_anchor_coordinates": {
+        "lon": 24.9435408,
+        "lat": 60.1666204
+      },
+      "region_as_recorded": "western-europe",
+      "source_path": "src/game/cities/helsinki/places.ts",
+      "source_field_pointers": [
+        "PLACES[5].name",
+        "PLACES[5].kind",
+        "PLACES[5].line",
+        "PLACES[5].osm"
+      ],
+      "source_ref_as_recorded": "way/27518041",
+      "candidate": {
+        "name_as_recorded": "Centre commercial de Vantaanpuisto",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Helsinki Vantaanpuisto centre commercial mall city official",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "mismatch-unresolved",
+      "source": null,
+      "gap_or_conflict": "Candidate Centre commercial de Vantaanpuisto is identified by retrieved record as a shopping centre in Vantaa (not Helsinki) and is retail, not a market; no Helsinki association or market category established.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": "Candidate “Centre commercial de Vantaanpuisto” vs OSM “Vantaanpuiston ostoskeskus”; retrieved item is associated with Vantaa, not Helsinki; no city/name equivalence established."
+    },
+    {
+      "city_id": "papeete",
+      "city_name": "Papeete",
+      "country_iso": "pf",
+      "catalogue_anchor_coordinates": {
+        "lon": -149.5659964,
+        "lat": -17.5373835
+      },
+      "region_as_recorded": "americas-oceania",
+      "source_path": "src/game/cities/papeete/places.ts",
+      "source_field_pointers": [
+        "PLACES[5].name",
+        "PLACES[5].kind",
+        "PLACES[5].line",
+        "PLACES[5].osm"
+      ],
+      "source_ref_as_recorded": "way/204556920",
+      "candidate": {
+        "name_as_recorded": "Centre commercial",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Papeete centre commercial market municipality official Tahiti",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "source-backed-alternative-candidate-unresolved",
+      "source": {
+        "url": "https://www.papeete.pf/marche-municipal-mapuru-a-paraita/",
+        "title": "Marché municipal Mapuru a Paraita",
+        "publisher": "Ville de Papeete",
+        "locator": "page paragraphs describing the market and history",
+        "category": "market",
+        "association": "explicitly identifies municipal market at the current Papeete site",
+        "fact": "The municipal page identifies Marché Mapuru a Paraita and says the market was established in 1847 at its present site.",
+        "form": "Potential alternate: original schematic market fragment; candidate “Centre commercial” remains unsupported and should be replaced only by parent review.",
+        "accessed": "2026-10-18",
+        "licence": "Unknown; no external image, map, or geometry reused.",
+        "evidence_basis": "opened direct city page; source lines 143-144"
+      },
+      "gap_or_conflict": "City source supports a specific municipal market, but not the generic candidate label “Centre commercial”; alternative needs parent promotion.",
+      "exact_city_association": "explicitly identifies municipal market at the current Papeete site",
+      "form_scope": "Potential alternate: original schematic market fragment; candidate “Centre commercial” remains unsupported and should be replaced only by parent review.",
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    },
+    {
+      "city_id": "marigot",
+      "city_name": "Marigot",
+      "country_iso": "mf",
+      "catalogue_anchor_coordinates": {
+        "lon": -63.0848869,
+        "lat": 18.0668544
+      },
+      "region_as_recorded": "americas-oceania",
+      "source_path": "src/game/cities/marigot/places.ts",
+      "source_field_pointers": [
+        "PLACES[5].name",
+        "PLACES[5].kind",
+        "PLACES[5].line",
+        "PLACES[5].osm"
+      ],
+      "source_ref_as_recorded": "way/465741045",
+      "candidate": {
+        "name_as_recorded": "Centre Commercial Aventura",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "query_attempt": {
+        "query": "Marigot Centre Commercial Aventura Saint Martin official market",
+        "search_count": 1,
+        "source_reuse": "Existing repository candidate/source pointers checked; earlier OSM audit treated only as discovery metadata, not as primary proof."
+      },
+      "status": "unresolved-primary-source-gap",
+      "source": null,
+      "gap_or_conflict": "One targeted primary-source search did not return a source that explicitly establishes this candidate’s named identity, eligible category, and city association. Earlier OSM/Nominatim results are not authoritative evidence of absence.",
+      "exact_city_association": null,
+      "form_scope": null,
+      "source_rights": "unknown",
+      "geometry_reuse": "No external geometry, map, photo or layout copied; any schematic form would need to be original.",
+      "production_approved": false,
+      "prior_name_conflict": null
+    }
+  ],
+  "name_conflict_count": 5
+}

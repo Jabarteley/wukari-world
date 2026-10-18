@@ -1,0 +1,1838 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "gaborone",
+    "name": "Gaborone",
+    "state": {
+      "id": "bw-gaborone",
+      "name": "Gaborone"
+    },
+    "country": {
+      "id": "bw",
+      "name": "Botswana"
+    },
+    "point": {
+      "lon": 25.9088474,
+      "lat": -24.6581357
+    }
+  },
+  "style": {
+    "region": "southern-africa",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap contributors via the Overpass interpreter and OurAirports dataset",
+    "sourceUrls": [
+      "https://ourairports.com/airports/FBSK/",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/gaborone/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/gaborone/facts.ts",
+        "sha256": "741a10fc7971c936be707f914c7c0d29eca11a7bb20e097b3f5cca407cf1d652"
+      },
+      {
+        "path": "src/game/cities/gaborone/index.ts",
+        "sha256": "df7421684f87635352de64a4705d30a608db21ae3aabd093b65c3a8e9441116c"
+      },
+      {
+        "path": "src/game/cities/gaborone/places.ts",
+        "sha256": "94778496630f96723356abb1b4815a6e303e7d021ed29c258c52b7c60b61fff9"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue gaborone-community-voting-game has no mapped place source record.",
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "gaborone-airport-gaborone-airport",
+      "name": "Sir Seretse Khama International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.9182,
+        "lat": -24.555201
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-airport-gaborone-airport-1",
+        "gaborone-gaborone-airport-gaborone-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "gaborone-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-airport-junction-shopping-center",
+      "name": "Airport Junction Shopping Center",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.927146,
+        "lat": -24.603924
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-airport-junction-shopping-center-1",
+        "gaborone-gaborone-airport-junction-shopping-center-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/267049817"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-botho-university",
+      "name": "Botho University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.87834,
+        "lat": -24.684361
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-botho-university-1",
+        "gaborone-gaborone-botho-university-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/128573803"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-botswana-national-museum",
+      "name": "Botswana National Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.919704,
+        "lat": -24.656802
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-botswana-national-museum-1",
+        "gaborone-gaborone-botswana-national-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/93259552"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-clinic",
+      "name": "Princess Marina Referral Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.924698,
+        "lat": -24.656832
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-clinic-1",
+        "gaborone-gaborone-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/604970193"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-community-notices",
+      "name": "Botswana High Court",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.907072,
+        "lat": -24.646509
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-community-notices-1",
+        "gaborone-gaborone-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/373843765"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-community-voting-game",
+      "name": "Community voting simulation (game venue)",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.910668461010363,
+        "lat": -24.658135700000003
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-community-voting-game-1",
+        "gaborone-gaborone-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue gaborone-community-voting-game has no mapped place source record."
+      }
+    },
+    {
+      "id": "gaborone-community-workshop",
+      "name": "University of Botswana",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.938357,
+        "lat": -24.657677
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-community-workshop-1",
+        "gaborone-gaborone-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/110020793"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-gaborone-technical-college",
+      "name": "Gaborone Technical College",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.873641,
+        "lat": -24.677316
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-gaborone-technical-college-1",
+        "gaborone-gaborone-gaborone-technical-college-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/121174236"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-game-city",
+      "name": "Game City",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.87986,
+        "lat": -24.686618
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-game-city-1",
+        "gaborone-gaborone-game-city-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/6190701"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-market-game",
+      "name": "Main Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.916112,
+        "lat": -24.658165
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-market-game-1",
+        "gaborone-gaborone-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/109796456"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-meal-stop",
+      "name": "Sanitas Tea Garden",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.914609,
+        "lat": -24.69212
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-meal-stop-1",
+        "gaborone-gaborone-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/285022501"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-mokolodi-reptile-park",
+      "name": "Mokolodi Reptile Park",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.815005,
+        "lat": -24.738689
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-mokolodi-reptile-park-1",
+        "gaborone-gaborone-mokolodi-reptile-park-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13196160585"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-philatelic-museum",
+      "name": "Philatelic Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.911376,
+        "lat": -24.661231
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-philatelic-museum-1",
+        "gaborone-gaborone-philatelic-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13188885452"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-quiet-reflection",
+      "name": "Church of St. Sava",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.988116,
+        "lat": -24.553465
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-quiet-reflection-1",
+        "gaborone-gaborone-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1395731307"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q131735898"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-rail-park-mall",
+      "name": "Rail Park Mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.903139,
+        "lat": -24.660521
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-rail-park-mall-1",
+        "gaborone-gaborone-rail-park-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/261197878"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-recreation",
+      "name": "Botswana National Stadium",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.932745,
+        "lat": -24.65678
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-recreation-1",
+        "gaborone-gaborone-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/91704964"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q894862"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-sarona-city-mall",
+      "name": "Sarona City Mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.948437,
+        "lat": -24.613954
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-sarona-city-mall-1",
+        "gaborone-gaborone-sarona-city-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/14721222"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-three-dikgosi-monument",
+      "name": "Three Dikgosi Monument",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.907376,
+        "lat": -24.644886
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-three-dikgosi-monument-1",
+        "gaborone-gaborone-three-dikgosi-monument-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3746400791"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7797448"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-transit",
+      "name": "Gaborone",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.9046,
+        "lat": -24.661023
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-transit-1",
+        "gaborone-gaborone-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/916173809"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-ub-indoor-sports-center",
+      "name": "UB Indoor Sports Center",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.938308,
+        "lat": -24.65887
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-ub-indoor-sports-center-1",
+        "gaborone-gaborone-ub-indoor-sports-center-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7498186223"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "gaborone-university-stadium",
+      "name": "University Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.940471,
+        "lat": -24.655169
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gaborone-gaborone-university-stadium-1",
+        "gaborone-gaborone-university-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/gaborone/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/6660674"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.9088474,
+        "lat": -24.658135700000003
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "gaborone-gaborone-airport-gaborone-airport-1",
+      "venueId": "gaborone-airport-gaborone-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-airport-gaborone-airport-2",
+      "venueId": "gaborone-airport-gaborone-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-airport-junction-shopping-center-1",
+      "venueId": "gaborone-airport-junction-shopping-center",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-airport-junction-shopping-center-2",
+      "venueId": "gaborone-airport-junction-shopping-center",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-botho-university-1",
+      "venueId": "gaborone-botho-university",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-botho-university-2",
+      "venueId": "gaborone-botho-university",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-botswana-national-museum-1",
+      "venueId": "gaborone-botswana-national-museum",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-botswana-national-museum-2",
+      "venueId": "gaborone-botswana-national-museum",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-clinic-1",
+      "venueId": "gaborone-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-clinic-2",
+      "venueId": "gaborone-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-community-notices-1",
+      "venueId": "gaborone-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-community-notices-2",
+      "venueId": "gaborone-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-community-voting-game-1",
+      "venueId": "gaborone-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-community-voting-game-2",
+      "venueId": "gaborone-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-community-workshop-1",
+      "venueId": "gaborone-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-community-workshop-2",
+      "venueId": "gaborone-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-gaborone-technical-college-1",
+      "venueId": "gaborone-gaborone-technical-college",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-gaborone-technical-college-2",
+      "venueId": "gaborone-gaborone-technical-college",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-game-city-1",
+      "venueId": "gaborone-game-city",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-game-city-2",
+      "venueId": "gaborone-game-city",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-market-game-1",
+      "venueId": "gaborone-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-market-game-2",
+      "venueId": "gaborone-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-meal-stop-1",
+      "venueId": "gaborone-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-meal-stop-2",
+      "venueId": "gaborone-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-mokolodi-reptile-park-1",
+      "venueId": "gaborone-mokolodi-reptile-park",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-mokolodi-reptile-park-2",
+      "venueId": "gaborone-mokolodi-reptile-park",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-philatelic-museum-1",
+      "venueId": "gaborone-philatelic-museum",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-philatelic-museum-2",
+      "venueId": "gaborone-philatelic-museum",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-quiet-reflection-1",
+      "venueId": "gaborone-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-quiet-reflection-2",
+      "venueId": "gaborone-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-rail-park-mall-1",
+      "venueId": "gaborone-rail-park-mall",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-rail-park-mall-2",
+      "venueId": "gaborone-rail-park-mall",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-recreation-1",
+      "venueId": "gaborone-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-recreation-2",
+      "venueId": "gaborone-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-sarona-city-mall-1",
+      "venueId": "gaborone-sarona-city-mall",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-sarona-city-mall-2",
+      "venueId": "gaborone-sarona-city-mall",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-three-dikgosi-monument-1",
+      "venueId": "gaborone-three-dikgosi-monument",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-three-dikgosi-monument-2",
+      "venueId": "gaborone-three-dikgosi-monument",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-transit-1",
+      "venueId": "gaborone-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-transit-2",
+      "venueId": "gaborone-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-ub-indoor-sports-center-1",
+      "venueId": "gaborone-ub-indoor-sports-center",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-ub-indoor-sports-center-2",
+      "venueId": "gaborone-ub-indoor-sports-center",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-university-stadium-1",
+      "venueId": "gaborone-university-stadium",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    },
+    {
+      "id": "gaborone-gaborone-university-stadium-2",
+      "venueId": "gaborone-university-stadium",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gaborone/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "gaborone-airport-gaborone-airport",
+    "gaborone-airport-junction-shopping-center",
+    "gaborone-botho-university",
+    "gaborone-botswana-national-museum",
+    "gaborone-clinic",
+    "gaborone-community-notices",
+    "gaborone-community-voting-game",
+    "gaborone-community-workshop",
+    "gaborone-gaborone-technical-college",
+    "gaborone-game-city",
+    "gaborone-market-game",
+    "gaborone-meal-stop",
+    "gaborone-mokolodi-reptile-park",
+    "gaborone-philatelic-museum",
+    "gaborone-quiet-reflection",
+    "gaborone-rail-park-mall",
+    "gaborone-recreation",
+    "gaborone-sarona-city-mall",
+    "gaborone-three-dikgosi-monument",
+    "gaborone-transit",
+    "gaborone-ub-indoor-sports-center",
+    "gaborone-university-stadium"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "222c72af72dda18b83ba3a1cb51348cb90fcfeba12416d5476ac7ed8beeed464",
+    "contentSha256": "fe89541fed7986c9d61aa1e2812376d1042518f46694b3e07cc445464f12c5f6"
+  }
+}

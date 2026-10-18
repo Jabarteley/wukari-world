@@ -1,0 +1,1941 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "addis-ababa",
+    "name": "Addis Ababa",
+    "state": {
+      "id": "et-starter",
+      "name": "Addis Ababa"
+    },
+    "country": {
+      "id": "et",
+      "name": "Ethiopia"
+    },
+    "point": {
+      "lon": 38.698059,
+      "lat": 9.035256
+    }
+  },
+  "style": {
+    "region": "east-africa",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "Natural Earth, OpenStreetMap contributors and cited aeronautical information sources",
+    "sourceUrls": [
+      "https://pdfcoffee.com/aip-ethiopia-2-pdf-free.html",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; Airport reference points: cited aeronautical information sources",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/addis-ababa/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/addis-ababa/facts.ts",
+        "sha256": "f15eae2f7d5e3bd7c105c1523c9099d481524de4a41f6f75e783703fd583c025"
+      },
+      {
+        "path": "src/game/cities/addis-ababa/index.ts",
+        "sha256": "3dd795d6a68476b23eb0a205e6288929c30d79c33060b1c480b7d2981b54f8ed"
+      },
+      {
+        "path": "src/game/cities/addis-ababa/places.ts",
+        "sha256": "3713fb3637df5b0a47a30b3045f6057c6ea5d8bca75526c6264ca15fe3cbfd69"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "addis-ababa-abebe-bikila-stadium",
+      "name": "Abebe Bikila Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.723932,
+        "lat": 9.043125
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-abebe-bikila-stadium-1",
+        "addis-ababa-addis-ababa-abebe-bikila-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/42974788"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-stadium",
+      "name": "Addis Ababa Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.756432,
+        "lat": 9.013331
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-addis-ababa-stadium-1",
+        "addis-ababa-addis-ababa-addis-ababa-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/8110602"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q352962"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-adwa-victory-memorial-museum",
+      "name": "Adwa Victory Memorial Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.752456,
+        "lat": 9.034609
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-adwa-victory-memorial-museum-1",
+        "addis-ababa-addis-ababa-adwa-victory-memorial-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/20780702"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-airport-addis-ababa-airport",
+      "name": "ADDIS ABABA / BOLE",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.799399639,
+        "lat": 8.975040833
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-airport-addis-ababa-airport-1",
+        "addis-ababa-addis-ababa-airport-addis-ababa-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "addis-ababa-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-anwar-grand-mosque",
+      "name": "Anwar Grand Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.740814,
+        "lat": 9.032725
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-anwar-grand-mosque-1",
+        "addis-ababa-addis-ababa-anwar-grand-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/42656246"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q56510869"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-clinic",
+      "name": "St.Paul Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.728082,
+        "lat": 9.047832
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-clinic-1",
+        "addis-ababa-addis-ababa-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/49870467"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7591151"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-community-notices",
+      "name": "Addis Ababa City Hall",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.750951,
+        "lat": 9.035016
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-community-notices-1",
+        "addis-ababa-addis-ababa-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/40162501"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-community-voting-game",
+      "name": "Meskel Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.761255,
+        "lat": 9.010241
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-community-voting-game-1",
+        "addis-ababa-addis-ababa-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/151431279"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2915799"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-community-workshop",
+      "name": "Addis Ababa University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.761363,
+        "lat": 9.040702
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-community-workshop-1",
+        "addis-ababa-addis-ababa-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/21062226"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-dembel-city-center",
+      "name": "Dembel City Center",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.767017,
+        "lat": 9.004706
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-dembel-city-center-1",
+        "addis-ababa-addis-ababa-dembel-city-center-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/42553504"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4121240"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-garad-city-center",
+      "name": "Garad City Center",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.775061,
+        "lat": 8.993125
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-garad-city-center-1",
+        "addis-ababa-addis-ababa-garad-city-center-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/702459922"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-golf-club",
+      "name": "Addis Ababa Golf Club",
+      "kind": "hilltop",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.721825,
+        "lat": 9.003863
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-golf-club-1",
+        "addis-ababa-addis-ababa-golf-club-2"
+      ],
+      "scene": {
+        "kind": "hilltop",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8513037219"
+          }
+        ],
+        "sourceKind": "hilltop",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-market-game",
+      "name": "Mercato",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.739604,
+        "lat": 9.029628
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-market-game-1",
+        "addis-ababa-addis-ababa-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5032060364"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2920069"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-meal-stop",
+      "name": "Tomoca Coffee",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.750839,
+        "lat": 9.030912
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-meal-stop-1",
+        "addis-ababa-addis-ababa-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1535018953"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-medhane-alem-church",
+      "name": "Medhane Alem Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.789962,
+        "lat": 8.995935
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-medhane-alem-church-1",
+        "addis-ababa-addis-ababa-medhane-alem-church-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/42981919"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-national-museum-of-ethiopia",
+      "name": "National Museum of Ethiopia",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.761857,
+        "lat": 9.03802
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-national-museum-of-ethiopia-1",
+        "addis-ababa-addis-ababa-national-museum-of-ethiopia-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/200657467"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2652168"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-palais-du-jubile",
+      "name": "Palais du Jubilé",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.760366,
+        "lat": 9.016567
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-palais-du-jubile-1",
+        "addis-ababa-addis-ababa-palais-du-jubile-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/120776245"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3609008"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-quiet-reflection",
+      "name": "Holy Trinity Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.766491,
+        "lat": 9.030802
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-quiet-reflection-1",
+        "addis-ababa-addis-ababa-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/43456286"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2599114"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-rakan-shopping-center",
+      "name": "Rakan Shopping Center",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.779498,
+        "lat": 9.001472
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-rakan-shopping-center-1",
+        "addis-ababa-addis-ababa-rakan-shopping-center-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/710698252"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-recreation",
+      "name": "Sheger Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.738807,
+        "lat": 9.056432
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-recreation-1",
+        "addis-ababa-addis-ababa-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/42662074"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-st-marys-university-college",
+      "name": "St. Mary's University College",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.747063,
+        "lat": 9.013333
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-st-marys-university-college-1",
+        "addis-ababa-addis-ababa-st-marys-university-college-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/50833515"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7590447"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-transit",
+      "name": "Long Distance Bus Station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.731461,
+        "lat": 9.034425
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-transit-1",
+        "addis-ababa-addis-ababa-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/42656252"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "addis-ababa-unity-park",
+      "name": "Unity Park",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.763758,
+        "lat": 9.024482
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "addis-ababa-addis-ababa-unity-park-1",
+        "addis-ababa-addis-ababa-unity-park-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/addis-ababa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/16249545"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 38.698059,
+        "lat": 9.035256
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "addis-ababa-addis-ababa-abebe-bikila-stadium-1",
+      "venueId": "addis-ababa-abebe-bikila-stadium",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-abebe-bikila-stadium-2",
+      "venueId": "addis-ababa-abebe-bikila-stadium",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-addis-ababa-stadium-1",
+      "venueId": "addis-ababa-addis-ababa-stadium",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-addis-ababa-stadium-2",
+      "venueId": "addis-ababa-addis-ababa-stadium",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-adwa-victory-memorial-museum-1",
+      "venueId": "addis-ababa-adwa-victory-memorial-museum",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-adwa-victory-memorial-museum-2",
+      "venueId": "addis-ababa-adwa-victory-memorial-museum",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-airport-addis-ababa-airport-1",
+      "venueId": "addis-ababa-airport-addis-ababa-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-airport-addis-ababa-airport-2",
+      "venueId": "addis-ababa-airport-addis-ababa-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-anwar-grand-mosque-1",
+      "venueId": "addis-ababa-anwar-grand-mosque",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-anwar-grand-mosque-2",
+      "venueId": "addis-ababa-anwar-grand-mosque",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-clinic-1",
+      "venueId": "addis-ababa-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-clinic-2",
+      "venueId": "addis-ababa-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-community-notices-1",
+      "venueId": "addis-ababa-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-community-notices-2",
+      "venueId": "addis-ababa-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-community-voting-game-1",
+      "venueId": "addis-ababa-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-community-voting-game-2",
+      "venueId": "addis-ababa-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-community-workshop-1",
+      "venueId": "addis-ababa-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-community-workshop-2",
+      "venueId": "addis-ababa-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-dembel-city-center-1",
+      "venueId": "addis-ababa-dembel-city-center",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-dembel-city-center-2",
+      "venueId": "addis-ababa-dembel-city-center",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-garad-city-center-1",
+      "venueId": "addis-ababa-garad-city-center",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-garad-city-center-2",
+      "venueId": "addis-ababa-garad-city-center",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-golf-club-1",
+      "venueId": "addis-ababa-golf-club",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-golf-club-2",
+      "venueId": "addis-ababa-golf-club",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-market-game-1",
+      "venueId": "addis-ababa-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-market-game-2",
+      "venueId": "addis-ababa-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-meal-stop-1",
+      "venueId": "addis-ababa-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-meal-stop-2",
+      "venueId": "addis-ababa-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-medhane-alem-church-1",
+      "venueId": "addis-ababa-medhane-alem-church",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-medhane-alem-church-2",
+      "venueId": "addis-ababa-medhane-alem-church",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-national-museum-of-ethiopia-1",
+      "venueId": "addis-ababa-national-museum-of-ethiopia",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-national-museum-of-ethiopia-2",
+      "venueId": "addis-ababa-national-museum-of-ethiopia",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-palais-du-jubile-1",
+      "venueId": "addis-ababa-palais-du-jubile",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-palais-du-jubile-2",
+      "venueId": "addis-ababa-palais-du-jubile",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-quiet-reflection-1",
+      "venueId": "addis-ababa-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-quiet-reflection-2",
+      "venueId": "addis-ababa-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-rakan-shopping-center-1",
+      "venueId": "addis-ababa-rakan-shopping-center",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-rakan-shopping-center-2",
+      "venueId": "addis-ababa-rakan-shopping-center",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-recreation-1",
+      "venueId": "addis-ababa-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-recreation-2",
+      "venueId": "addis-ababa-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-st-marys-university-college-1",
+      "venueId": "addis-ababa-st-marys-university-college",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-st-marys-university-college-2",
+      "venueId": "addis-ababa-st-marys-university-college",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-transit-1",
+      "venueId": "addis-ababa-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-transit-2",
+      "venueId": "addis-ababa-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-unity-park-1",
+      "venueId": "addis-ababa-unity-park",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    },
+    {
+      "id": "addis-ababa-addis-ababa-unity-park-2",
+      "venueId": "addis-ababa-unity-park",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/addis-ababa/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "addis-ababa-abebe-bikila-stadium",
+    "addis-ababa-addis-ababa-stadium",
+    "addis-ababa-adwa-victory-memorial-museum",
+    "addis-ababa-airport-addis-ababa-airport",
+    "addis-ababa-anwar-grand-mosque",
+    "addis-ababa-clinic",
+    "addis-ababa-community-notices",
+    "addis-ababa-community-voting-game",
+    "addis-ababa-community-workshop",
+    "addis-ababa-dembel-city-center",
+    "addis-ababa-garad-city-center",
+    "addis-ababa-golf-club",
+    "addis-ababa-market-game",
+    "addis-ababa-meal-stop",
+    "addis-ababa-medhane-alem-church",
+    "addis-ababa-national-museum-of-ethiopia",
+    "addis-ababa-palais-du-jubile",
+    "addis-ababa-quiet-reflection",
+    "addis-ababa-rakan-shopping-center",
+    "addis-ababa-recreation",
+    "addis-ababa-st-marys-university-college",
+    "addis-ababa-transit",
+    "addis-ababa-unity-park"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "45e9efa3dc070949e3ce67bae73a7eb88bb85301326a3c64b649e54be401a801",
+    "contentSha256": "6c8cfd382ad33b29c5859fff3a656c9f1caeda15e7aea03d5ef5296476905471"
+  }
+}

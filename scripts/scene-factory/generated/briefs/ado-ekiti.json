@@ -1,0 +1,1215 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "ado-ekiti",
+    "name": "Ado-Ekiti",
+    "state": {
+      "id": "ekiti",
+      "name": "Ekiti"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 5.22274,
+      "lat": 7.6232482
+    }
+  },
+  "style": {
+    "region": "yoruba-southwest",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/ado-ekiti/content.ts",
+        "sha256": "e0640e3043c3231de98f6b49de4579877b164a32e299da47f4a9e556d6e72f65"
+      },
+      {
+        "path": "src/game/cities/ado-ekiti/index.ts",
+        "sha256": "1a7e1a3c1da7ad35724913c01048901bd09b637b7b62de965cd7bc46f92c6a75"
+      },
+      {
+        "path": "src/game/cities/ado-ekiti/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/ado-ekiti/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for ado-ekiti.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "afe-babalola-university",
+      "name": "Afe Babalola University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.307051,
+        "lat": 7.670929
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ado-ekiti-afe-babalola-university-1",
+        "ado-ekiti-afe-babalola-university-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ado-ekiti."
+      }
+    },
+    {
+      "id": "afe-babalola-university-teaching-hospital",
+      "name": "Afe Babalola University Teaching Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.2552407,
+        "lat": 7.608437
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ado-ekiti-afe-babalola-university-teaching-hospital-1",
+        "ado-ekiti-afe-babalola-university-teaching-hospital-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ado-ekiti."
+      }
+    },
+    {
+      "id": "ansarudeen-mosque",
+      "name": "Ansarudeen Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.223376,
+        "lat": 7.6217835
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ado-ekiti-ansarudeen-mosque-1",
+        "ado-ekiti-ansarudeen-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ado-ekiti."
+      }
+    },
+    {
+      "id": "asha-botanical-garden",
+      "name": "Asha Botanical Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.2055419,
+        "lat": 7.6439888
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Garden"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Garden",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ado-ekiti-asha-botanical-garden-1",
+        "ado-ekiti-asha-botanical-garden-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ado-ekiti."
+      }
+    },
+    {
+      "id": "bisi-market",
+      "name": "Bisi Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.2231437,
+        "lat": 7.6241524
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ado-ekiti-bisi-market-1",
+        "ado-ekiti-bisi-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ado-ekiti."
+      }
+    },
+    {
+      "id": "diamond-barbing-saloon",
+      "name": "Diamond Barbing Saloon",
+      "kind": "salon",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.2543408,
+        "lat": 7.6153444
+      },
+      "spots": [
+        {
+          "id": "chair",
+          "name": "Styling chair"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "chair",
+          "name": "Styling chair",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ado-ekiti-diamond-barbing-saloon-1",
+        "ado-ekiti-diamond-barbing-saloon-2"
+      ],
+      "scene": {
+        "kind": "salon",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ado-ekiti."
+      }
+    },
+    {
+      "id": "ekiti-state-government-territory",
+      "name": "Ekiti State Government Territory",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.213132,
+        "lat": 7.6226142
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ado-ekiti-ekiti-state-government-territory-1",
+        "ado-ekiti-ekiti-state-government-territory-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ado-ekiti."
+      }
+    },
+    {
+      "id": "ekiti-state-house-of-assembly",
+      "name": "Ekiti State House of Assembly",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.197914763161205,
+        "lat": 7.636085710703682
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor point"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor point",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ado-ekiti-ekiti-state-house-of-assembly-1",
+        "ado-ekiti-ekiti-state-house-of-assembly-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ado-ekiti."
+      }
+    },
+    {
+      "id": "ekiti-state-library-board",
+      "name": "Ekiti State Library Board",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.21678333333,
+        "lat": 7.65487
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor point"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor point",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ado-ekiti-ekiti-state-library-board-1",
+        "ado-ekiti-ekiti-state-library-board-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ado-ekiti."
+      }
+    },
+    {
+      "id": "ekiti-state-university",
+      "name": "Ekiti State University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.25753,
+        "lat": 7.72117
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ado-ekiti-ekiti-state-university-1",
+        "ado-ekiti-ekiti-state-university-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ado-ekiti."
+      }
+    },
+    {
+      "id": "federal-polytechnic-ado-ekiti",
+      "name": "Federal Polytechnic, Ado-Ekiti",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.291785,
+        "lat": 7.593134
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ado-ekiti-federal-polytechnic-ado-ekiti-1",
+        "ado-ekiti-federal-polytechnic-ado-ekiti-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ado-ekiti."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.248794071605711,
+        "lat": 7.615925138993501
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ado-ekiti."
+      }
+    },
+    {
+      "id": "st-patrick-cathedral",
+      "name": "St Patrick Catholic Church Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.2256714,
+        "lat": 7.6210911
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ado-ekiti-st-patrick-cathedral-1",
+        "ado-ekiti-st-patrick-cathedral-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ado-ekiti."
+      }
+    },
+    {
+      "id": "wema-bank-ado",
+      "name": "Wema Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.2212479,
+        "lat": 7.6248369
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ado-ekiti-wema-bank-ado-1",
+        "ado-ekiti-wema-bank-ado-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ado-ekiti."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "ado-ekiti-afe-babalola-university-1",
+      "venueId": "afe-babalola-university",
+      "name": "Olumide Salami",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-afe-babalola-university-2",
+      "venueId": "afe-babalola-university",
+      "name": "Omolara Adeyemi",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-afe-babalola-university-teaching-hospital-1",
+      "venueId": "afe-babalola-university-teaching-hospital",
+      "name": "Olumide Akinwale",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-afe-babalola-university-teaching-hospital-2",
+      "venueId": "afe-babalola-university-teaching-hospital",
+      "name": "Mama Iyabo",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-ansarudeen-mosque-1",
+      "venueId": "ansarudeen-mosque",
+      "name": "Yetunde Ogundele",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-ansarudeen-mosque-2",
+      "venueId": "ansarudeen-mosque",
+      "name": "Kola Akinwale",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-asha-botanical-garden-1",
+      "venueId": "asha-botanical-garden",
+      "name": "Yetunde Lawal",
+      "role": "Garden keeper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-asha-botanical-garden-2",
+      "venueId": "asha-botanical-garden",
+      "name": "Kola Ojo",
+      "role": "Evening walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-bisi-market-1",
+      "venueId": "bisi-market",
+      "name": "Yetunde Akinola",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-bisi-market-2",
+      "venueId": "bisi-market",
+      "name": "Baba Kola",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-diamond-barbing-saloon-1",
+      "venueId": "diamond-barbing-saloon",
+      "name": "Olumide Ojo",
+      "role": "Stylist",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-diamond-barbing-saloon-2",
+      "venueId": "diamond-barbing-saloon",
+      "name": "Omolara Ogunbanjo",
+      "role": "Client",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-ekiti-state-government-territory-1",
+      "venueId": "ekiti-state-government-territory",
+      "name": "Olumide Adeleke",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-ekiti-state-government-territory-2",
+      "venueId": "ekiti-state-government-territory",
+      "name": "Omolara Olaniyan",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-ekiti-state-house-of-assembly-1",
+      "venueId": "ekiti-state-house-of-assembly",
+      "name": "Olumide Adesina",
+      "role": "Site attendant",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-ekiti-state-house-of-assembly-2",
+      "venueId": "ekiti-state-house-of-assembly",
+      "name": "Omolara Lawal",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-ekiti-state-library-board-1",
+      "venueId": "ekiti-state-library-board",
+      "name": "Yetunde Balogun",
+      "role": "Site attendant",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-ekiti-state-library-board-2",
+      "venueId": "ekiti-state-library-board",
+      "name": "Kola Afolabi",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-ekiti-state-university-1",
+      "venueId": "ekiti-state-university",
+      "name": "Yetunde Ogunbanjo",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-ekiti-state-university-2",
+      "venueId": "ekiti-state-university",
+      "name": "Baba Tayo",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-federal-polytechnic-ado-ekiti-1",
+      "venueId": "federal-polytechnic-ado-ekiti",
+      "name": "Yetunde Olaniyan",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-federal-polytechnic-ado-ekiti-2",
+      "venueId": "federal-polytechnic-ado-ekiti",
+      "name": "Kola Oladipo",
+      "role": "Instructor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-st-patrick-cathedral-1",
+      "venueId": "st-patrick-cathedral",
+      "name": "Olumide Afolabi",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-st-patrick-cathedral-2",
+      "venueId": "st-patrick-cathedral",
+      "name": "Mama Omolara",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-wema-bank-ado-1",
+      "venueId": "wema-bank-ado",
+      "name": "Yetunde Ajayi",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    },
+    {
+      "id": "ado-ekiti-wema-bank-ado-2",
+      "venueId": "wema-bank-ado",
+      "name": "Kola Adesina",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ado-ekiti/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "afe-babalola-university",
+    "afe-babalola-university-teaching-hospital",
+    "ansarudeen-mosque",
+    "asha-botanical-garden",
+    "bisi-market",
+    "diamond-barbing-saloon",
+    "ekiti-state-government-territory",
+    "ekiti-state-house-of-assembly",
+    "ekiti-state-library-board",
+    "ekiti-state-university",
+    "federal-polytechnic-ado-ekiti",
+    "st-patrick-cathedral",
+    "wema-bank-ado"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "62133e0407ede57369dc72acfa419c73c689f5b7ee1680fd77bcd4589ff70e2e",
+    "contentSha256": "5d418d950accc9935782c24c44ffeacaddd828114fb03e9f337d5310e4274efd"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "djibouti",
+  "url": "/assets/scene-heroes/djibouti.glb",
+  "sha256": "5e05262107a604f1fd7232ed8da51d618d0eccc769a50ede5146605e40777dac",
+  "rawBytes": 18668,
+  "brotliBytes": 16353,
+  "triangles": 276,
+  "parts": [
+    {
+      "node": "djibouti",
+      "triangles": 276,
+      "bounds": {
+        "min": [
+          -2.73777699,
+          0,
+          -1.83431065
+        ],
+        "max": [
+          2.737777039185,
+          0.44986240147,
+          1.8344408960149998
+        ]
+      },
+      "footprint": [
+        -2.73777699,
+        -1.83431065,
+        2.737777039185,
+        1.8344408960149998
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "73e9eb06fe0ab43dfa0d1b812e941952189a690143e715b30dcd38ad0c206753"
+  },
+  "inputs": {
+    "rawSha256": "ec3de4ae26721ad4bcb5753441139916b7729113fcef4e1a7918f8a6192c3f8f",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "djibouti",
+      "country": "dj",
+      "name": "Plage de la Siesta",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://villededjibouti.dj/event.php?id=59"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-final20-primary-r5.json#records[city_id=djibouti]; hero-inputs-r4.md final decisions",
+      "sourceLicence": "OpenStreetMap ODbL1.0 for exact object facts where cited; other source text rights unknown. No external image, map, mesh, texture, floor plan or geometry is reused.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 8,
+        "depth": 5,
+        "height": 0.45,
+        "seed": 6316,
+        "palette": [
+          "#c7b58d",
+          "#685748",
+          "#718b61",
+          "#bd7f55",
+          "#679aa7",
+          "#bdad83",
+          "#e1ddd0",
+          "#35444a"
+        ],
+        "composition": "bare-coast"
+      },
+      "evidence": "Direct Djibouti municipal article dated2024-10-08 describes its Siesta Beach cleanup, city partnership and natural beach. This is a different named feature from Djiba Djibouti in Loyada; no alias asserted. Original bare shoreline with no invented plants, structures or surveyed edge. Original schematic category interpretation only. Dimensions, palette and layout are art direction, not surveyed measurements. Empty trade displays do not infer local merchandise, precise current access or operation. No production or external-rights approval.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "east-africa"
+      }
+    },
+    "styleSha256": "f601c6dd6761e42d3430bc70ff17d3aded24774a040bb41cce79bb16e6b400a3"
+  }
+}

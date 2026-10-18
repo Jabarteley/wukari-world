@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "vienna",
+    "name": "Vienna",
+    "state": {
+      "id": "at-vienna",
+      "name": "Vienna"
+    },
+    "country": {
+      "id": "at",
+      "name": "Austria"
+    },
+    "point": {
+      "lon": 16.3725042,
+      "lat": 48.2083537
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/austria-261011.osm.pbf",
+      "https://ourairports.com/airports/LOWW/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/vienna/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/vienna/facts.ts",
+        "sha256": "58f19257202a14e6391679896bf3fc77f1b019172848397de87da39c680293eb"
+      },
+      {
+        "path": "src/game/cities/vienna/index.ts",
+        "sha256": "8926a85b74288f9fc6b387d1f696a42b6c2bd6ffbeabd5bdd7cf7cf6c2e34d69"
+      },
+      {
+        "path": "src/game/cities/vienna/places.ts",
+        "sha256": "ed983cb0784785e814a62c12cf94d9d36b41a5127ed3298d8c067b435bbb20e3"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.3725042,
+        "lat": 48.2083537
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "vienna-airport-vienna-airport",
+      "name": "Vienna International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.5697,
+        "lat": 48.110298
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-airport-vienna-airport-1",
+        "vienna-vienna-airport-vienna-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "vienna-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-clinic",
+      "name": "Clinic Floridsdorf",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.406583,
+        "lat": 48.26709
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-clinic-1",
+        "vienna-vienna-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/261921616"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1786542"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-community-notices",
+      "name": "Landesgericht Korneuburg",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.323681,
+        "lat": 48.346011
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-community-notices-1",
+        "vienna-vienna-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5280053579"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q42797417"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-community-voting-game",
+      "name": "Gemeindeamt Ebergassing",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.520304,
+        "lat": 48.046795
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-community-voting-game-1",
+        "vienna-vienna-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1862583508"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q674130"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-community-workshop",
+      "name": "Vienna University of Technology",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.435794,
+        "lat": 48.201147
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-community-workshop-1",
+        "vienna-vienna-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/33319"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q689400"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-market-game",
+      "name": "SCS Hauptgebäude",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.318113,
+        "lat": 48.109525
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-market-game-1",
+        "vienna-vienna-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/23087421"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q667591"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-meal-stop",
+      "name": "Anningerhaus",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.245908,
+        "lat": 48.054633
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-meal-stop-1",
+        "vienna-vienna-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/27556083"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q567197"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-osm-node-2169420120",
+      "name": "Lourdesgrotte",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.129457,
+        "lat": 48.05487
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-osm-node-2169420120-1",
+        "vienna-vienna-osm-node-2169420120-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2169420120"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q111906211"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-osm-node-3762548985",
+      "name": "Vienna Conservatory",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.333391,
+        "lat": 48.187465
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-osm-node-3762548985-1",
+        "vienna-vienna-osm-node-3762548985-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3762548985"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1524024"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-osm-node-7734394361",
+      "name": "Pestkreuz",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.148226,
+        "lat": 48.380105
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-osm-node-7734394361-1",
+        "vienna-vienna-osm-node-7734394361-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7734394361"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q38153027"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-osm-relation-3015485",
+      "name": "Allianz Stadion",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.265896,
+        "lat": 48.198027
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-osm-relation-3015485-1",
+        "vienna-vienna-osm-relation-3015485-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/3015485"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17310225"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-osm-way-1013775833",
+      "name": "Luftburg Kolarik",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.403,
+        "lat": 48.213039
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-osm-way-1013775833-1",
+        "vienna-vienna-osm-way-1013775833-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1013775833"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q130313615"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-osm-way-1052649543",
+      "name": "Pädagogische Hochschule Wien",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.374298,
+        "lat": 48.165785
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-osm-way-1052649543-1",
+        "vienna-vienna-osm-way-1052649543-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1052649543"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2120228"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-osm-way-10677471",
+      "name": "Höhere technische Bundeslehr- und Versuchsanstalt Mödling",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.289122,
+        "lat": 48.071638
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-osm-way-10677471-1",
+        "vienna-vienna-osm-way-10677471-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/10677471"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1566071"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-osm-way-1077764991",
+      "name": "Wettsteinpark",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.369152,
+        "lat": 48.22219
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-osm-way-1077764991-1",
+        "vienna-vienna-osm-way-1077764991-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1077764991"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q23689728"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-osm-way-122867605",
+      "name": "Großgrünmarkt",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.36111,
+        "lat": 48.136221
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-osm-way-122867605-1",
+        "vienna-vienna-osm-way-122867605-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/122867605"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1549443"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-osm-way-173239405",
+      "name": "Schubertpark Maurer",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.259631,
+        "lat": 48.150009
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-osm-way-173239405-1",
+        "vienna-vienna-osm-way-173239405-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/173239405"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q61649747"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-osm-way-179647766",
+      "name": "Tempelbergwarte",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.243003,
+        "lat": 48.337848
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-osm-way-179647766-1",
+        "vienna-vienna-osm-way-179647766-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/179647766"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2402706"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-osm-way-26586105",
+      "name": "Stefaniewarte",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.333316,
+        "lat": 48.276277
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-osm-way-26586105-1",
+        "vienna-vienna-osm-way-26586105-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/26586105"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1671916"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-osm-way-299960913",
+      "name": "Pfarrkirche hl. Thomas",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.606161,
+        "lat": 48.083989
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-osm-way-299960913-1",
+        "vienna-vienna-osm-way-299960913-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/299960913"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28762058"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-osm-way-32594130",
+      "name": "Schloss Wolkersdorf",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.51931,
+        "lat": 48.380996
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-osm-way-32594130-1",
+        "vienna-vienna-osm-way-32594130-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/32594130"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q38132887"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-osm-way-691761715",
+      "name": "Hl. Anna",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.625493,
+        "lat": 48.207434
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-osm-way-691761715-1",
+        "vienna-vienna-osm-way-691761715-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/691761715"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q38064387"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-quiet-reflection",
+      "name": "Waldandacht",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.199346,
+        "lat": 48.214141
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-quiet-reflection-1",
+        "vienna-vienna-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/326086904"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15827898"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-recreation",
+      "name": "Bill-Grah-Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.525721,
+        "lat": 48.214574
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-recreation-1",
+        "vienna-vienna-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/38756181"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q41968302"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vienna-transit",
+      "name": "Wien Ottakring",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 16.311191,
+        "lat": 48.21182
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vienna-vienna-transit-1",
+        "vienna-vienna-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vienna/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8091317"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q801606"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "vienna-vienna-airport-vienna-airport-1",
+      "venueId": "vienna-airport-vienna-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-airport-vienna-airport-2",
+      "venueId": "vienna-airport-vienna-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-clinic-1",
+      "venueId": "vienna-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-clinic-2",
+      "venueId": "vienna-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-community-notices-1",
+      "venueId": "vienna-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-community-notices-2",
+      "venueId": "vienna-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-community-voting-game-1",
+      "venueId": "vienna-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-community-voting-game-2",
+      "venueId": "vienna-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-community-workshop-1",
+      "venueId": "vienna-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-community-workshop-2",
+      "venueId": "vienna-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-market-game-1",
+      "venueId": "vienna-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-market-game-2",
+      "venueId": "vienna-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-meal-stop-1",
+      "venueId": "vienna-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-meal-stop-2",
+      "venueId": "vienna-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-node-2169420120-1",
+      "venueId": "vienna-osm-node-2169420120",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-node-2169420120-2",
+      "venueId": "vienna-osm-node-2169420120",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-node-3762548985-1",
+      "venueId": "vienna-osm-node-3762548985",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-node-3762548985-2",
+      "venueId": "vienna-osm-node-3762548985",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-node-7734394361-1",
+      "venueId": "vienna-osm-node-7734394361",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-node-7734394361-2",
+      "venueId": "vienna-osm-node-7734394361",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-relation-3015485-1",
+      "venueId": "vienna-osm-relation-3015485",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-relation-3015485-2",
+      "venueId": "vienna-osm-relation-3015485",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-1013775833-1",
+      "venueId": "vienna-osm-way-1013775833",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-1013775833-2",
+      "venueId": "vienna-osm-way-1013775833",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-1052649543-1",
+      "venueId": "vienna-osm-way-1052649543",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-1052649543-2",
+      "venueId": "vienna-osm-way-1052649543",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-10677471-1",
+      "venueId": "vienna-osm-way-10677471",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-10677471-2",
+      "venueId": "vienna-osm-way-10677471",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-1077764991-1",
+      "venueId": "vienna-osm-way-1077764991",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-1077764991-2",
+      "venueId": "vienna-osm-way-1077764991",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-122867605-1",
+      "venueId": "vienna-osm-way-122867605",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-122867605-2",
+      "venueId": "vienna-osm-way-122867605",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-173239405-1",
+      "venueId": "vienna-osm-way-173239405",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-173239405-2",
+      "venueId": "vienna-osm-way-173239405",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-179647766-1",
+      "venueId": "vienna-osm-way-179647766",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-179647766-2",
+      "venueId": "vienna-osm-way-179647766",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-26586105-1",
+      "venueId": "vienna-osm-way-26586105",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-26586105-2",
+      "venueId": "vienna-osm-way-26586105",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-299960913-1",
+      "venueId": "vienna-osm-way-299960913",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-299960913-2",
+      "venueId": "vienna-osm-way-299960913",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-32594130-1",
+      "venueId": "vienna-osm-way-32594130",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-32594130-2",
+      "venueId": "vienna-osm-way-32594130",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-691761715-1",
+      "venueId": "vienna-osm-way-691761715",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-osm-way-691761715-2",
+      "venueId": "vienna-osm-way-691761715",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-quiet-reflection-1",
+      "venueId": "vienna-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-quiet-reflection-2",
+      "venueId": "vienna-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-recreation-1",
+      "venueId": "vienna-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-recreation-2",
+      "venueId": "vienna-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-transit-1",
+      "venueId": "vienna-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    },
+    {
+      "id": "vienna-vienna-transit-2",
+      "venueId": "vienna-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vienna/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "vienna-airport-vienna-airport",
+    "vienna-clinic",
+    "vienna-community-notices",
+    "vienna-community-voting-game",
+    "vienna-community-workshop",
+    "vienna-market-game",
+    "vienna-meal-stop",
+    "vienna-osm-node-2169420120",
+    "vienna-osm-node-3762548985",
+    "vienna-osm-node-7734394361",
+    "vienna-osm-relation-3015485",
+    "vienna-osm-way-1013775833",
+    "vienna-osm-way-1052649543",
+    "vienna-osm-way-10677471",
+    "vienna-osm-way-1077764991",
+    "vienna-osm-way-122867605",
+    "vienna-osm-way-173239405",
+    "vienna-osm-way-179647766",
+    "vienna-osm-way-26586105",
+    "vienna-osm-way-299960913",
+    "vienna-osm-way-32594130",
+    "vienna-osm-way-691761715",
+    "vienna-quiet-reflection",
+    "vienna-recreation",
+    "vienna-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "2961260b3d4fcb09488512fbe003496ec670f8e5d150a781c3c0380d12b046d4",
+    "contentSha256": "578285f557c8c35bbef0cb0f140240ec8004c0b71906cf31bf2e76f33a58bd37"
+  }
+}

@@ -1,0 +1,2103 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "port-au-prince",
+    "name": "Port-au-Prince",
+    "state": {
+      "id": "ht",
+      "name": "Port-au-Prince"
+    },
+    "country": {
+      "id": "ht",
+      "name": "Haiti"
+    },
+    "point": {
+      "lon": -72.3395928,
+      "lat": 18.547327
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/central-america/haiti-and-domrep-261011.osm.pbf",
+      "https://ourairports.com/airports/MTPP/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/port-au-prince/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/port-au-prince/facts.ts",
+        "sha256": "b574b5d91c5e05110c3afa19ec1b42de54a92ccbdfac95bb4f7c3a0cc39ac952"
+      },
+      {
+        "path": "src/game/cities/port-au-prince/index.ts",
+        "sha256": "2f3cb437013cb7255847f4e6e3d6303c687818a123d423f20cc0c1546fd11880"
+      },
+      {
+        "path": "src/game/cities/port-au-prince/places.ts",
+        "sha256": "3f2dba20d3745e258395561dc208e716ef74216b6e96a5ab4d391a34ce01479f"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.3395928,
+        "lat": 18.547327
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "port-au-prince-airport-port-au-prince-airport",
+      "name": "Toussaint Louverture International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.292596,
+        "lat": 18.580023
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-airport-port-au-prince-airport-1",
+        "port-au-prince-port-au-prince-airport-port-au-prince-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "port-au-prince-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-clinic",
+      "name": "Hopital la Trinite",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.310785,
+        "lat": 18.554464
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-clinic-1",
+        "port-au-prince-port-au-prince-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/629092104"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3433075"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-community-notices",
+      "name": "Annexe Mairie Croix des Bouquets",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.317499,
+        "lat": 18.686442
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-community-notices-1",
+        "port-au-prince-port-au-prince-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3953648814"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-community-voting-game",
+      "name": "Annexe de la Mairie de Thomazeau",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.231981,
+        "lat": 18.660809
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-community-voting-game-1",
+        "port-au-prince-port-au-prince-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2481734890"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-community-workshop",
+      "name": "Université de Port-au-Prince",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.320605,
+        "lat": 18.537387
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-community-workshop-1",
+        "port-au-prince-port-au-prince-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5236861122"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30641801"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-market-game",
+      "name": "Marché en Fer",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.34316,
+        "lat": 18.551546
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-market-game-1",
+        "port-au-prince-port-au-prince-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/643630634"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16303839"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-meal-stop",
+      "name": "Hôtel Montana",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.2976,
+        "lat": 18.527374
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-meal-stop-1",
+        "port-au-prince-port-au-prince-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1103239497"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3121455"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-osm-node-1323785127",
+      "name": "Marche de Fermathe",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.293176,
+        "lat": 18.466275
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-osm-node-1323785127-1",
+        "port-au-prince-port-au-prince-osm-node-1323785127-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1323785127"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-osm-node-1584933011",
+      "name": "Rustik",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.305223,
+        "lat": 18.417624
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-osm-node-1584933011-1",
+        "port-au-prince-port-au-prince-osm-node-1584933011-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1584933011"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-osm-node-1929227554",
+      "name": "Ajoupas Beach Club",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.46497,
+        "lat": 18.546742
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-osm-node-1929227554-1",
+        "port-au-prince-port-au-prince-osm-node-1929227554-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1929227554"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-osm-node-2753138714",
+      "name": "Le Marron Inconnu",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.338161,
+        "lat": 18.545136
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-osm-node-2753138714-1",
+        "port-au-prince-port-au-prince-osm-node-2753138714-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2753138714"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24204915"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-osm-node-4217575341",
+      "name": "Petit Marché de Canaan",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.281361,
+        "lat": 18.6502
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-osm-node-4217575341-1",
+        "port-au-prince-port-au-prince-osm-node-4217575341-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4217575341"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-osm-node-4842345826",
+      "name": "Mc-Intosh",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.28237,
+        "lat": 18.587518
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-osm-node-4842345826-1",
+        "port-au-prince-port-au-prince-osm-node-4842345826-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4842345826"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-osm-node-6356671168",
+      "name": "Centre d’Enseignement des Techniques Appliquées",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.31432,
+        "lat": 18.617457
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-osm-node-6356671168-1",
+        "port-au-prince-port-au-prince-osm-node-6356671168-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6356671168"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-osm-node-883450377",
+      "name": "Université de technologie d'Haïti",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.333243,
+        "lat": 18.530741
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-osm-node-883450377-1",
+        "port-au-prince-port-au-prince-osm-node-883450377-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/883450377"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q42417643"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-osm-relation-13545105",
+      "name": "Hôpital Saint-Damien",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.253348,
+        "lat": 18.570818
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-osm-relation-13545105-1",
+        "port-au-prince-port-au-prince-osm-relation-13545105-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/13545105"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q22122543"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-osm-way-27937322",
+      "name": "Port-au-Prince Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.338676,
+        "lat": 18.549025
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-osm-way-27937322-1",
+        "port-au-prince-port-au-prince-osm-way-27937322-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/27937322"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1461247"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-osm-way-310210009",
+      "name": "Université Quisqueya",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.32141,
+        "lat": 18.526428
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-osm-way-310210009-1",
+        "port-au-prince-port-au-prince-osm-way-310210009-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/310210009"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16682060"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-osm-way-380648401",
+      "name": "Hôpital de l'Université d'État d'Haïti",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.339875,
+        "lat": 18.539746
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-osm-way-380648401-1",
+        "port-au-prince-port-au-prince-osm-way-380648401-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/380648401"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q58377341"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-osm-way-48215560",
+      "name": "Haiti National Palace",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.338855,
+        "lat": 18.543154
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-osm-way-48215560-1",
+        "port-au-prince-port-au-prince-osm-way-48215560-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/48215560"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q509638"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-osm-way-48277658",
+      "name": "Musée National d'Art d'Haïti",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.336034,
+        "lat": 18.539111
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-osm-way-48277658-1",
+        "port-au-prince-port-au-prince-osm-way-48277658-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/48277658"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16919423"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-osm-way-48279480",
+      "name": "Holy Trinity Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.338599,
+        "lat": 18.546726
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-osm-way-48279480-1",
+        "port-au-prince-port-au-prince-osm-way-48279480-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/48279480"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2942886"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-quiet-reflection",
+      "name": "Temple of Port-au-Prince",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.2682,
+        "lat": 18.528999
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-quiet-reflection-1",
+        "port-au-prince-port-au-prince-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1328919400"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20714931"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-recreation",
+      "name": "Champs de Mars",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.335535,
+        "lat": 18.54328
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-recreation-1",
+        "port-au-prince-port-au-prince-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/8929056"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q65065172"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "port-au-prince-transit",
+      "name": "Portail Léogâne",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -72.346573,
+        "lat": 18.536002
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "port-au-prince-port-au-prince-transit-1",
+        "port-au-prince-port-au-prince-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/port-au-prince/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/375734791"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "port-au-prince-port-au-prince-airport-port-au-prince-airport-1",
+      "venueId": "port-au-prince-airport-port-au-prince-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-airport-port-au-prince-airport-2",
+      "venueId": "port-au-prince-airport-port-au-prince-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-clinic-1",
+      "venueId": "port-au-prince-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-clinic-2",
+      "venueId": "port-au-prince-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-community-notices-1",
+      "venueId": "port-au-prince-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-community-notices-2",
+      "venueId": "port-au-prince-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-community-voting-game-1",
+      "venueId": "port-au-prince-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-community-voting-game-2",
+      "venueId": "port-au-prince-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-community-workshop-1",
+      "venueId": "port-au-prince-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-community-workshop-2",
+      "venueId": "port-au-prince-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-market-game-1",
+      "venueId": "port-au-prince-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-market-game-2",
+      "venueId": "port-au-prince-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-meal-stop-1",
+      "venueId": "port-au-prince-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-meal-stop-2",
+      "venueId": "port-au-prince-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-node-1323785127-1",
+      "venueId": "port-au-prince-osm-node-1323785127",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-node-1323785127-2",
+      "venueId": "port-au-prince-osm-node-1323785127",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-node-1584933011-1",
+      "venueId": "port-au-prince-osm-node-1584933011",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-node-1584933011-2",
+      "venueId": "port-au-prince-osm-node-1584933011",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-node-1929227554-1",
+      "venueId": "port-au-prince-osm-node-1929227554",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-node-1929227554-2",
+      "venueId": "port-au-prince-osm-node-1929227554",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-node-2753138714-1",
+      "venueId": "port-au-prince-osm-node-2753138714",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-node-2753138714-2",
+      "venueId": "port-au-prince-osm-node-2753138714",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-node-4217575341-1",
+      "venueId": "port-au-prince-osm-node-4217575341",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-node-4217575341-2",
+      "venueId": "port-au-prince-osm-node-4217575341",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-node-4842345826-1",
+      "venueId": "port-au-prince-osm-node-4842345826",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-node-4842345826-2",
+      "venueId": "port-au-prince-osm-node-4842345826",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-node-6356671168-1",
+      "venueId": "port-au-prince-osm-node-6356671168",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-node-6356671168-2",
+      "venueId": "port-au-prince-osm-node-6356671168",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-node-883450377-1",
+      "venueId": "port-au-prince-osm-node-883450377",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-node-883450377-2",
+      "venueId": "port-au-prince-osm-node-883450377",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-relation-13545105-1",
+      "venueId": "port-au-prince-osm-relation-13545105",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-relation-13545105-2",
+      "venueId": "port-au-prince-osm-relation-13545105",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-way-27937322-1",
+      "venueId": "port-au-prince-osm-way-27937322",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-way-27937322-2",
+      "venueId": "port-au-prince-osm-way-27937322",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-way-310210009-1",
+      "venueId": "port-au-prince-osm-way-310210009",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-way-310210009-2",
+      "venueId": "port-au-prince-osm-way-310210009",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-way-380648401-1",
+      "venueId": "port-au-prince-osm-way-380648401",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-way-380648401-2",
+      "venueId": "port-au-prince-osm-way-380648401",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-way-48215560-1",
+      "venueId": "port-au-prince-osm-way-48215560",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-way-48215560-2",
+      "venueId": "port-au-prince-osm-way-48215560",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-way-48277658-1",
+      "venueId": "port-au-prince-osm-way-48277658",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-way-48277658-2",
+      "venueId": "port-au-prince-osm-way-48277658",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-way-48279480-1",
+      "venueId": "port-au-prince-osm-way-48279480",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-osm-way-48279480-2",
+      "venueId": "port-au-prince-osm-way-48279480",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-quiet-reflection-1",
+      "venueId": "port-au-prince-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-quiet-reflection-2",
+      "venueId": "port-au-prince-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-recreation-1",
+      "venueId": "port-au-prince-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-recreation-2",
+      "venueId": "port-au-prince-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-transit-1",
+      "venueId": "port-au-prince-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    },
+    {
+      "id": "port-au-prince-port-au-prince-transit-2",
+      "venueId": "port-au-prince-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-au-prince/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "port-au-prince-airport-port-au-prince-airport",
+    "port-au-prince-clinic",
+    "port-au-prince-community-notices",
+    "port-au-prince-community-voting-game",
+    "port-au-prince-community-workshop",
+    "port-au-prince-market-game",
+    "port-au-prince-meal-stop",
+    "port-au-prince-osm-node-1323785127",
+    "port-au-prince-osm-node-1584933011",
+    "port-au-prince-osm-node-1929227554",
+    "port-au-prince-osm-node-2753138714",
+    "port-au-prince-osm-node-4217575341",
+    "port-au-prince-osm-node-4842345826",
+    "port-au-prince-osm-node-6356671168",
+    "port-au-prince-osm-node-883450377",
+    "port-au-prince-osm-relation-13545105",
+    "port-au-prince-osm-way-27937322",
+    "port-au-prince-osm-way-310210009",
+    "port-au-prince-osm-way-380648401",
+    "port-au-prince-osm-way-48215560",
+    "port-au-prince-osm-way-48277658",
+    "port-au-prince-osm-way-48279480",
+    "port-au-prince-quiet-reflection",
+    "port-au-prince-recreation",
+    "port-au-prince-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "cc0b154c5fcb76a994c31ba462e872808ec2ae4c6dae31e4308845681ddae77b",
+    "contentSha256": "96791dc7414b53d76052e312c2522b3a5a35d4a3f52dfaabf1b7fd7c7360134b"
+  }
+}

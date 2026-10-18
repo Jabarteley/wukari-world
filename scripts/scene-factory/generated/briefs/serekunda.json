@@ -1,0 +1,2111 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "serekunda",
+    "name": "Serrekunda",
+    "state": {
+      "id": "gm-serekunda",
+      "name": "Serrekunda"
+    },
+    "country": {
+      "id": "gm",
+      "name": "Gambia"
+    },
+    "point": {
+      "lon": -16.674807,
+      "lat": 13.438762
+    }
+  },
+  "style": {
+    "region": "gulf-guinea",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/africa/senegal-and-gambia-261011.osm.pbf",
+      "https://ourairports.com/airports/GBYD/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/serekunda/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/serekunda/facts.ts",
+        "sha256": "ddbef50bba613d8476c1b3265cebf77f4aad5373b38460e824223825dd11b2f8"
+      },
+      {
+        "path": "src/game/cities/serekunda/index.ts",
+        "sha256": "28ae1b34023c2cecae355e0a58de1d92e3cf0040f356713a750ada20e4b57083"
+      },
+      {
+        "path": "src/game/cities/serekunda/places.ts",
+        "sha256": "ade4df7388c024aefff5f7dd1e34ccc179fcae6d5da2f5fa516923d0a1111349"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.674807,
+        "lat": 13.438762
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "serekunda-airport-serekunda-airport",
+      "name": "Banjul International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.652201,
+        "lat": 13.338
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-airport-serekunda-airport-1",
+        "serekunda-serekunda-airport-serekunda-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "serekunda-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-clinic",
+      "name": "Edward Francis Small Teaching Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.577227,
+        "lat": 13.457523
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-clinic-1",
+        "serekunda-serekunda-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/249740590"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2171145"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-community-notices",
+      "name": "Assemblée nationale de Gambie",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.585598,
+        "lat": 13.460987
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-community-notices-1",
+        "serekunda-serekunda-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/378674902"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1427127"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-community-voting-game",
+      "name": "Banjul City Council",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.578612,
+        "lat": 13.45791
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-community-voting-game-1",
+        "serekunda-serekunda-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/255612628"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q806594"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-community-workshop",
+      "name": "Bibliothèque nationale de Gambie",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.584978,
+        "lat": 13.459588
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-community-workshop-1",
+        "serekunda-serekunda-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/255713471"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6974175"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-market-game",
+      "name": "Marché Albert",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.571786,
+        "lat": 13.454114
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-market-game-1",
+        "serekunda-serekunda-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/255666858"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q325000"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-meal-stop",
+      "name": "Tao",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.721962,
+        "lat": 13.440849
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-meal-stop-1",
+        "serekunda-serekunda-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/619473209"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q88295994"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-osm-node-12025767906",
+      "name": "Youna Clinic",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.729167,
+        "lat": 13.348879
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-osm-node-12025767906-1",
+        "serekunda-serekunda-osm-node-12025767906-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12025767906"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-osm-node-6300945109",
+      "name": "Campbeach Bar & Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.804846,
+        "lat": 13.325505
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-osm-node-6300945109-1",
+        "serekunda-serekunda-osm-node-6300945109-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6300945109"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-osm-node-9080250964",
+      "name": "Fabulous Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.7631,
+        "lat": 13.268435
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-osm-node-9080250964-1",
+        "serekunda-serekunda-osm-node-9080250964-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9080250964"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-osm-node-9158275429",
+      "name": "Mama Mini Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.588012,
+        "lat": 13.280835
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-osm-node-9158275429-1",
+        "serekunda-serekunda-osm-node-9158275429-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9158275429"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-osm-way-110043106",
+      "name": "Abuko Nature Reserve",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.652145,
+        "lat": 13.389906
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-osm-way-110043106-1",
+        "serekunda-serekunda-osm-way-110043106-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/110043106"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q335818"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-osm-way-166695422",
+      "name": "Bijilo Forest Park",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.728552,
+        "lat": 13.431525
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-osm-way-166695422-1",
+        "serekunda-serekunda-osm-way-166695422-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/166695422"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q859906"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-osm-way-249687879",
+      "name": "Serrekunda West",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.678113,
+        "lat": 13.447056
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-osm-way-249687879-1",
+        "serekunda-serekunda-osm-way-249687879-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/249687879"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16600652"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-osm-way-255647179",
+      "name": "Église Sainte-Marie",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.575148,
+        "lat": 13.454713
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-osm-way-255647179-1",
+        "serekunda-serekunda-osm-way-255647179-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/255647179"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q540821"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-osm-way-255647292",
+      "name": "King George V Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.575762,
+        "lat": 13.446052
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-osm-way-255647292-1",
+        "serekunda-serekunda-osm-way-255647292-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/255647292"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16566644"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-osm-way-255649417",
+      "name": "Cathedral of Our Lady of the Assumption",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.574411,
+        "lat": 13.451063
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-osm-way-255649417-1",
+        "serekunda-serekunda-osm-way-255649417-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/255649417"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2179688"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-osm-way-255895814",
+      "name": "International Trypanotolerance Centre (ITC)",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.724574,
+        "lat": 13.434131
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-osm-way-255895814-1",
+        "serekunda-serekunda-osm-way-255895814-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/255895814"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-osm-way-263258266",
+      "name": "Fort Bullen",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.548669,
+        "lat": 13.48749
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-osm-way-263258266-1",
+        "serekunda-serekunda-osm-way-263258266-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/263258266"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1438468"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-osm-way-370186566",
+      "name": "MRC Unit The Gambia at LSHTM",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.688453,
+        "lat": 13.473726
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-osm-way-370186566-1",
+        "serekunda-serekunda-osm-way-370186566-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/370186566"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30280323"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-osm-way-374017688",
+      "name": "American International University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.673392,
+        "lat": 13.463134
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-osm-way-374017688-1",
+        "serekunda-serekunda-osm-way-374017688-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/374017688"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16251004"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-osm-way-816348601",
+      "name": "Independence Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.678187,
+        "lat": 13.468746
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-osm-way-816348601-1",
+        "serekunda-serekunda-osm-way-816348601-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/816348601"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q455108"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-quiet-reflection",
+      "name": "Pipeline Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.685138,
+        "lat": 13.457628
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-quiet-reflection-1",
+        "serekunda-serekunda-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/370185031"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1408792"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-recreation",
+      "name": "Methodist Mission",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.654017,
+        "lat": 13.272657
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-recreation-1",
+        "serekunda-serekunda-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/113756823"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "serekunda-transit",
+      "name": "Garage Brufut",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -16.692122,
+        "lat": 13.435375
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "serekunda-serekunda-transit-1",
+        "serekunda-serekunda-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/serekunda/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1170998865"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "serekunda-serekunda-airport-serekunda-airport-1",
+      "venueId": "serekunda-airport-serekunda-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-airport-serekunda-airport-2",
+      "venueId": "serekunda-airport-serekunda-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-clinic-1",
+      "venueId": "serekunda-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-clinic-2",
+      "venueId": "serekunda-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-community-notices-1",
+      "venueId": "serekunda-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-community-notices-2",
+      "venueId": "serekunda-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-community-voting-game-1",
+      "venueId": "serekunda-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-community-voting-game-2",
+      "venueId": "serekunda-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-community-workshop-1",
+      "venueId": "serekunda-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-community-workshop-2",
+      "venueId": "serekunda-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-market-game-1",
+      "venueId": "serekunda-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-market-game-2",
+      "venueId": "serekunda-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-meal-stop-1",
+      "venueId": "serekunda-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-meal-stop-2",
+      "venueId": "serekunda-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-node-12025767906-1",
+      "venueId": "serekunda-osm-node-12025767906",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-node-12025767906-2",
+      "venueId": "serekunda-osm-node-12025767906",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-node-6300945109-1",
+      "venueId": "serekunda-osm-node-6300945109",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-node-6300945109-2",
+      "venueId": "serekunda-osm-node-6300945109",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-node-9080250964-1",
+      "venueId": "serekunda-osm-node-9080250964",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-node-9080250964-2",
+      "venueId": "serekunda-osm-node-9080250964",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-node-9158275429-1",
+      "venueId": "serekunda-osm-node-9158275429",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-node-9158275429-2",
+      "venueId": "serekunda-osm-node-9158275429",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-110043106-1",
+      "venueId": "serekunda-osm-way-110043106",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-110043106-2",
+      "venueId": "serekunda-osm-way-110043106",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-166695422-1",
+      "venueId": "serekunda-osm-way-166695422",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-166695422-2",
+      "venueId": "serekunda-osm-way-166695422",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-249687879-1",
+      "venueId": "serekunda-osm-way-249687879",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-249687879-2",
+      "venueId": "serekunda-osm-way-249687879",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-255647179-1",
+      "venueId": "serekunda-osm-way-255647179",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-255647179-2",
+      "venueId": "serekunda-osm-way-255647179",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-255647292-1",
+      "venueId": "serekunda-osm-way-255647292",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-255647292-2",
+      "venueId": "serekunda-osm-way-255647292",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-255649417-1",
+      "venueId": "serekunda-osm-way-255649417",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-255649417-2",
+      "venueId": "serekunda-osm-way-255649417",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-255895814-1",
+      "venueId": "serekunda-osm-way-255895814",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-255895814-2",
+      "venueId": "serekunda-osm-way-255895814",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-263258266-1",
+      "venueId": "serekunda-osm-way-263258266",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-263258266-2",
+      "venueId": "serekunda-osm-way-263258266",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-370186566-1",
+      "venueId": "serekunda-osm-way-370186566",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-370186566-2",
+      "venueId": "serekunda-osm-way-370186566",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-374017688-1",
+      "venueId": "serekunda-osm-way-374017688",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-374017688-2",
+      "venueId": "serekunda-osm-way-374017688",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-816348601-1",
+      "venueId": "serekunda-osm-way-816348601",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-osm-way-816348601-2",
+      "venueId": "serekunda-osm-way-816348601",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-quiet-reflection-1",
+      "venueId": "serekunda-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-quiet-reflection-2",
+      "venueId": "serekunda-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-recreation-1",
+      "venueId": "serekunda-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-recreation-2",
+      "venueId": "serekunda-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-transit-1",
+      "venueId": "serekunda-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    },
+    {
+      "id": "serekunda-serekunda-transit-2",
+      "venueId": "serekunda-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/serekunda/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "serekunda-airport-serekunda-airport",
+    "serekunda-clinic",
+    "serekunda-community-notices",
+    "serekunda-community-voting-game",
+    "serekunda-community-workshop",
+    "serekunda-market-game",
+    "serekunda-meal-stop",
+    "serekunda-osm-node-12025767906",
+    "serekunda-osm-node-6300945109",
+    "serekunda-osm-node-9080250964",
+    "serekunda-osm-node-9158275429",
+    "serekunda-osm-way-110043106",
+    "serekunda-osm-way-166695422",
+    "serekunda-osm-way-249687879",
+    "serekunda-osm-way-255647179",
+    "serekunda-osm-way-255647292",
+    "serekunda-osm-way-255649417",
+    "serekunda-osm-way-255895814",
+    "serekunda-osm-way-263258266",
+    "serekunda-osm-way-370186566",
+    "serekunda-osm-way-374017688",
+    "serekunda-osm-way-816348601",
+    "serekunda-quiet-reflection",
+    "serekunda-recreation",
+    "serekunda-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "a42f4d907de21f0e77754c9b8b2ce3d30b5dab5976950f2a44f0dba7cb7a0573",
+    "contentSha256": "9050cdcb537c263dfee66b49959debbc346eadb7abd339c3a204cd02c4a791be"
+  }
+}

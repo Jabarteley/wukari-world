@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "brades",
+  "url": "/assets/scene-heroes/brades.glb",
+  "sha256": "398c0ad3c740a73cb5866a92f2c12582bdbe37bd382e056e90499b533a0fb9d2",
+  "rawBytes": 31184,
+  "brotliBytes": 20454,
+  "triangles": 972,
+  "parts": [
+    {
+      "node": "brades",
+      "triangles": 972,
+      "bounds": {
+        "min": [
+          -3.33887029,
+          0,
+          -2.84053159
+        ],
+        "max": [
+          3.338870376209,
+          2.9999494172800003,
+          2.8406226189740003
+        ]
+      },
+      "footprint": [
+        -3.33887029,
+        -2.84053159,
+        3.338870376209,
+        2.8406226189740003
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "9f605aed85455d749c309e84380f6946dfec18eac9a7255d8a485c5cfce528fb",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "brades",
+      "country": "ms",
+      "name": "Government Headquarters, Brades",
+      "category": "building",
+      "sourceUrls": [
+        "https://www.gov.ms/government/non-ministerial-departments/cabinet-secretariat/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=brades]; hero-inputs-r4.md defining-form review",
+      "sourceLicence": "Source text rights unknown unless the publisher states otherwise; factual identity only. No external photo, map, mesh, texture, sculpture surface or plan reused. Original generated geometry is AGPL-3.0-or-later; third-party marks and landmark rights are not cleared by this record.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landmark",
+      "parameters": {
+        "width": 7,
+        "depth": 6,
+        "height": 3,
+        "seed": 6126,
+        "palette": [
+          "#dbcdb6",
+          "#62584a",
+          "#8f8a74",
+          "#af593f",
+          "#c8b68c",
+          "#8caa99",
+          "#d2bd91",
+          "#2e3c43"
+        ],
+        "composition": "civic-pavilions"
+      },
+      "evidence": "Government department page gives Government Headquarters, Brades as the department location. Supports a civic complex location, not a named façade or distinct historic building. Official address establishes a civic complex only. Shares the original low pavilion kernel with Palikir; no unique exterior, regional topology or exact footprint is asserted. All dimensions, colours, simplifications and composition proportions are original art direction, not source measurements. No surveyed-location, current-access, production-quality or legal-rights approval is asserted.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

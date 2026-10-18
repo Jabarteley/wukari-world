@@ -1,0 +1,1874 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "kampala",
+    "name": "Kampala",
+    "state": {
+      "id": "ug-starter",
+      "name": "Kampala"
+    },
+    "country": {
+      "id": "ug",
+      "name": "Uganda"
+    },
+    "point": {
+      "lon": 32.581378,
+      "lat": 0.318605
+    }
+  },
+  "style": {
+    "region": "east-africa",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "Natural Earth, OpenStreetMap contributors and OurAirports dataset",
+    "sourceUrls": [
+      "https://ourairports.com/airports/HUEN/",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/kampala/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/kampala/facts.ts",
+        "sha256": "292753dee14f546b1026202afd5cecac16cbfc1dc20b0b5f10959d505736a5fa"
+      },
+      {
+        "path": "src/game/cities/kampala/index.ts",
+        "sha256": "ffd34fc4c1bacbb2ce6bcfb7575ac590817df213fd9ede3289692f8e7caf0043"
+      },
+      {
+        "path": "src/game/cities/kampala/places.ts",
+        "sha256": "c95e52b52fcccf712bcd93f05163a3e76d5e63eac59e201ab9b1bae6606e4ff9"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.581378,
+        "lat": 0.3186049999999998
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "kampala-airport-kampala-airport",
+      "name": "Entebbe International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.443501,
+        "lat": 0.042386
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-airport-kampala-airport-1",
+        "kampala-kampala-airport-kampala-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "kampala-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-bahai-house-of-worship",
+      "name": "Baha'i House of Worship",
+      "kind": "hilltop",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.588484,
+        "lat": 0.36439
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-bahai-house-of-worship-1",
+        "kampala-kampala-bahai-house-of-worship-2"
+      ],
+      "scene": {
+        "kind": "hilltop",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/44111742"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7186495"
+          }
+        ],
+        "sourceKind": "hilltop",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-clinic",
+      "name": "Mengo Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.558063,
+        "lat": 0.311959
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-clinic-1",
+        "kampala-kampala-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/331033033"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q14956798"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-community-notices",
+      "name": "KCCA Town Hall",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.585941,
+        "lat": 0.314996
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-community-notices-1",
+        "kampala-kampala-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3285556061"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-community-voting-game",
+      "name": "Independence Monument",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.581697,
+        "lat": 0.315514
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-community-voting-game-1",
+        "kampala-kampala-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1737903918"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q67758661"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-community-workshop",
+      "name": "Makerere University Business School",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.617611,
+        "lat": 0.328173
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-community-workshop-1",
+        "kampala-kampala-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/317923869"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6739286"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-fort-lugard",
+      "name": "Fort Lugard",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.568099,
+        "lat": 0.316172
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-fort-lugard-1",
+        "kampala-kampala-fort-lugard-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/263780777"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-garden-city",
+      "name": "Garden City",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.591593,
+        "lat": 0.319897
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-garden-city-1",
+        "kampala-kampala-garden-city-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/199101899"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-kasubi-royal-tombs",
+      "name": "Kasubi Royal Tombs",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.555088,
+        "lat": 0.328265
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-kasubi-royal-tombs-1",
+        "kampala-kampala-kasubi-royal-tombs-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/169069193"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-market-game",
+      "name": "Owino Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.573937,
+        "lat": 0.30983
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-market-game-1",
+        "kampala-kampala-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/161834654"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-meal-stop",
+      "name": "Cafe Javas",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.592307,
+        "lat": 0.318356
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-meal-stop-1",
+        "kampala-kampala-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/616311530"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-national-library",
+      "name": "National Library of Uganda",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.574735,
+        "lat": 0.322713
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-national-library-1",
+        "kampala-kampala-national-library-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3766230238"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q618252"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-oasis-mall",
+      "name": "Oasis Mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.592566,
+        "lat": 0.318907
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-oasis-mall-1",
+        "kampala-kampala-oasis-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/59529330"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-quiet-reflection",
+      "name": "Namirembe Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.559445,
+        "lat": 0.314887
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-quiet-reflection-1",
+        "kampala-kampala-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/129123588"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16895659"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-recreation",
+      "name": "Entebbe Botanical Gardens",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.47897,
+        "lat": 0.063018
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-recreation-1",
+        "kampala-kampala-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/183107239"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6971106"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-royal-palace-of-buganda",
+      "name": "Royal Palace of the King of Buganda",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.566388,
+        "lat": 0.301922
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-royal-palace-of-buganda-1",
+        "kampala-kampala-royal-palace-of-buganda-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/115781989"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-rubaga-cathedral",
+      "name": "Rubaga Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.552084,
+        "lat": 0.302504
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-rubaga-cathedral-1",
+        "kampala-kampala-rubaga-cathedral-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/207230274"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16899506"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-transit",
+      "name": "Buganda Bus Park",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.57451,
+        "lat": 0.313726
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-transit-1",
+        "kampala-kampala-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/353703378"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-uganda-museum",
+      "name": "Uganda Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.582579,
+        "lat": 0.335857
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-uganda-museum-1",
+        "kampala-kampala-uganda-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/615341411"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7877613"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-victoria-university",
+      "name": "Victoria University - Uganda",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.580721,
+        "lat": 0.337551
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-victoria-university-1",
+        "kampala-kampala-victoria-university-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/157839882"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16902646"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-wankulukuku-stadium",
+      "name": "Mutesa II - Wankulukuku Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.548299,
+        "lat": 0.284083
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-wankulukuku-stadium-1",
+        "kampala-kampala-wankulukuku-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/43868188"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kampala-wonder-world",
+      "name": "Speke Resort Munyonyo",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 32.623967,
+        "lat": 0.237001
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kampala-kampala-wonder-world-1",
+        "kampala-kampala-wonder-world-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kampala/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/50474010"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q18378283"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "kampala-kampala-airport-kampala-airport-1",
+      "venueId": "kampala-airport-kampala-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-airport-kampala-airport-2",
+      "venueId": "kampala-airport-kampala-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-bahai-house-of-worship-1",
+      "venueId": "kampala-bahai-house-of-worship",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-bahai-house-of-worship-2",
+      "venueId": "kampala-bahai-house-of-worship",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-clinic-1",
+      "venueId": "kampala-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-clinic-2",
+      "venueId": "kampala-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-community-notices-1",
+      "venueId": "kampala-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-community-notices-2",
+      "venueId": "kampala-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-community-voting-game-1",
+      "venueId": "kampala-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-community-voting-game-2",
+      "venueId": "kampala-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-community-workshop-1",
+      "venueId": "kampala-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-community-workshop-2",
+      "venueId": "kampala-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-fort-lugard-1",
+      "venueId": "kampala-fort-lugard",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-fort-lugard-2",
+      "venueId": "kampala-fort-lugard",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-garden-city-1",
+      "venueId": "kampala-garden-city",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-garden-city-2",
+      "venueId": "kampala-garden-city",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-kasubi-royal-tombs-1",
+      "venueId": "kampala-kasubi-royal-tombs",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-kasubi-royal-tombs-2",
+      "venueId": "kampala-kasubi-royal-tombs",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-market-game-1",
+      "venueId": "kampala-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-market-game-2",
+      "venueId": "kampala-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-meal-stop-1",
+      "venueId": "kampala-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-meal-stop-2",
+      "venueId": "kampala-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-national-library-1",
+      "venueId": "kampala-national-library",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-national-library-2",
+      "venueId": "kampala-national-library",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-oasis-mall-1",
+      "venueId": "kampala-oasis-mall",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-oasis-mall-2",
+      "venueId": "kampala-oasis-mall",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-quiet-reflection-1",
+      "venueId": "kampala-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-quiet-reflection-2",
+      "venueId": "kampala-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-recreation-1",
+      "venueId": "kampala-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-recreation-2",
+      "venueId": "kampala-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-royal-palace-of-buganda-1",
+      "venueId": "kampala-royal-palace-of-buganda",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-royal-palace-of-buganda-2",
+      "venueId": "kampala-royal-palace-of-buganda",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-rubaga-cathedral-1",
+      "venueId": "kampala-rubaga-cathedral",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-rubaga-cathedral-2",
+      "venueId": "kampala-rubaga-cathedral",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-transit-1",
+      "venueId": "kampala-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-transit-2",
+      "venueId": "kampala-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-uganda-museum-1",
+      "venueId": "kampala-uganda-museum",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-uganda-museum-2",
+      "venueId": "kampala-uganda-museum",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-victoria-university-1",
+      "venueId": "kampala-victoria-university",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-victoria-university-2",
+      "venueId": "kampala-victoria-university",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-wankulukuku-stadium-1",
+      "venueId": "kampala-wankulukuku-stadium",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-wankulukuku-stadium-2",
+      "venueId": "kampala-wankulukuku-stadium",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-wonder-world-1",
+      "venueId": "kampala-wonder-world",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    },
+    {
+      "id": "kampala-kampala-wonder-world-2",
+      "venueId": "kampala-wonder-world",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kampala/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "kampala-airport-kampala-airport",
+    "kampala-bahai-house-of-worship",
+    "kampala-clinic",
+    "kampala-community-notices",
+    "kampala-community-voting-game",
+    "kampala-community-workshop",
+    "kampala-fort-lugard",
+    "kampala-garden-city",
+    "kampala-kasubi-royal-tombs",
+    "kampala-market-game",
+    "kampala-meal-stop",
+    "kampala-national-library",
+    "kampala-oasis-mall",
+    "kampala-quiet-reflection",
+    "kampala-recreation",
+    "kampala-royal-palace-of-buganda",
+    "kampala-rubaga-cathedral",
+    "kampala-transit",
+    "kampala-uganda-museum",
+    "kampala-victoria-university",
+    "kampala-wankulukuku-stadium",
+    "kampala-wonder-world"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "5705ff4fb2f759ac96d1879473738bc4af2f52ca7856922a2671f48deb2f4d49",
+    "contentSha256": "022600676b3c62ee70532ae39a05200e496edca7629efe0e3baeb3bfa5401690"
+  }
+}

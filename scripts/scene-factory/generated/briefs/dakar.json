@@ -1,0 +1,1957 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "dakar",
+    "name": "Dakar",
+    "state": {
+      "id": "sn-starter",
+      "name": "Dakar"
+    },
+    "country": {
+      "id": "sn",
+      "name": "Senegal"
+    },
+    "point": {
+      "lon": -17.475076,
+      "lat": 14.717778
+    }
+  },
+  "style": {
+    "region": "sahel-francophone",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "Natural Earth, OpenStreetMap contributors and cited aeronautical information sources",
+    "sourceUrls": [
+      "https://aim.asecna.aero/html/eAIP/FR-_13AD-2.GOBD-fr-FR.html",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; Airport reference points: cited aeronautical information sources",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/dakar/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/dakar/facts.ts",
+        "sha256": "a990151c89d0100336f015abd02854e7fe75971b083bd26d153c417d6b4e6196"
+      },
+      {
+        "path": "src/game/cities/dakar/index.ts",
+        "sha256": "eff92061a32e102506972d9d106f1a4b27898b9fd591f769cc6f8e6c26203a5b"
+      },
+      {
+        "path": "src/game/cities/dakar/places.ts",
+        "sha256": "00b05f6c1100c8630a0df5a9e94d9b77c069cf786b9a8a8e526b020355b27f06"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "dakar-airport-dakar-airport",
+      "name": "AEROPORT INTL BLAISE DIAGNE - DAKAR - DIASS",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.072777778,
+        "lat": 14.670833333
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-airport-dakar-airport-1",
+        "dakar-dakar-airport-dakar-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "dakar-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-cathedrale-du-souvenir-africain",
+      "name": "Cathédrale du Souvenir africain",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.437612,
+        "lat": 14.665399
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-cathedrale-du-souvenir-africain-1",
+        "dakar-dakar-cathedrale-du-souvenir-africain-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/43759874"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1670193"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-centre-commercial-pa-u22",
+      "name": "Centre commercial PA u22",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.440978,
+        "lat": 14.752619
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-centre-commercial-pa-u22-1",
+        "dakar-dakar-centre-commercial-pa-u22-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6957557387"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-clinic",
+      "name": "Hopital de Fann",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.466617,
+        "lat": 14.693197
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-clinic-1",
+        "dakar-dakar-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/925374785"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-community-notices",
+      "name": "Assemblée Nationale du Sénégal",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.43843,
+        "lat": 14.662634
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-community-notices-1",
+        "dakar-dakar-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/340121040"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1853640"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-community-voting-game",
+      "name": "Place de la Nation",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.448273,
+        "lat": 14.694289
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-community-voting-game-1",
+        "dakar-dakar-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6574306817"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-community-workshop",
+      "name": "Université Cheikh Anta Diop",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.464071,
+        "lat": 14.687289
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-community-workshop-1",
+        "dakar-dakar-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/201445809"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q671363"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-grand-theatre-national",
+      "name": "Grand Théâtre National de Dakar",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.436398,
+        "lat": 14.679359
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-grand-theatre-national-1",
+        "dakar-dakar-grand-theatre-national-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/234204438"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-market-game",
+      "name": "Marché Sandaga",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.437921,
+        "lat": 14.669958
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-market-game-1",
+        "dakar-dakar-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/43720257"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q36157286"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-massalikoul-djinane",
+      "name": "Massalikoul Djinane",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.448637,
+        "lat": 14.701065
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-massalikoul-djinane-1",
+        "dakar-dakar-massalikoul-djinane-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/548368712"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q86670502"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-meal-stop",
+      "name": "Dibiterie Le Ndiambour",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.446961,
+        "lat": 14.699983
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-meal-stop-1",
+        "dakar-dakar-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/206511356"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-mosquee-de-la-divinite",
+      "name": "Mosquée de la Divinité",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.490453,
+        "lat": 14.715751
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-mosquee-de-la-divinite-1",
+        "dakar-dakar-mosquee-de-la-divinite-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/43760362"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3324921"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-musee-des-civilisations-noires",
+      "name": "Musée des Civilisations Noires",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.435074,
+        "lat": 14.677449
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-musee-des-civilisations-noires-1",
+        "dakar-dakar-musee-des-civilisations-noires-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/496182485"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q59521062"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-musee-leopold-sedar-senghor",
+      "name": "Musée Léopold Sédar Senghor",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.471352,
+        "lat": 14.696233
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-musee-leopold-sedar-senghor-1",
+        "dakar-dakar-musee-leopold-sedar-senghor-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1040859551"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16885171"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-parc-de-hann",
+      "name": "Parc forestier et zoologique de Hann",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.433389,
+        "lat": 14.726493
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-parc-de-hann-1",
+        "dakar-dakar-parc-de-hann-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/153018915"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-phare-des-mamelles",
+      "name": "Phare des Mamelles",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.501849,
+        "lat": 14.723784
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-phare-des-mamelles-1",
+        "dakar-dakar-phare-des-mamelles-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/323150651"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1567959"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-pointe-des-almadies",
+      "name": "Pointe des Almadies",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.529781,
+        "lat": 14.741062
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-pointe-des-almadies-1",
+        "dakar-dakar-pointe-des-almadies-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3663077394"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2581624"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-quiet-reflection",
+      "name": "Grande Mosquée de Dakar",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.442514,
+        "lat": 14.678181
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-quiet-reflection-1",
+        "dakar-dakar-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/3471478"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2477297"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-recreation",
+      "name": "Place de l’Indépendance",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.432055,
+        "lat": 14.669534
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-recreation-1",
+        "dakar-dakar-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/27811247"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q49543726"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-sentrade",
+      "name": "SENTRADE",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.454174,
+        "lat": 14.700581
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-sentrade-1",
+        "dakar-dakar-sentrade-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4165371786"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-theatre-daniel-sorano",
+      "name": "Théâtre National Daniel Sorano",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.439471,
+        "lat": 14.666317
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-theatre-daniel-sorano-1",
+        "dakar-dakar-theatre-daniel-sorano-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/554251002"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-transit",
+      "name": "Gare de Dakar",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.433747,
+        "lat": 14.676453
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-transit-1",
+        "dakar-dakar-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1016285866"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3096341"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "dakar-universite-dakar-bourguiba",
+      "name": "Université Dakar-Bourguiba",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.449519,
+        "lat": 14.718735
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "dakar-dakar-universite-dakar-bourguiba-1",
+        "dakar-dakar-universite-dakar-bourguiba-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/dakar/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3346319774"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3551395"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -17.475076,
+        "lat": 14.717778
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "dakar-dakar-airport-dakar-airport-1",
+      "venueId": "dakar-airport-dakar-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-airport-dakar-airport-2",
+      "venueId": "dakar-airport-dakar-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-cathedrale-du-souvenir-africain-1",
+      "venueId": "dakar-cathedrale-du-souvenir-africain",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-cathedrale-du-souvenir-africain-2",
+      "venueId": "dakar-cathedrale-du-souvenir-africain",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-centre-commercial-pa-u22-1",
+      "venueId": "dakar-centre-commercial-pa-u22",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-centre-commercial-pa-u22-2",
+      "venueId": "dakar-centre-commercial-pa-u22",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-clinic-1",
+      "venueId": "dakar-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-clinic-2",
+      "venueId": "dakar-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-community-notices-1",
+      "venueId": "dakar-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-community-notices-2",
+      "venueId": "dakar-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-community-voting-game-1",
+      "venueId": "dakar-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-community-voting-game-2",
+      "venueId": "dakar-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-community-workshop-1",
+      "venueId": "dakar-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-community-workshop-2",
+      "venueId": "dakar-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-grand-theatre-national-1",
+      "venueId": "dakar-grand-theatre-national",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-grand-theatre-national-2",
+      "venueId": "dakar-grand-theatre-national",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-market-game-1",
+      "venueId": "dakar-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-market-game-2",
+      "venueId": "dakar-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-massalikoul-djinane-1",
+      "venueId": "dakar-massalikoul-djinane",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-massalikoul-djinane-2",
+      "venueId": "dakar-massalikoul-djinane",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-meal-stop-1",
+      "venueId": "dakar-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-meal-stop-2",
+      "venueId": "dakar-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-mosquee-de-la-divinite-1",
+      "venueId": "dakar-mosquee-de-la-divinite",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-mosquee-de-la-divinite-2",
+      "venueId": "dakar-mosquee-de-la-divinite",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-musee-des-civilisations-noires-1",
+      "venueId": "dakar-musee-des-civilisations-noires",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-musee-des-civilisations-noires-2",
+      "venueId": "dakar-musee-des-civilisations-noires",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-musee-leopold-sedar-senghor-1",
+      "venueId": "dakar-musee-leopold-sedar-senghor",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-musee-leopold-sedar-senghor-2",
+      "venueId": "dakar-musee-leopold-sedar-senghor",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-parc-de-hann-1",
+      "venueId": "dakar-parc-de-hann",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-parc-de-hann-2",
+      "venueId": "dakar-parc-de-hann",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-phare-des-mamelles-1",
+      "venueId": "dakar-phare-des-mamelles",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-phare-des-mamelles-2",
+      "venueId": "dakar-phare-des-mamelles",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-pointe-des-almadies-1",
+      "venueId": "dakar-pointe-des-almadies",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-pointe-des-almadies-2",
+      "venueId": "dakar-pointe-des-almadies",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-quiet-reflection-1",
+      "venueId": "dakar-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-quiet-reflection-2",
+      "venueId": "dakar-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-recreation-1",
+      "venueId": "dakar-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-recreation-2",
+      "venueId": "dakar-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-sentrade-1",
+      "venueId": "dakar-sentrade",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-sentrade-2",
+      "venueId": "dakar-sentrade",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-theatre-daniel-sorano-1",
+      "venueId": "dakar-theatre-daniel-sorano",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-theatre-daniel-sorano-2",
+      "venueId": "dakar-theatre-daniel-sorano",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-transit-1",
+      "venueId": "dakar-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-transit-2",
+      "venueId": "dakar-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-universite-dakar-bourguiba-1",
+      "venueId": "dakar-universite-dakar-bourguiba",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    },
+    {
+      "id": "dakar-dakar-universite-dakar-bourguiba-2",
+      "venueId": "dakar-universite-dakar-bourguiba",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/dakar/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "dakar-airport-dakar-airport",
+    "dakar-cathedrale-du-souvenir-africain",
+    "dakar-centre-commercial-pa-u22",
+    "dakar-clinic",
+    "dakar-community-notices",
+    "dakar-community-voting-game",
+    "dakar-community-workshop",
+    "dakar-grand-theatre-national",
+    "dakar-market-game",
+    "dakar-massalikoul-djinane",
+    "dakar-meal-stop",
+    "dakar-mosquee-de-la-divinite",
+    "dakar-musee-des-civilisations-noires",
+    "dakar-musee-leopold-sedar-senghor",
+    "dakar-parc-de-hann",
+    "dakar-phare-des-mamelles",
+    "dakar-pointe-des-almadies",
+    "dakar-quiet-reflection",
+    "dakar-recreation",
+    "dakar-sentrade",
+    "dakar-theatre-daniel-sorano",
+    "dakar-transit",
+    "dakar-universite-dakar-bourguiba"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "c8a7fcbaca6978acc25a7c6de0539ac64f2e76238d19c1ac2c31c6bab54507a4",
+    "contentSha256": "76dcca364f349f7c2e3d0edc527e29b8f60b6285ca11a8a495061df7a5336ab3"
+  }
+}

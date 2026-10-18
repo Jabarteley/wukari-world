@@ -1,0 +1,1740 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "benin-city",
+    "name": "Benin City",
+    "state": {
+      "id": "edo",
+      "name": "Edo"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 5.6221058,
+      "lat": 6.3330586
+    }
+  },
+  "style": {
+    "region": "niger-delta",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/benin-city/content.ts",
+        "sha256": "32172a545b5e8b11f6a912d2b22b80c2312568b0cb1a99be9ab5c0ac976fd233"
+      },
+      {
+        "path": "src/game/cities/benin-city/index.ts",
+        "sha256": "9b6a688acdf3cc4a29d3144ed0933e29ba3f61a0bc42fa1c6455cc693dfee557"
+      },
+      {
+        "path": "src/game/cities/benin-city/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/benin-city/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for benin-city.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "baptist-college-theology",
+      "name": "Baptist College Of Theology",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.6115163,
+        "lat": 6.3488545
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-baptist-college-theology-1",
+        "benin-city-baptist-college-theology-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "benin-airport",
+      "name": "Benin City Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.599582,
+        "lat": 6.3171399
+      },
+      "spots": [
+        {
+          "id": "terminal",
+          "name": "Terminal"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "terminal",
+          "name": "Terminal",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-benin-airport-1",
+        "benin-city-benin-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "benin-city-national-museum",
+      "name": "Benin City National Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.6221507,
+        "lat": 6.3329164
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-benin-city-national-museum-1",
+        "benin-city-benin-city-national-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "benin-moat",
+      "name": "Benin Moat",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.6351724,
+        "lat": 6.3669017
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-benin-moat-1",
+        "benin-city-benin-moat-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "celebrate-garden",
+      "name": "Celebrate Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.6154907,
+        "lat": 6.3130294
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Garden"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Garden",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-celebrate-garden-1",
+        "benin-city-celebrate-garden-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "central-mosque",
+      "name": "Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.6226695,
+        "lat": 6.3389307
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-central-mosque-1",
+        "benin-city-central-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "chicken-republic",
+      "name": "Chicken Republic",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.6127623,
+        "lat": 6.3233504
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-chicken-republic-1",
+        "benin-city-chicken-republic-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "edo-line",
+      "name": "Edo Line",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.6282402,
+        "lat": 6.3435934
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-edo-line-1",
+        "benin-city-edo-line-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "edo-state-sport-council",
+      "name": "Edo State Sport Council",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.6194852,
+        "lat": 6.3460276
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-edo-state-sport-council-1",
+        "benin-city-edo-state-sport-council-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "eweka-primary-polling",
+      "name": "Eweka Primary School",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.583084,
+        "lat": 6.3626358
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Election officials"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Election officials",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-eweka-primary-polling-1",
+        "benin-city-eweka-primary-polling-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.5524883152578814,
+        "lat": 6.225301485897849
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "igun-street",
+      "name": "Igun Street",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.6297054,
+        "lat": 6.336412
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Workshop"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Workshop",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-igun-street-1",
+        "benin-city-igun-street-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "lily-hospital",
+      "name": "Lily Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.6100018,
+        "lat": 6.3182295
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-lily-hospital-1",
+        "benin-city-lily-hospital-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "oba-market",
+      "name": "Oba Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.619749,
+        "lat": 6.3347661
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-oba-market-1",
+        "benin-city-oba-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "oba-palace",
+      "name": "Oba Palace",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.6200999,
+        "lat": 6.3319988
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-oba-palace-1",
+        "benin-city-oba-palace-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "oredo-secretariat",
+      "name": "Oredo LGA Secretariat",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.6209239,
+        "lat": 6.3333173
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-oredo-secretariat-1",
+        "benin-city-oredo-secretariat-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "ramat-park",
+      "name": "Ramat Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.6610878,
+        "lat": 6.3505987
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Public area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Public area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-ramat-park-1",
+        "benin-city-ramat-park-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "samuel-ogbemudia-stadium",
+      "name": "Samuel Ogbemudia Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.6108963,
+        "lat": 6.3319965
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-samuel-ogbemudia-stadium-1",
+        "benin-city-samuel-ogbemudia-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "st-monicas-church",
+      "name": "St. Monica's Catholic Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.5868344,
+        "lat": 6.3688832
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-st-monicas-church-1",
+        "benin-city-st-monicas-church-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "valkel-salon",
+      "name": "Valkel Unisex Salon & Bar",
+      "kind": "salon",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.6174435,
+        "lat": 6.3093215
+      },
+      "spots": [
+        {
+          "id": "chair",
+          "name": "Styling chair"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "chair",
+          "name": "Styling chair",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-valkel-salon-1",
+        "benin-city-valkel-salon-2"
+      ],
+      "scene": {
+        "kind": "salon",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    },
+    {
+      "id": "zenith-bank",
+      "name": "Zenith Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 5.628789,
+        "lat": 6.3284183
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "benin-city-zenith-bank-1",
+        "benin-city-zenith-bank-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for benin-city."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "benin-city-baptist-college-theology-1",
+      "venueId": "baptist-college-theology",
+      "name": "Ewemade Ekhator",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-baptist-college-theology-2",
+      "venueId": "baptist-college-theology",
+      "name": "Omoruyi Aghedo",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-benin-airport-1",
+      "venueId": "benin-airport",
+      "name": "Efosa Egharevba",
+      "role": "Check-in agent",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-benin-airport-2",
+      "venueId": "benin-airport",
+      "name": "Efe Oviawe",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-benin-city-national-museum-1",
+      "venueId": "benin-city-national-museum",
+      "name": "Efosa Okungbowa",
+      "role": "Museum guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-benin-city-national-museum-2",
+      "venueId": "benin-city-national-museum",
+      "name": "Efe Osagie",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-benin-moat-1",
+      "venueId": "benin-moat",
+      "name": "Ivie Aigbe",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-benin-moat-2",
+      "venueId": "benin-moat",
+      "name": "Eguavoen Erhabor",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-celebrate-garden-1",
+      "venueId": "celebrate-garden",
+      "name": "Efosa Aghedo",
+      "role": "Garden keeper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-celebrate-garden-2",
+      "venueId": "celebrate-garden",
+      "name": "Efe Iyamu",
+      "role": "Evening walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-central-mosque-1",
+      "venueId": "central-mosque",
+      "name": "Ewemade Osaghae",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-central-mosque-2",
+      "venueId": "central-mosque",
+      "name": "Omoruyi Egharevba",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-chicken-republic-1",
+      "venueId": "chicken-republic",
+      "name": "Ewemade Osagie",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-chicken-republic-2",
+      "venueId": "chicken-republic",
+      "name": "Omoruyi Ogbeide",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-edo-line-1",
+      "venueId": "edo-line",
+      "name": "Ewemade Omoregie",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-edo-line-2",
+      "venueId": "edo-line",
+      "name": "Omoruyi Idemudia",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-edo-state-sport-council-1",
+      "venueId": "edo-state-sport-council",
+      "name": "Ehi Aghedo",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-edo-state-sport-council-2",
+      "venueId": "edo-state-sport-council",
+      "name": "Ize Iyamu",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-eweka-primary-polling-1",
+      "venueId": "eweka-primary-polling",
+      "name": "Efosa Idemudia",
+      "role": "Election official",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-eweka-primary-polling-2",
+      "venueId": "eweka-primary-polling",
+      "name": "Efe Osaghae",
+      "role": "Voter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-igun-street-1",
+      "venueId": "igun-street",
+      "name": "Ivie Omoregie",
+      "role": "Craftsperson",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-igun-street-2",
+      "venueId": "igun-street",
+      "name": "Eguavoen Idemudia",
+      "role": "Apprentice",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-lily-hospital-1",
+      "venueId": "lily-hospital",
+      "name": "Efosa Erhabor",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-lily-hospital-2",
+      "venueId": "lily-hospital",
+      "name": "Efe Ugiagbe",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-oba-market-1",
+      "venueId": "oba-market",
+      "name": "Efosa Osayande",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-oba-market-2",
+      "venueId": "oba-market",
+      "name": "Efe Omoregie",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-oba-palace-1",
+      "venueId": "oba-palace",
+      "name": "Ehi Egharevba",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-oba-palace-2",
+      "venueId": "oba-palace",
+      "name": "Ize Oviawe",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-oredo-secretariat-1",
+      "venueId": "oredo-secretariat",
+      "name": "Ewemade Oviawe",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-oredo-secretariat-2",
+      "venueId": "oredo-secretariat",
+      "name": "Omoruyi Ehigiator",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-ramat-park-1",
+      "venueId": "ramat-park",
+      "name": "Ewemade Aigbe",
+      "role": "Park caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-ramat-park-2",
+      "venueId": "ramat-park",
+      "name": "Omoruyi Erhabor",
+      "role": "Morning walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-samuel-ogbemudia-stadium-1",
+      "venueId": "samuel-ogbemudia-stadium",
+      "name": "Ewemade Ugiagbe",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-samuel-ogbemudia-stadium-2",
+      "venueId": "samuel-ogbemudia-stadium",
+      "name": "Omoruyi Okungbowa",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-st-monicas-church-1",
+      "venueId": "st-monicas-church",
+      "name": "Efosa Ehigiator",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-st-monicas-church-2",
+      "venueId": "st-monicas-church",
+      "name": "Efe Aigbe",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-valkel-salon-1",
+      "venueId": "valkel-salon",
+      "name": "Ewemade Iyamu",
+      "role": "Stylist",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-valkel-salon-2",
+      "venueId": "valkel-salon",
+      "name": "Omoruyi Osayande",
+      "role": "Client",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-zenith-bank-1",
+      "venueId": "zenith-bank",
+      "name": "Efosa Ogbeide",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    },
+    {
+      "id": "benin-city-zenith-bank-2",
+      "venueId": "zenith-bank",
+      "name": "Efe Ekhator",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/benin-city/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "baptist-college-theology",
+    "benin-airport",
+    "benin-city-national-museum",
+    "benin-moat",
+    "celebrate-garden",
+    "central-mosque",
+    "chicken-republic",
+    "edo-line",
+    "edo-state-sport-council",
+    "eweka-primary-polling",
+    "igun-street",
+    "lily-hospital",
+    "oba-market",
+    "oba-palace",
+    "oredo-secretariat",
+    "ramat-park",
+    "samuel-ogbemudia-stadium",
+    "st-monicas-church",
+    "valkel-salon",
+    "zenith-bank"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "83c52feceb41c99be8cc4bb87720920bc5210b9795fbdaf640f04f9876abb2da",
+    "contentSha256": "b3efb28643831e293424408118b29d8e35c06a3e4b0e75576e16fd693c0bad13"
+  }
+}

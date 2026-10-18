@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "awka",
+  "url": "/assets/scene-heroes/awka.glb",
+  "sha256": "5a711485060b18c034ca50ab04eb49b1435def21482d729f6776134c4fd23fc3",
+  "rawBytes": 25460,
+  "brotliBytes": 17773,
+  "triangles": 596,
+  "parts": [
+    {
+      "node": "awka",
+      "triangles": 596,
+      "bounds": {
+        "min": [
+          -3.22145081,
+          0,
+          -1.62615752
+        ],
+        "max": [
+          3.2214509210109994,
+          2.500001605569,
+          1.62616484559
+        ]
+      },
+      "footprint": [
+        -3.22145081,
+        -1.62615752,
+        3.2214509210109994,
+        1.62616484559
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "2e0f96c41117603fa25828c6edb1628f9964a498c269ce1a5d15546b947a7d29"
+  },
+  "inputs": {
+    "rawSha256": "37d8dfbee3dc50158521b39906f38d9da48a11dbe2abc6adc1b3b6b40dc41a85",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "awka",
+      "country": "ng",
+      "name": "Eke Awka Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://anambrastate.gov.ng/eke-awka-traders-urge-fg-intervention-over-escalating-commodity-prices/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=awka]",
+      "sourceLicence": "unknown; factual evidence only, no external geometry/image licence inferred.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 1382515,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "State government article identifies Eke Awka Market and traders. Anambra State Ministry of Information reporter account, first two article paragraphs read directly; named market and traders. Source artifact SHA256 ec5e9e5faaa619cc69dcb1856b6160ea45951eaa528958abe2e715f1c46326e5. Repository source: src/game/cities/awka/spec.ts. Original schematic category interpretation only: dimensions, palette, item counts and layout are art direction. No surveyed geometry, copied photograph, exact species, current access, ownership or current operation is asserted. Empty counters/racks/awnings indicate trade without a claim about actual stalls or goods. Geometry original procedural AGPL-3.0-or-later; production approval pending.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "igbo-southeast"
+      }
+    },
+    "styleSha256": "e521f5975c9ebb265348861734083b151b3fb45cee72a594cea4548a3ff36a4e"
+  }
+}

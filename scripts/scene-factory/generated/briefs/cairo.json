@@ -1,0 +1,2190 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "cairo",
+    "name": "Cairo",
+    "state": {
+      "id": "eg-starter",
+      "name": "Greater Cairo"
+    },
+    "country": {
+      "id": "eg",
+      "name": "Egypt"
+    },
+    "point": {
+      "lon": 31.248022,
+      "lat": 30.051906
+    }
+  },
+  "style": {
+    "region": "maghreb",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "Natural Earth, OpenStreetMap contributors and OurAirports dataset",
+    "sourceUrls": [
+      "https://ourairports.com/airports/HECA/",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/cairo/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/cairo/facts.ts",
+        "sha256": "399aedd6d8f54f80b585866aab2db31e4ec7003c944c8a266d89e5236d9637ee"
+      },
+      {
+        "path": "src/game/cities/cairo/index.ts",
+        "sha256": "778e6d00fa125cfc1c9350132b52128c054528920400e0889ee7cc72d9615281"
+      },
+      {
+        "path": "src/game/cities/cairo/places.ts",
+        "sha256": "caf24e9c4887e0da0f406a76e228541fc4519e7eae208e5bff02ca7a47803d5f"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "cairo-agricultural-museum",
+      "name": "Agricultural Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.209171,
+        "lat": 30.046693
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-agricultural-museum-1",
+        "cairo-cairo-agricultural-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/28829955"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2420309"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-airport-cairo-airport",
+      "name": "Cairo International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.396694,
+        "lat": 30.111534
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-airport-cairo-airport-1",
+        "cairo-cairo-airport-cairo-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "cairo-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-al-azhar-university",
+      "name": "Al-Azhar University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.315213,
+        "lat": 30.057042
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-al-azhar-university-1",
+        "cairo-cairo-al-azhar-university-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/35574865"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-aquarium-grotto-garden",
+      "name": "Aquarium Grotto Garden",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.218812,
+        "lat": 30.056519
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-aquarium-grotto-garden-1",
+        "cairo-cairo-aquarium-grotto-garden-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/24986650"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6392353"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-arab-al-mohammedi-park",
+      "name": "Arab Al Mohammedi Park",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.279061,
+        "lat": 30.076162
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-arab-al-mohammedi-park-1",
+        "cairo-cairo-arab-al-mohammedi-park-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/28821197"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q23973756"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-bandar-maadi-mall",
+      "name": "Bandar Maadi mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.284234,
+        "lat": 29.977615
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-bandar-maadi-mall-1",
+        "cairo-cairo-bandar-maadi-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2199534862"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-cairo-stadium",
+      "name": "Cairo International Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.312193,
+        "lat": 30.069061
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-cairo-stadium-1",
+        "cairo-cairo-cairo-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/24959847"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q158985"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-cairo-tower",
+      "name": "Cairo Tower",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.224313,
+        "lat": 30.04603
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-cairo-tower-1",
+        "cairo-cairo-cairo-tower-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/767933342"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q614684"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-child-museum",
+      "name": "Children Center For Civilization And Creativity (Child Museum)",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.335523,
+        "lat": 30.10223
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-child-museum-1",
+        "cairo-cairo-child-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1232450754"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-citadel",
+      "name": "Salah El Din Citadel",
+      "kind": "hilltop",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.262115,
+        "lat": 30.029326
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-citadel-1",
+        "cairo-cairo-citadel-2"
+      ],
+      "scene": {
+        "kind": "hilltop",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/24908286"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1988240"
+          }
+        ],
+        "sourceKind": "hilltop",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-city-stars-mall",
+      "name": "City Stars Mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.345735,
+        "lat": 30.073255
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-city-stars-mall-1",
+        "cairo-cairo-city-stars-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/284147372"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-clinic",
+      "name": "Coptic Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.252629,
+        "lat": 30.063198
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-clinic-1",
+        "cairo-cairo-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/774871347"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4118568"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-community-notices",
+      "name": "Abdin Palace",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.247461,
+        "lat": 30.042765
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-community-notices-1",
+        "cairo-cairo-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/24942979"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q307747"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-community-voting-game",
+      "name": "El Tahrir Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.235744,
+        "lat": 30.044415
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-community-voting-game-1",
+        "cairo-cairo-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/30925727"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12061"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-community-workshop",
+      "name": "Cairo University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.20494,
+        "lat": 30.025047
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-community-workshop-1",
+        "cairo-cairo-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/15072032"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q194445"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-egyptian-museum",
+      "name": "Egyptian Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.233602,
+        "lat": 30.047847
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-egyptian-museum-1",
+        "cairo-cairo-egyptian-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/10873198"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q201219"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-gayer-anderson-museum",
+      "name": "Gayer-Anderson Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.250726,
+        "lat": 30.02838
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-gayer-anderson-museum-1",
+        "cairo-cairo-gayer-anderson-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/328965969"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2190649"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-great-pyramid",
+      "name": "Great Pyramid of Giza",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.134212,
+        "lat": 29.97917
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-great-pyramid-1",
+        "cairo-cairo-great-pyramid-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/4420397"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q37200"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-market-game",
+      "name": "Khan El Khalili",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.261481,
+        "lat": 30.048938
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-market-game-1",
+        "cairo-cairo-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/709581114"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-meal-stop",
+      "name": "Café Riche",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.238239,
+        "lat": 30.046968
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-meal-stop-1",
+        "cairo-cairo-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1262216203"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6866455"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-nilometer",
+      "name": "Nilometer in Rhoda Island",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.225,
+        "lat": 30.006932
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-nilometer-1",
+        "cairo-cairo-nilometer-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/663393691"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1992209"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-quiet-reflection",
+      "name": "Sultan Hassan Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.256313,
+        "lat": 30.032255
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-quiet-reflection-1",
+        "cairo-cairo-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/24908268"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1430119"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-recreation",
+      "name": "Al Azhar Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.264808,
+        "lat": 30.040118
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-recreation-1",
+        "cairo-cairo-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/24745061"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q286446"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-saint-mercurius-church",
+      "name": "Saint Mercurius Church in Coptic Cairo",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.230844,
+        "lat": 30.012511
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-saint-mercurius-church-1",
+        "cairo-cairo-saint-mercurius-church-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/328955627"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7401898"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-transit",
+      "name": "Ramses Station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.246053,
+        "lat": 30.062979
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-transit-1",
+        "cairo-cairo-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/271864421"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q633754"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cairo-wissa-wassef-art-centre",
+      "name": "Wissa Wassef Art Center",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.176465,
+        "lat": 29.969203
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cairo-cairo-wissa-wassef-art-centre-1",
+        "cairo-cairo-wissa-wassef-art-centre-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cairo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/961793913"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 31.248022,
+        "lat": 30.051906
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "cairo-cairo-agricultural-museum-1",
+      "venueId": "cairo-agricultural-museum",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-agricultural-museum-2",
+      "venueId": "cairo-agricultural-museum",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-airport-cairo-airport-1",
+      "venueId": "cairo-airport-cairo-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-airport-cairo-airport-2",
+      "venueId": "cairo-airport-cairo-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-al-azhar-university-1",
+      "venueId": "cairo-al-azhar-university",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-al-azhar-university-2",
+      "venueId": "cairo-al-azhar-university",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-aquarium-grotto-garden-1",
+      "venueId": "cairo-aquarium-grotto-garden",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-aquarium-grotto-garden-2",
+      "venueId": "cairo-aquarium-grotto-garden",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-arab-al-mohammedi-park-1",
+      "venueId": "cairo-arab-al-mohammedi-park",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-arab-al-mohammedi-park-2",
+      "venueId": "cairo-arab-al-mohammedi-park",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-bandar-maadi-mall-1",
+      "venueId": "cairo-bandar-maadi-mall",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-bandar-maadi-mall-2",
+      "venueId": "cairo-bandar-maadi-mall",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-cairo-stadium-1",
+      "venueId": "cairo-cairo-stadium",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-cairo-stadium-2",
+      "venueId": "cairo-cairo-stadium",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-cairo-tower-1",
+      "venueId": "cairo-cairo-tower",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-cairo-tower-2",
+      "venueId": "cairo-cairo-tower",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-child-museum-1",
+      "venueId": "cairo-child-museum",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-child-museum-2",
+      "venueId": "cairo-child-museum",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-citadel-1",
+      "venueId": "cairo-citadel",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-citadel-2",
+      "venueId": "cairo-citadel",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-city-stars-mall-1",
+      "venueId": "cairo-city-stars-mall",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-city-stars-mall-2",
+      "venueId": "cairo-city-stars-mall",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-clinic-1",
+      "venueId": "cairo-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-clinic-2",
+      "venueId": "cairo-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-community-notices-1",
+      "venueId": "cairo-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-community-notices-2",
+      "venueId": "cairo-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-community-voting-game-1",
+      "venueId": "cairo-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-community-voting-game-2",
+      "venueId": "cairo-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-community-workshop-1",
+      "venueId": "cairo-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-community-workshop-2",
+      "venueId": "cairo-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-egyptian-museum-1",
+      "venueId": "cairo-egyptian-museum",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-egyptian-museum-2",
+      "venueId": "cairo-egyptian-museum",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-gayer-anderson-museum-1",
+      "venueId": "cairo-gayer-anderson-museum",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-gayer-anderson-museum-2",
+      "venueId": "cairo-gayer-anderson-museum",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-great-pyramid-1",
+      "venueId": "cairo-great-pyramid",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-great-pyramid-2",
+      "venueId": "cairo-great-pyramid",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-market-game-1",
+      "venueId": "cairo-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-market-game-2",
+      "venueId": "cairo-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-meal-stop-1",
+      "venueId": "cairo-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-meal-stop-2",
+      "venueId": "cairo-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-nilometer-1",
+      "venueId": "cairo-nilometer",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-nilometer-2",
+      "venueId": "cairo-nilometer",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-quiet-reflection-1",
+      "venueId": "cairo-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-quiet-reflection-2",
+      "venueId": "cairo-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-recreation-1",
+      "venueId": "cairo-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-recreation-2",
+      "venueId": "cairo-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-saint-mercurius-church-1",
+      "venueId": "cairo-saint-mercurius-church",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-saint-mercurius-church-2",
+      "venueId": "cairo-saint-mercurius-church",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-transit-1",
+      "venueId": "cairo-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-transit-2",
+      "venueId": "cairo-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-wissa-wassef-art-centre-1",
+      "venueId": "cairo-wissa-wassef-art-centre",
+      "name": "Kendall",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    },
+    {
+      "id": "cairo-cairo-wissa-wassef-art-centre-2",
+      "venueId": "cairo-wissa-wassef-art-centre",
+      "name": "Lane",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cairo/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "cairo-agricultural-museum",
+    "cairo-airport-cairo-airport",
+    "cairo-al-azhar-university",
+    "cairo-aquarium-grotto-garden",
+    "cairo-arab-al-mohammedi-park",
+    "cairo-bandar-maadi-mall",
+    "cairo-cairo-stadium",
+    "cairo-cairo-tower",
+    "cairo-child-museum",
+    "cairo-citadel",
+    "cairo-city-stars-mall",
+    "cairo-clinic",
+    "cairo-community-notices",
+    "cairo-community-voting-game",
+    "cairo-community-workshop",
+    "cairo-egyptian-museum",
+    "cairo-gayer-anderson-museum",
+    "cairo-great-pyramid",
+    "cairo-market-game",
+    "cairo-meal-stop",
+    "cairo-nilometer",
+    "cairo-quiet-reflection",
+    "cairo-recreation",
+    "cairo-saint-mercurius-church",
+    "cairo-transit",
+    "cairo-wissa-wassef-art-centre"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "a4339d17c6e6e3456d5840cadeddc23bd2eaa24dc208c13194d13350b4b6aca4",
+    "contentSha256": "c244bbd9db354f862aa63ff4d0e26c4c73e6582aad315c631c4f06aa234782f5"
+  }
+}

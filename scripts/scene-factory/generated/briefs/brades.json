@@ -1,0 +1,1700 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "brades",
+    "name": "Brades",
+    "state": {
+      "id": "ms-brades",
+      "name": "Brades"
+    },
+    "country": {
+      "id": "ms",
+      "name": "Montserrat"
+    },
+    "point": {
+      "lon": -62.2099434,
+      "lat": 16.7898749
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "https://ourairports.com/airports/TRPG/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/brades/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/brades/facts.ts",
+        "sha256": "924f6a76c51f05922d1a4065fb004ab44ecc11003176316998f2c7ecd4edca5e"
+      },
+      {
+        "path": "src/game/cities/brades/index.ts",
+        "sha256": "40ba0581731b55a87fd373d5c6cae4f59f8013d15a879b825a9e31aa2ae423ed"
+      },
+      {
+        "path": "src/game/cities/brades/places.ts",
+        "sha256": "b4cc32af50aea4758d62254211469379e0d04d75df1154abd7dd8b704f08501e"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue brades-market-game has no mapped place source record.",
+      "Venue brades-quiet-reflection has no mapped place source record.",
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "brades-airport-brades-airport",
+      "name": "John A. Osborne Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.193204,
+        "lat": 16.791835
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-airport-brades-airport-1",
+        "brades-brades-airport-brades-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "brades-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "brades-clinic",
+      "name": "Glendon Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.192392,
+        "lat": 16.788961
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-clinic-1",
+        "brades-brades-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/381881809"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brades-community-notices",
+      "name": "Sports Department",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.211032,
+        "lat": 16.792345
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-community-notices-1",
+        "brades-brades-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/381894171"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brades-community-voting-game",
+      "name": "Office of the Auditor General",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.20751,
+        "lat": 16.782993
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-community-voting-game-1",
+        "brades-brades-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6394397340"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "brades-community-workshop",
+      "name": "Montserrat Community College",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.217945,
+        "lat": 16.755401
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-community-workshop-1",
+        "brades-brades-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/750181857"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q48799402"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brades-market-game",
+      "name": "Market game (game venue)",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.21085393050518,
+        "lat": 16.790774220363726
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-market-game-1",
+        "brades-brades-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue brades-market-game has no mapped place source record."
+      }
+    },
+    {
+      "id": "brades-meal-stop",
+      "name": "Isle's Bay Beach Bar",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.232403,
+        "lat": 16.738552
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-meal-stop-1",
+        "brades-brades-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/525911948"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brades-osm-node-13341371451",
+      "name": "Plymouth",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.212272,
+        "lat": 16.705196
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-osm-node-13341371451-1",
+        "brades-brades-osm-node-13341371451-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13341371451"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30990"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "brades-osm-node-13341390470",
+      "name": "Fort St. George",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.207579,
+        "lat": 16.722111
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-osm-node-13341390470-1",
+        "brades-brades-osm-node-13341390470-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13341390470"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "brades-osm-node-13341415105",
+      "name": "Grand Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.232243,
+        "lat": 16.740477
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-osm-node-13341415105-1",
+        "brades-brades-osm-node-13341415105-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13341415105"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "brades-osm-node-358226040",
+      "name": "Montserrat Volcano Observatory",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.212769,
+        "lat": 16.748697
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-osm-node-358226040-1",
+        "brades-brades-osm-node-358226040-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/358226040"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6906590"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "brades-osm-node-359010199",
+      "name": "Old Airport Viewpoint",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.167965,
+        "lat": 16.766296
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-osm-node-359010199-1",
+        "brades-brades-osm-node-359010199-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/359010199"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "brades-osm-way-1470063189",
+      "name": "University of the West Indies Global Campus",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.217217,
+        "lat": 16.756292
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-osm-way-1470063189-1",
+        "brades-brades-osm-way-1470063189-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1470063189"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brades-osm-way-381894081",
+      "name": "National Museum of Montserrat",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.201878,
+        "lat": 16.800231
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-osm-way-381894081-1",
+        "brades-brades-osm-way-381894081-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/381894081"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28403758"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brades-osm-way-397189233",
+      "name": "Hilltop Coffee House",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.210121,
+        "lat": 16.776202
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-osm-way-397189233-1",
+        "brades-brades-osm-way-397189233-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/397189233"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brades-osm-way-409349407",
+      "name": "Blakes Estate Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.186227,
+        "lat": 16.78392
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-osm-way-409349407-1",
+        "brades-brades-osm-way-409349407-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/409349407"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q881312"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brades-osm-way-525902974",
+      "name": "Ziggy's",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.215693,
+        "lat": 16.770493
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-osm-way-525902974-1",
+        "brades-brades-osm-way-525902974-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/525902974"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brades-quiet-reflection",
+      "name": "Quiet reflection space (game venue)",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.21085393050518,
+        "lat": 16.78897557963628
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-quiet-reflection-1",
+        "brades-brades-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue brades-quiet-reflection has no mapped place source record."
+      }
+    },
+    {
+      "id": "brades-recreation",
+      "name": "Salem Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.222923,
+        "lat": 16.747526
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-recreation-1",
+        "brades-brades-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1454779411"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "brades-transit",
+      "name": "Montserrat Ferry Terminal",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.205386,
+        "lat": 16.803285
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "brades-brades-transit-1",
+        "brades-brades-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/brades/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/525908409"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -62.2099434,
+        "lat": 16.7898749
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "brades-brades-airport-brades-airport-1",
+      "venueId": "brades-airport-brades-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-airport-brades-airport-2",
+      "venueId": "brades-airport-brades-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-clinic-1",
+      "venueId": "brades-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-clinic-2",
+      "venueId": "brades-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-community-notices-1",
+      "venueId": "brades-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-community-notices-2",
+      "venueId": "brades-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-community-voting-game-1",
+      "venueId": "brades-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-community-voting-game-2",
+      "venueId": "brades-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-community-workshop-1",
+      "venueId": "brades-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-community-workshop-2",
+      "venueId": "brades-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-market-game-1",
+      "venueId": "brades-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-market-game-2",
+      "venueId": "brades-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-meal-stop-1",
+      "venueId": "brades-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-meal-stop-2",
+      "venueId": "brades-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-node-13341371451-1",
+      "venueId": "brades-osm-node-13341371451",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-node-13341371451-2",
+      "venueId": "brades-osm-node-13341371451",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-node-13341390470-1",
+      "venueId": "brades-osm-node-13341390470",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-node-13341390470-2",
+      "venueId": "brades-osm-node-13341390470",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-node-13341415105-1",
+      "venueId": "brades-osm-node-13341415105",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-node-13341415105-2",
+      "venueId": "brades-osm-node-13341415105",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-node-358226040-1",
+      "venueId": "brades-osm-node-358226040",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-node-358226040-2",
+      "venueId": "brades-osm-node-358226040",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-node-359010199-1",
+      "venueId": "brades-osm-node-359010199",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-node-359010199-2",
+      "venueId": "brades-osm-node-359010199",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-way-1470063189-1",
+      "venueId": "brades-osm-way-1470063189",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-way-1470063189-2",
+      "venueId": "brades-osm-way-1470063189",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-way-381894081-1",
+      "venueId": "brades-osm-way-381894081",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-way-381894081-2",
+      "venueId": "brades-osm-way-381894081",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-way-397189233-1",
+      "venueId": "brades-osm-way-397189233",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-way-397189233-2",
+      "venueId": "brades-osm-way-397189233",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-way-409349407-1",
+      "venueId": "brades-osm-way-409349407",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-way-409349407-2",
+      "venueId": "brades-osm-way-409349407",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-way-525902974-1",
+      "venueId": "brades-osm-way-525902974",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-osm-way-525902974-2",
+      "venueId": "brades-osm-way-525902974",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-quiet-reflection-1",
+      "venueId": "brades-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-quiet-reflection-2",
+      "venueId": "brades-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-recreation-1",
+      "venueId": "brades-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-recreation-2",
+      "venueId": "brades-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-transit-1",
+      "venueId": "brades-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    },
+    {
+      "id": "brades-brades-transit-2",
+      "venueId": "brades-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/brades/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "brades-airport-brades-airport",
+    "brades-clinic",
+    "brades-community-notices",
+    "brades-community-voting-game",
+    "brades-community-workshop",
+    "brades-market-game",
+    "brades-meal-stop",
+    "brades-osm-node-13341371451",
+    "brades-osm-node-13341390470",
+    "brades-osm-node-13341415105",
+    "brades-osm-node-358226040",
+    "brades-osm-node-359010199",
+    "brades-osm-way-1470063189",
+    "brades-osm-way-381894081",
+    "brades-osm-way-397189233",
+    "brades-osm-way-409349407",
+    "brades-osm-way-525902974",
+    "brades-quiet-reflection",
+    "brades-recreation",
+    "brades-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "713c00284ff1d05593f53cef5ee5300edb971038b954c951ba57848987914c9f",
+    "contentSha256": "247d3fb643883a3ed2ec303eaa25e0f581d62120add00c3fa96b4e8df95f37af"
+  }
+}

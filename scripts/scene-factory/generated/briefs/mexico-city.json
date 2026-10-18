@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "mexico-city",
+    "name": "Mexico City",
+    "state": {
+      "id": "mx-mexico-city",
+      "name": "Mexico City"
+    },
+    "country": {
+      "id": "mx",
+      "name": "Mexico"
+    },
+    "point": {
+      "lon": -99.1331785,
+      "lat": 19.4326296
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/north-america/mexico-261009.osm.pbf",
+      "https://ourairports.com/airports/MMMX/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/mexico-city/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/mexico-city/facts.ts",
+        "sha256": "b35583a193dcf19097799984796e6b6c2806fb3be71833a99522f1a799cf4049"
+      },
+      {
+        "path": "src/game/cities/mexico-city/index.ts",
+        "sha256": "c876e04454d5404ff2817e528bf8de3c9ed8d96c27d1b67334a2691602b808fa"
+      },
+      {
+        "path": "src/game/cities/mexico-city/places.ts",
+        "sha256": "ffff082f32e8941064ab8c9b877d77a195e8035556cab041c879ee80d9ed5bc1"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.1331785,
+        "lat": 19.4326296
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "mexico-city-airport-mexico-city-airport",
+      "name": "Mexico City Benito Juárez International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.07033,
+        "lat": 19.435822
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-airport-mexico-city-airport-1",
+        "mexico-city-mexico-city-airport-mexico-city-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "mexico-city-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-clinic",
+      "name": "Instituto Nacional de Ciencias Médicas y Nutrición Salvador Zubirán",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.156423,
+        "lat": 19.28813
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-clinic-1",
+        "mexico-city-mexico-city-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/217109092"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1689966"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-community-notices",
+      "name": "Secretaria de Hacienda",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.215892,
+        "lat": 19.397316
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-community-notices-1",
+        "mexico-city-mexico-city-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5583089123"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1506364"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-community-voting-game",
+      "name": "Torres de Satélite",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.236853,
+        "lat": 19.499178
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-community-voting-game-1",
+        "mexico-city-mexico-city-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/432636761"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3353239"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-community-workshop",
+      "name": "Universidad Anáhuac del Sur",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.244572,
+        "lat": 19.334368
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-community-workshop-1",
+        "mexico-city-mexico-city-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/371751495"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7894233"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-market-game",
+      "name": "Toreo Parque Central",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.218916,
+        "lat": 19.454156
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-market-game-1",
+        "mexico-city-mexico-city-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1140049541"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q27230927"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-meal-stop",
+      "name": "Sanborns Café",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.164755,
+        "lat": 19.418249
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-meal-stop-1",
+        "mexico-city-mexico-city-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3536369648"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7126272"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-osm-node-739036171",
+      "name": "Instituto Nacional de Pediatria",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.185196,
+        "lat": 19.30613
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-osm-node-739036171-1",
+        "mexico-city-mexico-city-osm-node-739036171-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/739036171"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5917569"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-osm-way-1173762984",
+      "name": "Velódromo Olímpico Agustín Melgar",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.103383,
+        "lat": 19.409798
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-osm-way-1173762984-1",
+        "mexico-city-mexico-city-osm-way-1173762984-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1173762984"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q399314"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-osm-way-120733641",
+      "name": "Basilica of Our Lady of Guadalupe",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.117857,
+        "lat": 19.484845
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-osm-way-120733641-1",
+        "mexico-city-mexico-city-osm-way-120733641-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/120733641"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q305419"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-osm-way-1411608827",
+      "name": "Proyecto Ecológico Lago de Texcoco (PELT)",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -98.983763,
+        "lat": 19.479976
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-osm-way-1411608827-1",
+        "mexico-city-mexico-city-osm-way-1411608827-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1411608827"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q107349037"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-osm-way-146024228",
+      "name": "Zona Arqueológica de Tlatelolco",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.137372,
+        "lat": 19.451332
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-osm-way-146024228-1",
+        "mexico-city-mexico-city-osm-way-146024228-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/146024228"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q14623034"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-osm-way-168081622",
+      "name": "Estadio Wilfrido Massieu",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.138496,
+        "lat": 19.501976
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-osm-way-168081622-1",
+        "mexico-city-mexico-city-osm-way-168081622-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/168081622"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5400534"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-osm-way-175507039",
+      "name": "Universidad Autónoma de la Ciudad de México",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.057337,
+        "lat": 19.312115
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-osm-way-175507039-1",
+        "mexico-city-mexico-city-osm-way-175507039-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/175507039"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7894243"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-osm-way-199148896",
+      "name": "Instituto Nacional de Perinatología",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.205695,
+        "lat": 19.423024
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-osm-way-199148896-1",
+        "mexico-city-mexico-city-osm-way-199148896-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/199148896"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5917573"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-osm-way-25103113",
+      "name": "Six Flags Mexico",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.210054,
+        "lat": 19.295226
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-osm-way-25103113-1",
+        "mexico-city-mexico-city-osm-way-25103113-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/25103113"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2562111"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-osm-way-25337335",
+      "name": "Estadio Ciudad de los Deportes",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.178261,
+        "lat": 19.383441
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-osm-way-25337335-1",
+        "mexico-city-mexico-city-osm-way-25337335-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/25337335"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1369097"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-osm-way-28932424",
+      "name": "Museo de arte Carrillo Gil",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.190305,
+        "lat": 19.3493
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-osm-way-28932424-1",
+        "mexico-city-mexico-city-osm-way-28932424-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/28932424"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5817917"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-osm-way-290432518",
+      "name": "Tecmilenio",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.175543,
+        "lat": 19.499693
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-osm-way-290432518-1",
+        "mexico-city-mexico-city-osm-way-290432518-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/290432518"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16644552"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-osm-way-30291947",
+      "name": "Centro Santa Fe",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.273455,
+        "lat": 19.361306
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-osm-way-30291947-1",
+        "mexico-city-mexico-city-osm-way-30291947-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/30291947"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5761491"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-osm-way-526045165",
+      "name": "Alameda del Sur",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.122361,
+        "lat": 19.309536
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-osm-way-526045165-1",
+        "mexico-city-mexico-city-osm-way-526045165-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/526045165"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28502192"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-osm-way-970515008",
+      "name": "Universidad Autónoma Metropolitana Unidad Iztapalapa",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.072617,
+        "lat": 19.362042
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-osm-way-970515008-1",
+        "mexico-city-mexico-city-osm-way-970515008-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/970515008"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q972553"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-quiet-reflection",
+      "name": "Capilla de San Juan Bautista",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.106222,
+        "lat": 19.265743
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-quiet-reflection-1",
+        "mexico-city-mexico-city-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/336891067"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q25412073"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-recreation",
+      "name": "Bosque de San Juan de Aragón",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.071557,
+        "lat": 19.459078
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-recreation-1",
+        "mexico-city-mexico-city-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/20008211"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2878993"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mexico-city-transit",
+      "name": "General Anaya",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -99.144962,
+        "lat": 19.353341
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mexico-city-mexico-city-transit-1",
+        "mexico-city-mexico-city-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mexico-city/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/30384902"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3356888"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "mexico-city-mexico-city-airport-mexico-city-airport-1",
+      "venueId": "mexico-city-airport-mexico-city-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-airport-mexico-city-airport-2",
+      "venueId": "mexico-city-airport-mexico-city-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-clinic-1",
+      "venueId": "mexico-city-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-clinic-2",
+      "venueId": "mexico-city-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-community-notices-1",
+      "venueId": "mexico-city-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-community-notices-2",
+      "venueId": "mexico-city-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-community-voting-game-1",
+      "venueId": "mexico-city-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-community-voting-game-2",
+      "venueId": "mexico-city-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-community-workshop-1",
+      "venueId": "mexico-city-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-community-workshop-2",
+      "venueId": "mexico-city-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-market-game-1",
+      "venueId": "mexico-city-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-market-game-2",
+      "venueId": "mexico-city-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-meal-stop-1",
+      "venueId": "mexico-city-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-meal-stop-2",
+      "venueId": "mexico-city-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-node-739036171-1",
+      "venueId": "mexico-city-osm-node-739036171",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-node-739036171-2",
+      "venueId": "mexico-city-osm-node-739036171",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-1173762984-1",
+      "venueId": "mexico-city-osm-way-1173762984",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-1173762984-2",
+      "venueId": "mexico-city-osm-way-1173762984",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-120733641-1",
+      "venueId": "mexico-city-osm-way-120733641",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-120733641-2",
+      "venueId": "mexico-city-osm-way-120733641",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-1411608827-1",
+      "venueId": "mexico-city-osm-way-1411608827",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-1411608827-2",
+      "venueId": "mexico-city-osm-way-1411608827",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-146024228-1",
+      "venueId": "mexico-city-osm-way-146024228",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-146024228-2",
+      "venueId": "mexico-city-osm-way-146024228",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-168081622-1",
+      "venueId": "mexico-city-osm-way-168081622",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-168081622-2",
+      "venueId": "mexico-city-osm-way-168081622",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-175507039-1",
+      "venueId": "mexico-city-osm-way-175507039",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-175507039-2",
+      "venueId": "mexico-city-osm-way-175507039",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-199148896-1",
+      "venueId": "mexico-city-osm-way-199148896",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-199148896-2",
+      "venueId": "mexico-city-osm-way-199148896",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-25103113-1",
+      "venueId": "mexico-city-osm-way-25103113",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-25103113-2",
+      "venueId": "mexico-city-osm-way-25103113",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-25337335-1",
+      "venueId": "mexico-city-osm-way-25337335",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-25337335-2",
+      "venueId": "mexico-city-osm-way-25337335",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-28932424-1",
+      "venueId": "mexico-city-osm-way-28932424",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-28932424-2",
+      "venueId": "mexico-city-osm-way-28932424",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-290432518-1",
+      "venueId": "mexico-city-osm-way-290432518",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-290432518-2",
+      "venueId": "mexico-city-osm-way-290432518",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-30291947-1",
+      "venueId": "mexico-city-osm-way-30291947",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-30291947-2",
+      "venueId": "mexico-city-osm-way-30291947",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-526045165-1",
+      "venueId": "mexico-city-osm-way-526045165",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-526045165-2",
+      "venueId": "mexico-city-osm-way-526045165",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-970515008-1",
+      "venueId": "mexico-city-osm-way-970515008",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-osm-way-970515008-2",
+      "venueId": "mexico-city-osm-way-970515008",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-quiet-reflection-1",
+      "venueId": "mexico-city-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-quiet-reflection-2",
+      "venueId": "mexico-city-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-recreation-1",
+      "venueId": "mexico-city-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-recreation-2",
+      "venueId": "mexico-city-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-transit-1",
+      "venueId": "mexico-city-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    },
+    {
+      "id": "mexico-city-mexico-city-transit-2",
+      "venueId": "mexico-city-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mexico-city/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "mexico-city-airport-mexico-city-airport",
+    "mexico-city-clinic",
+    "mexico-city-community-notices",
+    "mexico-city-community-voting-game",
+    "mexico-city-community-workshop",
+    "mexico-city-market-game",
+    "mexico-city-meal-stop",
+    "mexico-city-osm-node-739036171",
+    "mexico-city-osm-way-1173762984",
+    "mexico-city-osm-way-120733641",
+    "mexico-city-osm-way-1411608827",
+    "mexico-city-osm-way-146024228",
+    "mexico-city-osm-way-168081622",
+    "mexico-city-osm-way-175507039",
+    "mexico-city-osm-way-199148896",
+    "mexico-city-osm-way-25103113",
+    "mexico-city-osm-way-25337335",
+    "mexico-city-osm-way-28932424",
+    "mexico-city-osm-way-290432518",
+    "mexico-city-osm-way-30291947",
+    "mexico-city-osm-way-526045165",
+    "mexico-city-osm-way-970515008",
+    "mexico-city-quiet-reflection",
+    "mexico-city-recreation",
+    "mexico-city-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "02dade9b8a1a5a55109d4a5e94b03e8d29e74cab95107f05ed8b5bef11969176",
+    "contentSha256": "7cecc90ef5c31c67822917ed253b7bac24c1f559905db29b017ba95cfbbfbd19"
+  }
+}

@@ -1,0 +1,2071 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "lusaka",
+    "name": "Lusaka",
+    "state": {
+      "id": "zm-starter",
+      "name": "Lusaka"
+    },
+    "country": {
+      "id": "zm",
+      "name": "Zambia"
+    },
+    "point": {
+      "lon": 28.281382,
+      "lat": -15.414698
+    }
+  },
+  "style": {
+    "region": "southern-africa",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "Natural Earth, OpenStreetMap contributors and OurAirports dataset",
+    "sourceUrls": [
+      "https://ourairports.com/airports/FLLS/",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/lusaka/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/lusaka/facts.ts",
+        "sha256": "85d3e0a4d11753b47eb99ffe269ab6c71233103c3a396e10041b7e35080c7b36"
+      },
+      {
+        "path": "src/game/cities/lusaka/index.ts",
+        "sha256": "6ca635db7509902097eba5c87f18ef0b780ff06e7f41111b11878cef5e0cae62"
+      },
+      {
+        "path": "src/game/cities/lusaka/places.ts",
+        "sha256": "82e3541f44ce44fc083210da4a7143720c790d16ac2c14e8958d9fca6649a2a2"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.281382,
+        "lat": -15.414698000000001
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "lusaka-airport-lusaka-airport",
+      "name": "Kenneth Kaunda International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.452722,
+        "lat": -15.330833
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-airport-lusaka-airport-1",
+        "lusaka-lusaka-airport-lusaka-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "lusaka-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-bayport",
+      "name": "Bayport",
+      "kind": "hilltop",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.282657,
+        "lat": -15.419066
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-bayport-1",
+        "lusaka-lusaka-bayport-2"
+      ],
+      "scene": {
+        "kind": "hilltop",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4694791090"
+          }
+        ],
+        "sourceKind": "hilltop",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-cathedral-of-the-child-jesus",
+      "name": "Cathedral of the Child Jesus",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.315192,
+        "lat": -15.413905
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-cathedral-of-the-child-jesus-1",
+        "lusaka-lusaka-cathedral-of-the-child-jesus-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/654342533"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-clinic",
+      "name": "Coptic Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.298701,
+        "lat": -15.397398
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-clinic-1",
+        "lusaka-lusaka-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/783202654"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-community-notices",
+      "name": "National Assembly",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.309044,
+        "lat": -15.392304
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-community-notices-1",
+        "lusaka-lusaka-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/12678449"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1784088"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-community-voting-game",
+      "name": "Graduation Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.328124,
+        "lat": -15.391651
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-community-voting-game-1",
+        "lusaka-lusaka-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/563644446"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-community-workshop",
+      "name": "University of Zambia (UNZA)",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.332223,
+        "lat": -15.394736
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-community-workshop-1",
+        "lusaka-lusaka-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/9374733"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2096836"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-crossroads-mall",
+      "name": "Crossroads Mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.355189,
+        "lat": -15.435666
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-crossroads-mall-1",
+        "lusaka-lusaka-crossroads-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/287494857"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-embassy-park",
+      "name": "Embassy Park Presidential Burial Site",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.309312,
+        "lat": -15.421731
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-embassy-park-1",
+        "lusaka-lusaka-embassy-park-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/436890691"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q107337223"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-evelyn-hone-college",
+      "name": "Evelyn Hone College",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.289396,
+        "lat": -15.41696
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-evelyn-hone-college-1",
+        "lusaka-lusaka-evelyn-hone-college-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/656804896"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1259137"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-hindu-temple",
+      "name": "BAPS Hindu Temple",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.293456,
+        "lat": -15.412477
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-hindu-temple-1",
+        "lusaka-lusaka-hindu-temple-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1069109066"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-independence-stadium",
+      "name": "Independence Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.269642,
+        "lat": -15.371083
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-independence-stadium-1",
+        "lusaka-lusaka-independence-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/5649842"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q201307"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-jaame-masjid",
+      "name": "Jaame Masjid Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.294298,
+        "lat": -15.423541
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-jaame-masjid-1",
+        "lusaka-lusaka-jaame-masjid-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/551934472"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-kenneth-kaunda-chilenje-house",
+      "name": "Kenneth Kaunda Chilenje House National Monument",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.332272,
+        "lat": -15.443645
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-kenneth-kaunda-chilenje-house-1",
+        "lusaka-lusaka-kenneth-kaunda-chilenje-house-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/510361822"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-lusaka-playhouse",
+      "name": "Lusaka Playhouse",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.299691,
+        "lat": -15.418831
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-lusaka-playhouse-1",
+        "lusaka-lusaka-lusaka-playhouse-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/676289242"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-market-game",
+      "name": "City Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.276246,
+        "lat": -15.420413
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-market-game-1",
+        "lusaka-lusaka-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/99186160"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-meal-stop",
+      "name": "Svea's Cafe",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.31668,
+        "lat": -15.415525
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-meal-stop-1",
+        "lusaka-lusaka-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/444994476"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-national-heroes-stadium",
+      "name": "National Heroes Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.272726,
+        "lat": -15.369557
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-national-heroes-stadium-1",
+        "lusaka-lusaka-national-heroes-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/9099651"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16632749"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-national-museum",
+      "name": "Lusaka National Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.291335,
+        "lat": -15.42189
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-national-museum-1",
+        "lusaka-lusaka-national-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/288801150"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3267774"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-oasis-mall",
+      "name": "Oasis Mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.287056,
+        "lat": -15.421612
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-oasis-mall-1",
+        "lusaka-lusaka-oasis-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4961581515"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-quiet-reflection",
+      "name": "Cathedral of the Holy Cross",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.303614,
+        "lat": -15.418776
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-quiet-reflection-1",
+        "lusaka-lusaka-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1422882767"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-recreation",
+      "name": "Tazara Memorial Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.46239,
+        "lat": -15.356508
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-recreation-1",
+        "lusaka-lusaka-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1346006477"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-suwilanji-gardens",
+      "name": "Suwilanji Gardens",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.323515,
+        "lat": -15.383256
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-suwilanji-gardens-1",
+        "lusaka-lusaka-suwilanji-gardens-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5087935931"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-transit",
+      "name": "Intercity Bus Terminal",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.286077,
+        "lat": -15.421366
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-transit-1",
+        "lusaka-lusaka-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/99296406"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lusaka-woodlands-mall",
+      "name": "Woodlands Mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 28.341529,
+        "lat": -15.435734
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lusaka-lusaka-woodlands-mall-1",
+        "lusaka-lusaka-woodlands-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lusaka/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/152165978"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "lusaka-lusaka-airport-lusaka-airport-1",
+      "venueId": "lusaka-airport-lusaka-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-airport-lusaka-airport-2",
+      "venueId": "lusaka-airport-lusaka-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-bayport-1",
+      "venueId": "lusaka-bayport",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-bayport-2",
+      "venueId": "lusaka-bayport",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-cathedral-of-the-child-jesus-1",
+      "venueId": "lusaka-cathedral-of-the-child-jesus",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-cathedral-of-the-child-jesus-2",
+      "venueId": "lusaka-cathedral-of-the-child-jesus",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-clinic-1",
+      "venueId": "lusaka-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-clinic-2",
+      "venueId": "lusaka-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-community-notices-1",
+      "venueId": "lusaka-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-community-notices-2",
+      "venueId": "lusaka-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-community-voting-game-1",
+      "venueId": "lusaka-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-community-voting-game-2",
+      "venueId": "lusaka-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-community-workshop-1",
+      "venueId": "lusaka-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-community-workshop-2",
+      "venueId": "lusaka-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-crossroads-mall-1",
+      "venueId": "lusaka-crossroads-mall",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-crossroads-mall-2",
+      "venueId": "lusaka-crossroads-mall",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-embassy-park-1",
+      "venueId": "lusaka-embassy-park",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-embassy-park-2",
+      "venueId": "lusaka-embassy-park",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-evelyn-hone-college-1",
+      "venueId": "lusaka-evelyn-hone-college",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-evelyn-hone-college-2",
+      "venueId": "lusaka-evelyn-hone-college",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-hindu-temple-1",
+      "venueId": "lusaka-hindu-temple",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-hindu-temple-2",
+      "venueId": "lusaka-hindu-temple",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-independence-stadium-1",
+      "venueId": "lusaka-independence-stadium",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-independence-stadium-2",
+      "venueId": "lusaka-independence-stadium",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-jaame-masjid-1",
+      "venueId": "lusaka-jaame-masjid",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-jaame-masjid-2",
+      "venueId": "lusaka-jaame-masjid",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-kenneth-kaunda-chilenje-house-1",
+      "venueId": "lusaka-kenneth-kaunda-chilenje-house",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-kenneth-kaunda-chilenje-house-2",
+      "venueId": "lusaka-kenneth-kaunda-chilenje-house",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-lusaka-playhouse-1",
+      "venueId": "lusaka-lusaka-playhouse",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-lusaka-playhouse-2",
+      "venueId": "lusaka-lusaka-playhouse",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-market-game-1",
+      "venueId": "lusaka-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-market-game-2",
+      "venueId": "lusaka-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-meal-stop-1",
+      "venueId": "lusaka-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-meal-stop-2",
+      "venueId": "lusaka-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-national-heroes-stadium-1",
+      "venueId": "lusaka-national-heroes-stadium",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-national-heroes-stadium-2",
+      "venueId": "lusaka-national-heroes-stadium",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-national-museum-1",
+      "venueId": "lusaka-national-museum",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-national-museum-2",
+      "venueId": "lusaka-national-museum",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-oasis-mall-1",
+      "venueId": "lusaka-oasis-mall",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-oasis-mall-2",
+      "venueId": "lusaka-oasis-mall",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-quiet-reflection-1",
+      "venueId": "lusaka-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-quiet-reflection-2",
+      "venueId": "lusaka-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-recreation-1",
+      "venueId": "lusaka-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-recreation-2",
+      "venueId": "lusaka-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-suwilanji-gardens-1",
+      "venueId": "lusaka-suwilanji-gardens",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-suwilanji-gardens-2",
+      "venueId": "lusaka-suwilanji-gardens",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-transit-1",
+      "venueId": "lusaka-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-transit-2",
+      "venueId": "lusaka-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-woodlands-mall-1",
+      "venueId": "lusaka-woodlands-mall",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    },
+    {
+      "id": "lusaka-lusaka-woodlands-mall-2",
+      "venueId": "lusaka-woodlands-mall",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lusaka/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "lusaka-airport-lusaka-airport",
+    "lusaka-bayport",
+    "lusaka-cathedral-of-the-child-jesus",
+    "lusaka-clinic",
+    "lusaka-community-notices",
+    "lusaka-community-voting-game",
+    "lusaka-community-workshop",
+    "lusaka-crossroads-mall",
+    "lusaka-embassy-park",
+    "lusaka-evelyn-hone-college",
+    "lusaka-hindu-temple",
+    "lusaka-independence-stadium",
+    "lusaka-jaame-masjid",
+    "lusaka-kenneth-kaunda-chilenje-house",
+    "lusaka-lusaka-playhouse",
+    "lusaka-market-game",
+    "lusaka-meal-stop",
+    "lusaka-national-heroes-stadium",
+    "lusaka-national-museum",
+    "lusaka-oasis-mall",
+    "lusaka-quiet-reflection",
+    "lusaka-recreation",
+    "lusaka-suwilanji-gardens",
+    "lusaka-transit",
+    "lusaka-woodlands-mall"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "3d6c329bb8cd945e1539b81194fbaa688c7ab6021d8a7058b0a659666195e140",
+    "contentSha256": "aeb14d21f99b309cbe5ab590ee22f668eb76df6c0421cf324232d6cea9c6cbf6"
+  }
+}

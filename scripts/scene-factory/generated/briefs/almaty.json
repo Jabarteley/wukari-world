@@ -1,0 +1,2135 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "almaty",
+    "name": "Almaty",
+    "state": {
+      "id": "kz-almaty",
+      "name": "Almaty"
+    },
+    "country": {
+      "id": "kz",
+      "name": "Kazakhstan"
+    },
+    "point": {
+      "lon": 76.9457275,
+      "lat": 43.2363924
+    }
+  },
+  "style": {
+    "region": "south-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/kazakhstan-261011.osm.pbf",
+      "https://ourairports.com/airports/UAAA/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/almaty/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/almaty/facts.ts",
+        "sha256": "3c4199eeb388fd439b514e1654a38737e6b1d18dcc75ce13a9b85847f37faf3c"
+      },
+      {
+        "path": "src/game/cities/almaty/index.ts",
+        "sha256": "1bd25f854c2f66017aa9b61cf69af2fc627fad713665abbff893935e5f933f09"
+      },
+      {
+        "path": "src/game/cities/almaty/places.ts",
+        "sha256": "e1f8ae5f5d106b7a73e88d4e7d06d6fa33e67ae40747ee54abecb6f30eebc92d"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "almaty-airport-almaty-airport",
+      "name": "Almaty International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 77.042828,
+        "lat": 43.354267
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-airport-almaty-airport-1",
+        "almaty-almaty-airport-almaty-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "almaty-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-clinic",
+      "name": "Қалалық кардиология орталығы",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.928144,
+        "lat": 43.254005
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-clinic-1",
+        "almaty-almaty-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4527578543"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q65172439"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-community-notices",
+      "name": "Wedding palace",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.920035,
+        "lat": 43.241251
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-community-notices-1",
+        "almaty-almaty-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1148828088"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q65175748"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-community-voting-game",
+      "name": "Almaty City Akimat",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.945725,
+        "lat": 43.236294
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-community-voting-game-1",
+        "almaty-almaty-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/3244397"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q77711940"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-community-workshop",
+      "name": "Narxoz University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.871491,
+        "lat": 43.21507
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-community-workshop-1",
+        "almaty-almaty-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/27480946"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1046493"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-market-game",
+      "name": "Апорт Молл",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.777574,
+        "lat": 43.234738
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-market-game-1",
+        "almaty-almaty-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/17023570"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q619735"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-meal-stop",
+      "name": "Aqqu",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.944593,
+        "lat": 43.253496
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-meal-stop-1",
+        "almaty-almaty-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1458336073"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-osm-node-10713558763",
+      "name": "Oktyabrskaya cave",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 77.110699,
+        "lat": 43.100913
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-osm-node-10713558763-1",
+        "almaty-almaty-osm-node-10713558763-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10713558763"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4333020"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-osm-node-13690633205",
+      "name": "Бұтақты",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 77.081269,
+        "lat": 43.182945
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-osm-node-13690633205-1",
+        "almaty-almaty-osm-node-13690633205-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13690633205"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q65172459"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-osm-node-13691030944",
+      "name": "Сакский курган",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.809153,
+        "lat": 43.313402
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-osm-node-13691030944-1",
+        "almaty-almaty-osm-node-13691030944-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13691030944"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q65173248"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-osm-relation-10082036",
+      "name": "Almaty Arena",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.817551,
+        "lat": 43.263767
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-osm-relation-10082036-1",
+        "almaty-almaty-osm-relation-10082036-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/10082036"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q18125175"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-osm-relation-3048271",
+      "name": "Almaty Botanical Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.916057,
+        "lat": 43.219374
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-osm-relation-3048271-1",
+        "almaty-almaty-osm-relation-3048271-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/3048271"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4062764"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-osm-way-1084732338",
+      "name": "Jas Qyran Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.879244,
+        "lat": 43.243192
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-osm-way-1084732338-1",
+        "almaty-almaty-osm-way-1084732338-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1084732338"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q135089978"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-osm-way-1389306295",
+      "name": "Sagadat Nurmagambetov Military Institute of the Ground Forces",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.992745,
+        "lat": 43.385236
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-osm-way-1389306295-1",
+        "almaty-almaty-osm-way-1389306295-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1389306295"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4062692"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-osm-way-1456509345",
+      "name": "Central Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.924181,
+        "lat": 43.238374
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-osm-way-1456509345-1",
+        "almaty-almaty-osm-way-1456509345-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1456509345"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q190788"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-osm-way-207798752",
+      "name": "MEGA Alma-Ata",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.891955,
+        "lat": 43.201656
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-osm-way-207798752-1",
+        "almaty-almaty-osm-way-207798752-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/207798752"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1916971"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-osm-way-210871483",
+      "name": "Baum grove",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.94994,
+        "lat": 43.308623
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-osm-way-210871483-1",
+        "almaty-almaty-osm-way-210871483-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/210871483"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12534146"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-osm-way-231104375",
+      "name": "Храм Христа Спасителя",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.832029,
+        "lat": 43.245328
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-osm-way-231104375-1",
+        "almaty-almaty-osm-way-231104375-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/231104375"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q60851968"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-osm-way-286610625",
+      "name": "Almaty University of Power Engineering and Telecommunications",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.931351,
+        "lat": 43.234942
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-osm-way-286610625-1",
+        "almaty-almaty-osm-way-286610625-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/286610625"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4062778"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-osm-way-389067729",
+      "name": "Our Lady of Kazan church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.976165,
+        "lat": 43.284632
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-osm-way-389067729-1",
+        "almaty-almaty-osm-way-389067729-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/389067729"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1112939"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-osm-way-411621076",
+      "name": "Academy of Civil Aviation",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 77.005301,
+        "lat": 43.355375
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-osm-way-411621076-1",
+        "almaty-almaty-osm-way-411621076-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/411621076"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4059229"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-osm-way-50459830",
+      "name": "Тумар",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.89944,
+        "lat": 43.252158
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-osm-way-50459830-1",
+        "almaty-almaty-osm-way-50459830-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/50459830"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4062758"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-quiet-reflection",
+      "name": "St. Seraphim and Theognost Aksai Hermitage (monastery). Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.776569,
+        "lat": 43.099673
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-quiet-reflection-1",
+        "almaty-almaty-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1512139326"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q79422224"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-recreation",
+      "name": "Kok-Tobe Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.97593,
+        "lat": 43.233567
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-recreation-1",
+        "almaty-almaty-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1296886349"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1795699"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "almaty-transit",
+      "name": "Almaty-1 station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.949173,
+        "lat": 43.341446
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "almaty-almaty-transit-1",
+        "almaty-almaty-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/almaty/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/260543817"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q800370"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 76.9457275,
+        "lat": 43.2363924
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "almaty-almaty-airport-almaty-airport-1",
+      "venueId": "almaty-airport-almaty-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-airport-almaty-airport-2",
+      "venueId": "almaty-airport-almaty-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-clinic-1",
+      "venueId": "almaty-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-clinic-2",
+      "venueId": "almaty-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-community-notices-1",
+      "venueId": "almaty-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-community-notices-2",
+      "venueId": "almaty-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-community-voting-game-1",
+      "venueId": "almaty-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-community-voting-game-2",
+      "venueId": "almaty-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-community-workshop-1",
+      "venueId": "almaty-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-community-workshop-2",
+      "venueId": "almaty-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-market-game-1",
+      "venueId": "almaty-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-market-game-2",
+      "venueId": "almaty-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-meal-stop-1",
+      "venueId": "almaty-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-meal-stop-2",
+      "venueId": "almaty-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-node-10713558763-1",
+      "venueId": "almaty-osm-node-10713558763",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-node-10713558763-2",
+      "venueId": "almaty-osm-node-10713558763",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-node-13690633205-1",
+      "venueId": "almaty-osm-node-13690633205",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-node-13690633205-2",
+      "venueId": "almaty-osm-node-13690633205",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-node-13691030944-1",
+      "venueId": "almaty-osm-node-13691030944",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-node-13691030944-2",
+      "venueId": "almaty-osm-node-13691030944",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-relation-10082036-1",
+      "venueId": "almaty-osm-relation-10082036",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-relation-10082036-2",
+      "venueId": "almaty-osm-relation-10082036",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-relation-3048271-1",
+      "venueId": "almaty-osm-relation-3048271",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-relation-3048271-2",
+      "venueId": "almaty-osm-relation-3048271",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-1084732338-1",
+      "venueId": "almaty-osm-way-1084732338",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-1084732338-2",
+      "venueId": "almaty-osm-way-1084732338",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-1389306295-1",
+      "venueId": "almaty-osm-way-1389306295",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-1389306295-2",
+      "venueId": "almaty-osm-way-1389306295",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-1456509345-1",
+      "venueId": "almaty-osm-way-1456509345",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-1456509345-2",
+      "venueId": "almaty-osm-way-1456509345",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-207798752-1",
+      "venueId": "almaty-osm-way-207798752",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-207798752-2",
+      "venueId": "almaty-osm-way-207798752",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-210871483-1",
+      "venueId": "almaty-osm-way-210871483",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-210871483-2",
+      "venueId": "almaty-osm-way-210871483",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-231104375-1",
+      "venueId": "almaty-osm-way-231104375",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-231104375-2",
+      "venueId": "almaty-osm-way-231104375",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-286610625-1",
+      "venueId": "almaty-osm-way-286610625",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-286610625-2",
+      "venueId": "almaty-osm-way-286610625",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-389067729-1",
+      "venueId": "almaty-osm-way-389067729",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-389067729-2",
+      "venueId": "almaty-osm-way-389067729",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-411621076-1",
+      "venueId": "almaty-osm-way-411621076",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-411621076-2",
+      "venueId": "almaty-osm-way-411621076",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-50459830-1",
+      "venueId": "almaty-osm-way-50459830",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-osm-way-50459830-2",
+      "venueId": "almaty-osm-way-50459830",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-quiet-reflection-1",
+      "venueId": "almaty-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-quiet-reflection-2",
+      "venueId": "almaty-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-recreation-1",
+      "venueId": "almaty-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-recreation-2",
+      "venueId": "almaty-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-transit-1",
+      "venueId": "almaty-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    },
+    {
+      "id": "almaty-almaty-transit-2",
+      "venueId": "almaty-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/almaty/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "almaty-airport-almaty-airport",
+    "almaty-clinic",
+    "almaty-community-notices",
+    "almaty-community-voting-game",
+    "almaty-community-workshop",
+    "almaty-market-game",
+    "almaty-meal-stop",
+    "almaty-osm-node-10713558763",
+    "almaty-osm-node-13690633205",
+    "almaty-osm-node-13691030944",
+    "almaty-osm-relation-10082036",
+    "almaty-osm-relation-3048271",
+    "almaty-osm-way-1084732338",
+    "almaty-osm-way-1389306295",
+    "almaty-osm-way-1456509345",
+    "almaty-osm-way-207798752",
+    "almaty-osm-way-210871483",
+    "almaty-osm-way-231104375",
+    "almaty-osm-way-286610625",
+    "almaty-osm-way-389067729",
+    "almaty-osm-way-411621076",
+    "almaty-osm-way-50459830",
+    "almaty-quiet-reflection",
+    "almaty-recreation",
+    "almaty-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "367e0d4c7bde0a588f993b69490e5263a2293248da228c3f11b53ca6000c300a",
+    "contentSha256": "c3c875c142e45fa59db2361e4c46528f81e3ad0c4fa2fcde09cd868649b0acfa"
+  }
+}

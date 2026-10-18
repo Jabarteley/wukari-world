@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "colombo",
+  "url": "/assets/scene-heroes/colombo.glb",
+  "sha256": "c7cdb5c5cdfd2707904658e35dd78263d236e145e7ea71176faa4a9bd1020d3c",
+  "rawBytes": 18844,
+  "brotliBytes": 16552,
+  "triangles": 276,
+  "parts": [
+    {
+      "node": "colombo",
+      "triangles": 276,
+      "bounds": {
+        "min": [
+          -3.9000001,
+          0,
+          -2.5
+        ],
+        "max": [
+          3.8999998707079997,
+          0.53799670188,
+          2.500036604552
+        ]
+      },
+      "footprint": [
+        -3.9000001,
+        -2.5,
+        3.8999998707079997,
+        2.500036604552
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "4ecd94f61a64f4cf5481b966491528b66c62c39dd43c48e7003b72828ff66be9"
+  },
+  "inputs": {
+    "rawSha256": "7a502a9317aa61de890ecf0c41b6960e767eb3274a8c9df7879333228001ac19",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "colombo",
+      "country": "lk",
+      "name": "Galle Face Green",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://www.srilanka.travel/attraction?attraction_id=210"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch1.json#cities[city_id=colombo]",
+      "sourceLicence": "unknown",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 8.6,
+        "depth": 5.2,
+        "height": 0.55,
+        "seed": 18115,
+        "palette": [
+          "#c6bd9d",
+          "#695e4d",
+          "#55734b",
+          "#738b59",
+          "#4e7184",
+          "#9d986c",
+          "#c7d5cf",
+          "#37443e"
+        ],
+        "composition": "bare-coast"
+      },
+      "evidence": "Sri Lanka’s tourism site locates Galle Face Green on the Colombo–Galle road in Colombo and says it was initially planned in 1859. Original schematic fragment of the sourced feature class. Palette, contour, tree count, spacing and dimensions are art direction, not surveyed shape, species identification or measured geography. No current access is certified. Bare-coast composition uses green ground to suggest the green beside water; no building, seawall or precise coastline is reproduced.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "south-asia"
+      }
+    },
+    "styleSha256": "64cbc90bfc05b51139a91eabe0f981c4f47d02ed2689be22193361f6b66af12d"
+  }
+}

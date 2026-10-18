@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "hagatna",
+  "url": "/assets/scene-heroes/hagatna.glb",
+  "sha256": "ec146beabe796d3b9db73a7104042ebd21b2d7f9dd2a1f7c62745187394574cb",
+  "rawBytes": 23452,
+  "brotliBytes": 16910,
+  "triangles": 732,
+  "parts": [
+    {
+      "node": "hagatna",
+      "triangles": 732,
+      "bounds": {
+        "min": [
+          -2.79999995,
+          0,
+          -1.79999995
+        ],
+        "max": [
+          2.800000035271,
+          1.849917592644,
+          1.8000244560840002
+        ]
+      },
+      "footprint": [
+        -2.79999995,
+        -1.79999995,
+        2.800000035271,
+        1.8000244560840002
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "c64add442eb7d15dbdc7148ceed43075ae446ecc51f484219dd9ffd057c826bb",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "hagatna",
+      "country": "gu",
+      "name": "Senator Angel LG Santos Memorial Park",
+      "category": "monument",
+      "sourceUrls": [
+        "https://www.guamvisitorsbureau.com/docs/resources/press-kits/guam-sample-itineraries/tour-series-island-guam.pdf",
+        "https://www.visitguam.com/blog/post/3034/",
+        "https://www.visitguam.com/guamfestpac/articles-media/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=hagatna]; hero-inputs-r4.md defining-form review",
+      "sourceLicence": "Source text rights unknown unless the publisher states otherwise; factual identity only. No external photo, map, mesh, texture, sculpture surface or plan reused. Original generated geometry is AGPL-3.0-or-later; third-party marks and landmark rights are not cleared by this record.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landmark",
+      "parameters": {
+        "width": 6,
+        "depth": 4,
+        "height": 2.2,
+        "seed": 6122,
+        "palette": [
+          "#dbcdb6",
+          "#62584a",
+          "#8f8a74",
+          "#af593f",
+          "#c8b68c",
+          "#8caa99",
+          "#d2bd91",
+          "#2e3c43"
+        ],
+        "composition": "latte-stones"
+      },
+      "evidence": "The bureau itinerary calls the memorial park located in the heart of Hagåtña and describes its cultural stone pillars. Official visitor bureau describes the memorial park and latte pillars with upturned hemispherical capstones. Original stone-support fragment; arrangement and simplified surfaces are art direction. All dimensions, colours, simplifications and composition proportions are original art direction, not source measurements. No surveyed-location, current-access, production-quality or legal-rights approval is asserted.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

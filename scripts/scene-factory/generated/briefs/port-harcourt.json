@@ -1,0 +1,2313 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "port-harcourt",
+    "name": "Port Harcourt",
+    "state": {
+      "id": "rivers",
+      "name": "Rivers State"
+    },
+    "country": {
+      "id": "ng",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 7.03,
+      "lat": 4.82
+    }
+  },
+  "style": {
+    "region": "niger-delta",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/port-harcourt/content.ts",
+        "sha256": "f18e98046fa09ea109f55bd73ba90def850cd5bc108ececceea6963503e3195f"
+      },
+      {
+        "path": "src/game/cities/port-harcourt/index.ts",
+        "sha256": "5cb53341d747c68ec0e1dfac3791b4dbc3eccfacd5768c51dd2b2f4ba9433980"
+      },
+      {
+        "path": "src/game/cities/port-harcourt/rules.ts",
+        "sha256": "5bc5973adbef62ba9836efb17f682f879d962e9c4c138179e380b9324d4112f8"
+      },
+      {
+        "path": "src/game/cities/port-harcourt/scenes.ts",
+        "sha256": "add41e96fa54f786e61da6a9998aebb9c9da2a2d5ad25ac1c499ecc6aa7420dd"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for port-harcourt.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "adokiye-stadium",
+      "name": "Adokiye Amiesimaka Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.9714235,
+        "lat": 4.9675311
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-adokiye-stadium-1",
+        "port-harcourt-adokiye-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": "ph-bowl",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "airport",
+      "name": "Port Harcourt International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.9518013,
+        "lat": 5.0165409
+      },
+      "spots": [
+        {
+          "id": "terminal",
+          "name": "Terminal"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "terminal",
+          "name": "Terminal",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-airport-1",
+        "port-harcourt-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "bole-kitchen",
+      "name": "Waterfront Bole Kitchen",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0122039,
+        "lat": 4.759365
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-bole-kitchen-1",
+        "port-harcourt-bole-kitchen-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": "ph-bole",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "bonny-jetty",
+      "name": "Bonny/Nembe Waterside Terminal",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0247212,
+        "lat": 4.7576372
+      },
+      "spots": [
+        {
+          "id": "landing",
+          "name": "Ferry landing"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "landing",
+          "name": "Ferry landing",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-bonny-jetty-1",
+        "port-harcourt-bonny-jetty-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": "ph-terminal",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "diobu-church",
+      "name": "Diobu Community Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.9979166,
+        "lat": 4.7925234
+      },
+      "spots": [
+        {
+          "id": "hall",
+          "name": "Church hall"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "hall",
+          "name": "Church hall",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-diobu-church-1",
+        "port-harcourt-diobu-church-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "diobu-mosque",
+      "name": "Diobu Community Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.992341,
+        "lat": 4.804663
+      },
+      "spots": [
+        {
+          "id": "hall",
+          "name": "Prayer hall"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "hall",
+          "name": "Prayer hall",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-diobu-mosque-1",
+        "port-harcourt-diobu-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "garden-city-amusement",
+      "name": "Garden City Amusement Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.9981336,
+        "lat": 4.8281193
+      },
+      "spots": [
+        {
+          "id": "rides",
+          "name": "Ride area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "rides",
+          "name": "Ride area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-garden-city-amusement-1",
+        "port-harcourt-garden-city-amusement-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": "ph-rides",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "garden-city-evening",
+      "name": "Garden City Evening Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0054726,
+        "lat": 4.788293
+      },
+      "spots": [
+        {
+          "id": "stage",
+          "name": "Garden stage"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stage",
+          "name": "Garden stage",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-garden-city-evening-1",
+        "port-harcourt-garden-city-evening-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": "ph-bandstand",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "garden-city-salon",
+      "name": "Garden City Salon",
+      "kind": "salon",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.9979166,
+        "lat": 4.7925234
+      },
+      "spots": [
+        {
+          "id": "chair",
+          "name": "Styling chair"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "chair",
+          "name": "Styling chair",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-garden-city-salon-1",
+        "port-harcourt-garden-city-salon-2"
+      ],
+      "scene": {
+        "kind": "salon",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "government-house",
+      "name": "Rivers State Government House Area",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0167428,
+        "lat": 4.7765377
+      },
+      "spots": [
+        {
+          "id": "office",
+          "name": "Public information"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "office",
+          "name": "Public information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-government-house-1",
+        "port-harcourt-government-house-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": "ph-gra-gate",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.9979166,
+        "lat": 4.7925234
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "iaue",
+      "name": "Ignatius Ajuru University of Education",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.9309744,
+        "lat": 4.8041686
+      },
+      "spots": [
+        {
+          "id": "class",
+          "name": "Teaching studio"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "class",
+          "name": "Teaching studio",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-iaue-1",
+        "port-harcourt-iaue-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": "ph-college",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "isaac-boro-park",
+      "name": "Isaac Boro Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0054726,
+        "lat": 4.788293
+      },
+      "spots": [
+        {
+          "id": "walk",
+          "name": "Park walk"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "walk",
+          "name": "Park walk",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-isaac-boro-park-1",
+        "port-harcourt-isaac-boro-park-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": "ph-cenotaph",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "mile-one-market",
+      "name": "New Mile One Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.9979166,
+        "lat": 4.7925234
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-mile-one-market-1",
+        "port-harcourt-mile-one-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": "ph-block",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "mile-three-market",
+      "name": "Mile Three Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.992341,
+        "lat": 4.804663
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-mile-three-market-1",
+        "port-harcourt-mile-three-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": "ph-rows",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "oil-mill-market",
+      "name": "Oil Mill Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0653907,
+        "lat": 4.8577216
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-oil-mill-market-1",
+        "port-harcourt-oil-mill-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": "ph-junction",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "okrika-jetty",
+      "name": "Okrika Town Landing",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0823282,
+        "lat": 4.7471189
+      },
+      "spots": [
+        {
+          "id": "landing",
+          "name": "Town landing"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "landing",
+          "name": "Town landing",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-okrika-jetty-1",
+        "port-harcourt-okrika-jetty-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": "ph-pier",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "ph-clinic",
+      "name": "Garden City Community Clinic",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0115139,
+        "lat": 4.8375095
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-ph-clinic-1",
+        "port-harcourt-ph-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "ph-polling",
+      "name": "Garden City Civic Polling Centre",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0167428,
+        "lat": 4.7765377
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Election officials"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Election officials",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-ph-polling-1",
+        "port-harcourt-ph-polling-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "pleasure-park",
+      "name": "Port Harcourt Pleasure Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0115139,
+        "lat": 4.8375095
+      },
+      "spots": [
+        {
+          "id": "lawn",
+          "name": "Park lawn"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "lawn",
+          "name": "Park lawn",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-pleasure-park-1",
+        "port-harcourt-pleasure-park-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": "ph-lake",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "railway-township",
+      "name": "Old Township and Railway Station",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0164659,
+        "lat": 4.7650949
+      },
+      "spots": [
+        {
+          "id": "station",
+          "name": "Station frontage"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "station",
+          "name": "Station frontage",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-railway-township-1",
+        "port-harcourt-railway-township-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": "ph-station",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "refinery",
+      "name": "Port Harcourt Refinery Viewpoint",
+      "kind": "refinery",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.107784,
+        "lat": 4.7605332
+      },
+      "spots": [
+        {
+          "id": "view",
+          "name": "Civic viewpoint"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "view",
+          "name": "Civic viewpoint",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-refinery-1",
+        "port-harcourt-refinery-2"
+      ],
+      "scene": {
+        "kind": "refinery",
+        "variant": "ph-creek-view",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "rsu",
+      "name": "Rivers State University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.9807492,
+        "lat": 4.7969856
+      },
+      "spots": [
+        {
+          "id": "lab",
+          "name": "Project lab"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "lab",
+          "name": "Project lab",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-rsu-1",
+        "port-harcourt-rsu-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": "ph-senate",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "rumuola-hub",
+      "name": "Rumuola Interchange",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.9982413,
+        "lat": 4.8340294
+      },
+      "spots": [
+        {
+          "id": "platform",
+          "name": "Road platform"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "platform",
+          "name": "Road platform",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-rumuola-hub-1",
+        "port-harcourt-rumuola-hub-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": "ph-interchange",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "rumuola-savings",
+      "name": "Rumuola Savings Hall",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.9982413,
+        "lat": 4.8340294
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-rumuola-savings-1",
+        "port-harcourt-rumuola-savings-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "tourist-beach",
+      "name": "Port Harcourt Tourist Beach",
+      "kind": "beach",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0122039,
+        "lat": 4.759365
+      },
+      "spots": [
+        {
+          "id": "shore",
+          "name": "Waterfront"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "shore",
+          "name": "Waterfront",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Work",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-tourist-beach-1",
+        "port-harcourt-tourist-beach-2"
+      ],
+      "scene": {
+        "kind": "beach",
+        "variant": "ph-creek",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "trans-amadi",
+      "name": "Trans-Amadi Industrial Walk",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0412027,
+        "lat": 4.8201471
+      },
+      "spots": [
+        {
+          "id": "route",
+          "name": "Industry route"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "route",
+          "name": "Industry route",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-trans-amadi-1",
+        "port-harcourt-trans-amadi-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": "ph-industry",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "uniport",
+      "name": "University of Port Harcourt",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.9158749,
+        "lat": 4.8940715
+      },
+      "spots": [
+        {
+          "id": "lab",
+          "name": "Research room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "lab",
+          "name": "Research room",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-uniport-1",
+        "port-harcourt-uniport-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": "ph-avenue",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "wharf",
+      "name": "Old Wharf Road Walk",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0077827,
+        "lat": 4.7693656
+      },
+      "spots": [
+        {
+          "id": "view",
+          "name": "Wharf Road view"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "view",
+          "name": "Wharf Road view",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-wharf-1",
+        "port-harcourt-wharf-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": "ph-wharf",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    },
+    {
+      "id": "yakubu-gowon-stadium",
+      "name": "Yakubu Gowon Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0219237,
+        "lat": 4.8249177
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "port-harcourt-yakubu-gowon-stadium-1",
+        "port-harcourt-yakubu-gowon-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": "ph-main-stand",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for port-harcourt."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "port-harcourt-adokiye-stadium-1",
+      "venueId": "adokiye-stadium",
+      "name": "Boma Horsfall",
+      "role": "stadium runner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-adokiye-stadium-2",
+      "venueId": "adokiye-stadium",
+      "name": "Ipalibo Wokoma",
+      "role": "football supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-airport-1",
+      "venueId": "airport",
+      "name": "Yemi Ogunleye",
+      "role": "terminal traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-airport-2",
+      "venueId": "airport",
+      "name": "Tola Akinyemi",
+      "role": "travel helper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-bole-kitchen-1",
+      "venueId": "bole-kitchen",
+      "name": "Sira George",
+      "role": "bole cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-bole-kitchen-2",
+      "venueId": "bole-kitchen",
+      "name": "Obum Nwafor",
+      "role": "food regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-bonny-jetty-1",
+      "venueId": "bonny-jetty",
+      "name": "Sokari Davies",
+      "role": "landing helper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-bonny-jetty-2",
+      "venueId": "bonny-jetty",
+      "name": "Tamunotonye Alabo",
+      "role": "boat passenger",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-diobu-church-1",
+      "venueId": "diobu-church",
+      "name": "Tamunoemiari Green",
+      "role": "church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-diobu-church-2",
+      "venueId": "diobu-church",
+      "name": "Bariyaa Kpea",
+      "role": "neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-diobu-mosque-1",
+      "venueId": "diobu-mosque",
+      "name": "Blessing Iwowari",
+      "role": "mosque volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-diobu-mosque-2",
+      "venueId": "diobu-mosque",
+      "name": "Perekiye Fubara",
+      "role": "neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-garden-city-amusement-1",
+      "venueId": "garden-city-amusement",
+      "name": "Kelechi Amadi",
+      "role": "family visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-garden-city-amusement-2",
+      "venueId": "garden-city-amusement",
+      "name": "Ngozi Eze",
+      "role": "games fan",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-garden-city-evening-1",
+      "venueId": "garden-city-evening",
+      "name": "Miebaka Inko",
+      "role": "music host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-garden-city-evening-2",
+      "venueId": "garden-city-evening",
+      "name": "Nkechi Ogbonda",
+      "role": "music regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-garden-city-salon-1",
+      "venueId": "garden-city-salon",
+      "name": "Tamunokuro Abbey",
+      "role": "stylist",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-garden-city-salon-2",
+      "venueId": "garden-city-salon",
+      "name": "Bariere Nwinee",
+      "role": "salon regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-government-house-1",
+      "venueId": "government-house",
+      "name": "Omasirichi Nwogu",
+      "role": "civic visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-government-house-2",
+      "venueId": "government-house",
+      "name": "Kio Briggs",
+      "role": "community organiser",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-iaue-1",
+      "venueId": "iaue",
+      "name": "Mfon Akpan",
+      "role": "teaching student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-iaue-2",
+      "venueId": "iaue",
+      "name": "Iniobong Etim",
+      "role": "media learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-isaac-boro-park-1",
+      "venueId": "isaac-boro-park",
+      "name": "Sotonye Cookey",
+      "role": "park walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-isaac-boro-park-2",
+      "venueId": "isaac-boro-park",
+      "name": "Ibiso Jack",
+      "role": "local history reader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-mile-one-market-1",
+      "venueId": "mile-one-market",
+      "name": "Barineka Nwinee",
+      "role": "produce trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-mile-one-market-2",
+      "venueId": "mile-one-market",
+      "name": "Ledum Kpaka",
+      "role": "market porter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-mile-three-market-1",
+      "venueId": "mile-three-market",
+      "name": "Ebiere Asawo",
+      "role": "household trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-mile-three-market-2",
+      "venueId": "mile-three-market",
+      "name": "Dumo Bob",
+      "role": "market shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-oil-mill-market-1",
+      "venueId": "oil-mill-market",
+      "name": "Chisom Nwankwo",
+      "role": "market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-oil-mill-market-2",
+      "venueId": "oil-mill-market",
+      "name": "Adaeze Okafor",
+      "role": "food shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-okrika-jetty-1",
+      "venueId": "okrika-jetty",
+      "name": "Deinma Kalio",
+      "role": "landing helper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-okrika-jetty-2",
+      "venueId": "okrika-jetty",
+      "name": "Ibiye Aguma",
+      "role": "boat passenger",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-ph-clinic-1",
+      "venueId": "ph-clinic",
+      "name": "Fyneface Gogo",
+      "role": "clinic volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-ph-clinic-2",
+      "venueId": "ph-clinic",
+      "name": "Legborsi Saro",
+      "role": "neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-ph-polling-1",
+      "venueId": "ph-polling",
+      "name": "Atonye Lawson",
+      "role": "voter information helper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-ph-polling-2",
+      "venueId": "ph-polling",
+      "name": "Erefa Dokubo",
+      "role": "local voter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-pleasure-park-1",
+      "venueId": "pleasure-park",
+      "name": "Tamuno Briggs",
+      "role": "park volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-pleasure-park-2",
+      "venueId": "pleasure-park",
+      "name": "Ibiwari George",
+      "role": "ayo player",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-railway-township-1",
+      "venueId": "railway-township",
+      "name": "Preye Diri",
+      "role": "township walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-railway-township-2",
+      "venueId": "railway-township",
+      "name": "Ebitimi Alaowei",
+      "role": "rail enthusiast",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-refinery-1",
+      "venueId": "refinery",
+      "name": "Eno Essien",
+      "role": "corridor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-refinery-2",
+      "venueId": "refinery",
+      "name": "Uduak James",
+      "role": "engineering student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-rsu-1",
+      "venueId": "rsu",
+      "name": "Kurotimi Abam",
+      "role": "student mentor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-rsu-2",
+      "venueId": "rsu",
+      "name": "Nimi Brown",
+      "role": "campus learner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-rumuola-hub-1",
+      "venueId": "rumuola-hub",
+      "name": "Tamunomiebi Kalio",
+      "role": "route helper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-rumuola-hub-2",
+      "venueId": "rumuola-hub",
+      "name": "Kio Tamuno",
+      "role": "commuter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-rumuola-savings-1",
+      "venueId": "rumuola-savings",
+      "name": "Nengi Amachree",
+      "role": "banking trainee",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-rumuola-savings-2",
+      "venueId": "rumuola-savings",
+      "name": "Tonye Douglas",
+      "role": "savings customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-tourist-beach-1",
+      "venueId": "tourist-beach",
+      "name": "Simi Adeyemi",
+      "role": "waterfront walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-tourist-beach-2",
+      "venueId": "tourist-beach",
+      "name": "Kunle Balogun",
+      "role": "regatta storyteller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-trans-amadi-1",
+      "venueId": "trans-amadi",
+      "name": "Nneka Worlu",
+      "role": "workshop apprentice",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-trans-amadi-2",
+      "venueId": "trans-amadi",
+      "name": "Chinedu Opara",
+      "role": "industrial planner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-uniport-1",
+      "venueId": "uniport",
+      "name": "Seinye Amakiri",
+      "role": "research student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-uniport-2",
+      "venueId": "uniport",
+      "name": "Tekena Wariboko",
+      "role": "campus visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-wharf-1",
+      "venueId": "wharf",
+      "name": "Tammy Fiberesima",
+      "role": "waterfront walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-wharf-2",
+      "venueId": "wharf",
+      "name": "Fubara Georgewill",
+      "role": "local history reader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-yakubu-gowon-stadium-1",
+      "venueId": "yakubu-gowon-stadium",
+      "name": "Amina Bello",
+      "role": "training partner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    },
+    {
+      "id": "port-harcourt-yakubu-gowon-stadium-2",
+      "venueId": "yakubu-gowon-stadium",
+      "name": "Sani Musa",
+      "role": "match supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/port-harcourt/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "airport",
+    "diobu-church",
+    "diobu-mosque",
+    "garden-city-salon",
+    "ph-clinic",
+    "ph-polling",
+    "rumuola-savings"
+  ],
+  "preservedVenueIds": [
+    "adokiye-stadium",
+    "bole-kitchen",
+    "bonny-jetty",
+    "garden-city-amusement",
+    "garden-city-evening",
+    "government-house",
+    "iaue",
+    "isaac-boro-park",
+    "mile-one-market",
+    "mile-three-market",
+    "oil-mill-market",
+    "okrika-jetty",
+    "pleasure-park",
+    "railway-township",
+    "refinery",
+    "rsu",
+    "rumuola-hub",
+    "tourist-beach",
+    "trans-amadi",
+    "uniport",
+    "wharf",
+    "yakubu-gowon-stadium"
+  ],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "a3222234de2a4b55715b4dcc43a6e0fe54d626867263096de9ac98403c1278de",
+    "contentSha256": "fb5d9677a4d7f2504536c8d128fe091924e343243e7be04730696e5ba1d5d8a4"
+  }
+}

@@ -1,0 +1,2087 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "thimphu",
+    "name": "Thimphu",
+    "state": {
+      "id": "bt-thimphu",
+      "name": "Thimphu"
+    },
+    "country": {
+      "id": "bt",
+      "name": "Bhutan"
+    },
+    "point": {
+      "lon": 89.6336729,
+      "lat": 27.4713546
+    }
+  },
+  "style": {
+    "region": "south-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/bhutan-261011.osm.pbf",
+      "https://ourairports.com/airports/VQPR/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/thimphu/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/thimphu/facts.ts",
+        "sha256": "d6e9d3a1bce76bf14fd0ea749c30c266bdbe37873693a0ebe73d3cb52f4ada2c"
+      },
+      {
+        "path": "src/game/cities/thimphu/index.ts",
+        "sha256": "b0d96ed224561ff1fcc553007087c639f593c7bcc657a19325bed60ebae0e3b5"
+      },
+      {
+        "path": "src/game/cities/thimphu/places.ts",
+        "sha256": "bdcd1036d76922ed8d72300ed58af092a860f14807a5c660fd470bcd73cd6aeb"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.6336729,
+        "lat": 27.4713546
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "thimphu-airport-thimphu-airport",
+      "name": "Paro International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.424599,
+        "lat": 27.4032
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-airport-thimphu-airport-1",
+        "thimphu-thimphu-airport-thimphu-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "thimphu-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-clinic",
+      "name": "Jigme Dorji Wangchuck National Referral Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.638595,
+        "lat": 27.463356
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-clinic-1",
+        "thimphu-thimphu-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/425635150"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4314988"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-community-notices",
+      "name": "Kabesa Gewog Centre",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.791408,
+        "lat": 27.632573
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-community-notices-1",
+        "thimphu-thimphu-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10759470946"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-community-voting-game",
+      "name": "Clock Tower Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.639667,
+        "lat": 27.470374
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-community-voting-game-1",
+        "thimphu-thimphu-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/91559919"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15210985"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-community-workshop",
+      "name": "National Library of Bhutan",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.632463,
+        "lat": 27.483251
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-community-workshop-1",
+        "thimphu-thimphu-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/260418942"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2602355"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-market-game",
+      "name": "Canteen",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.450154,
+        "lat": 27.385189
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-market-game-1",
+        "thimphu-thimphu-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11937243669"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-meal-stop",
+      "name": "Menchuna",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.762413,
+        "lat": 27.516577
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-meal-stop-1",
+        "thimphu-thimphu-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4496630080"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-osm-node-10308083192",
+      "name": "Jungshina Neighborhood Vegtable Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.636468,
+        "lat": 27.5068
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-osm-node-10308083192-1",
+        "thimphu-thimphu-osm-node-10308083192-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10308083192"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-osm-node-10756662149",
+      "name": "E/G88 Restaurant &Bar",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.568344,
+        "lat": 27.405093
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-osm-node-10756662149-1",
+        "thimphu-thimphu-osm-node-10756662149-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10756662149"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-osm-node-11933012275",
+      "name": "Kuen-thun Restaurant and bar",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.559585,
+        "lat": 27.320476
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-osm-node-11933012275-1",
+        "thimphu-thimphu-osm-node-11933012275-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11933012275"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-osm-node-11936865369",
+      "name": "International Office ( IRO office)",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.657629,
+        "lat": 27.401396
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-osm-node-11936865369-1",
+        "thimphu-thimphu-osm-node-11936865369-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11936865369"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-osm-node-6161406390",
+      "name": "Norbuling Rigter College",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.434319,
+        "lat": 27.495003
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-osm-node-6161406390-1",
+        "thimphu-thimphu-osm-node-6161406390-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6161406390"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-osm-relation-2532733",
+      "name": "Tashichho Dzong",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.635087,
+        "lat": 27.489666
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-osm-relation-2532733-1",
+        "thimphu-thimphu-osm-relation-2532733-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/2532733"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1896299"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-osm-way-1380032231",
+      "name": "Motithang Takin Preserve",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.612048,
+        "lat": 27.481747
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-osm-way-1380032231-1",
+        "thimphu-thimphu-osm-way-1380032231-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1380032231"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5459703"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-osm-way-1380056477",
+      "name": "Anniversary park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.750421,
+        "lat": 27.489453
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-osm-way-1380056477-1",
+        "thimphu-thimphu-osm-way-1380056477-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1380056477"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-osm-way-187025042",
+      "name": "National Museum of Bhutan",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.425498,
+        "lat": 27.42876
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-osm-way-187025042-1",
+        "thimphu-thimphu-osm-way-187025042-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/187025042"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4315025"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-osm-way-217728797",
+      "name": "Royal Textile Academy",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.635796,
+        "lat": 27.479074
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-osm-way-217728797-1",
+        "thimphu-thimphu-osm-way-217728797-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/217728797"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15273539"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-osm-way-369953190",
+      "name": "Changlimithang Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.641025,
+        "lat": 27.471212
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-osm-way-369953190-1",
+        "thimphu-thimphu-osm-way-369953190-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/369953190"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1062074"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-osm-way-431787600",
+      "name": "Royal Institute of Management",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.666097,
+        "lat": 27.441963
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-osm-way-431787600-1",
+        "thimphu-thimphu-osm-way-431787600-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/431787600"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-osm-way-435186557",
+      "name": "National Traditional Medicine Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.629792,
+        "lat": 27.479742
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-osm-way-435186557-1",
+        "thimphu-thimphu-osm-way-435186557-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/435186557"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4201619"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-osm-way-541766925",
+      "name": "Chamgang BHU",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.696772,
+        "lat": 27.411184
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-osm-way-541766925-1",
+        "thimphu-thimphu-osm-way-541766925-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/541766925"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-osm-way-663910123",
+      "name": "National Memorial Chorten",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.637899,
+        "lat": 27.46656
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-osm-way-663910123-1",
+        "thimphu-thimphu-osm-way-663910123-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/663910123"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q864865"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-quiet-reflection",
+      "name": "Buddha Dordenma",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.645387,
+        "lat": 27.443587
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-quiet-reflection-1",
+        "thimphu-thimphu-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/188067168"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4097986"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-recreation",
+      "name": "Dangrina Recreational Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.639589,
+        "lat": 27.528973
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-recreation-1",
+        "thimphu-thimphu-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1083747727"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "thimphu-transit",
+      "name": "City Bus Terminal",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 89.639187,
+        "lat": 27.472135
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "thimphu-thimphu-transit-1",
+        "thimphu-thimphu-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/thimphu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4776561047"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "thimphu-thimphu-airport-thimphu-airport-1",
+      "venueId": "thimphu-airport-thimphu-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-airport-thimphu-airport-2",
+      "venueId": "thimphu-airport-thimphu-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-clinic-1",
+      "venueId": "thimphu-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-clinic-2",
+      "venueId": "thimphu-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-community-notices-1",
+      "venueId": "thimphu-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-community-notices-2",
+      "venueId": "thimphu-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-community-voting-game-1",
+      "venueId": "thimphu-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-community-voting-game-2",
+      "venueId": "thimphu-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-community-workshop-1",
+      "venueId": "thimphu-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-community-workshop-2",
+      "venueId": "thimphu-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-market-game-1",
+      "venueId": "thimphu-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-market-game-2",
+      "venueId": "thimphu-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-meal-stop-1",
+      "venueId": "thimphu-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-meal-stop-2",
+      "venueId": "thimphu-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-node-10308083192-1",
+      "venueId": "thimphu-osm-node-10308083192",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-node-10308083192-2",
+      "venueId": "thimphu-osm-node-10308083192",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-node-10756662149-1",
+      "venueId": "thimphu-osm-node-10756662149",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-node-10756662149-2",
+      "venueId": "thimphu-osm-node-10756662149",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-node-11933012275-1",
+      "venueId": "thimphu-osm-node-11933012275",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-node-11933012275-2",
+      "venueId": "thimphu-osm-node-11933012275",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-node-11936865369-1",
+      "venueId": "thimphu-osm-node-11936865369",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-node-11936865369-2",
+      "venueId": "thimphu-osm-node-11936865369",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-node-6161406390-1",
+      "venueId": "thimphu-osm-node-6161406390",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-node-6161406390-2",
+      "venueId": "thimphu-osm-node-6161406390",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-relation-2532733-1",
+      "venueId": "thimphu-osm-relation-2532733",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-relation-2532733-2",
+      "venueId": "thimphu-osm-relation-2532733",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-1380032231-1",
+      "venueId": "thimphu-osm-way-1380032231",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-1380032231-2",
+      "venueId": "thimphu-osm-way-1380032231",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-1380056477-1",
+      "venueId": "thimphu-osm-way-1380056477",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-1380056477-2",
+      "venueId": "thimphu-osm-way-1380056477",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-187025042-1",
+      "venueId": "thimphu-osm-way-187025042",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-187025042-2",
+      "venueId": "thimphu-osm-way-187025042",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-217728797-1",
+      "venueId": "thimphu-osm-way-217728797",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-217728797-2",
+      "venueId": "thimphu-osm-way-217728797",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-369953190-1",
+      "venueId": "thimphu-osm-way-369953190",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-369953190-2",
+      "venueId": "thimphu-osm-way-369953190",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-431787600-1",
+      "venueId": "thimphu-osm-way-431787600",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-431787600-2",
+      "venueId": "thimphu-osm-way-431787600",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-435186557-1",
+      "venueId": "thimphu-osm-way-435186557",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-435186557-2",
+      "venueId": "thimphu-osm-way-435186557",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-541766925-1",
+      "venueId": "thimphu-osm-way-541766925",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-541766925-2",
+      "venueId": "thimphu-osm-way-541766925",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-663910123-1",
+      "venueId": "thimphu-osm-way-663910123",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-osm-way-663910123-2",
+      "venueId": "thimphu-osm-way-663910123",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-quiet-reflection-1",
+      "venueId": "thimphu-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-quiet-reflection-2",
+      "venueId": "thimphu-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-recreation-1",
+      "venueId": "thimphu-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-recreation-2",
+      "venueId": "thimphu-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-transit-1",
+      "venueId": "thimphu-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    },
+    {
+      "id": "thimphu-thimphu-transit-2",
+      "venueId": "thimphu-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/thimphu/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "thimphu-airport-thimphu-airport",
+    "thimphu-clinic",
+    "thimphu-community-notices",
+    "thimphu-community-voting-game",
+    "thimphu-community-workshop",
+    "thimphu-market-game",
+    "thimphu-meal-stop",
+    "thimphu-osm-node-10308083192",
+    "thimphu-osm-node-10756662149",
+    "thimphu-osm-node-11933012275",
+    "thimphu-osm-node-11936865369",
+    "thimphu-osm-node-6161406390",
+    "thimphu-osm-relation-2532733",
+    "thimphu-osm-way-1380032231",
+    "thimphu-osm-way-1380056477",
+    "thimphu-osm-way-187025042",
+    "thimphu-osm-way-217728797",
+    "thimphu-osm-way-369953190",
+    "thimphu-osm-way-431787600",
+    "thimphu-osm-way-435186557",
+    "thimphu-osm-way-541766925",
+    "thimphu-osm-way-663910123",
+    "thimphu-quiet-reflection",
+    "thimphu-recreation",
+    "thimphu-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "c21f06d31373bfff843535e5aeb6d05d1877ed23bbbb297d6c659f964d0d11ca",
+    "contentSha256": "2cd02e5b97170f23da213261f1be00e41acb369f2891805e83b6052b74740840"
+  }
+}

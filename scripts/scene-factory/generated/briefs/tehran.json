@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "tehran",
+    "name": "Tehran",
+    "state": {
+      "id": "ir-tehran",
+      "name": "Tehran"
+    },
+    "country": {
+      "id": "ir",
+      "name": "Iran"
+    },
+    "point": {
+      "lon": 51.3896004,
+      "lat": 35.6892523
+    }
+  },
+  "style": {
+    "region": "south-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/iran-261011.osm.pbf",
+      "https://ourairports.com/airports/OIIE/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/tehran/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/tehran/facts.ts",
+        "sha256": "6e5e5f2d6e5c3ae36acc621830a57ab4022244fe46e03b2a4bc9465109359a23"
+      },
+      {
+        "path": "src/game/cities/tehran/index.ts",
+        "sha256": "d00c3ebf9d2eb14ba5c5e1a5ce57a233782e30c5751f42d29d1fc33a2ad84104"
+      },
+      {
+        "path": "src/game/cities/tehran/places.ts",
+        "sha256": "f958639c8c610e5d51d530c864f101698f821c930511648b510a376ec87c289a"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.3896004,
+        "lat": 35.6892523
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "tehran-airport-tehran-airport",
+      "name": "Imam Khomeini International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.152198791503906,
+        "lat": 35.416099548339844
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-airport-tehran-airport-1",
+        "tehran-tehran-airport-tehran-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "tehran-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-clinic",
+      "name": "Iran Neurology Sciences Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.210222,
+        "lat": 35.762517
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-clinic-1",
+        "tehran-tehran-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/437662365"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q46246401"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-community-notices",
+      "name": "Parliament of Iran",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.43543,
+        "lat": 35.690444
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-community-notices-1",
+        "tehran-tehran-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/182083848"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q378605"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-community-voting-game",
+      "name": "Azadi Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.337666,
+        "lat": 35.699734
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-community-voting-game-1",
+        "tehran-tehran-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/7790807"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2476039"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-community-workshop",
+      "name": "West Tehran Islamic Azad University College of Engineering",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.337243,
+        "lat": 35.746928
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-community-workshop-1",
+        "tehran-tehran-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/616050822"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q21209209"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-market-game",
+      "name": "فروشگاه شهروند",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.47947,
+        "lat": 35.665876
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-market-game-1",
+        "tehran-tehran-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/471736211"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7462298"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-meal-stop",
+      "name": "Gol-e Rezaieh",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.414163,
+        "lat": 35.693895
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-meal-stop-1",
+        "tehran-tehran-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4647512822"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5699909"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-osm-node-10214246553",
+      "name": "امامزاده هادی و زینب خاتون",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.445258,
+        "lat": 35.60358
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-osm-node-10214246553-1",
+        "tehran-tehran-osm-node-10214246553-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10214246553"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5672944"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-osm-node-13416585667",
+      "name": "Tomb of Imam Khomeini",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.366338,
+        "lat": 35.548783
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-osm-node-13416585667-1",
+        "tehran-tehran-osm-node-13416585667-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13416585667"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q38823"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-osm-relation-6957011",
+      "name": "بازار خانات",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.430006,
+        "lat": 35.667012
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-osm-relation-6957011-1",
+        "tehran-tehran-osm-relation-6957011-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/6957011"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5724466"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-osm-relation-8129683",
+      "name": "Iran Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.192666,
+        "lat": 35.753746
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-osm-relation-8129683-1",
+        "tehran-tehran-osm-relation-8129683-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/8129683"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q53678081"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-osm-way-1067538666",
+      "name": "شهرک سینمایی و تلویزیونی ایران",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.167188,
+        "lat": 35.731105
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-osm-way-1067538666-1",
+        "tehran-tehran-osm-way-1067538666-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1067538666"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2974753"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-osm-way-112376927",
+      "name": "Iran University of Science and Technology (IUSIT)",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.507396,
+        "lat": 35.742728
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-osm-way-112376927-1",
+        "tehran-tehran-osm-way-112376927-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/112376927"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4115110"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-osm-way-1193089813",
+      "name": "vellayat park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.38136,
+        "lat": 35.645124
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-osm-way-1193089813-1",
+        "tehran-tehran-osm-way-1193089813-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1193089813"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5674888"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-osm-way-119376034",
+      "name": "Azadi Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.275549,
+        "lat": 35.724417
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-osm-way-119376034-1",
+        "tehran-tehran-osm-way-119376034-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/119376034"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q653535"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-osm-way-1527989327",
+      "name": "حسینیه جوانان قمر بنی هاشم",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.459429,
+        "lat": 35.718998
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-osm-way-1527989327-1",
+        "tehran-tehran-osm-way-1527989327-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1527989327"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28713076"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-osm-way-222107363",
+      "name": "Shahid Beheshti University of Tehran (SBU)",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.39288,
+        "lat": 35.802346
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-osm-way-222107363-1",
+        "tehran-tehran-osm-way-222107363-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/222107363"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q609586"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-osm-way-312296275",
+      "name": "بیمارستان روزبه (تخصصی اعصاب و روان)",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.392921,
+        "lat": 35.679169
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-osm-way-312296275-1",
+        "tehran-tehran-osm-way-312296275-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/312296275"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5944397"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-osm-way-425887188",
+      "name": "مجتمع کوی دانشگاه تهران",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.385858,
+        "lat": 35.730224
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-osm-way-425887188-1",
+        "tehran-tehran-osm-way-425887188-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/425887188"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5953792"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-osm-way-458252915",
+      "name": "پارک الهیه",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.168616,
+        "lat": 35.527522
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-osm-way-458252915-1",
+        "tehran-tehran-osm-way-458252915-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/458252915"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q26954762"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-osm-way-572366884",
+      "name": "تکیه تجریش",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.432176,
+        "lat": 35.80453
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-osm-way-572366884-1",
+        "tehran-tehran-osm-way-572366884-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/572366884"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5948129"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-osm-way-600451203",
+      "name": "Farhikhtegan Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.317222,
+        "lat": 35.779206
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-osm-way-600451203-1",
+        "tehran-tehran-osm-way-600451203-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/600451203"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q85968312"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-quiet-reflection",
+      "name": "امامزاده شعیب",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.488287,
+        "lat": 35.544555
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-quiet-reflection-1",
+        "tehran-tehran-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/526888092"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5886584"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-recreation",
+      "name": "Jamshidieh Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.464598,
+        "lat": 35.826132
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-recreation-1",
+        "tehran-tehran-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/206925858"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q915560"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tehran-transit",
+      "name": "Shahid Hemmat",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 51.426298,
+        "lat": 35.748886
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tehran-tehran-transit-1",
+        "tehran-tehran-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tehran/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/660658572"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2372998"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "tehran-tehran-airport-tehran-airport-1",
+      "venueId": "tehran-airport-tehran-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-airport-tehran-airport-2",
+      "venueId": "tehran-airport-tehran-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-clinic-1",
+      "venueId": "tehran-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-clinic-2",
+      "venueId": "tehran-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-community-notices-1",
+      "venueId": "tehran-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-community-notices-2",
+      "venueId": "tehran-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-community-voting-game-1",
+      "venueId": "tehran-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-community-voting-game-2",
+      "venueId": "tehran-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-community-workshop-1",
+      "venueId": "tehran-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-community-workshop-2",
+      "venueId": "tehran-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-market-game-1",
+      "venueId": "tehran-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-market-game-2",
+      "venueId": "tehran-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-meal-stop-1",
+      "venueId": "tehran-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-meal-stop-2",
+      "venueId": "tehran-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-node-10214246553-1",
+      "venueId": "tehran-osm-node-10214246553",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-node-10214246553-2",
+      "venueId": "tehran-osm-node-10214246553",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-node-13416585667-1",
+      "venueId": "tehran-osm-node-13416585667",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-node-13416585667-2",
+      "venueId": "tehran-osm-node-13416585667",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-relation-6957011-1",
+      "venueId": "tehran-osm-relation-6957011",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-relation-6957011-2",
+      "venueId": "tehran-osm-relation-6957011",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-relation-8129683-1",
+      "venueId": "tehran-osm-relation-8129683",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-relation-8129683-2",
+      "venueId": "tehran-osm-relation-8129683",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-1067538666-1",
+      "venueId": "tehran-osm-way-1067538666",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-1067538666-2",
+      "venueId": "tehran-osm-way-1067538666",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-112376927-1",
+      "venueId": "tehran-osm-way-112376927",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-112376927-2",
+      "venueId": "tehran-osm-way-112376927",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-1193089813-1",
+      "venueId": "tehran-osm-way-1193089813",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-1193089813-2",
+      "venueId": "tehran-osm-way-1193089813",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-119376034-1",
+      "venueId": "tehran-osm-way-119376034",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-119376034-2",
+      "venueId": "tehran-osm-way-119376034",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-1527989327-1",
+      "venueId": "tehran-osm-way-1527989327",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-1527989327-2",
+      "venueId": "tehran-osm-way-1527989327",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-222107363-1",
+      "venueId": "tehran-osm-way-222107363",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-222107363-2",
+      "venueId": "tehran-osm-way-222107363",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-312296275-1",
+      "venueId": "tehran-osm-way-312296275",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-312296275-2",
+      "venueId": "tehran-osm-way-312296275",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-425887188-1",
+      "venueId": "tehran-osm-way-425887188",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-425887188-2",
+      "venueId": "tehran-osm-way-425887188",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-458252915-1",
+      "venueId": "tehran-osm-way-458252915",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-458252915-2",
+      "venueId": "tehran-osm-way-458252915",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-572366884-1",
+      "venueId": "tehran-osm-way-572366884",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-572366884-2",
+      "venueId": "tehran-osm-way-572366884",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-600451203-1",
+      "venueId": "tehran-osm-way-600451203",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-osm-way-600451203-2",
+      "venueId": "tehran-osm-way-600451203",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-quiet-reflection-1",
+      "venueId": "tehran-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-quiet-reflection-2",
+      "venueId": "tehran-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-recreation-1",
+      "venueId": "tehran-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-recreation-2",
+      "venueId": "tehran-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-transit-1",
+      "venueId": "tehran-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    },
+    {
+      "id": "tehran-tehran-transit-2",
+      "venueId": "tehran-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tehran/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "tehran-airport-tehran-airport",
+    "tehran-clinic",
+    "tehran-community-notices",
+    "tehran-community-voting-game",
+    "tehran-community-workshop",
+    "tehran-market-game",
+    "tehran-meal-stop",
+    "tehran-osm-node-10214246553",
+    "tehran-osm-node-13416585667",
+    "tehran-osm-relation-6957011",
+    "tehran-osm-relation-8129683",
+    "tehran-osm-way-1067538666",
+    "tehran-osm-way-112376927",
+    "tehran-osm-way-1193089813",
+    "tehran-osm-way-119376034",
+    "tehran-osm-way-1527989327",
+    "tehran-osm-way-222107363",
+    "tehran-osm-way-312296275",
+    "tehran-osm-way-425887188",
+    "tehran-osm-way-458252915",
+    "tehran-osm-way-572366884",
+    "tehran-osm-way-600451203",
+    "tehran-quiet-reflection",
+    "tehran-recreation",
+    "tehran-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "e7f549c7273846ea41a586a8c7e4d98a471ff986e8f2390691e4c57d21337faa",
+    "contentSha256": "4e2823191b8dd1d00a495e0140a3580f1be3956f4f333e6a1ff60da3bf0fc3b3"
+  }
+}

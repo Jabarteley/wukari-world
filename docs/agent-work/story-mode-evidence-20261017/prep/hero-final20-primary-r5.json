@@ -1,0 +1,1296 @@
+{
+  "schema": "joinallworld.story-mode.hero-final20-primary-r5",
+  "version": 1,
+  "created_at": "2026-10-18",
+  "scope": {
+    "city_ids": [
+      "ibadan",
+      "port-harcourt",
+      "calabar",
+      "owerri",
+      "gombe",
+      "yola",
+      "ilorin",
+      "minna",
+      "damaturu",
+      "jalingo",
+      "akure",
+      "asaba",
+      "lokoja",
+      "jos",
+      "lafia",
+      "abakaliki",
+      "djibouti",
+      "serekunda",
+      "male",
+      "marigot"
+    ],
+    "unique_city_count": 20,
+    "lane": "20 specified IDs only",
+    "purpose": "primary factual source inventory for named local hero candidates",
+    "out_of_scope": [
+      "asset geometry",
+      "art direction",
+      "production registry promotion",
+      "rights clearance",
+      "rendering or asset generation"
+    ]
+  },
+  "source_pins": {
+    "hero-art-direction-284.json": {
+      "path": "docs/agent-work/story-mode-evidence-20261017/prep/hero-art-direction-284.json",
+      "sha256": "975847ad67c8c6cac55bf08d1491ec57c99f14d66fc8040e1835c13a4bc09348"
+    },
+    "hero-final40-primary-r3.json": {
+      "path": "docs/agent-work/story-mode-evidence-20261017/prep/hero-final40-primary-r3.json",
+      "sha256": "6694bdd3e4c9b76c462cf1cf30a1d817fcf931346b3e93d3d651fc95c022e875"
+    },
+    "hero-gap61-primary-r4.json": {
+      "path": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json",
+      "sha256": "ec5e9e5faaa619cc69dcb1856b6160ea45951eaa528958abe2e715f1c46326e5"
+    },
+    "hero-object-audit-20261018.json": {
+      "path": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+      "sha256": "b912f5983a6a27aafad3f3e839cdc67759650c0909e34b77935422f9de722973"
+    },
+    "hero-source-readiness-20261018.json": {
+      "path": "docs/agent-work/story-mode-evidence-20261017/prep/hero-source-readiness-20261018.json",
+      "sha256": "19e904291c1fc81f981caeade4c2875683574797586685f4f0d7944794683d65"
+    }
+  },
+  "method": {
+    "access": "read-only public web/indexed official texts and official map API responses; no computer/browser UI used",
+    "access_date": "2026-10-18",
+    "source_read_scopes": "Each row labels opened body, official indexed extract, preserved newspaper PDF, or unresolved lookup. A failed open is not described as a full page read.",
+    "name_policy": "Names are copied from source text/tag values. Variants and candidate-to-object alias claims remain explicit and unassumed.",
+    "location_policy": "Catalogue anchors are copied unchanged. A city association is not inferred from a nearby feature; incomplete cases remain flagged.",
+    "legal_policy": "Source facts do not grant rights to copy external geometry, images, or maps. Rights remain unknown unless explicitly recorded."
+  },
+  "status_counts": {
+    "primary_source_supported_indexed_extract": 3,
+    "primary_source_supported": 7,
+    "primary_source_supported_project_record": 2,
+    "unresolved": 2,
+    "primary_source_supported_secondary_reporting": 1,
+    "primary_local_history_supported": 1,
+    "primary_source_supported_historical_activity_current_status_open": 1,
+    "secondary_local_listing_lead_authority_unverified": 1,
+    "name_and_category_supported_city_association_check_incomplete": 1,
+    "local_tourism_source_lead_authority_unverified": 1
+  },
+  "summary_counts": {
+    "total": 20,
+    "primary_or_primary_dataset_factual_leads": 16,
+    "incomplete_or_nonprimary_leads": 3,
+    "unresolved": 2
+  },
+  "records": [
+    {
+      "city_id": "ibadan",
+      "catalogue_city_name": "Ibadan",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 3.95,
+        "lat": 7.38
+      },
+      "region_as_proposed": "yoruba-southwest",
+      "repository_candidate_as_recorded": "Bodija Market",
+      "repository_source_path": "src/game/cities/ibadan/landmarks.ts",
+      "repository_source_field_pointers": [
+        "landmark name",
+        "kind",
+        "source",
+        "licence",
+        "note"
+      ],
+      "selected_candidate": {
+        "name": "Bodija Market",
+        "category": "market",
+        "status": "primary_source_supported_indexed_extract",
+        "identity_relation_to_repository_candidate": "same literal name; exact mapped object/category alignment remains unproven"
+      },
+      "source_evidence": [
+        {
+          "url": "https://oyrlea.oyostate.gov.ng/2026/09/05/oyrlea-launches-mobile-court-enforcement-at-bodija-market-prosecutes-traders-over-illegal-street-trading/",
+          "title": "OYRLEA Launches Mobile Court Enforcement At Bodija Market, Prosecutes Traders Over Illegal Street Trading",
+          "publisher": "Oyo State Rule of Law Enforcement Authority (OYRLEA)",
+          "locator": "official search-index extract; title/snippet identifies Bodija Market in Ibadan and traders",
+          "read_scope": "official_indexed_extract",
+          "source_grade": "official_indexed_extract",
+          "published_date": null,
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "Oyo State authority identifies Bodija Market in Ibadan and reports enforcement concerning traders there.",
+          "source_license": "unknown",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_url": "https://www.openstreetmap.org/node/2819861343",
+        "object_name": "Bodija Market",
+        "object_type": "node",
+        "object_id": 2819861343,
+        "osm_version": 1,
+        "osm_timestamp": "2014-04-27T04:43:58Z",
+        "selected_tags": {
+          "name": "Bodija Market",
+          "place": "neighbourhood"
+        },
+        "classification": "insufficient",
+        "result_status": "matched",
+        "response_sha256": "db8abe2dba76d59ff3aa534f1cc72e0b9bb9ed5014d8d50b2296bbfdf6384d1a"
+      },
+      "object_note": "Mapped object is not used to establish market category.",
+      "factual_gaps": [
+        "The OYRLEA page body could not be opened; this is only an official indexed extract.",
+        "The mapped OSM node says “Bodija Market” but carries place=neighbourhood, not a market activity tag; exact feature-to-coordinate binding remains open."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "port-harcourt",
+      "catalogue_city_name": "Port Harcourt",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.03,
+        "lat": 4.82
+      },
+      "region_as_proposed": "niger-delta",
+      "repository_candidate_as_recorded": "Mile Three Market locality",
+      "repository_source_path": "src/game/cities/port-harcourt/landmarks.ts",
+      "repository_source_field_pointers": [
+        "landmark name",
+        "kind",
+        "source",
+        "licence",
+        "note"
+      ],
+      "selected_candidate": {
+        "name": "Mile 3 Market / Mile Three Market",
+        "category": "market",
+        "status": "primary_source_supported",
+        "identity_relation_to_repository_candidate": "candidate is the same Mile Three locality; source uses Mile 3 and does not prove exact OSM point"
+      },
+      "source_evidence": [
+        {
+          "url": "https://www.nicnadr.gov.ng/judgement/judgement.php?id=9122",
+          "title": "The Registered Trustees of Ultra-Modern Market, Nkpolu Oroworukwu, Mile 3, Diobu, Port Harcourt vs Port Harcourt City Local Government Council",
+          "publisher": "National Industrial Court of Nigeria",
+          "locator": "judgment lines 93–97, 147–152; pleadings identify traders and Mile 3 Market in Diobu, Port Harcourt",
+          "read_scope": "opened_judgment_body",
+          "source_grade": "primary_court_record",
+          "published_date": null,
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "The court record contains party pleadings identifying Mile 3 Market and traders in Diobu, Port Harcourt; the source records pleadings, not an independent judicial finding on every market claim.",
+          "source_license": "unknown",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_name": null,
+        "object_type": null,
+        "object_id": null,
+        "osm_version": null,
+        "osm_timestamp": null,
+        "selected_tags": {},
+        "classification": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "one_lookup_query": "Mile Three Market locality, Port Harcourt"
+      },
+      "object_note": "No matching OSM object was returned by the earlier single-name lookup.",
+      "factual_gaps": [
+        "No exact market polygon/object ID or feature coordinates have been confirmed."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "calabar",
+      "catalogue_city_name": "Calabar",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 8.3373597,
+        "lat": 4.9795999
+      },
+      "region_as_proposed": "niger-delta",
+      "repository_candidate_as_recorded": "Watt Market",
+      "repository_source_path": "src/game/cities/calabar/spec.ts",
+      "repository_source_field_pointers": [
+        "CITY_SPEC.places[16].name",
+        "CITY_SPEC.places[16].kind",
+        "CITY_SPEC.places[16].description",
+        "CITY_SPEC.places[16].sourceIds",
+        "CITY_SPEC.places[16].coordinateRef"
+      ],
+      "selected_candidate": {
+        "name": "Watt Market",
+        "category": "market",
+        "status": "primary_source_supported",
+        "identity_relation_to_repository_candidate": "same literal market name; exact mapped point is not verified"
+      },
+      "source_evidence": [
+        {
+          "url": "https://news.crossriverstate.gov.ng/criver-commerce-commissioner-rallies-market-unions-pledges-support-for-governor-otus-reelection/",
+          "title": "C’River Commerce Commissioner Rallies Market Unions, Pledges Support for Governor Otu’s Reelection",
+          "publisher": "Cross River State Ministry of Information / State News",
+          "locator": "opened article lines 36–39; article context is market leadership in Calabar",
+          "read_scope": "opened_body",
+          "source_grade": "primary_state_news",
+          "published_date": null,
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "A state news report on Calabar market leadership identifies the president of Watt Market and discusses market infrastructure.",
+          "source_license": "unknown",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_name": null,
+        "object_type": null,
+        "object_id": null,
+        "osm_version": null,
+        "osm_timestamp": null,
+        "selected_tags": {},
+        "classification": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "one_lookup_query": "Watt Market, Calabar"
+      },
+      "object_note": "Earlier OSM exact-name lookup returned no object.",
+      "factual_gaps": [
+        "Source supports name/category/city context, but no exact mapped market object or site coordinates are verified."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "owerri",
+      "catalogue_city_name": "Owerri",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.0341973,
+        "lat": 5.489736
+      },
+      "region_as_proposed": "igbo-southeast",
+      "repository_candidate_as_recorded": "Nkwo Emeke",
+      "repository_source_path": "src/game/cities/owerri/spec.ts",
+      "repository_source_field_pointers": [
+        "CITY_SPEC.places[18].name",
+        "CITY_SPEC.places[18].kind",
+        "CITY_SPEC.places[18].description",
+        "CITY_SPEC.places[18].sourceIds",
+        "CITY_SPEC.places[18].coordinateRef"
+      ],
+      "selected_candidate": {
+        "name": "Eke Ukwu Market, Owerri",
+        "category": "market",
+        "status": "primary_source_supported_project_record",
+        "identity_relation_to_repository_candidate": "explicitly a different named candidate from Nkwo Emeke; no alias asserted"
+      },
+      "source_evidence": [
+        {
+          "url": "https://axxpoint.imostate.gov.ng/pdf/IMSG_2024_Budget_ver-Approved.pdf?ver=029",
+          "title": "Imo State Government 2024 Approved Budget",
+          "publisher": "Imo State Government",
+          "locator": "PDF p.246, project 12100124001000; row names “CONSTRUCTION OF EKE UKWU MARKET, OWERRI”, classifies construction of markets/parks and assigns Owerri Municipal",
+          "read_scope": "opened_pdf_body",
+          "source_grade": "primary_state_budget",
+          "published_date": null,
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "The state budget names a construction project for Eke Ukwu Market, Owerri and places it in Owerri Municipal. This supports a public market identity, but does not establish project completion or exact footprint.",
+          "source_license": "unknown",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_name": "Nkwo Emeke",
+        "object_type": "way",
+        "object_id": 1027214141,
+        "osm_version": null,
+        "osm_timestamp": null,
+        "selected_tags": {
+          "building": "shed"
+        },
+        "classification": "insufficient",
+        "result_status": "matched",
+        "response_sha256": "4bb803fa1f295c6a40f42c89f12ea8e66b2218a5b84e3562a6c8278e946f898d",
+        "one_lookup_query": "Nkwo Emeke, Owerri"
+      },
+      "object_note": "Earlier mapped Nkwo Emeke way had building=shed only and was insufficient; do not attach it to Eke Ukwu.",
+      "factual_gaps": [
+        "The existing Nkwo Emeke candidate is not treated as an alias; the exact site/operational status of Eke Ukwu is unknown."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "gombe",
+      "catalogue_city_name": "Gombe",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 11.1667,
+        "lat": 10.2833
+      },
+      "region_as_proposed": "sahel-north",
+      "repository_candidate_as_recorded": "KASUWAR MATA",
+      "repository_source_path": "src/game/cities/gombe/spec.ts",
+      "repository_source_field_pointers": [
+        "CITY_SPEC.places[8].name",
+        "CITY_SPEC.places[8].kind",
+        "CITY_SPEC.places[8].description",
+        "CITY_SPEC.places[8].sourceIds",
+        "CITY_SPEC.places[8].coordinateRef"
+      ],
+      "selected_candidate": null,
+      "source_evidence": [],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_name": "KASUWAR MATA",
+        "object_type": "way",
+        "object_id": 914742997,
+        "osm_version": null,
+        "osm_timestamp": null,
+        "selected_tags": {},
+        "classification": "insufficient",
+        "result_status": "matched",
+        "response_sha256": "48d78cbaecc0381904c05601efd1f5ecbcd7bb5ce7655685db906804095f3906",
+        "one_lookup_query": "KASUWAR MATA, Gombe"
+      },
+      "object_note": "Existing name-only object is not sufficient evidence.",
+      "factual_gaps": [
+        "No primary source in this bounded pass confirmed a named eligible market or natural feature in Gombe city.",
+        "The existing “KASUWAR MATA” OSM way had no category tags in the prior audit; its market label is not verified by that object."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "yola",
+      "catalogue_city_name": "Yola",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 12.483333333333,
+        "lat": 9.2
+      },
+      "region_as_proposed": "sahel-north",
+      "repository_candidate_as_recorded": "Jimeta ultra modern market",
+      "repository_source_path": "src/game/cities/yola/spec.ts",
+      "repository_source_field_pointers": [
+        "CITY_SPEC.places[9].name",
+        "CITY_SPEC.places[9].kind",
+        "CITY_SPEC.places[9].description",
+        "CITY_SPEC.places[9].sourceIds",
+        "CITY_SPEC.places[9].coordinateRef"
+      ],
+      "selected_candidate": {
+        "name": "Modibbo Adama Modern Market, Yola (MAMMY)",
+        "category": "market",
+        "status": "primary_source_supported",
+        "identity_relation_to_repository_candidate": "alternative to Jimeta ultra modern market; no alias or identity with Jimeta asserted"
+      },
+      "source_evidence": [
+        {
+          "url": "https://adamawastate.gov.ng/gov-fintiri-commissions-ultra-modern-yola-market-names-landmark-project-after-modibbo-adama/",
+          "title": "Gov Fintiri Commissions Ultra-Modern Yola Market, Names Landmark Project After Modibbo Adama",
+          "publisher": "Adamawa State Government",
+          "locator": "opened article lines 64–85; official name and open-for-business statement at lines 84–85",
+          "read_scope": "opened_body",
+          "source_grade": "primary_state_government",
+          "published_date": null,
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "Adamawa State names the rebuilt market in Yola “Modibbo Adama Modern Market” and reports that it was opened for business.",
+          "source_license": "unknown",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_name": null,
+        "object_type": null,
+        "object_id": null,
+        "osm_version": null,
+        "osm_timestamp": null,
+        "selected_tags": {},
+        "classification": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "one_lookup_query": "Jimeta ultra modern market, Yola"
+      },
+      "object_note": "Earlier OSM name lookup did not return a matching object.",
+      "factual_gaps": [
+        "The source supports the alternative market name and city, not the supplied Jimeta candidate. Exact mapped coordinates/site are not included in this evidence."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "ilorin",
+      "catalogue_city_name": "Ilorin",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 4.55,
+        "lat": 8.5
+      },
+      "region_as_proposed": "gulf-guinea",
+      "repository_candidate_as_recorded": "Ipata Market",
+      "repository_source_path": "src/game/cities/ilorin/spec.ts",
+      "repository_source_field_pointers": [
+        "CITY_SPEC.places[7].name",
+        "CITY_SPEC.places[7].kind",
+        "CITY_SPEC.places[7].description",
+        "CITY_SPEC.places[7].sourceIds",
+        "CITY_SPEC.places[7].coordinateRef"
+      ],
+      "selected_candidate": {
+        "name": "Ipata Market",
+        "category": "market",
+        "status": "primary_source_supported",
+        "identity_relation_to_repository_candidate": "same literal name; exact mapped OSM point remains unbound"
+      },
+      "source_evidence": [
+        {
+          "url": "https://www.kwaramoc.com.ng/search?by-date=false&max-results=20&start=20&updated-max=2024-10-03T14%3A10%3A00-07%3A00",
+          "title": "Photo News: KWSG Intensifies Flood Sensitization Campaign at Markets and Motor Parks",
+          "publisher": "Kwara State Ministry of Communications",
+          "locator": "opened government ministry listing lines 11–18; the text places the market visits in Ilorin metropolis and captions a Kwara official addressing traders at Ipata Market",
+          "read_scope": "opened_listing_excerpt",
+          "source_grade": "primary_state_ministry",
+          "published_date": null,
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "The Kwara State Government describes visits to key markets within Ilorin metropolis and identifies Ipata Market in the same item.",
+          "source_license": "unknown",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_name": "Ipata Market., Amilegbe Road, Ilorin, Nigeria",
+        "object_type": "node",
+        "object_id": 13047974859,
+        "osm_version": null,
+        "osm_timestamp": null,
+        "selected_tags": {},
+        "classification": "insufficient",
+        "result_status": "conflict",
+        "response_sha256": "69900d52d045019f34b888077676e40001ebedda686d7167efb36fd46443e10d",
+        "one_lookup_query": "Ipata Market, Ilorin"
+      },
+      "object_note": "Existing mapped node has a different descriptive string and no market tags; exact object binding remains unverified.",
+      "factual_gaps": [
+        "The ministry item supports the named market and city context; it does not establish the exact OSM node (“Ipata Market., Amilegbe Road, Ilorin, Nigeria”) as the same place."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "minna",
+      "catalogue_city_name": "Minna",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 6.5569444444444,
+        "lat": 9.6138888888889
+      },
+      "region_as_proposed": "gulf-guinea",
+      "repository_candidate_as_recorded": "Kure Market",
+      "repository_source_path": "src/game/cities/minna/spec.ts",
+      "repository_source_field_pointers": [
+        "CITY_SPEC.places[7].name",
+        "CITY_SPEC.places[7].kind",
+        "CITY_SPEC.places[7].description",
+        "CITY_SPEC.places[7].sourceIds",
+        "CITY_SPEC.places[7].coordinateRef"
+      ],
+      "selected_candidate": {
+        "name": "Kure Ultramodern Market",
+        "category": "market",
+        "status": "primary_source_supported_secondary_reporting",
+        "identity_relation_to_repository_candidate": "source gives fuller form than “Kure Market”; no exact mapped object/alias asserted"
+      },
+      "source_evidence": [
+        {
+          "url": "https://nigeriareposit.nln.gov.ng/bitstreams/d5d18556-a101-43d7-bba5-abb62e3c2b48/download",
+          "title": "Open defecation, others expose Niger residents to health hazards",
+          "publisher": "Daily Trust Saturday article by Abubakar Akote, preserved in National Library of Nigeria repository",
+          "locator": "PDF p.24, lines 4444–4458; article dateline is Minna and names Kure Ultramodern Market",
+          "read_scope": "opened_archived_newspaper_pdf",
+          "source_grade": "primary_reporting_preserved_by_nln",
+          "published_date": "2023-01-21",
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "A Daily Trust report datelined Minna names Kure Ultramodern Market in its description of the city.",
+          "source_license": "unknown",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_name": "Kure Market",
+        "object_type": "node",
+        "object_id": 10168829108,
+        "osm_version": null,
+        "osm_timestamp": null,
+        "selected_tags": {},
+        "classification": "insufficient",
+        "result_status": "matched",
+        "response_sha256": "321cd076daef48600b48afe7124af53f11674b274d53aa428fdf33dbb2f60082",
+        "one_lookup_query": "Kure Market, Minna"
+      },
+      "object_note": "Prior OSM name-only result “Kure Market” lacks category tags.",
+      "factual_gaps": [
+        "The report confirms the named market in Minna but does not establish its present operational condition or exact mapped site."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "damaturu",
+      "catalogue_city_name": "Damaturu",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 11.966666666667,
+        "lat": 11.75
+      },
+      "region_as_proposed": "sahel-north",
+      "repository_candidate_as_recorded": "Bayan Tasha market",
+      "repository_source_path": "src/game/cities/damaturu/spec.ts",
+      "repository_source_field_pointers": [
+        "CITY_SPEC.places[7].name",
+        "CITY_SPEC.places[7].kind",
+        "CITY_SPEC.places[7].description",
+        "CITY_SPEC.places[7].sourceIds",
+        "CITY_SPEC.places[7].coordinateRef"
+      ],
+      "selected_candidate": {
+        "name": "Damaturu Modern Market",
+        "category": "market",
+        "status": "primary_source_supported_project_record",
+        "identity_relation_to_repository_candidate": "different named alternative to Bayan Tasha; no alias asserted"
+      },
+      "source_evidence": [
+        {
+          "url": "https://bpp.pfm.yb.gov.ng/ministry-of-commerce/",
+          "title": "Ministry of Commerce – Yobe State Bureau on Public Procurement",
+          "publisher": "Yobe State Bureau on Public Procurement",
+          "locator": "table lines 24–27; project is “Construction of Damaturu Modern Market”, location Damaturu, project status 65% on the portal record",
+          "read_scope": "opened_body",
+          "source_grade": "primary_state_procurement",
+          "published_date": null,
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "Yobe State’s procurement portal records construction of Damaturu Modern Market at Damaturu. The record is a project listing; completion/current operation is unverified.",
+          "source_license": "unknown",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_name": null,
+        "object_type": null,
+        "object_id": null,
+        "osm_version": null,
+        "osm_timestamp": null,
+        "selected_tags": {},
+        "classification": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "one_lookup_query": "Bayan Tasha market, Damaturu"
+      },
+      "object_note": "No matching OSM object returned by the earlier candidate lookup.",
+      "factual_gaps": [
+        "The project entry does not establish that the market was completed, opened, or where its exact site lies."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "jalingo",
+      "catalogue_city_name": "Jalingo",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 11.366666666667,
+        "lat": 8.9
+      },
+      "region_as_proposed": "sahel-north",
+      "repository_candidate_as_recorded": "Bando Market",
+      "repository_source_path": "src/game/cities/jalingo/spec.ts",
+      "repository_source_field_pointers": [
+        "CITY_SPEC.places[10].name",
+        "CITY_SPEC.places[10].kind",
+        "CITY_SPEC.places[10].description",
+        "CITY_SPEC.places[10].sourceIds",
+        "CITY_SPEC.places[10].coordinateRef"
+      ],
+      "selected_candidate": {
+        "name": "Jalingo Vegetable Market (Lau Motorpark)",
+        "category": "market",
+        "status": "primary_source_supported",
+        "identity_relation_to_repository_candidate": "alternative to Bando Market; no alias asserted"
+      },
+      "source_evidence": [
+        {
+          "url": "https://von.gov.ng/vegetable-market-offers-opportunities-widows-divorcees-in-jalingo/",
+          "title": "Vegetable Market Offers Opportunities To Widows, Divorcees in Jalingo",
+          "publisher": "Voice of Nigeria",
+          "locator": "opened article lines 93–98; identifies Jalingo Vegetable Market and says it is located at Lau Motorpark in Jalingo",
+          "read_scope": "opened_body",
+          "source_grade": "primary_public_broadcaster",
+          "published_date": "2021-06-19",
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "Voice of Nigeria identifies a vegetable market at Lau Motorpark as the main vegetable market in Jalingo.",
+          "source_license": "unknown",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_name": null,
+        "object_type": null,
+        "object_id": null,
+        "osm_version": null,
+        "osm_timestamp": null,
+        "selected_tags": {},
+        "classification": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "one_lookup_query": "Bando Market, Jalingo"
+      },
+      "object_note": "No matching OSM object returned for the Bando candidate.",
+      "factual_gaps": [
+        "Exact mapped feature coordinates are not included in the report."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "akure",
+      "catalogue_city_name": "Akure",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 5.1932647,
+        "lat": 7.2525595
+      },
+      "region_as_proposed": "yoruba-southwest",
+      "repository_candidate_as_recorded": "Akure Market",
+      "repository_source_path": "src/game/cities/akure/spec.ts",
+      "repository_source_field_pointers": [
+        "CITY_SPEC.places[6].name",
+        "CITY_SPEC.places[6].kind",
+        "CITY_SPEC.places[6].description",
+        "CITY_SPEC.places[6].sourceIds",
+        "CITY_SPEC.places[6].coordinateRef"
+      ],
+      "selected_candidate": {
+        "name": "Oja Oba Market",
+        "category": "market",
+        "status": "primary_source_supported_indexed_extract",
+        "identity_relation_to_repository_candidate": "alternative to generic “Akure Market”; no object identity asserted"
+      },
+      "source_evidence": [
+        {
+          "url": "https://covid19.ondostate.gov.ng/news/gov%20akeredolu%20bans%20daily%20market%20activities%20in%20ondo.html",
+          "title": "Gov Akeredolu Bans Daily Market Activities in Ondo",
+          "publisher": "Ondo State Government",
+          "locator": "official search-index extract explicitly lists Oja Oba among markets in Akure and states the approved market opening schedule",
+          "read_scope": "official_indexed_extract",
+          "source_grade": "official_indexed_extract",
+          "published_date": "2020",
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "Ondo State Government names Oja Oba among markets in Akure and discusses its market operation schedule. Direct page open failed in this pass.",
+          "source_license": "unknown",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_name": "Akure Market",
+        "object_type": "node",
+        "object_id": 6271074305,
+        "osm_version": null,
+        "osm_timestamp": null,
+        "selected_tags": {},
+        "classification": "insufficient",
+        "result_status": "matched",
+        "response_sha256": "58492974f0aaa44e7c855d0c0e7b6c07630931ea491c34a2f6cd1b25657867b3",
+        "one_lookup_query": "Akure Market, Akure"
+      },
+      "object_note": "Earlier mapped generic “Akure Market” node had no market tags; Oja Oba is an alternative.",
+      "factual_gaps": [
+        "Official source was available only as an indexed extract in this pass; exact feature coordinates are not established."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "asaba",
+      "catalogue_city_name": "Asaba",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 6.7297071,
+        "lat": 6.1858825
+      },
+      "region_as_proposed": "niger-delta",
+      "repository_candidate_as_recorded": "Ogbeogonogo Modern Market",
+      "repository_source_path": "src/game/cities/asaba/spec.ts",
+      "repository_source_field_pointers": [
+        "CITY_SPEC.places[6].name",
+        "CITY_SPEC.places[6].kind",
+        "CITY_SPEC.places[6].description",
+        "CITY_SPEC.places[6].sourceIds",
+        "CITY_SPEC.places[6].coordinateRef"
+      ],
+      "selected_candidate": {
+        "name": "Ogbeogonogo Market at Ogbilo",
+        "category": "market",
+        "status": "primary_local_history_supported",
+        "identity_relation_to_repository_candidate": "same unique name root; source does not use “Modern” and exact current mapped object is unknown"
+      },
+      "source_evidence": [
+        {
+          "url": "https://nigeriareposit.nln.gov.ng/bitstreams/83297b48-7ca8-433f-8cda-08e798bdf49f/download",
+          "title": "Asaba: History & Development",
+          "publisher": "Asaba Development Association; preserved by National Library of Nigeria",
+          "locator": "1978 first-print book, printed page 50 / PDF page 50, lines 1241–1246: identifies two markets in the town and locates Ogbeogonogo at Ogbilo",
+          "read_scope": "opened_primary_local_history",
+          "source_grade": "primary_local_association_history",
+          "published_date": "1978",
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "The Asaba Development Association’s 1978 book describes Ogbeogonogo at Ogbilo as one of two Asaba markets and says it functioned daily at that time.",
+          "source_license": "All Rights Reserved is printed in the source; no copyrighted text, image, map or geometry is reused.",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_name": null,
+        "object_type": null,
+        "object_id": null,
+        "osm_version": null,
+        "osm_timestamp": null,
+        "selected_tags": {},
+        "classification": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "one_lookup_query": "Ogbeogonogo Modern Market, Asaba"
+      },
+      "object_note": "Earlier OSM name lookup returned no object.",
+      "factual_gaps": [
+        "The source is a historical account from 1978; current market operation and the exact mapped feature location are unknown.",
+        "Do not equate the source name with the differently spelled “Ogbogonogo” in the later NEMA page without review."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "lokoja",
+      "catalogue_city_name": "Lokoja",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 6.7441666666667,
+        "lat": 7.8019444444444
+      },
+      "region_as_proposed": "gulf-guinea",
+      "repository_candidate_as_recorded": "Old Market",
+      "repository_source_path": "src/game/cities/lokoja/spec.ts",
+      "repository_source_field_pointers": [
+        "CITY_SPEC.places[9].name",
+        "CITY_SPEC.places[9].kind",
+        "CITY_SPEC.places[9].description",
+        "CITY_SPEC.places[9].sourceIds",
+        "CITY_SPEC.places[9].coordinateRef"
+      ],
+      "selected_candidate": {
+        "name": "Niger–Benue confluence at Lokoja",
+        "category": "natural_feature",
+        "status": "primary_source_supported",
+        "identity_relation_to_repository_candidate": "alternative to generic Old Market"
+      },
+      "source_evidence": [
+        {
+          "url": "https://education.gov.ng/wp-content/uploads/2023/09/FEDERAL-UNIVERSITY-LOKOJA-KOGI-STATE-Report-2011-2015.pdf",
+          "title": "Federal University Lokoja, Kogi State: Report 2011–2015",
+          "publisher": "Federal University Lokoja (hosted by Federal Ministry of Education)",
+          "locator": "PDF p.22, lines 562–570; calls Lokoja the capital at the Niger–Benue confluence",
+          "read_scope": "opened_pdf_body",
+          "source_grade": "primary_university_report",
+          "published_date": null,
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "The university report associates Lokoja with the confluence of the Niger and Benue rivers. It supports a natural feature category and city association, not a surveyed location or shape.",
+          "source_license": "unknown",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_name": "Old Market",
+        "object_type": "node",
+        "object_id": 8851563692,
+        "osm_version": null,
+        "osm_timestamp": null,
+        "selected_tags": {},
+        "classification": "insufficient",
+        "result_status": "matched",
+        "response_sha256": "58ccbc6784d07b5fa6b00bf11ae2976507b6a0acc6962de284f54555ebc37c0e",
+        "one_lookup_query": "Old Market, Lokoja"
+      },
+      "object_note": "Earlier Old Market OSM node had no category tags; it is not selected.",
+      "factual_gaps": [
+        "Source does not provide exact feature coordinates or a surveyed outline."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "jos",
+      "catalogue_city_name": "Jos",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 8.8833333333333,
+        "lat": 9.9333333333333
+      },
+      "region_as_proposed": "gulf-guinea",
+      "repository_candidate_as_recorded": "Angwan Rukuba Park",
+      "repository_source_path": "src/game/cities/jos/spec.ts",
+      "repository_source_field_pointers": [
+        "CITY_SPEC.places[8].name",
+        "CITY_SPEC.places[8].kind",
+        "CITY_SPEC.places[8].description",
+        "CITY_SPEC.places[8].sourceIds",
+        "CITY_SPEC.places[8].coordinateRef"
+      ],
+      "selected_candidate": {
+        "name": "Central Market Kibas, Ahmadu Bello Way",
+        "category": "market",
+        "status": "primary_source_supported_indexed_extract",
+        "identity_relation_to_repository_candidate": "alternative to Angwan Rukuba Park; no alias asserted"
+      },
+      "source_evidence": [
+        {
+          "url": "https://www.plateaustate.gov.ng/uploads/PLATEAU_State_FY_2025_Budget.pdf",
+          "title": "Plateau State FY 2025 Budget",
+          "publisher": "Plateau State Government",
+          "locator": "official budget search-index extract names “Rehabilitation and Renovation of the Central Market Kibas of Ahmadu Bello Way, Jos” under Jos Metropolitan Development Board",
+          "read_scope": "official_indexed_extract",
+          "source_grade": "official_indexed_extract",
+          "published_date": "2025",
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "Plateau State’s budget names a central market on Ahmadu Bello Way in Jos and assigns the project to the Jos Metropolitan Development Board. Direct extraction did not expose the matching row in the opened PDF text.",
+          "source_license": "unknown",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_name": "Angwan Rukuba Park",
+        "object_type": "way",
+        "object_id": 221862569,
+        "osm_version": null,
+        "osm_timestamp": null,
+        "selected_tags": {
+          "landuse": "retail"
+        },
+        "classification": "insufficient",
+        "result_status": "matched",
+        "response_sha256": "d219d64774ce710969819866e5424e364179d1a17dd7197ba1e82a1451c51601",
+        "one_lookup_query": "Angwan Rukuba Park, Jos"
+      },
+      "object_note": "Existing OSM feature is not evidence for a park or a market.",
+      "factual_gaps": [
+        "This is an indexed budget row; exact site geometry and current operation remain unverified.",
+        "The existing Angwan Rukuba Park label has no park tag and carries landuse=retail; it is not selected."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "lafia",
+      "catalogue_city_name": "Lafia",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 8.5147636,
+        "lat": 8.4960459
+      },
+      "region_as_proposed": "gulf-guinea",
+      "repository_candidate_as_recorded": "Lafia Market",
+      "repository_source_path": "src/game/cities/lafia/spec.ts",
+      "repository_source_field_pointers": [
+        "CITY_SPEC.places[10].name",
+        "CITY_SPEC.places[10].kind",
+        "CITY_SPEC.places[10].description",
+        "CITY_SPEC.places[10].sourceIds",
+        "CITY_SPEC.places[10].coordinateRef"
+      ],
+      "selected_candidate": {
+        "name": "Tomato Market, Lafia",
+        "category": "market",
+        "status": "primary_source_supported",
+        "identity_relation_to_repository_candidate": "alternative to generic Lafia Market"
+      },
+      "source_evidence": [
+        {
+          "url": "https://nbs.na.gov.ng/2026/08/29/tomato-market-shut-over-sanitation-violations/",
+          "title": "Tomato Market Shut Over Sanitation Violations",
+          "publisher": "Nasarawa Broadcasting Service",
+          "locator": "opened article lines 33–41; state commissioner identifies Tomato Market in Lafia",
+          "read_scope": "opened_body",
+          "source_grade": "primary_state_broadcaster",
+          "published_date": "2026-08-31",
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "Nasarawa’s state broadcaster reports a state commissioner inspected and ordered temporary closure of Tomato Market in Lafia. The article does not establish its later/current operating status.",
+          "source_license": "unknown",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_name": null,
+        "object_type": null,
+        "object_id": null,
+        "osm_version": null,
+        "osm_timestamp": null,
+        "selected_tags": {},
+        "classification": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "one_lookup_query": "Lafia Market, Lafia"
+      },
+      "object_note": "No matching OSM object returned for the generic candidate.",
+      "factual_gaps": [
+        "Current operating status after the reported temporary closure is unknown; no exact site coordinates supplied."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "abakaliki",
+      "catalogue_city_name": "Abakaliki",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 8.1133202,
+        "lat": 6.3208897
+      },
+      "region_as_proposed": "igbo-southeast",
+      "repository_candidate_as_recorded": "Abakaliki Rice Processing Market",
+      "repository_source_path": "src/game/cities/abakaliki/spec.ts",
+      "repository_source_field_pointers": [
+        "CITY_SPEC.places[9].name",
+        "CITY_SPEC.places[9].kind",
+        "CITY_SPEC.places[9].description",
+        "CITY_SPEC.places[9].sourceIds",
+        "CITY_SPEC.places[9].coordinateRef"
+      ],
+      "selected_candidate": {
+        "name": "Abakpa Main Market, Abakaliki",
+        "category": "market",
+        "status": "primary_source_supported_historical_activity_current_status_open",
+        "identity_relation_to_repository_candidate": "alternative to Abakaliki Rice Processing Market; no alias asserted"
+      },
+      "source_evidence": [
+        {
+          "url": "https://radionigeriaenugu.gov.ng/2020/02/march-1-deadline-ebonyi-traders-relocate-their-goods-home/",
+          "title": "March 1 Deadline: Ebonyi Traders Relocate Their Goods Home",
+          "publisher": "Radio Nigeria South East Zonal Station",
+          "locator": "opened article lines 35–43; explicitly locates Abakpa Main Market in Abakaliki and reports a government-directed trader relocation to the International Market",
+          "read_scope": "opened_body",
+          "source_grade": "primary_public_broadcaster",
+          "published_date": "2020-02-28",
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "Radio Nigeria identifies Abakpa Main Market in Abakaliki and reports traders leaving it under a state relocation deadline. The article also names the International Market at Abakaliki–Ogoja Expressway as the destination.",
+          "source_license": "unknown",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_name": "Abakaliki Rice Processing Market",
+        "object_type": "node",
+        "object_id": 13052463573,
+        "osm_version": null,
+        "osm_timestamp": null,
+        "selected_tags": {},
+        "classification": "insufficient",
+        "result_status": "matched",
+        "response_sha256": "1a27978d2ad493decafb11f4012ba01afebf780b5a80dbef35be3e4234f7fcfc",
+        "one_lookup_query": "Abakaliki Rice Processing Market, Abakaliki"
+      },
+      "object_note": "Earlier mapped “Abakaliki Rice Processing Market” name-only node had no category tags.",
+      "factual_gaps": [
+        "The article records relocation in 2020; whether Abakpa Main Market still operates is unknown.",
+        "The exact current site/operational status of the International Market is also not independently verified by this source."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "djibouti",
+      "catalogue_city_name": "Djibouti",
+      "country_iso": "dj",
+      "catalogue_anchor_coordinates": {
+        "lon": 43.1472724,
+        "lat": 11.5936903
+      },
+      "region_as_proposed": "east-africa",
+      "repository_candidate_as_recorded": "Djiba Djibouti",
+      "repository_source_path": "src/game/cities/djibouti/places.ts",
+      "repository_source_field_pointers": [
+        "PLACES[5].name",
+        "PLACES[5].kind",
+        "PLACES[5].line",
+        "PLACES[5].osm"
+      ],
+      "selected_candidate": null,
+      "source_evidence": [],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_url": "https://www.openstreetmap.org/node/7270748069",
+        "object_name": "Djiba Djibouti جيبة جيبوتي",
+        "object_type": "node",
+        "object_id": 7270748069,
+        "osm_version": 4,
+        "osm_timestamp": "2026-09-27T21:22:45Z",
+        "selected_tags": {
+          "name": "Djiba Djibouti جيبة جيبوتي",
+          "amenity": "marketplace",
+          "shop": "seafood"
+        },
+        "classification": "market",
+        "result_status": "conflict",
+        "response_sha256": "ef15c9449eb453711500b038d297f13fbf1c345683e1d42958c3214745cf5c50"
+      },
+      "object_note": "The OSM node has amenity=marketplace but its city association conflicts; category alone does not repair the location mismatch.",
+      "factual_gaps": [
+        "No named eligible market or natural feature inside Djibouti City was confirmed by the targeted source lookup.",
+        "The mapped Djiba Djibouti OSM node is explicitly associated in prior source evidence with Loyada, not Djibouti City; it must not be promoted here."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "serekunda",
+      "catalogue_city_name": "Serrekunda",
+      "country_iso": "gm",
+      "catalogue_anchor_coordinates": {
+        "lon": -16.674807,
+        "lat": 13.438762
+      },
+      "region_as_proposed": "gulf-guinea",
+      "repository_candidate_as_recorded": "Marché Albert",
+      "repository_source_path": "src/game/cities/serekunda/places.ts",
+      "repository_source_field_pointers": [
+        "PLACES[5].name",
+        "PLACES[5].kind",
+        "PLACES[5].line",
+        "PLACES[5].osm"
+      ],
+      "selected_candidate": {
+        "name": "Serrekunda Market",
+        "category": "market",
+        "status": "secondary_local_listing_lead_authority_unverified",
+        "identity_relation_to_repository_candidate": "alternative to Marché Albert; explicitly not Albert Market in Banjul"
+      },
+      "source_evidence": [
+        {
+          "url": "https://visitgambia.com/gambia/events/serrekunda-market",
+          "title": "Serrekunda Market – Largest Urban Market in The Gambia",
+          "publisher": "Visit Gambia website; publisher/official tourism status not established",
+          "locator": "opened listing lines 30–31 and 39–50; names the venue and says it is located in Serrekunda town",
+          "read_scope": "opened_secondary_listing",
+          "source_grade": "secondary_listing",
+          "published_date": null,
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "A tourism listing names Serrekunda Market and locates the venue in Serrekunda town. The listing’s operator/authority is not established, so this remains a lead rather than primary evidence.",
+          "source_license": "unknown",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_url": "https://www.openstreetmap.org/way/255666858",
+        "object_name": "Albert Market",
+        "object_type": "way",
+        "object_id": 255666858,
+        "osm_version": 7,
+        "osm_timestamp": "2025-04-24T21:20:08Z",
+        "selected_tags": {
+          "name": "Albert Market",
+          "amenity": "marketplace",
+          "landuse": "retail",
+          "tourism": "attraction"
+        },
+        "classification": "market",
+        "result_status": "conflict",
+        "response_sha256": "57497d010897bd888e99f57ca757503a956b96418088e9f4ec65700c6c0702f4"
+      },
+      "object_note": "Do not reuse Albert Market OSM object (way/255666858); earlier tags name it Albert Market, amenity=marketplace, but location is Banjul-side conflict.",
+      "factual_gaps": [
+        "No primary government/local institutional source was found in this bounded pass tying this named market to Serrekunda; do not treat Visit Gambia as official without validation.",
+        "The existing Marché Albert object is Albert Market, OSM way/255666858, and was previously found in Banjul; it is excluded."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "male",
+      "catalogue_city_name": "Malé",
+      "country_iso": "mv",
+      "catalogue_anchor_coordinates": {
+        "lon": 73.5107387,
+        "lat": 4.1779879
+      },
+      "region_as_proposed": "americas-oceania",
+      "repository_candidate_as_recorded": "Marché Local",
+      "repository_source_path": "src/game/cities/male/places.ts",
+      "repository_source_field_pointers": [
+        "PLACES[5].name",
+        "PLACES[5].kind",
+        "PLACES[5].line",
+        "PLACES[5].osm"
+      ],
+      "selected_candidate": {
+        "name": "Travellers’ Market (OSM name:fr “Marché Local”)",
+        "category": "market",
+        "status": "name_and_category_supported_city_association_check_incomplete",
+        "identity_relation_to_repository_candidate": "OSM explicitly records name:fr=Marché Local; this resolves the string-level name difference only"
+      },
+      "source_evidence": [
+        {
+          "url": "https://www.openstreetmap.org/way/153106623",
+          "title": "OSM way 153106623: Travellers’ Market",
+          "publisher": "OpenStreetMap contributors",
+          "locator": "direct OSM API full object response; selected tags include name=Travellers’ Market, name:fr=Marché Local, amenity=marketplace; API response SHA-256 857f67bba028a7a4a95d85365423e2de7937c6b6e329ae22d55a373cd0a1097f",
+          "read_scope": "direct_primary_dataset_tags",
+          "source_grade": "primary_open_map_dataset",
+          "published_date": "OSM object version 7, 2026-08-16",
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "The OSM object is tagged as a marketplace and explicitly has the French name Marché Local. It has no address-city/admin tag establishing that it lies inside Malé’s municipal boundary.",
+          "source_license": "OpenStreetMap ODbL 1.0; no geometry reused.",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [
+        {
+          "url": "https://cdn.malecity.gov.mv/website/documents/6zqnEssfa8YfgaNZkf_I0-VLR_Male_Small%20file%20size.pdf",
+          "title": "Voluntary Local Review Report of Malé City Council, Maldives 2025",
+          "publisher": "Malé City Council",
+          "locator": "PDF p.18, source record cites lines 575–578",
+          "read_scope": "opened_council_pdf_in_prior_evidence",
+          "source_grade": "primary_city_council_report",
+          "published_date": "2025",
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "Council report describes a local fish market in Malé city, but does not name it or tie it to OSM way 153106623.",
+          "source_license": "unknown",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "existing_mapped_object_audit": {
+        "object_url": "https://www.openstreetmap.org/way/153106623",
+        "object_name": "Travellers' Market",
+        "object_type": "way",
+        "object_id": 153106623,
+        "osm_version": 7,
+        "osm_timestamp": "2026-08-16T16:09:48Z",
+        "selected_tags": {
+          "name": "Travellers' Market",
+          "name:fr": "Marché Local",
+          "amenity": "marketplace",
+          "building": "yes"
+        },
+        "classification": "market",
+        "result_status": "matched-name-and-category; city-boundary-check-incomplete",
+        "response_sha256": "f7a39a2a4869a11d23faaf2e0999215a848d9a3f4f246b6f360524284a8424c8",
+        "direct_api_full_response_sha256": "857f67bba028a7a4a95d85365423e2de7937c6b6e329ae22d55a373cd0a1097f"
+      },
+      "object_note": "Prior OSM object audit listed name/amenity/building; this direct response additionally exposed name:fr=Marché Local. OSM full-response hash is supplied; no geometry was copied.",
+      "factual_gaps": [
+        "A direct point-in-boundary or address-city check could not be completed (Nominatim returned 403; two Overpass endpoints failed/time out). The map way center is near the city catalogue anchor, but no boundary membership is asserted.",
+        "The council’s unnamed fish market does not independently identify this OSM feature."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    },
+    {
+      "city_id": "marigot",
+      "catalogue_city_name": "Marigot",
+      "country_iso": "mf",
+      "catalogue_anchor_coordinates": {
+        "lon": -63.0848869,
+        "lat": 18.0668544
+      },
+      "region_as_proposed": "americas-oceania",
+      "repository_candidate_as_recorded": "Centre Commercial Aventura",
+      "repository_source_path": "src/game/cities/marigot/places.ts",
+      "repository_source_field_pointers": [
+        "PLACES[5].name",
+        "PLACES[5].kind",
+        "PLACES[5].line",
+        "PLACES[5].osm"
+      ],
+      "selected_candidate": {
+        "name": "Marigot waterfront market (descriptive source label)",
+        "category": "market",
+        "status": "local_tourism_source_lead_authority_unverified",
+        "identity_relation_to_repository_candidate": "alternative to Centre Commercial Aventura; not an alias"
+      },
+      "source_evidence": [
+        {
+          "url": "https://visitsintmaarten.com/fr/destinations/marigot-fort-louis/",
+          "title": "Marigot & Fort Louis — que faire et comment y aller",
+          "publisher": "VisitSintMaarten.com; publisher/official status not established",
+          "locator": "opened French-language page lines 11–19 and 30–36; describes Marigot as the territorial chief town and market on the waterfront",
+          "read_scope": "opened_secondary_destination_page",
+          "source_grade": "local_destination_listing",
+          "published_date": null,
+          "access_date": "2026-10-18",
+          "fact_paraphrase": "The page identifies Marigot as the chief town and describes a public waterfront market there, including market stalls and food-market activity. It uses a descriptive label, not a verified formal proper name.",
+          "source_license": "unknown",
+          "reuse_note": "No source image, map, geometry, coordinates beyond catalogue anchors, or text beyond brief factual paraphrase is reused."
+        }
+      ],
+      "supporting_source_evidence": [],
+      "existing_mapped_object_audit": {
+        "object_url": "https://www.openstreetmap.org/way/465741045",
+        "object_name": "Centre Commercial Aventura",
+        "object_type": "way",
+        "object_id": 465741045,
+        "osm_version": 3,
+        "osm_timestamp": "2026-07-14T22:06:38Z",
+        "selected_tags": {
+          "name": "Centre Commercial Aventura",
+          "shop": "mall",
+          "building": "retail"
+        },
+        "classification": "retail-building",
+        "result_status": "matched",
+        "response_sha256": "560c0992606273b5b2a06a1df9b278ff2073464c24781d4ee0fbe0609ac2b95a"
+      },
+      "object_note": "Existing OSM way/465741045 remains classified retail-building; no pre-1950 date evidence.",
+      "factual_gaps": [
+        "No government/municipal primary source or exact marketplace object was confirmed in this bounded pass; destination-site authority is not established.",
+        "The existing Centre Commercial Aventura OSM object is tagged shop=mall/building=retail and fails the restricted French-jurisdiction market/natural/monument/pre-1950-building gate; it is excluded."
+      ],
+      "source_and_geometry_licence": "unknown unless a cited source explicitly records its text licence; no external geometry, map, or image is reused.",
+      "production_approved": false,
+      "scope_boundary": "Factual input only. No geometry, art direction, generation, or approval."
+    }
+  ]
+}

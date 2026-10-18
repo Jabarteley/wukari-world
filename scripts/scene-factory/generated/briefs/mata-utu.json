@@ -1,0 +1,1692 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "mata-utu",
+    "name": "Mata Utu",
+    "state": {
+      "id": "wf-mata-utu",
+      "name": "Mata Utu"
+    },
+    "country": {
+      "id": "wf",
+      "name": "Wallis & Futuna"
+    },
+    "point": {
+      "lon": -176.1740224,
+      "lat": -13.2820419
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/australia-oceania/wallis-et-futuna-261011.osm.pbf",
+      "https://ourairports.com/airports/NLWW/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/mata-utu/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/mata-utu/facts.ts",
+        "sha256": "b0b322cddccdbdefafed1af62f10996231ae081e647e64e25891567f2e65a18c"
+      },
+      {
+        "path": "src/game/cities/mata-utu/index.ts",
+        "sha256": "bfd09a985964046bbef413f873b8d8bd0c482f99328655319eb80284709f8447"
+      },
+      {
+        "path": "src/game/cities/mata-utu/places.ts",
+        "sha256": "717773230754696a612f0566e2abef28bb2e08a481c4e09628e7d57889b51e89"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record.",
+      "Venue mata-utu-market-game has no mapped place source record.",
+      "Venue mata-utu-recreation has no mapped place source record.",
+      "Venue mata-utu-transit has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.1740224,
+        "lat": -13.2820419
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "mata-utu-airport-mata-utu-airport",
+      "name": "Hihifo Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.19865,
+        "lat": -13.239445
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-airport-mata-utu-airport-1",
+        "mata-utu-mata-utu-airport-mata-utu-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mata-utu/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "mata-utu-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "mata-utu-clinic",
+      "name": "Mua",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.202714,
+        "lat": -13.347176
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-clinic-1",
+        "mata-utu-mata-utu-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mata-utu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5680505898"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mata-utu-community-notices",
+      "name": "DOUANES & CONTRIBUTIONS DIVERSES",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.170715,
+        "lat": -13.274129
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-community-notices-1",
+        "mata-utu-mata-utu-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mata-utu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13717642744"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mata-utu-community-voting-game",
+      "name": "Place Sagato-Soane",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.172946,
+        "lat": -13.283616
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-community-voting-game-1",
+        "mata-utu-mata-utu-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mata-utu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1262088839"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mata-utu-community-workshop",
+      "name": "Lycée Agricole (LPA)",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.193545,
+        "lat": -13.313545
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-community-workshop-1",
+        "mata-utu-mata-utu-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mata-utu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6794552488"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mata-utu-market-game",
+      "name": "Market game (game venue)",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.1749329305052,
+        "lat": -13.281142579636274
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-market-game-1",
+        "mata-utu-mata-utu-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue mata-utu-market-game has no mapped place source record."
+      }
+    },
+    {
+      "id": "mata-utu-meal-stop",
+      "name": "UGATAI",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.186752,
+        "lat": -13.281511
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-meal-stop-1",
+        "mata-utu-mata-utu-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mata-utu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6794553993"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mata-utu-osm-node-11340413569",
+      "name": "Club de plongée",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.218105,
+        "lat": -13.343539
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-osm-node-11340413569-1",
+        "mata-utu-mata-utu-osm-node-11340413569-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mata-utu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11340413569"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mata-utu-osm-node-4590021740",
+      "name": "View point to lake",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.235857,
+        "lat": -13.299265
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-osm-node-4590021740-1",
+        "mata-utu-mata-utu-osm-node-4590021740-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mata-utu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4590021740"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mata-utu-osm-node-5688924021",
+      "name": "Point de vue",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.182628,
+        "lat": -13.345603
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-osm-node-5688924021-1",
+        "mata-utu-mata-utu-osm-node-5688924021-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mata-utu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5688924021"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mata-utu-osm-node-8169143117",
+      "name": "La Paillotte",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.187897,
+        "lat": -13.335164
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-osm-node-8169143117-1",
+        "mata-utu-mata-utu-osm-node-8169143117-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mata-utu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8169143117"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mata-utu-osm-node-8169183417",
+      "name": "Bord de Mer",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.200945,
+        "lat": -13.219212
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-osm-node-8169183417-1",
+        "mata-utu-mata-utu-osm-node-8169183417-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mata-utu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8169183417"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mata-utu-osm-way-1012076688",
+      "name": "Sia Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.172248,
+        "lat": -13.27924
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-osm-way-1012076688-1",
+        "mata-utu-mata-utu-osm-way-1012076688-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mata-utu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1012076688"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mata-utu-osm-way-1265064150",
+      "name": "Académie des langues Wallisienne et Futunienne",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.171813,
+        "lat": -13.276287
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-osm-way-1265064150-1",
+        "mata-utu-mata-utu-osm-way-1265064150-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mata-utu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1265064150"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mata-utu-osm-way-346277921",
+      "name": "Talietumu",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.208974,
+        "lat": -13.336814
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-osm-way-346277921-1",
+        "mata-utu-mata-utu-osm-way-346277921-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mata-utu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/346277921"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7679508"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mata-utu-osm-way-352005466",
+      "name": "Chapelle Sainte Jeanne d'Arc",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.215913,
+        "lat": -13.347767
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-osm-way-352005466-1",
+        "mata-utu-mata-utu-osm-way-352005466-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mata-utu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/352005466"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q137792705"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mata-utu-osm-way-364719752",
+      "name": "Église Saint-Pierre-et-Saint-Paul",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.185498,
+        "lat": -13.230601
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-osm-way-364719752-1",
+        "mata-utu-mata-utu-osm-way-364719752-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mata-utu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/364719752"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q29584886"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mata-utu-quiet-reflection",
+      "name": "Cathédrale Notre-Dame-de-l'Assomption",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.17339,
+        "lat": -13.28283
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-quiet-reflection-1",
+        "mata-utu-mata-utu-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mata-utu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/259503104"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2942239"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mata-utu-recreation",
+      "name": "Recreation area (game venue)",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.17311186949485,
+        "lat": -13.281142579636274
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-recreation-1",
+        "mata-utu-mata-utu-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue mata-utu-recreation has no mapped place source record."
+      }
+    },
+    {
+      "id": "mata-utu-transit",
+      "name": "City transit stop (game venue)",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -176.17311186949485,
+        "lat": -13.2820419
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mata-utu-mata-utu-transit-1",
+        "mata-utu-mata-utu-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue mata-utu-transit has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "mata-utu-mata-utu-airport-mata-utu-airport-1",
+      "venueId": "mata-utu-airport-mata-utu-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-airport-mata-utu-airport-2",
+      "venueId": "mata-utu-airport-mata-utu-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-clinic-1",
+      "venueId": "mata-utu-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-clinic-2",
+      "venueId": "mata-utu-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-community-notices-1",
+      "venueId": "mata-utu-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-community-notices-2",
+      "venueId": "mata-utu-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-community-voting-game-1",
+      "venueId": "mata-utu-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-community-voting-game-2",
+      "venueId": "mata-utu-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-community-workshop-1",
+      "venueId": "mata-utu-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-community-workshop-2",
+      "venueId": "mata-utu-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-market-game-1",
+      "venueId": "mata-utu-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-market-game-2",
+      "venueId": "mata-utu-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-meal-stop-1",
+      "venueId": "mata-utu-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-meal-stop-2",
+      "venueId": "mata-utu-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-node-11340413569-1",
+      "venueId": "mata-utu-osm-node-11340413569",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-node-11340413569-2",
+      "venueId": "mata-utu-osm-node-11340413569",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-node-4590021740-1",
+      "venueId": "mata-utu-osm-node-4590021740",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-node-4590021740-2",
+      "venueId": "mata-utu-osm-node-4590021740",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-node-5688924021-1",
+      "venueId": "mata-utu-osm-node-5688924021",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-node-5688924021-2",
+      "venueId": "mata-utu-osm-node-5688924021",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-node-8169143117-1",
+      "venueId": "mata-utu-osm-node-8169143117",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-node-8169143117-2",
+      "venueId": "mata-utu-osm-node-8169143117",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-node-8169183417-1",
+      "venueId": "mata-utu-osm-node-8169183417",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-node-8169183417-2",
+      "venueId": "mata-utu-osm-node-8169183417",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-way-1012076688-1",
+      "venueId": "mata-utu-osm-way-1012076688",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-way-1012076688-2",
+      "venueId": "mata-utu-osm-way-1012076688",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-way-1265064150-1",
+      "venueId": "mata-utu-osm-way-1265064150",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-way-1265064150-2",
+      "venueId": "mata-utu-osm-way-1265064150",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-way-346277921-1",
+      "venueId": "mata-utu-osm-way-346277921",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-way-346277921-2",
+      "venueId": "mata-utu-osm-way-346277921",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-way-352005466-1",
+      "venueId": "mata-utu-osm-way-352005466",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-way-352005466-2",
+      "venueId": "mata-utu-osm-way-352005466",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-way-364719752-1",
+      "venueId": "mata-utu-osm-way-364719752",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-osm-way-364719752-2",
+      "venueId": "mata-utu-osm-way-364719752",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-quiet-reflection-1",
+      "venueId": "mata-utu-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-quiet-reflection-2",
+      "venueId": "mata-utu-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-recreation-1",
+      "venueId": "mata-utu-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-recreation-2",
+      "venueId": "mata-utu-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-transit-1",
+      "venueId": "mata-utu-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    },
+    {
+      "id": "mata-utu-mata-utu-transit-2",
+      "venueId": "mata-utu-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mata-utu/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "mata-utu-airport-mata-utu-airport",
+    "mata-utu-clinic",
+    "mata-utu-community-notices",
+    "mata-utu-community-voting-game",
+    "mata-utu-community-workshop",
+    "mata-utu-market-game",
+    "mata-utu-meal-stop",
+    "mata-utu-osm-node-11340413569",
+    "mata-utu-osm-node-4590021740",
+    "mata-utu-osm-node-5688924021",
+    "mata-utu-osm-node-8169143117",
+    "mata-utu-osm-node-8169183417",
+    "mata-utu-osm-way-1012076688",
+    "mata-utu-osm-way-1265064150",
+    "mata-utu-osm-way-346277921",
+    "mata-utu-osm-way-352005466",
+    "mata-utu-osm-way-364719752",
+    "mata-utu-quiet-reflection",
+    "mata-utu-recreation",
+    "mata-utu-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "c3d6c38892829e878ae7779bf79f6fb5b58f2fb46648514a4988e863fd38cbb7",
+    "contentSha256": "f9fd8aa99b92c5dc6d4fa01b0ab59ceefec2f55c9e8d476939fbd1a5f3755710"
+  }
+}

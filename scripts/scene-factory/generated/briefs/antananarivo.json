@@ -1,0 +1,2055 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "antananarivo",
+    "name": "Antananarivo",
+    "state": {
+      "id": "mg-t",
+      "name": "Analamanga"
+    },
+    "country": {
+      "id": "mg",
+      "name": "Madagascar"
+    },
+    "point": {
+      "lon": 47.5255809,
+      "lat": -18.9100122
+    }
+  },
+  "style": {
+    "region": "swahili-coast",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "Natural Earth, OpenStreetMap contributors and OurAirports dataset",
+    "sourceUrls": [
+      "https://download.geofabrik.de/africa/madagascar-261009.osm.pbf",
+      "https://ourairports.com/airports/FMMI/"
+    ],
+    "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/antananarivo/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/antananarivo/facts.ts",
+        "sha256": "a838ab2885e51207a62bf103eb4cc1e6018b00e60cc61bbd6cadbda775461992"
+      },
+      {
+        "path": "src/game/cities/antananarivo/index.ts",
+        "sha256": "0bfec5558cf4d540f9d6972eb5b256d4721a75310855e6c73d963122ab2ac173"
+      },
+      {
+        "path": "src/game/cities/antananarivo/places.ts",
+        "sha256": "74c5c92a7b65725e6187c86a4daeb8befba7c1f699a880adb0e23fbe116277bb"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "antananarivo-airport-fmmi",
+      "name": "Ivato International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.478802,
+        "lat": -18.7969
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-airport-fmmi-1",
+        "antananarivo-antananarivo-airport-fmmi-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "FMMI"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-clinic",
+      "name": "ONG Mobile Hilfe Madagaskar",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.434479,
+        "lat": -18.836915
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-clinic-1",
+        "antananarivo-antananarivo-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11491535952"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-community-notices",
+      "name": "Fokontany Ampanefy",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.508505,
+        "lat": -18.974948
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-community-notices-1",
+        "antananarivo-antananarivo-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11849665965"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-community-voting-game",
+      "name": "Kaominina Ankadikely Ilafy",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.553782,
+        "lat": -18.848824
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-community-voting-game-1",
+        "antananarivo-antananarivo-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5316749261"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-community-workshop",
+      "name": "Archives Nationales Malagasy",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.518922,
+        "lat": -18.9066
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-community-workshop-1",
+        "antananarivo-antananarivo-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6978575117"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6970440"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-market-game",
+      "name": "Marché Communale Alakamisy",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.423248,
+        "lat": -18.939464
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-market-game-1",
+        "antananarivo-antananarivo-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1280878984"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-meal-stop",
+      "name": "Le Castel",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.579134,
+        "lat": -18.79194
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-meal-stop-1",
+        "antananarivo-antananarivo-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1107526880"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-osm-node-11840542812",
+      "name": "CSB II Ampangabe",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.400364,
+        "lat": -18.865545
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-osm-node-11840542812-1",
+        "antananarivo-antananarivo-osm-node-11840542812-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11840542812"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-osm-node-11883673240",
+      "name": "Parc Antsaha Soa sy Tsara",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.460896,
+        "lat": -18.799843
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-osm-node-11883673240-1",
+        "antananarivo-antananarivo-osm-node-11883673240-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11883673240"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-osm-node-11888568626",
+      "name": "LANGO Snack",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.475482,
+        "lat": -18.936038
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-osm-node-11888568626-1",
+        "antananarivo-antananarivo-osm-node-11888568626-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11888568626"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-osm-node-11892950099",
+      "name": "Maxi Pizza bypass",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.547301,
+        "lat": -18.963694
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-osm-node-11892950099-1",
+        "antananarivo-antananarivo-osm-node-11892950099-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11892950099"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-osm-node-13496096598",
+      "name": "CHRD Ambohimangakely",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.586417,
+        "lat": -18.90041
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-osm-node-13496096598-1",
+        "antananarivo-antananarivo-osm-node-13496096598-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13496096598"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-osm-node-4391442008",
+      "name": "Centre de loisirs Tanamasoanadro",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.506651,
+        "lat": -18.787767
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-osm-node-4391442008-1",
+        "antananarivo-antananarivo-osm-node-4391442008-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4391442008"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-osm-node-623568960",
+      "name": "Faculté de Médecine Département Vétérinaire",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.560478,
+        "lat": -18.879884
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-osm-node-623568960-1",
+        "antananarivo-antananarivo-osm-node-623568960-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/623568960"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-osm-relation-1167731",
+      "name": "Tsarasaotra Bird Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.519022,
+        "lat": -18.866454
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-osm-relation-1167731-1",
+        "antananarivo-antananarivo-osm-relation-1167731-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/1167731"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-osm-relation-16814959",
+      "name": "Kianja Barea Mahamasina",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.525909,
+        "lat": -18.919412
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-osm-relation-16814959-1",
+        "antananarivo-antananarivo-osm-relation-16814959-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/16814959"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-osm-way-1222327356",
+      "name": "Stade Cnaps",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.410501,
+        "lat": -18.987289
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-osm-way-1222327356-1",
+        "antananarivo-antananarivo-osm-way-1222327356-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1222327356"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-osm-way-1280179586",
+      "name": "Casa Niñas",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.600064,
+        "lat": -18.841995
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-osm-way-1280179586-1",
+        "antananarivo-antananarivo-osm-way-1280179586-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1280179586"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-osm-way-1280560456",
+      "name": "Collège théologique Assemblée de Dieu",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.418784,
+        "lat": -18.787741
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-osm-way-1280560456-1",
+        "antananarivo-antananarivo-osm-way-1280560456-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1280560456"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-osm-way-49037178",
+      "name": "Stade Ampasamborona",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.487892,
+        "lat": -18.854974
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-osm-way-49037178-1",
+        "antananarivo-antananarivo-osm-way-49037178-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/49037178"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-osm-way-52638460",
+      "name": "Queen's Palace",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.532155,
+        "lat": -18.923609
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-osm-way-52638460-1",
+        "antananarivo-antananarivo-osm-way-52638460-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/52638460"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1290337"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-osm-way-798028413",
+      "name": "Institut Supérieur de Travail Social",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.535011,
+        "lat": -18.993318
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-osm-way-798028413-1",
+        "antananarivo-antananarivo-osm-way-798028413-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/798028413"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-quiet-reflection",
+      "name": "Catholic Cathedral of Andohalo",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.530669,
+        "lat": -18.917863
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-quiet-reflection-1",
+        "antananarivo-antananarivo-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/511204750"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-recreation",
+      "name": "Parc Adventures - Vidzar",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.594054,
+        "lat": -18.966281
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-recreation-1",
+        "antananarivo-antananarivo-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11844416762"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "antananarivo-transit",
+      "name": "Soarano",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.521035,
+        "lat": -18.903163
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "antananarivo-antananarivo-transit-1",
+        "antananarivo-antananarivo-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/antananarivo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/335803824"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20571241"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 47.5255809,
+        "lat": -18.9100122
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "antananarivo-antananarivo-airport-fmmi-1",
+      "venueId": "antananarivo-airport-fmmi",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-airport-fmmi-2",
+      "venueId": "antananarivo-airport-fmmi",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-clinic-1",
+      "venueId": "antananarivo-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-clinic-2",
+      "venueId": "antananarivo-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-community-notices-1",
+      "venueId": "antananarivo-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-community-notices-2",
+      "venueId": "antananarivo-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-community-voting-game-1",
+      "venueId": "antananarivo-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-community-voting-game-2",
+      "venueId": "antananarivo-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-community-workshop-1",
+      "venueId": "antananarivo-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-community-workshop-2",
+      "venueId": "antananarivo-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-market-game-1",
+      "venueId": "antananarivo-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-market-game-2",
+      "venueId": "antananarivo-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-meal-stop-1",
+      "venueId": "antananarivo-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-meal-stop-2",
+      "venueId": "antananarivo-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-node-11840542812-1",
+      "venueId": "antananarivo-osm-node-11840542812",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-node-11840542812-2",
+      "venueId": "antananarivo-osm-node-11840542812",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-node-11883673240-1",
+      "venueId": "antananarivo-osm-node-11883673240",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-node-11883673240-2",
+      "venueId": "antananarivo-osm-node-11883673240",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-node-11888568626-1",
+      "venueId": "antananarivo-osm-node-11888568626",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-node-11888568626-2",
+      "venueId": "antananarivo-osm-node-11888568626",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-node-11892950099-1",
+      "venueId": "antananarivo-osm-node-11892950099",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-node-11892950099-2",
+      "venueId": "antananarivo-osm-node-11892950099",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-node-13496096598-1",
+      "venueId": "antananarivo-osm-node-13496096598",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-node-13496096598-2",
+      "venueId": "antananarivo-osm-node-13496096598",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-node-4391442008-1",
+      "venueId": "antananarivo-osm-node-4391442008",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-node-4391442008-2",
+      "venueId": "antananarivo-osm-node-4391442008",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-node-623568960-1",
+      "venueId": "antananarivo-osm-node-623568960",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-node-623568960-2",
+      "venueId": "antananarivo-osm-node-623568960",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-relation-1167731-1",
+      "venueId": "antananarivo-osm-relation-1167731",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-relation-1167731-2",
+      "venueId": "antananarivo-osm-relation-1167731",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-relation-16814959-1",
+      "venueId": "antananarivo-osm-relation-16814959",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-relation-16814959-2",
+      "venueId": "antananarivo-osm-relation-16814959",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-way-1222327356-1",
+      "venueId": "antananarivo-osm-way-1222327356",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-way-1222327356-2",
+      "venueId": "antananarivo-osm-way-1222327356",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-way-1280179586-1",
+      "venueId": "antananarivo-osm-way-1280179586",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-way-1280179586-2",
+      "venueId": "antananarivo-osm-way-1280179586",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-way-1280560456-1",
+      "venueId": "antananarivo-osm-way-1280560456",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-way-1280560456-2",
+      "venueId": "antananarivo-osm-way-1280560456",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-way-49037178-1",
+      "venueId": "antananarivo-osm-way-49037178",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-way-49037178-2",
+      "venueId": "antananarivo-osm-way-49037178",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-way-52638460-1",
+      "venueId": "antananarivo-osm-way-52638460",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-way-52638460-2",
+      "venueId": "antananarivo-osm-way-52638460",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-way-798028413-1",
+      "venueId": "antananarivo-osm-way-798028413",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-osm-way-798028413-2",
+      "venueId": "antananarivo-osm-way-798028413",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-quiet-reflection-1",
+      "venueId": "antananarivo-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-quiet-reflection-2",
+      "venueId": "antananarivo-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-recreation-1",
+      "venueId": "antananarivo-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-recreation-2",
+      "venueId": "antananarivo-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-transit-1",
+      "venueId": "antananarivo-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    },
+    {
+      "id": "antananarivo-antananarivo-transit-2",
+      "venueId": "antananarivo-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/antananarivo/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "antananarivo-airport-fmmi",
+    "antananarivo-clinic",
+    "antananarivo-community-notices",
+    "antananarivo-community-voting-game",
+    "antananarivo-community-workshop",
+    "antananarivo-market-game",
+    "antananarivo-meal-stop",
+    "antananarivo-osm-node-11840542812",
+    "antananarivo-osm-node-11883673240",
+    "antananarivo-osm-node-11888568626",
+    "antananarivo-osm-node-11892950099",
+    "antananarivo-osm-node-13496096598",
+    "antananarivo-osm-node-4391442008",
+    "antananarivo-osm-node-623568960",
+    "antananarivo-osm-relation-1167731",
+    "antananarivo-osm-relation-16814959",
+    "antananarivo-osm-way-1222327356",
+    "antananarivo-osm-way-1280179586",
+    "antananarivo-osm-way-1280560456",
+    "antananarivo-osm-way-49037178",
+    "antananarivo-osm-way-52638460",
+    "antananarivo-osm-way-798028413",
+    "antananarivo-quiet-reflection",
+    "antananarivo-recreation",
+    "antananarivo-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "ca1fd308753052169817fc7a4082805b9be0239473214d77c29d1972a2fcc234",
+    "contentSha256": "fedb88782f069b9e50bc41f2735afeab636d1e2f6c873ffd3daf4eb03a76fe04"
+  }
+}

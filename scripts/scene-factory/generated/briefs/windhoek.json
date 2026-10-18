@@ -1,0 +1,2079 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "windhoek",
+    "name": "Windhoek",
+    "state": {
+      "id": "na-windhoek",
+      "name": "Windhoek"
+    },
+    "country": {
+      "id": "na",
+      "name": "Namibia"
+    },
+    "point": {
+      "lon": 17.0772739,
+      "lat": -22.5776104
+    }
+  },
+  "style": {
+    "region": "southern-africa",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap contributors via the Overpass interpreter and Namibia Civil Aviation Authority",
+    "sourceUrls": [
+      "https://ncaa.com.na/publications/aeronautical-information/aeronautical-information-publication/aip-supplement/S04_2025%20FYWH%20AD.pdf",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/windhoek/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/windhoek/facts.ts",
+        "sha256": "6c2f61431d8fb70b620580df805313ec7c2270aafb4270b61978e505ba076b0e"
+      },
+      {
+        "path": "src/game/cities/windhoek/index.ts",
+        "sha256": "f76156c2336fd53c5c4b1ae98cfdac79c8d83fab9f38a50fe1d3fc0e838f56a8"
+      },
+      {
+        "path": "src/game/cities/windhoek/places.ts",
+        "sha256": "40cb9f2ad5604d8ae1cfb9a732ce6f17002501fd1a39bb8b0cb71a81e1e6ada2"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record.",
+      "Venue windhoek-community-voting-game has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.0772739,
+        "lat": -22.577610399999998
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "windhoek-airport-windhoek-airport",
+      "name": "Hosea Kutako International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.470277777777778,
+        "lat": -22.481111111111108
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-airport-windhoek-airport-1",
+        "windhoek-windhoek-airport-windhoek-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "windhoek-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-avis-dam-recreational-area",
+      "name": "Avis Dam Recreational Area",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.133196,
+        "lat": -22.574395
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-avis-dam-recreational-area-1",
+        "windhoek-windhoek-avis-dam-recreational-area-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/16338871"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-clinic",
+      "name": "Windhoek Central Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.069474,
+        "lat": -22.55288
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-clinic-1",
+        "windhoek-windhoek-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/122000497"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q8024212"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-community-notices",
+      "name": "National Assembly",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.08935,
+        "lat": -22.566592
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-community-notices-1",
+        "windhoek-windhoek-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/116564329"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1769673"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-community-voting-game",
+      "name": "Community voting simulation (game venue)",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.079094961010366,
+        "lat": -22.577610399999998
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-community-voting-game-1",
+        "windhoek-windhoek-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue windhoek-community-voting-game has no mapped place source record."
+      }
+    },
+    {
+      "id": "windhoek-community-workshop",
+      "name": "Namibia University of Science and Technology (NUST)",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.07739,
+        "lat": -22.565571
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-community-workshop-1",
+        "windhoek-windhoek-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/904160060"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-heinitzburg",
+      "name": "Heinitzburg",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.092278,
+        "lat": -22.574036
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-heinitzburg-1",
+        "windhoek-windhoek-heinitzburg-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1083480074"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3884677"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-heroes-acre",
+      "name": "Heroes Acre",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.077936,
+        "lat": -22.662772
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-heroes-acre-1",
+        "windhoek-windhoek-heroes-acre-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/120802721"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5743019"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-independence-memorial-museum",
+      "name": "Independence Memorial Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.087991,
+        "lat": -22.568721
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-independence-memorial-museum-1",
+        "windhoek-windhoek-independence-memorial-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/311181729"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28196088"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-maerua-mall",
+      "name": "Maerua Mall & Business Park",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.09373,
+        "lat": -22.583587
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-maerua-mall-1",
+        "windhoek-windhoek-maerua-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/122097005"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1754705"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-market-game",
+      "name": "Soweto Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.044992,
+        "lat": -22.520486
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-market-game-1",
+        "windhoek-windhoek-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/13959141"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-meal-stop",
+      "name": "Craft Café",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.083923,
+        "lat": -22.571944
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-meal-stop-1",
+        "windhoek-windhoek-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1027880240"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-national-botanical-garden",
+      "name": "National Botanical Garden",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.094478,
+        "lat": -22.570725
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-national-botanical-garden-1",
+        "windhoek-windhoek-national-botanical-garden-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/485939660"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-national-museum-of-namibia",
+      "name": "National Museum of Namibia (Services)",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.087139,
+        "lat": -22.569212
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-national-museum-of-namibia-1",
+        "windhoek-windhoek-national-museum-of-namibia-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/121547674"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-national-theatre",
+      "name": "National Theatre of Namibia",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.085747,
+        "lat": -22.562622
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-national-theatre-1",
+        "windhoek-windhoek-national-theatre-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1027888085"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-owela-museum",
+      "name": "Owela Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.086228,
+        "lat": -22.563811
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-owela-museum-1",
+        "windhoek-windhoek-owela-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/122250917"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-parliament-garden",
+      "name": "Parliament Garden",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.08811,
+        "lat": -22.566496
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-parliament-garden-1",
+        "windhoek-windhoek-parliament-garden-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/95195219"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11994792"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-quiet-reflection",
+      "name": "Christ Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.087319,
+        "lat": -22.567755
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-quiet-reflection-1",
+        "windhoek-windhoek-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/903001192"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1087458"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-recreation",
+      "name": "Zoo Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.085272,
+        "lat": -22.56733
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-recreation-1",
+        "windhoek-windhoek-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/902984540"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q220071"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-sam-nujoma-stadium",
+      "name": "Sam Nujoma Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.060701,
+        "lat": -22.515914
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-sam-nujoma-stadium-1",
+        "windhoek-windhoek-sam-nujoma-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/122526007"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-town-square-mall",
+      "name": "Town Square Mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.082649,
+        "lat": -22.566739
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-town-square-mall-1",
+        "windhoek-windhoek-town-square-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/95200941"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-transit",
+      "name": "Windhoek Central Bus Station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.080442,
+        "lat": -22.563801
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-transit-1",
+        "windhoek-windhoek-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/359832848"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-transnamib-railway-museum",
+      "name": "TransNamib Railway Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.081308,
+        "lat": -22.559348
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-transnamib-railway-museum-1",
+        "windhoek-windhoek-transnamib-railway-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4697946051"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1498662"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-wernhil-shopping-centre",
+      "name": "Wernhil Shopping Centre",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.080698,
+        "lat": -22.567016
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-wernhil-shopping-centre-1",
+        "windhoek-windhoek-wernhil-shopping-centre-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/95200940"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "windhoek-windhoek-city-hill",
+      "name": "Windhoek City Hill",
+      "kind": "hilltop",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 17.087997,
+        "lat": -22.560039
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "windhoek-windhoek-windhoek-city-hill-1",
+        "windhoek-windhoek-windhoek-city-hill-2"
+      ],
+      "scene": {
+        "kind": "hilltop",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/windhoek/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/360001757"
+          }
+        ],
+        "sourceKind": "hilltop",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "windhoek-windhoek-airport-windhoek-airport-1",
+      "venueId": "windhoek-airport-windhoek-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-airport-windhoek-airport-2",
+      "venueId": "windhoek-airport-windhoek-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-avis-dam-recreational-area-1",
+      "venueId": "windhoek-avis-dam-recreational-area",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-avis-dam-recreational-area-2",
+      "venueId": "windhoek-avis-dam-recreational-area",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-clinic-1",
+      "venueId": "windhoek-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-clinic-2",
+      "venueId": "windhoek-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-community-notices-1",
+      "venueId": "windhoek-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-community-notices-2",
+      "venueId": "windhoek-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-community-voting-game-1",
+      "venueId": "windhoek-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-community-voting-game-2",
+      "venueId": "windhoek-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-community-workshop-1",
+      "venueId": "windhoek-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-community-workshop-2",
+      "venueId": "windhoek-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-heinitzburg-1",
+      "venueId": "windhoek-heinitzburg",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-heinitzburg-2",
+      "venueId": "windhoek-heinitzburg",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-heroes-acre-1",
+      "venueId": "windhoek-heroes-acre",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-heroes-acre-2",
+      "venueId": "windhoek-heroes-acre",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-independence-memorial-museum-1",
+      "venueId": "windhoek-independence-memorial-museum",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-independence-memorial-museum-2",
+      "venueId": "windhoek-independence-memorial-museum",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-maerua-mall-1",
+      "venueId": "windhoek-maerua-mall",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-maerua-mall-2",
+      "venueId": "windhoek-maerua-mall",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-market-game-1",
+      "venueId": "windhoek-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-market-game-2",
+      "venueId": "windhoek-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-meal-stop-1",
+      "venueId": "windhoek-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-meal-stop-2",
+      "venueId": "windhoek-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-national-botanical-garden-1",
+      "venueId": "windhoek-national-botanical-garden",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-national-botanical-garden-2",
+      "venueId": "windhoek-national-botanical-garden",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-national-museum-of-namibia-1",
+      "venueId": "windhoek-national-museum-of-namibia",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-national-museum-of-namibia-2",
+      "venueId": "windhoek-national-museum-of-namibia",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-national-theatre-1",
+      "venueId": "windhoek-national-theatre",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-national-theatre-2",
+      "venueId": "windhoek-national-theatre",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-owela-museum-1",
+      "venueId": "windhoek-owela-museum",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-owela-museum-2",
+      "venueId": "windhoek-owela-museum",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-parliament-garden-1",
+      "venueId": "windhoek-parliament-garden",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-parliament-garden-2",
+      "venueId": "windhoek-parliament-garden",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-quiet-reflection-1",
+      "venueId": "windhoek-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-quiet-reflection-2",
+      "venueId": "windhoek-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-recreation-1",
+      "venueId": "windhoek-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-recreation-2",
+      "venueId": "windhoek-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-sam-nujoma-stadium-1",
+      "venueId": "windhoek-sam-nujoma-stadium",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-sam-nujoma-stadium-2",
+      "venueId": "windhoek-sam-nujoma-stadium",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-town-square-mall-1",
+      "venueId": "windhoek-town-square-mall",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-town-square-mall-2",
+      "venueId": "windhoek-town-square-mall",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-transit-1",
+      "venueId": "windhoek-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-transit-2",
+      "venueId": "windhoek-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-transnamib-railway-museum-1",
+      "venueId": "windhoek-transnamib-railway-museum",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-transnamib-railway-museum-2",
+      "venueId": "windhoek-transnamib-railway-museum",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-wernhil-shopping-centre-1",
+      "venueId": "windhoek-wernhil-shopping-centre",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-wernhil-shopping-centre-2",
+      "venueId": "windhoek-wernhil-shopping-centre",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-windhoek-city-hill-1",
+      "venueId": "windhoek-windhoek-city-hill",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    },
+    {
+      "id": "windhoek-windhoek-windhoek-city-hill-2",
+      "venueId": "windhoek-windhoek-city-hill",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/windhoek/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "windhoek-airport-windhoek-airport",
+    "windhoek-avis-dam-recreational-area",
+    "windhoek-clinic",
+    "windhoek-community-notices",
+    "windhoek-community-voting-game",
+    "windhoek-community-workshop",
+    "windhoek-heinitzburg",
+    "windhoek-heroes-acre",
+    "windhoek-independence-memorial-museum",
+    "windhoek-maerua-mall",
+    "windhoek-market-game",
+    "windhoek-meal-stop",
+    "windhoek-national-botanical-garden",
+    "windhoek-national-museum-of-namibia",
+    "windhoek-national-theatre",
+    "windhoek-owela-museum",
+    "windhoek-parliament-garden",
+    "windhoek-quiet-reflection",
+    "windhoek-recreation",
+    "windhoek-sam-nujoma-stadium",
+    "windhoek-town-square-mall",
+    "windhoek-transit",
+    "windhoek-transnamib-railway-museum",
+    "windhoek-wernhil-shopping-centre",
+    "windhoek-windhoek-city-hill"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "5386490638c65d8e25c433c15023894365555b66987ec11272052e8c2f2190b7",
+    "contentSha256": "b005207b91403b9fd61e7c1412bfc947cdf37bd9f60a0bd87b4369be19a8485a"
+  }
+}

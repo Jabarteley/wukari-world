@@ -1,0 +1,2119 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "la-paz",
+    "name": "La Paz",
+    "state": {
+      "id": "bo-la-paz",
+      "name": "La Paz"
+    },
+    "country": {
+      "id": "bo",
+      "name": "Bolivia"
+    },
+    "point": {
+      "lon": -68.1336229,
+      "lat": -16.4955455
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/south-america/bolivia-261011.osm.pbf",
+      "https://ourairports.com/airports/SLLP/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/la-paz/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/la-paz/facts.ts",
+        "sha256": "2d97c2527fdca14fb44769831f215df55e84006ace230ff199f76dddbe8a8447"
+      },
+      {
+        "path": "src/game/cities/la-paz/index.ts",
+        "sha256": "b8a492288f3d2f7df088f87133265f7647a5dc1e68c8c0770a6d12c360f75077"
+      },
+      {
+        "path": "src/game/cities/la-paz/places.ts",
+        "sha256": "eb1d0fddd089fc5b81874517ac15891facee1e63b169b945575c569f668310dc"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "e8a531fb4d2d8b1aeeecce84f9865f9c1bbff745bb7202a91f6920f7576533bd"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "3323eb2bfacef7485e854e2f60442f4c46cafde233297235a8bb273c01d86439"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.1336229,
+        "lat": -16.4955455
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "la-paz-airport-la-paz-airport",
+      "name": "El Alto International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.189416,
+        "lat": -16.510272
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-airport-la-paz-airport-1",
+        "la-paz-la-paz-airport-la-paz-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "la-paz-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-clinic",
+      "name": "Hospital Municipal Viacha",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.287608,
+        "lat": -16.650573
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-clinic-1",
+        "la-paz-la-paz-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5649767923"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-community-notices",
+      "name": "Estación Terrena Amachuma",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.129979,
+        "lat": -16.622295
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-community-notices-1",
+        "la-paz-la-paz-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/460691417"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16564394"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-community-voting-game",
+      "name": "Museo de Arte Antonio Paredes Candia",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.151398,
+        "lat": -16.519689
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-community-voting-game-1",
+        "la-paz-la-paz-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/389268305"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16251836"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-community-workshop",
+      "name": "Instituto Tecnológico Bolivia Mar",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.196713,
+        "lat": -16.577611
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-community-workshop-1",
+        "la-paz-la-paz-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/442076963"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5917767"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-market-game",
+      "name": "Mercado Lanza",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.137462,
+        "lat": -16.4947
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-market-game-1",
+        "la-paz-la-paz-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/194362248"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q21484031"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-meal-stop",
+      "name": "Il Portico",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.076295,
+        "lat": -16.586303
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-meal-stop-1",
+        "la-paz-la-paz-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3368870285"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-osm-node-12194828333",
+      "name": "EL RICOLIN",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.272311,
+        "lat": -16.464557
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-osm-node-12194828333-1",
+        "la-paz-la-paz-osm-node-12194828333-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12194828333"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-osm-node-2145192906",
+      "name": "Batalla de Ingavi",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.252748,
+        "lat": -16.639451
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-osm-node-2145192906-1",
+        "la-paz-la-paz-osm-node-2145192906-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2145192906"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1782533"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-osm-node-2145197042",
+      "name": "Combate de Mecapaca",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.022225,
+        "lat": -16.663738
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-osm-node-2145197042-1",
+        "la-paz-la-paz-osm-node-2145197042-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2145197042"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5778665"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-osm-node-5273668603",
+      "name": "Universidad Mayor de San Andrès",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.130038,
+        "lat": -16.504896
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-osm-node-5273668603-1",
+        "la-paz-la-paz-osm-node-5273668603-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5273668603"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3290454"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-osm-node-5354864623",
+      "name": "Valle de las Agujas",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.016176,
+        "lat": -16.540091
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-osm-node-5354864623-1",
+        "la-paz-la-paz-osm-node-5354864623-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5354864623"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q61781144"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-osm-node-5376703910",
+      "name": "Trucha frita",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -67.955238,
+        "lat": -16.327525
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-osm-node-5376703910-1",
+        "la-paz-la-paz-osm-node-5376703910-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5376703910"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-osm-relation-11730900",
+      "name": "Moon Valley",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.094368,
+        "lat": -16.565922
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-osm-relation-11730900-1",
+        "la-paz-la-paz-osm-relation-11730900-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/11730900"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q965764"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-osm-way-105592750",
+      "name": "Estadio Rafael Mendoza Castellón",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.063765,
+        "lat": -16.515387
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-osm-way-105592750-1",
+        "la-paz-la-paz-osm-way-105592750-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/105592750"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5400464"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-osm-way-105617730",
+      "name": "Universidad Católica Boliviana San Pablo",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.111818,
+        "lat": -16.522791
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-osm-way-105617730-1",
+        "la-paz-la-paz-osm-way-105617730-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/105617730"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2495675"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-osm-way-114037395",
+      "name": "Estadio Olímpico Los Andes Cosmos 79",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.231829,
+        "lat": -16.535186
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-osm-way-114037395-1",
+        "la-paz-la-paz-osm-way-114037395-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/114037395"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24942516"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-osm-way-1313884277",
+      "name": "Estadio Municipal de El Alto",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.201464,
+        "lat": -16.47283
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-osm-way-1313884277-1",
+        "la-paz-la-paz-osm-way-1313884277-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1313884277"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q60588818"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-osm-way-1331129474",
+      "name": "Basílica María Auxiliadora",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.131082,
+        "lat": -16.503211
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-osm-way-1331129474-1",
+        "la-paz-la-paz-osm-way-1331129474-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1331129474"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16941605"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-osm-way-44166578",
+      "name": "Jardín Botánico",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.116517,
+        "lat": -16.503596
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-osm-way-44166578-1",
+        "la-paz-la-paz-osm-way-44166578-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/44166578"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q54853226"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-osm-way-526897787",
+      "name": "Basílica de San Francisco",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.137397,
+        "lat": -16.496482
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-osm-way-526897787-1",
+        "la-paz-la-paz-osm-way-526897787-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/526897787"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q847635"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-osm-way-872831587",
+      "name": "Facultad de Medicina Veterinaria y Zootecnia",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.308684,
+        "lat": -16.523973
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-osm-way-872831587-1",
+        "la-paz-la-paz-osm-way-872831587-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/872831587"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-quiet-reflection",
+      "name": "Catedral Metropolitana",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.134199,
+        "lat": -16.496317
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-quiet-reflection-1",
+        "la-paz-la-paz-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/125225477"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q8342814"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-recreation",
+      "name": "Parque Laguna de Cota Cota",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.064466,
+        "lat": -16.541695
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-recreation-1",
+        "la-paz-la-paz-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/46177387"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q61728425"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "la-paz-transit",
+      "name": "Terminal de Buses La Paz",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -68.141769,
+        "lat": -16.488711
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "la-paz-la-paz-transit-1",
+        "la-paz-la-paz-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/la-paz/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/252576497"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q56233239"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "la-paz-la-paz-airport-la-paz-airport-1",
+      "venueId": "la-paz-airport-la-paz-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-airport-la-paz-airport-2",
+      "venueId": "la-paz-airport-la-paz-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-clinic-1",
+      "venueId": "la-paz-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-clinic-2",
+      "venueId": "la-paz-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-community-notices-1",
+      "venueId": "la-paz-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-community-notices-2",
+      "venueId": "la-paz-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-community-voting-game-1",
+      "venueId": "la-paz-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-community-voting-game-2",
+      "venueId": "la-paz-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-community-workshop-1",
+      "venueId": "la-paz-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-community-workshop-2",
+      "venueId": "la-paz-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-market-game-1",
+      "venueId": "la-paz-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-market-game-2",
+      "venueId": "la-paz-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-meal-stop-1",
+      "venueId": "la-paz-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-meal-stop-2",
+      "venueId": "la-paz-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-node-12194828333-1",
+      "venueId": "la-paz-osm-node-12194828333",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-node-12194828333-2",
+      "venueId": "la-paz-osm-node-12194828333",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-node-2145192906-1",
+      "venueId": "la-paz-osm-node-2145192906",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-node-2145192906-2",
+      "venueId": "la-paz-osm-node-2145192906",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-node-2145197042-1",
+      "venueId": "la-paz-osm-node-2145197042",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-node-2145197042-2",
+      "venueId": "la-paz-osm-node-2145197042",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-node-5273668603-1",
+      "venueId": "la-paz-osm-node-5273668603",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-node-5273668603-2",
+      "venueId": "la-paz-osm-node-5273668603",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-node-5354864623-1",
+      "venueId": "la-paz-osm-node-5354864623",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-node-5354864623-2",
+      "venueId": "la-paz-osm-node-5354864623",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-node-5376703910-1",
+      "venueId": "la-paz-osm-node-5376703910",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-node-5376703910-2",
+      "venueId": "la-paz-osm-node-5376703910",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-relation-11730900-1",
+      "venueId": "la-paz-osm-relation-11730900",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-relation-11730900-2",
+      "venueId": "la-paz-osm-relation-11730900",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-way-105592750-1",
+      "venueId": "la-paz-osm-way-105592750",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-way-105592750-2",
+      "venueId": "la-paz-osm-way-105592750",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-way-105617730-1",
+      "venueId": "la-paz-osm-way-105617730",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-way-105617730-2",
+      "venueId": "la-paz-osm-way-105617730",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-way-114037395-1",
+      "venueId": "la-paz-osm-way-114037395",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-way-114037395-2",
+      "venueId": "la-paz-osm-way-114037395",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-way-1313884277-1",
+      "venueId": "la-paz-osm-way-1313884277",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-way-1313884277-2",
+      "venueId": "la-paz-osm-way-1313884277",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-way-1331129474-1",
+      "venueId": "la-paz-osm-way-1331129474",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-way-1331129474-2",
+      "venueId": "la-paz-osm-way-1331129474",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-way-44166578-1",
+      "venueId": "la-paz-osm-way-44166578",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-way-44166578-2",
+      "venueId": "la-paz-osm-way-44166578",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-way-526897787-1",
+      "venueId": "la-paz-osm-way-526897787",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-way-526897787-2",
+      "venueId": "la-paz-osm-way-526897787",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-way-872831587-1",
+      "venueId": "la-paz-osm-way-872831587",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-osm-way-872831587-2",
+      "venueId": "la-paz-osm-way-872831587",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-quiet-reflection-1",
+      "venueId": "la-paz-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-quiet-reflection-2",
+      "venueId": "la-paz-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-recreation-1",
+      "venueId": "la-paz-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-recreation-2",
+      "venueId": "la-paz-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-transit-1",
+      "venueId": "la-paz-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    },
+    {
+      "id": "la-paz-la-paz-transit-2",
+      "venueId": "la-paz-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/la-paz/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "la-paz-airport-la-paz-airport",
+    "la-paz-clinic",
+    "la-paz-community-notices",
+    "la-paz-community-voting-game",
+    "la-paz-community-workshop",
+    "la-paz-market-game",
+    "la-paz-meal-stop",
+    "la-paz-osm-node-12194828333",
+    "la-paz-osm-node-2145192906",
+    "la-paz-osm-node-2145197042",
+    "la-paz-osm-node-5273668603",
+    "la-paz-osm-node-5354864623",
+    "la-paz-osm-node-5376703910",
+    "la-paz-osm-relation-11730900",
+    "la-paz-osm-way-105592750",
+    "la-paz-osm-way-105617730",
+    "la-paz-osm-way-114037395",
+    "la-paz-osm-way-1313884277",
+    "la-paz-osm-way-1331129474",
+    "la-paz-osm-way-44166578",
+    "la-paz-osm-way-526897787",
+    "la-paz-osm-way-872831587",
+    "la-paz-quiet-reflection",
+    "la-paz-recreation",
+    "la-paz-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "5fe07f39b3638b420d2bd68906b60de1c87350ba3297e8c336377a4dac3bfc11",
+    "contentSha256": "5d363bff89054a38d28c82598e6b5c26c36ec084e08484ac38a3e9060215920e"
+  }
+}

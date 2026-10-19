@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "khartoum",
+  "url": "/assets/scene-heroes/khartoum.glb",
+  "sha256": "b9bbd1080bd39e03708bdbc9135197fa244b8c782d30814218f04e7047589916",
+  "rawBytes": 25236,
+  "brotliBytes": 17569,
+  "triangles": 584,
+  "parts": [
+    {
+      "node": "khartoum",
+      "triangles": 584,
+      "bounds": {
+        "min": [
+          -1.50621128,
+          0,
+          -0.892857134
+        ],
+        "max": [
+          1.506211223083,
+          2.499963153996,
+          0.892935904512
+        ]
+      },
+      "footprint": [
+        -1.50621128,
+        -0.892857134,
+        1.506211223083,
+        0.892935904512
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "73e9eb06fe0ab43dfa0d1b812e941952189a690143e715b30dcd38ad0c206753"
+  },
+  "inputs": {
+    "rawSha256": "7a671a32bed3bb33e46c93f4d41b205ca8b9559d705344d4b51a9de74985ab23",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "khartoum",
+      "country": "sd",
+      "name": "سوق سته",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/node/5786075353"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=khartoum]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 181091,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Exact candidate/name alias match and amenity=marketplace support feature identity/category. Object node/5786075353, version 1, timestamp 2018-07-26T06:13:36Z; response SHA256 280a62ae16a85db5df443f363de2210459d24ca109a4d9efe97ae217149e93ec. Source path: src/game/cities/khartoum/places.ts. Empty counters, racks and awnings indicate trade. No goods, original shop plan, actual number of stalls or current operation are inferred. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "east-africa"
+      }
+    },
+    "styleSha256": "f601c6dd6761e42d3430bc70ff17d3aded24774a040bb41cce79bb16e6b400a3"
+  }
+}

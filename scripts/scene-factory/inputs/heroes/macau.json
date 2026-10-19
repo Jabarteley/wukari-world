@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "macau",
+  "url": "/assets/scene-heroes/macau.glb",
+  "sha256": "857cd1af57732922da90ce94a1ea8a02042d1eef970b84d0a492215420b0d095",
+  "rawBytes": 29352,
+  "brotliBytes": 19055,
+  "triangles": 864,
+  "parts": [
+    {
+      "node": "macau",
+      "triangles": 864,
+      "bounds": {
+        "min": [
+          -1.99810612,
+          0,
+          -1.68876278
+        ],
+        "max": [
+          1.998106096475,
+          2.499980406925,
+          1.6888573482749998
+        ]
+      },
+      "footprint": [
+        -1.99810612,
+        -1.68876278,
+        1.998106096475,
+        1.6888573482749998
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "bc2a37dfe2703aa7c92864b8e7fe92a44f6fb7b37ce08ed0e211f2f1ceaa543f"
+  },
+  "inputs": {
+    "rawSha256": "3335ae0ee5e3332523eea23abac03644ab56d03ec2e321ca58eb931afa6af722",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "macau",
+      "country": "mo",
+      "name": "台山街市市政綜合大樓 Complexo Municipal do Mercado de Tamagnini Barbosa",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/334453286"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=macau]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 181243,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Exact candidate/name alias match and amenity=marketplace support feature identity/category. Object way/334453286, version 7, timestamp 2026-03-11T16:41:32Z; response SHA256 530db82b39bb83fdc07af8112bd670cef9d8cd53297a9a197cf19ee449f98c49. Source path: src/game/cities/macau/places.ts. Empty counters, racks and awnings indicate trade. No goods, original shop plan, actual number of stalls or current operation are inferred. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "east-asia"
+      }
+    },
+    "styleSha256": "99276357f2bf43bef2935e7db6b661a64a739e1d451f1d45c662ea3b5bbf6b56"
+  }
+}

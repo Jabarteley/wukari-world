@@ -1,0 +1,32 @@
+{
+  "id": "igbo-southeast",
+  "sourceUrls": [
+    "https://www.openstreetmap.org/node/8753676025"
+  ],
+  "palette": [
+    "#e5ceb8",
+    "#795342",
+    "#466b48",
+    "#99504c",
+    "#547e93",
+    "#d9a646",
+    "#777a7e",
+    "#352d33"
+  ],
+  "roof": "gable",
+  "canopyHeight": 2.2,
+  "provenance": {
+    "referenceCity": "enugu",
+    "referenceFeature": "Ogbete main Market",
+    "sourcePath": "scripts/city/research/enugu/reviewed/osm-selected.json",
+    "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual identity only; no source geometry copied",
+    "sourceScope": "Mapped place identity and activity context only; does not substantiate palette, roof, dimensions or a region-wide architecture claim",
+    "verification": "Read repository source snapshot; live OSM element not independently re-fetched",
+    "artDirectionStatus": "proposal",
+    "artDirectionRationale": "A distinct readable palette for procedural props; roof is a gameplay canopy choice",
+    "unknowns": [
+      "Regional coverage and city overrides need integration review",
+      "Colour and roof selection have no measured reference basis"
+    ]
+  }
+}

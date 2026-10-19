@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "helsinki",
+    "name": "Helsinki",
+    "state": {
+      "id": "fi-helsinki",
+      "name": "Helsinki"
+    },
+    "country": {
+      "id": "fi",
+      "name": "Finland"
+    },
+    "point": {
+      "lon": 24.9435408,
+      "lat": 60.1666204
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/finland-261011.osm.pbf",
+      "https://ourairports.com/airports/EFHK/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/helsinki/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/helsinki/facts.ts",
+        "sha256": "ba52f7002e68c5c5eefe25d4e8c3ea119a555dd609b0b356211c4909aa3ab705"
+      },
+      {
+        "path": "src/game/cities/helsinki/index.ts",
+        "sha256": "1e360532ed62950edb639e36c0c1ba62c2dbcbfbb55e704625072016fa74c9e2"
+      },
+      {
+        "path": "src/game/cities/helsinki/places.ts",
+        "sha256": "f5d7e0d1efce65e4b49c7b659160debfeafb0a2f8f554de0402e08c2d78b0f5e"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "helsinki-airport-helsinki-airport",
+      "name": "Helsinki Vantaa Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.963341,
+        "lat": 60.318363
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-airport-helsinki-airport-1",
+        "helsinki-helsinki-airport-helsinki-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "helsinki-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-clinic",
+      "name": "Malmi Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.999337,
+        "lat": 60.253403
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-clinic-1",
+        "helsinki-helsinki-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/333579518"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11880714"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-community-notices",
+      "name": "Finnish Institute for Health and Welfare",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.898061,
+        "lat": 60.201297
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-community-notices-1",
+        "helsinki-helsinki-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11438211295"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4354957"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-community-voting-game",
+      "name": "Arabianaukio",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.97281,
+        "lat": 60.2064
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-community-voting-game-1",
+        "helsinki-helsinki-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/9935906"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11852399"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-community-workshop",
+      "name": "Roihuvuoren kirjasto",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.052814,
+        "lat": 60.194521
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-community-workshop-1",
+        "helsinki-helsinki-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/50821497"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q77562940"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-market-game",
+      "name": "Centre commercial de Vantaanpuisto",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.856375,
+        "lat": 60.301283
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-market-game-1",
+        "helsinki-helsinki-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/27518041"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11900403"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-meal-stop",
+      "name": "Robert's Coffee",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.964857,
+        "lat": 60.292189
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-meal-stop-1",
+        "helsinki-helsinki-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5679165168"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1445337"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-osm-node-9712397575",
+      "name": "Friends & Brgrs",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.891432,
+        "lat": 60.237443
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-osm-node-9712397575-1",
+        "helsinki-helsinki-osm-node-9712397575-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9712397575"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q65232204"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-osm-way-115770414",
+      "name": "Viikki campus",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.016968,
+        "lat": 60.226654
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-osm-way-115770414-1",
+        "helsinki-helsinki-osm-way-115770414-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/115770414"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7929057"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-osm-way-123034962",
+      "name": "Vesikko",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.989602,
+        "lat": 60.14256
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-osm-way-123034962-1",
+        "helsinki-helsinki-osm-way-123034962-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/123034962"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1312530"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-osm-way-17038654",
+      "name": "Kulosaaren Casino",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.006416,
+        "lat": 60.180759
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-osm-way-17038654-1",
+        "helsinki-helsinki-osm-way-17038654-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/17038654"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11873284"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-osm-way-218286514",
+      "name": "Leppävaaran urheilupuisto",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.801777,
+        "lat": 60.226056
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-osm-way-218286514-1",
+        "helsinki-helsinki-osm-way-218286514-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/218286514"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q18660549"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-osm-way-23704046",
+      "name": "National Defence University of Finland",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.054848,
+        "lat": 60.153619
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-osm-way-23704046-1",
+        "helsinki-helsinki-osm-way-23704046-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/23704046"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3041652"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-osm-way-240369113",
+      "name": "Viipurinkivi",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.10817,
+        "lat": 60.15149
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-osm-way-240369113-1",
+        "helsinki-helsinki-osm-way-240369113-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/240369113"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20249941"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-osm-way-320921828",
+      "name": "Vantaan vapaaseurakunta",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.040466,
+        "lat": 60.305367
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-osm-way-320921828-1",
+        "helsinki-helsinki-osm-way-320921828-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/320921828"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q127784670"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-osm-way-378932257",
+      "name": "Linnaisten Rautakaivos",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.776968,
+        "lat": 60.256039
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-osm-way-378932257-1",
+        "helsinki-helsinki-osm-way-378932257-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/378932257"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q18662309"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-osm-way-404325219",
+      "name": "Merikylpylänpuisto",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.87254,
+        "lat": 60.153865
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-osm-way-404325219-1",
+        "helsinki-helsinki-osm-way-404325219-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/404325219"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q18660806"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-osm-way-4254163",
+      "name": "Veikkaus Arena",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.929184,
+        "lat": 60.205501
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-osm-way-4254163-1",
+        "helsinki-helsinki-osm-way-4254163-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/4254163"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q33176"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-osm-way-58253939",
+      "name": "Puotilan kappeli",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.105039,
+        "lat": 60.211388
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-osm-way-58253939-1",
+        "helsinki-helsinki-osm-way-58253939-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/58253939"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11889125"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-osm-way-852039737",
+      "name": "Länsiviitta",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.775923,
+        "lat": 60.162917
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-osm-way-852039737-1",
+        "helsinki-helsinki-osm-way-852039737-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/852039737"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q108418966"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-osm-way-91765309",
+      "name": "Kauppakeskus Ruoholahti",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.910399,
+        "lat": 60.163731
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-osm-way-91765309-1",
+        "helsinki-helsinki-osm-way-91765309-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/91765309"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11870600"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-osm-way-985184377",
+      "name": "Metropolia University of Applied Sciences, Myyrmäki Campus",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.844256,
+        "lat": 60.258088
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-osm-way-985184377-1",
+        "helsinki-helsinki-osm-way-985184377-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/985184377"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5710515"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-quiet-reflection",
+      "name": "Vaaralan kappeli",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.095812,
+        "lat": 60.263811
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-quiet-reflection-1",
+        "helsinki-helsinki-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/119591025"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11899945"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-recreation",
+      "name": "Silkkiniitty",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.805151,
+        "lat": 60.181144
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-recreation-1",
+        "helsinki-helsinki-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/4820257"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q121004734"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "helsinki-transit",
+      "name": "Helsinki",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.941249,
+        "lat": 60.172097
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "helsinki-helsinki-transit-1",
+        "helsinki-helsinki-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/helsinki/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/25474663"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1044613"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.9435408,
+        "lat": 60.1666204
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "helsinki-helsinki-airport-helsinki-airport-1",
+      "venueId": "helsinki-airport-helsinki-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-airport-helsinki-airport-2",
+      "venueId": "helsinki-airport-helsinki-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-clinic-1",
+      "venueId": "helsinki-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-clinic-2",
+      "venueId": "helsinki-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-community-notices-1",
+      "venueId": "helsinki-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-community-notices-2",
+      "venueId": "helsinki-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-community-voting-game-1",
+      "venueId": "helsinki-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-community-voting-game-2",
+      "venueId": "helsinki-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-community-workshop-1",
+      "venueId": "helsinki-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-community-workshop-2",
+      "venueId": "helsinki-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-market-game-1",
+      "venueId": "helsinki-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-market-game-2",
+      "venueId": "helsinki-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-meal-stop-1",
+      "venueId": "helsinki-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-meal-stop-2",
+      "venueId": "helsinki-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-node-9712397575-1",
+      "venueId": "helsinki-osm-node-9712397575",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-node-9712397575-2",
+      "venueId": "helsinki-osm-node-9712397575",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-115770414-1",
+      "venueId": "helsinki-osm-way-115770414",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-115770414-2",
+      "venueId": "helsinki-osm-way-115770414",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-123034962-1",
+      "venueId": "helsinki-osm-way-123034962",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-123034962-2",
+      "venueId": "helsinki-osm-way-123034962",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-17038654-1",
+      "venueId": "helsinki-osm-way-17038654",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-17038654-2",
+      "venueId": "helsinki-osm-way-17038654",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-218286514-1",
+      "venueId": "helsinki-osm-way-218286514",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-218286514-2",
+      "venueId": "helsinki-osm-way-218286514",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-23704046-1",
+      "venueId": "helsinki-osm-way-23704046",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-23704046-2",
+      "venueId": "helsinki-osm-way-23704046",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-240369113-1",
+      "venueId": "helsinki-osm-way-240369113",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-240369113-2",
+      "venueId": "helsinki-osm-way-240369113",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-320921828-1",
+      "venueId": "helsinki-osm-way-320921828",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-320921828-2",
+      "venueId": "helsinki-osm-way-320921828",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-378932257-1",
+      "venueId": "helsinki-osm-way-378932257",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-378932257-2",
+      "venueId": "helsinki-osm-way-378932257",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-404325219-1",
+      "venueId": "helsinki-osm-way-404325219",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-404325219-2",
+      "venueId": "helsinki-osm-way-404325219",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-4254163-1",
+      "venueId": "helsinki-osm-way-4254163",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-4254163-2",
+      "venueId": "helsinki-osm-way-4254163",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-58253939-1",
+      "venueId": "helsinki-osm-way-58253939",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-58253939-2",
+      "venueId": "helsinki-osm-way-58253939",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-852039737-1",
+      "venueId": "helsinki-osm-way-852039737",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-852039737-2",
+      "venueId": "helsinki-osm-way-852039737",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-91765309-1",
+      "venueId": "helsinki-osm-way-91765309",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-91765309-2",
+      "venueId": "helsinki-osm-way-91765309",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-985184377-1",
+      "venueId": "helsinki-osm-way-985184377",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-osm-way-985184377-2",
+      "venueId": "helsinki-osm-way-985184377",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-quiet-reflection-1",
+      "venueId": "helsinki-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-quiet-reflection-2",
+      "venueId": "helsinki-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-recreation-1",
+      "venueId": "helsinki-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-recreation-2",
+      "venueId": "helsinki-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-transit-1",
+      "venueId": "helsinki-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    },
+    {
+      "id": "helsinki-helsinki-transit-2",
+      "venueId": "helsinki-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/helsinki/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "helsinki-airport-helsinki-airport",
+    "helsinki-clinic",
+    "helsinki-community-notices",
+    "helsinki-community-voting-game",
+    "helsinki-community-workshop",
+    "helsinki-market-game",
+    "helsinki-meal-stop",
+    "helsinki-osm-node-9712397575",
+    "helsinki-osm-way-115770414",
+    "helsinki-osm-way-123034962",
+    "helsinki-osm-way-17038654",
+    "helsinki-osm-way-218286514",
+    "helsinki-osm-way-23704046",
+    "helsinki-osm-way-240369113",
+    "helsinki-osm-way-320921828",
+    "helsinki-osm-way-378932257",
+    "helsinki-osm-way-404325219",
+    "helsinki-osm-way-4254163",
+    "helsinki-osm-way-58253939",
+    "helsinki-osm-way-852039737",
+    "helsinki-osm-way-91765309",
+    "helsinki-osm-way-985184377",
+    "helsinki-quiet-reflection",
+    "helsinki-recreation",
+    "helsinki-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "9bbb20022971d2afc198abaaeb1ed5e04fa3d7bdda4e306a9538366ea7a8b513",
+    "contentSha256": "e36e77bf496ee8bd43270dee0a5b8fb9a28908e3d478dc907938964e73c3489e"
+  }
+}

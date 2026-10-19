@@ -1,0 +1,1290 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "minna",
+    "name": "Minna",
+    "state": {
+      "id": "niger",
+      "name": "Niger"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 6.5569444444444,
+      "lat": 9.6138888888889
+    }
+  },
+  "style": {
+    "region": "gulf-guinea",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/minna/content.ts",
+        "sha256": "66a16251c1d636e75164c26f372a7860fbcbe1cab1af977d38520f8ce13e724a"
+      },
+      {
+        "path": "src/game/cities/minna/index.ts",
+        "sha256": "2bebd3b819a374603dd725eae4de7aaf571f9cb6595077c7500459c2e2cefd9f"
+      },
+      {
+        "path": "src/game/cities/minna/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/minna/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for minna.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "federal-library-minna",
+      "name": "Federal Library Minna",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.5376404,
+        "lat": 9.6136513
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor point"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor point",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "minna-federal-library-minna-1",
+        "minna-federal-library-minna-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for minna."
+      }
+    },
+    {
+      "id": "fut-minna-bosso-campus",
+      "name": "Federal University of Technology Minna, Bosso Campus",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.5258588,
+        "lat": 9.6538292
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "minna-fut-minna-bosso-campus-1",
+        "minna-fut-minna-bosso-campus-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for minna."
+      }
+    },
+    {
+      "id": "fut-minna-main-campus",
+      "name": "Federal University of Technology, Minna",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.4469008,
+        "lat": 9.5310126
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "minna-fut-minna-main-campus-1",
+        "minna-fut-minna-main-campus-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for minna."
+      }
+    },
+    {
+      "id": "general-hospital-minna",
+      "name": "General Hospital Minna",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.5446701,
+        "lat": 9.612486
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "minna-general-hospital-minna-1",
+        "minna-general-hospital-minna-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for minna."
+      }
+    },
+    {
+      "id": "gtbank-minna",
+      "name": "GTBank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.5579187,
+        "lat": 9.6033074
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "minna-gtbank-minna-1",
+        "minna-gtbank-minna-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for minna."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.5395760175203685,
+        "lat": 9.606252252527375
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for minna."
+      }
+    },
+    {
+      "id": "kings-corner",
+      "name": "King's Corner",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.442859,
+        "lat": 9.5310111
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "minna-kings-corner-1",
+        "minna-kings-corner-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for minna."
+      }
+    },
+    {
+      "id": "kure-market",
+      "name": "Kure Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.5308373,
+        "lat": 9.6174065
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "minna-kure-market-1",
+        "minna-kure-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for minna."
+      }
+    },
+    {
+      "id": "minna-bus-park",
+      "name": "Bus Park",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.4554683,
+        "lat": 9.5365589
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "minna-minna-bus-park-1",
+        "minna-minna-bus-park-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for minna."
+      }
+    },
+    {
+      "id": "minna-stadium",
+      "name": "Minna stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.5492865,
+        "lat": 9.6217737
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "minna-minna-stadium-1",
+        "minna-minna-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for minna."
+      }
+    },
+    {
+      "id": "niger-state-house-of-assembly",
+      "name": "Niger State House Assembly",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.5682724,
+        "lat": 9.5843725
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "minna-niger-state-house-of-assembly-1",
+        "minna-niger-state-house-of-assembly-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for minna."
+      }
+    },
+    {
+      "id": "secretariat-juma-at-mosque",
+      "name": "Niger State Secretariat Juma'at Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.564997,
+        "lat": 9.5832787
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "minna-secretariat-juma-at-mosque-1",
+        "minna-secretariat-juma-at-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for minna."
+      }
+    },
+    {
+      "id": "st-michaels-cathedral",
+      "name": "St. Michael's Catholic Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.5440077,
+        "lat": 9.6254332
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "minna-st-michaels-cathedral-1",
+        "minna-st-michaels-cathedral-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for minna."
+      }
+    },
+    {
+      "id": "veez-garden",
+      "name": "Veez Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.520021,
+        "lat": 9.6439093
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Public area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Public area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "minna-veez-garden-1",
+        "minna-veez-garden-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for minna."
+      }
+    },
+    {
+      "id": "yemisi-suswam-garden",
+      "name": "Yemisi Suswam Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.449772,
+        "lat": 9.5323071
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Garden"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Garden",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "minna-yemisi-suswam-garden-1",
+        "minna-yemisi-suswam-garden-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for minna."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "minna-federal-library-minna-1",
+      "venueId": "federal-library-minna",
+      "name": "Ibrahim Danladi",
+      "role": "Site attendant",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-federal-library-minna-2",
+      "venueId": "federal-library-minna",
+      "name": "Hajiya Zulai",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-fut-minna-bosso-campus-1",
+      "venueId": "fut-minna-bosso-campus",
+      "name": "Fatima Gambo",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-fut-minna-bosso-campus-2",
+      "venueId": "fut-minna-bosso-campus",
+      "name": "Kabiru Bala",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-fut-minna-main-campus-1",
+      "venueId": "fut-minna-main-campus",
+      "name": "Ibrahim Suleiman",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-fut-minna-main-campus-2",
+      "venueId": "fut-minna-main-campus",
+      "name": "Amina Yakubu",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-general-hospital-minna-1",
+      "venueId": "general-hospital-minna",
+      "name": "Fatima Salihu",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-general-hospital-minna-2",
+      "venueId": "general-hospital-minna",
+      "name": "Kabiru Suleiman",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-gtbank-minna-1",
+      "venueId": "gtbank-minna",
+      "name": "Fatima Magaji",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-gtbank-minna-2",
+      "venueId": "gtbank-minna",
+      "name": "Kabiru Danladi",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-kings-corner-1",
+      "venueId": "kings-corner",
+      "name": "Ibrahim Tanko",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-kings-corner-2",
+      "venueId": "kings-corner",
+      "name": "Amina Magaji",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-kure-market-1",
+      "venueId": "kure-market",
+      "name": "Ibrahim Mohammed",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-kure-market-2",
+      "venueId": "kure-market",
+      "name": "Hajiya Halima",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-minna-bus-park-1",
+      "venueId": "minna-bus-park",
+      "name": "Fatima Idris",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-minna-bus-park-2",
+      "venueId": "minna-bus-park",
+      "name": "Malam Lawal",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-minna-stadium-1",
+      "venueId": "minna-stadium",
+      "name": "Ibrahim Umar",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-minna-stadium-2",
+      "venueId": "minna-stadium",
+      "name": "Amina Kabir",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-niger-state-house-of-assembly-1",
+      "venueId": "niger-state-house-of-assembly",
+      "name": "Ibrahim Sadiq",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-niger-state-house-of-assembly-2",
+      "venueId": "niger-state-house-of-assembly",
+      "name": "Amina Idris",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-secretariat-juma-at-mosque-1",
+      "venueId": "secretariat-juma-at-mosque",
+      "name": "Fatima Bello",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-secretariat-juma-at-mosque-2",
+      "venueId": "secretariat-juma-at-mosque",
+      "name": "Kabiru Mohammed",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-st-michaels-cathedral-1",
+      "venueId": "st-michaels-cathedral",
+      "name": "Ibrahim Bala",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-st-michaels-cathedral-2",
+      "venueId": "st-michaels-cathedral",
+      "name": "Hajiya Amina",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-veez-garden-1",
+      "venueId": "veez-garden",
+      "name": "Fatima Yakubu",
+      "role": "Park caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-veez-garden-2",
+      "venueId": "veez-garden",
+      "name": "Kabiru Sadiq",
+      "role": "Morning walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-yemisi-suswam-garden-1",
+      "venueId": "yemisi-suswam-garden",
+      "name": "Fatima Abubakar",
+      "role": "Garden keeper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    },
+    {
+      "id": "minna-yemisi-suswam-garden-2",
+      "venueId": "yemisi-suswam-garden",
+      "name": "Malam Kabiru",
+      "role": "Evening walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/minna/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "federal-library-minna",
+    "fut-minna-bosso-campus",
+    "fut-minna-main-campus",
+    "general-hospital-minna",
+    "gtbank-minna",
+    "kings-corner",
+    "kure-market",
+    "minna-bus-park",
+    "minna-stadium",
+    "niger-state-house-of-assembly",
+    "secretariat-juma-at-mosque",
+    "st-michaels-cathedral",
+    "veez-garden",
+    "yemisi-suswam-garden"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "709f82e028a707bc987746a26e0b99218fefb53eff5de96e4912af23f8609e10",
+    "contentSha256": "5ce3ab6ce3e4e555cc4d25d943d3403b22ffd331f136ee0540d4374c05486555"
+  }
+}

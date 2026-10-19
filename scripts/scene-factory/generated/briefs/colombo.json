@@ -1,0 +1,2135 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "colombo",
+    "name": "Colombo",
+    "state": {
+      "id": "lk-colombo",
+      "name": "Colombo"
+    },
+    "country": {
+      "id": "lk",
+      "name": "Sri Lanka"
+    },
+    "point": {
+      "lon": 79.8542005,
+      "lat": 6.9388614
+    }
+  },
+  "style": {
+    "region": "south-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/sri-lanka-261011.osm.pbf",
+      "https://ourairports.com/airports/VCBI/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/colombo/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/colombo/facts.ts",
+        "sha256": "78e11dcfa5e05cc5ccabcf18205001a994e8bb85ae727cb662143d89e304871a"
+      },
+      {
+        "path": "src/game/cities/colombo/index.ts",
+        "sha256": "140b121de1c91982152c49556246671dbbb9cdacedbd898eaa2b37cd521100e4"
+      },
+      {
+        "path": "src/game/cities/colombo/places.ts",
+        "sha256": "586d529cf888fddfd1615ad3881fe5556fe5173a0371db7ecb50980ac9e52c5c"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "colombo-airport-colombo-airport",
+      "name": "Bandaranaike International Colombo Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.88410186767578,
+        "lat": 7.180759906768799
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-airport-colombo-airport-1",
+        "colombo-colombo-airport-colombo-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "colombo-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-clinic",
+      "name": "North Colombo Teaching Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.924966,
+        "lat": 7.02965
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-clinic-1",
+        "colombo-colombo-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/287215555"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30265271"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-community-notices",
+      "name": "Parliament of Sri Lanka",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.91866,
+        "lat": 6.886726
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-community-notices-1",
+        "colombo-colombo-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/330906531"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1450753"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-community-voting-game",
+      "name": "Town Hall, Colombo",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.863702,
+        "lat": 6.9158
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-community-voting-game-1",
+        "colombo-colombo-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/13887429"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q14477450"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-community-workshop",
+      "name": "Institute of Engineering Technology",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.873937,
+        "lat": 7.156486
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-community-workshop-1",
+        "colombo-colombo-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4237557729"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6040285"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-market-game",
+      "name": "Majestic City Shopping Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.854684,
+        "lat": 6.893968
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-market-game-1",
+        "colombo-colombo-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/208814352"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17011802"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-meal-stop",
+      "name": "Jade Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.930577,
+        "lat": 6.845094
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-meal-stop-1",
+        "colombo-colombo-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/913095573"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-osm-node-1252487341",
+      "name": "St. Matthias Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.878052,
+        "lat": 6.799385
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-osm-node-1252487341-1",
+        "colombo-colombo-osm-node-1252487341-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1252487341"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q38251288"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-osm-node-618557052",
+      "name": "Western Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.885636,
+        "lat": 6.911705
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-osm-node-618557052-1",
+        "colombo-colombo-osm-node-618557052-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/618557052"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20047300"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-osm-way-1023143295",
+      "name": "St. Lawrence Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.863341,
+        "lat": 6.870756
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-osm-way-1023143295-1",
+        "colombo-colombo-osm-way-1023143295-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1023143295"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q29051502"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-osm-way-102650989",
+      "name": "Lanka Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.875778,
+        "lat": 6.889679
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-osm-way-102650989-1",
+        "colombo-colombo-osm-way-102650989-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/102650989"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6487154"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-osm-way-193287676",
+      "name": "Buddhist & Pali University of Sri Lanka",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 80.024428,
+        "lat": 6.844728
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-osm-way-193287676-1",
+        "colombo-colombo-osm-way-193287676-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/193287676"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4984263"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-osm-way-235938853",
+      "name": "Pearl Residences",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.97464,
+        "lat": 6.915109
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-osm-way-235938853-1",
+        "colombo-colombo-osm-way-235938853-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/235938853"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7585924"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-osm-way-27712165",
+      "name": "Galle Face Green",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.844575,
+        "lat": 6.924778
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-osm-way-27712165-1",
+        "colombo-colombo-osm-way-27712165-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/27712165"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1492279"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-osm-way-303909847",
+      "name": "Independence Memorial Hall",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.867583,
+        "lat": 6.904133
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-osm-way-303909847-1",
+        "colombo-colombo-osm-way-303909847-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/303909847"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6016118"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-osm-way-441724047",
+      "name": "President's House",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.842701,
+        "lat": 6.936112
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-osm-way-441724047-1",
+        "colombo-colombo-osm-way-441724047-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/441724047"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7241156"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-osm-way-48893708",
+      "name": "National Zoological Gardens",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.8742,
+        "lat": 6.857177
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-osm-way-48893708-1",
+        "colombo-colombo-osm-way-48893708-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/48893708"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1144452"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-osm-way-51193146",
+      "name": "Sugathadasa Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.868866,
+        "lat": 6.948025
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-osm-way-51193146-1",
+        "colombo-colombo-osm-way-51193146-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/51193146"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3271680"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-osm-way-51208063",
+      "name": "P.Saravanamuththu Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.884276,
+        "lat": 6.918898
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-osm-way-51208063-1",
+        "colombo-colombo-osm-way-51208063-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/51208063"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7124759"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-osm-way-665919418",
+      "name": "R. Premadasa International Cricket Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.872288,
+        "lat": 6.939968
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-osm-way-665919418-1",
+        "colombo-colombo-osm-way-665919418-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/665919418"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2121558"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-osm-way-666495757",
+      "name": "Colombo City Center",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.855417,
+        "lat": 6.917602
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-osm-way-666495757-1",
+        "colombo-colombo-osm-way-666495757-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/666495757"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30674562"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-osm-way-98391431",
+      "name": "St. Sebastian College",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.880686,
+        "lat": 6.782171
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-osm-way-98391431-1",
+        "colombo-colombo-osm-way-98391431-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/98391431"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7591664"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-quiet-reflection",
+      "name": "Sumatipāla Nā Himi Hermitage",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 80.026243,
+        "lat": 6.975149
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-quiet-reflection-1",
+        "colombo-colombo-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1105378926"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q35286007"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-recreation",
+      "name": "Weras Ganga Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.894152,
+        "lat": 6.841527
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-recreation-1",
+        "colombo-colombo-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/594531505"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20987513"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "colombo-transit",
+      "name": "Maradana Railway Station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.865796,
+        "lat": 6.929237
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "colombo-colombo-transit-1",
+        "colombo-colombo-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/colombo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5847983789"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6754588"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 79.8542005,
+        "lat": 6.9388614
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "colombo-colombo-airport-colombo-airport-1",
+      "venueId": "colombo-airport-colombo-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-airport-colombo-airport-2",
+      "venueId": "colombo-airport-colombo-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-clinic-1",
+      "venueId": "colombo-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-clinic-2",
+      "venueId": "colombo-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-community-notices-1",
+      "venueId": "colombo-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-community-notices-2",
+      "venueId": "colombo-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-community-voting-game-1",
+      "venueId": "colombo-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-community-voting-game-2",
+      "venueId": "colombo-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-community-workshop-1",
+      "venueId": "colombo-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-community-workshop-2",
+      "venueId": "colombo-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-market-game-1",
+      "venueId": "colombo-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-market-game-2",
+      "venueId": "colombo-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-meal-stop-1",
+      "venueId": "colombo-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-meal-stop-2",
+      "venueId": "colombo-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-node-1252487341-1",
+      "venueId": "colombo-osm-node-1252487341",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-node-1252487341-2",
+      "venueId": "colombo-osm-node-1252487341",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-node-618557052-1",
+      "venueId": "colombo-osm-node-618557052",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-node-618557052-2",
+      "venueId": "colombo-osm-node-618557052",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-1023143295-1",
+      "venueId": "colombo-osm-way-1023143295",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-1023143295-2",
+      "venueId": "colombo-osm-way-1023143295",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-102650989-1",
+      "venueId": "colombo-osm-way-102650989",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-102650989-2",
+      "venueId": "colombo-osm-way-102650989",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-193287676-1",
+      "venueId": "colombo-osm-way-193287676",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-193287676-2",
+      "venueId": "colombo-osm-way-193287676",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-235938853-1",
+      "venueId": "colombo-osm-way-235938853",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-235938853-2",
+      "venueId": "colombo-osm-way-235938853",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-27712165-1",
+      "venueId": "colombo-osm-way-27712165",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-27712165-2",
+      "venueId": "colombo-osm-way-27712165",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-303909847-1",
+      "venueId": "colombo-osm-way-303909847",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-303909847-2",
+      "venueId": "colombo-osm-way-303909847",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-441724047-1",
+      "venueId": "colombo-osm-way-441724047",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-441724047-2",
+      "venueId": "colombo-osm-way-441724047",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-48893708-1",
+      "venueId": "colombo-osm-way-48893708",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-48893708-2",
+      "venueId": "colombo-osm-way-48893708",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-51193146-1",
+      "venueId": "colombo-osm-way-51193146",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-51193146-2",
+      "venueId": "colombo-osm-way-51193146",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-51208063-1",
+      "venueId": "colombo-osm-way-51208063",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-51208063-2",
+      "venueId": "colombo-osm-way-51208063",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-665919418-1",
+      "venueId": "colombo-osm-way-665919418",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-665919418-2",
+      "venueId": "colombo-osm-way-665919418",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-666495757-1",
+      "venueId": "colombo-osm-way-666495757",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-666495757-2",
+      "venueId": "colombo-osm-way-666495757",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-98391431-1",
+      "venueId": "colombo-osm-way-98391431",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-osm-way-98391431-2",
+      "venueId": "colombo-osm-way-98391431",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-quiet-reflection-1",
+      "venueId": "colombo-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-quiet-reflection-2",
+      "venueId": "colombo-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-recreation-1",
+      "venueId": "colombo-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-recreation-2",
+      "venueId": "colombo-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-transit-1",
+      "venueId": "colombo-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    },
+    {
+      "id": "colombo-colombo-transit-2",
+      "venueId": "colombo-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/colombo/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "colombo-airport-colombo-airport",
+    "colombo-clinic",
+    "colombo-community-notices",
+    "colombo-community-voting-game",
+    "colombo-community-workshop",
+    "colombo-market-game",
+    "colombo-meal-stop",
+    "colombo-osm-node-1252487341",
+    "colombo-osm-node-618557052",
+    "colombo-osm-way-1023143295",
+    "colombo-osm-way-102650989",
+    "colombo-osm-way-193287676",
+    "colombo-osm-way-235938853",
+    "colombo-osm-way-27712165",
+    "colombo-osm-way-303909847",
+    "colombo-osm-way-441724047",
+    "colombo-osm-way-48893708",
+    "colombo-osm-way-51193146",
+    "colombo-osm-way-51208063",
+    "colombo-osm-way-665919418",
+    "colombo-osm-way-666495757",
+    "colombo-osm-way-98391431",
+    "colombo-quiet-reflection",
+    "colombo-recreation",
+    "colombo-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "73927f6da52aeaad8b94aa95844c7ab82bc69f54674152f3f8d601b73c159e4d",
+    "contentSha256": "99fb2e5126d5976dba349765b57b9707cc6cb5665de1eed3c1cabfe955936052"
+  }
+}

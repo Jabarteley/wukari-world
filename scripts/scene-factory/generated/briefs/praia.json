@@ -1,0 +1,2091 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "praia",
+    "name": "Praia",
+    "state": {
+      "id": "cv-praia",
+      "name": "Praia"
+    },
+    "country": {
+      "id": "cv",
+      "name": "Cape Verde"
+    },
+    "point": {
+      "lon": -23.5095095,
+      "lat": 14.9162811
+    }
+  },
+  "style": {
+    "region": "gulf-guinea",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/africa/cape-verde-261011.osm.pbf",
+      "https://ourairports.com/airports/GVNP/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/praia/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/praia/facts.ts",
+        "sha256": "8531906641e2be9078acba0fc073e84ed36cdb0a03730e5cc4925ada4827cfea"
+      },
+      {
+        "path": "src/game/cities/praia/index.ts",
+        "sha256": "070389c82ed438db076dd94d5b49d9519c5e53c8f1885b24f9d5122a28610178"
+      },
+      {
+        "path": "src/game/cities/praia/places.ts",
+        "sha256": "96c1b42dca516fdab95406258cc41bac8ffbc6985b2f9f3a99ee36ccbaceba74"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.509509500000004,
+        "lat": 14.9162811
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "praia-airport-praia-airport",
+      "name": "Nelson Mandela International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.484728,
+        "lat": 14.941126
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-airport-praia-airport-1",
+        "praia-praia-airport-praia-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "praia-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-clinic",
+      "name": "Hospital de São Domingos",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.554767,
+        "lat": 15.022297
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-clinic-1",
+        "praia-praia-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7426734305"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-community-notices",
+      "name": "Palácio Presidencial",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.509238,
+        "lat": 14.916393
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-community-notices-1",
+        "praia-praia-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/12850410"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3361218"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-community-voting-game",
+      "name": "Praça Luís de Camões",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.507301,
+        "lat": 14.919512
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-community-voting-game-1",
+        "praia-praia-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/194097856"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q48784632"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-community-workshop",
+      "name": "University of Cape Verde",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.548817,
+        "lat": 14.921636
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-community-workshop-1",
+        "praia-praia-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1002802348"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1707609"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-market-game",
+      "name": "Mercado Municipal",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.632538,
+        "lat": 15.083082
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-market-game-1",
+        "praia-praia-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8069363808"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-meal-stop",
+      "name": "Kusa di kasa",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.602627,
+        "lat": 14.913962
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-meal-stop-1",
+        "praia-praia-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/283689726"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-osm-node-4706531118",
+      "name": "Praia Shopping",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.52028,
+        "lat": 14.903593
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-osm-node-4706531118-1",
+        "praia-praia-osm-node-4706531118-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4706531118"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-osm-node-4970670691",
+      "name": "Ponta Sambala",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.457738,
+        "lat": 14.972859
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-osm-node-4970670691-1",
+        "praia-praia-osm-node-4970670691-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4970670691"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-osm-node-6432419161",
+      "name": "Big Lanche",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.47406,
+        "lat": 15.064921
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-osm-node-6432419161-1",
+        "praia-praia-osm-node-6432419161-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6432419161"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-osm-node-7490200241",
+      "name": "Mercado de Minho Branco",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.520484,
+        "lat": 15.024098
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-osm-node-7490200241-1",
+        "praia-praia-osm-node-7490200241-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7490200241"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-osm-node-7933657029",
+      "name": "Restaurante Daly",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.591368,
+        "lat": 15.065297
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-osm-node-7933657029-1",
+        "praia-praia-osm-node-7933657029-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7933657029"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-osm-node-909626615",
+      "name": "Pelourinho da Cidade Velha",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.605083,
+        "lat": 14.915042
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-osm-node-909626615-1",
+        "praia-praia-osm-node-909626615-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/909626615"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q38312773"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-osm-relation-12849568",
+      "name": "Arquivo Historico Nacional",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.511506,
+        "lat": 14.914615
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-osm-relation-12849568-1",
+        "praia-praia-osm-relation-12849568-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/12849568"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q14915083"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-osm-way-1208534900",
+      "name": "Estádio Nacional de Cabo Verde",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.53078,
+        "lat": 14.975861
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-osm-way-1208534900-1",
+        "praia-praia-osm-way-1208534900-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1208534900"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-osm-way-194252477",
+      "name": "Museou Etnográfico",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.507231,
+        "lat": 14.920913
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-osm-way-194252477-1",
+        "praia-praia-osm-way-194252477-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/194252477"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3330560"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-osm-way-236735652",
+      "name": "Unica",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.526859,
+        "lat": 14.916739
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-osm-way-236735652-1",
+        "praia-praia-osm-way-236735652-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/236735652"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q100706396"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-osm-way-239654104",
+      "name": "Hospital de Trindade, Psicatria",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.555805,
+        "lat": 14.960577
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-osm-way-239654104-1",
+        "praia-praia-osm-way-239654104-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/239654104"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-osm-way-240118946",
+      "name": "Jean Piaget University of Cape Verde",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.537285,
+        "lat": 14.920572
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-osm-way-240118946-1",
+        "praia-praia-osm-way-240118946-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/240118946"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1707547"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-osm-way-665879789",
+      "name": "Estádio da Varzea",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.512084,
+        "lat": 14.916135
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-osm-way-665879789-1",
+        "praia-praia-osm-way-665879789-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/665879789"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q569437"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-osm-way-819344290",
+      "name": "Centro de Saúde Achada Grande Trás",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.488249,
+        "lat": 14.921143
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-osm-way-819344290-1",
+        "praia-praia-osm-way-819344290-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/819344290"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-osm-way-954580000",
+      "name": "Igreja de Nossa Senhora da Graça",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.508671,
+        "lat": 14.917283
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-osm-way-954580000-1",
+        "praia-praia-osm-way-954580000-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/954580000"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3580187"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-quiet-reflection",
+      "name": "Nossa Senhora do Rosário",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.605251,
+        "lat": 14.916548
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-quiet-reflection-1",
+        "praia-praia-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/197049485"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28921361"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-recreation",
+      "name": "Praça Alexandre Albuquerque",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.509137,
+        "lat": 14.917699
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-recreation-1",
+        "praia-praia-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/95807245"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28448679"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "praia-transit",
+      "name": "Porto da Praia",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -23.500629,
+        "lat": 14.911544
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "praia-praia-transit-1",
+        "praia-praia-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/praia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/80035032"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "praia-praia-airport-praia-airport-1",
+      "venueId": "praia-airport-praia-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-airport-praia-airport-2",
+      "venueId": "praia-airport-praia-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-clinic-1",
+      "venueId": "praia-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-clinic-2",
+      "venueId": "praia-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-community-notices-1",
+      "venueId": "praia-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-community-notices-2",
+      "venueId": "praia-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-community-voting-game-1",
+      "venueId": "praia-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-community-voting-game-2",
+      "venueId": "praia-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-community-workshop-1",
+      "venueId": "praia-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-community-workshop-2",
+      "venueId": "praia-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-market-game-1",
+      "venueId": "praia-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-market-game-2",
+      "venueId": "praia-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-meal-stop-1",
+      "venueId": "praia-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-meal-stop-2",
+      "venueId": "praia-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-node-4706531118-1",
+      "venueId": "praia-osm-node-4706531118",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-node-4706531118-2",
+      "venueId": "praia-osm-node-4706531118",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-node-4970670691-1",
+      "venueId": "praia-osm-node-4970670691",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-node-4970670691-2",
+      "venueId": "praia-osm-node-4970670691",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-node-6432419161-1",
+      "venueId": "praia-osm-node-6432419161",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-node-6432419161-2",
+      "venueId": "praia-osm-node-6432419161",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-node-7490200241-1",
+      "venueId": "praia-osm-node-7490200241",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-node-7490200241-2",
+      "venueId": "praia-osm-node-7490200241",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-node-7933657029-1",
+      "venueId": "praia-osm-node-7933657029",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-node-7933657029-2",
+      "venueId": "praia-osm-node-7933657029",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-node-909626615-1",
+      "venueId": "praia-osm-node-909626615",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-node-909626615-2",
+      "venueId": "praia-osm-node-909626615",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-relation-12849568-1",
+      "venueId": "praia-osm-relation-12849568",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-relation-12849568-2",
+      "venueId": "praia-osm-relation-12849568",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-way-1208534900-1",
+      "venueId": "praia-osm-way-1208534900",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-way-1208534900-2",
+      "venueId": "praia-osm-way-1208534900",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-way-194252477-1",
+      "venueId": "praia-osm-way-194252477",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-way-194252477-2",
+      "venueId": "praia-osm-way-194252477",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-way-236735652-1",
+      "venueId": "praia-osm-way-236735652",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-way-236735652-2",
+      "venueId": "praia-osm-way-236735652",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-way-239654104-1",
+      "venueId": "praia-osm-way-239654104",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-way-239654104-2",
+      "venueId": "praia-osm-way-239654104",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-way-240118946-1",
+      "venueId": "praia-osm-way-240118946",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-way-240118946-2",
+      "venueId": "praia-osm-way-240118946",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-way-665879789-1",
+      "venueId": "praia-osm-way-665879789",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-way-665879789-2",
+      "venueId": "praia-osm-way-665879789",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-way-819344290-1",
+      "venueId": "praia-osm-way-819344290",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-way-819344290-2",
+      "venueId": "praia-osm-way-819344290",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-way-954580000-1",
+      "venueId": "praia-osm-way-954580000",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-osm-way-954580000-2",
+      "venueId": "praia-osm-way-954580000",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-quiet-reflection-1",
+      "venueId": "praia-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-quiet-reflection-2",
+      "venueId": "praia-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-recreation-1",
+      "venueId": "praia-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-recreation-2",
+      "venueId": "praia-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-transit-1",
+      "venueId": "praia-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    },
+    {
+      "id": "praia-praia-transit-2",
+      "venueId": "praia-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/praia/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "praia-airport-praia-airport",
+    "praia-clinic",
+    "praia-community-notices",
+    "praia-community-voting-game",
+    "praia-community-workshop",
+    "praia-market-game",
+    "praia-meal-stop",
+    "praia-osm-node-4706531118",
+    "praia-osm-node-4970670691",
+    "praia-osm-node-6432419161",
+    "praia-osm-node-7490200241",
+    "praia-osm-node-7933657029",
+    "praia-osm-node-909626615",
+    "praia-osm-relation-12849568",
+    "praia-osm-way-1208534900",
+    "praia-osm-way-194252477",
+    "praia-osm-way-236735652",
+    "praia-osm-way-239654104",
+    "praia-osm-way-240118946",
+    "praia-osm-way-665879789",
+    "praia-osm-way-819344290",
+    "praia-osm-way-954580000",
+    "praia-quiet-reflection",
+    "praia-recreation",
+    "praia-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "413afb75aa7132572d0fff5a50a0c1cd1eb36ff48fb599c026c9e575f81c376e",
+    "contentSha256": "1928901710c36b214fdc72ea1d7d9e02460469dc32c292c780af483a3e8f158c"
+  }
+}

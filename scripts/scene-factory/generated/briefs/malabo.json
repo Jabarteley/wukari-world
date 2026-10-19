@@ -1,0 +1,2055 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "malabo",
+    "name": "Malabo",
+    "state": {
+      "id": "gq-malabo",
+      "name": "Malabo"
+    },
+    "country": {
+      "id": "gq",
+      "name": "Equatorial Guinea"
+    },
+    "point": {
+      "lon": 8.7740663,
+      "lat": 3.741877
+    }
+  },
+  "style": {
+    "region": "gulf-guinea",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/africa/equatorial-guinea-261011.osm.pbf",
+      "https://ourairports.com/airports/FGSL/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/malabo/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/malabo/facts.ts",
+        "sha256": "cb80d011548cb467b7c81a96c6bbcff559346874d643ba6cb44ef46000327ad5"
+      },
+      {
+        "path": "src/game/cities/malabo/index.ts",
+        "sha256": "bba2802ca00d67166e890bbacc5cba77fb00cf218b8904b4bdb941ef279b6621"
+      },
+      {
+        "path": "src/game/cities/malabo/places.ts",
+        "sha256": "c4d6674a19e2958f9a4d5f588ac19154891d3ae33946525c5d5f70fd96ba7456"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.7740663,
+        "lat": 3.7418770000000006
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "malabo-airport-malabo-airport",
+      "name": "Malabo International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.70872,
+        "lat": 3.75527
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-airport-malabo-airport-1",
+        "malabo-malabo-airport-malabo-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "malabo-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-clinic",
+      "name": "Hospital de Sampaka",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.73076,
+        "lat": 3.720819
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-clinic-1",
+        "malabo-malabo-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/678133924"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-community-notices",
+      "name": "Senate of the Republic of Equatorial Guinea",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.769905,
+        "lat": 3.735667
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-community-notices-1",
+        "malabo-malabo-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/282840658"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-community-voting-game",
+      "name": "Ayuntamiento de Rebola",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.835126,
+        "lat": 3.726219
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-community-voting-game-1",
+        "malabo-malabo-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/307509417"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-community-workshop",
+      "name": "Université nationale de Guinée équatoriale",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.775045,
+        "lat": 3.747047
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-community-workshop-1",
+        "malabo-malabo-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/276917529"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3291919"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-market-game",
+      "name": "VENTAGE",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.751521,
+        "lat": 3.753092
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-market-game-1",
+        "malabo-malabo-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8442109718"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-meal-stop",
+      "name": "Equatore Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.908814,
+        "lat": 3.752484
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-meal-stop-1",
+        "malabo-malabo-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3151789258"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-osm-node-14180562901",
+      "name": "Semu",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.783099,
+        "lat": 3.741412
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-osm-node-14180562901-1",
+        "malabo-malabo-osm-node-14180562901-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/14180562901"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-osm-node-3299210014",
+      "name": "Gran Reserva",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.716287,
+        "lat": 3.758026
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-osm-node-3299210014-1",
+        "malabo-malabo-osm-node-3299210014-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3299210014"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-osm-node-4638964990",
+      "name": "ECG Fabrication Yard",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.68927,
+        "lat": 3.749359
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-osm-node-4638964990-1",
+        "malabo-malabo-osm-node-4638964990-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4638964990"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-osm-node-5670102933",
+      "name": "Trailhead",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.787459,
+        "lat": 3.655804
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-osm-node-5670102933-1",
+        "malabo-malabo-osm-node-5670102933-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5670102933"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-osm-node-5909941285",
+      "name": "Finca Sampaka",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.747562,
+        "lat": 3.715164
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-osm-node-5909941285-1",
+        "malabo-malabo-osm-node-5909941285-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5909941285"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-osm-node-9195927549",
+      "name": "Centro Comercial Tomos",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.783542,
+        "lat": 3.732422
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-osm-node-9195927549-1",
+        "malabo-malabo-osm-node-9195927549-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9195927549"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-osm-node-9554184978",
+      "name": "Cafetería Muankaba",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.757624,
+        "lat": 3.740468
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-osm-node-9554184978-1",
+        "malabo-malabo-osm-node-9554184978-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9554184978"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-osm-node-9970815565",
+      "name": "Salón del Reino de los Testigos de Jehová",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.796234,
+        "lat": 3.739101
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-osm-node-9970815565-1",
+        "malabo-malabo-osm-node-9970815565-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9970815565"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-osm-way-1364477067",
+      "name": "Campus Universitario de Basupu",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.671914,
+        "lat": 3.71837
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-osm-way-1364477067-1",
+        "malabo-malabo-osm-way-1364477067-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1364477067"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-osm-way-272208994",
+      "name": "La Paz Medical Center",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.877303,
+        "lat": 3.762197
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-osm-way-272208994-1",
+        "malabo-malabo-osm-way-272208994-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/272208994"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-osm-way-347366427",
+      "name": "Estadio de Malabo",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.769205,
+        "lat": 3.725032
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-osm-way-347366427-1",
+        "malabo-malabo-osm-way-347366427-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/347366427"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1510743"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-osm-way-363635642",
+      "name": "Plaza de San Fernando",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.799645,
+        "lat": 3.757435
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-osm-way-363635642-1",
+        "malabo-malabo-osm-way-363635642-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/363635642"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-osm-way-638398364",
+      "name": "Parque de Alcaide",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.788988,
+        "lat": 3.744467
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-osm-way-638398364-1",
+        "malabo-malabo-osm-way-638398364-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/638398364"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-osm-way-678125725",
+      "name": "Estadio Pablo Boyas",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.737038,
+        "lat": 3.719315
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-osm-way-678125725-1",
+        "malabo-malabo-osm-way-678125725-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/678125725"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-osm-way-678128961",
+      "name": "Colegio María Cano",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.747833,
+        "lat": 3.729546
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-osm-way-678128961-1",
+        "malabo-malabo-osm-way-678128961-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/678128961"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-quiet-reflection",
+      "name": "Cathédrale Sainte-Élisabeth",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.782879,
+        "lat": 3.756948
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-quiet-reflection-1",
+        "malabo-malabo-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/273891106"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q8342845"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-recreation",
+      "name": "Malabo National Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.728007,
+        "lat": 3.748725
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-recreation-1",
+        "malabo-malabo-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/654502236"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "malabo-transit",
+      "name": "Puerto de Malabo",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 8.781096,
+        "lat": 3.758631
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "malabo-malabo-transit-1",
+        "malabo-malabo-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/malabo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4872455415"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "malabo-malabo-airport-malabo-airport-1",
+      "venueId": "malabo-airport-malabo-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-airport-malabo-airport-2",
+      "venueId": "malabo-airport-malabo-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-clinic-1",
+      "venueId": "malabo-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-clinic-2",
+      "venueId": "malabo-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-community-notices-1",
+      "venueId": "malabo-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-community-notices-2",
+      "venueId": "malabo-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-community-voting-game-1",
+      "venueId": "malabo-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-community-voting-game-2",
+      "venueId": "malabo-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-community-workshop-1",
+      "venueId": "malabo-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-community-workshop-2",
+      "venueId": "malabo-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-market-game-1",
+      "venueId": "malabo-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-market-game-2",
+      "venueId": "malabo-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-meal-stop-1",
+      "venueId": "malabo-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-meal-stop-2",
+      "venueId": "malabo-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-node-14180562901-1",
+      "venueId": "malabo-osm-node-14180562901",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-node-14180562901-2",
+      "venueId": "malabo-osm-node-14180562901",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-node-3299210014-1",
+      "venueId": "malabo-osm-node-3299210014",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-node-3299210014-2",
+      "venueId": "malabo-osm-node-3299210014",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-node-4638964990-1",
+      "venueId": "malabo-osm-node-4638964990",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-node-4638964990-2",
+      "venueId": "malabo-osm-node-4638964990",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-node-5670102933-1",
+      "venueId": "malabo-osm-node-5670102933",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-node-5670102933-2",
+      "venueId": "malabo-osm-node-5670102933",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-node-5909941285-1",
+      "venueId": "malabo-osm-node-5909941285",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-node-5909941285-2",
+      "venueId": "malabo-osm-node-5909941285",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-node-9195927549-1",
+      "venueId": "malabo-osm-node-9195927549",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-node-9195927549-2",
+      "venueId": "malabo-osm-node-9195927549",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-node-9554184978-1",
+      "venueId": "malabo-osm-node-9554184978",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-node-9554184978-2",
+      "venueId": "malabo-osm-node-9554184978",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-node-9970815565-1",
+      "venueId": "malabo-osm-node-9970815565",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-node-9970815565-2",
+      "venueId": "malabo-osm-node-9970815565",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-way-1364477067-1",
+      "venueId": "malabo-osm-way-1364477067",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-way-1364477067-2",
+      "venueId": "malabo-osm-way-1364477067",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-way-272208994-1",
+      "venueId": "malabo-osm-way-272208994",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-way-272208994-2",
+      "venueId": "malabo-osm-way-272208994",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-way-347366427-1",
+      "venueId": "malabo-osm-way-347366427",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-way-347366427-2",
+      "venueId": "malabo-osm-way-347366427",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-way-363635642-1",
+      "venueId": "malabo-osm-way-363635642",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-way-363635642-2",
+      "venueId": "malabo-osm-way-363635642",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-way-638398364-1",
+      "venueId": "malabo-osm-way-638398364",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-way-638398364-2",
+      "venueId": "malabo-osm-way-638398364",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-way-678125725-1",
+      "venueId": "malabo-osm-way-678125725",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-way-678125725-2",
+      "venueId": "malabo-osm-way-678125725",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-way-678128961-1",
+      "venueId": "malabo-osm-way-678128961",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-osm-way-678128961-2",
+      "venueId": "malabo-osm-way-678128961",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-quiet-reflection-1",
+      "venueId": "malabo-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-quiet-reflection-2",
+      "venueId": "malabo-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-recreation-1",
+      "venueId": "malabo-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-recreation-2",
+      "venueId": "malabo-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-transit-1",
+      "venueId": "malabo-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    },
+    {
+      "id": "malabo-malabo-transit-2",
+      "venueId": "malabo-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/malabo/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "malabo-airport-malabo-airport",
+    "malabo-clinic",
+    "malabo-community-notices",
+    "malabo-community-voting-game",
+    "malabo-community-workshop",
+    "malabo-market-game",
+    "malabo-meal-stop",
+    "malabo-osm-node-14180562901",
+    "malabo-osm-node-3299210014",
+    "malabo-osm-node-4638964990",
+    "malabo-osm-node-5670102933",
+    "malabo-osm-node-5909941285",
+    "malabo-osm-node-9195927549",
+    "malabo-osm-node-9554184978",
+    "malabo-osm-node-9970815565",
+    "malabo-osm-way-1364477067",
+    "malabo-osm-way-272208994",
+    "malabo-osm-way-347366427",
+    "malabo-osm-way-363635642",
+    "malabo-osm-way-638398364",
+    "malabo-osm-way-678125725",
+    "malabo-osm-way-678128961",
+    "malabo-quiet-reflection",
+    "malabo-recreation",
+    "malabo-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "957121981062df4b8217d06ee700e37b90c2af8e3b0b8a743f87aea5d88487d8",
+    "contentSha256": "caca8138c669d027dfca33f96c53d96d7e404f77f20cb7b32ec34cd0383d447f"
+  }
+}

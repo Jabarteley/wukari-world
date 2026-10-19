@@ -1,0 +1,79 @@
+✔ a scene with no ambient config is what it was: no people, no layer, nothing extra drawn (25.836083ms)
+✖ every venue kind keeps its full canonical population inside the composition and draw budgets (74.134708ms)
+✖ a market with a few regulars holds a real crowd at ten, inside the budget, and a quiet hour holds few (52.633ms)
+✔ the same place at the same time draws the same people, and a market is busier at ten than at ten at night (202.833042ms)
+✔ walkers walk: over a minute their places change, on free floor, and they come in and leave by the door (74.052791ms)
+✔ a regular glances at the player who comes close, then looks away; one far off is not looked at (95.863708ms)
+✔ two regulars face each other while they talk, and go back to their own way after (48.508833ms)
+✔ a line over a person is a tag that follows them, goes away by itself, and cannot be put over someone who is not there (126.710834ms)
+✖ frame budget: the window ends the loop by itself, a weak phone gets no far crowd, off gets nobody, and dispose frees everything (90.871208ms)
+✔ host: with people, an idle venue still draws nothing; the arrival opens one window of frames and the loop ends by itself; reduced motion draws none (203.424875ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 7
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4163.38825
+
+✖ failing tests:
+
+test at src/scene/ambient/layer.test.ts:49:1
+✖ every venue kind keeps its full canonical population inside the composition and draw budgets (74.134708ms)
+  AssertionError [ERR_ASSERTION]: park@10: characters 306000 triangles
+      at assertNativeSceneBudget (file:///Users/anthonyakpan/work/joinallworld-story/src/scene/body/native-test-fixture.ts:87:10)
+      at file:///Users/anthonyakpan/work/joinallworld-story/src/scene/ambient/layer.test.ts:61:7
+      at at (file:///Users/anthonyakpan/work/joinallworld-story/src/scene/ambient/layer.test.ts:32:16)
+      at TestContext.<anonymous> (file:///Users/anthonyakpan/work/joinallworld-story/src/scene/ambient/layer.test.ts:55:5)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at src/scene/ambient/layer.test.ts:76:1
+✖ a market with a few regulars holds a real crowd at ten, inside the budget, and a quiet hour holds few (52.633ms)
+  AssertionError [ERR_ASSERTION]: a busy market: 5 people {"stats":{"triangles":34704,"meshes":13,"drawCalls":14,"lights":0,"geometries":13,"sceneryTriangles":704,"sceneryMeshes":3,"sceneryDrawCalls":4,"characterTriangles":34000,"characterMeshes":10,"characterDrawCalls":10},"here":5,"far":0,"caps":{"full":1,"lean":3,"far":14}}
+      at TestContext.<anonymous> (file:///Users/anthonyakpan/work/joinallworld-story/src/scene/ambient/layer.test.ts:89:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at src/scene/ambient/layer.test.ts:174:1
+✖ frame budget: the window ends the loop by itself, a weak phone gets no far crowd, off gets nobody, and dispose frees everything (90.871208ms)
+  AssertionError [ERR_ASSERTION]: the full tier has a far crowd
+      at file:///Users/anthonyakpan/work/joinallworld-story/src/scene/ambient/layer.test.ts:185:12
+      at at (file:///Users/anthonyakpan/work/joinallworld-story/src/scene/ambient/layer.test.ts:32:16)
+      at TestContext.<anonymous> (file:///Users/anthonyakpan/work/joinallworld-story/src/scene/ambient/layer.test.ts:176:3)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "garapan",
+  "url": "/assets/scene-heroes/garapan.glb",
+  "sha256": "d311505115a7515ed9022256c1b493a0f8f98a40f68318a4678455c0a6448816",
+  "rawBytes": 25484,
+  "brotliBytes": 17691,
+  "triangles": 596,
+  "parts": [
+    {
+      "node": "garapan",
+      "triangles": 596,
+      "bounds": {
+        "min": [
+          -2.75395775,
+          0,
+          -1.39017153
+        ],
+        "max": [
+          2.7539577173829994,
+          2.499960899436,
+          1.3901776682699998
+        ]
+      },
+      "footprint": [
+        -2.75395775,
+        -1.39017153,
+        2.7539577173829994,
+        1.3901776682699998
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "5569b52fca60c79c02741981f1a3aae301feba6d4a8328a76029ffe13e250b4f",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "garapan",
+      "country": "mp",
+      "name": "Public Farmer's Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/810905538"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=garapan]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 181238,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Exact candidate/name alias match and amenity=marketplace support feature identity/category. Object way/810905538, version 1, timestamp 2020-06-03T01:17:58Z; response SHA256 22873cfc53b0a60f32ab75141e6dfe71cd3b7367e199b84d64ee6cb5853d4b2b. Source path: src/game/cities/garapan/places.ts. Empty counters, racks and awnings indicate trade. No goods, original shop plan, actual number of stalls or current operation are inferred. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

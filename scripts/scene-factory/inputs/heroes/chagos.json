@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "chagos",
+  "url": "/assets/scene-heroes/chagos.glb",
+  "sha256": "c40ad5af13d50219d31c7d547b26be63a6aa97c6b2f5e9e23a7332878422db5d",
+  "rawBytes": 18796,
+  "brotliBytes": 16162,
+  "triangles": 276,
+  "parts": [
+    {
+      "node": "chagos",
+      "triangles": 276,
+      "bounds": {
+        "min": [
+          -3.88059688,
+          0,
+          -2.5999999
+        ],
+        "max": [
+          3.8805966294589997,
+          0.523950437738,
+          2.6001845078210004
+        ]
+      },
+      "footprint": [
+        -3.88059688,
+        -2.5999999,
+        3.8805966294589997,
+        2.6001845078210004
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "7c17e7c2c5bf9e1518b120d760eeff7895d90446db13fb8e102fe13b8c6da56b",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "chagos",
+      "country": "io",
+      "name": "Île Boddam Lagoon Shore",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://blueventures.org/wp-content/uploads/2021/03/Price_2009_Chagos_holo.pdf",
+        "https://chagosarchipelago.govmu.org/Pages/Location_and_History.aspx"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-final8.json#cities[city_id=chagos]",
+      "sourceLicence": "unknown",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 8.6,
+        "depth": 5.2,
+        "height": 0.55,
+        "seed": 18283,
+        "palette": [
+          "#b8ada0",
+          "#686f72",
+          "#71817a",
+          "#9c8e7b",
+          "#486e83",
+          "#899fa7",
+          "#b8cbd0",
+          "#39494f"
+        ],
+        "composition": "bare-coast"
+      },
+      "evidence": "An original peer-reviewed field survey records three lagoon-side Île Boddam transects with sand/rubble, coral/sand, and sand substrates. The study's raw latitude/longitude table entries are retained without decimal conversion, and a government page corroborates Île Boddam as an island in the Salomon Islands group. Original schematic fragment of the sourced feature class. Palette, contour, tree count, spacing and dimensions are art direction, not surveyed shape, species identification or measured geography. No current access is certified.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

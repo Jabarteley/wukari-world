@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "sourceSha": "814440393f130fd4cb4469da96d4641db48e5aa0",
+  "ciRun": 39101841081,
+  "conclusion": "success",
+  "mergeSha": "678b6bbe50900561d712ebe35f4932e48227d3b5",
+  "releaseRun": 39102769792,
+  "releaseStatus": "running",
+  "bytes": {
+    "STARTUP_RAW": 613919,
+    "STARTUP_GZIP": 222619,
+    "STARTUP_BROTLI": 195526,
+    "SCENE_HOST_RAW": 188939,
+    "SCENE_HOST_GZIP": 70897
+  },
+  "fixedCapsUnchanged": true,
+  "logSha256": "ca83ad56bb6d26e01387965ccf19b2e806b9ec193f75e437a774137b91372469",
+  "ownerPreview": "5351 remains unchanged8a941302"
+}

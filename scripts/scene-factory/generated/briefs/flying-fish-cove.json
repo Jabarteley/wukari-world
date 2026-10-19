@@ -1,0 +1,1605 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "flying-fish-cove",
+    "name": "Flying Fish Cove",
+    "state": {
+      "id": "cx",
+      "name": "Flying Fish Cove"
+    },
+    "country": {
+      "id": "cx",
+      "name": "Christmas Island"
+    },
+    "point": {
+      "lon": 105.674413,
+      "lat": -10.4213344
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/australia-oceania/australia/christmas-island-261011.osm.pbf",
+      "https://ourairports.com/airports/YPXM/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/flying-fish-cove/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/flying-fish-cove/facts.ts",
+        "sha256": "85f8d1abbb682742f9c6dfda298b33f65aec274fd8c71553d1ee09f749dc927a"
+      },
+      {
+        "path": "src/game/cities/flying-fish-cove/index.ts",
+        "sha256": "3de496dc53a3e0780552fae1a37996d03bb1b3469885aa55330698326246933d"
+      },
+      {
+        "path": "src/game/cities/flying-fish-cove/places.ts",
+        "sha256": "13878e626d980bb51255a167c15c0a315ac33a2de5dc2bfd00bc960b6eb82797"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue flying-fish-cove-community-notices has no mapped place source record.",
+      "Venue flying-fish-cove-community-voting-game has no mapped place source record.",
+      "Venue flying-fish-cove-community-workshop has no mapped place source record.",
+      "Venue flying-fish-cove-market-game has no mapped place source record.",
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "flying-fish-cove-airport-flying-fish-cove-airport",
+      "name": "Christmas Island International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.6911,
+        "lat": -10.450387
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-airport-flying-fish-cove-airport-1",
+        "flying-fish-cove-flying-fish-cove-airport-flying-fish-cove-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/flying-fish-cove/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "flying-fish-cove-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "flying-fish-cove-clinic",
+      "name": "Christmas Island Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.683189,
+        "lat": -10.425392
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-clinic-1",
+        "flying-fish-cove-flying-fish-cove-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/flying-fish-cove/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3751248046"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "flying-fish-cove-community-notices",
+      "name": "Community notices (game venue)",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.674413,
+        "lat": -10.419535759272552
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-community-notices-1",
+        "flying-fish-cove-flying-fish-cove-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue flying-fish-cove-community-notices has no mapped place source record."
+      }
+    },
+    {
+      "id": "flying-fish-cove-community-voting-game",
+      "name": "Community voting simulation (game venue)",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.67623406101036,
+        "lat": -10.4213344
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-community-voting-game-1",
+        "flying-fish-cove-flying-fish-cove-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue flying-fish-cove-community-voting-game has no mapped place source record."
+      }
+    },
+    {
+      "id": "flying-fish-cove-community-workshop",
+      "name": "Community workshop (game venue)",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.674413,
+        "lat": -10.420435079636274
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-community-workshop-1",
+        "flying-fish-cove-flying-fish-cove-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue flying-fish-cove-community-workshop has no mapped place source record."
+      }
+    },
+    {
+      "id": "flying-fish-cove-market-game",
+      "name": "Market game (game venue)",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.67350246949482,
+        "lat": -10.420435079636274
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-market-game-1",
+        "flying-fish-cove-flying-fish-cove-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue flying-fish-cove-market-game has no mapped place source record."
+      }
+    },
+    {
+      "id": "flying-fish-cove-meal-stop",
+      "name": "Rumah Tinggi",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.678497,
+        "lat": -10.415622
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-meal-stop-1",
+        "flying-fish-cove-flying-fish-cove-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/flying-fish-cove/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4721188139"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "flying-fish-cove-osm-node-11529873274",
+      "name": "Island Alchemy Cafe",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.682937,
+        "lat": -10.434437
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-osm-node-11529873274-1",
+        "flying-fish-cove-flying-fish-cove-osm-node-11529873274-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/flying-fish-cove/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11529873274"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "flying-fish-cove-osm-node-4160092423",
+      "name": "Phosphate Mining Company Abandoned Railway",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.649799,
+        "lat": -10.562884
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-osm-node-4160092423-1",
+        "flying-fish-cove-flying-fish-cove-osm-node-4160092423-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/flying-fish-cove/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4160092423"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "flying-fish-cove-osm-node-4551931090",
+      "name": "Pink House Research Station",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.647057,
+        "lat": -10.49178
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-osm-node-4551931090-1",
+        "flying-fish-cove-flying-fish-cove-osm-node-4551931090-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/flying-fish-cove/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4551931090"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "flying-fish-cove-osm-node-4551940189",
+      "name": "LB4 look out",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.599621,
+        "lat": -10.477243
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-osm-node-4551940189-1",
+        "flying-fish-cove-flying-fish-cove-osm-node-4551940189-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/flying-fish-cove/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4551940189"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "flying-fish-cove-osm-node-4551940589",
+      "name": "Margaret Knoll",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.683691,
+        "lat": -10.476494
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-osm-node-4551940589-1",
+        "flying-fish-cove-flying-fish-cove-osm-node-4551940589-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/flying-fish-cove/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4551940589"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "flying-fish-cove-osm-node-4551940689",
+      "name": "Tai Jin House",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.665021,
+        "lat": -10.428661
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-osm-node-4551940689-1",
+        "flying-fish-cove-flying-fish-cove-osm-node-4551940689-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/flying-fish-cove/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4551940689"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q85739815"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "flying-fish-cove-osm-node-6473626309",
+      "name": "Martin Point Lookout",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.557864,
+        "lat": -10.469281
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-osm-node-6473626309-1",
+        "flying-fish-cove-flying-fish-cove-osm-node-6473626309-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/flying-fish-cove/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6473626309"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "flying-fish-cove-osm-way-1550247964",
+      "name": "Poon Saan Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.679555,
+        "lat": -10.424213
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-osm-way-1550247964-1",
+        "flying-fish-cove-flying-fish-cove-osm-way-1550247964-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/flying-fish-cove/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1550247964"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "flying-fish-cove-osm-way-438454016",
+      "name": "Le Cla",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.67297,
+        "lat": -10.422075
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-osm-way-438454016-1",
+        "flying-fish-cove-flying-fish-cove-osm-way-438454016-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/flying-fish-cove/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/438454016"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "flying-fish-cove-quiet-reflection",
+      "name": "Goddess of Mercy Temple",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.679165,
+        "lat": -10.424287
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-quiet-reflection-1",
+        "flying-fish-cove-flying-fish-cove-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/flying-fish-cove/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/661594160"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "flying-fish-cove-recreation",
+      "name": "Drumsite Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.672444,
+        "lat": -10.431561
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-recreation-1",
+        "flying-fish-cove-flying-fish-cove-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/flying-fish-cove/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/747451092"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "flying-fish-cove-transit",
+      "name": "Flying Fish Cove",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.682749,
+        "lat": -10.425097
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "flying-fish-cove-flying-fish-cove-transit-1",
+        "flying-fish-cove-flying-fish-cove-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/flying-fish-cove/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4160092424"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 105.674413,
+        "lat": -10.4213344
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "flying-fish-cove-flying-fish-cove-airport-flying-fish-cove-airport-1",
+      "venueId": "flying-fish-cove-airport-flying-fish-cove-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-airport-flying-fish-cove-airport-2",
+      "venueId": "flying-fish-cove-airport-flying-fish-cove-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-clinic-1",
+      "venueId": "flying-fish-cove-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-clinic-2",
+      "venueId": "flying-fish-cove-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-community-notices-1",
+      "venueId": "flying-fish-cove-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-community-notices-2",
+      "venueId": "flying-fish-cove-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-community-voting-game-1",
+      "venueId": "flying-fish-cove-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-community-voting-game-2",
+      "venueId": "flying-fish-cove-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-community-workshop-1",
+      "venueId": "flying-fish-cove-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-community-workshop-2",
+      "venueId": "flying-fish-cove-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-market-game-1",
+      "venueId": "flying-fish-cove-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-market-game-2",
+      "venueId": "flying-fish-cove-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-meal-stop-1",
+      "venueId": "flying-fish-cove-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-meal-stop-2",
+      "venueId": "flying-fish-cove-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-node-11529873274-1",
+      "venueId": "flying-fish-cove-osm-node-11529873274",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-node-11529873274-2",
+      "venueId": "flying-fish-cove-osm-node-11529873274",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-node-4160092423-1",
+      "venueId": "flying-fish-cove-osm-node-4160092423",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-node-4160092423-2",
+      "venueId": "flying-fish-cove-osm-node-4160092423",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-node-4551931090-1",
+      "venueId": "flying-fish-cove-osm-node-4551931090",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-node-4551931090-2",
+      "venueId": "flying-fish-cove-osm-node-4551931090",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-node-4551940189-1",
+      "venueId": "flying-fish-cove-osm-node-4551940189",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-node-4551940189-2",
+      "venueId": "flying-fish-cove-osm-node-4551940189",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-node-4551940589-1",
+      "venueId": "flying-fish-cove-osm-node-4551940589",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-node-4551940589-2",
+      "venueId": "flying-fish-cove-osm-node-4551940589",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-node-4551940689-1",
+      "venueId": "flying-fish-cove-osm-node-4551940689",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-node-4551940689-2",
+      "venueId": "flying-fish-cove-osm-node-4551940689",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-node-6473626309-1",
+      "venueId": "flying-fish-cove-osm-node-6473626309",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-node-6473626309-2",
+      "venueId": "flying-fish-cove-osm-node-6473626309",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-way-1550247964-1",
+      "venueId": "flying-fish-cove-osm-way-1550247964",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-way-1550247964-2",
+      "venueId": "flying-fish-cove-osm-way-1550247964",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-way-438454016-1",
+      "venueId": "flying-fish-cove-osm-way-438454016",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-osm-way-438454016-2",
+      "venueId": "flying-fish-cove-osm-way-438454016",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-quiet-reflection-1",
+      "venueId": "flying-fish-cove-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-quiet-reflection-2",
+      "venueId": "flying-fish-cove-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-recreation-1",
+      "venueId": "flying-fish-cove-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-recreation-2",
+      "venueId": "flying-fish-cove-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-transit-1",
+      "venueId": "flying-fish-cove-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    },
+    {
+      "id": "flying-fish-cove-flying-fish-cove-transit-2",
+      "venueId": "flying-fish-cove-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/flying-fish-cove/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "flying-fish-cove-airport-flying-fish-cove-airport",
+    "flying-fish-cove-clinic",
+    "flying-fish-cove-community-notices",
+    "flying-fish-cove-community-voting-game",
+    "flying-fish-cove-community-workshop",
+    "flying-fish-cove-market-game",
+    "flying-fish-cove-meal-stop",
+    "flying-fish-cove-osm-node-11529873274",
+    "flying-fish-cove-osm-node-4160092423",
+    "flying-fish-cove-osm-node-4551931090",
+    "flying-fish-cove-osm-node-4551940189",
+    "flying-fish-cove-osm-node-4551940589",
+    "flying-fish-cove-osm-node-4551940689",
+    "flying-fish-cove-osm-node-6473626309",
+    "flying-fish-cove-osm-way-1550247964",
+    "flying-fish-cove-osm-way-438454016",
+    "flying-fish-cove-quiet-reflection",
+    "flying-fish-cove-recreation",
+    "flying-fish-cove-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "c3edcc43d0125de99c869248278df6ac9623c895af9d9529ef56a4e025a89abc",
+    "contentSha256": "ae26c4c8aa6a21805a8f4fa5f83b60a2e7376be5506b7af1fb03a26e0345acd4"
+  }
+}

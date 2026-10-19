@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "stockholm",
+  "url": "/assets/scene-heroes/stockholm.glb",
+  "sha256": "70c3abb8d987bf9361f2b5a18515701cee388cf0182a0deafc4fae06589ef8c8",
+  "rawBytes": 28916,
+  "brotliBytes": 19075,
+  "triangles": 880,
+  "parts": [
+    {
+      "node": "stockholm",
+      "triangles": 880,
+      "bounds": {
+        "min": [
+          -4.28682804,
+          0,
+          -2.60094094
+        ],
+        "max": [
+          4.286828289285001,
+          3.69991761265,
+          2.6009234262999996
+        ]
+      },
+      "footprint": [
+        -4.28682804,
+        -2.60094094,
+        4.286828289285001,
+        2.6009234262999996
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "9fbb3637a6026c42295598191f368bf185692eb853e19ab7f218c25d4e865535"
+  },
+  "inputs": {
+    "rawSha256": "96d5169755e2ec6045e782ecff3319db23ee681cd7ca7d88122bf9377c069bd4",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "stockholm",
+      "country": "se",
+      "name": "Täby Centrum",
+      "category": "building",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/120864772"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=stockholm]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "retail-building",
+      "parameters": {
+        "width": 8.6,
+        "depth": 6.1,
+        "height": 3.7,
+        "seed": 181231,
+        "palette": [
+          "#d3cec2",
+          "#646a6b",
+          "#a0a895",
+          "#8c7568",
+          "#6d8f9c",
+          "#b0a489",
+          "#e7e8df",
+          "#344b59"
+        ]
+      },
+      "evidence": "Exact candidate/name alias match and shop=mall support feature identity/category. Object way/120864772, version 30, timestamp 2026-08-02T10:03:30Z; response SHA256 8788a5116e82eaef8b5bc322707108b0aba1da2be1fd8172c0376c36f63ffd42. Source path: src/game/cities/stockholm/places.ts. Original simple retail-building massing, entrance and opaque glazing panels. No signature facade, brand, sign, surveyed dimensions, floor count or precise building footprint are claimed. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "western-europe"
+      }
+    },
+    "styleSha256": "18e3b0f4dbb88519df26d3d51faa4960b3f4646b58f92cf029cf1a50cbcc6d9c"
+  }
+}

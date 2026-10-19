@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "jakarta",
+    "name": "Jakarta",
+    "state": {
+      "id": "id-jakarta",
+      "name": "Jakarta"
+    },
+    "country": {
+      "id": "id",
+      "name": "Indonesia"
+    },
+    "point": {
+      "lon": 106.827168,
+      "lat": -6.1754049
+    }
+  },
+  "style": {
+    "region": "east-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/indonesia-261011.osm.pbf",
+      "https://ourairports.com/airports/WIII/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/jakarta/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/jakarta/facts.ts",
+        "sha256": "a78b887b04e224186baac0d356c0ab9a2bf41423bcec5afe9b8dd452dcdea6a4"
+      },
+      {
+        "path": "src/game/cities/jakarta/index.ts",
+        "sha256": "45bb34f7150f8e00608266dc16291c52d466695bef4dfa57456eae65b512e5f8"
+      },
+      {
+        "path": "src/game/cities/jakarta/places.ts",
+        "sha256": "2ab081c1d1a54eb368fd49ba25c0e909a1e5953c9d57fefefbd795492baa8bab"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.827168,
+        "lat": -6.1754049
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "jakarta-airport-jakarta-airport",
+      "name": "Soekarno-Hatta International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.655998,
+        "lat": -6.12557
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-airport-jakarta-airport-1",
+        "jakarta-jakarta-airport-jakarta-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "jakarta-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-clinic",
+      "name": "Rumah Sakit Siloam",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.817191,
+        "lat": -6.21909
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-clinic-1",
+        "jakarta-jakarta-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/485074669"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q19731706"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-community-notices",
+      "name": "Kementerian Pertanian",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.823152,
+        "lat": -6.296612
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-community-notices-1",
+        "jakarta-jakarta-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/157362135"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12490751"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-community-voting-game",
+      "name": "Taman Fatahillah",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.813234,
+        "lat": -6.134682
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-community-voting-game-1",
+        "jakarta-jakarta-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/368542626"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q25053359"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-community-workshop",
+      "name": "Jakarta International College",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.796059,
+        "lat": -6.181255
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-community-workshop-1",
+        "jakarta-jakarta-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13326343093"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6124468"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-market-game",
+      "name": "Baywalk Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.779239,
+        "lat": -6.107902
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-market-game-1",
+        "jakarta-jakarta-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/529392697"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17999170"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-meal-stop",
+      "name": "Restoran Sederhana - Taman Mini",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.883192,
+        "lat": -6.290075
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-meal-stop-1",
+        "jakarta-jakarta-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/274194694"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20427355"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-osm-node-13546873949",
+      "name": "KRI Matjan Tutul",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.913353,
+        "lat": -6.317514
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-osm-node-13546873949-1",
+        "jakarta-jakarta-osm-node-13546873949-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13546873949"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q131914008"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-osm-relation-18873178",
+      "name": "Benteng Martello",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.745118,
+        "lat": -6.025183
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-osm-relation-18873178-1",
+        "jakarta-jakarta-osm-relation-18873178-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/18873178"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q122224442"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-osm-way-1082234947",
+      "name": "J.CO Donuts & Coffee",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.958637,
+        "lat": -6.296719
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-osm-way-1082234947-1",
+        "jakarta-jakarta-osm-way-1082234947-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1082234947"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4260444"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-osm-way-1156849545",
+      "name": "Warteg Kharisma Bahari · Sedia Soto Ayam",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.686741,
+        "lat": -6.294743
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-osm-way-1156849545-1",
+        "jakarta-jakarta-osm-way-1156849545-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1156849545"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q117351410"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-osm-way-119451364",
+      "name": "Lippo Plaza Kramatjati",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.868758,
+        "lat": -6.270731
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-osm-way-119451364-1",
+        "jakarta-jakarta-osm-way-119451364-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/119451364"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12492501"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-osm-way-121919489",
+      "name": "Mall of Indonesia",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.892046,
+        "lat": -6.150943
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-osm-way-121919489-1",
+        "jakarta-jakarta-osm-way-121919489-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/121919489"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6743994"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-osm-way-248297920",
+      "name": "Universitas Terbuka",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.758684,
+        "lat": -6.34162
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-osm-way-248297920-1",
+        "jakarta-jakarta-osm-way-248297920-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/248297920"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7894421"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-osm-way-28193134",
+      "name": "Taman Menteng",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.829574,
+        "lat": -6.196305
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-osm-way-28193134-1",
+        "jakarta-jakarta-osm-way-28193134-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/28193134"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24564895"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-osm-way-29203124",
+      "name": "Indonesia Arena",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.800522,
+        "lat": -6.21483
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-osm-way-29203124-1",
+        "jakarta-jakarta-osm-way-29203124-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/29203124"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q113001540"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-osm-way-34748225",
+      "name": "Stadion Tugu",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.913396,
+        "lat": -6.136877
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-osm-way-34748225-1",
+        "jakarta-jakarta-osm-way-34748225-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/34748225"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7851667"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-osm-way-498482968",
+      "name": "Al-Azhar Great Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.799349,
+        "lat": -6.23501
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-osm-way-498482968-1",
+        "jakarta-jakarta-osm-way-498482968-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/498482968"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7384807"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-osm-way-510896714",
+      "name": "Museum MACAN",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.767669,
+        "lat": -6.191158
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-osm-way-510896714-1",
+        "jakarta-jakarta-osm-way-510896714-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/510896714"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q55075053"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-osm-way-626583660",
+      "name": "Stadion Patriot Candrabhaga",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.991892,
+        "lat": -6.238289
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-osm-way-626583660-1",
+        "jakarta-jakarta-osm-way-626583660-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/626583660"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q19740737"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-osm-way-687400650",
+      "name": "Institut Teknologi Indonesia",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.675287,
+        "lat": -6.344512
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-osm-way-687400650-1",
+        "jakarta-jakarta-osm-way-687400650-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/687400650"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12486657"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-osm-way-877465306",
+      "name": "Politeknik Keuangan Negara STAN",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.732062,
+        "lat": -6.266414
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-osm-way-877465306-1",
+        "jakarta-jakarta-osm-way-877465306-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/877465306"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q109911159"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-quiet-reflection",
+      "name": "Vihara Bahtera Bhakti",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.853962,
+        "lat": -6.120313
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-quiet-reflection-1",
+        "jakarta-jakarta-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/528649901"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4842905"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-recreation",
+      "name": "Lapangan Banteng",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.834901,
+        "lat": -6.170212
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-recreation-1",
+        "jakarta-jakarta-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/28705164"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12493957"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "jakarta-transit",
+      "name": "Kranji",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 106.979827,
+        "lat": -6.224513
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "jakarta-jakarta-transit-1",
+        "jakarta-jakarta-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/jakarta/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/316743611"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2465391"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "jakarta-jakarta-airport-jakarta-airport-1",
+      "venueId": "jakarta-airport-jakarta-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-airport-jakarta-airport-2",
+      "venueId": "jakarta-airport-jakarta-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-clinic-1",
+      "venueId": "jakarta-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-clinic-2",
+      "venueId": "jakarta-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-community-notices-1",
+      "venueId": "jakarta-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-community-notices-2",
+      "venueId": "jakarta-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-community-voting-game-1",
+      "venueId": "jakarta-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-community-voting-game-2",
+      "venueId": "jakarta-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-community-workshop-1",
+      "venueId": "jakarta-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-community-workshop-2",
+      "venueId": "jakarta-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-market-game-1",
+      "venueId": "jakarta-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-market-game-2",
+      "venueId": "jakarta-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-meal-stop-1",
+      "venueId": "jakarta-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-meal-stop-2",
+      "venueId": "jakarta-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-node-13546873949-1",
+      "venueId": "jakarta-osm-node-13546873949",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-node-13546873949-2",
+      "venueId": "jakarta-osm-node-13546873949",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-relation-18873178-1",
+      "venueId": "jakarta-osm-relation-18873178",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-relation-18873178-2",
+      "venueId": "jakarta-osm-relation-18873178",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-1082234947-1",
+      "venueId": "jakarta-osm-way-1082234947",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-1082234947-2",
+      "venueId": "jakarta-osm-way-1082234947",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-1156849545-1",
+      "venueId": "jakarta-osm-way-1156849545",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-1156849545-2",
+      "venueId": "jakarta-osm-way-1156849545",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-119451364-1",
+      "venueId": "jakarta-osm-way-119451364",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-119451364-2",
+      "venueId": "jakarta-osm-way-119451364",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-121919489-1",
+      "venueId": "jakarta-osm-way-121919489",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-121919489-2",
+      "venueId": "jakarta-osm-way-121919489",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-248297920-1",
+      "venueId": "jakarta-osm-way-248297920",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-248297920-2",
+      "venueId": "jakarta-osm-way-248297920",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-28193134-1",
+      "venueId": "jakarta-osm-way-28193134",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-28193134-2",
+      "venueId": "jakarta-osm-way-28193134",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-29203124-1",
+      "venueId": "jakarta-osm-way-29203124",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-29203124-2",
+      "venueId": "jakarta-osm-way-29203124",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-34748225-1",
+      "venueId": "jakarta-osm-way-34748225",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-34748225-2",
+      "venueId": "jakarta-osm-way-34748225",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-498482968-1",
+      "venueId": "jakarta-osm-way-498482968",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-498482968-2",
+      "venueId": "jakarta-osm-way-498482968",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-510896714-1",
+      "venueId": "jakarta-osm-way-510896714",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-510896714-2",
+      "venueId": "jakarta-osm-way-510896714",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-626583660-1",
+      "venueId": "jakarta-osm-way-626583660",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-626583660-2",
+      "venueId": "jakarta-osm-way-626583660",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-687400650-1",
+      "venueId": "jakarta-osm-way-687400650",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-687400650-2",
+      "venueId": "jakarta-osm-way-687400650",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-877465306-1",
+      "venueId": "jakarta-osm-way-877465306",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-osm-way-877465306-2",
+      "venueId": "jakarta-osm-way-877465306",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-quiet-reflection-1",
+      "venueId": "jakarta-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-quiet-reflection-2",
+      "venueId": "jakarta-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-recreation-1",
+      "venueId": "jakarta-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-recreation-2",
+      "venueId": "jakarta-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-transit-1",
+      "venueId": "jakarta-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    },
+    {
+      "id": "jakarta-jakarta-transit-2",
+      "venueId": "jakarta-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/jakarta/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "jakarta-airport-jakarta-airport",
+    "jakarta-clinic",
+    "jakarta-community-notices",
+    "jakarta-community-voting-game",
+    "jakarta-community-workshop",
+    "jakarta-market-game",
+    "jakarta-meal-stop",
+    "jakarta-osm-node-13546873949",
+    "jakarta-osm-relation-18873178",
+    "jakarta-osm-way-1082234947",
+    "jakarta-osm-way-1156849545",
+    "jakarta-osm-way-119451364",
+    "jakarta-osm-way-121919489",
+    "jakarta-osm-way-248297920",
+    "jakarta-osm-way-28193134",
+    "jakarta-osm-way-29203124",
+    "jakarta-osm-way-34748225",
+    "jakarta-osm-way-498482968",
+    "jakarta-osm-way-510896714",
+    "jakarta-osm-way-626583660",
+    "jakarta-osm-way-687400650",
+    "jakarta-osm-way-877465306",
+    "jakarta-quiet-reflection",
+    "jakarta-recreation",
+    "jakarta-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "ed0d1b5d7d203786a2b1aca722977f094c3aca4de04be91b74972605500f1a17",
+    "contentSha256": "d9df0f2bb7aee1e9be3284e77f3c4938ed81f7de0147d5fc0d45979eefaecd52"
+  }
+}

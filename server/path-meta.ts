@@ -83,6 +83,7 @@ export function metaFor(pathname: string): PathMeta | null {
   }
   // The Square's address and a group room's link (docs/PLACES.md). Fixed words: a room's name is its members' and is never put in a preview.
   if (pathname === '/square' || pathname === '/square/') return { title: `The Square — one place for the whole world — ${BRAND}`, description: clip(`Meet people from every city in one square: walk up, chat and talk by voice. ${TAIL}`), canonical: '/square', index: true };
+  if (/^\/w\/[^/]+\/?$/.test(pathname)) return { title: `Come into my world on ${BRAND}`, description: clip(`A friend made a world of their own and sent you its link: walk in, look round, play. Pick a name and press Play, no sign-up. ${TAIL}`), canonical: null, index: false };
   if (/^\/r\/[^/]+\/?$/.test(pathname)) return { title: `Come to our room on ${BRAND}`, description: clip(`A friend invited you into their group's room: come in and talk. Pick a name and press Play, no sign-up. ${TAIL}`), canonical: null, index: false };
   const intent = parsePath(pathname);
   return (intent ? metaOf(intent) : null) ?? { title: '', description: '', canonical: null, index: false };

@@ -1,0 +1,4 @@
+Synthetic validation passed: direct and quantized-wrapper geometry with unchanged packed/BIN hashes, 13 hierarchy refusals, 10 malformed documents, corrupt compression, 8 invalid provenance records; no asset files written.
+
+COMMAND_EXIT_CODE=0
+ELAPSED_SECONDS=0

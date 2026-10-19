@@ -1,0 +1,4143 @@
+{
+  "schema_version": 1,
+  "status": "source leads and explicit gaps for parent review only",
+  "created_on": "2026-10-18",
+  "source_pins": {
+    "hero-inputs-r1.json": "cd007719b14cf283e8fb1f3b2ea4c229f4d65e54ea7642d4583291acbe52237d",
+    "hero-art-direction-284.json": "975847ad67c8c6cac55bf08d1491ec57c99f14d66fc8040e1835c13a4bc09348",
+    "hero-object-audit-20261018.json": "b912f5983a6a27aafad3f3e839cdc67759650c0909e34b77935422f9de722973",
+    "hero-gap-primary-batch1.json": "1e20dfcf2016f99fd78871deda48df711fe5ecdb77b67103d25736347f670a78",
+    "hero-gap-primary-batch2.json": "2d364035e7f4c48eb1f3ff7cb1fd5f83d64dfecf8baa83853288a01473c51753",
+    "hero-gap-primary-final8.json": "86bb602510b9b87e87a0d53a1474d5eef58bc5f0c69b9cbe30aae7be437eddc3",
+    "hero-gap-natural-final3.json": "6f278a414466a9e2008885a758ff51f5af2bea179c835e5feb12cf08db1240b0",
+    "restricted-city-hero-sources.json": "fa9f8a21ce1a34ab4f4f2e65fa183932111f140498961d5389c6f5a1b086275d"
+  },
+  "scope": {
+    "r1_input_count": 204,
+    "r1_sha256": "cd007719b14cf283e8fb1f3b2ea4c229f4d65e54ea7642d4583291acbe52237d",
+    "art_direction_record_count": 284,
+    "remaining_unique_city_count": 80,
+    "remaining_city_ids_in_r1": 0
+  },
+  "coverage": {
+    "source_backed_leads": 40,
+    "unresolved_gaps": 40,
+    "record_count": 80,
+    "candidate_source_rights_unknown": 80,
+    "production_approved": 0
+  },
+  "method": "Compared exact city IDs against R1. Reused prior primary-source evidence where its exact city/candidate row had a source record; replaced undated French-territory building candidates with natural-feature alternatives where supported. For other unresolved rows used existing exact-object OSM audit results; no broad history, geometries, images, or extra object searches. A named OSM feature without category tags is not treated as a market. Existing source paraphrases retain explicit factual category/form wording; unsupported form detail stays blank.",
+  "notes": [
+    "All catalogue city names, ISO codes, and anchor coordinates are copied from hero-art-direction-284.json; feature coordinates remain unclaimed unless source explicitly gives them.",
+    "Source and geometry rights remain unknown. No production selection, asset approval, public-access claim, or exact-shape claim is made.",
+    "NG/GH/FR and French-territory buildings require primary pre-1950 construction evidence; market or natural-feature leads do not claim building exceptions.",
+    "Kano is already included in R1, so it is absent from these 80 rows. A prior audit mistakenly performed a Kano OSM search; that search creates no new candidate, acceptance, or promotion.",
+    "The two restricted-city entries Ijebu-Ode and Sagamu were read but are already represented in R1 and therefore outside this diff."
+  ],
+  "records": [
+    {
+      "city_id": "ibadan",
+      "city_name": "Ibadan",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 3.95,
+        "lat": 7.38
+      },
+      "region_as_recorded": "yoruba-southwest",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/ibadan/landmarks.ts",
+      "source_field_pointers": [
+        "landmark name",
+        "kind",
+        "source",
+        "licence",
+        "note"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Bodija Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/node/2819861343",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "exact_osm_object",
+        "object_url": "https://www.openstreetmap.org/node/2819861343",
+        "object_name": "Bodija Market",
+        "selected_tags": {
+          "name": "Bodija Market",
+          "place": "neighbourhood"
+        },
+        "classification": "insufficient",
+        "name_match": true,
+        "result_status": "matched",
+        "response_sha256": "db8abe2dba76d59ff3aa534f1cc72e0b9bb9ed5014d8d50b2296bbfdf6384d1a"
+      },
+      "gap_reason": "The exact OSM object/name is present but its tags do not establish the candidate market/natural category under the accepted evidence rule.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "abuja",
+      "city_name": "Abuja",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.49,
+        "lat": 9.06
+      },
+      "region_as_recorded": "gulf-guinea",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/abuja/landmarks.ts",
+      "source_field_pointers": [
+        "landmark name",
+        "kind",
+        "source",
+        "licence",
+        "note"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Arts and Craft Village",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/relation/12195304",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "exact_osm_object",
+        "object_url": "https://www.openstreetmap.org/relation/12195304",
+        "object_name": "Arts and Craft Village",
+        "selected_tags": {
+          "name": "Arts and Craft Village",
+          "landuse": "commercial"
+        },
+        "classification": "insufficient",
+        "name_match": true,
+        "result_status": "matched",
+        "response_sha256": "103de46cbe2878148d7bd5927b147c5c7b18344ec030a08cddd15e3ca728676a"
+      },
+      "gap_reason": "The exact OSM object/name is present but its tags do not establish the candidate market/natural category under the accepted evidence rule.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "port-harcourt",
+      "city_name": "Port Harcourt",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.03,
+        "lat": 4.82
+      },
+      "region_as_recorded": "niger-delta",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/port-harcourt/landmarks.ts",
+      "source_field_pointers": [
+        "landmark name",
+        "kind",
+        "source",
+        "licence",
+        "note"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Mile Three Market locality",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://rsisinternational.org/journals/ijrsi/articles/evaluation-of-access-to-drinking-water-sources-in-port-harcourt-rivers-state/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "abeokuta",
+      "city_name": "Abeokuta",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 3.35,
+        "lat": 7.15
+      },
+      "region_as_recorded": "yoruba-southwest",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/ogun/landmarks.ts",
+      "source_field_pointers": [
+        "landmark name",
+        "kind",
+        "source",
+        "licence",
+        "note"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Itoku Adire Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.jiengtech.com/index.php/INDEX/article/download/30/30",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "ota",
+      "city_name": "Ota",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 3.2,
+        "lat": 6.68
+      },
+      "region_as_recorded": "yoruba-southwest",
+      "status": "source-backed-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name": "Ijamido gully",
+        "category": "natural landform (gully)",
+        "fact_paraphrase": "An Ogun State Government FY2024 budget table names an “Ijamido gully control project” in Ota. It supports the named gully and Ota association; it does not establish a stream, water state, exact outline, or current condition.",
+        "city_association": "The same budget row explicitly pairs the Ijamido gully-control project with Ota.",
+        "source_supported_form_facts": [
+          "named gully landform"
+        ],
+        "sources": [
+          {
+            "url": "https://new.ogunstate.gov.ng/archive/OGUN%20State%20FY%202024%20Budget%20Publication%20-FINAL.pdf",
+            "title": "OGUN State FY 2024 Budget Publication - FINAL",
+            "publisher": "Ogun State Government",
+            "author": null,
+            "page_locator": "Budget row: “Erosion and Flood Control at Ijamido gully control project Ota”; PDF page number not established",
+            "published_date": "FY2024 document (exact publication date unknown)",
+            "access_date": "2026-10-18",
+            "source_excerpt": "Erosion and Flood Control at Ijamido gully control project Ota",
+            "excerpt_word_count": 10,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": "landscape",
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic depiction of only the named category/form facts above. No external photo/map/geometry, surveyed dimensions, or unsourced detail.",
+        "production_approved": false
+      },
+      "review_note": "This refines the unsupported “Ijamido Stream” name to the source phrase “Ijamido gully”. A generic landform fragment only; no stream or water-filled channel is asserted.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "enugu",
+      "city_name": "Enugu",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.5136856,
+        "lat": 6.4496519
+      },
+      "region_as_recorded": "igbo-southeast",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/enugu/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[6].name",
+        "CITY_SPEC.places[6].kind",
+        "CITY_SPEC.places[6].description",
+        "CITY_SPEC.places[6].sourceIds",
+        "CITY_SPEC.places[6].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Ogbete main Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://www.nigerianjournalsonline.com/index.php/uj/article/download/3391/3303",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": "https://www.openstreetmap.org/node/13170601832",
+        "object_name": "Ogbete Main Market",
+        "selected_tags": {},
+        "classification": "insufficient",
+        "name_match": true,
+        "result_status": "matched",
+        "response_sha256": "3963b42317186a30ae8c01e5096458b5facbf2194be4f93f63cb4b29839a6c6d"
+      },
+      "gap_reason": "The exact OSM object/name is present but its tags do not establish the candidate market/natural category under the accepted evidence rule.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "calabar",
+      "city_name": "Calabar",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 8.3373597,
+        "lat": 4.9795999
+      },
+      "region_as_recorded": "niger-delta",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/calabar/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[16].name",
+        "CITY_SPEC.places[16].kind",
+        "CITY_SPEC.places[16].description",
+        "CITY_SPEC.places[16].sourceIds",
+        "CITY_SPEC.places[16].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Watt Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.wikidata.org/wiki/Wikidata:Main_Page",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Watt_Market",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "uyo",
+      "city_name": "Uyo",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.924791,
+        "lat": 5.0322447
+      },
+      "region_as_recorded": "niger-delta",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/uyo/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[14].name",
+        "CITY_SPEC.places[14].kind",
+        "CITY_SPEC.places[14].description",
+        "CITY_SPEC.places[14].sourceIds",
+        "CITY_SPEC.places[14].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Akpan Andem Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.wikidata.org/wiki/Wikidata:Main_Page",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://businessday.ng/news/article/hawkers-vendors-take-over-major-streets-in-uyo/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "umuahia",
+      "city_name": "Umuahia",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.4924165,
+        "lat": 5.5324032
+      },
+      "region_as_recorded": "igbo-southeast",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/umuahia/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[17].name",
+        "CITY_SPEC.places[17].kind",
+        "CITY_SPEC.places[17].description",
+        "CITY_SPEC.places[17].sourceIds",
+        "CITY_SPEC.places[17].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Orie Ugba Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.wikidata.org/wiki/Wikidata:Main_Page",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Umuahia",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "owerri",
+      "city_name": "Owerri",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.0341973,
+        "lat": 5.489736
+      },
+      "region_as_recorded": "igbo-southeast",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/owerri/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[18].name",
+        "CITY_SPEC.places[18].kind",
+        "CITY_SPEC.places[18].description",
+        "CITY_SPEC.places[18].sourceIds",
+        "CITY_SPEC.places[18].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Nkwo Emeke",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Owerri",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": "https://www.openstreetmap.org/way/1027214141",
+        "object_name": "Nkwo Emeke",
+        "selected_tags": {
+          "building": "shed"
+        },
+        "classification": "insufficient",
+        "name_match": true,
+        "result_status": "matched",
+        "response_sha256": "4bb803fa1f295c6a40f42c89f12ea8e66b2218a5b84e3562a6c8278e946f898d"
+      },
+      "gap_reason": "The exact OSM object/name is present but its tags do not establish the candidate market/natural category under the accepted evidence rule.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "yenagoa",
+      "city_name": "Yenagoa",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 6.2747786,
+        "lat": 4.9334651
+      },
+      "region_as_recorded": "niger-delta",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/yenagoa/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[13].name",
+        "CITY_SPEC.places[13].kind",
+        "CITY_SPEC.places[13].description",
+        "CITY_SPEC.places[13].sourceIds",
+        "CITY_SPEC.places[13].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Onopa Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.wikidata.org/wiki/Wikidata:Main_Page",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Ijaw_people",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "awka",
+      "city_name": "Awka",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.0774372,
+        "lat": 6.218947
+      },
+      "region_as_recorded": "igbo-southeast",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/awka/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[6].name",
+        "CITY_SPEC.places[6].kind",
+        "CITY_SPEC.places[6].description",
+        "CITY_SPEC.places[6].sourceIds",
+        "CITY_SPEC.places[6].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Eke Awka Main Market, Awka",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.wikidata.org/wiki/Wikidata:Main_Page",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Awka",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "kaduna",
+      "city_name": "Kaduna",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.4402777777778,
+        "lat": 10.523055555556
+      },
+      "region_as_recorded": "sahel-north",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/kaduna/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[7].name",
+        "CITY_SPEC.places[7].kind",
+        "CITY_SPEC.places[7].description",
+        "CITY_SPEC.places[7].sourceIds",
+        "CITY_SPEC.places[7].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Chechinya Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Kaduna",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": "https://www.openstreetmap.org/way/38977423",
+        "object_name": "Chechinya Market",
+        "selected_tags": {
+          "landuse": "retail"
+        },
+        "classification": "insufficient",
+        "name_match": true,
+        "result_status": "matched",
+        "response_sha256": "8d82c6a386ccbb587b9d41cce2ceaf3fc1fe2abf0ab4a575baf945b1fa98f3b1"
+      },
+      "gap_reason": "The exact OSM object/name is present but its tags do not establish the candidate market/natural category under the accepted evidence rule.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "maiduguri",
+      "city_name": "Maiduguri",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 13.15,
+        "lat": 11.833333333333
+      },
+      "region_as_recorded": "sahel-north",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/maiduguri/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[6].name",
+        "CITY_SPEC.places[6].kind",
+        "CITY_SPEC.places[6].description",
+        "CITY_SPEC.places[6].sourceIds",
+        "CITY_SPEC.places[6].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Gamboru Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Maiduguri",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": "https://www.openstreetmap.org/way/1495609509",
+        "object_name": "Gamboru Market",
+        "selected_tags": {
+          "landuse": "commercial"
+        },
+        "classification": "insufficient",
+        "name_match": true,
+        "result_status": "matched",
+        "response_sha256": "a9b590408000997593de29d5e571536256df50fd7d4cac5473897569bd16d845"
+      },
+      "gap_reason": "The exact OSM object/name is present but its tags do not establish the candidate market/natural category under the accepted evidence rule.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "gombe",
+      "city_name": "Gombe",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 11.1667,
+        "lat": 10.2833
+      },
+      "region_as_recorded": "sahel-north",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/gombe/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[8].name",
+        "CITY_SPEC.places[8].kind",
+        "CITY_SPEC.places[8].description",
+        "CITY_SPEC.places[8].sourceIds",
+        "CITY_SPEC.places[8].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "KASUWAR MATA",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Gombe,_Nigeria",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": "https://www.openstreetmap.org/way/914742997",
+        "object_name": "KASUWAR MATA",
+        "selected_tags": {},
+        "classification": "insufficient",
+        "name_match": true,
+        "result_status": "matched",
+        "response_sha256": "48d78cbaecc0381904c05601efd1f5ecbcd7bb5ce7655685db906804095f3906"
+      },
+      "gap_reason": "The exact OSM object/name is present but its tags do not establish the candidate market/natural category under the accepted evidence rule.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "yola",
+      "city_name": "Yola",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 12.483333333333,
+        "lat": 9.2
+      },
+      "region_as_recorded": "sahel-north",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/yola/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[9].name",
+        "CITY_SPEC.places[9].kind",
+        "CITY_SPEC.places[9].description",
+        "CITY_SPEC.places[9].sourceIds",
+        "CITY_SPEC.places[9].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Jimeta ultra modern market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.wikidata.org/wiki/Wikidata:Main_Page",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Adamawa_State",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "ilorin",
+      "city_name": "Ilorin",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 4.55,
+        "lat": 8.5
+      },
+      "region_as_recorded": "gulf-guinea",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/ilorin/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[7].name",
+        "CITY_SPEC.places[7].kind",
+        "CITY_SPEC.places[7].description",
+        "CITY_SPEC.places[7].sourceIds",
+        "CITY_SPEC.places[7].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Ipata Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikivoyage.org/wiki/Ilorin",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Ilorin",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": "https://www.openstreetmap.org/node/13047974859",
+        "object_name": "Ipata Market., Amilegbe Road, Ilorin, Nigeria",
+        "selected_tags": {},
+        "classification": "insufficient",
+        "name_match": false,
+        "result_status": "conflict",
+        "response_sha256": "69900d52d045019f34b888077676e40001ebedda686d7167efb36fd46443e10d"
+      },
+      "gap_reason": "The referenced OSM object has a category tag but its mapped name does not match the candidate; no documented alias was established.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "minna",
+      "city_name": "Minna",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 6.5569444444444,
+        "lat": 9.6138888888889
+      },
+      "region_as_recorded": "gulf-guinea",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/minna/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[7].name",
+        "CITY_SPEC.places[7].kind",
+        "CITY_SPEC.places[7].description",
+        "CITY_SPEC.places[7].sourceIds",
+        "CITY_SPEC.places[7].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Kure Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikivoyage.org/wiki/Minna",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Minna",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": "https://www.openstreetmap.org/node/10168829108",
+        "object_name": "Kure Market",
+        "selected_tags": {},
+        "classification": "insufficient",
+        "name_match": true,
+        "result_status": "matched",
+        "response_sha256": "321cd076daef48600b48afe7124af53f11674b274d53aa428fdf33dbb2f60082"
+      },
+      "gap_reason": "The exact OSM object/name is present but its tags do not establish the candidate market/natural category under the accepted evidence rule.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "osogbo",
+      "city_name": "Osogbo",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 4.5666666666667,
+        "lat": 7.7666666666667
+      },
+      "region_as_recorded": "yoruba-southwest",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/osogbo/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[6].name",
+        "CITY_SPEC.places[6].kind",
+        "CITY_SPEC.places[6].description",
+        "CITY_SPEC.places[6].sourceIds",
+        "CITY_SPEC.places[6].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Ayegbaju International Modern Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Osogbo",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": "https://www.openstreetmap.org/way/378297555",
+        "object_name": "Ayegbaju International Modern Market",
+        "selected_tags": {},
+        "classification": "insufficient",
+        "name_match": true,
+        "result_status": "matched",
+        "response_sha256": "7f8e51e0729e55de3f4f8225bfea4dfceb7498442f59ab86a1193cb0b8438092"
+      },
+      "gap_reason": "The exact OSM object/name is present but its tags do not establish the candidate market/natural category under the accepted evidence rule.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "damaturu",
+      "city_name": "Damaturu",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 11.966666666667,
+        "lat": 11.75
+      },
+      "region_as_recorded": "sahel-north",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/damaturu/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[7].name",
+        "CITY_SPEC.places[7].kind",
+        "CITY_SPEC.places[7].description",
+        "CITY_SPEC.places[7].sourceIds",
+        "CITY_SPEC.places[7].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Bayan Tasha market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.wikidata.org/wiki/Wikidata:Main_Page",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Yobe_State",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "jalingo",
+      "city_name": "Jalingo",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 11.366666666667,
+        "lat": 8.9
+      },
+      "region_as_recorded": "sahel-north",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/jalingo/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[10].name",
+        "CITY_SPEC.places[10].kind",
+        "CITY_SPEC.places[10].description",
+        "CITY_SPEC.places[10].sourceIds",
+        "CITY_SPEC.places[10].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Bando Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.wikidata.org/wiki/Wikidata:Main_Page",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Taraba_State",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "akure",
+      "city_name": "Akure",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 5.1932647,
+        "lat": 7.2525595
+      },
+      "region_as_recorded": "yoruba-southwest",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/akure/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[6].name",
+        "CITY_SPEC.places[6].kind",
+        "CITY_SPEC.places[6].description",
+        "CITY_SPEC.places[6].sourceIds",
+        "CITY_SPEC.places[6].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Akure Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Akure",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": "https://www.openstreetmap.org/node/6271074305",
+        "object_name": "Akure Market",
+        "selected_tags": {},
+        "classification": "insufficient",
+        "name_match": true,
+        "result_status": "matched",
+        "response_sha256": "58492974f0aaa44e7c855d0c0e7b6c07630931ea491c34a2f6cd1b25657867b3"
+      },
+      "gap_reason": "The exact OSM object/name is present but its tags do not establish the candidate market/natural category under the accepted evidence rule.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "ado-ekiti",
+      "city_name": "Ado-Ekiti",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 5.22274,
+        "lat": 7.6232482
+      },
+      "region_as_recorded": "yoruba-southwest",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/ado-ekiti/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[4].name",
+        "CITY_SPEC.places[4].kind",
+        "CITY_SPEC.places[4].description",
+        "CITY_SPEC.places[4].sourceIds",
+        "CITY_SPEC.places[4].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Bisi Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.wikidata.org/wiki/Wikidata:Main_Page",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Ado_Ekiti",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "asaba",
+      "city_name": "Asaba",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 6.7297071,
+        "lat": 6.1858825
+      },
+      "region_as_recorded": "niger-delta",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/asaba/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[6].name",
+        "CITY_SPEC.places[6].kind",
+        "CITY_SPEC.places[6].description",
+        "CITY_SPEC.places[6].sourceIds",
+        "CITY_SPEC.places[6].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Ogbeogonogo Modern Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.wikidata.org/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://discoverdeltang.com/visit/asaba",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "lokoja",
+      "city_name": "Lokoja",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 6.7441666666667,
+        "lat": 7.8019444444444
+      },
+      "region_as_recorded": "gulf-guinea",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/lokoja/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[9].name",
+        "CITY_SPEC.places[9].kind",
+        "CITY_SPEC.places[9].description",
+        "CITY_SPEC.places[9].sourceIds",
+        "CITY_SPEC.places[9].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Old Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Lokoja",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": "https://www.openstreetmap.org/node/8851563692",
+        "object_name": "Old Market",
+        "selected_tags": {},
+        "classification": "insufficient",
+        "name_match": true,
+        "result_status": "matched",
+        "response_sha256": "58ccbc6784d07b5fa6b00bf11ae2976507b6a0acc6962de284f54555ebc37c0e"
+      },
+      "gap_reason": "The exact OSM object/name is present but its tags do not establish the candidate market/natural category under the accepted evidence rule.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "jos",
+      "city_name": "Jos",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 8.8833333333333,
+        "lat": 9.9333333333333
+      },
+      "region_as_recorded": "gulf-guinea",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/jos/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[8].name",
+        "CITY_SPEC.places[8].kind",
+        "CITY_SPEC.places[8].description",
+        "CITY_SPEC.places[8].sourceIds",
+        "CITY_SPEC.places[8].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Angwan Rukuba Park",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Jos",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": "https://www.openstreetmap.org/way/221862569",
+        "object_name": "Angwan Rukuba Park",
+        "selected_tags": {
+          "landuse": "retail"
+        },
+        "classification": "insufficient",
+        "name_match": true,
+        "result_status": "matched",
+        "response_sha256": "d219d64774ce710969819866e5424e364179d1a17dd7197ba1e82a1451c51601"
+      },
+      "gap_reason": "The exact OSM object/name is present but its tags do not establish the candidate market/natural category under the accepted evidence rule.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "lafia",
+      "city_name": "Lafia",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 8.5147636,
+        "lat": 8.4960459
+      },
+      "region_as_recorded": "gulf-guinea",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/lafia/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[10].name",
+        "CITY_SPEC.places[10].kind",
+        "CITY_SPEC.places[10].description",
+        "CITY_SPEC.places[10].sourceIds",
+        "CITY_SPEC.places[10].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Lafia Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.wikidata.org/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Lafia",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "katsina",
+      "city_name": "Katsina",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 7.6006278,
+        "lat": 12.9894283
+      },
+      "region_as_recorded": "sahel-north",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/katsina/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[11].name",
+        "CITY_SPEC.places[11].kind",
+        "CITY_SPEC.places[11].description",
+        "CITY_SPEC.places[11].sourceIds",
+        "CITY_SPEC.places[11].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Central Market, Katsina",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Katsina_(city)",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": "https://www.openstreetmap.org/way/594160275",
+        "object_name": "Central Market, Katsina",
+        "selected_tags": {
+          "building": "yes"
+        },
+        "classification": "insufficient",
+        "name_match": true,
+        "result_status": "matched",
+        "response_sha256": "19e45f23fcd86b342a27092a0b07a27777d3e5c4f5425533f478daf85433e553"
+      },
+      "gap_reason": "The exact OSM object/name is present but its tags do not establish the candidate market/natural category under the accepted evidence rule.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "sokoto",
+      "city_name": "Sokoto",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 5.2373194,
+        "lat": 13.0610588
+      },
+      "region_as_recorded": "sahel-north",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/sokoto/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[9].name",
+        "CITY_SPEC.places[9].kind",
+        "CITY_SPEC.places[9].description",
+        "CITY_SPEC.places[9].sourceIds",
+        "CITY_SPEC.places[9].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Central Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Sokoto_(city)",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": "https://www.openstreetmap.org/way/282586704",
+        "object_name": "Central Market",
+        "selected_tags": {},
+        "classification": "insufficient",
+        "name_match": true,
+        "result_status": "matched",
+        "response_sha256": "3ac624f9d7767ae2f895871a78bbb55d3578e36ebe3fee330ead406f6632677a"
+      },
+      "gap_reason": "The exact OSM object/name is present but its tags do not establish the candidate market/natural category under the accepted evidence rule.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "birnin-kebbi",
+      "city_name": "Birnin Kebbi",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 4.2006114,
+        "lat": 12.4573462
+      },
+      "region_as_recorded": "sahel-north",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/birnin-kebbi/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[10].name",
+        "CITY_SPEC.places[10].kind",
+        "CITY_SPEC.places[10].description",
+        "CITY_SPEC.places[10].sourceIds",
+        "CITY_SPEC.places[10].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Yaryara mini market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.wikidata.org/wiki/Wikidata:Main_Page",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Birnin_Kebbi",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "gusau",
+      "city_name": "Gusau",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 6.6606398,
+        "lat": 12.1658358
+      },
+      "region_as_recorded": "sahel-north",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/gusau/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[8].name",
+        "CITY_SPEC.places[8].kind",
+        "CITY_SPEC.places[8].description",
+        "CITY_SPEC.places[8].sourceIds",
+        "CITY_SPEC.places[8].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Gusau central market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.wikidata.org/wiki/Wikidata:Main_Page",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Gusau",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "dutse",
+      "city_name": "Dutse",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 9.3390747,
+        "lat": 11.6909859
+      },
+      "region_as_recorded": "sahel-north",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/dutse/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[8].name",
+        "CITY_SPEC.places[8].kind",
+        "CITY_SPEC.places[8].description",
+        "CITY_SPEC.places[8].sourceIds",
+        "CITY_SPEC.places[8].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Dutse Ultra Modern Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.wikidata.org/wiki/Wikidata:Main_Page",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Jigawa_State",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "bauchi",
+      "city_name": "Bauchi",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 9.8410189,
+        "lat": 10.3168749
+      },
+      "region_as_recorded": "sahel-north",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/bauchi/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[11].name",
+        "CITY_SPEC.places[11].kind",
+        "CITY_SPEC.places[11].description",
+        "CITY_SPEC.places[11].sourceIds",
+        "CITY_SPEC.places[11].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Muda lawal market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.wikidata.org/wiki/Wikidata:Main_Page",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Bauchi_(city)",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "makurdi",
+      "city_name": "Makurdi",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 8.5361111111111,
+        "lat": 7.7305555555556
+      },
+      "region_as_recorded": "gulf-guinea",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/makurdi/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[10].name",
+        "CITY_SPEC.places[10].kind",
+        "CITY_SPEC.places[10].description",
+        "CITY_SPEC.places[10].sourceIds",
+        "CITY_SPEC.places[10].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "North bank market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.wikidata.org/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://www.nigeriagalleria.com/Nigeria/States_Nigeria/Benue/Popular-Markets-in-Benue-State.html",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": null,
+        "object_name": null,
+        "selected_tags": {},
+        "classification": null,
+        "name_match": null,
+        "result_status": "missing",
+        "response_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gap_reason": "The one earlier OSM identity search returned no result. This is not proof the named place does not exist; no independent primary category source is available in this bounded pass.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "abakaliki",
+      "city_name": "Abakaliki",
+      "country_iso": "ng",
+      "catalogue_anchor_coordinates": {
+        "lon": 8.1133202,
+        "lat": 6.3208897
+      },
+      "region_as_recorded": "igbo-southeast",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/abakaliki/spec.ts",
+      "source_field_pointers": [
+        "CITY_SPEC.places[9].name",
+        "CITY_SPEC.places[9].kind",
+        "CITY_SPEC.places[9].description",
+        "CITY_SPEC.places[9].sourceIds",
+        "CITY_SPEC.places[9].coordinateRef"
+      ],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name_as_recorded": "Abakaliki Rice Processing Market",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Abakaliki_rice",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "single_targeted_osm_name_search",
+        "object_url": "https://www.openstreetmap.org/node/13052463573",
+        "object_name": "Abakaliki Rice Processing Market",
+        "selected_tags": {},
+        "classification": "insufficient",
+        "name_match": true,
+        "result_status": "matched",
+        "response_sha256": "1a27978d2ad493decafb11f4012ba01afebf780b5a80dbef35be3e4234f7fcfc"
+      },
+      "gap_reason": "The exact OSM object/name is present but its tags do not establish the candidate market/natural category under the accepted evidence rule.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "cairo",
+      "city_name": "Cairo",
+      "country_iso": "eg",
+      "catalogue_anchor_coordinates": {
+        "lon": 31.248022,
+        "lat": 30.051906
+      },
+      "region_as_recorded": "maghreb",
+      "status": "source-backed-lead-for-parent-review",
+      "source_path": "src/game/cities/cairo/places.ts",
+      "source_field_pointers": [
+        "PLACES[5].name",
+        "PLACES[5].kind",
+        "PLACES[5].line",
+        "PLACES[5].osm"
+      ],
+      "source_ref_as_recorded": "way/709581114",
+      "candidate": {
+        "name": "Khan al-Khalili Bazaar",
+        "category": "public bazaar / market",
+        "fact_paraphrase": "Egypt’s official tourism portal identifies Khan al-Khalili as Cairo’s medieval bazaar, with shops and small alleyways. This supports a market-category schematic only.",
+        "city_association": "The page explicitly names Cairo and Khan al-Khalili.",
+        "source_supported_form_facts": [
+          "named bazaar",
+          "shops and alleyways (described in prose only; no layout copying)"
+        ],
+        "sources": [
+          {
+            "url": "https://www.experienceegypt.eg/en/attraction-details/292/historic-cairo",
+            "title": "Historic Cairo",
+            "publisher": "Experience Egypt, official Egyptian tourism portal; institutional owner not identified in the page record",
+            "author": null,
+            "page_locator": "Section “Khan al-Khalili” under Historic Cairo",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "Cairo’s iconic medieval bazaar",
+            "excerpt_word_count": 4,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": "market",
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic depiction of only the named category/form facts above. No external photo/map/geometry, surveyed dimensions, or unsourced detail.",
+        "production_approved": false
+      },
+      "review_note": "An OSM object linked by the old candidate is tagged as a residential/neighbourhood feature, not marketplace. The official tourism page provides the market-category support. No exact stalls, street plan, goods, dimensions, or geometry are inferred.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "gaborone",
+      "city_name": "Gaborone",
+      "country_iso": "bw",
+      "catalogue_anchor_coordinates": {
+        "lon": 25.9088474,
+        "lat": -24.6581357
+      },
+      "region_as_recorded": "southern-africa",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch1.json#cities[city_id=gaborone]",
+      "candidate": {
+        "name": "Three Dikgosi Monument",
+        "category": "monument",
+        "fact_paraphrase": "Botswana DailyNews reports the Three Dikgosi monument in Gaborone and describes a presidential wreath-laying there. This supports a public monument identity; no construction date or sculpture geometry is asserted.",
+        "city_association": "Botswana DailyNews reports the Three Dikgosi monument in Gaborone and describes a presidential wreath-laying there. This supports a public monument identity; no construction date or sculpture geometry is asserted.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://dailynews.gov.bw/news-detail/47630",
+            "title": "In memory of fallen heroes",
+            "publisher": "DailyNews, Government of Botswana",
+            "author": "not named",
+            "page_locator": "Article, published 27 February 2019; lines 58–59 in accessible text",
+            "published_date": "2019-02-27",
+            "access_date": "2026-10-18",
+            "source_excerpt": "“Three Dikgosi monument in Gaborone”",
+            "excerpt_word_count": 5,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "The source supports name/city/category, not a specific statue design, dimensions, materials, ownership, or asset rights.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "tripoli",
+      "city_name": "Tripoli",
+      "country_iso": "ly",
+      "catalogue_anchor_coordinates": {
+        "lon": 13.18,
+        "lat": 32.89
+      },
+      "region_as_recorded": "maghreb",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch1.json#cities[city_id=tripoli]",
+      "candidate": {
+        "name": "Red Castle (Assaraya al-Hamra)",
+        "category": "historic castle / landmark",
+        "fact_paraphrase": "The Libyan National Museum identifies the Red Castle at Martyrs’ Square in Tripoli’s Old City. Use the identity and historic-landmark category only; no date or exact architecture claim is taken from this page.",
+        "city_association": "The Libyan National Museum identifies the Red Castle at Martyrs’ Square in Tripoli’s Old City. Use the identity and historic-landmark category only; no date or exact architecture claim is taken from this page.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://museum.ly/",
+            "title": "Libyan National Museum",
+            "publisher": "Libyan National Museum (official museum site; institutional authorship not named on page)",
+            "author": "not named",
+            "page_locator": "Home page, Location block",
+            "published_date": "unknown",
+            "access_date": "2026-10-18",
+            "source_excerpt": "“Red Castle”",
+            "excerpt_word_count": 2,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Correct country is Libya (ISO ly). Not the Tripoli in Lebanon. The page supports location/name, not castle geometry or reuse rights.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "djibouti",
+      "city_name": "Djibouti",
+      "country_iso": "dj",
+      "catalogue_anchor_coordinates": {
+        "lon": 43.1472724,
+        "lat": 11.5936903
+      },
+      "region_as_recorded": "east-africa",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/djibouti/places.ts",
+      "source_field_pointers": [
+        "PLACES[5].name",
+        "PLACES[5].kind",
+        "PLACES[5].line",
+        "PLACES[5].osm"
+      ],
+      "source_ref_as_recorded": "node/7270748069",
+      "candidate": {
+        "name_as_recorded": "Djiba Djibouti",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/node/7270748069",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://download.geofabrik.de/africa/djibouti-261011.osm.pbf",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://www.openstreetmap.org/copyright",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "exact_osm_object",
+        "object_url": "https://www.openstreetmap.org/node/7270748069",
+        "object_name": "Djiba Djibouti جيبة جيبوتي",
+        "selected_tags": {
+          "name": "Djiba Djibouti جيبة جيبوتي",
+          "amenity": "marketplace",
+          "shop": "seafood"
+        },
+        "classification": "market",
+        "name_match": false,
+        "result_status": "conflict",
+        "response_sha256": "ef15c9449eb453711500b038d297f13fbf1c345683e1d42958c3214745cf5c50"
+      },
+      "gap_reason": "The referenced OSM object has a category tag but its mapped name does not match the candidate; no documented alias was established.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "amman",
+      "city_name": "Amman",
+      "country_iso": "jo",
+      "catalogue_anchor_coordinates": {
+        "lon": 35.9239625,
+        "lat": 31.9515694
+      },
+      "region_as_recorded": "south-asia",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch1.json#cities[city_id=amman]",
+      "candidate": {
+        "name": "Amman Citadel",
+        "category": "historic citadel / archaeological landmark",
+        "fact_paraphrase": "Jordan’s official tourism education portal places the Amman Citadel on a hill in downtown Amman and describes its multi-period occupation and archaeological remains.",
+        "city_association": "Jordan’s official tourism education portal places the Amman Citadel on a hill in downtown Amman and describes its multi-period occupation and archaeological remains.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://edutravel.visitjordan.com/en/page/81/History-and-Culture",
+            "title": "History and Culture",
+            "publisher": "Visit Jordan / tourism education portal",
+            "author": "not named",
+            "page_locator": "Section “Amman Citadel”",
+            "published_date": "unknown",
+            "access_date": "2026-10-18",
+            "source_excerpt": "“On one of the L-shaped hills in downtown Amman sits the magnificent Amman Citadel.”",
+            "excerpt_word_count": 14,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": "The page attributes Bronze Age phases and later occupation; no single construction year is asserted.",
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Could support a generic archaeological hilltop/citadel motif; no surveyed site plan or imported structure geometry.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "baku",
+      "city_name": "Baku",
+      "country_iso": "az",
+      "catalogue_anchor_coordinates": {
+        "lon": 49.8328009,
+        "lat": 40.3755885
+      },
+      "region_as_recorded": "western-europe",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch1.json#cities[city_id=baku]",
+      "candidate": {
+        "name": "Maiden Tower (Qız Qalası)",
+        "category": "historic monument / tower",
+        "fact_paraphrase": "Azerbaijan’s government information page lists the Maiden Tower among monuments of Baku’s Old City and locates it in Icheri Sheher. The page gives disputed phases/dates, so this record does not select a single construction year.",
+        "city_association": "Azerbaijan’s government information page lists the Maiden Tower among monuments of Baku’s Old City and locates it in Icheri Sheher. The page gives disputed phases/dates, so this record does not select a single construction year.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://azerbaijan.az/en/related-information/2",
+            "title": "Information on historical cultural monuments of Baku city",
+            "publisher": "Azerbaijan.az government information portal",
+            "author": "not named",
+            "page_locator": "Baku monuments page; Maiden Tower paragraph",
+            "published_date": "unknown",
+            "access_date": "2026-10-18",
+            "source_excerpt": "“The Maiden Tower”",
+            "excerpt_word_count": 3,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": "Not selected: same page reports different phases; avoid a single year claim.",
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Identity/category only; do not reproduce exact elevation, dimensions, or tower silhouette without separate approval.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "belgrade",
+      "city_name": "Belgrade",
+      "country_iso": "rs",
+      "catalogue_anchor_coordinates": {
+        "lon": 20.4568974,
+        "lat": 44.8178131
+      },
+      "region_as_recorded": "western-europe",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch1.json#cities[city_id=belgrade]",
+      "candidate": {
+        "name": "Belgrade Fortress / Kalemegdan",
+        "category": "fortress and public park",
+        "fact_paraphrase": "The City of Belgrade describes the fortress as a historic defensive site and states that the Belgrade Fortress forms a spatial whole with Kalemegdan Park.",
+        "city_association": "The City of Belgrade describes the fortress as a historic defensive site and states that the Belgrade Fortress forms a spatial whole with Kalemegdan Park.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://www.beograd.rs/en/discover-belgrade/a80019/Sights.html",
+            "title": "Sights",
+            "publisher": "City of Belgrade official website",
+            "author": "not named",
+            "page_locator": "Fortress on Kalemegdan section",
+            "published_date": "unknown",
+            "access_date": "2026-10-18",
+            "source_excerpt": "“Today, the Belgrade Fortress forms a spatial whole with Kalemegdan Park.”",
+            "excerpt_word_count": 11,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": "landscape",
+        "date_fact": "The page describes Roman-period and later phases; no single construction year is asserted.",
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Exact site name and public park relationship supported; no particular structure geometry or layout is prescribed.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "bratislava",
+      "city_name": "Bratislava",
+      "country_iso": "sk",
+      "catalogue_anchor_coordinates": {
+        "lon": 17.1082867,
+        "lat": 48.1435026
+      },
+      "region_as_recorded": "western-europe",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch1.json#cities[city_id=bratislava]",
+      "candidate": {
+        "name": "Bratislava Castle",
+        "category": "historic castle / fortress",
+        "fact_paraphrase": "Visit Bratislava identifies the castle as a symbol of the city, records its history from the 13th century, and notes its later reconstructions.",
+        "city_association": "Visit Bratislava identifies the castle as a symbol of the city, records its history from the 13th century, and notes its later reconstructions.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://www.visitbratislava.com/places/bratislava-castle/",
+            "title": "Bratislava Castle",
+            "publisher": "Visit Bratislava official city-destination portal",
+            "author": "not named",
+            "page_locator": "Page body, castle history",
+            "published_date": "unknown",
+            "access_date": "2026-10-18",
+            "source_excerpt": "“Its history dates back to the 13th century”",
+            "excerpt_word_count": 8,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": "13th century is the source’s history statement; not a precise construction completion year.",
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Historic identity only; current castle geometry was extensively reconstructed, and is not being asserted here.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "kuwait-city",
+      "city_name": "Kuwait City",
+      "country_iso": "kw",
+      "catalogue_anchor_coordinates": {
+        "lon": 47.9734174,
+        "lat": 29.3796532
+      },
+      "region_as_recorded": "south-asia",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-final8.json#cities[city_id=kuwait-city]",
+      "candidate": {
+        "name": "Kuwait Towers",
+        "category": "monument / landmark",
+        "fact_paraphrase": "The official operator identifies Kuwait Towers as a national symbol integral to the Kuwait City skyline and located on Arabian Gulf Road. Kuwait Government Online separately identifies the towers as a famous landmark in the Sharq district on Arabian Gulf Road.",
+        "city_association": "The official operator identifies Kuwait Towers as a national symbol integral to the Kuwait City skyline and located on Arabian Gulf Road. Kuwait Government Online separately identifies the towers as a famous landmark in the Sharq district on Arabian Gulf Road.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://www.tec.com.kw/Attractions/detail/Kuwait-Tower",
+            "title": "Kuwait Towers",
+            "publisher": "Touristic Enterprises Company",
+            "author": "Touristic Enterprises Company",
+            "page_locator": "Official attraction page; Kuwait City skyline and Arabian Gulf Road",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          },
+          {
+            "url": "https://www.e.gov.kw/sites/kgoenglish/Pages/Visitors/TourismInKuwait/ActivitiesInKuwaitAttractiveSpots.aspx",
+            "title": "Tourist Spots in Kuwait",
+            "publisher": "Kuwait Government Online, State of Kuwait",
+            "author": "Kuwait Government Online",
+            "page_locator": "Kuwait Towers section; Sharq district and Arabian Gulf Road",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "The sources establish identity and city locality; they do not grant architectural, image, or model rights.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "manama",
+      "city_name": "Manama",
+      "country_iso": "bh",
+      "catalogue_anchor_coordinates": {
+        "lon": 50.5822436,
+        "lat": 26.2235041
+      },
+      "region_as_recorded": "south-asia",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=manama]",
+      "candidate": {
+        "name": "Bab Al Bahrain",
+        "category": "monument/market gateway",
+        "fact_paraphrase": "The authority places the named historic gate at the entrance of Manama Suq, Manama.",
+        "city_association": "The authority places the named historic gate at the entrance of Manama Suq, Manama.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://culture.gov.bh/en/visitingbahrain/CulturalTourism/Destinations/Name%2C10129%2Cen.php",
+            "title": "Bab Al Bahrain",
+            "publisher": "Bahrain Authority for Culture and Antiquities",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Destination page; Bab Al Bahrain / Manama Suq",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": "market",
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "riyadh",
+      "city_name": "Riyadh",
+      "country_iso": "sa",
+      "catalogue_anchor_coordinates": {
+        "lon": 46.7160104,
+        "lat": 24.638916
+      },
+      "region_as_recorded": "south-asia",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=riyadh]",
+      "candidate": {
+        "name": "Al Masmak Palace",
+        "category": "monument/fortress",
+        "fact_paraphrase": "Official tourism page identifies Al Masmak Palace as an ancient palace in Riyadh.",
+        "city_association": "Official tourism page identifies Al Masmak Palace as an ancient palace in Riyadh.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://www.visitsaudi.com/en/see/highlights/Al-Masmak-Fortress",
+            "title": "Al Masmak Fortress",
+            "publisher": "Saudi Tourism Authority / Visit Saudi",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Destination page; Al Masmak Fortress",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "vientiane",
+      "city_name": "Vientiane",
+      "country_iso": "la",
+      "catalogue_anchor_coordinates": {
+        "lon": 102.6133707,
+        "lat": 17.9640988
+      },
+      "region_as_recorded": "east-asia",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=vientiane]",
+      "candidate": {
+        "name": "Pha That Luang",
+        "category": "monument",
+        "fact_paraphrase": "State news agency describes Pha That Luang as a Buddhist monument and national symbol in Vientiane.",
+        "city_association": "State news agency describes Pha That Luang as a Buddhist monument and national symbol in Vientiane.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://kpl.gov.la/EN/Detail.aspx?id=106044",
+            "title": "Pha That Luang identified as national symbol",
+            "publisher": "Lao News Agency (KPL), state news agency",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Article dated 2026-08-27; national monument / Vientiane attractions",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "yerevan",
+      "city_name": "Yerevan",
+      "country_iso": "am",
+      "catalogue_anchor_coordinates": {
+        "lon": 44.5126233,
+        "lat": 40.1777112
+      },
+      "region_as_recorded": "western-europe",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=yerevan]",
+      "candidate": {
+        "name": "Cascade Complex",
+        "category": "public architectural landmark",
+        "fact_paraphrase": "Official tourism portal lists Cascade Complex among Yerevan places to visit.",
+        "city_association": "Official tourism portal lists Cascade Complex among Yerevan places to visit.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://armenia.travel/places-to-go/yerevan/",
+            "title": "Yerevan",
+            "publisher": "Armenia Travel, official tourism portal",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Yerevan destination page; Cascade Complex listing",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "serekunda",
+      "city_name": "Serrekunda",
+      "country_iso": "gm",
+      "catalogue_anchor_coordinates": {
+        "lon": -16.674807,
+        "lat": 13.438762
+      },
+      "region_as_recorded": "gulf-guinea",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/serekunda/places.ts",
+      "source_field_pointers": [
+        "PLACES[5].name",
+        "PLACES[5].kind",
+        "PLACES[5].line",
+        "PLACES[5].osm"
+      ],
+      "source_ref_as_recorded": "way/255666858",
+      "candidate": {
+        "name_as_recorded": "Marché Albert",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/way/255666858",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://download.geofabrik.de/africa/senegal-and-gambia-261011.osm.pbf",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://www.openstreetmap.org/copyright",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "exact_osm_object",
+        "object_url": "https://www.openstreetmap.org/way/255666858",
+        "object_name": "Albert Market",
+        "selected_tags": {
+          "name": "Albert Market",
+          "amenity": "marketplace",
+          "landuse": "retail",
+          "tourism": "attraction"
+        },
+        "classification": "market",
+        "name_match": false,
+        "result_status": "conflict",
+        "response_sha256": "57497d010897bd888e99f57ca757503a956b96418088e9f4ec65700c6c0702f4"
+      },
+      "gap_reason": "The referenced OSM object has a category tag but its mapped name does not match the candidate; no documented alias was established.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "damascus",
+      "city_name": "Damascus",
+      "country_iso": "sy",
+      "catalogue_anchor_coordinates": {
+        "lon": 36.3095814,
+        "lat": 33.5130695
+      },
+      "region_as_recorded": "south-asia",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=damascus]",
+      "candidate": {
+        "name": "Great Mosque of the Umayyads",
+        "category": "monument",
+        "fact_paraphrase": "UNESCO identifies the Umayyad Mosque as a major monument in the Ancient City of Damascus.",
+        "city_association": "UNESCO identifies the Umayyad Mosque as a major monument in the Ancient City of Damascus.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://whc.unesco.org/en/list/20",
+            "title": "Ancient City of Damascus",
+            "publisher": "UNESCO World Heritage Centre",
+            "author": "not identified in the accessible source record",
+            "page_locator": "World Heritage property page; Great Mosque of Umayyads description",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "panama-city",
+      "city_name": "Panama City",
+      "country_iso": "pa",
+      "catalogue_anchor_coordinates": {
+        "lon": -79.5341802,
+        "lat": 8.9714493
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=panama-city]",
+      "candidate": {
+        "name": "Iglesia Metropolitana Santa María la Antigua",
+        "category": "monument",
+        "fact_paraphrase": "The Ministry’s heritage register locates the historic Casco Antiguo in Panama City and lists the Metropolitan Cathedral among its monuments.",
+        "city_association": "The Ministry’s heritage register locates the historic Casco Antiguo in Panama City and lists the Metropolitan Cathedral among its monuments.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://sicultura.gob.pa/espacios-culturales/monumentos-sitios-declarados-patrimonio/conjunto-monumental-historico-del-casco-antiguo-de-la-ciudad-de-panama",
+            "title": "Conjunto Monumental Histórico del Casco Antiguo de la Ciudad de Panamá",
+            "publisher": "Ministry of Culture of Panama (MiCultura), SICultura",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Heritage register page; lists San Felipe and named monuments including the cathedral",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "paramaribo",
+      "city_name": "Paramaribo",
+      "country_iso": "sr",
+      "catalogue_anchor_coordinates": {
+        "lon": -55.1703941,
+        "lat": 5.8247628
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=paramaribo]",
+      "candidate": {
+        "name": "Fort Zeelandia",
+        "category": "monument/fort",
+        "fact_paraphrase": "UNESCO lists Fort Zeelandia among named historic elements of Paramaribo’s inner city.",
+        "city_association": "UNESCO lists Fort Zeelandia among named historic elements of Paramaribo’s inner city.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://whc.unesco.org/en/list/940/",
+            "title": "Historic Inner City of Paramaribo",
+            "publisher": "UNESCO World Heritage Centre",
+            "author": "not identified in the accessible source record",
+            "page_locator": "World Heritage property page; Fort Zeelandia site element",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "prague",
+      "city_name": "Prague",
+      "country_iso": "cz",
+      "catalogue_anchor_coordinates": {
+        "lon": 14.4212535,
+        "lat": 50.0874654
+      },
+      "region_as_recorded": "western-europe",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=prague]",
+      "candidate": {
+        "name": "Charles Bridge",
+        "category": "monument/bridge",
+        "fact_paraphrase": "Official city tourism page dates the start of bridge construction to 1357 and completion to 1402.",
+        "city_association": "Official city tourism page dates the start of bridge construction to 1357 and completion to 1402.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://prague.eu/en/objevujte/charles-bridge-karluv-most/",
+            "title": "Charles Bridge (Karlův most)",
+            "publisher": "Prague City Tourism",
+            "author": "not identified in the accessible source record",
+            "page_locator": "City tourism entry; history and construction period",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": {
+          "start_year": 1357,
+          "completion_year": 1402
+        },
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "delhi",
+      "city_name": "Delhi",
+      "country_iso": "in",
+      "catalogue_anchor_coordinates": {
+        "lon": 77.2169781,
+        "lat": 28.6664535
+      },
+      "region_as_recorded": "south-asia",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=delhi]",
+      "candidate": {
+        "name": "Red Fort",
+        "category": "monument/fort",
+        "fact_paraphrase": "ASI’s protected-monuments list identifies Red Fort and records Red Fort, Delhi as its locality.",
+        "city_association": "ASI’s protected-monuments list identifies Red Fort and records Red Fort, Delhi as its locality.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://asi.nic.in/pdf/CPM_List.pdf",
+            "title": "Centrally Protected Monuments/Sites: State-wise and Circle-wise",
+            "publisher": "Archaeological Survey of India",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Protected monuments list; Delhi Circle, Red Fort locality",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "athens",
+      "city_name": "Athens",
+      "country_iso": "gr",
+      "catalogue_anchor_coordinates": {
+        "lon": 23.7348324,
+        "lat": 37.9755648
+      },
+      "region_as_recorded": "western-europe",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=athens]",
+      "candidate": {
+        "name": "Acropolis of Athens",
+        "category": "monument/archaeological site",
+        "fact_paraphrase": "The Ministry’s archaeological site record names the Acropolis of Athens.",
+        "city_association": "The Ministry’s archaeological site record names the Acropolis of Athens.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://odysseus.culture.gr/h/3/gh355.jsp?obj_id=28548",
+            "title": "Acropolis of Athens",
+            "publisher": "Hellenic Ministry of Culture, Odysseus portal",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Archaeological site record",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "baghdad",
+      "city_name": "Baghdad",
+      "country_iso": "iq",
+      "catalogue_anchor_coordinates": {
+        "lon": 44.3872213,
+        "lat": 33.3061701
+      },
+      "region_as_recorded": "south-asia",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=baghdad]",
+      "candidate": {
+        "name": "Al-Mutanabbi Street",
+        "category": "public market/street",
+        "fact_paraphrase": "The authority locates Al-Mutanabbi Street in old Baghdad and describes its book-market/cultural identity.",
+        "city_association": "The authority locates Al-Mutanabbi Street in old Baghdad and describes its book-market/cultural identity.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://www.tourism.gov.iq/en/posts/1a38a5c5-c2ef-46fd-b6a0-d2a119b761aa",
+            "title": "Al-Mutanabbi Street",
+            "publisher": "Iraqi Tourism Authority",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Tourism page; old Baghdad location and book-market identity",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": "market",
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "brussels",
+      "city_name": "Brussels",
+      "country_iso": "be",
+      "catalogue_anchor_coordinates": {
+        "lon": 4.352493,
+        "lat": 50.8467372
+      },
+      "region_as_recorded": "western-europe",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=brussels]",
+      "candidate": {
+        "name": "Grand-Place",
+        "category": "public market square",
+        "fact_paraphrase": "The official city destination portal identifies Grand-Place in Brussels and its historical market-square role.",
+        "city_association": "The official city destination portal identifies Grand-Place in Brussels and its historical market-square role.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://www.visit.brussels/en/visitors/venue-details.3743",
+            "title": "Grand-Place",
+            "publisher": "visit.brussels, official destination portal",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Venue page; historical square and market activity",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": "market",
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "male",
+      "city_name": "Malé",
+      "country_iso": "mv",
+      "catalogue_anchor_coordinates": {
+        "lon": 73.5107387,
+        "lat": 4.1779879
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/male/places.ts",
+      "source_field_pointers": [
+        "PLACES[5].name",
+        "PLACES[5].kind",
+        "PLACES[5].line",
+        "PLACES[5].osm"
+      ],
+      "source_ref_as_recorded": "way/153106623",
+      "candidate": {
+        "name_as_recorded": "Marché Local",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/way/153106623",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://download.geofabrik.de/asia/maldives-261011.osm.pbf",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://www.openstreetmap.org/copyright",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "exact_osm_object",
+        "object_url": "https://www.openstreetmap.org/way/153106623",
+        "object_name": "Travellers' Market",
+        "selected_tags": {
+          "name": "Travellers' Market",
+          "amenity": "marketplace",
+          "building": "yes"
+        },
+        "classification": "market",
+        "name_match": false,
+        "result_status": "conflict",
+        "response_sha256": "f7a39a2a4869a11d23faaf2e0999215a848d9a3f4f246b6f360524284a8424c8"
+      },
+      "gap_reason": "The referenced OSM object has a category tag but its mapped name does not match the candidate; no documented alias was established.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "palikir",
+      "city_name": "Palikir",
+      "country_iso": "fm",
+      "catalogue_anchor_coordinates": {
+        "lon": 158.1627143,
+        "lat": 6.920744
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=palikir]",
+      "candidate": {
+        "name": "Palikir Capitol Complex",
+        "category": "government complex/architecture",
+        "fact_paraphrase": "The FSM government PIO says its office is located in the Palikir Capitol Complex. This supports complex identity/location, not a particular designed building.",
+        "city_association": "The FSM government PIO says its office is located in the Palikir Capitol Complex. This supports complex identity/location, not a particular designed building.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://personnel.gov.fm/disclaimer/",
+            "title": "Disclaimer",
+            "publisher": "FSM Public Information Office, Office of the President",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Official page; identifies Palikir Capitol Complex location",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "toronto",
+      "city_name": "Toronto",
+      "country_iso": "ca",
+      "catalogue_anchor_coordinates": {
+        "lon": -79.3839347,
+        "lat": 43.6534817
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=toronto]",
+      "candidate": {
+        "name": "CN Tower",
+        "category": "public landmark/tower",
+        "fact_paraphrase": "The operator places the Tower in downtown Toronto and reports construction beginning in 1973 and public opening in 1976.",
+        "city_association": "The operator places the Tower in downtown Toronto and reports construction beginning in 1973 and public opening in 1976.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://www.cntower.ca/history",
+            "title": "History",
+            "publisher": "CN Tower (official operator/source owner)",
+            "author": "not identified in the accessible source record",
+            "page_locator": "History page; downtown Toronto site and construction dates",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": {
+          "construction_start_year": 1973,
+          "opened_year": 1976
+        },
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "jakarta",
+      "city_name": "Jakarta",
+      "country_iso": "id",
+      "catalogue_anchor_coordinates": {
+        "lon": 106.827168,
+        "lat": -6.1754049
+      },
+      "region_as_recorded": "east-asia",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=jakarta]",
+      "candidate": {
+        "name": "Monumen Nasional (Monas)",
+        "category": "monument",
+        "fact_paraphrase": "Jakarta’s official portal locates Monas at Jalan Tugu Monas in Central Jakarta and calls it a monument.",
+        "city_association": "Jakarta’s official portal locates Monas at Jalan Tugu Monas in Central Jakarta and calls it a monument.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://www.jakarta.go.id/wisata-bersejarah",
+            "title": "Wisata Bersejarah",
+            "publisher": "Jakarta Provincial Government",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Historical tourism page; Monas section",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": {
+          "construction_start_year": 1961
+        },
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "helsinki",
+      "city_name": "Helsinki",
+      "country_iso": "fi",
+      "catalogue_anchor_coordinates": {
+        "lon": 24.9435408,
+        "lat": 60.1666204
+      },
+      "region_as_recorded": "western-europe",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/helsinki/places.ts",
+      "source_field_pointers": [
+        "PLACES[5].name",
+        "PLACES[5].kind",
+        "PLACES[5].line",
+        "PLACES[5].osm"
+      ],
+      "source_ref_as_recorded": "way/27518041",
+      "candidate": {
+        "name_as_recorded": "Centre commercial de Vantaanpuisto",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/way/27518041",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://download.geofabrik.de/europe/finland-261011.osm.pbf",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://www.openstreetmap.org/copyright",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "exact_osm_object",
+        "object_url": "https://www.openstreetmap.org/way/27518041",
+        "object_name": "Vantaanpuiston ostoskeskus",
+        "selected_tags": {
+          "name": "Vantaanpuiston ostoskeskus",
+          "shop": "mall",
+          "building": "retail"
+        },
+        "classification": "retail-building",
+        "name_match": false,
+        "result_status": "conflict",
+        "response_sha256": "c110e254f543c676fd40c8a54d1b4408a74fe6c362f8f0a00692a581fad774a8"
+      },
+      "gap_reason": "The linked OSM object is a mall with a name that does not match the candidate; no documented alias or exact Helsinki-local natural alternative was established.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "funafuti",
+      "city_name": "Funafuti",
+      "country_iso": "tv",
+      "catalogue_anchor_coordinates": {
+        "lon": 179.1982548,
+        "lat": -8.5199633
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=funafuti]",
+      "candidate": {
+        "name": "David’s Drill",
+        "category": "historic site/landmark",
+        "fact_paraphrase": "The government tourism page says the historic drilling site called David’s Drill can still be seen in Fongafale village.",
+        "city_association": "The government tourism page says the historic drilling site called David’s Drill can still be seen in Fongafale village.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://tourism.gov.tv/womens-handicraft-centre/",
+            "title": "Women’s Handicraft Centre / Funafuti information",
+            "publisher": "Ministry of Tourism, Government of Tuvalu",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Attraction/information page; David’s Drill / Fongafale village section",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "vatican-city",
+      "city_name": "Vatican City",
+      "country_iso": "va",
+      "catalogue_anchor_coordinates": {
+        "lon": 12.4528349,
+        "lat": 41.9034912
+      },
+      "region_as_recorded": "western-europe",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=vatican-city]",
+      "candidate": {
+        "name": "Saint Peter’s Basilica",
+        "category": "public religious architecture",
+        "fact_paraphrase": "The Vatican’s official basilica site identifies the Basilica of Saint Peter in Vatican City.",
+        "city_association": "The Vatican’s official basilica site identifies the Basilica of Saint Peter in Vatican City.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://basilicas.vatican.va/en/basilica-san-pietro.html",
+            "title": "Saint Peter’s Basilica",
+            "publisher": "Fabbrica di San Pietro / Vatican official site",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Basilica page",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "gustavia",
+      "city_name": "Gustavia",
+      "country_iso": "bl",
+      "catalogue_anchor_coordinates": {
+        "lon": -62.8508372,
+        "lat": 17.8957043
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "source-backed-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name": "Shell Beach",
+        "category": "natural feature (pebble beach)",
+        "fact_paraphrase": "The official Saint-Barthélemy tourism committee describes Shell Beach as a nearby pebble beach and says it is a five-minute walk from Gustavia’s town centre.",
+        "city_association": "The official Gustavia page locates Shell Beach near the city centre; this is explicit adjacency, not an exact catalogue-anchor overlap.",
+        "source_supported_form_facts": [
+          "pebble beach",
+          "nearby to Gustavia centre"
+        ],
+        "sources": [
+          {
+            "url": "https://www.saintbarth-tourisme.com/locations/gustavia",
+            "title": "Gustavia",
+            "publisher": "Comité Territorial du Tourisme de Saint-Barthélemy (CTTSB), official territorial tourism committee",
+            "author": null,
+            "page_locator": "Gustavia page, section describing nearby Shell Beach",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "nearby pebble beach Shell Beach",
+            "excerpt_word_count": 5,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": "waterfront",
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic depiction of only the named category/form facts above. No external photo/map/geometry, surveyed dimensions, or unsourced detail.",
+        "production_approved": false,
+        "rejected_previous_candidate": {
+          "name": "Governors’ House in Gustavia",
+          "category": "historic building/monument",
+          "reason": "French territory building proposal lacked primary-source pre-1950 construction evidence."
+        }
+      },
+      "review_note": "Gustavia is a French territory: the earlier Governors’ House building lead has no sourced pre-1950 year and is not used. This replacement is the nearby natural feature only; exact shoreline geometry is not claimed.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "papeete",
+      "city_name": "Papeete",
+      "country_iso": "pf",
+      "catalogue_anchor_coordinates": {
+        "lon": -149.5659964,
+        "lat": -17.5373835
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/papeete/places.ts",
+      "source_field_pointers": [
+        "PLACES[5].name",
+        "PLACES[5].kind",
+        "PLACES[5].line",
+        "PLACES[5].osm"
+      ],
+      "source_ref_as_recorded": "way/204556920",
+      "candidate": {
+        "name_as_recorded": "Centre commercial",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/way/204556920",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://download.geofabrik.de/australia-oceania/polynesie-francaise-261011.osm.pbf",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://www.openstreetmap.org/copyright",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "exact_osm_object",
+        "object_url": "https://www.openstreetmap.org/way/204556920",
+        "object_name": "Centre commercial",
+        "selected_tags": {
+          "name": "Centre commercial",
+          "shop": "mall",
+          "building": "retail"
+        },
+        "classification": "retail-building",
+        "name_match": true,
+        "result_status": "matched",
+        "response_sha256": "b5c93a5e1547f6da689844f4120bbb5d8a07f9e4a5984676df3038d65a840221"
+      },
+      "gap_reason": "The linked OSM object is tagged shop=mall. French territory building rule requires a sourced pre-1950 year; none is present. No Papeete-local natural alternative was verified.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "pristina",
+      "city_name": "Pristina",
+      "country_iso": "xk",
+      "catalogue_anchor_coordinates": {
+        "lon": 21.1640849,
+        "lat": 42.6638771
+      },
+      "region_as_recorded": "western-europe",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-final8.json#cities[city_id=pristina]",
+      "candidate": {
+        "name": "Sahat Kulla (Clock Tower)",
+        "category": "historic monument / pre-1950 building",
+        "fact_paraphrase": "A Municipality of Prishtina publication places Sahat Kulla in Prishtina's historic centre, identifies it as an important utilitarian-architecture monument, and dates its construction to the nineteenth century.",
+        "city_association": "A Municipality of Prishtina publication places Sahat Kulla in Prishtina's historic centre, identifies it as an important utilitarian-architecture monument, and dates its construction to the nineteenth century.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://prishtina.rks-gov.net/wp-content/uploads/2024/12/narrativa_e_prishtines.pdf",
+            "title": "Narrativa e Prishtinës",
+            "publisher": "Municipality of Prishtina",
+            "author": "Municipality of Prishtina working team",
+            "page_locator": "Sahat Kulla section, page 25; publication introduction describes the municipally appointed working team",
+            "published_date": "2018-09",
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": "19th century",
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "The nineteenth-century date satisfies a pre-1950 check if that constraint is applied; current access and condition remain unconfirmed.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "stanley",
+      "city_name": "Stanley",
+      "country_iso": "fk",
+      "catalogue_anchor_coordinates": {
+        "lon": -57.856525,
+        "lat": -51.6930616
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=stanley]",
+      "candidate": {
+        "name": "Christ Church Cathedral",
+        "category": "monument/religious architecture",
+        "fact_paraphrase": "The archive-hosted historical brochure describes the cathedral’s foundation stone in Stanley in 1890 and consecration in 1892.",
+        "city_association": "The archive-hosted historical brochure describes the cathedral’s foundation stone in Stanley in 1890 and consecration in 1892.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://www.nationalarchives.gov.fk/jdownloads/People/Culture%20and%20Early%20History/R-CUL-ANN-1-4.%20Heritage%20Year%201992.%20Souvenir%20Brochure.pdf",
+            "title": "Heritage Year 1992 souvenir brochure",
+            "publisher": "Falkland Islands National Archives",
+            "author": "not identified in the accessible source record",
+            "page_locator": "PDF, page 8; Cathedral history and image caption",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": {
+          "foundation_year": 1890,
+          "consecration_year": 1892
+        },
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "the-valley",
+      "city_name": "The Valley",
+      "country_iso": "ai",
+      "catalogue_anchor_coordinates": {
+        "lon": -63.0517759,
+        "lat": 18.2145861
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=the-valley]",
+      "candidate": {
+        "name": "Wallblake House",
+        "category": "historic building",
+        "fact_paraphrase": "Government tourism plan identifies Wallblake House in The Valley and says it was built in 1787.",
+        "city_association": "Government tourism plan identifies Wallblake House in The Valley and says it was built in 1787.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://gov.ai/document/Final_STMP2.pdf",
+            "title": "Sustainable Tourism Master Plan 2010–2020",
+            "publisher": "Government of Anguilla",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Section 10.3.3, p. 91",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": {
+          "built_year": 1787
+        },
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "willemstad",
+      "city_name": "Willemstad",
+      "country_iso": "cw",
+      "catalogue_anchor_coordinates": {
+        "lon": -68.9351307,
+        "lat": 12.1066695
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=willemstad]",
+      "candidate": {
+        "name": "Queen Emma Bridge",
+        "category": "public bridge/landmark",
+        "fact_paraphrase": "The official tourism portal describes the bridges as spanning historic Willemstad waterways and names the Queen Emma Bridge.",
+        "city_association": "The official tourism portal describes the bridges as spanning historic Willemstad waterways and names the Queen Emma Bridge.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://www.curacao.com/pt/article/bridges",
+            "title": "Bridges",
+            "publisher": "Curaçao tourism portal",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Queen Emma Bridge section",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "hagatna",
+      "city_name": "Hagåtña",
+      "country_iso": "gu",
+      "catalogue_anchor_coordinates": {
+        "lon": 144.7516191,
+        "lat": 13.4748148
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=hagatna]",
+      "candidate": {
+        "name": "Senator Angel LG Santos Memorial Park",
+        "category": "public memorial park/monument",
+        "fact_paraphrase": "The bureau itinerary calls the memorial park located in the heart of Hagåtña and describes its cultural stone pillars.",
+        "city_association": "The bureau itinerary calls the memorial park located in the heart of Hagåtña and describes its cultural stone pillars.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://www.guamvisitorsbureau.com/docs/resources/press-kits/guam-sample-itineraries/tour-series-island-guam.pdf",
+            "title": "Hafa Adai Tour Series 1: Guam Island Tour",
+            "publisher": "Guam Visitors Bureau",
+            "author": "not identified in the accessible source record",
+            "page_locator": "PDF, itinerary stop 6",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": "landscape",
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "hamilton",
+      "city_name": "Hamilton",
+      "country_iso": "bm",
+      "catalogue_anchor_coordinates": {
+        "lon": -64.7853167,
+        "lat": 32.2942679
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=hamilton]",
+      "candidate": {
+        "name": "Cenotaph at Cabinet Office",
+        "category": "public monument",
+        "fact_paraphrase": "Government page locates the Cabinet Office in Hamilton and identifies its grounds Cenotaph as a Bermuda war memorial.",
+        "city_association": "Government page locates the Cabinet Office in Hamilton and identifies its grounds Cenotaph as a Bermuda war memorial.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://www.gov.bm/articles/cabinet",
+            "title": "The Cabinet",
+            "publisher": "Government of Bermuda",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Cabinet Office grounds section",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "kingston-nf",
+      "city_name": "Kingston",
+      "country_iso": "nf",
+      "catalogue_anchor_coordinates": {
+        "lon": 167.9595733,
+        "lat": -29.0563564
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=kingston-nf]",
+      "candidate": {
+        "name": "Kingston and Arthur’s Vale Historic Area",
+        "category": "historic area/architecture",
+        "fact_paraphrase": "UNESCO map table lists the Kingston and Arthur’s Vale Historic Area on Norfolk Island with coordinates in the Kingston locality.",
+        "city_association": "UNESCO map table lists the Kingston and Arthur’s Vale Historic Area on Norfolk Island with coordinates in the Kingston locality.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://whc.unesco.org/en/list/1306/maps/",
+            "title": "Australian Convict Sites: map data",
+            "publisher": "UNESCO World Heritage Centre",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Geographical data table; property 1306-001",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "marigot",
+      "city_name": "Marigot",
+      "country_iso": "mf",
+      "catalogue_anchor_coordinates": {
+        "lon": -63.0848869,
+        "lat": 18.0668544
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "unresolved-primary-source-gap",
+      "source_path": "src/game/cities/marigot/places.ts",
+      "source_field_pointers": [
+        "PLACES[5].name",
+        "PLACES[5].kind",
+        "PLACES[5].line",
+        "PLACES[5].osm"
+      ],
+      "source_ref_as_recorded": "way/465741045",
+      "candidate": {
+        "name_as_recorded": "Centre Commercial Aventura",
+        "category_as_recorded": "market",
+        "fact_paraphrase": null,
+        "sources": [],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "production_approved": false
+      },
+      "existing_source_urls_reviewed": [
+        {
+          "url": "https://www.openstreetmap.org/way/465741045",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        },
+        {
+          "url": "https://www.openstreetmap.org/copyright",
+          "use": "recorded candidate source; not treated as primary support unless validated below"
+        }
+      ],
+      "prior_osm_audit": {
+        "audit_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json",
+        "lookup_kind": "exact_osm_object",
+        "object_url": "https://www.openstreetmap.org/way/465741045",
+        "object_name": "Centre Commercial Aventura",
+        "selected_tags": {
+          "name": "Centre Commercial Aventura",
+          "shop": "mall",
+          "building": "retail"
+        },
+        "classification": "retail-building",
+        "name_match": true,
+        "result_status": "matched",
+        "response_sha256": "560c0992606273b5b2a06a1df9b278ff2073464c24781d4ee0fbe0609ac2b95a"
+      },
+      "gap_reason": "The linked OSM object is tagged shop=mall. French territory building rule requires a sourced pre-1950 year; none is present. No Marigot-local natural alternative was verified.",
+      "review_note": "Do not generate from the supplied name alone. No neighbouring landmark substitution, alias, date, goods, layout or rights claim.",
+      "production_approved": false
+    },
+    {
+      "city_id": "oranjestad",
+      "city_name": "Oranjestad",
+      "country_iso": "aw",
+      "catalogue_anchor_coordinates": {
+        "lon": -70.0371329,
+        "lat": 12.5201024
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=oranjestad]",
+      "candidate": {
+        "name": "Fort Zoutman",
+        "category": "monument/fort",
+        "fact_paraphrase": "The tourism portal gives an Oranjestad address and says the fort was completed in 1798.",
+        "city_association": "The tourism portal gives an Oranjestad address and says the fort was completed in 1798.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://www.aruba.com/uk/explore/fort-zoutman-historical-museum",
+            "title": "Fort Zoutman Historical Museum",
+            "publisher": "Aruba tourism portal (source owner / destination organization)",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Fort Zoutman entry; address and history",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": {
+          "completed_year": 1798
+        },
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "brades",
+      "city_name": "Brades",
+      "country_iso": "ms",
+      "catalogue_anchor_coordinates": {
+        "lon": -62.2099434,
+        "lat": 16.7898749
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=brades]",
+      "candidate": {
+        "name": "Government Headquarters, Brades",
+        "category": "government complex/architecture",
+        "fact_paraphrase": "Government department page gives Government Headquarters, Brades as the department location. Supports a civic complex location, not a named façade or distinct historic building.",
+        "city_association": "Government department page gives Government Headquarters, Brades as the department location. Supports a civic complex location, not a named façade or distinct historic building.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://www.gov.ms/government/non-ministerial-departments/cabinet-secretariat/",
+            "title": "Cabinet Secretariat",
+            "publisher": "Government of Montserrat",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Contact address / office location",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "jamestown",
+      "city_name": "Jamestown",
+      "country_iso": "sh",
+      "catalogue_anchor_coordinates": {
+        "lon": -5.7160872,
+        "lat": -15.9277296
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=jamestown]",
+      "candidate": {
+        "name": "Jacob’s Ladder",
+        "category": "public heritage feature/stair",
+        "fact_paraphrase": "Research report identifies Jacob’s Ladder as a prominent feature in Jamestown. This is credible location evidence but not an official site-owner record; parent should decide whether this meets primary-source policy.",
+        "city_association": "Research report identifies Jacob’s Ladder as a prominent feature in Jamestown. This is credible location evidence but not an official site-owner record; parent should decide whether this meets primary-source policy.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://data.jncc.gov.uk/data/509a16cf-156d-4c5d-bde7-5a57292999e4/ot-nca-sup-sat-31-sth-apr2019.pdf",
+            "title": "South Atlantic Natural Capital Project: Cultural ecosystem services in St Helena",
+            "publisher": "Joint Nature Conservation Committee / academic research report",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Heritage section, figure/text discussing Jamestown",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "cove",
+      "city_name": "Atlas Cove Station",
+      "country_iso": "hm",
+      "catalogue_anchor_coordinates": {
+        "lon": 73.3934601,
+        "lat": -53.0190019
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "source-backed-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "candidate": {
+        "name": "Atlas Cove",
+        "category": "natural feature (cove / shoreline setting)",
+        "fact_paraphrase": "The Australian Antarctic Program identifies Atlas Cove on Heard Island. The mapping page lists named survey-control marks at Atlas Cove; the feature itself is not supplied with a boundary or geometry here.",
+        "city_association": "The catalogue identity is Atlas Cove Station; the official source names Atlas Cove on Heard Island. This links the named site to the same island locality, not a surveyed overlap with the catalogue point.",
+        "source_supported_form_facts": [
+          "named cove on Heard Island"
+        ],
+        "sources": [
+          {
+            "url": "https://www.antarctica.gov.au/antarctic-operations/stations-and-field-locations/heard-island/",
+            "title": "Heard Island and McDonald Islands",
+            "publisher": "Australian Antarctic Division, Australian Government Department of Climate Change, Energy, the Environment and Water",
+            "author": null,
+            "page_locator": "Page caption identifying Atlas Cove on Heard Island (page lines 300–304 in accessible text)",
+            "published_date": "Updated 2026-09-28 per page",
+            "access_date": "2026-10-18",
+            "source_excerpt": "Atlas Cove on Heard Island",
+            "excerpt_word_count": 5,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": "waterfront",
+        "date_fact": null,
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic depiction of only the named category/form facts above. No external photo/map/geometry, surveyed dimensions, or unsourced detail.",
+        "production_approved": false
+      },
+      "review_note": "A stylized cove/shoreline category only. No bathymetry, exact coastline, feature coordinate, landform profile, photo, map, or geometry is reused.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "grytviken",
+      "city_name": "Grytviken",
+      "country_iso": "gs",
+      "catalogue_anchor_coordinates": {
+        "lon": -36.5098,
+        "lat": -54.2806481
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=grytviken]",
+      "candidate": {
+        "name": "Main Store, Grytviken",
+        "category": "historic building",
+        "fact_paraphrase": "Government source places the Main Store at the heart of Grytviken and dates it to circa 1920; it reports it opened to visitors after restoration.",
+        "city_association": "Government source places the Main Store at the heart of Grytviken and dates it to circa 1920; it reports it opened to visitors after restoration.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://gov.gs/historic-former-whaling-building-has-opened-for-the-first-time/",
+            "title": "Historic Former Whaling Building Has Opened For The First Time",
+            "publisher": "Government of South Georgia & the South Sandwich Islands",
+            "author": "not identified in the accessible source record",
+            "page_locator": "Article, 2023-02-16",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": {
+          "built_year_approx": 1920
+        },
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "Source lead only. No asset, ownership, design, location precision, reuse rights, or production approval is established.",
+      "source_rights": "unknown",
+      "production_approved": false
+    },
+    {
+      "city_id": "saint-pierre",
+      "city_name": "Saint-Pierre",
+      "country_iso": "pm",
+      "catalogue_anchor_coordinates": {
+        "lon": -56.1768672,
+        "lat": 46.7775497
+      },
+      "region_as_recorded": "americas-oceania",
+      "status": "reused-primary-source-lead-for-parent-review",
+      "source_path": null,
+      "source_field_pointers": [],
+      "source_ref_as_recorded": null,
+      "evidence_artifact": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-final8.json#cities[city_id=saint-pierre]",
+      "candidate": {
+        "name": "Pointe-aux-Canons Lighthouse",
+        "category": "pre-1950 building / maritime monument",
+        "fact_paraphrase": "The territorial maritime-history record states that the original light first operated in 1819, the substantially current tower replaced it on 1 October 1862, and a 1949 restoration gave the tower its current appearance. The territorial authority separately calls it an emblematic monument at the entrance to Saint-Pierre's old port.",
+        "city_association": "The territorial maritime-history record states that the original light first operated in 1819, the substantially current tower replaced it on 1 October 1862, and a 1949 restoration gave the tower its current appearance. The territorial authority separately calls it an emblematic monument at the entrance to Saint-Pierre's old port.",
+        "source_supported_form_facts": [],
+        "sources": [
+          {
+            "url": "https://www.saint-pierre-et-miquelon.developpement-durable.gouv.fr/IMG/pdf/memoire_pointe_aux_canons.pdf",
+            "title": "Historique de la signalisation maritime aux îles Saint-Pierre et Miquelon",
+            "publisher": "Direction des Territoires, de l’Alimentation et de la Mer à Saint-Pierre et Miquelon",
+            "author": "Direction des Territoires, de l’Alimentation et de la Mer à Saint-Pierre et Miquelon",
+            "page_locator": "Signalisation maritime / Feu de la Pointe-aux-Canons, pages 1–2; 1819, 1862, and 1949 chronology",
+            "published_date": null,
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          },
+          {
+            "url": "https://www.saint-pierre-et-miquelon.developpement-durable.gouv.fr/demarrage-de-l-amenagement-des-abords-du-phare-de-a705.html",
+            "title": "Démarrage de l’aménagement des abords du phare de la Pointe-aux-Canons",
+            "publisher": "Direction des Territoires, de l’Alimentation et de la Mer à Saint-Pierre et Miquelon",
+            "author": "Direction des Territoires, de l’Alimentation et de la Mer à Saint-Pierre et Miquelon",
+            "page_locator": "Project notice; emblematic monument at the entrance to the old port of Saint-Pierre",
+            "published_date": "2021-07-07",
+            "access_date": "2026-10-18",
+            "source_excerpt": "",
+            "excerpt_word_count": 0,
+            "licence": "unknown"
+          }
+        ],
+        "requested_existing_family": null,
+        "date_fact": "1862-10-01; current appearance from 1949 restoration",
+        "source_rights": "unknown",
+        "external_geometry_or_photo_reuse": "not claimed or permitted",
+        "original_art_scope": "Original schematic category/form only as stated by the source paraphrase; do not copy external images, maps, geometry, exact façade, measurements, or unsourced local detail.",
+        "production_approved": false,
+        "form_fact_policy": "The source paraphrase contains the factual category/form wording recorded by the prior source review; no extra geometry or shape has been extracted or inferred."
+      },
+      "review_note": "The 1862 tower and 1949 appearance satisfy the France-jurisdiction pre-1950 requirement.",
+      "source_rights": "unknown",
+      "production_approved": false
+    }
+  ]
+}

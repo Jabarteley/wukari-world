@@ -1,0 +1,2135 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "vilnius",
+    "name": "Vilnius",
+    "state": {
+      "id": "lt-vilnius",
+      "name": "Vilnius"
+    },
+    "country": {
+      "id": "lt",
+      "name": "Lithuania"
+    },
+    "point": {
+      "lon": 25.2829111,
+      "lat": 54.6870458
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/lithuania-261011.osm.pbf",
+      "https://ourairports.com/airports/EYVI/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/vilnius/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/vilnius/facts.ts",
+        "sha256": "9a5e32ee70801aa272c282eaa03a9533299dc7d428d0bf22f5569a9a6d59739a"
+      },
+      {
+        "path": "src/game/cities/vilnius/index.ts",
+        "sha256": "d3d8d3f279de39053c897be257f1efbe669d4e2fb9a41507144bc984647c451b"
+      },
+      {
+        "path": "src/game/cities/vilnius/places.ts",
+        "sha256": "bd953b9796162bbe13bab3b1730b4b0ea0b6c09a1e9ee740b7e743db00384dfd"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.2829111,
+        "lat": 54.6870458
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "vilnius-airport-vilnius-airport",
+      "name": "Vilnius International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.285801,
+        "lat": 54.634102
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-airport-vilnius-airport-1",
+        "vilnius-vilnius-airport-vilnius-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "vilnius-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-clinic",
+      "name": "Respublikinė Vilniaus psichiatrijos ligoninė",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.417767,
+        "lat": 54.683699
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-clinic-1",
+        "vilnius-vilnius-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/25892959"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2115906"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-community-notices",
+      "name": "Vilniaus miškų urėdija",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.525532,
+        "lat": 54.702753
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-community-notices-1",
+        "vilnius-vilnius-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/281802201"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12677565"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-community-voting-game",
+      "name": "Tibeto skveras",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.294023,
+        "lat": 54.681479
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-community-voting-game-1",
+        "vilnius-vilnius-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1485530707"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q25494555"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-community-workshop",
+      "name": "Vilniaus technologijų, verslo ir žemės ūkio mokykla",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.18825,
+        "lat": 54.600528
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-community-workshop-1",
+        "vilnius-vilnius-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/66631698"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q61380714"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-market-game",
+      "name": "Gariūnai Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.156551,
+        "lat": 54.659645
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-market-game-1",
+        "vilnius-vilnius-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/9054286"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4993838"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-meal-stop",
+      "name": "Neringa Restoranas",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.275767,
+        "lat": 54.687965
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-meal-stop-1",
+        "vilnius-vilnius-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/31453209"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-osm-node-1758423764",
+      "name": "Papiškių piliakalnis",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.394278,
+        "lat": 54.597583
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-osm-node-1758423764-1",
+        "vilnius-vilnius-osm-node-1758423764-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1758423764"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12668365"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-osm-node-1764384946",
+      "name": "Mažosios Riešės piliakalnis",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.202028,
+        "lat": 54.808306
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-osm-node-1764384946-1",
+        "vilnius-vilnius-osm-node-1764384946-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1764384946"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16464242"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-osm-node-267533451",
+      "name": "Vilniaus Gedimino technikos universiteto Elektronikos fakultetas",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.348838,
+        "lat": 54.727978
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-osm-node-267533451-1",
+        "vilnius-vilnius-osm-node-267533451-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/267533451"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16476328"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-osm-node-2788684638",
+      "name": "Liubavas Manor",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.34087,
+        "lat": 54.85185
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-osm-node-2788684638-1",
+        "vilnius-vilnius-osm-node-2788684638-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2788684638"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12663710"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-osm-node-2964272255",
+      "name": "Mūrininkų piliakalnis",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.552113,
+        "lat": 54.588918
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-osm-node-2964272255-1",
+        "vilnius-vilnius-osm-node-2964272255-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2964272255"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12666149"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-osm-node-4515277514",
+      "name": "TV Tower",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.214721,
+        "lat": 54.687147
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-osm-node-4515277514-1",
+        "vilnius-vilnius-osm-node-4515277514-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4515277514"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1407353"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-osm-node-738082549",
+      "name": "Pūčkorių atodanga",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.352825,
+        "lat": 54.692175
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-osm-node-738082549-1",
+        "vilnius-vilnius-osm-node-738082549-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/738082549"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12670627"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-osm-relation-3662657",
+      "name": "Vingis Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.240916,
+        "lat": 54.683026
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-osm-relation-3662657-1",
+        "vilnius-vilnius-osm-relation-3662657-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/3662657"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2509362"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-osm-relation-8140496",
+      "name": "Vilniaus miesto klinikinė ligoninė",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.317153,
+        "lat": 54.70932
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-osm-relation-8140496-1",
+        "vilnius-vilnius-osm-relation-8140496-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/8140496"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q14956897"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-osm-way-275916982",
+      "name": "Parudaminio Kristaus Atsimainymo bažnyčia",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.263183,
+        "lat": 54.525058
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-osm-way-275916982-1",
+        "vilnius-vilnius-osm-way-275916982-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/275916982"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12668482"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-osm-way-38883021",
+      "name": "Vilniaus dizaino kolegija",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.262824,
+        "lat": 54.670344
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-osm-way-38883021-1",
+        "vilnius-vilnius-osm-way-38883021-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/38883021"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16476385"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-osm-way-581534617",
+      "name": "Panerių skulptūrų parkas",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.144925,
+        "lat": 54.632246
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-osm-way-581534617-1",
+        "vilnius-vilnius-osm-way-581534617-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/581534617"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17095068"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-osm-way-630196432",
+      "name": "Republican Vilnius University Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.207598,
+        "lat": 54.668266
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-osm-way-630196432-1",
+        "vilnius-vilnius-osm-way-630196432-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/630196432"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15126052"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-osm-way-877412367",
+      "name": "Vilniaus universiteto Matematikos ir informatikos fakultetas",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.26356,
+        "lat": 54.729673
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-osm-way-877412367-1",
+        "vilnius-vilnius-osm-way-877412367-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/877412367"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q14634738"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-osm-way-93867305",
+      "name": "Rykantų Švč. Trejybės bažnyčia",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 24.982119,
+        "lat": 54.715237
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-osm-way-93867305-1",
+        "vilnius-vilnius-osm-way-93867305-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/93867305"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13133483"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-quiet-reflection",
+      "name": "Sudervės Švč. Trejybės bažnyčia",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.084703,
+        "lat": 54.780235
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-quiet-reflection-1",
+        "vilnius-vilnius-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/85627567"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16473572"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-recreation",
+      "name": "Žalgiris 600",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.529263,
+        "lat": 54.801349
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-recreation-1",
+        "vilnius-vilnius-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/396356286"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16478734"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vilnius-transit",
+      "name": "Lentvaris",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 25.047061,
+        "lat": 54.644997
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vilnius-vilnius-transit-1",
+        "vilnius-vilnius-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vilnius/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/31451531"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12662836"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "vilnius-vilnius-airport-vilnius-airport-1",
+      "venueId": "vilnius-airport-vilnius-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-airport-vilnius-airport-2",
+      "venueId": "vilnius-airport-vilnius-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-clinic-1",
+      "venueId": "vilnius-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-clinic-2",
+      "venueId": "vilnius-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-community-notices-1",
+      "venueId": "vilnius-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-community-notices-2",
+      "venueId": "vilnius-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-community-voting-game-1",
+      "venueId": "vilnius-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-community-voting-game-2",
+      "venueId": "vilnius-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-community-workshop-1",
+      "venueId": "vilnius-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-community-workshop-2",
+      "venueId": "vilnius-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-market-game-1",
+      "venueId": "vilnius-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-market-game-2",
+      "venueId": "vilnius-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-meal-stop-1",
+      "venueId": "vilnius-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-meal-stop-2",
+      "venueId": "vilnius-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-node-1758423764-1",
+      "venueId": "vilnius-osm-node-1758423764",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-node-1758423764-2",
+      "venueId": "vilnius-osm-node-1758423764",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-node-1764384946-1",
+      "venueId": "vilnius-osm-node-1764384946",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-node-1764384946-2",
+      "venueId": "vilnius-osm-node-1764384946",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-node-267533451-1",
+      "venueId": "vilnius-osm-node-267533451",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-node-267533451-2",
+      "venueId": "vilnius-osm-node-267533451",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-node-2788684638-1",
+      "venueId": "vilnius-osm-node-2788684638",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-node-2788684638-2",
+      "venueId": "vilnius-osm-node-2788684638",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-node-2964272255-1",
+      "venueId": "vilnius-osm-node-2964272255",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-node-2964272255-2",
+      "venueId": "vilnius-osm-node-2964272255",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-node-4515277514-1",
+      "venueId": "vilnius-osm-node-4515277514",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-node-4515277514-2",
+      "venueId": "vilnius-osm-node-4515277514",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-node-738082549-1",
+      "venueId": "vilnius-osm-node-738082549",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-node-738082549-2",
+      "venueId": "vilnius-osm-node-738082549",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-relation-3662657-1",
+      "venueId": "vilnius-osm-relation-3662657",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-relation-3662657-2",
+      "venueId": "vilnius-osm-relation-3662657",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-relation-8140496-1",
+      "venueId": "vilnius-osm-relation-8140496",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-relation-8140496-2",
+      "venueId": "vilnius-osm-relation-8140496",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-way-275916982-1",
+      "venueId": "vilnius-osm-way-275916982",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-way-275916982-2",
+      "venueId": "vilnius-osm-way-275916982",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-way-38883021-1",
+      "venueId": "vilnius-osm-way-38883021",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-way-38883021-2",
+      "venueId": "vilnius-osm-way-38883021",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-way-581534617-1",
+      "venueId": "vilnius-osm-way-581534617",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-way-581534617-2",
+      "venueId": "vilnius-osm-way-581534617",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-way-630196432-1",
+      "venueId": "vilnius-osm-way-630196432",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-way-630196432-2",
+      "venueId": "vilnius-osm-way-630196432",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-way-877412367-1",
+      "venueId": "vilnius-osm-way-877412367",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-way-877412367-2",
+      "venueId": "vilnius-osm-way-877412367",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-way-93867305-1",
+      "venueId": "vilnius-osm-way-93867305",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-osm-way-93867305-2",
+      "venueId": "vilnius-osm-way-93867305",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-quiet-reflection-1",
+      "venueId": "vilnius-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-quiet-reflection-2",
+      "venueId": "vilnius-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-recreation-1",
+      "venueId": "vilnius-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-recreation-2",
+      "venueId": "vilnius-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-transit-1",
+      "venueId": "vilnius-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    },
+    {
+      "id": "vilnius-vilnius-transit-2",
+      "venueId": "vilnius-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vilnius/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "vilnius-airport-vilnius-airport",
+    "vilnius-clinic",
+    "vilnius-community-notices",
+    "vilnius-community-voting-game",
+    "vilnius-community-workshop",
+    "vilnius-market-game",
+    "vilnius-meal-stop",
+    "vilnius-osm-node-1758423764",
+    "vilnius-osm-node-1764384946",
+    "vilnius-osm-node-267533451",
+    "vilnius-osm-node-2788684638",
+    "vilnius-osm-node-2964272255",
+    "vilnius-osm-node-4515277514",
+    "vilnius-osm-node-738082549",
+    "vilnius-osm-relation-3662657",
+    "vilnius-osm-relation-8140496",
+    "vilnius-osm-way-275916982",
+    "vilnius-osm-way-38883021",
+    "vilnius-osm-way-581534617",
+    "vilnius-osm-way-630196432",
+    "vilnius-osm-way-877412367",
+    "vilnius-osm-way-93867305",
+    "vilnius-quiet-reflection",
+    "vilnius-recreation",
+    "vilnius-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "fa762857b515f5533fbb653791979b67a62cc08bebc7aab22fc8ed8a3e604cb8",
+    "contentSha256": "9e72ca779d60fa7cbaadbcb111135a096589c48f39f5f90339a66ee849ee38f4"
+  }
+}

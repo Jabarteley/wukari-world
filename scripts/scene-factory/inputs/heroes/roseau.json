@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "roseau",
+  "url": "/assets/scene-heroes/roseau.glb",
+  "sha256": "96ac2e12673a5de4536d0fcc654207cf96699f1cfe58d56230b58ab3b3618163",
+  "rawBytes": 34436,
+  "brotliBytes": 25099,
+  "triangles": 1488,
+  "parts": [
+    {
+      "node": "roseau",
+      "triangles": 1488,
+      "bounds": {
+        "min": [
+          -3.54999995,
+          0,
+          -2.5
+        ],
+        "max": [
+          3.550000024597,
+          2.463309519356,
+          2.4998595926830003
+        ]
+      },
+      "footprint": [
+        -3.54999995,
+        -2.5,
+        3.550000024597,
+        2.4998595926830003
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "add61948cf71f7a7a884520d8094d0130c03290a4c1dac2921d25ff49b7fcddf",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "roseau",
+      "country": "dm",
+      "name": "Lindo Park",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/142324885"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=roseau]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 8,
+        "depth": 5.5,
+        "height": 2.6,
+        "seed": 181195,
+        "palette": [
+          "#b9bca1",
+          "#6b604e",
+          "#607953",
+          "#8b9b70",
+          "#6e868d",
+          "#c0b18d",
+          "#d9dfd4",
+          "#415044"
+        ],
+        "composition": "open-park"
+      },
+      "evidence": "Exact candidate/name alias match and leisure=park support feature identity/category. Object way/142324885, version 6, timestamp 2022-09-04T08:21:21Z; response SHA256 85c5b706eaff73e116a111bd6f9d1cd8feef4988cdae6f534b81dd56f6b9d9fe. Source path: src/game/cities/roseau/places.ts. Original park vegetation and clearing fragment. Tree count, species, placement and dimensions are art direction; no pond, building or copied landscape plan is added. Natural-feature is the existing schema route for the vegetated park fragment, not a claim that the designed park is wilderness. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

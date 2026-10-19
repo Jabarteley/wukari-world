@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "jamestown",
+  "url": "/assets/scene-heroes/jamestown.glb",
+  "sha256": "30117af198b0e75f8e92fbc15dfa0d725cd01c8cc04ed66e78dba4512a1e36ca",
+  "rawBytes": 29980,
+  "brotliBytes": 17371,
+  "triangles": 908,
+  "parts": [
+    {
+      "node": "jamestown",
+      "triangles": 908,
+      "bounds": {
+        "min": [
+          -1.70000005,
+          0,
+          -3.25
+        ],
+        "max": [
+          1.7001708461,
+          4.81856190585,
+          3.2499999755899998
+        ]
+      },
+      "footprint": [
+        -1.70000005,
+        -3.25,
+        1.7001708461,
+        3.2499999755899998
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "5eb273e29b12f767678c441f12066e8289f60fd8495d10812684b8d4823f48c4",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "jamestown",
+      "country": "sh",
+      "name": "Jacob’s Ladder",
+      "category": "monument",
+      "sourceUrls": [
+        "https://data.jncc.gov.uk/data/509a16cf-156d-4c5d-bde7-5a57292999e4/ot-nca-sup-sat-31-sth-apr2019.pdf",
+        "https://www.sainthelena.gov.sh/jacobs-ladder-rehabilitation-project-update/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=jamestown]; hero-inputs-r4.md defining-form review",
+      "sourceLicence": "Source text rights unknown unless the publisher states otherwise; factual identity only. No external photo, map, mesh, texture, sculpture surface or plan reused. Original generated geometry is AGPL-3.0-or-later; third-party marks and landmark rights are not cleared by this record.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landmark",
+      "parameters": {
+        "width": 4,
+        "depth": 7,
+        "height": 5,
+        "seed": 6127,
+        "palette": [
+          "#dbcdb6",
+          "#62584a",
+          "#8f8a74",
+          "#af593f",
+          "#c8b68c",
+          "#8caa99",
+          "#d2bd91",
+          "#2e3c43"
+        ],
+        "composition": "inclined-stairs"
+      },
+      "evidence": "Research report identifies Jacob’s Ladder as a prominent feature in Jamestown. This is credible location evidence but not an official site-owner record; parent should decide whether this meets primary-source policy. Government rehabilitation report identifies steps, metal structure, inclined plane and adjoining walls. Original reduced inclined stair flight and rails, not the actual step count or modern illumination. All dimensions, colours, simplifications and composition proportions are original art direction, not source measurements. No surveyed-location, current-access, production-quality or legal-rights approval is asserted.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

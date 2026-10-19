@@ -1,0 +1,2190 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "owerri",
+    "name": "Owerri",
+    "state": {
+      "id": "imo",
+      "name": "Imo"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 7.0341973,
+      "lat": 5.489736
+    }
+  },
+  "style": {
+    "region": "igbo-southeast",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/owerri/content.ts",
+        "sha256": "a06a05a3514e8ce6efe5b09626784111e2127c81ff2d7d29cc6df813f59eaa30"
+      },
+      {
+        "path": "src/game/cities/owerri/index.ts",
+        "sha256": "33a9eac41e6e094868d17a3080c2ed9c52f0800aea29ed7c2d5e3c8c1edb219c"
+      },
+      {
+        "path": "src/game/cities/owerri/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/owerri/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for owerri.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "akachi-monument",
+      "name": "Akachi Monument",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0413991,
+        "lat": 5.4685807
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor point"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor point",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-akachi-monument-1",
+        "owerri-akachi-monument-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "assumpta-maria-cathedral",
+      "name": "Assumpta Maria Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.021,
+        "lat": 5.4885691
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-assumpta-maria-cathedral-1",
+        "owerri-assumpta-maria-cathedral-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "dan-anyiam-stadium",
+      "name": "Dan Anyiam Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0438158,
+        "lat": 5.4837162
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-dan-anyiam-stadium-1",
+        "owerri-dan-anyiam-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "duke-and-duchess-owerri",
+      "name": "Duke and Duchess",
+      "kind": "salon",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0548831,
+        "lat": 5.490811
+      },
+      "spots": [
+        {
+          "id": "chair",
+          "name": "Styling chair"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "chair",
+          "name": "Styling chair",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-duke-and-duchess-owerri-1",
+        "owerri-duke-and-duchess-owerri-2"
+      ],
+      "scene": {
+        "kind": "salon",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "fcmb-owerri",
+      "name": "FCMB",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0391915,
+        "lat": 5.4869205
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-fcmb-owerri-1",
+        "owerri-fcmb-owerri-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "federal-polytechnic-nekede",
+      "name": "Federal Polytechnic, Nekede",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.029125681391086,
+        "lat": 5.431931910880564
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-federal-polytechnic-nekede-1",
+        "owerri-federal-polytechnic-nekede-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "futo-owerri",
+      "name": "Federal University of Technology Owerri",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 6.985959853968703,
+        "lat": 5.3938730846074545
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-futo-owerri-1",
+        "owerri-futo-owerri-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "holy-rosary-hospital-emekuku",
+      "name": "Holy Rosary Hospital, Emekuku",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.110741,
+        "lat": 5.4703928
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-holy-rosary-hospital-emekuku-1",
+        "owerri-holy-rosary-hospital-emekuku-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "holy-trinity-world-bank-owerri",
+      "name": "Holy Trinity World Bank, Owerri",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0003363,
+        "lat": 5.4855463
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-holy-trinity-world-bank-owerri-1",
+        "owerri-holy-trinity-world-bank-owerri-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.006132867418689,
+        "lat": 5.474479104727021
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "ikenegbu-hospital",
+      "name": "IKenegbu HOSPITAL",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.037526,
+        "lat": 5.5021654
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-ikenegbu-hospital-1",
+        "owerri-ikenegbu-hospital-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "imo-golf-amusement-center",
+      "name": "Imo Golf and Amusement Center",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.046749,
+        "lat": 5.515623
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Public area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Public area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-imo-golf-amusement-center-1",
+        "owerri-imo-golf-amusement-center-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "imo-state-central-mosque",
+      "name": "imo State Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.030246,
+        "lat": 5.496231
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-imo-state-central-mosque-1",
+        "owerri-imo-state-central-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "imo-state-house-of-assembly",
+      "name": "Imo State House of Assembly",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0142069,
+        "lat": 5.4749875
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-imo-state-house-of-assembly-1",
+        "owerri-imo-state-house-of-assembly-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "imo-state-university",
+      "name": "Imo State University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0444515,
+        "lat": 5.505306
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-imo-state-university-1",
+        "owerri-imo-state-university-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "imo-trade-investment-centre",
+      "name": "Imo Trade & Investment Centre",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0082391,
+        "lat": 5.4655574
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-imo-trade-investment-centre-1",
+        "owerri-imo-trade-investment-centre-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "josephs-pot-owerri",
+      "name": "Joseph's pot owerri",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.039885,
+        "lat": 5.494852
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-josephs-pot-owerri-1",
+        "owerri-josephs-pot-owerri-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "love-garden-imsu",
+      "name": "Love Garden, IMSU",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0439286,
+        "lat": 5.505973
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Garden"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Garden",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-love-garden-imsu-1",
+        "owerri-love-garden-imsu-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "mr-biggs-owerri",
+      "name": "Mr.Biggs",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0169546,
+        "lat": 5.4847702
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-mr-biggs-owerri-1",
+        "owerri-mr-biggs-owerri-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "national-museum-owerri",
+      "name": "National Museum Owerri",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0251503,
+        "lat": 5.5032967
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-national-museum-owerri-1",
+        "owerri-national-museum-owerri-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "nkwo-emeke-market",
+      "name": "Nkwo Emeke",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.123771,
+        "lat": 5.4763066
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-nkwo-emeke-market-1",
+        "owerri-nkwo-emeke-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "owerri-central-mosque",
+      "name": "owerri Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.027273,
+        "lat": 5.498808
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-owerri-central-mosque-1",
+        "owerri-owerri-central-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "st-johns-anglican-owerri",
+      "name": "Saint John's Anglican Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0119983,
+        "lat": 5.4030248
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-st-johns-anglican-owerri-1",
+        "owerri-st-johns-anglican-owerri-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "statue-of-freed-slave-owerri",
+      "name": "Statue of a freed slave in Owerri",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.026181,
+        "lat": 5.490956
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor point"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor point",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-statue-of-freed-slave-owerri-1",
+        "owerri-statue-of-freed-slave-owerri-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "uloma-food-market",
+      "name": "Uloma Food Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.044781979133888,
+        "lat": 5.491574276102519
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-uloma-food-market-1",
+        "owerri-uloma-food-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "world-bank-market-owerri",
+      "name": "World Bank Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.0015138,
+        "lat": 5.4821288
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-world-bank-market-owerri-1",
+        "owerri-world-bank-market-owerri-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    },
+    {
+      "id": "zenith-bank-owerri",
+      "name": "Zenith",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.032301,
+        "lat": 5.492387
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "owerri-zenith-bank-owerri-1",
+        "owerri-zenith-bank-owerri-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for owerri."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "owerri-akachi-monument-1",
+      "venueId": "akachi-monument",
+      "name": "Adaeze Agu",
+      "role": "Site attendant",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-akachi-monument-2",
+      "venueId": "akachi-monument",
+      "name": "Chinedu Okoro",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-assumpta-maria-cathedral-1",
+      "venueId": "assumpta-maria-cathedral",
+      "name": "Ikenna Okoro",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-assumpta-maria-cathedral-2",
+      "venueId": "assumpta-maria-cathedral",
+      "name": "Mama Obiageli",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-dan-anyiam-stadium-1",
+      "venueId": "dan-anyiam-stadium",
+      "name": "Nkechi Okafor",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-dan-anyiam-stadium-2",
+      "venueId": "dan-anyiam-stadium",
+      "name": "Onyeka Okeke",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-duke-and-duchess-owerri-1",
+      "venueId": "duke-and-duchess-owerri",
+      "name": "Emeka Nnadi",
+      "role": "Stylist",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-duke-and-duchess-owerri-2",
+      "venueId": "duke-and-duchess-owerri",
+      "name": "Obiageli Agu",
+      "role": "Client",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-fcmb-owerri-1",
+      "venueId": "fcmb-owerri",
+      "name": "Nkechi Eze",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-fcmb-owerri-2",
+      "venueId": "fcmb-owerri",
+      "name": "Mazi Tobenna",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-federal-polytechnic-nekede-1",
+      "venueId": "federal-polytechnic-nekede",
+      "name": "Adaeze Chukwu",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-federal-polytechnic-nekede-2",
+      "venueId": "federal-polytechnic-nekede",
+      "name": "Mazi Onyeka",
+      "role": "Instructor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-futo-owerri-1",
+      "venueId": "futo-owerri",
+      "name": "Ikenna Anyanwu",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-futo-owerri-2",
+      "venueId": "futo-owerri",
+      "name": "Obiageli Ibe",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-holy-rosary-hospital-emekuku-1",
+      "venueId": "holy-rosary-hospital-emekuku",
+      "name": "Ikenna Nwosu",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-holy-rosary-hospital-emekuku-2",
+      "venueId": "holy-rosary-hospital-emekuku",
+      "name": "Obiageli Obi",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-holy-trinity-world-bank-owerri-1",
+      "venueId": "holy-trinity-world-bank-owerri",
+      "name": "Adaeze Okonkwo",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-holy-trinity-world-bank-owerri-2",
+      "venueId": "holy-trinity-world-bank-owerri",
+      "name": "Chinedu Nnadi",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-ikenegbu-hospital-1",
+      "venueId": "ikenegbu-hospital",
+      "name": "Adaeze Ibe",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-ikenegbu-hospital-2",
+      "venueId": "ikenegbu-hospital",
+      "name": "Chinedu Onwuka",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-imo-golf-amusement-center-1",
+      "venueId": "imo-golf-amusement-center",
+      "name": "Adaeze Ugwu",
+      "role": "Park caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-imo-golf-amusement-center-2",
+      "venueId": "imo-golf-amusement-center",
+      "name": "Chinedu Mbah",
+      "role": "Morning walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-imo-state-central-mosque-1",
+      "venueId": "imo-state-central-mosque",
+      "name": "Adaeze Obi",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-imo-state-central-mosque-2",
+      "venueId": "imo-state-central-mosque",
+      "name": "Mazi Chinedu",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-imo-state-house-of-assembly-1",
+      "venueId": "imo-state-house-of-assembly",
+      "name": "Nkechi Ugwu",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-imo-state-house-of-assembly-2",
+      "venueId": "imo-state-house-of-assembly",
+      "name": "Mazi Ugochukwu",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-imo-state-university-1",
+      "venueId": "imo-state-university",
+      "name": "Adaeze Okafor",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-imo-state-university-2",
+      "venueId": "imo-state-university",
+      "name": "Chinedu Okeke",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-imo-trade-investment-centre-1",
+      "venueId": "imo-trade-investment-centre",
+      "name": "Emeka Okoro",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-imo-trade-investment-centre-2",
+      "venueId": "imo-trade-investment-centre",
+      "name": "Obiageli Eze",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-josephs-pot-owerri-1",
+      "venueId": "josephs-pot-owerri",
+      "name": "Ikenna Nnadi",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-josephs-pot-owerri-2",
+      "venueId": "josephs-pot-owerri",
+      "name": "Mama Uzoamaka",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-love-garden-imsu-1",
+      "venueId": "love-garden-imsu",
+      "name": "Emeka Anyanwu",
+      "role": "Garden keeper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-love-garden-imsu-2",
+      "venueId": "love-garden-imsu",
+      "name": "Mama Onyinye",
+      "role": "Evening walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-mr-biggs-owerri-1",
+      "venueId": "mr-biggs-owerri",
+      "name": "Adaeze Eze",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-mr-biggs-owerri-2",
+      "venueId": "mr-biggs-owerri",
+      "name": "Chinedu Nwachukwu",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-national-museum-owerri-1",
+      "venueId": "national-museum-owerri",
+      "name": "Ikenna Nwachukwu",
+      "role": "Museum guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-national-museum-owerri-2",
+      "venueId": "national-museum-owerri",
+      "name": "Obiageli Ugwu",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-nkwo-emeke-market-1",
+      "venueId": "nkwo-emeke-market",
+      "name": "Emeka Onwuka",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-nkwo-emeke-market-2",
+      "venueId": "nkwo-emeke-market",
+      "name": "Mama Ogechi",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-owerri-central-mosque-1",
+      "venueId": "owerri-central-mosque",
+      "name": "Ikenna Mbah",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-owerri-central-mosque-2",
+      "venueId": "owerri-central-mosque",
+      "name": "Obiageli Chukwu",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-st-johns-anglican-owerri-1",
+      "venueId": "st-johns-anglican-owerri",
+      "name": "Ikenna Onwuka",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-st-johns-anglican-owerri-2",
+      "venueId": "st-johns-anglican-owerri",
+      "name": "Obiageli Okafor",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-statue-of-freed-slave-owerri-1",
+      "venueId": "statue-of-freed-slave-owerri",
+      "name": "Ikenna Okeke",
+      "role": "Site attendant",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-statue-of-freed-slave-owerri-2",
+      "venueId": "statue-of-freed-slave-owerri",
+      "name": "Mama Ebere",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-uloma-food-market-1",
+      "venueId": "uloma-food-market",
+      "name": "Nkechi Obi",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-uloma-food-market-2",
+      "venueId": "uloma-food-market",
+      "name": "Chinedu Anyanwu",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-world-bank-market-owerri-1",
+      "venueId": "world-bank-market-owerri",
+      "name": "Nkechi Okonkwo",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-world-bank-market-owerri-2",
+      "venueId": "world-bank-market-owerri",
+      "name": "Onyeka Nnadi",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-zenith-bank-owerri-1",
+      "venueId": "zenith-bank-owerri",
+      "name": "Emeka Mbah",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    },
+    {
+      "id": "owerri-zenith-bank-owerri-2",
+      "venueId": "zenith-bank-owerri",
+      "name": "Uzoamaka Chukwu",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/owerri/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "akachi-monument",
+    "assumpta-maria-cathedral",
+    "dan-anyiam-stadium",
+    "duke-and-duchess-owerri",
+    "fcmb-owerri",
+    "federal-polytechnic-nekede",
+    "futo-owerri",
+    "holy-rosary-hospital-emekuku",
+    "holy-trinity-world-bank-owerri",
+    "ikenegbu-hospital",
+    "imo-golf-amusement-center",
+    "imo-state-central-mosque",
+    "imo-state-house-of-assembly",
+    "imo-state-university",
+    "imo-trade-investment-centre",
+    "josephs-pot-owerri",
+    "love-garden-imsu",
+    "mr-biggs-owerri",
+    "national-museum-owerri",
+    "nkwo-emeke-market",
+    "owerri-central-mosque",
+    "st-johns-anglican-owerri",
+    "statue-of-freed-slave-owerri",
+    "uloma-food-market",
+    "world-bank-market-owerri",
+    "zenith-bank-owerri"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "d8b6ffdae51db1ce4cfbf8b1ffbb63338ebb2e3d306b4fb31fa8b8f2f1d01620",
+    "contentSha256": "9228fd84cb8a8d06b4593ba8dc74071147d41f44274d20a52248dd73803068a1"
+  }
+}

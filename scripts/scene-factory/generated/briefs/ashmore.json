@@ -1,0 +1,942 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "ashmore",
+    "name": "East Island",
+    "state": {
+      "id": "xa",
+      "name": "East Island"
+    },
+    "country": {
+      "id": "xa",
+      "name": "Ashmore and Cartier Islands"
+    },
+    "point": {
+      "lon": 123.0956541,
+      "lat": -12.2609346
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF",
+    "sourceUrls": [
+      "https://download.geofabrik.de/australia-oceania/australia/ashmore-cartier-261013.osm.pbf",
+      "https://www.openstreetmap.org/node/1717848188"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/ashmore/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/ashmore/facts.ts",
+        "sha256": "600add21c8304625197ef34386b55d0b9afc86e426451608d090f36f0d2cb83e"
+      },
+      {
+        "path": "src/game/cities/ashmore/index.ts",
+        "sha256": "27f56c58d9eba3e5a9af60d3fdd2db7c6b8c11fce413e5c5f8c2e3119d7af138"
+      },
+      {
+        "path": "src/game/cities/ashmore/places.ts",
+        "sha256": "80d0d67157730187728059d0023a0e6e0282e1e8a6bd36d831ff334f0ff8631c"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue ashmore-clinic has no mapped place source record.",
+      "Venue ashmore-community-notices has no mapped place source record.",
+      "Venue ashmore-community-voting-game has no mapped place source record.",
+      "Venue ashmore-community-workshop has no mapped place source record.",
+      "Venue ashmore-market-game has no mapped place source record.",
+      "Venue ashmore-meal-stop has no mapped place source record.",
+      "Venue ashmore-quiet-reflection has no mapped place source record.",
+      "Venue ashmore-recreation has no mapped place source record.",
+      "Venue ashmore-transit has no mapped place source record.",
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "ashmore-airport-ashmore-airport",
+      "name": "East Island",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 123.0956705,
+        "lat": -12.2590366
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ashmore-ashmore-airport-ashmore-airport-1",
+        "ashmore-ashmore-airport-ashmore-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/ashmore/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "ashmore-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "ashmore-clinic",
+      "name": "Clinic (game venue)",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 123.0956541,
+        "lat": -12.261833920363724
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ashmore-ashmore-clinic-1",
+        "ashmore-ashmore-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue ashmore-clinic has no mapped place source record."
+      }
+    },
+    {
+      "id": "ashmore-community-notices",
+      "name": "Community notices (game venue)",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 123.0956541,
+        "lat": -12.259135959272552
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ashmore-ashmore-community-notices-1",
+        "ashmore-ashmore-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue ashmore-community-notices has no mapped place source record."
+      }
+    },
+    {
+      "id": "ashmore-community-voting-game",
+      "name": "Community voting simulation (game venue)",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 123.09747516101037,
+        "lat": -12.260934599999999
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ashmore-ashmore-community-voting-game-1",
+        "ashmore-ashmore-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue ashmore-community-voting-game has no mapped place source record."
+      }
+    },
+    {
+      "id": "ashmore-community-workshop",
+      "name": "Community workshop (game venue)",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 123.0956541,
+        "lat": -12.260035279636273
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ashmore-ashmore-community-workshop-1",
+        "ashmore-ashmore-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue ashmore-community-workshop has no mapped place source record."
+      }
+    },
+    {
+      "id": "ashmore-market-game",
+      "name": "Market game (game venue)",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 123.09474356949482,
+        "lat": -12.260035279636273
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ashmore-ashmore-market-game-1",
+        "ashmore-ashmore-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue ashmore-market-game has no mapped place source record."
+      }
+    },
+    {
+      "id": "ashmore-meal-stop",
+      "name": "Visitor meal stop (game venue)",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 123.09474356949482,
+        "lat": -12.260934599999999
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ashmore-ashmore-meal-stop-1",
+        "ashmore-ashmore-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue ashmore-meal-stop has no mapped place source record."
+      }
+    },
+    {
+      "id": "ashmore-quiet-reflection",
+      "name": "Quiet reflection space (game venue)",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 123.09474356949482,
+        "lat": -12.261833920363724
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ashmore-ashmore-quiet-reflection-1",
+        "ashmore-ashmore-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue ashmore-quiet-reflection has no mapped place source record."
+      }
+    },
+    {
+      "id": "ashmore-recreation",
+      "name": "Recreation area (game venue)",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 123.09656463050518,
+        "lat": -12.260035279636273
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ashmore-ashmore-recreation-1",
+        "ashmore-ashmore-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue ashmore-recreation has no mapped place source record."
+      }
+    },
+    {
+      "id": "ashmore-transit",
+      "name": "City transit stop (game venue)",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 123.09656463050518,
+        "lat": -12.260934599999999
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ashmore-ashmore-transit-1",
+        "ashmore-ashmore-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue ashmore-transit has no mapped place source record."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 123.0956541,
+        "lat": -12.260934599999999
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "ashmore-ashmore-airport-ashmore-airport-1",
+      "venueId": "ashmore-airport-ashmore-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-airport-ashmore-airport-2",
+      "venueId": "ashmore-airport-ashmore-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-clinic-1",
+      "venueId": "ashmore-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-clinic-2",
+      "venueId": "ashmore-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-community-notices-1",
+      "venueId": "ashmore-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-community-notices-2",
+      "venueId": "ashmore-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-community-voting-game-1",
+      "venueId": "ashmore-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-community-voting-game-2",
+      "venueId": "ashmore-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-community-workshop-1",
+      "venueId": "ashmore-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-community-workshop-2",
+      "venueId": "ashmore-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-market-game-1",
+      "venueId": "ashmore-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-market-game-2",
+      "venueId": "ashmore-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-meal-stop-1",
+      "venueId": "ashmore-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-meal-stop-2",
+      "venueId": "ashmore-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-quiet-reflection-1",
+      "venueId": "ashmore-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-quiet-reflection-2",
+      "venueId": "ashmore-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-recreation-1",
+      "venueId": "ashmore-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-recreation-2",
+      "venueId": "ashmore-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-transit-1",
+      "venueId": "ashmore-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    },
+    {
+      "id": "ashmore-ashmore-transit-2",
+      "venueId": "ashmore-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ashmore/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "ashmore-airport-ashmore-airport",
+    "ashmore-clinic",
+    "ashmore-community-notices",
+    "ashmore-community-voting-game",
+    "ashmore-community-workshop",
+    "ashmore-market-game",
+    "ashmore-meal-stop",
+    "ashmore-quiet-reflection",
+    "ashmore-recreation",
+    "ashmore-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "6345f2098ce3f62acd7a1f94f1090cd67fa020c2ca124d0d3bd9cc5a026961fa",
+    "contentSha256": "408331a4f71f9c30d0005b30d18d35bcd05f91d068f6ec225cbc335626a1c53d"
+  }
+}

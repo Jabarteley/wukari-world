@@ -1,0 +1,2103 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "kyrenia",
+    "name": "Kyrenia",
+    "state": {
+      "id": "xn-kyrenia",
+      "name": "Kyrenia"
+    },
+    "country": {
+      "id": "xn",
+      "name": "Northern Cyprus"
+    },
+    "point": {
+      "lon": 33.3205287,
+      "lat": 35.3396291
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/cyprus-261011.osm.pbf",
+      "https://ourairports.com/airports/LCEN/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/kyrenia/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/kyrenia/facts.ts",
+        "sha256": "6e83d956dd2c90cb9ed52cfc3e2847732644697e2aa00fbcfb380649dc419f07"
+      },
+      {
+        "path": "src/game/cities/kyrenia/index.ts",
+        "sha256": "65f2215c4445256498db08fb5654397f5177d5eccfe46ca0f54eb12ae506c405"
+      },
+      {
+        "path": "src/game/cities/kyrenia/places.ts",
+        "sha256": "f49ce91a5b77fdc262557b2b806ab68262f797331a4bf325e20b073e5ecdf538"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.3205287,
+        "lat": 35.3396291
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "kyrenia-airport-kyrenia-airport",
+      "name": "Ercan International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.507352,
+        "lat": 35.153064
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-airport-kyrenia-airport-1",
+        "kyrenia-kyrenia-airport-kyrenia-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "kyrenia-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-clinic",
+      "name": "Medical Center",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.274011,
+        "lat": 35.333277
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-clinic-1",
+        "kyrenia-kyrenia-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1030789769"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-community-notices",
+      "name": "Presidential Palace",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.359553,
+        "lat": 35.181309
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-community-notices-1",
+        "kyrenia-kyrenia-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/686121404"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q25479734"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-community-voting-game",
+      "name": "Atatürk Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.360842,
+        "lat": 35.177929
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-community-voting-game-1",
+        "kyrenia-kyrenia-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/697772851"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4812893"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-community-workshop",
+      "name": "Near East University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.32292,
+        "lat": 35.227843
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-community-workshop-1",
+        "kyrenia-kyrenia-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/16750860"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q890755"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-market-game",
+      "name": "Municipal Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.364634,
+        "lat": 35.175412
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-market-game-1",
+        "kyrenia-kyrenia-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/629540154"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6022820"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-meal-stop",
+      "name": "Patrio my Fair",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.194221,
+        "lat": 35.343469
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-meal-stop-1",
+        "kyrenia-kyrenia-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1788750774"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-osm-node-12115453579",
+      "name": "C1974 Memorial Ship",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.236598,
+        "lat": 35.344895
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-osm-node-12115453579-1",
+        "kyrenia-kyrenia-osm-node-12115453579-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12115453579"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1050999"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-osm-node-4211959892",
+      "name": "1 eğtim yeri",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.165113,
+        "lat": 35.245183
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-osm-node-4211959892-1",
+        "kyrenia-kyrenia-osm-node-4211959892-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4211959892"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-osm-node-4695087598",
+      "name": "Gelincik Cafeterya",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.50329,
+        "lat": 35.158422
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-osm-node-4695087598-1",
+        "kyrenia-kyrenia-osm-node-4695087598-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4695087598"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-osm-node-4776629726",
+      "name": "Fota Kasap Meyhane",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.222206,
+        "lat": 35.263291
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-osm-node-4776629726-1",
+        "kyrenia-kyrenia-osm-node-4776629726-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4776629726"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-osm-relation-2747685",
+      "name": "Bellapais Abbey",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.355499,
+        "lat": 35.307345
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-osm-relation-2747685-1",
+        "kyrenia-kyrenia-osm-relation-2747685-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/2747685"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3014390"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-osm-way-102190298",
+      "name": "Buffavento Castle",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.41002,
+        "lat": 35.287398
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-osm-way-102190298-1",
+        "kyrenia-kyrenia-osm-way-102190298-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/102190298"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q301376"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-osm-way-1266800351",
+      "name": "Final International University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.361523,
+        "lat": 35.329655
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-osm-way-1266800351-1",
+        "kyrenia-kyrenia-osm-way-1266800351-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1266800351"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q123784377"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-osm-way-169391630",
+      "name": "Girne Amerikan Üniversitesi",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.275636,
+        "lat": 35.333453
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-osm-way-169391630-1",
+        "kyrenia-kyrenia-osm-way-169391630-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/169391630"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q469399"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-osm-way-205139721",
+      "name": "Ağa Cafer Paşa Camii",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.320635,
+        "lat": 35.341171
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-osm-way-205139721-1",
+        "kyrenia-kyrenia-osm-way-205139721-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/205139721"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q118348961"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-osm-way-206176262",
+      "name": "Nicosia Atatürk Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.337963,
+        "lat": 35.213798
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-osm-way-206176262-1",
+        "kyrenia-kyrenia-osm-way-206176262-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/206176262"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3495527"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-osm-way-435291543",
+      "name": "yıkım aşamasında kapalı iflas",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.495437,
+        "lat": 35.218167
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-osm-way-435291543-1",
+        "kyrenia-kyrenia-osm-way-435291543-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/435291543"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-osm-way-435833503",
+      "name": "Agios Agridaki Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.150604,
+        "lat": 35.308287
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-osm-way-435833503-1",
+        "kyrenia-kyrenia-osm-way-435833503-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/435833503"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q104217027"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-osm-way-443934864",
+      "name": "Cyprus International University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.417005,
+        "lat": 35.221853
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-osm-way-443934864-1",
+        "kyrenia-kyrenia-osm-way-443934864-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/443934864"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1667496"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-osm-way-512030566",
+      "name": "Karşıyaka Atatürk Parkı",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.119293,
+        "lat": 35.3535
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-osm-way-512030566-1",
+        "kyrenia-kyrenia-osm-way-512030566-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/512030566"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-osm-way-956076118",
+      "name": "Hamitköy Avrupa Birliği Parkı",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.375273,
+        "lat": 35.21708
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-osm-way-956076118-1",
+        "kyrenia-kyrenia-osm-way-956076118-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/956076118"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-quiet-reflection",
+      "name": "Sourp Magar Armenian Monastery",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.522263,
+        "lat": 35.287382
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-quiet-reflection-1",
+        "kyrenia-kyrenia-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2017924410"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7565217"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-recreation",
+      "name": "Çağlayan Parkı",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.368092,
+        "lat": 35.18095
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-recreation-1",
+        "kyrenia-kyrenia-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/322104089"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q65182649"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "kyrenia-transit",
+      "name": "Kyrenia Port",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.332139,
+        "lat": 35.343151
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "kyrenia-kyrenia-transit-1",
+        "kyrenia-kyrenia-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/kyrenia/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2012091240"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "kyrenia-kyrenia-airport-kyrenia-airport-1",
+      "venueId": "kyrenia-airport-kyrenia-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-airport-kyrenia-airport-2",
+      "venueId": "kyrenia-airport-kyrenia-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-clinic-1",
+      "venueId": "kyrenia-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-clinic-2",
+      "venueId": "kyrenia-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-community-notices-1",
+      "venueId": "kyrenia-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-community-notices-2",
+      "venueId": "kyrenia-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-community-voting-game-1",
+      "venueId": "kyrenia-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-community-voting-game-2",
+      "venueId": "kyrenia-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-community-workshop-1",
+      "venueId": "kyrenia-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-community-workshop-2",
+      "venueId": "kyrenia-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-market-game-1",
+      "venueId": "kyrenia-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-market-game-2",
+      "venueId": "kyrenia-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-meal-stop-1",
+      "venueId": "kyrenia-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-meal-stop-2",
+      "venueId": "kyrenia-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-node-12115453579-1",
+      "venueId": "kyrenia-osm-node-12115453579",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-node-12115453579-2",
+      "venueId": "kyrenia-osm-node-12115453579",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-node-4211959892-1",
+      "venueId": "kyrenia-osm-node-4211959892",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-node-4211959892-2",
+      "venueId": "kyrenia-osm-node-4211959892",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-node-4695087598-1",
+      "venueId": "kyrenia-osm-node-4695087598",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-node-4695087598-2",
+      "venueId": "kyrenia-osm-node-4695087598",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-node-4776629726-1",
+      "venueId": "kyrenia-osm-node-4776629726",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-node-4776629726-2",
+      "venueId": "kyrenia-osm-node-4776629726",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-relation-2747685-1",
+      "venueId": "kyrenia-osm-relation-2747685",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-relation-2747685-2",
+      "venueId": "kyrenia-osm-relation-2747685",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-102190298-1",
+      "venueId": "kyrenia-osm-way-102190298",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-102190298-2",
+      "venueId": "kyrenia-osm-way-102190298",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-1266800351-1",
+      "venueId": "kyrenia-osm-way-1266800351",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-1266800351-2",
+      "venueId": "kyrenia-osm-way-1266800351",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-169391630-1",
+      "venueId": "kyrenia-osm-way-169391630",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-169391630-2",
+      "venueId": "kyrenia-osm-way-169391630",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-205139721-1",
+      "venueId": "kyrenia-osm-way-205139721",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-205139721-2",
+      "venueId": "kyrenia-osm-way-205139721",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-206176262-1",
+      "venueId": "kyrenia-osm-way-206176262",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-206176262-2",
+      "venueId": "kyrenia-osm-way-206176262",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-435291543-1",
+      "venueId": "kyrenia-osm-way-435291543",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-435291543-2",
+      "venueId": "kyrenia-osm-way-435291543",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-435833503-1",
+      "venueId": "kyrenia-osm-way-435833503",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-435833503-2",
+      "venueId": "kyrenia-osm-way-435833503",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-443934864-1",
+      "venueId": "kyrenia-osm-way-443934864",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-443934864-2",
+      "venueId": "kyrenia-osm-way-443934864",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-512030566-1",
+      "venueId": "kyrenia-osm-way-512030566",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-512030566-2",
+      "venueId": "kyrenia-osm-way-512030566",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-956076118-1",
+      "venueId": "kyrenia-osm-way-956076118",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-osm-way-956076118-2",
+      "venueId": "kyrenia-osm-way-956076118",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-quiet-reflection-1",
+      "venueId": "kyrenia-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-quiet-reflection-2",
+      "venueId": "kyrenia-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-recreation-1",
+      "venueId": "kyrenia-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-recreation-2",
+      "venueId": "kyrenia-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-transit-1",
+      "venueId": "kyrenia-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    },
+    {
+      "id": "kyrenia-kyrenia-transit-2",
+      "venueId": "kyrenia-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/kyrenia/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "kyrenia-airport-kyrenia-airport",
+    "kyrenia-clinic",
+    "kyrenia-community-notices",
+    "kyrenia-community-voting-game",
+    "kyrenia-community-workshop",
+    "kyrenia-market-game",
+    "kyrenia-meal-stop",
+    "kyrenia-osm-node-12115453579",
+    "kyrenia-osm-node-4211959892",
+    "kyrenia-osm-node-4695087598",
+    "kyrenia-osm-node-4776629726",
+    "kyrenia-osm-relation-2747685",
+    "kyrenia-osm-way-102190298",
+    "kyrenia-osm-way-1266800351",
+    "kyrenia-osm-way-169391630",
+    "kyrenia-osm-way-205139721",
+    "kyrenia-osm-way-206176262",
+    "kyrenia-osm-way-435291543",
+    "kyrenia-osm-way-435833503",
+    "kyrenia-osm-way-443934864",
+    "kyrenia-osm-way-512030566",
+    "kyrenia-osm-way-956076118",
+    "kyrenia-quiet-reflection",
+    "kyrenia-recreation",
+    "kyrenia-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "da342119b41c0d20d40c547f2bdc944edfcdc2ecb4c243d70c92f8a8ffb1fd51",
+    "contentSha256": "fae310369c2ca1310f8d48061724ca4ca45413fe9b0bf14c255e92d3ec51f370"
+  }
+}

@@ -1,0 +1,2079 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "nassau",
+    "name": "Nassau",
+    "state": {
+      "id": "bs-nassau",
+      "name": "Nassau"
+    },
+    "country": {
+      "id": "bs",
+      "name": "Bahamas"
+    },
+    "point": {
+      "lon": -77.3383438,
+      "lat": 25.0782266
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/central-america/bahamas-261011.osm.pbf",
+      "https://ourairports.com/airports/MYNN/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/nassau/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/nassau/facts.ts",
+        "sha256": "afdda1d6d474ab0fe795c4ff24665b23c292131e2721169f5e74412fa76c5513"
+      },
+      {
+        "path": "src/game/cities/nassau/index.ts",
+        "sha256": "3757a2d529f949d48c81471cf07e58d6787e42619804d9ae196f85971ff51819"
+      },
+      {
+        "path": "src/game/cities/nassau/places.ts",
+        "sha256": "8d90846113e899e4652e6c5556a201177c089ca7f7a418648e8ed714f58785e2"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.3383438,
+        "lat": 25.0782266
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "nassau-airport-nassau-airport",
+      "name": "Lynden Pindling International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.466202,
+        "lat": 25.039
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-airport-nassau-airport-1",
+        "nassau-nassau-airport-nassau-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "nassau-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-clinic",
+      "name": "Sandilands Rehabilitation Centre (SRC)",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.291256,
+        "lat": 25.031657
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-clinic-1",
+        "nassau-nassau-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/301893671"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-community-notices",
+      "name": "Bahamas National Archives",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.322667,
+        "lat": 25.071483
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-community-notices-1",
+        "nassau-nassau-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4828931426"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q29364826"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-community-voting-game",
+      "name": "Rawson Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.340461,
+        "lat": 25.078312
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-community-voting-game-1",
+        "nassau-nassau-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/234030479"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-community-workshop",
+      "name": "Nassau Public Library & Museum",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.340532,
+        "lat": 25.076429
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-community-workshop-1",
+        "nassau-nassau-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/301902604"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q630745"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-market-game",
+      "name": "Pompey Village",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.401562,
+        "lat": 25.073167
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-market-game-1",
+        "nassau-nassau-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/368833938"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-meal-stop",
+      "name": "Compass Point Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.480026,
+        "lat": 25.064341
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-meal-stop-1",
+        "nassau-nassau-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4108498823"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-osm-node-12653954301",
+      "name": "Lia Ra'chards Heavenly Cafe",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.394245,
+        "lat": 25.01467
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-osm-node-12653954301-1",
+        "nassau-nassau-osm-node-12653954301-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12653954301"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-osm-node-14066492002",
+      "name": "Southwest Diner & Bar",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.457058,
+        "lat": 25.00257
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-osm-node-14066492002-1",
+        "nassau-nassau-osm-node-14066492002-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/14066492002"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-osm-node-3796314387",
+      "name": "University of West Indies Open Campus",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.316368,
+        "lat": 25.059762
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-osm-node-3796314387-1",
+        "nassau-nassau-osm-node-3796314387-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3796314387"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-osm-node-5088154289",
+      "name": "Continental Foods",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.309446,
+        "lat": 25.022312
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-osm-node-5088154289-1",
+        "nassau-nassau-osm-node-5088154289-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5088154289"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-osm-way-174579796",
+      "name": "Community Centre",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.499312,
+        "lat": 25.041052
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-osm-way-174579796-1",
+        "nassau-nassau-osm-way-174579796-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/174579796"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-osm-way-191808714",
+      "name": "Fort Montagu",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.30662,
+        "lat": 25.073661
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-osm-way-191808714-1",
+        "nassau-nassau-osm-way-191808714-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/191808714"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5471701"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-osm-way-222586240",
+      "name": "Albany Golf Course",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.501568,
+        "lat": 25.011404
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-osm-way-222586240-1",
+        "nassau-nassau-osm-way-222586240-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/222586240"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4709272"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-osm-way-228455375",
+      "name": "Cairo National Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.431266,
+        "lat": 25.073523
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-osm-way-228455375-1",
+        "nassau-nassau-osm-way-228455375-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/228455375"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-osm-way-301425856",
+      "name": "Thomas A. Robinson National Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.360337,
+        "lat": 25.054368
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-osm-way-301425856-1",
+        "nassau-nassau-osm-way-301425856-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/301425856"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q590296"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-osm-way-370134561",
+      "name": "New Providence Community Centre",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.450836,
+        "lat": 25.061708
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-osm-way-370134561-1",
+        "nassau-nassau-osm-way-370134561-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/370134561"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-osm-way-374794285",
+      "name": "Queens Staircase",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.337625,
+        "lat": 25.073197
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-osm-way-374794285-1",
+        "nassau-nassau-osm-way-374794285-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/374794285"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q43079731"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-osm-way-377805365",
+      "name": "Bahamas Baptist Community College (BBC)",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.314882,
+        "lat": 25.048027
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-osm-way-377805365-1",
+        "nassau-nassau-osm-way-377805365-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/377805365"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-osm-way-408486495",
+      "name": "St Andrews Presbyterian Kirk",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.343148,
+        "lat": 25.07594
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-osm-way-408486495-1",
+        "nassau-nassau-osm-way-408486495-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/408486495"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17020956"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-osm-way-692348777",
+      "name": "Faith Plaza",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.370608,
+        "lat": 25.01177
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-osm-way-692348777-1",
+        "nassau-nassau-osm-way-692348777-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/692348777"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-osm-way-80922971",
+      "name": "University of The Bahamas (UB)",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.354659,
+        "lat": 25.060483
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-osm-way-80922971-1",
+        "nassau-nassau-osm-way-80922971-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/80922971"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5146860"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-quiet-reflection",
+      "name": "Christ Church Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.344105,
+        "lat": 25.077266
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-quiet-reflection-1",
+        "nassau-nassau-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/444246696"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q63385130"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-recreation",
+      "name": "Bamboo Town Constituency Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.347035,
+        "lat": 25.017852
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-recreation-1",
+        "nassau-nassau-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1491651204"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "nassau-transit",
+      "name": "Paradise Island Ferry Terminal",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -77.32258,
+        "lat": 25.080039
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "nassau-nassau-transit-1",
+        "nassau-nassau-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/nassau/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2080727622"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "nassau-nassau-airport-nassau-airport-1",
+      "venueId": "nassau-airport-nassau-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-airport-nassau-airport-2",
+      "venueId": "nassau-airport-nassau-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-clinic-1",
+      "venueId": "nassau-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-clinic-2",
+      "venueId": "nassau-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-community-notices-1",
+      "venueId": "nassau-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-community-notices-2",
+      "venueId": "nassau-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-community-voting-game-1",
+      "venueId": "nassau-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-community-voting-game-2",
+      "venueId": "nassau-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-community-workshop-1",
+      "venueId": "nassau-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-community-workshop-2",
+      "venueId": "nassau-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-market-game-1",
+      "venueId": "nassau-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-market-game-2",
+      "venueId": "nassau-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-meal-stop-1",
+      "venueId": "nassau-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-meal-stop-2",
+      "venueId": "nassau-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-node-12653954301-1",
+      "venueId": "nassau-osm-node-12653954301",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-node-12653954301-2",
+      "venueId": "nassau-osm-node-12653954301",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-node-14066492002-1",
+      "venueId": "nassau-osm-node-14066492002",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-node-14066492002-2",
+      "venueId": "nassau-osm-node-14066492002",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-node-3796314387-1",
+      "venueId": "nassau-osm-node-3796314387",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-node-3796314387-2",
+      "venueId": "nassau-osm-node-3796314387",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-node-5088154289-1",
+      "venueId": "nassau-osm-node-5088154289",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-node-5088154289-2",
+      "venueId": "nassau-osm-node-5088154289",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-174579796-1",
+      "venueId": "nassau-osm-way-174579796",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-174579796-2",
+      "venueId": "nassau-osm-way-174579796",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-191808714-1",
+      "venueId": "nassau-osm-way-191808714",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-191808714-2",
+      "venueId": "nassau-osm-way-191808714",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-222586240-1",
+      "venueId": "nassau-osm-way-222586240",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-222586240-2",
+      "venueId": "nassau-osm-way-222586240",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-228455375-1",
+      "venueId": "nassau-osm-way-228455375",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-228455375-2",
+      "venueId": "nassau-osm-way-228455375",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-301425856-1",
+      "venueId": "nassau-osm-way-301425856",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-301425856-2",
+      "venueId": "nassau-osm-way-301425856",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-370134561-1",
+      "venueId": "nassau-osm-way-370134561",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-370134561-2",
+      "venueId": "nassau-osm-way-370134561",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-374794285-1",
+      "venueId": "nassau-osm-way-374794285",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-374794285-2",
+      "venueId": "nassau-osm-way-374794285",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-377805365-1",
+      "venueId": "nassau-osm-way-377805365",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-377805365-2",
+      "venueId": "nassau-osm-way-377805365",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-408486495-1",
+      "venueId": "nassau-osm-way-408486495",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-408486495-2",
+      "venueId": "nassau-osm-way-408486495",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-692348777-1",
+      "venueId": "nassau-osm-way-692348777",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-692348777-2",
+      "venueId": "nassau-osm-way-692348777",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-80922971-1",
+      "venueId": "nassau-osm-way-80922971",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-osm-way-80922971-2",
+      "venueId": "nassau-osm-way-80922971",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-quiet-reflection-1",
+      "venueId": "nassau-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-quiet-reflection-2",
+      "venueId": "nassau-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-recreation-1",
+      "venueId": "nassau-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-recreation-2",
+      "venueId": "nassau-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-transit-1",
+      "venueId": "nassau-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    },
+    {
+      "id": "nassau-nassau-transit-2",
+      "venueId": "nassau-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/nassau/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "nassau-airport-nassau-airport",
+    "nassau-clinic",
+    "nassau-community-notices",
+    "nassau-community-voting-game",
+    "nassau-community-workshop",
+    "nassau-market-game",
+    "nassau-meal-stop",
+    "nassau-osm-node-12653954301",
+    "nassau-osm-node-14066492002",
+    "nassau-osm-node-3796314387",
+    "nassau-osm-node-5088154289",
+    "nassau-osm-way-174579796",
+    "nassau-osm-way-191808714",
+    "nassau-osm-way-222586240",
+    "nassau-osm-way-228455375",
+    "nassau-osm-way-301425856",
+    "nassau-osm-way-370134561",
+    "nassau-osm-way-374794285",
+    "nassau-osm-way-377805365",
+    "nassau-osm-way-408486495",
+    "nassau-osm-way-692348777",
+    "nassau-osm-way-80922971",
+    "nassau-quiet-reflection",
+    "nassau-recreation",
+    "nassau-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "e6905f89624cc2576e6d18eccde4edf1ee5d867f10b9c46a5f56ad403b7f0d61",
+    "contentSha256": "95279508308d0b1d8290403960d4382dac8d1f74cb7c19b39aee871318bd5412"
+  }
+}

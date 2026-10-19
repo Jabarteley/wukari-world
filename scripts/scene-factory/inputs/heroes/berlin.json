@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "berlin",
+  "url": "/assets/scene-heroes/berlin.glb",
+  "sha256": "0ee0777a778853d442fc1e6feb956af4dddd5f78e21238ddf2d83805a6e174a1",
+  "rawBytes": 30636,
+  "brotliBytes": 19419,
+  "triangles": 1000,
+  "parts": [
+    {
+      "node": "berlin",
+      "triangles": 1000,
+      "bounds": {
+        "min": [
+          -3.78951621,
+          0,
+          -2.60094094
+        ],
+        "max": [
+          3.7895161313970003,
+          3.700000040682,
+          2.600709529796
+        ]
+      },
+      "footprint": [
+        -3.78951621,
+        -2.60094094,
+        3.7895161313970003,
+        2.600709529796
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "9fbb3637a6026c42295598191f368bf185692eb853e19ab7f218c25d4e865535"
+  },
+  "inputs": {
+    "rawSha256": "7e611bddd03223853f6564a2293f5dc208403ed052aa80af21905a3974e3e22e",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "berlin",
+      "country": "de",
+      "name": "Tempelhofer Hafen",
+      "category": "building",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/relation/20666721"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=berlin]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "retail-building",
+      "parameters": {
+        "width": 8.6,
+        "depth": 6.1,
+        "height": 3.7,
+        "seed": 181205,
+        "palette": [
+          "#d3cec2",
+          "#646a6b",
+          "#a0a895",
+          "#8c7568",
+          "#6d8f9c",
+          "#b0a489",
+          "#e7e8df",
+          "#344b59"
+        ]
+      },
+      "evidence": "Exact candidate/name alias match and shop=mall support feature identity/category. Object relation/20666721, version 2, timestamp 2026-05-09T23:23:01Z; response SHA256 f5252c1e8874ba1e101a8a69846dfbf009b4234d27b165cac4a55e3b8b7f7934. Source path: src/game/cities/berlin/places.ts. Original simple retail-building massing, entrance and opaque glazing panels. No signature facade, brand, sign, surveyed dimensions, floor count or precise building footprint are claimed. The shop tag establishes a retail complex; this is a schematic architectural symbol, not certification of a standalone mapped building polygon. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "western-europe"
+      }
+    },
+    "styleSha256": "18e3b0f4dbb88519df26d3d51faa4960b3f4646b58f92cf029cf1a50cbcc6d9c"
+  }
+}

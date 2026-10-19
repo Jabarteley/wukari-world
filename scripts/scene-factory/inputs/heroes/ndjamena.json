@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "ndjamena",
+  "url": "/assets/scene-heroes/ndjamena.glb",
+  "sha256": "7377f71b2d2c8d129ae4eae9d8057bc613bd8624fa54a60c00359acff399e266",
+  "rawBytes": 28188,
+  "brotliBytes": 18062,
+  "triangles": 840,
+  "parts": [
+    {
+      "node": "ndjamena",
+      "triangles": 840,
+      "bounds": {
+        "min": [
+          -2.82500005,
+          0,
+          -2.71000004
+        ],
+        "max": [
+          2.8249999338230003,
+          2.4499542138240002,
+          2.709971866596
+        ]
+      },
+      "footprint": [
+        -2.82500005,
+        -2.71000004,
+        2.8249999338230003,
+        2.709971866596
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "a58b37da529de79efa1ea1ce63b91a2ae8d506bd87023606bdcbc29b83eac837"
+  },
+  "inputs": {
+    "rawSha256": "92492006f42f4e164e05a37b951956264d610ec77bf2076e6b399c2a4bcd4a6a",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "ndjamena",
+      "country": "td",
+      "name": "Marché a betail",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/node/4335243174"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=ndjamena]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 181072,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Exact candidate/name alias match and amenity=marketplace support feature identity/category. Object node/4335243174, version 1, timestamp 2016-08-04T09:58:18Z; response SHA256 8c483050f3eab6796de6b528a576642a14f5449179f20e29a2b5c3bea194272a. Source path: src/game/cities/ndjamena/places.ts. Empty counters, racks and awnings indicate trade. No goods, original shop plan, actual number of stalls or current operation are inferred. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "sahel-francophone"
+      }
+    },
+    "styleSha256": "b72986c35ea5cc9b735e39261dba1208a3c62e668ecfc9928cfbe75dfa02d146"
+  }
+}

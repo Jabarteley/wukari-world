@@ -1,0 +1,2087 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "st-helier",
+    "name": "St Helier",
+    "state": {
+      "id": "je-st-helier",
+      "name": "St Helier"
+    },
+    "country": {
+      "id": "je",
+      "name": "Jersey"
+    },
+    "point": {
+      "lon": -2.1102277,
+      "lat": 49.1856637
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://github.com/kromate/joinallworld/releases/download/extracts-20261014/osmfr-jersey-261013.osm.pbf",
+      "https://ourairports.com/airports/EGJJ/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/st-helier/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/st-helier/facts.ts",
+        "sha256": "5cf6144df7a6f47f4d0f873ab6a29eeb5c25a7446e38b01ff5de22a6f0e1c7a8"
+      },
+      {
+        "path": "src/game/cities/st-helier/index.ts",
+        "sha256": "7b6d83616cb16ec930709999c14fdf1edcf990f6c31813ded6cda3bf5095a176"
+      },
+      {
+        "path": "src/game/cities/st-helier/places.ts",
+        "sha256": "6b7faa5e66b083cd9cc6815419637c61391739b119348d8cbf674927f5c19e7e"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.1102276999999994,
+        "lat": 49.1856637
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "st-helier-airport-st-helier-airport",
+      "name": "Jersey Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.19551,
+        "lat": 49.207901
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-airport-st-helier-airport-1",
+        "st-helier-st-helier-airport-st-helier-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "st-helier-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-clinic",
+      "name": "General Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.112354,
+        "lat": 49.187595
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-clinic-1",
+        "st-helier-st-helier-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/168422036"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q60754278"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-community-notices",
+      "name": "St John Parish Hall",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.138573,
+        "lat": 49.245333
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-community-notices-1",
+        "st-helier-st-helier-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/906637546"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-community-voting-game",
+      "name": "Royal Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.105648,
+        "lat": 49.183829
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-community-voting-game-1",
+        "st-helier-st-helier-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/210509614"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q88311620"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-community-workshop",
+      "name": "Jersey Library",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.104589,
+        "lat": 49.186534
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-community-workshop-1",
+        "st-helier-st-helier-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/185953209"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q56604073"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-market-game",
+      "name": "Waterfront Centre",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.114247,
+        "lat": 49.18385
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-market-game-1",
+        "st-helier-st-helier-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/179249117"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-meal-stop",
+      "name": "Bohemia",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.10223,
+        "lat": 49.181596
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-meal-stop-1",
+        "st-helier-st-helier-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6960822569"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q90730710"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-osm-node-1783469367",
+      "name": "Sorel Point",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.158644,
+        "lat": 49.259728
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-osm-node-1783469367-1",
+        "st-helier-st-helier-osm-node-1783469367-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1783469367"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-osm-node-1784634611",
+      "name": "Little Menhir",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.217464,
+        "lat": 49.197504
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-osm-node-1784634611-1",
+        "st-helier-st-helier-osm-node-1784634611-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1784634611"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q36698494"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-osm-node-1793026515",
+      "name": "Cafe Delicia",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.183865,
+        "lat": 49.234063
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-osm-node-1793026515-1",
+        "st-helier-st-helier-osm-node-1793026515-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1793026515"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-osm-node-1795426195",
+      "name": "Old Napoleonic gun platform",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.026088,
+        "lat": 49.233068
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-osm-node-1795426195-1",
+        "st-helier-st-helier-osm-node-1795426195-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1795426195"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-osm-way-1182987296",
+      "name": "Sacred Heart Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.169321,
+        "lat": 49.189241
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-osm-way-1182987296-1",
+        "st-helier-st-helier-osm-way-1182987296-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1182987296"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24431063"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-osm-way-166410471",
+      "name": "Mount Pride Castle",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.0192,
+        "lat": 49.199474
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-osm-way-166410471-1",
+        "st-helier-st-helier-osm-way-166410471-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/166410471"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1313383"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-osm-way-166663089",
+      "name": "Portelet Tower",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.177542,
+        "lat": 49.169977
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-osm-way-166663089-1",
+        "st-helier-st-helier-osm-way-166663089-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/166663089"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15267808"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-osm-way-177305474",
+      "name": "Corbiere Phare",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.239071,
+        "lat": 49.180705
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-osm-way-177305474-1",
+        "st-helier-st-helier-osm-way-177305474-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/177305474"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-osm-way-179763514",
+      "name": "St. Clement's Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.056605,
+        "lat": 49.173747
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-osm-way-179763514-1",
+        "st-helier-st-helier-osm-way-179763514-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/179763514"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13476433"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-osm-way-182196435",
+      "name": "Springfield Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.100076,
+        "lat": 49.191671
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-osm-way-182196435-1",
+        "st-helier-st-helier-osm-way-182196435-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/182196435"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5575736"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-osm-way-182786869",
+      "name": "School of Art",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.09243,
+        "lat": 49.193595
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-osm-way-182786869-1",
+        "st-helier-st-helier-osm-way-182786869-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/182786869"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-osm-way-182787368",
+      "name": "Laundry",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.09579,
+        "lat": 49.192573
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-osm-way-182787368-1",
+        "st-helier-st-helier-osm-way-182787368-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/182787368"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-osm-way-193301844",
+      "name": "Clinique Pinel",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.044681,
+        "lat": 49.203167
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-osm-way-193301844-1",
+        "st-helier-st-helier-osm-way-193301844-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/193301844"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-osm-way-496496072",
+      "name": "Le Parc de la Petite Falaise",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.08737,
+        "lat": 49.236904
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-osm-way-496496072-1",
+        "st-helier-st-helier-osm-way-496496072-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/496496072"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-osm-way-903201743",
+      "name": "Moignard Liberation Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.141779,
+        "lat": 49.21351
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-osm-way-903201743-1",
+        "st-helier-st-helier-osm-way-903201743-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/903201743"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-quiet-reflection",
+      "name": "Church of Our Lady of the Annunciation",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.053041,
+        "lat": 49.216303
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-quiet-reflection-1",
+        "st-helier-st-helier-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/168967980"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24431455"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-recreation",
+      "name": "Les Pres d'Auvergne",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.228239,
+        "lat": 49.235058
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-recreation-1",
+        "st-helier-st-helier-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/169454630"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "st-helier-transit",
+      "name": "Elizabeth Terminal",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -2.117633,
+        "lat": 49.179494
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "st-helier-st-helier-transit-1",
+        "st-helier-st-helier-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/st-helier/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12625753"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "st-helier-st-helier-airport-st-helier-airport-1",
+      "venueId": "st-helier-airport-st-helier-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-airport-st-helier-airport-2",
+      "venueId": "st-helier-airport-st-helier-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-clinic-1",
+      "venueId": "st-helier-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-clinic-2",
+      "venueId": "st-helier-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-community-notices-1",
+      "venueId": "st-helier-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-community-notices-2",
+      "venueId": "st-helier-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-community-voting-game-1",
+      "venueId": "st-helier-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-community-voting-game-2",
+      "venueId": "st-helier-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-community-workshop-1",
+      "venueId": "st-helier-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-community-workshop-2",
+      "venueId": "st-helier-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-market-game-1",
+      "venueId": "st-helier-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-market-game-2",
+      "venueId": "st-helier-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-meal-stop-1",
+      "venueId": "st-helier-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-meal-stop-2",
+      "venueId": "st-helier-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-node-1783469367-1",
+      "venueId": "st-helier-osm-node-1783469367",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-node-1783469367-2",
+      "venueId": "st-helier-osm-node-1783469367",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-node-1784634611-1",
+      "venueId": "st-helier-osm-node-1784634611",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-node-1784634611-2",
+      "venueId": "st-helier-osm-node-1784634611",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-node-1793026515-1",
+      "venueId": "st-helier-osm-node-1793026515",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-node-1793026515-2",
+      "venueId": "st-helier-osm-node-1793026515",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-node-1795426195-1",
+      "venueId": "st-helier-osm-node-1795426195",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-node-1795426195-2",
+      "venueId": "st-helier-osm-node-1795426195",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-1182987296-1",
+      "venueId": "st-helier-osm-way-1182987296",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-1182987296-2",
+      "venueId": "st-helier-osm-way-1182987296",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-166410471-1",
+      "venueId": "st-helier-osm-way-166410471",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-166410471-2",
+      "venueId": "st-helier-osm-way-166410471",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-166663089-1",
+      "venueId": "st-helier-osm-way-166663089",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-166663089-2",
+      "venueId": "st-helier-osm-way-166663089",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-177305474-1",
+      "venueId": "st-helier-osm-way-177305474",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-177305474-2",
+      "venueId": "st-helier-osm-way-177305474",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-179763514-1",
+      "venueId": "st-helier-osm-way-179763514",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-179763514-2",
+      "venueId": "st-helier-osm-way-179763514",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-182196435-1",
+      "venueId": "st-helier-osm-way-182196435",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-182196435-2",
+      "venueId": "st-helier-osm-way-182196435",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-182786869-1",
+      "venueId": "st-helier-osm-way-182786869",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-182786869-2",
+      "venueId": "st-helier-osm-way-182786869",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-182787368-1",
+      "venueId": "st-helier-osm-way-182787368",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-182787368-2",
+      "venueId": "st-helier-osm-way-182787368",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-193301844-1",
+      "venueId": "st-helier-osm-way-193301844",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-193301844-2",
+      "venueId": "st-helier-osm-way-193301844",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-496496072-1",
+      "venueId": "st-helier-osm-way-496496072",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-496496072-2",
+      "venueId": "st-helier-osm-way-496496072",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-903201743-1",
+      "venueId": "st-helier-osm-way-903201743",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-osm-way-903201743-2",
+      "venueId": "st-helier-osm-way-903201743",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-quiet-reflection-1",
+      "venueId": "st-helier-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-quiet-reflection-2",
+      "venueId": "st-helier-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-recreation-1",
+      "venueId": "st-helier-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-recreation-2",
+      "venueId": "st-helier-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-transit-1",
+      "venueId": "st-helier-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    },
+    {
+      "id": "st-helier-st-helier-transit-2",
+      "venueId": "st-helier-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/st-helier/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "st-helier-airport-st-helier-airport",
+    "st-helier-clinic",
+    "st-helier-community-notices",
+    "st-helier-community-voting-game",
+    "st-helier-community-workshop",
+    "st-helier-market-game",
+    "st-helier-meal-stop",
+    "st-helier-osm-node-1783469367",
+    "st-helier-osm-node-1784634611",
+    "st-helier-osm-node-1793026515",
+    "st-helier-osm-node-1795426195",
+    "st-helier-osm-way-1182987296",
+    "st-helier-osm-way-166410471",
+    "st-helier-osm-way-166663089",
+    "st-helier-osm-way-177305474",
+    "st-helier-osm-way-179763514",
+    "st-helier-osm-way-182196435",
+    "st-helier-osm-way-182786869",
+    "st-helier-osm-way-182787368",
+    "st-helier-osm-way-193301844",
+    "st-helier-osm-way-496496072",
+    "st-helier-osm-way-903201743",
+    "st-helier-quiet-reflection",
+    "st-helier-recreation",
+    "st-helier-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "033da8fdcfee1de023229fb377a17d901149fc0d9be31158a00e279922160202",
+    "contentSha256": "b6b7b3f6d9c94d23e527251fa41f098449d443b0965f28a39007c1141d434875"
+  }
+}

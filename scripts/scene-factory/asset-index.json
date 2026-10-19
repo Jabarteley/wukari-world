@@ -1,0 +1,1782 @@
+{
+  "schema": "allworld-scene-assets",
+  "version": 1,
+  "kits": [
+    {
+      "id": "americas-oceania",
+      "asset": "scripts/scene-factory/inputs/kits/americas-oceania.glb",
+      "report": "scripts/scene-factory/inputs/kits/americas-oceania.json"
+    },
+    {
+      "id": "east-africa",
+      "asset": "scripts/scene-factory/inputs/kits/east-africa.glb",
+      "report": "scripts/scene-factory/inputs/kits/east-africa.json"
+    },
+    {
+      "id": "east-asia",
+      "asset": "scripts/scene-factory/inputs/kits/east-asia.glb",
+      "report": "scripts/scene-factory/inputs/kits/east-asia.json"
+    },
+    {
+      "id": "gulf-guinea",
+      "asset": "scripts/scene-factory/inputs/kits/gulf-guinea.glb",
+      "report": "scripts/scene-factory/inputs/kits/gulf-guinea.json"
+    },
+    {
+      "id": "igbo-southeast",
+      "asset": "scripts/scene-factory/inputs/kits/igbo-southeast.glb",
+      "report": "scripts/scene-factory/inputs/kits/igbo-southeast.json"
+    },
+    {
+      "id": "maghreb",
+      "asset": "scripts/scene-factory/inputs/kits/maghreb.glb",
+      "report": "scripts/scene-factory/inputs/kits/maghreb.json"
+    },
+    {
+      "id": "niger-delta",
+      "asset": "scripts/scene-factory/inputs/kits/niger-delta.glb",
+      "report": "scripts/scene-factory/inputs/kits/niger-delta.json"
+    },
+    {
+      "id": "sahel-francophone",
+      "asset": "scripts/scene-factory/inputs/kits/sahel-francophone.glb",
+      "report": "scripts/scene-factory/inputs/kits/sahel-francophone.json"
+    },
+    {
+      "id": "sahel-north",
+      "asset": "scripts/scene-factory/inputs/kits/sahel-north.glb",
+      "report": "scripts/scene-factory/inputs/kits/sahel-north.json"
+    },
+    {
+      "id": "south-asia",
+      "asset": "scripts/scene-factory/inputs/kits/south-asia.glb",
+      "report": "scripts/scene-factory/inputs/kits/south-asia.json"
+    },
+    {
+      "id": "southern-africa",
+      "asset": "scripts/scene-factory/inputs/kits/southern-africa.glb",
+      "report": "scripts/scene-factory/inputs/kits/southern-africa.json"
+    },
+    {
+      "id": "swahili-coast",
+      "asset": "scripts/scene-factory/inputs/kits/swahili-coast.glb",
+      "report": "scripts/scene-factory/inputs/kits/swahili-coast.json"
+    },
+    {
+      "id": "western-europe",
+      "asset": "scripts/scene-factory/inputs/kits/western-europe.glb",
+      "report": "scripts/scene-factory/inputs/kits/western-europe.json"
+    },
+    {
+      "id": "yoruba-southwest",
+      "asset": "scripts/scene-factory/inputs/kits/yoruba-southwest.glb",
+      "report": "scripts/scene-factory/inputs/kits/yoruba-southwest.json"
+    }
+  ],
+  "heroes": [
+    {
+      "id": "abakaliki",
+      "asset": "scripts/scene-factory/inputs/heroes/abakaliki.glb",
+      "report": "scripts/scene-factory/inputs/heroes/abakaliki.json",
+      "venue": "itc-motor-park-abakaliki"
+    },
+    {
+      "id": "abeokuta",
+      "asset": "scripts/scene-factory/inputs/heroes/abeokuta.glb",
+      "report": "scripts/scene-factory/inputs/heroes/abeokuta.json",
+      "venue": "kuto-kitchen"
+    },
+    {
+      "id": "abidjan",
+      "asset": "scripts/scene-factory/inputs/heroes/abidjan.glb",
+      "report": "scripts/scene-factory/inputs/heroes/abidjan.json",
+      "venue": "abidjan-market-game"
+    },
+    {
+      "id": "abuja",
+      "asset": "scripts/scene-factory/inputs/heroes/abuja.glb",
+      "report": "scripts/scene-factory/inputs/heroes/abuja.json",
+      "venue": "airport"
+    },
+    {
+      "id": "accra",
+      "asset": "scripts/scene-factory/inputs/heroes/accra.glb",
+      "report": "scripts/scene-factory/inputs/heroes/accra.json",
+      "venue": "accra-market-game"
+    },
+    {
+      "id": "adamstown",
+      "asset": "scripts/scene-factory/inputs/heroes/adamstown.glb",
+      "report": "scripts/scene-factory/inputs/heroes/adamstown.json",
+      "venue": "adamstown-airport-adamstown-airport"
+    },
+    {
+      "id": "addis-ababa",
+      "asset": "scripts/scene-factory/inputs/heroes/addis-ababa.glb",
+      "report": "scripts/scene-factory/inputs/heroes/addis-ababa.json",
+      "venue": "addis-ababa-market-game"
+    },
+    {
+      "id": "ado-ekiti",
+      "asset": "scripts/scene-factory/inputs/heroes/ado-ekiti.glb",
+      "report": "scripts/scene-factory/inputs/heroes/ado-ekiti.json",
+      "venue": "bisi-market"
+    },
+    {
+      "id": "akure",
+      "asset": "scripts/scene-factory/inputs/heroes/akure.glb",
+      "report": "scripts/scene-factory/inputs/heroes/akure.json",
+      "venue": "ondo-state-bus-terminal"
+    },
+    {
+      "id": "algiers",
+      "asset": "scripts/scene-factory/inputs/heroes/algiers.glb",
+      "report": "scripts/scene-factory/inputs/heroes/algiers.json",
+      "venue": "algiers-market-game"
+    },
+    {
+      "id": "almaty",
+      "asset": "scripts/scene-factory/inputs/heroes/almaty.glb",
+      "report": "scripts/scene-factory/inputs/heroes/almaty.json",
+      "venue": "almaty-market-game"
+    },
+    {
+      "id": "alofi",
+      "asset": "scripts/scene-factory/inputs/heroes/alofi.glb",
+      "report": "scripts/scene-factory/inputs/heroes/alofi.json",
+      "venue": "alofi-market-game"
+    },
+    {
+      "id": "amman",
+      "asset": "scripts/scene-factory/inputs/heroes/amman.glb",
+      "report": "scripts/scene-factory/inputs/heroes/amman.json",
+      "venue": "amman-airport-amman-airport"
+    },
+    {
+      "id": "amsterdam",
+      "asset": "scripts/scene-factory/inputs/heroes/amsterdam.glb",
+      "report": "scripts/scene-factory/inputs/heroes/amsterdam.json",
+      "venue": "amsterdam-market-game"
+    },
+    {
+      "id": "andorra-la-vella",
+      "asset": "scripts/scene-factory/inputs/heroes/andorra-la-vella.glb",
+      "report": "scripts/scene-factory/inputs/heroes/andorra-la-vella.json",
+      "venue": "andorra-la-vella-market-game"
+    },
+    {
+      "id": "antananarivo",
+      "asset": "scripts/scene-factory/inputs/heroes/antananarivo.glb",
+      "report": "scripts/scene-factory/inputs/heroes/antananarivo.json",
+      "venue": "antananarivo-market-game"
+    },
+    {
+      "id": "apia",
+      "asset": "scripts/scene-factory/inputs/heroes/apia.glb",
+      "report": "scripts/scene-factory/inputs/heroes/apia.json",
+      "venue": "apia-market-game"
+    },
+    {
+      "id": "asaba",
+      "asset": "scripts/scene-factory/inputs/heroes/asaba.glb",
+      "report": "scripts/scene-factory/inputs/heroes/asaba.json",
+      "venue": "asaba-international-airport"
+    },
+    {
+      "id": "ashgabat",
+      "asset": "scripts/scene-factory/inputs/heroes/ashgabat.glb",
+      "report": "scripts/scene-factory/inputs/heroes/ashgabat.json",
+      "venue": "ashgabat-market-game"
+    },
+    {
+      "id": "ashmore",
+      "asset": "scripts/scene-factory/inputs/heroes/ashmore.glb",
+      "report": "scripts/scene-factory/inputs/heroes/ashmore.json",
+      "venue": "ashmore-airport-ashmore-airport"
+    },
+    {
+      "id": "asmara",
+      "asset": "scripts/scene-factory/inputs/heroes/asmara.glb",
+      "report": "scripts/scene-factory/inputs/heroes/asmara.json",
+      "venue": "asmara-market-game"
+    },
+    {
+      "id": "asuncion",
+      "asset": "scripts/scene-factory/inputs/heroes/asuncion.glb",
+      "report": "scripts/scene-factory/inputs/heroes/asuncion.json",
+      "venue": "asuncion-market-game"
+    },
+    {
+      "id": "athens",
+      "asset": "scripts/scene-factory/inputs/heroes/athens.glb",
+      "report": "scripts/scene-factory/inputs/heroes/athens.json",
+      "venue": "athens-airport-athens-airport"
+    },
+    {
+      "id": "auckland",
+      "asset": "scripts/scene-factory/inputs/heroes/auckland.glb",
+      "report": "scripts/scene-factory/inputs/heroes/auckland.json",
+      "venue": "auckland-market-game"
+    },
+    {
+      "id": "avarua",
+      "asset": "scripts/scene-factory/inputs/heroes/avarua.glb",
+      "report": "scripts/scene-factory/inputs/heroes/avarua.json",
+      "venue": "avarua-market-game"
+    },
+    {
+      "id": "awka",
+      "asset": "scripts/scene-factory/inputs/heroes/awka.glb",
+      "report": "scripts/scene-factory/inputs/heroes/awka.json",
+      "venue": "star-sunny-motor-park-awka"
+    },
+    {
+      "id": "baghdad",
+      "asset": "scripts/scene-factory/inputs/heroes/baghdad.glb",
+      "report": "scripts/scene-factory/inputs/heroes/baghdad.json",
+      "venue": "baghdad-airport-baghdad-airport"
+    },
+    {
+      "id": "baku",
+      "asset": "scripts/scene-factory/inputs/heroes/baku.glb",
+      "report": "scripts/scene-factory/inputs/heroes/baku.json",
+      "venue": "baku-airport-baku-airport"
+    },
+    {
+      "id": "bamako",
+      "asset": "scripts/scene-factory/inputs/heroes/bamako.glb",
+      "report": "scripts/scene-factory/inputs/heroes/bamako.json",
+      "venue": "bamako-market-game"
+    },
+    {
+      "id": "bangkok",
+      "asset": "scripts/scene-factory/inputs/heroes/bangkok.glb",
+      "report": "scripts/scene-factory/inputs/heroes/bangkok.json",
+      "venue": "bangkok-market-game"
+    },
+    {
+      "id": "bangui",
+      "asset": "scripts/scene-factory/inputs/heroes/bangui.glb",
+      "report": "scripts/scene-factory/inputs/heroes/bangui.json",
+      "venue": "bangui-market-game"
+    },
+    {
+      "id": "basseterre",
+      "asset": "scripts/scene-factory/inputs/heroes/basseterre.glb",
+      "report": "scripts/scene-factory/inputs/heroes/basseterre.json",
+      "venue": "basseterre-market-game"
+    },
+    {
+      "id": "bauchi",
+      "asset": "scripts/scene-factory/inputs/heroes/bauchi.glb",
+      "report": "scripts/scene-factory/inputs/heroes/bauchi.json",
+      "venue": "muda-lawal-market-bauchi"
+    },
+    {
+      "id": "beirut",
+      "asset": "scripts/scene-factory/inputs/heroes/beirut.glb",
+      "report": "scripts/scene-factory/inputs/heroes/beirut.json",
+      "venue": "beirut-market-game"
+    },
+    {
+      "id": "belgrade",
+      "asset": "scripts/scene-factory/inputs/heroes/belgrade.glb",
+      "report": "scripts/scene-factory/inputs/heroes/belgrade.json",
+      "venue": "belgrade-airport-belgrade-airport"
+    },
+    {
+      "id": "belize-city",
+      "asset": "scripts/scene-factory/inputs/heroes/belize-city.glb",
+      "report": "scripts/scene-factory/inputs/heroes/belize-city.json",
+      "venue": "belize-city-market-game"
+    },
+    {
+      "id": "benin-city",
+      "asset": "scripts/scene-factory/inputs/heroes/benin-city.glb",
+      "report": "scripts/scene-factory/inputs/heroes/benin-city.json",
+      "venue": "oba-market"
+    },
+    {
+      "id": "berlin",
+      "asset": "scripts/scene-factory/inputs/heroes/berlin.glb",
+      "report": "scripts/scene-factory/inputs/heroes/berlin.json",
+      "venue": "berlin-market-game"
+    },
+    {
+      "id": "birnin-kebbi",
+      "asset": "scripts/scene-factory/inputs/heroes/birnin-kebbi.glb",
+      "report": "scripts/scene-factory/inputs/heroes/birnin-kebbi.json",
+      "venue": "sir-ahmadu-bello-airport-birnin-kebbi"
+    },
+    {
+      "id": "bishkek",
+      "asset": "scripts/scene-factory/inputs/heroes/bishkek.glb",
+      "report": "scripts/scene-factory/inputs/heroes/bishkek.json",
+      "venue": "bishkek-market-game"
+    },
+    {
+      "id": "bissau",
+      "asset": "scripts/scene-factory/inputs/heroes/bissau.glb",
+      "report": "scripts/scene-factory/inputs/heroes/bissau.json",
+      "venue": "bissau-market-game"
+    },
+    {
+      "id": "bogota",
+      "asset": "scripts/scene-factory/inputs/heroes/bogota.glb",
+      "report": "scripts/scene-factory/inputs/heroes/bogota.json",
+      "venue": "bogota-market-game"
+    },
+    {
+      "id": "brades",
+      "asset": "scripts/scene-factory/inputs/heroes/brades.glb",
+      "report": "scripts/scene-factory/inputs/heroes/brades.json",
+      "venue": "brades-airport-brades-airport"
+    },
+    {
+      "id": "brasilia",
+      "asset": "scripts/scene-factory/inputs/heroes/brasilia.glb",
+      "report": "scripts/scene-factory/inputs/heroes/brasilia.json",
+      "venue": "brasilia-market-game"
+    },
+    {
+      "id": "bratislava",
+      "asset": "scripts/scene-factory/inputs/heroes/bratislava.glb",
+      "report": "scripts/scene-factory/inputs/heroes/bratislava.json",
+      "venue": "bratislava-airport-bratislava-airport"
+    },
+    {
+      "id": "brazzaville",
+      "asset": "scripts/scene-factory/inputs/heroes/brazzaville.glb",
+      "report": "scripts/scene-factory/inputs/heroes/brazzaville.json",
+      "venue": "brazzaville-market-game"
+    },
+    {
+      "id": "bridgetown",
+      "asset": "scripts/scene-factory/inputs/heroes/bridgetown.glb",
+      "report": "scripts/scene-factory/inputs/heroes/bridgetown.json",
+      "venue": "bridgetown-recreation"
+    },
+    {
+      "id": "brussels",
+      "asset": "scripts/scene-factory/inputs/heroes/brussels.glb",
+      "report": "scripts/scene-factory/inputs/heroes/brussels.json",
+      "venue": "brussels-airport-brussels-airport"
+    },
+    {
+      "id": "bsb",
+      "asset": "scripts/scene-factory/inputs/heroes/bsb.glb",
+      "report": "scripts/scene-factory/inputs/heroes/bsb.json",
+      "venue": "bsb-market-game"
+    },
+    {
+      "id": "bucharest",
+      "asset": "scripts/scene-factory/inputs/heroes/bucharest.glb",
+      "report": "scripts/scene-factory/inputs/heroes/bucharest.json",
+      "venue": "bucharest-market-game"
+    },
+    {
+      "id": "budapest",
+      "asset": "scripts/scene-factory/inputs/heroes/budapest.glb",
+      "report": "scripts/scene-factory/inputs/heroes/budapest.json",
+      "venue": "budapest-market-game"
+    },
+    {
+      "id": "buenos-aires",
+      "asset": "scripts/scene-factory/inputs/heroes/buenos-aires.glb",
+      "report": "scripts/scene-factory/inputs/heroes/buenos-aires.json",
+      "venue": "buenos-aires-market-game"
+    },
+    {
+      "id": "bujumbura",
+      "asset": "scripts/scene-factory/inputs/heroes/bujumbura.glb",
+      "report": "scripts/scene-factory/inputs/heroes/bujumbura.json",
+      "venue": "bujumbura-market-game"
+    },
+    {
+      "id": "cairo",
+      "asset": "scripts/scene-factory/inputs/heroes/cairo.glb",
+      "report": "scripts/scene-factory/inputs/heroes/cairo.json",
+      "venue": "cairo-market-game"
+    },
+    {
+      "id": "calabar",
+      "asset": "scripts/scene-factory/inputs/heroes/calabar.glb",
+      "report": "scripts/scene-factory/inputs/heroes/calabar.json",
+      "venue": "watt-market"
+    },
+    {
+      "id": "cape-town",
+      "asset": "scripts/scene-factory/inputs/heroes/cape-town.glb",
+      "report": "scripts/scene-factory/inputs/heroes/cape-town.json",
+      "venue": "cape-town-recreation"
+    },
+    {
+      "id": "caracas",
+      "asset": "scripts/scene-factory/inputs/heroes/caracas.glb",
+      "report": "scripts/scene-factory/inputs/heroes/caracas.json",
+      "venue": "caracas-market-game"
+    },
+    {
+      "id": "castries",
+      "asset": "scripts/scene-factory/inputs/heroes/castries.glb",
+      "report": "scripts/scene-factory/inputs/heroes/castries.json",
+      "venue": "castries-market-game"
+    },
+    {
+      "id": "chagos",
+      "asset": "scripts/scene-factory/inputs/heroes/chagos.glb",
+      "report": "scripts/scene-factory/inputs/heroes/chagos.json",
+      "venue": "chagos-airport-chagos-airport"
+    },
+    {
+      "id": "charlotte-amalie",
+      "asset": "scripts/scene-factory/inputs/heroes/charlotte-amalie.glb",
+      "report": "scripts/scene-factory/inputs/heroes/charlotte-amalie.json",
+      "venue": "charlotte-amalie-market-game"
+    },
+    {
+      "id": "chisinau",
+      "asset": "scripts/scene-factory/inputs/heroes/chisinau.glb",
+      "report": "scripts/scene-factory/inputs/heroes/chisinau.json",
+      "venue": "chisinau-market-game"
+    },
+    {
+      "id": "cockburn-town",
+      "asset": "scripts/scene-factory/inputs/heroes/cockburn-town.glb",
+      "report": "scripts/scene-factory/inputs/heroes/cockburn-town.json",
+      "venue": "cockburn-town-market-game"
+    },
+    {
+      "id": "colombo",
+      "asset": "scripts/scene-factory/inputs/heroes/colombo.glb",
+      "report": "scripts/scene-factory/inputs/heroes/colombo.json",
+      "venue": "colombo-osm-way-27712165"
+    },
+    {
+      "id": "conakry",
+      "asset": "scripts/scene-factory/inputs/heroes/conakry.glb",
+      "report": "scripts/scene-factory/inputs/heroes/conakry.json",
+      "venue": "conakry-market-game"
+    },
+    {
+      "id": "copenhagen",
+      "asset": "scripts/scene-factory/inputs/heroes/copenhagen.glb",
+      "report": "scripts/scene-factory/inputs/heroes/copenhagen.json",
+      "venue": "copenhagen-market-game"
+    },
+    {
+      "id": "cotonou",
+      "asset": "scripts/scene-factory/inputs/heroes/cotonou.glb",
+      "report": "scripts/scene-factory/inputs/heroes/cotonou.json",
+      "venue": "cotonou-market-game"
+    },
+    {
+      "id": "cove",
+      "asset": "scripts/scene-factory/inputs/heroes/cove.glb",
+      "report": "scripts/scene-factory/inputs/heroes/cove.json",
+      "venue": "cove-airport-cove-airport"
+    },
+    {
+      "id": "dakar",
+      "asset": "scripts/scene-factory/inputs/heroes/dakar.glb",
+      "report": "scripts/scene-factory/inputs/heroes/dakar.json",
+      "venue": "dakar-market-game"
+    },
+    {
+      "id": "damascus",
+      "asset": "scripts/scene-factory/inputs/heroes/damascus.glb",
+      "report": "scripts/scene-factory/inputs/heroes/damascus.json",
+      "venue": "damascus-airport-damascus-airport"
+    },
+    {
+      "id": "damaturu",
+      "asset": "scripts/scene-factory/inputs/heroes/damaturu.glb",
+      "report": "scripts/scene-factory/inputs/heroes/damaturu.json",
+      "venue": "damaturu-modern-market"
+    },
+    {
+      "id": "dar-es-salaam",
+      "asset": "scripts/scene-factory/inputs/heroes/dar-es-salaam.glb",
+      "report": "scripts/scene-factory/inputs/heroes/dar-es-salaam.json",
+      "venue": "dar-es-salaam-market-game"
+    },
+    {
+      "id": "delhi",
+      "asset": "scripts/scene-factory/inputs/heroes/delhi.glb",
+      "report": "scripts/scene-factory/inputs/heroes/delhi.json",
+      "venue": "delhi-airport-delhi-airport"
+    },
+    {
+      "id": "dhaka",
+      "asset": "scripts/scene-factory/inputs/heroes/dhaka.glb",
+      "report": "scripts/scene-factory/inputs/heroes/dhaka.json",
+      "venue": "dhaka-market-game"
+    },
+    {
+      "id": "dili",
+      "asset": "scripts/scene-factory/inputs/heroes/dili.glb",
+      "report": "scripts/scene-factory/inputs/heroes/dili.json",
+      "venue": "dili-market-game"
+    },
+    {
+      "id": "djibouti",
+      "asset": "scripts/scene-factory/inputs/heroes/djibouti.glb",
+      "report": "scripts/scene-factory/inputs/heroes/djibouti.json",
+      "venue": "djibouti-airport-djibouti-airport"
+    },
+    {
+      "id": "doha",
+      "asset": "scripts/scene-factory/inputs/heroes/doha.glb",
+      "report": "scripts/scene-factory/inputs/heroes/doha.json",
+      "venue": "doha-recreation"
+    },
+    {
+      "id": "douglas",
+      "asset": "scripts/scene-factory/inputs/heroes/douglas.glb",
+      "report": "scripts/scene-factory/inputs/heroes/douglas.json",
+      "venue": "douglas-market-game"
+    },
+    {
+      "id": "dubai",
+      "asset": "scripts/scene-factory/inputs/heroes/dubai.glb",
+      "report": "scripts/scene-factory/inputs/heroes/dubai.json",
+      "venue": "dubai-recreation"
+    },
+    {
+      "id": "dublin",
+      "asset": "scripts/scene-factory/inputs/heroes/dublin.glb",
+      "report": "scripts/scene-factory/inputs/heroes/dublin.json",
+      "venue": "dublin-airport-dublin-airport"
+    },
+    {
+      "id": "dushanbe",
+      "asset": "scripts/scene-factory/inputs/heroes/dushanbe.glb",
+      "report": "scripts/scene-factory/inputs/heroes/dushanbe.json",
+      "venue": "dushanbe-market-game"
+    },
+    {
+      "id": "dutse",
+      "asset": "scripts/scene-factory/inputs/heroes/dutse.glb",
+      "report": "scripts/scene-factory/inputs/heroes/dutse.json",
+      "venue": "dutse-emirate-museum-park"
+    },
+    {
+      "id": "enugu",
+      "asset": "scripts/scene-factory/inputs/heroes/enugu.glb",
+      "report": "scripts/scene-factory/inputs/heroes/enugu.json",
+      "venue": "ogbete-main-market"
+    },
+    {
+      "id": "flying-fish-cove",
+      "asset": "scripts/scene-factory/inputs/heroes/flying-fish-cove.glb",
+      "report": "scripts/scene-factory/inputs/heroes/flying-fish-cove.json",
+      "venue": "flying-fish-cove-recreation"
+    },
+    {
+      "id": "freetown",
+      "asset": "scripts/scene-factory/inputs/heroes/freetown.glb",
+      "report": "scripts/scene-factory/inputs/heroes/freetown.json",
+      "venue": "freetown-market-game"
+    },
+    {
+      "id": "funafuti",
+      "asset": "scripts/scene-factory/inputs/heroes/funafuti.glb",
+      "report": "scripts/scene-factory/inputs/heroes/funafuti.json",
+      "venue": "funafuti-airport-funafuti-airport"
+    },
+    {
+      "id": "gaborone",
+      "asset": "scripts/scene-factory/inputs/heroes/gaborone.glb",
+      "report": "scripts/scene-factory/inputs/heroes/gaborone.json",
+      "venue": "gaborone-three-dikgosi-monument"
+    },
+    {
+      "id": "garapan",
+      "asset": "scripts/scene-factory/inputs/heroes/garapan.glb",
+      "report": "scripts/scene-factory/inputs/heroes/garapan.json",
+      "venue": "garapan-market-game"
+    },
+    {
+      "id": "george-town",
+      "asset": "scripts/scene-factory/inputs/heroes/george-town.glb",
+      "report": "scripts/scene-factory/inputs/heroes/george-town.json",
+      "venue": "george-town-market-game"
+    },
+    {
+      "id": "georgetown",
+      "asset": "scripts/scene-factory/inputs/heroes/georgetown.glb",
+      "report": "scripts/scene-factory/inputs/heroes/georgetown.json",
+      "venue": "georgetown-market-game"
+    },
+    {
+      "id": "gombe",
+      "asset": "scripts/scene-factory/inputs/heroes/gombe.glb",
+      "report": "scripts/scene-factory/inputs/heroes/gombe.json",
+      "venue": "gombe-line-bus-station"
+    },
+    {
+      "id": "grytviken",
+      "asset": "scripts/scene-factory/inputs/heroes/grytviken.glb",
+      "report": "scripts/scene-factory/inputs/heroes/grytviken.json",
+      "venue": "grytviken-airport-grytviken-airport"
+    },
+    {
+      "id": "guatemala-city",
+      "asset": "scripts/scene-factory/inputs/heroes/guatemala-city.glb",
+      "report": "scripts/scene-factory/inputs/heroes/guatemala-city.json",
+      "venue": "guatemala-city-market-game"
+    },
+    {
+      "id": "gusau",
+      "asset": "scripts/scene-factory/inputs/heroes/gusau.glb",
+      "report": "scripts/scene-factory/inputs/heroes/gusau.json",
+      "venue": "gusau-central-market"
+    },
+    {
+      "id": "gustavia",
+      "asset": "scripts/scene-factory/inputs/heroes/gustavia.glb",
+      "report": "scripts/scene-factory/inputs/heroes/gustavia.json",
+      "venue": "gustavia-airport-gustavia-airport"
+    },
+    {
+      "id": "hagatna",
+      "asset": "scripts/scene-factory/inputs/heroes/hagatna.glb",
+      "report": "scripts/scene-factory/inputs/heroes/hagatna.json",
+      "venue": "hagatna-airport-hagatna-airport"
+    },
+    {
+      "id": "hamilton",
+      "asset": "scripts/scene-factory/inputs/heroes/hamilton.glb",
+      "report": "scripts/scene-factory/inputs/heroes/hamilton.json",
+      "venue": "hamilton-airport-hamilton-airport"
+    },
+    {
+      "id": "harare",
+      "asset": "scripts/scene-factory/inputs/heroes/harare.glb",
+      "report": "scripts/scene-factory/inputs/heroes/harare.json",
+      "venue": "harare-market-game"
+    },
+    {
+      "id": "hargeisa",
+      "asset": "scripts/scene-factory/inputs/heroes/hargeisa.glb",
+      "report": "scripts/scene-factory/inputs/heroes/hargeisa.json",
+      "venue": "hargeisa-market-game"
+    },
+    {
+      "id": "havana",
+      "asset": "scripts/scene-factory/inputs/heroes/havana.glb",
+      "report": "scripts/scene-factory/inputs/heroes/havana.json",
+      "venue": "havana-market-game"
+    },
+    {
+      "id": "helsinki",
+      "asset": "scripts/scene-factory/inputs/heroes/helsinki.glb",
+      "report": "scripts/scene-factory/inputs/heroes/helsinki.json",
+      "venue": "helsinki-osm-way-404325219"
+    },
+    {
+      "id": "ho-chi-minh-city",
+      "asset": "scripts/scene-factory/inputs/heroes/ho-chi-minh-city.glb",
+      "report": "scripts/scene-factory/inputs/heroes/ho-chi-minh-city.json",
+      "venue": "ho-chi-minh-city-market-game"
+    },
+    {
+      "id": "hong-kong",
+      "asset": "scripts/scene-factory/inputs/heroes/hong-kong.glb",
+      "report": "scripts/scene-factory/inputs/heroes/hong-kong.json",
+      "venue": "hong-kong-market-game"
+    },
+    {
+      "id": "honiara",
+      "asset": "scripts/scene-factory/inputs/heroes/honiara.glb",
+      "report": "scripts/scene-factory/inputs/heroes/honiara.json",
+      "venue": "honiara-market-game"
+    },
+    {
+      "id": "ibadan",
+      "asset": "scripts/scene-factory/inputs/heroes/ibadan.glb",
+      "report": "scripts/scene-factory/inputs/heroes/ibadan.json",
+      "venue": "ibadan-airport"
+    },
+    {
+      "id": "ijebu-ode",
+      "asset": "scripts/scene-factory/inputs/heroes/ijebu-ode.glb",
+      "report": "scripts/scene-factory/inputs/heroes/ijebu-ode.json",
+      "venue": "ijebu-kitchen"
+    },
+    {
+      "id": "ilorin",
+      "asset": "scripts/scene-factory/inputs/heroes/ilorin.glb",
+      "report": "scripts/scene-factory/inputs/heroes/ilorin.json",
+      "venue": "ipata-market"
+    },
+    {
+      "id": "istanbul",
+      "asset": "scripts/scene-factory/inputs/heroes/istanbul.glb",
+      "report": "scripts/scene-factory/inputs/heroes/istanbul.json",
+      "venue": "istanbul-market-game"
+    },
+    {
+      "id": "jakarta",
+      "asset": "scripts/scene-factory/inputs/heroes/jakarta.glb",
+      "report": "scripts/scene-factory/inputs/heroes/jakarta.json",
+      "venue": "jakarta-airport-jakarta-airport"
+    },
+    {
+      "id": "jalingo",
+      "asset": "scripts/scene-factory/inputs/heroes/jalingo.glb",
+      "report": "scripts/scene-factory/inputs/heroes/jalingo.json",
+      "venue": "bando-market"
+    },
+    {
+      "id": "jamestown",
+      "asset": "scripts/scene-factory/inputs/heroes/jamestown.glb",
+      "report": "scripts/scene-factory/inputs/heroes/jamestown.json",
+      "venue": "jamestown-airport-jamestown-airport"
+    },
+    {
+      "id": "jos",
+      "asset": "scripts/scene-factory/inputs/heroes/jos.glb",
+      "report": "scripts/scene-factory/inputs/heroes/jos.json",
+      "venue": "terminus-motor-park"
+    },
+    {
+      "id": "juba",
+      "asset": "scripts/scene-factory/inputs/heroes/juba.glb",
+      "report": "scripts/scene-factory/inputs/heroes/juba.json",
+      "venue": "juba-market-game"
+    },
+    {
+      "id": "kabul",
+      "asset": "scripts/scene-factory/inputs/heroes/kabul.glb",
+      "report": "scripts/scene-factory/inputs/heroes/kabul.json",
+      "venue": "kabul-market-game"
+    },
+    {
+      "id": "kaduna",
+      "asset": "scripts/scene-factory/inputs/heroes/kaduna.glb",
+      "report": "scripts/scene-factory/inputs/heroes/kaduna.json",
+      "venue": "kawo-motor-park"
+    },
+    {
+      "id": "kampala",
+      "asset": "scripts/scene-factory/inputs/heroes/kampala.glb",
+      "report": "scripts/scene-factory/inputs/heroes/kampala.json",
+      "venue": "kampala-market-game"
+    },
+    {
+      "id": "kano",
+      "asset": "scripts/scene-factory/inputs/heroes/kano.glb",
+      "report": "scripts/scene-factory/inputs/heroes/kano.json",
+      "venue": "airport"
+    },
+    {
+      "id": "kathmandu",
+      "asset": "scripts/scene-factory/inputs/heroes/kathmandu.glb",
+      "report": "scripts/scene-factory/inputs/heroes/kathmandu.json",
+      "venue": "kathmandu-recreation"
+    },
+    {
+      "id": "katsina",
+      "asset": "scripts/scene-factory/inputs/heroes/katsina.glb",
+      "report": "scripts/scene-factory/inputs/heroes/katsina.json",
+      "venue": "central-motor-park-katsina"
+    },
+    {
+      "id": "khartoum",
+      "asset": "scripts/scene-factory/inputs/heroes/khartoum.glb",
+      "report": "scripts/scene-factory/inputs/heroes/khartoum.json",
+      "venue": "khartoum-market-game"
+    },
+    {
+      "id": "kigali",
+      "asset": "scripts/scene-factory/inputs/heroes/kigali.glb",
+      "report": "scripts/scene-factory/inputs/heroes/kigali.json",
+      "venue": "kigali-market-game"
+    },
+    {
+      "id": "kingston",
+      "asset": "scripts/scene-factory/inputs/heroes/kingston.glb",
+      "report": "scripts/scene-factory/inputs/heroes/kingston.json",
+      "venue": "kingston-market-game"
+    },
+    {
+      "id": "kingston-nf",
+      "asset": "scripts/scene-factory/inputs/heroes/kingston-nf.glb",
+      "report": "scripts/scene-factory/inputs/heroes/kingston-nf.json",
+      "venue": "kingston-nf-airport-kingston-nf-airport"
+    },
+    {
+      "id": "kingstown",
+      "asset": "scripts/scene-factory/inputs/heroes/kingstown.glb",
+      "report": "scripts/scene-factory/inputs/heroes/kingstown.json",
+      "venue": "kingstown-airport-kingstown-airport"
+    },
+    {
+      "id": "kinshasa",
+      "asset": "scripts/scene-factory/inputs/heroes/kinshasa.glb",
+      "report": "scripts/scene-factory/inputs/heroes/kinshasa.json",
+      "venue": "kinshasa-market-game"
+    },
+    {
+      "id": "koror",
+      "asset": "scripts/scene-factory/inputs/heroes/koror.glb",
+      "report": "scripts/scene-factory/inputs/heroes/koror.json",
+      "venue": "koror-airport-koror-airport"
+    },
+    {
+      "id": "kuala-lumpur",
+      "asset": "scripts/scene-factory/inputs/heroes/kuala-lumpur.glb",
+      "report": "scripts/scene-factory/inputs/heroes/kuala-lumpur.json",
+      "venue": "kuala-lumpur-airport-kuala-lumpur-airport"
+    },
+    {
+      "id": "kuwait-city",
+      "asset": "scripts/scene-factory/inputs/heroes/kuwait-city.glb",
+      "report": "scripts/scene-factory/inputs/heroes/kuwait-city.json",
+      "venue": "kuwait-city-osm-way-627399824"
+    },
+    {
+      "id": "kyiv",
+      "asset": "scripts/scene-factory/inputs/heroes/kyiv.glb",
+      "report": "scripts/scene-factory/inputs/heroes/kyiv.json",
+      "venue": "kyiv-market-game"
+    },
+    {
+      "id": "kyrenia",
+      "asset": "scripts/scene-factory/inputs/heroes/kyrenia.glb",
+      "report": "scripts/scene-factory/inputs/heroes/kyrenia.json",
+      "venue": "kyrenia-market-game"
+    },
+    {
+      "id": "la-paz",
+      "asset": "scripts/scene-factory/inputs/heroes/la-paz.glb",
+      "report": "scripts/scene-factory/inputs/heroes/la-paz.json",
+      "venue": "la-paz-market-game"
+    },
+    {
+      "id": "laayoune",
+      "asset": "scripts/scene-factory/inputs/heroes/laayoune.glb",
+      "report": "scripts/scene-factory/inputs/heroes/laayoune.json",
+      "venue": "laayoune-market-game"
+    },
+    {
+      "id": "lafia",
+      "asset": "scripts/scene-factory/inputs/heroes/lafia.glb",
+      "report": "scripts/scene-factory/inputs/heroes/lafia.json",
+      "venue": "lafia-market"
+    },
+    {
+      "id": "lagos",
+      "asset": "scripts/scene-factory/inputs/heroes/lagos.glb",
+      "report": "scripts/scene-factory/inputs/heroes/lagos.json",
+      "venue": null
+    },
+    {
+      "id": "lahore",
+      "asset": "scripts/scene-factory/inputs/heroes/lahore.glb",
+      "report": "scripts/scene-factory/inputs/heroes/lahore.json",
+      "venue": "lahore-market-game"
+    },
+    {
+      "id": "larnaca",
+      "asset": "scripts/scene-factory/inputs/heroes/larnaca.glb",
+      "report": "scripts/scene-factory/inputs/heroes/larnaca.json",
+      "venue": "larnaca-market-game"
+    },
+    {
+      "id": "libreville",
+      "asset": "scripts/scene-factory/inputs/heroes/libreville.glb",
+      "report": "scripts/scene-factory/inputs/heroes/libreville.json",
+      "venue": "libreville-market-game"
+    },
+    {
+      "id": "lilongwe",
+      "asset": "scripts/scene-factory/inputs/heroes/lilongwe.glb",
+      "report": "scripts/scene-factory/inputs/heroes/lilongwe.json",
+      "venue": "lilongwe-market-game"
+    },
+    {
+      "id": "lima",
+      "asset": "scripts/scene-factory/inputs/heroes/lima.glb",
+      "report": "scripts/scene-factory/inputs/heroes/lima.json",
+      "venue": "lima-market-game"
+    },
+    {
+      "id": "lisbon",
+      "asset": "scripts/scene-factory/inputs/heroes/lisbon.glb",
+      "report": "scripts/scene-factory/inputs/heroes/lisbon.json",
+      "venue": "lisbon-market-game"
+    },
+    {
+      "id": "ljubljana",
+      "asset": "scripts/scene-factory/inputs/heroes/ljubljana.glb",
+      "report": "scripts/scene-factory/inputs/heroes/ljubljana.json",
+      "venue": "ljubljana-market-game"
+    },
+    {
+      "id": "lokoja",
+      "asset": "scripts/scene-factory/inputs/heroes/lokoja.glb",
+      "report": "scripts/scene-factory/inputs/heroes/lokoja.json",
+      "venue": "children-amusement-park"
+    },
+    {
+      "id": "lome",
+      "asset": "scripts/scene-factory/inputs/heroes/lome.glb",
+      "report": "scripts/scene-factory/inputs/heroes/lome.json",
+      "venue": "lome-market-game"
+    },
+    {
+      "id": "london",
+      "asset": "scripts/scene-factory/inputs/heroes/london.glb",
+      "report": "scripts/scene-factory/inputs/heroes/london.json",
+      "venue": "london-market-game"
+    },
+    {
+      "id": "luanda",
+      "asset": "scripts/scene-factory/inputs/heroes/luanda.glb",
+      "report": "scripts/scene-factory/inputs/heroes/luanda.json",
+      "venue": "luanda-market-game"
+    },
+    {
+      "id": "lusaka",
+      "asset": "scripts/scene-factory/inputs/heroes/lusaka.glb",
+      "report": "scripts/scene-factory/inputs/heroes/lusaka.json",
+      "venue": "lusaka-market-game"
+    },
+    {
+      "id": "luxembourg",
+      "asset": "scripts/scene-factory/inputs/heroes/luxembourg.glb",
+      "report": "scripts/scene-factory/inputs/heroes/luxembourg.json",
+      "venue": "luxembourg-market-game"
+    },
+    {
+      "id": "macau",
+      "asset": "scripts/scene-factory/inputs/heroes/macau.glb",
+      "report": "scripts/scene-factory/inputs/heroes/macau.json",
+      "venue": "macau-market-game"
+    },
+    {
+      "id": "madrid",
+      "asset": "scripts/scene-factory/inputs/heroes/madrid.glb",
+      "report": "scripts/scene-factory/inputs/heroes/madrid.json",
+      "venue": "madrid-market-game"
+    },
+    {
+      "id": "maiduguri",
+      "asset": "scripts/scene-factory/inputs/heroes/maiduguri.glb",
+      "report": "scripts/scene-factory/inputs/heroes/maiduguri.json",
+      "venue": "gamboru-market"
+    },
+    {
+      "id": "majuro",
+      "asset": "scripts/scene-factory/inputs/heroes/majuro.glb",
+      "report": "scripts/scene-factory/inputs/heroes/majuro.json",
+      "venue": "majuro-market-game"
+    },
+    {
+      "id": "makurdi",
+      "asset": "scripts/scene-factory/inputs/heroes/makurdi.glb",
+      "report": "scripts/scene-factory/inputs/heroes/makurdi.json",
+      "venue": "dajo-pottery"
+    },
+    {
+      "id": "malabo",
+      "asset": "scripts/scene-factory/inputs/heroes/malabo.glb",
+      "report": "scripts/scene-factory/inputs/heroes/malabo.json",
+      "venue": "malabo-market-game"
+    },
+    {
+      "id": "male",
+      "asset": "scripts/scene-factory/inputs/heroes/male.glb",
+      "report": "scripts/scene-factory/inputs/heroes/male.json",
+      "venue": "male-market-game"
+    },
+    {
+      "id": "managua",
+      "asset": "scripts/scene-factory/inputs/heroes/managua.glb",
+      "report": "scripts/scene-factory/inputs/heroes/managua.json",
+      "venue": "managua-market-game"
+    },
+    {
+      "id": "manama",
+      "asset": "scripts/scene-factory/inputs/heroes/manama.glb",
+      "report": "scripts/scene-factory/inputs/heroes/manama.json",
+      "venue": "manama-airport-manama-airport"
+    },
+    {
+      "id": "manila",
+      "asset": "scripts/scene-factory/inputs/heroes/manila.glb",
+      "report": "scripts/scene-factory/inputs/heroes/manila.json",
+      "venue": "manila-market-game"
+    },
+    {
+      "id": "maputo",
+      "asset": "scripts/scene-factory/inputs/heroes/maputo.glb",
+      "report": "scripts/scene-factory/inputs/heroes/maputo.json",
+      "venue": "maputo-market-game"
+    },
+    {
+      "id": "mariehamn",
+      "asset": "scripts/scene-factory/inputs/heroes/mariehamn.glb",
+      "report": "scripts/scene-factory/inputs/heroes/mariehamn.json",
+      "venue": "mariehamn-market-game"
+    },
+    {
+      "id": "marigot",
+      "asset": "scripts/scene-factory/inputs/heroes/marigot.glb",
+      "report": "scripts/scene-factory/inputs/heroes/marigot.json",
+      "venue": "marigot-airport-marigot-airport"
+    },
+    {
+      "id": "maseru",
+      "asset": "scripts/scene-factory/inputs/heroes/maseru.glb",
+      "report": "scripts/scene-factory/inputs/heroes/maseru.json",
+      "venue": "maseru-market-game"
+    },
+    {
+      "id": "mata-utu",
+      "asset": "scripts/scene-factory/inputs/heroes/mata-utu.glb",
+      "report": "scripts/scene-factory/inputs/heroes/mata-utu.json",
+      "venue": "mata-utu-airport-mata-utu-airport"
+    },
+    {
+      "id": "mbabane",
+      "asset": "scripts/scene-factory/inputs/heroes/mbabane.glb",
+      "report": "scripts/scene-factory/inputs/heroes/mbabane.json",
+      "venue": "mbabane-market-game"
+    },
+    {
+      "id": "mexico-city",
+      "asset": "scripts/scene-factory/inputs/heroes/mexico-city.glb",
+      "report": "scripts/scene-factory/inputs/heroes/mexico-city.json",
+      "venue": "mexico-city-market-game"
+    },
+    {
+      "id": "minna",
+      "asset": "scripts/scene-factory/inputs/heroes/minna.glb",
+      "report": "scripts/scene-factory/inputs/heroes/minna.json",
+      "venue": "minna-bus-park"
+    },
+    {
+      "id": "minsk",
+      "asset": "scripts/scene-factory/inputs/heroes/minsk.glb",
+      "report": "scripts/scene-factory/inputs/heroes/minsk.json",
+      "venue": "minsk-market-game"
+    },
+    {
+      "id": "mogadishu",
+      "asset": "scripts/scene-factory/inputs/heroes/mogadishu.glb",
+      "report": "scripts/scene-factory/inputs/heroes/mogadishu.json",
+      "venue": "mogadishu-market-game"
+    },
+    {
+      "id": "monaco",
+      "asset": "scripts/scene-factory/inputs/heroes/monaco.glb",
+      "report": "scripts/scene-factory/inputs/heroes/monaco.json",
+      "venue": "monaco-market-game"
+    },
+    {
+      "id": "monrovia",
+      "asset": "scripts/scene-factory/inputs/heroes/monrovia.glb",
+      "report": "scripts/scene-factory/inputs/heroes/monrovia.json",
+      "venue": "monrovia-osm-node-8999008284"
+    },
+    {
+      "id": "montevideo",
+      "asset": "scripts/scene-factory/inputs/heroes/montevideo.glb",
+      "report": "scripts/scene-factory/inputs/heroes/montevideo.json",
+      "venue": "montevideo-market-game"
+    },
+    {
+      "id": "moroni",
+      "asset": "scripts/scene-factory/inputs/heroes/moroni.glb",
+      "report": "scripts/scene-factory/inputs/heroes/moroni.json",
+      "venue": "moroni-market-game"
+    },
+    {
+      "id": "moscow",
+      "asset": "scripts/scene-factory/inputs/heroes/moscow.glb",
+      "report": "scripts/scene-factory/inputs/heroes/moscow.json",
+      "venue": "moscow-market-game"
+    },
+    {
+      "id": "muscat",
+      "asset": "scripts/scene-factory/inputs/heroes/muscat.glb",
+      "report": "scripts/scene-factory/inputs/heroes/muscat.json",
+      "venue": "muscat-recreation"
+    },
+    {
+      "id": "nairobi",
+      "asset": "scripts/scene-factory/inputs/heroes/nairobi.glb",
+      "report": "scripts/scene-factory/inputs/heroes/nairobi.json",
+      "venue": "nairobi-market-game"
+    },
+    {
+      "id": "nassau",
+      "asset": "scripts/scene-factory/inputs/heroes/nassau.glb",
+      "report": "scripts/scene-factory/inputs/heroes/nassau.json",
+      "venue": "nassau-market-game"
+    },
+    {
+      "id": "ndjamena",
+      "asset": "scripts/scene-factory/inputs/heroes/ndjamena.glb",
+      "report": "scripts/scene-factory/inputs/heroes/ndjamena.json",
+      "venue": "ndjamena-market-game"
+    },
+    {
+      "id": "new-york",
+      "asset": "scripts/scene-factory/inputs/heroes/new-york.glb",
+      "report": "scripts/scene-factory/inputs/heroes/new-york.json",
+      "venue": "new-york-airport-new-york-airport"
+    },
+    {
+      "id": "niamey",
+      "asset": "scripts/scene-factory/inputs/heroes/niamey.glb",
+      "report": "scripts/scene-factory/inputs/heroes/niamey.json",
+      "venue": "niamey-market-game"
+    },
+    {
+      "id": "nouakchott",
+      "asset": "scripts/scene-factory/inputs/heroes/nouakchott.glb",
+      "report": "scripts/scene-factory/inputs/heroes/nouakchott.json",
+      "venue": "nouakchott-market-game"
+    },
+    {
+      "id": "noumea",
+      "asset": "scripts/scene-factory/inputs/heroes/noumea.glb",
+      "report": "scripts/scene-factory/inputs/heroes/noumea.json",
+      "venue": "noumea-market-game"
+    },
+    {
+      "id": "nukualofa",
+      "asset": "scripts/scene-factory/inputs/heroes/nukualofa.glb",
+      "report": "scripts/scene-factory/inputs/heroes/nukualofa.json",
+      "venue": "nukualofa-market-game"
+    },
+    {
+      "id": "nuuk",
+      "asset": "scripts/scene-factory/inputs/heroes/nuuk.glb",
+      "report": "scripts/scene-factory/inputs/heroes/nuuk.json",
+      "venue": "nuuk-market-game"
+    },
+    {
+      "id": "oranjestad",
+      "asset": "scripts/scene-factory/inputs/heroes/oranjestad.glb",
+      "report": "scripts/scene-factory/inputs/heroes/oranjestad.json",
+      "venue": "oranjestad-osm-way-769698096"
+    },
+    {
+      "id": "oslo",
+      "asset": "scripts/scene-factory/inputs/heroes/oslo.glb",
+      "report": "scripts/scene-factory/inputs/heroes/oslo.json",
+      "venue": "oslo-market-game"
+    },
+    {
+      "id": "osogbo",
+      "asset": "scripts/scene-factory/inputs/heroes/osogbo.glb",
+      "report": "scripts/scene-factory/inputs/heroes/osogbo.json",
+      "venue": "ayegbaju-market"
+    },
+    {
+      "id": "ota",
+      "asset": "scripts/scene-factory/inputs/heroes/ota.glb",
+      "report": "scripts/scene-factory/inputs/heroes/ota.json",
+      "venue": "canaanland-worship"
+    },
+    {
+      "id": "ouagadougou",
+      "asset": "scripts/scene-factory/inputs/heroes/ouagadougou.glb",
+      "report": "scripts/scene-factory/inputs/heroes/ouagadougou.json",
+      "venue": "ouagadougou-market-game"
+    },
+    {
+      "id": "owerri",
+      "asset": "scripts/scene-factory/inputs/heroes/owerri.glb",
+      "report": "scripts/scene-factory/inputs/heroes/owerri.json",
+      "venue": "nkwo-emeke-market"
+    },
+    {
+      "id": "pago-pago",
+      "asset": "scripts/scene-factory/inputs/heroes/pago-pago.glb",
+      "report": "scripts/scene-factory/inputs/heroes/pago-pago.json",
+      "venue": "pago-pago-market-game"
+    },
+    {
+      "id": "palikir",
+      "asset": "scripts/scene-factory/inputs/heroes/palikir.glb",
+      "report": "scripts/scene-factory/inputs/heroes/palikir.json",
+      "venue": "palikir-airport-palikir-airport"
+    },
+    {
+      "id": "panama-city",
+      "asset": "scripts/scene-factory/inputs/heroes/panama-city.glb",
+      "report": "scripts/scene-factory/inputs/heroes/panama-city.json",
+      "venue": "panama-city-airport-panama-city-airport"
+    },
+    {
+      "id": "papeete",
+      "asset": "scripts/scene-factory/inputs/heroes/papeete.glb",
+      "report": "scripts/scene-factory/inputs/heroes/papeete.json",
+      "venue": "papeete-airport-papeete-airport"
+    },
+    {
+      "id": "paramaribo",
+      "asset": "scripts/scene-factory/inputs/heroes/paramaribo.glb",
+      "report": "scripts/scene-factory/inputs/heroes/paramaribo.json",
+      "venue": "paramaribo-airport-paramaribo-airport"
+    },
+    {
+      "id": "paris",
+      "asset": "scripts/scene-factory/inputs/heroes/paris.glb",
+      "report": "scripts/scene-factory/inputs/heroes/paris.json",
+      "venue": "paris-airport-paris-airport"
+    },
+    {
+      "id": "philipsburg",
+      "asset": "scripts/scene-factory/inputs/heroes/philipsburg.glb",
+      "report": "scripts/scene-factory/inputs/heroes/philipsburg.json",
+      "venue": "philipsburg-market-game"
+    },
+    {
+      "id": "phnom-penh",
+      "asset": "scripts/scene-factory/inputs/heroes/phnom-penh.glb",
+      "report": "scripts/scene-factory/inputs/heroes/phnom-penh.json",
+      "venue": "phnom-penh-recreation"
+    },
+    {
+      "id": "podgorica",
+      "asset": "scripts/scene-factory/inputs/heroes/podgorica.glb",
+      "report": "scripts/scene-factory/inputs/heroes/podgorica.json",
+      "venue": "podgorica-airport-podgorica-airport"
+    },
+    {
+      "id": "port-au-prince",
+      "asset": "scripts/scene-factory/inputs/heroes/port-au-prince.glb",
+      "report": "scripts/scene-factory/inputs/heroes/port-au-prince.json",
+      "venue": "port-au-prince-market-game"
+    },
+    {
+      "id": "port-aux-francais",
+      "asset": "scripts/scene-factory/inputs/heroes/port-aux-francais.glb",
+      "report": "scripts/scene-factory/inputs/heroes/port-aux-francais.json",
+      "venue": "port-aux-francais-airport-port-aux-francais-airport"
+    },
+    {
+      "id": "port-harcourt",
+      "asset": "scripts/scene-factory/inputs/heroes/port-harcourt.glb",
+      "report": "scripts/scene-factory/inputs/heroes/port-harcourt.json",
+      "venue": "airport"
+    },
+    {
+      "id": "port-louis",
+      "asset": "scripts/scene-factory/inputs/heroes/port-louis.glb",
+      "report": "scripts/scene-factory/inputs/heroes/port-louis.json",
+      "venue": "port-louis-market-game"
+    },
+    {
+      "id": "port-moresby",
+      "asset": "scripts/scene-factory/inputs/heroes/port-moresby.glb",
+      "report": "scripts/scene-factory/inputs/heroes/port-moresby.json",
+      "venue": "port-moresby-market-game"
+    },
+    {
+      "id": "port-of-spain",
+      "asset": "scripts/scene-factory/inputs/heroes/port-of-spain.glb",
+      "report": "scripts/scene-factory/inputs/heroes/port-of-spain.json",
+      "venue": "port-of-spain-market-game"
+    },
+    {
+      "id": "port-vila",
+      "asset": "scripts/scene-factory/inputs/heroes/port-vila.glb",
+      "report": "scripts/scene-factory/inputs/heroes/port-vila.json",
+      "venue": "port-vila-market-game"
+    },
+    {
+      "id": "prague",
+      "asset": "scripts/scene-factory/inputs/heroes/prague.glb",
+      "report": "scripts/scene-factory/inputs/heroes/prague.json",
+      "venue": "prague-airport-prague-airport"
+    },
+    {
+      "id": "praia",
+      "asset": "scripts/scene-factory/inputs/heroes/praia.glb",
+      "report": "scripts/scene-factory/inputs/heroes/praia.json",
+      "venue": "praia-market-game"
+    },
+    {
+      "id": "pristina",
+      "asset": "scripts/scene-factory/inputs/heroes/pristina.glb",
+      "report": "scripts/scene-factory/inputs/heroes/pristina.json",
+      "venue": "pristina-airport-pristina-airport"
+    },
+    {
+      "id": "pyongyang",
+      "asset": "scripts/scene-factory/inputs/heroes/pyongyang.glb",
+      "report": "scripts/scene-factory/inputs/heroes/pyongyang.json",
+      "venue": "pyongyang-market-game"
+    },
+    {
+      "id": "quito",
+      "asset": "scripts/scene-factory/inputs/heroes/quito.glb",
+      "report": "scripts/scene-factory/inputs/heroes/quito.json",
+      "venue": "quito-market-game"
+    },
+    {
+      "id": "rabat",
+      "asset": "scripts/scene-factory/inputs/heroes/rabat.glb",
+      "report": "scripts/scene-factory/inputs/heroes/rabat.json",
+      "venue": "rabat-market-game"
+    },
+    {
+      "id": "ramallah",
+      "asset": "scripts/scene-factory/inputs/heroes/ramallah.glb",
+      "report": "scripts/scene-factory/inputs/heroes/ramallah.json",
+      "venue": "ramallah-market-game"
+    },
+    {
+      "id": "reykjavik",
+      "asset": "scripts/scene-factory/inputs/heroes/reykjavik.glb",
+      "report": "scripts/scene-factory/inputs/heroes/reykjavik.json",
+      "venue": "reykjavik-market-game"
+    },
+    {
+      "id": "riga",
+      "asset": "scripts/scene-factory/inputs/heroes/riga.glb",
+      "report": "scripts/scene-factory/inputs/heroes/riga.json",
+      "venue": "riga-market-game"
+    },
+    {
+      "id": "riyadh",
+      "asset": "scripts/scene-factory/inputs/heroes/riyadh.glb",
+      "report": "scripts/scene-factory/inputs/heroes/riyadh.json",
+      "venue": "riyadh-airport-riyadh-airport"
+    },
+    {
+      "id": "road-town",
+      "asset": "scripts/scene-factory/inputs/heroes/road-town.glb",
+      "report": "scripts/scene-factory/inputs/heroes/road-town.json",
+      "venue": "road-town-market-game"
+    },
+    {
+      "id": "rome",
+      "asset": "scripts/scene-factory/inputs/heroes/rome.glb",
+      "report": "scripts/scene-factory/inputs/heroes/rome.json",
+      "venue": "rome-market-game"
+    },
+    {
+      "id": "roseau",
+      "asset": "scripts/scene-factory/inputs/heroes/roseau.glb",
+      "report": "scripts/scene-factory/inputs/heroes/roseau.json",
+      "venue": "roseau-recreation"
+    },
+    {
+      "id": "sagamu",
+      "asset": "scripts/scene-factory/inputs/heroes/sagamu.glb",
+      "report": "scripts/scene-factory/inputs/heroes/sagamu.json",
+      "venue": "remo-kitchen"
+    },
+    {
+      "id": "saint-pierre",
+      "asset": "scripts/scene-factory/inputs/heroes/saint-pierre.glb",
+      "report": "scripts/scene-factory/inputs/heroes/saint-pierre.json",
+      "venue": "saint-pierre-airport-saint-pierre-airport"
+    },
+    {
+      "id": "san-jose",
+      "asset": "scripts/scene-factory/inputs/heroes/san-jose.glb",
+      "report": "scripts/scene-factory/inputs/heroes/san-jose.json",
+      "venue": "san-jose-market-game"
+    },
+    {
+      "id": "san-juan",
+      "asset": "scripts/scene-factory/inputs/heroes/san-juan.glb",
+      "report": "scripts/scene-factory/inputs/heroes/san-juan.json",
+      "venue": "san-juan-market-game"
+    },
+    {
+      "id": "san-marino",
+      "asset": "scripts/scene-factory/inputs/heroes/san-marino.glb",
+      "report": "scripts/scene-factory/inputs/heroes/san-marino.json",
+      "venue": "san-marino-market-game"
+    },
+    {
+      "id": "san-salvador",
+      "asset": "scripts/scene-factory/inputs/heroes/san-salvador.glb",
+      "report": "scripts/scene-factory/inputs/heroes/san-salvador.json",
+      "venue": "san-salvador-market-game"
+    },
+    {
+      "id": "sanaa",
+      "asset": "scripts/scene-factory/inputs/heroes/sanaa.glb",
+      "report": "scripts/scene-factory/inputs/heroes/sanaa.json",
+      "venue": "sanaa-market-game"
+    },
+    {
+      "id": "santiago",
+      "asset": "scripts/scene-factory/inputs/heroes/santiago.glb",
+      "report": "scripts/scene-factory/inputs/heroes/santiago.json",
+      "venue": "santiago-airport-santiago-airport"
+    },
+    {
+      "id": "santo-domingo",
+      "asset": "scripts/scene-factory/inputs/heroes/santo-domingo.glb",
+      "report": "scripts/scene-factory/inputs/heroes/santo-domingo.json",
+      "venue": "santo-domingo-market-game"
+    },
+    {
+      "id": "sao-paulo",
+      "asset": "scripts/scene-factory/inputs/heroes/sao-paulo.glb",
+      "report": "scripts/scene-factory/inputs/heroes/sao-paulo.json",
+      "venue": "sao-paulo-market-game"
+    },
+    {
+      "id": "sao-tome",
+      "asset": "scripts/scene-factory/inputs/heroes/sao-tome.glb",
+      "report": "scripts/scene-factory/inputs/heroes/sao-tome.json",
+      "venue": "sao-tome-market-game"
+    },
+    {
+      "id": "sarajevo",
+      "asset": "scripts/scene-factory/inputs/heroes/sarajevo.glb",
+      "report": "scripts/scene-factory/inputs/heroes/sarajevo.json",
+      "venue": "sarajevo-market-game"
+    },
+    {
+      "id": "seoul",
+      "asset": "scripts/scene-factory/inputs/heroes/seoul.glb",
+      "report": "scripts/scene-factory/inputs/heroes/seoul.json",
+      "venue": "seoul-market-game"
+    },
+    {
+      "id": "serekunda",
+      "asset": "scripts/scene-factory/inputs/heroes/serekunda.glb",
+      "report": "scripts/scene-factory/inputs/heroes/serekunda.json",
+      "venue": "serekunda-airport-serekunda-airport"
+    },
+    {
+      "id": "shanghai",
+      "asset": "scripts/scene-factory/inputs/heroes/shanghai.glb",
+      "report": "scripts/scene-factory/inputs/heroes/shanghai.json",
+      "venue": "shanghai-market-game"
+    },
+    {
+      "id": "siachen",
+      "asset": "scripts/scene-factory/inputs/heroes/siachen.glb",
+      "report": "scripts/scene-factory/inputs/heroes/siachen.json",
+      "venue": "siachen-airport-siachen-airport"
+    },
+    {
+      "id": "singapore",
+      "asset": "scripts/scene-factory/inputs/heroes/singapore.glb",
+      "report": "scripts/scene-factory/inputs/heroes/singapore.json",
+      "venue": "singapore-market-game"
+    },
+    {
+      "id": "skopje",
+      "asset": "scripts/scene-factory/inputs/heroes/skopje.glb",
+      "report": "scripts/scene-factory/inputs/heroes/skopje.json",
+      "venue": "skopje-market-game"
+    },
+    {
+      "id": "sofia",
+      "asset": "scripts/scene-factory/inputs/heroes/sofia.glb",
+      "report": "scripts/scene-factory/inputs/heroes/sofia.json",
+      "venue": "sofia-recreation"
+    },
+    {
+      "id": "sokoto",
+      "asset": "scripts/scene-factory/inputs/heroes/sokoto.glb",
+      "report": "scripts/scene-factory/inputs/heroes/sokoto.json",
+      "venue": "cross-country-motor-park-sokoto"
+    },
+    {
+      "id": "st-georges",
+      "asset": "scripts/scene-factory/inputs/heroes/st-georges.glb",
+      "report": "scripts/scene-factory/inputs/heroes/st-georges.json",
+      "venue": "st-georges-market-game"
+    },
+    {
+      "id": "st-helier",
+      "asset": "scripts/scene-factory/inputs/heroes/st-helier.glb",
+      "report": "scripts/scene-factory/inputs/heroes/st-helier.json",
+      "venue": "st-helier-market-game"
+    },
+    {
+      "id": "st-johns",
+      "asset": "scripts/scene-factory/inputs/heroes/st-johns.glb",
+      "report": "scripts/scene-factory/inputs/heroes/st-johns.json",
+      "venue": "st-johns-market-game"
+    },
+    {
+      "id": "st-peter-port",
+      "asset": "scripts/scene-factory/inputs/heroes/st-peter-port.glb",
+      "report": "scripts/scene-factory/inputs/heroes/st-peter-port.json",
+      "venue": "st-peter-port-market-game"
+    },
+    {
+      "id": "stanley",
+      "asset": "scripts/scene-factory/inputs/heroes/stanley.glb",
+      "report": "scripts/scene-factory/inputs/heroes/stanley.json",
+      "venue": "stanley-osm-way-168220217"
+    },
+    {
+      "id": "stockholm",
+      "asset": "scripts/scene-factory/inputs/heroes/stockholm.glb",
+      "report": "scripts/scene-factory/inputs/heroes/stockholm.json",
+      "venue": "stockholm-market-game"
+    },
+    {
+      "id": "suva",
+      "asset": "scripts/scene-factory/inputs/heroes/suva.glb",
+      "report": "scripts/scene-factory/inputs/heroes/suva.json",
+      "venue": "suva-market-game"
+    },
+    {
+      "id": "sydney",
+      "asset": "scripts/scene-factory/inputs/heroes/sydney.glb",
+      "report": "scripts/scene-factory/inputs/heroes/sydney.json",
+      "venue": "sydney-airport-sydney-airport"
+    },
+    {
+      "id": "taipei",
+      "asset": "scripts/scene-factory/inputs/heroes/taipei.glb",
+      "report": "scripts/scene-factory/inputs/heroes/taipei.json",
+      "venue": "taipei-market-game"
+    },
+    {
+      "id": "tallinn",
+      "asset": "scripts/scene-factory/inputs/heroes/tallinn.glb",
+      "report": "scripts/scene-factory/inputs/heroes/tallinn.json",
+      "venue": "tallinn-market-game"
+    },
+    {
+      "id": "tarawa",
+      "asset": "scripts/scene-factory/inputs/heroes/tarawa.glb",
+      "report": "scripts/scene-factory/inputs/heroes/tarawa.json",
+      "venue": "tarawa-market-game"
+    },
+    {
+      "id": "tashkent",
+      "asset": "scripts/scene-factory/inputs/heroes/tashkent.glb",
+      "report": "scripts/scene-factory/inputs/heroes/tashkent.json",
+      "venue": "tashkent-market-game"
+    },
+    {
+      "id": "tbilisi",
+      "asset": "scripts/scene-factory/inputs/heroes/tbilisi.glb",
+      "report": "scripts/scene-factory/inputs/heroes/tbilisi.json",
+      "venue": "tbilisi-market-game"
+    },
+    {
+      "id": "tegucigalpa",
+      "asset": "scripts/scene-factory/inputs/heroes/tegucigalpa.glb",
+      "report": "scripts/scene-factory/inputs/heroes/tegucigalpa.json",
+      "venue": "tegucigalpa-market-game"
+    },
+    {
+      "id": "tehran",
+      "asset": "scripts/scene-factory/inputs/heroes/tehran.glb",
+      "report": "scripts/scene-factory/inputs/heroes/tehran.json",
+      "venue": "tehran-market-game"
+    },
+    {
+      "id": "tel-aviv-yafo",
+      "asset": "scripts/scene-factory/inputs/heroes/tel-aviv-yafo.glb",
+      "report": "scripts/scene-factory/inputs/heroes/tel-aviv-yafo.json",
+      "venue": "tel-aviv-yafo-market-game"
+    },
+    {
+      "id": "the-valley",
+      "asset": "scripts/scene-factory/inputs/heroes/the-valley.glb",
+      "report": "scripts/scene-factory/inputs/heroes/the-valley.json",
+      "venue": "the-valley-osm-way-360817333"
+    },
+    {
+      "id": "thimphu",
+      "asset": "scripts/scene-factory/inputs/heroes/thimphu.glb",
+      "report": "scripts/scene-factory/inputs/heroes/thimphu.json",
+      "venue": "thimphu-market-game"
+    },
+    {
+      "id": "tirana",
+      "asset": "scripts/scene-factory/inputs/heroes/tirana.glb",
+      "report": "scripts/scene-factory/inputs/heroes/tirana.json",
+      "venue": "tirana-market-game"
+    },
+    {
+      "id": "tokyo",
+      "asset": "scripts/scene-factory/inputs/heroes/tokyo.glb",
+      "report": "scripts/scene-factory/inputs/heroes/tokyo.json",
+      "venue": "tokyo-recreation"
+    },
+    {
+      "id": "toronto",
+      "asset": "scripts/scene-factory/inputs/heroes/toronto.glb",
+      "report": "scripts/scene-factory/inputs/heroes/toronto.json",
+      "venue": "toronto-airport-toronto-airport"
+    },
+    {
+      "id": "torshavn",
+      "asset": "scripts/scene-factory/inputs/heroes/torshavn.glb",
+      "report": "scripts/scene-factory/inputs/heroes/torshavn.json",
+      "venue": "torshavn-market-game"
+    },
+    {
+      "id": "tripoli",
+      "asset": "scripts/scene-factory/inputs/heroes/tripoli.glb",
+      "report": "scripts/scene-factory/inputs/heroes/tripoli.json",
+      "venue": "tripoli-airport-mitiga-international-airport"
+    },
+    {
+      "id": "tunis",
+      "asset": "scripts/scene-factory/inputs/heroes/tunis.glb",
+      "report": "scripts/scene-factory/inputs/heroes/tunis.json",
+      "venue": "tunis-market-game"
+    },
+    {
+      "id": "ulaanbaatar",
+      "asset": "scripts/scene-factory/inputs/heroes/ulaanbaatar.glb",
+      "report": "scripts/scene-factory/inputs/heroes/ulaanbaatar.json",
+      "venue": "ulaanbaatar-market-game"
+    },
+    {
+      "id": "umuahia",
+      "asset": "scripts/scene-factory/inputs/heroes/umuahia.glb",
+      "report": "scripts/scene-factory/inputs/heroes/umuahia.json",
+      "venue": "ulo-ama-umuochoko-park"
+    },
+    {
+      "id": "uyo",
+      "asset": "scripts/scene-factory/inputs/heroes/uyo.glb",
+      "report": "scripts/scene-factory/inputs/heroes/uyo.json",
+      "venue": "akpan-andem-market"
+    },
+    {
+      "id": "vaduz",
+      "asset": "scripts/scene-factory/inputs/heroes/vaduz.glb",
+      "report": "scripts/scene-factory/inputs/heroes/vaduz.json",
+      "venue": "vaduz-market-game"
+    },
+    {
+      "id": "valletta",
+      "asset": "scripts/scene-factory/inputs/heroes/valletta.glb",
+      "report": "scripts/scene-factory/inputs/heroes/valletta.json",
+      "venue": "valletta-market-game"
+    },
+    {
+      "id": "vatican-city",
+      "asset": "scripts/scene-factory/inputs/heroes/vatican-city.glb",
+      "report": "scripts/scene-factory/inputs/heroes/vatican-city.json",
+      "venue": "vatican-city-airport-vatican-city-airport"
+    },
+    {
+      "id": "victoria",
+      "asset": "scripts/scene-factory/inputs/heroes/victoria.glb",
+      "report": "scripts/scene-factory/inputs/heroes/victoria.json",
+      "venue": "victoria-airport-victoria-airport"
+    },
+    {
+      "id": "vienna",
+      "asset": "scripts/scene-factory/inputs/heroes/vienna.glb",
+      "report": "scripts/scene-factory/inputs/heroes/vienna.json",
+      "venue": "vienna-market-game"
+    },
+    {
+      "id": "vientiane",
+      "asset": "scripts/scene-factory/inputs/heroes/vientiane.glb",
+      "report": "scripts/scene-factory/inputs/heroes/vientiane.json",
+      "venue": "vientiane-airport-vientiane-airport"
+    },
+    {
+      "id": "villa-las-estrellas",
+      "asset": "scripts/scene-factory/inputs/heroes/villa-las-estrellas.glb",
+      "report": "scripts/scene-factory/inputs/heroes/villa-las-estrellas.json",
+      "venue": "villa-las-estrellas-airport-villa-las-estrellas-airport"
+    },
+    {
+      "id": "vilnius",
+      "asset": "scripts/scene-factory/inputs/heroes/vilnius.glb",
+      "report": "scripts/scene-factory/inputs/heroes/vilnius.json",
+      "venue": "vilnius-market-game"
+    },
+    {
+      "id": "warsaw",
+      "asset": "scripts/scene-factory/inputs/heroes/warsaw.glb",
+      "report": "scripts/scene-factory/inputs/heroes/warsaw.json",
+      "venue": "warsaw-market-game"
+    },
+    {
+      "id": "wellington",
+      "asset": "scripts/scene-factory/inputs/heroes/wellington.glb",
+      "report": "scripts/scene-factory/inputs/heroes/wellington.json",
+      "venue": "wellington-airport-wellington-airport"
+    },
+    {
+      "id": "west-island",
+      "asset": "scripts/scene-factory/inputs/heroes/west-island.glb",
+      "report": "scripts/scene-factory/inputs/heroes/west-island.json",
+      "venue": "west-island-airport-west-island-airport"
+    },
+    {
+      "id": "willemstad",
+      "asset": "scripts/scene-factory/inputs/heroes/willemstad.glb",
+      "report": "scripts/scene-factory/inputs/heroes/willemstad.json",
+      "venue": "willemstad-airport-willemstad-airport"
+    },
+    {
+      "id": "windhoek",
+      "asset": "scripts/scene-factory/inputs/heroes/windhoek.glb",
+      "report": "scripts/scene-factory/inputs/heroes/windhoek.json",
+      "venue": "windhoek-market-game"
+    },
+    {
+      "id": "yangon",
+      "asset": "scripts/scene-factory/inputs/heroes/yangon.glb",
+      "report": "scripts/scene-factory/inputs/heroes/yangon.json",
+      "venue": "yangon-market-game"
+    },
+    {
+      "id": "yaounde",
+      "asset": "scripts/scene-factory/inputs/heroes/yaounde.glb",
+      "report": "scripts/scene-factory/inputs/heroes/yaounde.json",
+      "venue": "yaounde-market-game"
+    },
+    {
+      "id": "yaren",
+      "asset": "scripts/scene-factory/inputs/heroes/yaren.glb",
+      "report": "scripts/scene-factory/inputs/heroes/yaren.json",
+      "venue": "yaren-recreation"
+    },
+    {
+      "id": "yenagoa",
+      "asset": "scripts/scene-factory/inputs/heroes/yenagoa.glb",
+      "report": "scripts/scene-factory/inputs/heroes/yenagoa.json",
+      "venue": "ekeki-motor-park"
+    },
+    {
+      "id": "yerevan",
+      "asset": "scripts/scene-factory/inputs/heroes/yerevan.glb",
+      "report": "scripts/scene-factory/inputs/heroes/yerevan.json",
+      "venue": "yerevan-airport-yerevan-airport"
+    },
+    {
+      "id": "yola",
+      "asset": "scripts/scene-factory/inputs/heroes/yola.glb",
+      "report": "scripts/scene-factory/inputs/heroes/yola.json",
+      "venue": "mubi-park-motor-park"
+    },
+    {
+      "id": "zagreb",
+      "asset": "scripts/scene-factory/inputs/heroes/zagreb.glb",
+      "report": "scripts/scene-factory/inputs/heroes/zagreb.json",
+      "venue": "zagreb-market-game"
+    },
+    {
+      "id": "zurich",
+      "asset": "scripts/scene-factory/inputs/heroes/zurich.glb",
+      "report": "scripts/scene-factory/inputs/heroes/zurich.json",
+      "venue": "zurich-market-game"
+    }
+  ]
+}

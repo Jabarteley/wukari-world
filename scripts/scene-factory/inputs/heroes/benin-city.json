@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "benin-city",
+  "url": "/assets/scene-heroes/benin-city.glb",
+  "sha256": "ad25de39aa0206281a57227c9514f2767a4e7dab5005ada802efb4bc3b81b7dc",
+  "rawBytes": 38152,
+  "brotliBytes": 20643,
+  "triangles": 1548,
+  "parts": [
+    {
+      "node": "benin-city",
+      "triangles": 1548,
+      "bounds": {
+        "min": [
+          -3.63079047,
+          0,
+          -1.59046328
+        ],
+        "max": [
+          3.630790692102,
+          2.6000387656040003,
+          1.5906615445380001
+        ]
+      },
+      "footprint": [
+        -3.63079047,
+        -1.59046328,
+        3.630790692102,
+        1.5906615445380001
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "29d7cfc3953c4039dcb93540d585dbaf0415a2e3c8070300d5da9fc4f160a4a1"
+  },
+  "inputs": {
+    "rawSha256": "f71abbadae6393a5cb5c892e07d972101c05bcd57e22a5387a9a6cba6dbd7281",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "benin-city",
+      "country": "ng",
+      "name": "Oba Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.oredolga.ed.gov.ng/economy.php"
+      ],
+      "sourceRef": "src/game/cities/benin-city/spec.ts#CITY_SPEC.places[13].name",
+      "sourceLicence": "unknown; original text on authority website, no media reuse",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.8,
+        "depth": 5.5,
+        "height": 2.6,
+        "seed": 18010,
+        "palette": [
+          "#dfc79d",
+          "#695243",
+          "#68835b",
+          "#b66b4b",
+          "#547a89",
+          "#c9a146",
+          "#dedcd1",
+          "#3b4549"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Oredo LGA names Oba Market and documents textiles, foodstuffs and crafts in its markets. An original activity fragment, not a replica of a modern market building. Merchandise, stall count, awnings, dimensions and circulation are illustrative art direction; no source-confirmed goods inventory is implied. The source discusses goods across local markets, not a verified stall-by-stall inventory of Oba Market. Input round 1 uses only empty counters, racks and awnings. Previous merchandise choices are excluded from this proposal; no goods inventory or surveyed market layout is claimed.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "niger-delta"
+      }
+    },
+    "styleSha256": "1902dd85951c318abbc7c314dd156b4b99571d7c04678c0b6d3eb727b98a78a4"
+  }
+}

@@ -29,6 +29,8 @@ async function sha256(bytes: Uint8Array): Promise<string> {
   const digest = await crypto.subtle.digest('SHA-256', bytes as Uint8Array<ArrayBuffer>);
   return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
+/** A world's cover shares the store with the models: its hash stays out of the sweep (server/spaces/worlds.ts). */
+const covers = (col: { worlds?: Record<string, { cover?: string }> } | undefined): string[] => Object.values(col?.worlds ?? {}).flatMap((w) => (w.cover ? [w.cover] : []));
 export function modelView(entry: ModelEntry, by: string): ModelView {
   return { id: entry.id, by, name: entry.name, hash: entry.hash, bytes: entry.bytes, triangles: entry.tris, textures: entry.tex, size: entry.size, min: entry.min, animations: entry.anims, skinned: entry.skinned === true, hidden: entry.hidden === true, at: entry.at };
 }
@@ -76,17 +78,17 @@ function build(ctx: RouteContext) {
     sweeping = true;
     try {
       const orphans = await ctx.store.read((db) => {
-        const col = (db as { spaces?: { models?: Record<string, ModelEntry[]>; modelTrash?: string[] } }).spaces;
+        const col = (db as { spaces?: { models?: Record<string, ModelEntry[]>; modelTrash?: string[]; worlds?: Record<string, { cover?: string }> } }).spaces;
         const trash = col?.modelTrash ?? [];
         if (!trash.length) return null;
-        const named = new Set(Object.values(col?.models ?? {}).flatMap((list) => list.map((m) => m.hash)));
+        const named = new Set([...Object.values(col?.models ?? {}).flatMap((list) => list.map((m) => m.hash)), ...covers(col)]);
         return trash.filter((hash) => !named.has(hash)).slice(0, 50);
       });
       if (!orphans) return;
       if (orphans.length) await ctx.models.remove(orphans);
       await ctx.store.transact((db) => {
         const col = spacesOf(db);
-        const named = new Set(Object.values(col.models ?? {}).flatMap((list) => list.map((m) => m.hash)));
+        const named = new Set([...Object.values(col.models ?? {}).flatMap((list) => list.map((m) => m.hash)), ...covers(col)]);
         const gone = new Set(orphans);
         // A hash named again since the read stays; one that was deleted, or is named, leaves the list.
         col.modelTrash = (col.modelTrash ?? []).filter((hash) => !gone.has(hash) && !named.has(hash)).slice(0, 10_000);

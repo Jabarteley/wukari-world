@@ -1,0 +1,32 @@
+{
+  "id": "south-asia",
+  "sourceUrls": [
+    "https://www.openstreetmap.org/way/89583607"
+  ],
+  "palette": [
+    "#e6cba5",
+    "#86583f",
+    "#61764a",
+    "#aa6445",
+    "#488694",
+    "#d5a23b",
+    "#858078",
+    "#3b3233"
+  ],
+  "roof": "flat",
+  "canopyHeight": 2.3,
+  "provenance": {
+    "referenceCity": "delhi",
+    "referenceFeature": "Mehrauli Archaeological Park",
+    "sourcePath": "src/game/cities/delhi/places.ts",
+    "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual identity only; no source geometry copied",
+    "sourceScope": "Mapped place identity and activity context only; does not substantiate palette, roof, dimensions or a region-wide architecture claim",
+    "verification": "Read repository source snapshot; live OSM element not independently re-fetched",
+    "artDirectionStatus": "proposal",
+    "artDirectionRationale": "A distinct readable palette for procedural props; roof is a gameplay canopy choice",
+    "unknowns": [
+      "Regional coverage and city overrides need integration review",
+      "Colour and roof selection have no measured reference basis"
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "copenhagen",
+  "url": "/assets/scene-heroes/copenhagen.glb",
+  "sha256": "3679c9e9a8825e129fca2e9400df1329b8c6c4bbe20ab35f2dfcc7b9e579df3d",
+  "rawBytes": 24324,
+  "brotliBytes": 17666,
+  "triangles": 536,
+  "parts": [
+    {
+      "node": "copenhagen",
+      "triangles": 536,
+      "bounds": {
+        "min": [
+          -3.67499995,
+          0,
+          -2.29999995
+        ],
+        "max": [
+          3.675000017357,
+          3.6998992694129997,
+          2.2998626920870002
+        ]
+      },
+      "footprint": [
+        -3.67499995,
+        -2.29999995,
+        3.675000017357,
+        2.2998626920870002
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "9fbb3637a6026c42295598191f368bf185692eb853e19ab7f218c25d4e865535"
+  },
+  "inputs": {
+    "rawSha256": "8516275617cb77dfc25a44308d0c2cc17873d1e89ccd0e52c93a6bb66c9e68ad",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "copenhagen",
+      "country": "dk",
+      "name": "City 2",
+      "category": "building",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/25665260"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=copenhagen]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "retail-building",
+      "parameters": {
+        "width": 8.6,
+        "depth": 6.1,
+        "height": 3.7,
+        "seed": 181169,
+        "palette": [
+          "#d3cec2",
+          "#646a6b",
+          "#a0a895",
+          "#8c7568",
+          "#6d8f9c",
+          "#b0a489",
+          "#e7e8df",
+          "#344b59"
+        ]
+      },
+      "evidence": "Exact candidate/name alias match and shop=mall support feature identity/category. Object way/25665260, version 20, timestamp 2024-06-02T08:34:31Z; response SHA256 015780dea32b0295afd90bcc7d3ed7c27f398affbcf569ccc69578491cf6bc47. Source path: src/game/cities/copenhagen/places.ts. Original simple retail-building massing, entrance and opaque glazing panels. No signature facade, brand, sign, surveyed dimensions, floor count or precise building footprint are claimed. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "western-europe"
+      }
+    },
+    "styleSha256": "18e3b0f4dbb88519df26d3d51faa4960b3f4646b58f92cf029cf1a50cbcc6d9c"
+  }
+}

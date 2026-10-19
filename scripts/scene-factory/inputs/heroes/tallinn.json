@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "tallinn",
+  "url": "/assets/scene-heroes/tallinn.glb",
+  "sha256": "0e463a727fe82e865c37313175fad576796785f1a4778269a2b5b5387557af2d",
+  "rawBytes": 35520,
+  "brotliBytes": 20416,
+  "triangles": 1344,
+  "parts": [
+    {
+      "node": "tallinn",
+      "triangles": 1344,
+      "bounds": {
+        "min": [
+          -3.02795053,
+          0,
+          -1.58773303
+        ],
+        "max": [
+          3.0279504186259993,
+          2.4999119889859998,
+          1.5878907904019999
+        ]
+      },
+      "footprint": [
+        -3.02795053,
+        -1.58773303,
+        3.0279504186259993,
+        1.5878907904019999
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "9fbb3637a6026c42295598191f368bf185692eb853e19ab7f218c25d4e865535"
+  },
+  "inputs": {
+    "rawSha256": "5ddd3b7425ebb13ad88fbf47ab5e02eda1522b2ec56c9644688b8df61afa25be",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "tallinn",
+      "country": "ee",
+      "name": "Nõmme turuhoone",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/26874481"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=tallinn]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 181151,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Exact candidate/name alias match and amenity=marketplace support feature identity/category. Object way/26874481, version 17, timestamp 2025-01-25T14:04:34Z; response SHA256 666e5fc112a30431fc30cdae3faf1c17d365f515445e9a5eb60eb147b0b7ae21. Source path: src/game/cities/tallinn/places.ts. Empty counters, racks and awnings indicate trade. No goods, original shop plan, actual number of stalls or current operation are inferred. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "western-europe"
+      }
+    },
+    "styleSha256": "18e3b0f4dbb88519df26d3d51faa4960b3f4646b58f92cf029cf1a50cbcc6d9c"
+  }
+}

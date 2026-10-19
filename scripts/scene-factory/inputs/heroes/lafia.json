@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "lafia",
+  "url": "/assets/scene-heroes/lafia.glb",
+  "sha256": "f5ed1382ed226e594e62175c8ac3f6c4c1cb2e4f4b6ddb87e1adb2fdbf2f6fe2",
+  "rawBytes": 31188,
+  "brotliBytes": 19659,
+  "triangles": 976,
+  "parts": [
+    {
+      "node": "lafia",
+      "triangles": 976,
+      "bounds": {
+        "min": [
+          -2.53610134,
+          0,
+          -2.5
+        ],
+        "max": [
+          2.536101214076,
+          2.23841936556,
+          2.5000653878000003
+        ]
+      },
+      "footprint": [
+        -2.53610134,
+        -2.5,
+        2.536101214076,
+        2.5000653878000003
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "fc52fcd31a6a0f6232071f06ba078fc350a270ad2e48d4d2becdff31e3e24959"
+  },
+  "inputs": {
+    "rawSha256": "6252f4e810b032894ea8905b93a5285e1e86a0fb9cad23e830ba5d4cb8b11a67",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "lafia",
+      "country": "ng",
+      "name": "Tomato Market, Lafia",
+      "category": "market",
+      "sourceUrls": [
+        "https://nbs.na.gov.ng/2026/08/29/tomato-market-shut-over-sanitation-violations/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-final20-primary-r5.json#records[city_id=lafia]; hero-inputs-r4.md final decisions",
+      "sourceLicence": "OpenStreetMap ODbL1.0 for exact object facts where cited; other source text rights unknown. No external image, map, mesh, texture, floor plan or geometry is reused.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 6,
+        "depth": 5,
+        "height": 2.3,
+        "seed": 6314,
+        "palette": [
+          "#c7b58d",
+          "#685748",
+          "#718b61",
+          "#bd7f55",
+          "#679aa7",
+          "#bdad83",
+          "#e1ddd0",
+          "#35444a"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Nasarawa’s state broadcaster reports a state commissioner inspected and ordered temporary closure of Tomato Market in Lafia. The article does not establish its later/current operating status. Original schematic category interpretation only. Dimensions, palette and layout are art direction, not surveyed measurements. Empty trade displays do not infer local merchandise, precise current access or operation. No production or external-rights approval.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "gulf-guinea"
+      }
+    },
+    "styleSha256": "2fdffb74f7375d9e1754151b92a51e85d0f902aaa4e0c8a647b3a33364eccaa9"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "kuala-lumpur",
+  "url": "/assets/scene-heroes/kuala-lumpur.glb",
+  "sha256": "e27de2ddd71b70acb57c79399c7583c2322df391997c03f6ea4d1410730ea8ad",
+  "rawBytes": 45200,
+  "brotliBytes": 30971,
+  "triangles": 2320,
+  "parts": [
+    {
+      "node": "kuala-lumpur",
+      "triangles": 2320,
+      "bounds": {
+        "min": [
+          -3.79999995,
+          0,
+          -2.56623363
+        ],
+        "max": [
+          3.8000000264999994,
+          2.83904046,
+          2.566306182
+        ]
+      },
+      "footprint": [
+        -3.79999995,
+        -2.56623363,
+        3.8000000264999994,
+        2.566306182
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "bc2a37dfe2703aa7c92864b8e7fe92a44f6fb7b37ce08ed0e211f2f1ceaa543f"
+  },
+  "inputs": {
+    "rawSha256": "c8195382ecdccf7d0ddb0427fd2a4d96c1dcf53f96cae88261428c190f30a64d",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "kuala-lumpur",
+      "country": "my",
+      "name": "Kuala Lumpur Forest Eco Park",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://www.forestry.gov.my/index.php/en/wp-kuala-lumpur/taman-eko-rimba-kuala-lumpur",
+        "https://www.forestry.gov.my/my/wp-kuala-lumpur/taman-eko-rimba-kuala-lumpur"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json#cities[city_id=kuala-lumpur]",
+      "sourceLicence": "unknown",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 7.6,
+        "depth": 5.2,
+        "height": 3.2,
+        "seed": 18125,
+        "palette": [
+          "#c6bd9d",
+          "#695e4d",
+          "#55734b",
+          "#738b59",
+          "#4e7184",
+          "#9d986c",
+          "#c7d5cf",
+          "#37443e"
+        ],
+        "composition": "forest"
+      },
+      "evidence": "A natural urban forest reserve/eco-park is identified in Kuala Lumpur; page places it 3 km from the city centre. Original schematic fragment of the sourced feature class. Palette, contour, tree count, spacing and dimensions are art direction, not surveyed shape, species identification or measured geography. No current access is certified.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "east-asia"
+      }
+    },
+    "styleSha256": "99276357f2bf43bef2935e7db6b661a64a739e1d451f1d45c662ea3b5bbf6b56"
+  }
+}

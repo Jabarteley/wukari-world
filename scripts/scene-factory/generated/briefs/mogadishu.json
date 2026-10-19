@@ -1,0 +1,2075 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "mogadishu",
+    "name": "Mogadishu",
+    "state": {
+      "id": "so-mogadishu",
+      "name": "Mogadishu"
+    },
+    "country": {
+      "id": "so",
+      "name": "Somalia"
+    },
+    "point": {
+      "lon": 45.3419183,
+      "lat": 2.0349312
+    }
+  },
+  "style": {
+    "region": "east-africa",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/africa/somalia-261011.osm.pbf",
+      "https://ourairports.com/airports/HCMM/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/mogadishu/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/mogadishu/facts.ts",
+        "sha256": "ca058908ce32f3fd98114a951775983e48a777171323731516faef017b9bf5a4"
+      },
+      {
+        "path": "src/game/cities/mogadishu/index.ts",
+        "sha256": "cbac699db6c5b657252c56e77bc35e54744a936231abe5c22a093180bb841396"
+      },
+      {
+        "path": "src/game/cities/mogadishu/places.ts",
+        "sha256": "e864fd8a217ce82495cda6584d3c6f391d180d3403e06c120b7643d9c803d493"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.3419183,
+        "lat": 2.0349312
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "mogadishu-airport-mogadishu-airport",
+      "name": "Aden Adde International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.304699,
+        "lat": 2.01444
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-airport-mogadishu-airport-1",
+        "mogadishu-mogadishu-airport-mogadishu-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "mogadishu-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-clinic",
+      "name": "Martino Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.338035,
+        "lat": 2.029189
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-clinic-1",
+        "mogadishu-mogadishu-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1371916683"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-community-notices",
+      "name": "Ministry of Defence of Somalia",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.30938,
+        "lat": 2.060773
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-community-notices-1",
+        "mogadishu-mogadishu-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1373530319"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-community-voting-game",
+      "name": "Degmada Deyniile",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.288315,
+        "lat": 2.09528
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-community-voting-game-1",
+        "mogadishu-mogadishu-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/835495512"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-community-workshop",
+      "name": "Somali National University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.287717,
+        "lat": 2.039289
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-community-workshop-1",
+        "mogadishu-mogadishu-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/395085700"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q278455"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-market-game",
+      "name": "Fish Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.358532,
+        "lat": 2.038081
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-market-game-1",
+        "mogadishu-mogadishu-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1011677469"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-meal-stop",
+      "name": "Tufaax Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.357393,
+        "lat": 2.073127
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-meal-stop-1",
+        "mogadishu-mogadishu-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11235334239"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-osm-node-4243421295",
+      "name": "afrikan village residence",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.31294,
+        "lat": 2.045585
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-osm-node-4243421295-1",
+        "mogadishu-mogadishu-osm-node-4243421295-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4243421295"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-osm-node-9201097499",
+      "name": "Battle of Mogadishu 1993 - first Black Hawk down (Wolcott)",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.326361,
+        "lat": 2.052615
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-osm-node-9201097499-1",
+        "mogadishu-mogadishu-osm-node-9201097499-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9201097499"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q52226"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-osm-node-9201097500",
+      "name": "Battle of Mogadishu 1993 - second Black Hawk down (Durant)",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.326354,
+        "lat": 2.04724
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-osm-node-9201097500-1",
+        "mogadishu-mogadishu-osm-node-9201097500-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9201097500"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q52226"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-osm-node-9208024997",
+      "name": "Ahmed Gurey Monument",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.310717,
+        "lat": 2.031673
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-osm-node-9208024997-1",
+        "mogadishu-mogadishu-osm-node-9208024997-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9208024997"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q335728"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-osm-way-1024928619",
+      "name": "Masjidka Afarta Minaaradood",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.391671,
+        "lat": 2.085456
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-osm-way-1024928619-1",
+        "mogadishu-mogadishu-osm-way-1024928619-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1024928619"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-osm-way-126234890",
+      "name": "Mogadishu Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.341611,
+        "lat": 2.035785
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-osm-way-126234890-1",
+        "mogadishu-mogadishu-osm-way-126234890-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/126234890"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q962672"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-osm-way-1362840018",
+      "name": "DKM Boba & Waffles",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.317411,
+        "lat": 2.142663
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-osm-way-1362840018-1",
+        "mogadishu-mogadishu-osm-way-1362840018-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1362840018"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-osm-way-1371916687",
+      "name": "Somali Marino Coast and Navy Guard",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.32215,
+        "lat": 2.020379
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-osm-way-1371916687-1",
+        "mogadishu-mogadishu-osm-way-1371916687-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1371916687"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-osm-way-1373683895",
+      "name": "SOS Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.369102,
+        "lat": 2.090227
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-osm-way-1373683895-1",
+        "mogadishu-mogadishu-osm-way-1373683895-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1373683895"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-osm-way-1373751544",
+      "name": "Somali Aviation Academy",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.304926,
+        "lat": 2.019162
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-osm-way-1373751544-1",
+        "mogadishu-mogadishu-osm-way-1373751544-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1373751544"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-osm-way-1373864082",
+      "name": "Keysane Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.386955,
+        "lat": 2.053519
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-osm-way-1373864082-1",
+        "mogadishu-mogadishu-osm-way-1373864082-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1373864082"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-osm-way-308595147",
+      "name": "Suuqa Wayn",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.290011,
+        "lat": 2.020865
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-osm-way-308595147-1",
+        "mogadishu-mogadishu-osm-way-308595147-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/308595147"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-osm-way-5057908",
+      "name": "Eng. Yariisow Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.356788,
+        "lat": 2.042154
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-osm-way-5057908-1",
+        "mogadishu-mogadishu-osm-way-5057908-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/5057908"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3545656"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-osm-way-609620228",
+      "name": "Mogadishu Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.335469,
+        "lat": 2.067459
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-osm-way-609620228-1",
+        "mogadishu-mogadishu-osm-way-609620228-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/609620228"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6890414"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-osm-way-713009128",
+      "name": "Zamzam University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.264039,
+        "lat": 2.071298
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-osm-way-713009128-1",
+        "mogadishu-mogadishu-osm-way-713009128-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/713009128"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-quiet-reflection",
+      "name": "Masjidka isbahaysiga جامع التضامن الإسلامي",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.330424,
+        "lat": 2.03576
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-quiet-reflection-1",
+        "mogadishu-mogadishu-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/34006525"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2474798"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-recreation",
+      "name": "Xarunta Dalxiiska ee Degmada Dayniile",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.274819,
+        "lat": 2.106692
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-recreation-1",
+        "mogadishu-mogadishu-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1558283056"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "mogadishu-transit",
+      "name": "Isgoyska Xoosh",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 45.264454,
+        "lat": 2.035613
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "mogadishu-mogadishu-transit-1",
+        "mogadishu-mogadishu-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/mogadishu/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/313404166"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "mogadishu-mogadishu-airport-mogadishu-airport-1",
+      "venueId": "mogadishu-airport-mogadishu-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-airport-mogadishu-airport-2",
+      "venueId": "mogadishu-airport-mogadishu-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-clinic-1",
+      "venueId": "mogadishu-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-clinic-2",
+      "venueId": "mogadishu-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-community-notices-1",
+      "venueId": "mogadishu-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-community-notices-2",
+      "venueId": "mogadishu-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-community-voting-game-1",
+      "venueId": "mogadishu-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-community-voting-game-2",
+      "venueId": "mogadishu-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-community-workshop-1",
+      "venueId": "mogadishu-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-community-workshop-2",
+      "venueId": "mogadishu-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-market-game-1",
+      "venueId": "mogadishu-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-market-game-2",
+      "venueId": "mogadishu-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-meal-stop-1",
+      "venueId": "mogadishu-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-meal-stop-2",
+      "venueId": "mogadishu-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-node-4243421295-1",
+      "venueId": "mogadishu-osm-node-4243421295",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-node-4243421295-2",
+      "venueId": "mogadishu-osm-node-4243421295",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-node-9201097499-1",
+      "venueId": "mogadishu-osm-node-9201097499",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-node-9201097499-2",
+      "venueId": "mogadishu-osm-node-9201097499",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-node-9201097500-1",
+      "venueId": "mogadishu-osm-node-9201097500",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-node-9201097500-2",
+      "venueId": "mogadishu-osm-node-9201097500",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-node-9208024997-1",
+      "venueId": "mogadishu-osm-node-9208024997",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-node-9208024997-2",
+      "venueId": "mogadishu-osm-node-9208024997",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-1024928619-1",
+      "venueId": "mogadishu-osm-way-1024928619",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-1024928619-2",
+      "venueId": "mogadishu-osm-way-1024928619",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-126234890-1",
+      "venueId": "mogadishu-osm-way-126234890",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-126234890-2",
+      "venueId": "mogadishu-osm-way-126234890",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-1362840018-1",
+      "venueId": "mogadishu-osm-way-1362840018",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-1362840018-2",
+      "venueId": "mogadishu-osm-way-1362840018",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-1371916687-1",
+      "venueId": "mogadishu-osm-way-1371916687",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-1371916687-2",
+      "venueId": "mogadishu-osm-way-1371916687",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-1373683895-1",
+      "venueId": "mogadishu-osm-way-1373683895",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-1373683895-2",
+      "venueId": "mogadishu-osm-way-1373683895",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-1373751544-1",
+      "venueId": "mogadishu-osm-way-1373751544",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-1373751544-2",
+      "venueId": "mogadishu-osm-way-1373751544",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-1373864082-1",
+      "venueId": "mogadishu-osm-way-1373864082",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-1373864082-2",
+      "venueId": "mogadishu-osm-way-1373864082",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-308595147-1",
+      "venueId": "mogadishu-osm-way-308595147",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-308595147-2",
+      "venueId": "mogadishu-osm-way-308595147",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-5057908-1",
+      "venueId": "mogadishu-osm-way-5057908",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-5057908-2",
+      "venueId": "mogadishu-osm-way-5057908",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-609620228-1",
+      "venueId": "mogadishu-osm-way-609620228",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-609620228-2",
+      "venueId": "mogadishu-osm-way-609620228",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-713009128-1",
+      "venueId": "mogadishu-osm-way-713009128",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-osm-way-713009128-2",
+      "venueId": "mogadishu-osm-way-713009128",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-quiet-reflection-1",
+      "venueId": "mogadishu-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-quiet-reflection-2",
+      "venueId": "mogadishu-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-recreation-1",
+      "venueId": "mogadishu-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-recreation-2",
+      "venueId": "mogadishu-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-transit-1",
+      "venueId": "mogadishu-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    },
+    {
+      "id": "mogadishu-mogadishu-transit-2",
+      "venueId": "mogadishu-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/mogadishu/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "mogadishu-airport-mogadishu-airport",
+    "mogadishu-clinic",
+    "mogadishu-community-notices",
+    "mogadishu-community-voting-game",
+    "mogadishu-community-workshop",
+    "mogadishu-market-game",
+    "mogadishu-meal-stop",
+    "mogadishu-osm-node-4243421295",
+    "mogadishu-osm-node-9201097499",
+    "mogadishu-osm-node-9201097500",
+    "mogadishu-osm-node-9208024997",
+    "mogadishu-osm-way-1024928619",
+    "mogadishu-osm-way-126234890",
+    "mogadishu-osm-way-1362840018",
+    "mogadishu-osm-way-1371916687",
+    "mogadishu-osm-way-1373683895",
+    "mogadishu-osm-way-1373751544",
+    "mogadishu-osm-way-1373864082",
+    "mogadishu-osm-way-308595147",
+    "mogadishu-osm-way-5057908",
+    "mogadishu-osm-way-609620228",
+    "mogadishu-osm-way-713009128",
+    "mogadishu-quiet-reflection",
+    "mogadishu-recreation",
+    "mogadishu-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "aae31466074e365a399b4745bebc8529290a0ab55a71daffcdb0c5f6615d2c5e",
+    "contentSha256": "e58450ce7c52f4b8638189e0ffeda4a0ba0081d5fe357143dee6c00252e77b1e"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "stanley",
+  "url": "/assets/scene-heroes/stanley.glb",
+  "sha256": "aa60d413f24daa14d5353b6bee8b13af818795a440d74d9bdcc7a7bfba778899",
+  "rawBytes": 27176,
+  "brotliBytes": 19556,
+  "triangles": 768,
+  "parts": [
+    {
+      "node": "stanley",
+      "triangles": 768,
+      "bounds": {
+        "min": [
+          -2.9000001,
+          0,
+          -2.4000001
+        ],
+        "max": [
+          2.8999998794789996,
+          4.309906595262,
+          2.399877805254
+        ]
+      },
+      "footprint": [
+        -2.9000001,
+        -2.4000001,
+        2.8999998794789996,
+        2.399877805254
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "9b7207515967bfc091e77631ae099ec08877146b830b844156f0370f69fb93f9",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "stanley",
+      "country": "fk",
+      "name": "Christ Church Cathedral",
+      "category": "building",
+      "sourceUrls": [
+        "https://www.nationalarchives.gov.fk/jdownloads/People/Culture%20and%20Early%20History/R-CUL-ANN-1-4.%20Heritage%20Year%201992.%20Souvenir%20Brochure.pdf",
+        "https://www.falklandislands.com/things-to-do/christ-church-cathedral-p673891/things-to-do/christ-church-cathedral-p673891"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=stanley]; hero-inputs-r4.md defining-form review",
+      "sourceLicence": "Source text rights unknown unless the publisher states otherwise; factual identity only. No external photo, map, mesh, texture, sculpture surface or plan reused. Original generated geometry is AGPL-3.0-or-later; third-party marks and landmark rights are not cleared by this record.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landmark",
+      "parameters": {
+        "width": 6,
+        "depth": 5,
+        "height": 4.5,
+        "seed": 6120,
+        "palette": [
+          "#dbcdb6",
+          "#62584a",
+          "#8f8a74",
+          "#af593f",
+          "#c8b68c",
+          "#8caa99",
+          "#d2bd91",
+          "#2e3c43"
+        ],
+        "composition": "bell-tower-church"
+      },
+      "evidence": "The archive-hosted historical brochure describes the cathedral’s foundation stone in Stanley in 1890 and consecration in 1892. Tourist board identifies cathedral and bell tower in Stanley. Original church-and-bell-tower massing, roof/doors art direction; no copied stained glass or surveyed facade. All dimensions, colours, simplifications and composition proportions are original art direction, not source measurements. No surveyed-location, current-access, production-quality or legal-rights approval is asserted.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "allworld-focused-check",
+  "version": 1,
+  "command": "NODE_OPTIONS=--max-old-space-size=512 node --experimental-strip-types scripts/agent-slot.ts heavy -- node --experimental-strip-types --test --test-concurrency=1 scripts/download-budget.test.ts",
+  "tests": 7,
+  "passed": 7,
+  "failed": 0,
+  "skipped": 0,
+  "durationMs": 495.832917,
+  "logSha256": "7b63d0053a1ba521d31357652f684a6b986c64944976b83bccdb2c6f537a0bdf",
+  "scope": "Additive raw city and Brotli kit/hero boundaries with unchanged prior budget semantics; not actual generated assets."
+}

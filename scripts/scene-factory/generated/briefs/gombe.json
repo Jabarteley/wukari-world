@@ -1,0 +1,1740 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "gombe",
+    "name": "Gombe",
+    "state": {
+      "id": "gombe",
+      "name": "Gombe"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 11.1667,
+      "lat": 10.2833
+    }
+  },
+  "style": {
+    "region": "sahel-north",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/gombe/content.ts",
+        "sha256": "3deeb09de75db546f443250410d65e7ad291d927739c1133d35b51154103df88"
+      },
+      {
+        "path": "src/game/cities/gombe/index.ts",
+        "sha256": "3f50d442258fea723bb9d0763f51c6d1067bd0aa5fd0f21b5584f42a23d8fb9a"
+      },
+      {
+        "path": "src/game/cities/gombe/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/gombe/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for gombe.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "aroma-restaurant-bcj",
+      "name": "Aroma restaurant BCJ",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.1837159,
+        "lat": 10.279707
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-aroma-restaurant-bcj-1",
+        "gombe-aroma-restaurant-bcj-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "botanical-garden-gombe",
+      "name": "Botanical Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.1733051,
+        "lat": 10.3067468
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Garden"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Garden",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-botanical-garden-gombe-1",
+        "gombe-botanical-garden-gombe-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "bubayeros-tomb",
+      "name": "Bubayero's Tomb",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.1731,
+        "lat": 10.2791
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-bubayeros-tomb-1",
+        "gombe-bubayeros-tomb-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "catholic-church-gombe",
+      "name": "Catholic church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.177331,
+        "lat": 10.3064719
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-catholic-church-gombe-1",
+        "gombe-catholic-church-gombe-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "central-mosque-emir-palace",
+      "name": "Central Mosque Emir Palace",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.1680965,
+        "lat": 10.2941202
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-central-mosque-emir-palace-1",
+        "gombe-central-mosque-emir-palace-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "dados-eatery",
+      "name": "Dados Eatery",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.1468254,
+        "lat": 10.2912831
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-dados-eatery-1",
+        "gombe-dados-eatery-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "emirs-palace-gombe",
+      "name": "Emir's Palace Gombe",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.168693,
+        "lat": 10.29341
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Heritage site"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Heritage site",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-emirs-palace-gombe-1",
+        "gombe-emirs-palace-gombe-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "federal-teaching-hospital-gombe",
+      "name": "Federal Teaching Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.1363065,
+        "lat": 10.2990598
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-federal-teaching-hospital-gombe-1",
+        "gombe-federal-teaching-hospital-gombe-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "first-bank-gombe",
+      "name": "First bank Gombe",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.1829641,
+        "lat": 10.2805995
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-first-bank-gombe-1",
+        "gombe-first-bank-gombe-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "gombe-line-bus-station",
+      "name": "Gombe State Transport Services (Gombe Line)",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.1655148,
+        "lat": 10.2868505
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-gombe-line-bus-station-1",
+        "gombe-gombe-line-bus-station-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "gombe-state-university",
+      "name": "Gombe State University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.1755497,
+        "lat": 10.3044678
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-gombe-state-university-1",
+        "gombe-gombe-state-university-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "gombe-treasury-house",
+      "name": "Gombe Treasury House",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.1535647,
+        "lat": 10.2823721
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-gombe-treasury-house-1",
+        "gombe-gombe-treasury-house-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "gtbank-gombe",
+      "name": "Guarantee Trust Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.184922,
+        "lat": 10.283458
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-gtbank-gombe-1",
+        "gombe-gtbank-gombe-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.157967235341278,
+        "lat": 10.294180298749763
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "inec-hq-gombe",
+      "name": "INEC HQ",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.1339813,
+        "lat": 10.290648
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-inec-hq-gombe-1",
+        "gombe-inec-hq-gombe-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "kasuwar-mata",
+      "name": "KASUWAR MATA",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.1697987,
+        "lat": 10.3015083
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-kasuwar-mata-1",
+        "gombe-kasuwar-mata-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "national-museum-gombe",
+      "name": "National Museum Gombe",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.136828010382995,
+        "lat": 10.291030498837582
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-national-museum-gombe-1",
+        "gombe-national-museum-gombe-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "pantami-stadium",
+      "name": "Pantami Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.1684017,
+        "lat": 10.2765209
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-pantami-stadium-1",
+        "gombe-pantami-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "shiloh-baptist-church-malan-inna",
+      "name": "Shiloh Baptist Church Malan Inna",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.1792189,
+        "lat": 10.3099478
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-shiloh-baptist-church-malan-inna-1",
+        "gombe-shiloh-baptist-church-malan-inna-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "specialist-hospital-gombe",
+      "name": "SPECIALIST HOSPITAL GOMBE",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.1574571,
+        "lat": 10.2888282
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-specialist-hospital-gombe-1",
+        "gombe-specialist-hospital-gombe-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    },
+    {
+      "id": "timber-market-gombe",
+      "name": "Timber Market Lowcost div",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 11.187404,
+        "lat": 10.280989
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "gombe-timber-market-gombe-1",
+        "gombe-timber-market-gombe-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for gombe."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "gombe-aroma-restaurant-bcj-1",
+      "venueId": "aroma-restaurant-bcj",
+      "name": "Zulai Idris",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-aroma-restaurant-bcj-2",
+      "venueId": "aroma-restaurant-bcj",
+      "name": "Sani Salihu",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-botanical-garden-gombe-1",
+      "venueId": "botanical-garden-gombe",
+      "name": "Zulai Gambo",
+      "role": "Garden keeper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-botanical-garden-gombe-2",
+      "venueId": "botanical-garden-gombe",
+      "name": "Sani Magaji",
+      "role": "Evening walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-bubayeros-tomb-1",
+      "venueId": "bubayeros-tomb",
+      "name": "Garba Bala",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-bubayeros-tomb-2",
+      "venueId": "bubayeros-tomb",
+      "name": "Maryam Danladi",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-catholic-church-gombe-1",
+      "venueId": "catholic-church-gombe",
+      "name": "Garba Umar",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-catholic-church-gombe-2",
+      "venueId": "catholic-church-gombe",
+      "name": "Hajiya Safiya",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-central-mosque-emir-palace-1",
+      "venueId": "central-mosque-emir-palace",
+      "name": "Zulai Kabir",
+      "role": "Mosque caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-central-mosque-emir-palace-2",
+      "venueId": "central-mosque-emir-palace",
+      "name": "Sani Idris",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-dados-eatery-1",
+      "venueId": "dados-eatery",
+      "name": "Garba Suleiman",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-dados-eatery-2",
+      "venueId": "dados-eatery",
+      "name": "Maryam Mohammed",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-emirs-palace-gombe-1",
+      "venueId": "emirs-palace-gombe",
+      "name": "Garba Gwarzo",
+      "role": "Site guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-emirs-palace-gombe-2",
+      "venueId": "emirs-palace-gombe",
+      "name": "Maryam Suleiman",
+      "role": "Local resident",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-federal-teaching-hospital-gombe-1",
+      "venueId": "federal-teaching-hospital-gombe",
+      "name": "Zulai Abubakar",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-federal-teaching-hospital-gombe-2",
+      "venueId": "federal-teaching-hospital-gombe",
+      "name": "Sani Yakubu",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-first-bank-gombe-1",
+      "venueId": "first-bank-gombe",
+      "name": "Mustapha Danladi",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-first-bank-gombe-2",
+      "venueId": "first-bank-gombe",
+      "name": "Maryam Umar",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-gombe-line-bus-station-1",
+      "venueId": "gombe-line-bus-station",
+      "name": "Garba Mohammed",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-gombe-line-bus-station-2",
+      "venueId": "gombe-line-bus-station",
+      "name": "Maryam Tanko",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-gombe-state-university-1",
+      "venueId": "gombe-state-university",
+      "name": "Zulai Bello",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-gombe-state-university-2",
+      "venueId": "gombe-state-university",
+      "name": "Sani Kabir",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-gombe-treasury-house-1",
+      "venueId": "gombe-treasury-house",
+      "name": "Mustapha Gwarzo",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-gombe-treasury-house-2",
+      "venueId": "gombe-treasury-house",
+      "name": "Hajiya Rabi",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-gtbank-gombe-1",
+      "venueId": "gtbank-gombe",
+      "name": "Asmau Gambo",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-gtbank-gombe-2",
+      "venueId": "gtbank-gombe",
+      "name": "Malam Bashir",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-inec-hq-gombe-1",
+      "venueId": "inec-hq-gombe",
+      "name": "Asmau Kabir",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-inec-hq-gombe-2",
+      "venueId": "inec-hq-gombe",
+      "name": "Yusuf Idris",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-kasuwar-mata-1",
+      "venueId": "kasuwar-mata",
+      "name": "Garba Sadiq",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-kasuwar-mata-2",
+      "venueId": "kasuwar-mata",
+      "name": "Maryam Bala",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-national-museum-gombe-1",
+      "venueId": "national-museum-gombe",
+      "name": "Zulai Yakubu",
+      "role": "Museum guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-national-museum-gombe-2",
+      "venueId": "national-museum-gombe",
+      "name": "Malam Sani",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-pantami-stadium-1",
+      "venueId": "pantami-stadium",
+      "name": "Garba Danladi",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-pantami-stadium-2",
+      "venueId": "pantami-stadium",
+      "name": "Hajiya Maryam",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-shiloh-baptist-church-malan-inna-1",
+      "venueId": "shiloh-baptist-church-malan-inna",
+      "name": "Zulai Magaji",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-shiloh-baptist-church-malan-inna-2",
+      "venueId": "shiloh-baptist-church-malan-inna",
+      "name": "Sani Abubakar",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-specialist-hospital-gombe-1",
+      "venueId": "specialist-hospital-gombe",
+      "name": "Garba Tanko",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-specialist-hospital-gombe-2",
+      "venueId": "specialist-hospital-gombe",
+      "name": "Hajiya Hadiza",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-timber-market-gombe-1",
+      "venueId": "timber-market-gombe",
+      "name": "Zulai Salihu",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    },
+    {
+      "id": "gombe-timber-market-gombe-2",
+      "venueId": "timber-market-gombe",
+      "name": "Malam Yusuf",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/gombe/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "aroma-restaurant-bcj",
+    "botanical-garden-gombe",
+    "bubayeros-tomb",
+    "catholic-church-gombe",
+    "central-mosque-emir-palace",
+    "dados-eatery",
+    "emirs-palace-gombe",
+    "federal-teaching-hospital-gombe",
+    "first-bank-gombe",
+    "gombe-line-bus-station",
+    "gombe-state-university",
+    "gombe-treasury-house",
+    "gtbank-gombe",
+    "inec-hq-gombe",
+    "kasuwar-mata",
+    "national-museum-gombe",
+    "pantami-stadium",
+    "shiloh-baptist-church-malan-inna",
+    "specialist-hospital-gombe",
+    "timber-market-gombe"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "ab12384e23b619d9e1450b5674ad0d865ba2fa20fbc3686484b55870bafa87ec",
+    "contentSha256": "22dfaeebdc0f5ce7f84a700fff077e0d67eb49e67e3137913924662089b120ad"
+  }
+}

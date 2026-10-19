@@ -1,0 +1,51 @@
+{
+  "schema": "story-learning-card-implementation-handback-v1",
+  "status": "source-only implementation; parent review and verification pending",
+  "repository": {
+    "path": "/Users/anthonyakpan/work/joinallworld-story",
+    "branch": "story/phase2-scenes",
+    "sourceRevision": "dd7ce2bad34bb67866d78bb98a3e6791bbb6970b"
+  },
+  "input": {
+    "path": "docs/agent-work/story-mode-evidence-20261017/prep/mission-learning-content-reviewed-20261018.json",
+    "sha256": "f6df334af20d4a0460feaf0fa433a788c5c7ceb9e554836fcd676277ac40a39e"
+  },
+  "ownedFiles": [
+    {
+      "path": "src/app/features/passport/storyLearning.ts",
+      "bytes": 5871,
+      "sha256": "05297fcda0cbba5901f5fa024a9466e03614102f49f8096358c7c07e095e0bd7"
+    },
+    {
+      "path": "src/app/features/passport/StoryLearningCard.vue",
+      "bytes": 3741,
+      "sha256": "0ee8247e69824a150468ace49ec1b928c4084cfa4b2b901f001d11d29ff3143c"
+    },
+    {
+      "path": "src/app/features/passport/EpisodeCard.vue",
+      "bytes": 10860,
+      "sha256": "dab550e0cbda82a06fdf5f463d2edb24e36eabbb8d1206310cda9fd8a97b2aa2"
+    }
+  ],
+  "behavior": [
+    "The lookup contains exactly the reviewed Kano, Nairobi, Tokyo and Paris insert rows.",
+    "EpisodeCard reveals a row only when the exact episode ID has an existing chapter 2 history receipt; the separate card appears immediately before the current-scene block.",
+    "Answers are component-local, reset when episode identity changes, and do not dispatch game commands or create receipts/rewards/proofs.",
+    "The card separates sourced history from fictional story text, preserves each supplied citation and basis, and opens source links in a protected new tab.",
+    "The content module is imported through the existing Passport EpisodeCard path; no root/engine import was added."
+  ],
+  "verification": {
+    "tests": "not run by task scope",
+    "build": "not run by task scope",
+    "browser": "not run; parent-owned reviews/resources",
+    "staticChecks": [
+      "verified supplied JSON SHA-256",
+      "four lesson IDs and source/question content copied from reviewed artifact",
+      "changed-file SHA-256 and byte lengths recorded"
+    ]
+  },
+  "gaps": [
+    "Parent review and permitted verification remain pending.",
+    "Learning answers are ephemeral and do not prove persistent knowledge or award progress."
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "startedAt": "2026-10-18T05:51:59.400434+00:00",
+  "sourceSha": "814440393f130fd4cb4469da96d4641db48e5aa0",
+  "heapMiB": 512,
+  "localApplicationBuild": false,
+  "clientArtifactHeldAt": "8a94130206815cf8905e7a48402a6e82a7c70f37",
+  "checks": [
+    {
+      "name": "combined-worker-five",
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "--test",
+        "--test-reporter=tap",
+        "--test-name-pattern=^(Cloudflare: public IDs,|Cloudflare: settlement once|Cloudflare: real static HTML|Combined game on the Worker:|assets: a missing hashed file)",
+        "deploy/cloudflare.test.mjs"
+      ],
+      "exitCode": 1,
+      "durationMs": 320.514,
+      "log": "phase1-combined-worker-five-81444039.log",
+      "pass": 0,
+      "fail": 1,
+      "skipped": 0
+    }
+  ],
+  "finishedAt": "2026-10-18T05:51:59.741801+00:00",
+  "pass": false
+}

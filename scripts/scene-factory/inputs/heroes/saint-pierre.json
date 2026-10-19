@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "saint-pierre",
+  "url": "/assets/scene-heroes/saint-pierre.glb",
+  "sha256": "1aa3ffe8234413e865518a16800d5fff78268097d22eaf4f55b6476b7bb92ce5",
+  "rawBytes": 24740,
+  "brotliBytes": 17194,
+  "triangles": 590,
+  "parts": [
+    {
+      "node": "saint-pierre",
+      "triangles": 590,
+      "bounds": {
+        "min": [
+          -1.75,
+          0,
+          -1.29999995
+        ],
+        "max": [
+          1.750077067032,
+          5.880000265503,
+          1.299934245404
+        ]
+      },
+      "footprint": [
+        -1.75,
+        -1.29999995,
+        1.750077067032,
+        1.299934245404
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "82037807ade0c5d9e2d7d6b1830c38fb090c1b9b50c31d61d8a0c1eca2378154",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "saint-pierre",
+      "country": "pm",
+      "name": "Pointe-aux-Canons Lighthouse",
+      "category": "building",
+      "sourceUrls": [
+        "https://www.saint-pierre-et-miquelon.developpement-durable.gouv.fr/IMG/pdf/memoire_pointe_aux_canons.pdf"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=saint-pierre]; hero-inputs-r4.md defining-form review",
+      "sourceLicence": "Source text rights unknown unless the publisher states otherwise; factual identity only. No external photo, map, mesh, texture, sculpture surface or plan reused. Original generated geometry is AGPL-3.0-or-later; third-party marks and landmark rights are not cleared by this record.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landmark",
+      "parameters": {
+        "width": 4,
+        "depth": 3,
+        "height": 6,
+        "seed": 6129,
+        "palette": [
+          "#e8e4d9",
+          "#62584a",
+          "#8f8a74",
+          "#b93430",
+          "#c8b68c",
+          "#8caa99",
+          "#d2bd91",
+          "#2e3c43"
+        ],
+        "composition": "octagonal-lighthouse"
+      },
+      "evidence": "The territorial maritime-history record states that the original light first operated in 1819, the substantially current tower replaced it on 1 October 1862, and a 1949 restoration gave the tower its current appearance. The territorial authority separately calls it an emblematic monument at the entrance to Saint-Pierre's old port. Territorial maritime history dates the tower replacement to1862 and current appearance to1949, with octagonal upper support. Original tapered octagonal tower/lantern symbol; no modern access works or night illumination copied. All dimensions, colours, simplifications and composition proportions are original art direction, not source measurements. No surveyed-location, current-access, production-quality or legal-rights approval is asserted.",
+      "builtYear": 1862,
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

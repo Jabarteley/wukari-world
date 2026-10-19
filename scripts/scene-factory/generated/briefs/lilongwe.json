@@ -1,0 +1,1984 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "lilongwe",
+    "name": "Lilongwe",
+    "state": {
+      "id": "mw-lilongwe",
+      "name": "Lilongwe"
+    },
+    "country": {
+      "id": "mw",
+      "name": "Malawi"
+    },
+    "point": {
+      "lon": 33.768144,
+      "lat": -13.9875107
+    }
+  },
+  "style": {
+    "region": "southern-africa",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap contributors via verified Geofabrik Malawi PBF extract",
+    "sourceUrls": [
+      "https://ourairports.com/airports/FWKI/",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/lilongwe/content.ts",
+        "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+      },
+      {
+        "path": "src/game/cities/lilongwe/facts.ts",
+        "sha256": "8d08d3424973f7900d81be858151a59ac6d6223fab20f9e53d22f56053961dbe"
+      },
+      {
+        "path": "src/game/cities/lilongwe/index.ts",
+        "sha256": "60082382427789d193ea84aa3c01d8b6ff1c8a31683138ac67b4b76de2711cf6"
+      },
+      {
+        "path": "src/game/cities/lilongwe/places.ts",
+        "sha256": "9269680c7973a3f586a04bd08cb06652ac66f236e6085381c639b2e43c310114"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.768144,
+        "lat": -13.987510700000001
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "lilongwe-african-bible-college",
+      "name": "African Bible College",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.742369,
+        "lat": -13.962273
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-african-bible-college-1",
+        "lilongwe-lilongwe-african-bible-college-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5332030021"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-airport-kamuzu-international-airport",
+      "name": "Kamuzu International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.780998,
+        "lat": -13.7894
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-airport-kamuzu-international-airport-1",
+        "lilongwe-lilongwe-airport-kamuzu-international-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "kamuzu-international-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-capital-kids-play-centre",
+      "name": "Capital Kids Play Centre",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.741811,
+        "lat": -13.971748
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-capital-kids-play-centre-1",
+        "lilongwe-lilongwe-capital-kids-play-centre-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5421990028"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-civo-stadium",
+      "name": "CIVO Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.758774,
+        "lat": -13.978292
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-civo-stadium-1",
+        "lilongwe-lilongwe-civo-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/221073293"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5124788"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-clinic",
+      "name": "Kamuzu Central Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.78573,
+        "lat": -13.976927
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-clinic-1",
+        "lilongwe-lilongwe-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/808424986"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-community-notices",
+      "name": "Malawi Parliament Building",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.787925,
+        "lat": -13.952304
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-community-notices-1",
+        "lilongwe-lilongwe-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/12359795"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-community-voting-game",
+      "name": "City Centre Roundabout",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.794364,
+        "lat": -13.957272
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-community-voting-game-1",
+        "lilongwe-lilongwe-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1425872635"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-community-workshop",
+      "name": "Malawi College of Accountancy (M.C.A)",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.790492,
+        "lat": -13.941659
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-community-workshop-1",
+        "lilongwe-lilongwe-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/3938914"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-gateway-shopping-mall",
+      "name": "Gateway Shopping Mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.742093,
+        "lat": -13.97052
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-gateway-shopping-mall-1",
+        "lilongwe-lilongwe-gateway-shopping-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/289660593"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-kumbali-cultural-village",
+      "name": "Kumbali Cultural Village",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.84104,
+        "lat": -13.939162
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-kumbali-cultural-village-1",
+        "lilongwe-lilongwe-kumbali-cultural-village-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/164887641"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-wildlife-center",
+      "name": "Lilongwe Wildlife Center",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.783892,
+        "lat": -13.972249
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-lilongwe-wildlife-center-1",
+        "lilongwe-lilongwe-lilongwe-wildlife-center-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/442847669"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q23808334"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-madsoc-theatre",
+      "name": "MADSOC Theatre",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.774342,
+        "lat": -13.986517
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-madsoc-theatre-1",
+        "lilongwe-lilongwe-madsoc-theatre-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6257378285"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-market-game",
+      "name": "Lilongwe Central Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.77765,
+        "lat": -13.993288
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-market-game-1",
+        "lilongwe-lilongwe-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/447446170"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-meal-stop",
+      "name": "Mamma Mia",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.766661,
+        "lat": -13.982091
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-meal-stop-1",
+        "lilongwe-lilongwe-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1731801555"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-mzuzu-university-lilongwe-branch",
+      "name": "Mzuzu University - Lilongwe Branch",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.775609,
+        "lat": -13.893585
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-mzuzu-university-lilongwe-branch-1",
+        "lilongwe-lilongwe-mzuzu-university-lilongwe-branch-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/809177507"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-national-library-service",
+      "name": "National Library Service",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.7949,
+        "lat": -13.960026
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-national-library-service-1",
+        "lilongwe-lilongwe-national-library-service-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1975172107"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-old-town-mall",
+      "name": "Old Town Mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.766374,
+        "lat": -13.981892
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-old-town-mall-1",
+        "lilongwe-lilongwe-old-town-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/161182620"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-open-theatre",
+      "name": "open Theatre",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.790923,
+        "lat": -13.951964
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-open-theatre-1",
+        "lilongwe-lilongwe-open-theatre-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/505755023"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-pacific-mall",
+      "name": "Pacific Mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.791495,
+        "lat": -13.938416
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-pacific-mall-1",
+        "lilongwe-lilongwe-pacific-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/393334585"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-quiet-reflection",
+      "name": "Lilongwe Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.776956,
+        "lat": -13.989355
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-quiet-reflection-1",
+        "lilongwe-lilongwe-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/444042284"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-recreation",
+      "name": "Bingu National Stadium",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.753197,
+        "lat": -13.943867
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-recreation-1",
+        "lilongwe-lilongwe-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/893629092"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q28457050"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-silver-stadium",
+      "name": "Silver Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.769469,
+        "lat": -13.953688
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-silver-stadium-1",
+        "lilongwe-lilongwe-silver-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3664439631"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-transit",
+      "name": "Bus Terminal Lilongwe",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.777471,
+        "lat": -13.994318
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-transit-1",
+        "lilongwe-lilongwe-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2131385204"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "lilongwe-war-memorial-tower",
+      "name": "War Memorial Tower",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 33.784721,
+        "lat": -13.946049
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "lilongwe-lilongwe-war-memorial-tower-1",
+        "lilongwe-lilongwe-war-memorial-tower-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/lilongwe/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2501747953"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "lilongwe-lilongwe-african-bible-college-1",
+      "venueId": "lilongwe-african-bible-college",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-african-bible-college-2",
+      "venueId": "lilongwe-african-bible-college",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-airport-kamuzu-international-airport-1",
+      "venueId": "lilongwe-airport-kamuzu-international-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-airport-kamuzu-international-airport-2",
+      "venueId": "lilongwe-airport-kamuzu-international-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-capital-kids-play-centre-1",
+      "venueId": "lilongwe-capital-kids-play-centre",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-capital-kids-play-centre-2",
+      "venueId": "lilongwe-capital-kids-play-centre",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-civo-stadium-1",
+      "venueId": "lilongwe-civo-stadium",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-civo-stadium-2",
+      "venueId": "lilongwe-civo-stadium",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-clinic-1",
+      "venueId": "lilongwe-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-clinic-2",
+      "venueId": "lilongwe-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-community-notices-1",
+      "venueId": "lilongwe-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-community-notices-2",
+      "venueId": "lilongwe-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-community-voting-game-1",
+      "venueId": "lilongwe-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-community-voting-game-2",
+      "venueId": "lilongwe-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-community-workshop-1",
+      "venueId": "lilongwe-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-community-workshop-2",
+      "venueId": "lilongwe-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-gateway-shopping-mall-1",
+      "venueId": "lilongwe-gateway-shopping-mall",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-gateway-shopping-mall-2",
+      "venueId": "lilongwe-gateway-shopping-mall",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-kumbali-cultural-village-1",
+      "venueId": "lilongwe-kumbali-cultural-village",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-kumbali-cultural-village-2",
+      "venueId": "lilongwe-kumbali-cultural-village",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-lilongwe-wildlife-center-1",
+      "venueId": "lilongwe-lilongwe-wildlife-center",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-lilongwe-wildlife-center-2",
+      "venueId": "lilongwe-lilongwe-wildlife-center",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-madsoc-theatre-1",
+      "venueId": "lilongwe-madsoc-theatre",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-madsoc-theatre-2",
+      "venueId": "lilongwe-madsoc-theatre",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-market-game-1",
+      "venueId": "lilongwe-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-market-game-2",
+      "venueId": "lilongwe-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-meal-stop-1",
+      "venueId": "lilongwe-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-meal-stop-2",
+      "venueId": "lilongwe-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-mzuzu-university-lilongwe-branch-1",
+      "venueId": "lilongwe-mzuzu-university-lilongwe-branch",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-mzuzu-university-lilongwe-branch-2",
+      "venueId": "lilongwe-mzuzu-university-lilongwe-branch",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-national-library-service-1",
+      "venueId": "lilongwe-national-library-service",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-national-library-service-2",
+      "venueId": "lilongwe-national-library-service",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-old-town-mall-1",
+      "venueId": "lilongwe-old-town-mall",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-old-town-mall-2",
+      "venueId": "lilongwe-old-town-mall",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-open-theatre-1",
+      "venueId": "lilongwe-open-theatre",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-open-theatre-2",
+      "venueId": "lilongwe-open-theatre",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-pacific-mall-1",
+      "venueId": "lilongwe-pacific-mall",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-pacific-mall-2",
+      "venueId": "lilongwe-pacific-mall",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-quiet-reflection-1",
+      "venueId": "lilongwe-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-quiet-reflection-2",
+      "venueId": "lilongwe-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-recreation-1",
+      "venueId": "lilongwe-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-recreation-2",
+      "venueId": "lilongwe-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-silver-stadium-1",
+      "venueId": "lilongwe-silver-stadium",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-silver-stadium-2",
+      "venueId": "lilongwe-silver-stadium",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-transit-1",
+      "venueId": "lilongwe-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-transit-2",
+      "venueId": "lilongwe-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-war-memorial-tower-1",
+      "venueId": "lilongwe-war-memorial-tower",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    },
+    {
+      "id": "lilongwe-lilongwe-war-memorial-tower-2",
+      "venueId": "lilongwe-war-memorial-tower",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/lilongwe/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "lilongwe-african-bible-college",
+    "lilongwe-airport-kamuzu-international-airport",
+    "lilongwe-capital-kids-play-centre",
+    "lilongwe-civo-stadium",
+    "lilongwe-clinic",
+    "lilongwe-community-notices",
+    "lilongwe-community-voting-game",
+    "lilongwe-community-workshop",
+    "lilongwe-gateway-shopping-mall",
+    "lilongwe-kumbali-cultural-village",
+    "lilongwe-lilongwe-wildlife-center",
+    "lilongwe-madsoc-theatre",
+    "lilongwe-market-game",
+    "lilongwe-meal-stop",
+    "lilongwe-mzuzu-university-lilongwe-branch",
+    "lilongwe-national-library-service",
+    "lilongwe-old-town-mall",
+    "lilongwe-open-theatre",
+    "lilongwe-pacific-mall",
+    "lilongwe-quiet-reflection",
+    "lilongwe-recreation",
+    "lilongwe-silver-stadium",
+    "lilongwe-transit",
+    "lilongwe-war-memorial-tower"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "e8c46127dd475b26dbcb1624a72d98e472ed387db20fb43b227c65d3d3910052",
+    "contentSha256": "9757d5868beac5ceb5e5f37ab58672647e47e38958c9faaa2518b57d7dea8a0a"
+  }
+}

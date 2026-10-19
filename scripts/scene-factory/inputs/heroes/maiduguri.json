@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "maiduguri",
+  "url": "/assets/scene-heroes/maiduguri.glb",
+  "sha256": "5f49a5598424b0faed565a6f7326f319884c192c67bb389cc3950dc4bf5048b6",
+  "rawBytes": 26476,
+  "brotliBytes": 17774,
+  "triangles": 660,
+  "parts": [
+    {
+      "node": "maiduguri",
+      "triangles": 660,
+      "bounds": {
+        "min": [
+          -3.3499999,
+          0,
+          -1.14999998
+        ],
+        "max": [
+          3.3500000697980004,
+          2.259915756156,
+          1.149993905744
+        ]
+      },
+      "footprint": [
+        -3.3499999,
+        -1.14999998,
+        3.3500000697980004,
+        1.149993905744
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "b1c07280067fb9bd9cdc7abab3d0df7b8ae93eba6cdf54daa5774c2c98531453"
+  },
+  "inputs": {
+    "rawSha256": "0da6303e05ffd3ff2f4fabfc1ccc0655d626d72011fdde2ddabde6e6a3891935",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "maiduguri",
+      "country": "ng",
+      "name": "Gamboru Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://fmino.gov.ng/vp-shettima-visits-borno-bomb-blast-survivors-pledges-sustained-federal-state-security-collaboration/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=maiduguri]",
+      "sourceLicence": "unknown; factual evidence only, no external geometry/image licence inferred.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 14906352,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Federal ministry article locates Gamboru Market in Maiduguri. Federal Ministry of Information article first paragraph explicitly names Gamboru Market in Maiduguri; opened directly. This resolves the prior Borno-only locality gap. Source artifact SHA256 ec5e9e5faaa619cc69dcb1856b6160ea45951eaa528958abe2e715f1c46326e5. Repository source: src/game/cities/maiduguri/spec.ts. Original schematic category interpretation only: dimensions, palette, item counts and layout are art direction. No surveyed geometry, copied photograph, exact species, current access, ownership or current operation is asserted. Empty counters/racks/awnings indicate trade without a claim about actual stalls or goods. Geometry original procedural AGPL-3.0-or-later; production approval pending.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "sahel-north"
+      }
+    },
+    "styleSha256": "841610ddb65f0adc85cdf982569f93afa1e49f617d77f89f3911c0d2de1a83f4"
+  }
+}

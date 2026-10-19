@@ -1,0 +1,1941 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "cotonou",
+    "name": "Cotonou",
+    "state": {
+      "id": "bj-starter",
+      "name": "Cotonou"
+    },
+    "country": {
+      "id": "bj",
+      "name": "Benin"
+    },
+    "point": {
+      "lon": 2.404355,
+      "lat": 6.36298
+    }
+  },
+  "style": {
+    "region": "gulf-guinea",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "Natural Earth, OpenStreetMap contributors and cited aeronautical information sources",
+    "sourceUrls": [
+      "https://aim.asecna.aero/html/eAIP/FR-_01AD-2.DBBB-fr-FR.html",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; Airport reference points: cited aeronautical information sources",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/cotonou/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/cotonou/facts.ts",
+        "sha256": "f5ad3fef1195ba67a044545b17807509b91c2786e80f5e0861632b6aa2d8eca8"
+      },
+      {
+        "path": "src/game/cities/cotonou/index.ts",
+        "sha256": "eb9cf00ec1339aafecd9713e01afa07928c1eaf03a6f480f232dd337d7f701b2"
+      },
+      {
+        "path": "src/game/cities/cotonou/places.ts",
+        "sha256": "58811579f09ceedb0f8c03b564bf0fafd7d541eb8eab77f947869a2e427fff3e"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "cotonou-africa-land",
+      "name": "Africa Land",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.404732,
+        "lat": 6.386999
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-africa-land-1",
+        "cotonou-cotonou-africa-land-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/832159926"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-airport-cotonou-airport",
+      "name": "AEROPORT BERNARDIN GANTIN DE COTONOU",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.383333333,
+        "lat": 6.356388889
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-airport-cotonou-airport-1",
+        "cotonou-cotonou-airport-cotonou-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "cotonou-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-centre-de-promotion-de-l-artisanat",
+      "name": "Centre de promotion de l’artisanat",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.418952,
+        "lat": 6.359494
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-centre-de-promotion-de-l-artisanat-1",
+        "cotonou-cotonou-centre-de-promotion-de-l-artisanat-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/95012510"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-centre-international-de-conference",
+      "name": "Centre international de conférence",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.39676,
+        "lat": 6.349766
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-centre-international-de-conference-1",
+        "cotonou-cotonou-centre-international-de-conference-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6397281885"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q87550297"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-clinic",
+      "name": "Centre National Hospitalier Universitaire (CNHU)",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.410105,
+        "lat": 6.354796
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-clinic-1",
+        "cotonou-cotonou-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/11292030"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-community-notices",
+      "name": "Palais de la Marina",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.409071,
+        "lat": 6.351609
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-community-notices-1",
+        "cotonou-cotonou-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/272739399"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q106195578"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-community-voting-game",
+      "name": "Place de l'Amazone",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.407566,
+        "lat": 6.348986
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-community-voting-game-1",
+        "cotonou-cotonou-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1213287112"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-community-workshop",
+      "name": "Université d'Abomey-Calavi",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.341985,
+        "lat": 6.41609
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-community-workshop-1",
+        "cotonou-cotonou-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/347214829"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6979225"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-fondation-zinsou",
+      "name": "Fondation Zinsou",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.420686,
+        "lat": 6.362555
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-fondation-zinsou-1",
+        "cotonou-cotonou-fondation-zinsou-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5053364322"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3075592"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-jardin-botanique-et-zoologique",
+      "name": "Jardin Botanique et Zoologique Edouard Adjanohoun",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.342909,
+        "lat": 6.418466
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-jardin-botanique-et-zoologique-1",
+        "cotonou-cotonou-jardin-botanique-et-zoologique-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/347720256"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-marche-st-michel",
+      "name": "Marché St Michel",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.426409,
+        "lat": 6.369539
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-marche-st-michel-1",
+        "cotonou-cotonou-marche-st-michel-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/419117437"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-market-game",
+      "name": "Marché Dantokpa",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.433302,
+        "lat": 6.372737
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-market-game-1",
+        "cotonou-cotonou-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/241551999"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3015740"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-meal-stop",
+      "name": "Livingstone",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.3942,
+        "lat": 6.356769
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-meal-stop-1",
+        "cotonou-cotonou-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4185357026"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-mosquee-centrale-d-avotrou",
+      "name": "Mosquée centrale d'Avotrou",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.471423,
+        "lat": 6.376743
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-mosquee-centrale-d-avotrou-1",
+        "cotonou-cotonou-mosquee-centrale-d-avotrou-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3611726637"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-mosquee-centrale-de-godomey",
+      "name": "Mosquée centrale de Godomey",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.350453,
+        "lat": 6.391927
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-mosquee-centrale-de-godomey-1",
+        "cotonou-cotonou-mosquee-centrale-de-godomey-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3018655773"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-mosquee-zongo",
+      "name": "Mosquée Zongo Cotonou",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.426491,
+        "lat": 6.356845
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-mosquee-zongo-1",
+        "cotonou-cotonou-mosquee-zongo-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/361292644"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q66486534"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-place-lenine",
+      "name": "Place Lénine",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.44691,
+        "lat": 6.369904
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-place-lenine-1",
+        "cotonou-cotonou-place-lenine-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4208098206"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q66481384"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-pole-commercial-tokpa-yoyo",
+      "name": "Pôle Commercial Tokpa Yôyô",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.376602,
+        "lat": 6.387171
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-pole-commercial-tokpa-yoyo-1",
+        "cotonou-cotonou-pole-commercial-tokpa-yoyo-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1518300776"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-quiet-reflection",
+      "name": "Notre-Dame de Miséricorde",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.43917,
+        "lat": 6.356351
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-quiet-reflection-1",
+        "cotonou-cotonou-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/443576927"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2942229"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-recreation",
+      "name": "Parc Cardinal Bernardin Gantin",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.407498,
+        "lat": 6.354935
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-recreation-1",
+        "cotonou-cotonou-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/418336021"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-stade-de-l-amitie",
+      "name": "Stade de l'Amitié Mathieu Kérékou",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.380002,
+        "lat": 6.386049
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-stade-de-l-amitie-1",
+        "cotonou-cotonou-stade-de-l-amitie-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1301709209"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q927991"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-transit",
+      "name": "Gare routière",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.380005,
+        "lat": 6.380274
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-transit-1",
+        "cotonou-cotonou-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/836143299"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cotonou-universite-des-sciences-et-technologies",
+      "name": "Université des Sciences et Technologies du Bénin",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.456707,
+        "lat": 6.382711
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cotonou-cotonou-universite-des-sciences-et-technologies-1",
+        "cotonou-cotonou-universite-des-sciences-et-technologies-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cotonou/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/591442875"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3011789"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.404355,
+        "lat": 6.36298
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "cotonou-cotonou-africa-land-1",
+      "venueId": "cotonou-africa-land",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-africa-land-2",
+      "venueId": "cotonou-africa-land",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-airport-cotonou-airport-1",
+      "venueId": "cotonou-airport-cotonou-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-airport-cotonou-airport-2",
+      "venueId": "cotonou-airport-cotonou-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-centre-de-promotion-de-l-artisanat-1",
+      "venueId": "cotonou-centre-de-promotion-de-l-artisanat",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-centre-de-promotion-de-l-artisanat-2",
+      "venueId": "cotonou-centre-de-promotion-de-l-artisanat",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-centre-international-de-conference-1",
+      "venueId": "cotonou-centre-international-de-conference",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-centre-international-de-conference-2",
+      "venueId": "cotonou-centre-international-de-conference",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-clinic-1",
+      "venueId": "cotonou-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-clinic-2",
+      "venueId": "cotonou-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-community-notices-1",
+      "venueId": "cotonou-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-community-notices-2",
+      "venueId": "cotonou-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-community-voting-game-1",
+      "venueId": "cotonou-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-community-voting-game-2",
+      "venueId": "cotonou-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-community-workshop-1",
+      "venueId": "cotonou-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-community-workshop-2",
+      "venueId": "cotonou-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-fondation-zinsou-1",
+      "venueId": "cotonou-fondation-zinsou",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-fondation-zinsou-2",
+      "venueId": "cotonou-fondation-zinsou",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-jardin-botanique-et-zoologique-1",
+      "venueId": "cotonou-jardin-botanique-et-zoologique",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-jardin-botanique-et-zoologique-2",
+      "venueId": "cotonou-jardin-botanique-et-zoologique",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-marche-st-michel-1",
+      "venueId": "cotonou-marche-st-michel",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-marche-st-michel-2",
+      "venueId": "cotonou-marche-st-michel",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-market-game-1",
+      "venueId": "cotonou-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-market-game-2",
+      "venueId": "cotonou-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-meal-stop-1",
+      "venueId": "cotonou-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-meal-stop-2",
+      "venueId": "cotonou-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-mosquee-centrale-d-avotrou-1",
+      "venueId": "cotonou-mosquee-centrale-d-avotrou",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-mosquee-centrale-d-avotrou-2",
+      "venueId": "cotonou-mosquee-centrale-d-avotrou",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-mosquee-centrale-de-godomey-1",
+      "venueId": "cotonou-mosquee-centrale-de-godomey",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-mosquee-centrale-de-godomey-2",
+      "venueId": "cotonou-mosquee-centrale-de-godomey",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-mosquee-zongo-1",
+      "venueId": "cotonou-mosquee-zongo",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-mosquee-zongo-2",
+      "venueId": "cotonou-mosquee-zongo",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-place-lenine-1",
+      "venueId": "cotonou-place-lenine",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-place-lenine-2",
+      "venueId": "cotonou-place-lenine",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-pole-commercial-tokpa-yoyo-1",
+      "venueId": "cotonou-pole-commercial-tokpa-yoyo",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-pole-commercial-tokpa-yoyo-2",
+      "venueId": "cotonou-pole-commercial-tokpa-yoyo",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-quiet-reflection-1",
+      "venueId": "cotonou-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-quiet-reflection-2",
+      "venueId": "cotonou-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-recreation-1",
+      "venueId": "cotonou-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-recreation-2",
+      "venueId": "cotonou-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-stade-de-l-amitie-1",
+      "venueId": "cotonou-stade-de-l-amitie",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-stade-de-l-amitie-2",
+      "venueId": "cotonou-stade-de-l-amitie",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-transit-1",
+      "venueId": "cotonou-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-transit-2",
+      "venueId": "cotonou-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-universite-des-sciences-et-technologies-1",
+      "venueId": "cotonou-universite-des-sciences-et-technologies",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    },
+    {
+      "id": "cotonou-cotonou-universite-des-sciences-et-technologies-2",
+      "venueId": "cotonou-universite-des-sciences-et-technologies",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cotonou/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "cotonou-africa-land",
+    "cotonou-airport-cotonou-airport",
+    "cotonou-centre-de-promotion-de-l-artisanat",
+    "cotonou-centre-international-de-conference",
+    "cotonou-clinic",
+    "cotonou-community-notices",
+    "cotonou-community-voting-game",
+    "cotonou-community-workshop",
+    "cotonou-fondation-zinsou",
+    "cotonou-jardin-botanique-et-zoologique",
+    "cotonou-marche-st-michel",
+    "cotonou-market-game",
+    "cotonou-meal-stop",
+    "cotonou-mosquee-centrale-d-avotrou",
+    "cotonou-mosquee-centrale-de-godomey",
+    "cotonou-mosquee-zongo",
+    "cotonou-place-lenine",
+    "cotonou-pole-commercial-tokpa-yoyo",
+    "cotonou-quiet-reflection",
+    "cotonou-recreation",
+    "cotonou-stade-de-l-amitie",
+    "cotonou-transit",
+    "cotonou-universite-des-sciences-et-technologies"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "814e1fc3e02a6aa9f8e0f91df5853af0edf2e4a689cac0fc38ec1d56f14e3bd3",
+    "contentSha256": "da4fef2f565005d3e4ecb55792378e2fdc68b3287b249f975a602c1afafe9d85"
+  }
+}

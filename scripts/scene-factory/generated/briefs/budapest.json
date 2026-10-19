@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "budapest",
+    "name": "Budapest",
+    "state": {
+      "id": "hu-budapest",
+      "name": "Budapest"
+    },
+    "country": {
+      "id": "hu",
+      "name": "Hungary"
+    },
+    "point": {
+      "lon": 19.0402383,
+      "lat": 47.4978789
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/hungary-261011.osm.pbf",
+      "https://ourairports.com/airports/LHBP/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/budapest/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/budapest/facts.ts",
+        "sha256": "d8e3687aedb0f0a81975b043b7cb254d4b28e5fc2a468ae2377fb1137ece5d30"
+      },
+      {
+        "path": "src/game/cities/budapest/index.ts",
+        "sha256": "ac5639bdc609d9956cf7dfdeec91429165a8aa6bc0af6bffd2876f2b4703ff55"
+      },
+      {
+        "path": "src/game/cities/budapest/places.ts",
+        "sha256": "55a5903df444e5f5e51f055957e72f996c99068d90a089749895c792e7083632"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "budapest-airport-budapest-airport",
+      "name": "Budapest Liszt Ferenc International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.262393,
+        "lat": 47.43018
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-airport-budapest-airport-1",
+        "budapest-budapest-airport-budapest-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "budapest-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-clinic",
+      "name": "Bajcsy-Zsilinszky Kórház és Rendelőintézet",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.162151,
+        "lat": 47.478491
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-clinic-1",
+        "budapest-budapest-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/550331255"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q788687"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-community-notices",
+      "name": "Információs Hivatal",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.958794,
+        "lat": 47.526999
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-community-notices-1",
+        "budapest-budapest-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/3937951"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1097071"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-community-voting-game",
+      "name": "Városháza",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.089758,
+        "lat": 47.562189
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-community-voting-game-1",
+        "budapest-budapest-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/1764049"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1462162"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-community-workshop",
+      "name": "Vécsey Lakótelepi Könyvtár",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.128702,
+        "lat": 47.429339
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-community-workshop-1",
+        "budapest-budapest-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/650854022"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q620968"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-market-game",
+      "name": "Campona",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.017501,
+        "lat": 47.407172
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-market-game-1",
+        "budapest-budapest-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/105668758"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q57978010"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-meal-stop",
+      "name": "Gerbeaud Confectionary",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.050339,
+        "lat": 47.497007
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-meal-stop-1",
+        "budapest-budapest-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/276510449"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q464845"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-osm-node-1996688188",
+      "name": "Zsíros-hegyi Turistaház romja",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.900798,
+        "lat": 47.590265
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-osm-node-1996688188-1",
+        "budapest-budapest-osm-node-1996688188-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1996688188"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1468344"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-osm-node-3266194398",
+      "name": "Nagy-Kevély",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.984602,
+        "lat": 47.622715
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-osm-node-3266194398-1",
+        "budapest-budapest-osm-node-3266194398-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3266194398"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q110254041"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-osm-relation-17929549",
+      "name": "Szent László Kórház",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.09181,
+        "lat": 47.473558
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-osm-relation-17929549-1",
+        "budapest-budapest-osm-relation-17929549-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/17929549"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q81705285"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-osm-relation-7883285",
+      "name": "Szent János Kórház",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.004948,
+        "lat": 47.509691
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-osm-relation-7883285-1",
+        "budapest-budapest-osm-relation-7883285-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/7883285"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30280195"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-osm-way-106940773",
+      "name": "Veresegyház Bear Sanctuary",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.255042,
+        "lat": 47.631216
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-osm-way-106940773-1",
+        "budapest-budapest-osm-way-106940773-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/106940773"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1421031"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-osm-way-115967431",
+      "name": "Szeplőtelen Fogantatás kápolna",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.956547,
+        "lat": 47.465073
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-osm-way-115967431-1",
+        "budapest-budapest-osm-way-115967431-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/115967431"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1297355"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-osm-way-117107475",
+      "name": "Szent Imre tér",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.06909,
+        "lat": 47.431248
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-osm-way-117107475-1",
+        "budapest-budapest-osm-way-117107475-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/117107475"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q108170226"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-osm-way-1522779060",
+      "name": "Budapest University of Economics, Faculty of Finance and Accounting",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.124449,
+        "lat": 47.508309
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-osm-way-1522779060-1",
+        "budapest-budapest-osm-way-1522779060-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1522779060"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q787329"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-osm-way-178875079",
+      "name": "Barcza-kastély",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.787472,
+        "lat": 47.404496
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-osm-way-178875079-1",
+        "budapest-budapest-osm-way-178875079-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/178875079"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q790373"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-osm-way-24254652",
+      "name": "Flórián Üzletközpont",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.040715,
+        "lat": 47.542428
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-osm-way-24254652-1",
+        "budapest-budapest-osm-way-24254652-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/24254652"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q61360111"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-osm-way-246472477",
+      "name": "Magyar Táncművészeti Főiskola",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.092473,
+        "lat": 47.520318
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-osm-way-246472477-1",
+        "budapest-budapest-osm-way-246472477-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/246472477"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15148601"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-osm-way-26763446",
+      "name": "Shopmark",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.129124,
+        "lat": 47.463099
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-osm-way-26763446-1",
+        "budapest-budapest-osm-way-26763446-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/26763446"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q992811"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-osm-way-353853403",
+      "name": "Nepomuki Szent János-kápolna",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.139221,
+        "lat": 47.624081
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-osm-way-353853403-1",
+        "budapest-budapest-osm-way-353853403-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/353853403"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q97197280"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-osm-way-376863655",
+      "name": "Guckler Károly-kilátópont",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.998864,
+        "lat": 47.555541
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-osm-way-376863655-1",
+        "budapest-budapest-osm-way-376863655-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/376863655"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q26422279"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-osm-way-742639578",
+      "name": "Mátyás király tér",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.201569,
+        "lat": 47.511857
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-osm-way-742639578-1",
+        "budapest-budapest-osm-way-742639578-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/742639578"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q80693345"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-quiet-reflection",
+      "name": "Keresztelő Szent János-templom",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.075652,
+        "lat": 47.668217
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-quiet-reflection-1",
+        "budapest-budapest-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/75922434"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1107406"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-recreation",
+      "name": "Hősök tere",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.25971,
+        "lat": 47.490184
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-recreation-1",
+        "budapest-budapest-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/2453420"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q299978"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "budapest-transit",
+      "name": "Érd, autóbusz-állomás",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.925341,
+        "lat": 47.379503
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "budapest-budapest-transit-1",
+        "budapest-budapest-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/budapest/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/158341222"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q137731978"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 19.0402383,
+        "lat": 47.4978789
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "budapest-budapest-airport-budapest-airport-1",
+      "venueId": "budapest-airport-budapest-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-airport-budapest-airport-2",
+      "venueId": "budapest-airport-budapest-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-clinic-1",
+      "venueId": "budapest-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-clinic-2",
+      "venueId": "budapest-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-community-notices-1",
+      "venueId": "budapest-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-community-notices-2",
+      "venueId": "budapest-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-community-voting-game-1",
+      "venueId": "budapest-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-community-voting-game-2",
+      "venueId": "budapest-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-community-workshop-1",
+      "venueId": "budapest-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-community-workshop-2",
+      "venueId": "budapest-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-market-game-1",
+      "venueId": "budapest-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-market-game-2",
+      "venueId": "budapest-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-meal-stop-1",
+      "venueId": "budapest-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-meal-stop-2",
+      "venueId": "budapest-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-node-1996688188-1",
+      "venueId": "budapest-osm-node-1996688188",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-node-1996688188-2",
+      "venueId": "budapest-osm-node-1996688188",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-node-3266194398-1",
+      "venueId": "budapest-osm-node-3266194398",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-node-3266194398-2",
+      "venueId": "budapest-osm-node-3266194398",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-relation-17929549-1",
+      "venueId": "budapest-osm-relation-17929549",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-relation-17929549-2",
+      "venueId": "budapest-osm-relation-17929549",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-relation-7883285-1",
+      "venueId": "budapest-osm-relation-7883285",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-relation-7883285-2",
+      "venueId": "budapest-osm-relation-7883285",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-106940773-1",
+      "venueId": "budapest-osm-way-106940773",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-106940773-2",
+      "venueId": "budapest-osm-way-106940773",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-115967431-1",
+      "venueId": "budapest-osm-way-115967431",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-115967431-2",
+      "venueId": "budapest-osm-way-115967431",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-117107475-1",
+      "venueId": "budapest-osm-way-117107475",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-117107475-2",
+      "venueId": "budapest-osm-way-117107475",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-1522779060-1",
+      "venueId": "budapest-osm-way-1522779060",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-1522779060-2",
+      "venueId": "budapest-osm-way-1522779060",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-178875079-1",
+      "venueId": "budapest-osm-way-178875079",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-178875079-2",
+      "venueId": "budapest-osm-way-178875079",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-24254652-1",
+      "venueId": "budapest-osm-way-24254652",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-24254652-2",
+      "venueId": "budapest-osm-way-24254652",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-246472477-1",
+      "venueId": "budapest-osm-way-246472477",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-246472477-2",
+      "venueId": "budapest-osm-way-246472477",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-26763446-1",
+      "venueId": "budapest-osm-way-26763446",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-26763446-2",
+      "venueId": "budapest-osm-way-26763446",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-353853403-1",
+      "venueId": "budapest-osm-way-353853403",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-353853403-2",
+      "venueId": "budapest-osm-way-353853403",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-376863655-1",
+      "venueId": "budapest-osm-way-376863655",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-376863655-2",
+      "venueId": "budapest-osm-way-376863655",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-742639578-1",
+      "venueId": "budapest-osm-way-742639578",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-osm-way-742639578-2",
+      "venueId": "budapest-osm-way-742639578",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-quiet-reflection-1",
+      "venueId": "budapest-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-quiet-reflection-2",
+      "venueId": "budapest-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-recreation-1",
+      "venueId": "budapest-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-recreation-2",
+      "venueId": "budapest-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-transit-1",
+      "venueId": "budapest-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    },
+    {
+      "id": "budapest-budapest-transit-2",
+      "venueId": "budapest-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/budapest/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "budapest-airport-budapest-airport",
+    "budapest-clinic",
+    "budapest-community-notices",
+    "budapest-community-voting-game",
+    "budapest-community-workshop",
+    "budapest-market-game",
+    "budapest-meal-stop",
+    "budapest-osm-node-1996688188",
+    "budapest-osm-node-3266194398",
+    "budapest-osm-relation-17929549",
+    "budapest-osm-relation-7883285",
+    "budapest-osm-way-106940773",
+    "budapest-osm-way-115967431",
+    "budapest-osm-way-117107475",
+    "budapest-osm-way-1522779060",
+    "budapest-osm-way-178875079",
+    "budapest-osm-way-24254652",
+    "budapest-osm-way-246472477",
+    "budapest-osm-way-26763446",
+    "budapest-osm-way-353853403",
+    "budapest-osm-way-376863655",
+    "budapest-osm-way-742639578",
+    "budapest-quiet-reflection",
+    "budapest-recreation",
+    "budapest-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "8be15725ffb9f2aebbd0ad389b9df222a83d5c0ff6603fa173aac5f030ad974e",
+    "contentSha256": "2465794ca6141668e1b26c781e3829635e1d71a1f4ad44598ba71bad9da1f007"
+  }
+}

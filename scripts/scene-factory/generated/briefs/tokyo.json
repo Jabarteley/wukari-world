@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "tokyo",
+    "name": "Tokyo",
+    "state": {
+      "id": "jp-tokyo",
+      "name": "Tokyo"
+    },
+    "country": {
+      "id": "jp",
+      "name": "Japan"
+    },
+    "point": {
+      "lon": 139.7638947,
+      "lat": 35.6768601
+    }
+  },
+  "style": {
+    "region": "east-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/japan-261011.osm.pbf",
+      "https://ourairports.com/airports/RJTT/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/tokyo/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/tokyo/facts.ts",
+        "sha256": "fd0707620e5b6509e6f073f7f9ccfeb36c54bce0871ade151fe60460ae6013d4"
+      },
+      {
+        "path": "src/game/cities/tokyo/index.ts",
+        "sha256": "02df2a83aa2d34a9ee8a00460220341d9dbd06541b54f79dd12a5105a8b8dc47"
+      },
+      {
+        "path": "src/game/cities/tokyo/places.ts",
+        "sha256": "b442c6f8f973104a46fb30b8c62bbb714a52257595165f9cb1570a9f582c445b"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.7638947,
+        "lat": 35.6768601
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "tokyo-airport-tokyo-airport",
+      "name": "Tokyo Haneda International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.786958,
+        "lat": 35.549678
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-airport-tokyo-airport-1",
+        "tokyo-tokyo-airport-tokyo-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "tokyo-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-clinic",
+      "name": "埼玉県済生会川口総合病院",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.703102,
+        "lat": 35.809559
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-clinic-1",
+        "tokyo-tokyo-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1420192273"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11426580"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-community-notices",
+      "name": "Tokyo Metropolitan Government Main Building 1",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.69171,
+        "lat": 35.689501
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-community-notices-1",
+        "tokyo-tokyo-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/89877471"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q111973"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-community-voting-game",
+      "name": "草加市役所",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.805363,
+        "lat": 35.825394
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-community-voting-game-1",
+        "tokyo-tokyo-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/351764142"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17222884"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-community-workshop",
+      "name": "Seibu Library",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.940694,
+        "lat": 35.798702
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-community-workshop-1",
+        "tokyo-tokyo-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/504907469"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11406355"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-market-game",
+      "name": "イオン新浦安ショッピングセンター",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.914895,
+        "lat": 35.648962
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-market-game-1",
+        "tokyo-tokyo-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/26322912"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11308174"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-meal-stop",
+      "name": "Tully's Coffee",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.731027,
+        "lat": 35.589041
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-meal-stop-1",
+        "tokyo-tokyo-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1447682003"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11316408"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-osm-node-11964372050",
+      "name": "高応寺",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.88284,
+        "lat": 35.848952
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-osm-node-11964372050-1",
+        "tokyo-tokyo-osm-node-11964372050-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11964372050"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q116419461"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-osm-node-1420782236",
+      "name": "Kyorin University Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.5669,
+        "lat": 35.677449
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-osm-node-1420782236-1",
+        "tokyo-tokyo-osm-node-1420782236-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1420782236"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11522606"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-osm-node-1420785573",
+      "name": "Metropolitan Elder Care Center",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.701856,
+        "lat": 35.750761
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-osm-node-1420785573-1",
+        "tokyo-tokyo-osm-node-1420785573-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1420785573"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11525257"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-osm-node-1420795772",
+      "name": "Daigo Fukuryu Maru Exhibition Hall",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.826352,
+        "lat": 35.650958
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-osm-node-1420795772-1",
+        "tokyo-tokyo-osm-node-1420795772-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1420795772"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11525586"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-osm-node-7064887959",
+      "name": "妙法寺",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.866708,
+        "lat": 35.734555
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-osm-node-7064887959-1",
+        "tokyo-tokyo-osm-node-7064887959-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7064887959"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q97206623"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-osm-node-9553352249",
+      "name": "川和富士塚遺跡",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.555981,
+        "lat": 35.534303
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-osm-node-9553352249-1",
+        "tokyo-tokyo-osm-node-9553352249-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/9553352249"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q111050165"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-osm-relation-15635177",
+      "name": "Higahi Ohgishima East Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.773623,
+        "lat": 35.504454
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-osm-relation-15635177-1",
+        "tokyo-tokyo-osm-relation-15635177-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/15635177"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11527049"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-osm-relation-18950099",
+      "name": "Tsurumi University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.672896,
+        "lat": 35.505465
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-osm-relation-18950099-1",
+        "tokyo-tokyo-osm-relation-18950099-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/18950099"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7850294"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-osm-relation-8135061",
+      "name": "Nakayama Race Course",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.961399,
+        "lat": 35.724945
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-osm-relation-8135061-1",
+        "tokyo-tokyo-osm-relation-8135061-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/8135061"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1055536"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-osm-way-119477713",
+      "name": "NISSAN Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.606383,
+        "lat": 35.509993
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-osm-way-119477713-1",
+        "tokyo-tokyo-osm-way-119477713-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/119477713"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q116601"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-osm-way-136302688",
+      "name": "十文字学園女子大学",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.550701,
+        "lat": 35.799703
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-osm-way-136302688-1",
+        "tokyo-tokyo-osm-way-136302688-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/136302688"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6311016"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-osm-way-1486519713",
+      "name": "Onarimon Gate",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.749897,
+        "lat": 35.659528
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-osm-way-1486519713-1",
+        "tokyo-tokyo-osm-way-1486519713-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1486519713"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q10856360"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-osm-way-214703224",
+      "name": "Musashi-Kosugi Tokyu Square",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.659201,
+        "lat": 35.575905
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-osm-way-214703224-1",
+        "tokyo-tokyo-osm-way-214703224-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/214703224"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q65271980"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-osm-way-459589547",
+      "name": "秋ヶ瀬公園",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.604398,
+        "lat": 35.848543
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-osm-way-459589547-1",
+        "tokyo-tokyo-osm-way-459589547-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/459589547"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4700903"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-osm-way-463900052",
+      "name": "Sankyo Frontier Kashiwa Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.975052,
+        "lat": 35.848479
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-osm-way-463900052-1",
+        "tokyo-tokyo-osm-way-463900052-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/463900052"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1366075"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-quiet-reflection",
+      "name": "観音寺",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.60163,
+        "lat": 35.623621
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-quiet-reflection-1",
+        "tokyo-tokyo-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/610939786"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q97173559"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-recreation",
+      "name": "Shakujii Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.600009,
+        "lat": 35.738466
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-recreation-1",
+        "tokyo-tokyo-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/2658286"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4388784"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tokyo-transit",
+      "name": "Nippori",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 139.770982,
+        "lat": 35.72838
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tokyo-tokyo-transit-1",
+        "tokyo-tokyo-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tokyo/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/172670767"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q124799427"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "tokyo-tokyo-airport-tokyo-airport-1",
+      "venueId": "tokyo-airport-tokyo-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-airport-tokyo-airport-2",
+      "venueId": "tokyo-airport-tokyo-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-clinic-1",
+      "venueId": "tokyo-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-clinic-2",
+      "venueId": "tokyo-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-community-notices-1",
+      "venueId": "tokyo-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-community-notices-2",
+      "venueId": "tokyo-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-community-voting-game-1",
+      "venueId": "tokyo-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-community-voting-game-2",
+      "venueId": "tokyo-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-community-workshop-1",
+      "venueId": "tokyo-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-community-workshop-2",
+      "venueId": "tokyo-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-market-game-1",
+      "venueId": "tokyo-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-market-game-2",
+      "venueId": "tokyo-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-meal-stop-1",
+      "venueId": "tokyo-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-meal-stop-2",
+      "venueId": "tokyo-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-node-11964372050-1",
+      "venueId": "tokyo-osm-node-11964372050",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-node-11964372050-2",
+      "venueId": "tokyo-osm-node-11964372050",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-node-1420782236-1",
+      "venueId": "tokyo-osm-node-1420782236",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-node-1420782236-2",
+      "venueId": "tokyo-osm-node-1420782236",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-node-1420785573-1",
+      "venueId": "tokyo-osm-node-1420785573",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-node-1420785573-2",
+      "venueId": "tokyo-osm-node-1420785573",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-node-1420795772-1",
+      "venueId": "tokyo-osm-node-1420795772",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-node-1420795772-2",
+      "venueId": "tokyo-osm-node-1420795772",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-node-7064887959-1",
+      "venueId": "tokyo-osm-node-7064887959",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-node-7064887959-2",
+      "venueId": "tokyo-osm-node-7064887959",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-node-9553352249-1",
+      "venueId": "tokyo-osm-node-9553352249",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-node-9553352249-2",
+      "venueId": "tokyo-osm-node-9553352249",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-relation-15635177-1",
+      "venueId": "tokyo-osm-relation-15635177",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-relation-15635177-2",
+      "venueId": "tokyo-osm-relation-15635177",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-relation-18950099-1",
+      "venueId": "tokyo-osm-relation-18950099",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-relation-18950099-2",
+      "venueId": "tokyo-osm-relation-18950099",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-relation-8135061-1",
+      "venueId": "tokyo-osm-relation-8135061",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-relation-8135061-2",
+      "venueId": "tokyo-osm-relation-8135061",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-way-119477713-1",
+      "venueId": "tokyo-osm-way-119477713",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-way-119477713-2",
+      "venueId": "tokyo-osm-way-119477713",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-way-136302688-1",
+      "venueId": "tokyo-osm-way-136302688",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-way-136302688-2",
+      "venueId": "tokyo-osm-way-136302688",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-way-1486519713-1",
+      "venueId": "tokyo-osm-way-1486519713",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-way-1486519713-2",
+      "venueId": "tokyo-osm-way-1486519713",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-way-214703224-1",
+      "venueId": "tokyo-osm-way-214703224",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-way-214703224-2",
+      "venueId": "tokyo-osm-way-214703224",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-way-459589547-1",
+      "venueId": "tokyo-osm-way-459589547",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-way-459589547-2",
+      "venueId": "tokyo-osm-way-459589547",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-way-463900052-1",
+      "venueId": "tokyo-osm-way-463900052",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-osm-way-463900052-2",
+      "venueId": "tokyo-osm-way-463900052",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-quiet-reflection-1",
+      "venueId": "tokyo-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-quiet-reflection-2",
+      "venueId": "tokyo-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-recreation-1",
+      "venueId": "tokyo-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-recreation-2",
+      "venueId": "tokyo-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-transit-1",
+      "venueId": "tokyo-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    },
+    {
+      "id": "tokyo-tokyo-transit-2",
+      "venueId": "tokyo-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tokyo/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "tokyo-airport-tokyo-airport",
+    "tokyo-clinic",
+    "tokyo-community-notices",
+    "tokyo-community-voting-game",
+    "tokyo-community-workshop",
+    "tokyo-market-game",
+    "tokyo-meal-stop",
+    "tokyo-osm-node-11964372050",
+    "tokyo-osm-node-1420782236",
+    "tokyo-osm-node-1420785573",
+    "tokyo-osm-node-1420795772",
+    "tokyo-osm-node-7064887959",
+    "tokyo-osm-node-9553352249",
+    "tokyo-osm-relation-15635177",
+    "tokyo-osm-relation-18950099",
+    "tokyo-osm-relation-8135061",
+    "tokyo-osm-way-119477713",
+    "tokyo-osm-way-136302688",
+    "tokyo-osm-way-1486519713",
+    "tokyo-osm-way-214703224",
+    "tokyo-osm-way-459589547",
+    "tokyo-osm-way-463900052",
+    "tokyo-quiet-reflection",
+    "tokyo-recreation",
+    "tokyo-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "101ce3d5592e016b257aebf670e75689181b628631a882c56309d84332c055e3",
+    "contentSha256": "28f5a07f47e8c2172b02e42ff43f8215a505b378414d264198e4cd9ee4f5fc73"
+  }
+}

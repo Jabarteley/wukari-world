@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "antananarivo",
+  "url": "/assets/scene-heroes/antananarivo.glb",
+  "sha256": "29c1f132f62d67d1fc28642921e65d7df58ed09d2bce522a2f3780b47a1f9165",
+  "rawBytes": 29428,
+  "brotliBytes": 18982,
+  "triangles": 864,
+  "parts": [
+    {
+      "node": "antananarivo",
+      "triangles": 864,
+      "bounds": {
+        "min": [
+          -2.04987049,
+          0,
+          -1.73251319
+        ],
+        "max": [
+          2.0498705890129996,
+          2.4999336738899998,
+          1.7326100915169997
+        ]
+      },
+      "footprint": [
+        -2.04987049,
+        -1.73251319,
+        2.0498705890129996,
+        1.7326100915169997
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "eb1da2ff73fd74822f0ec6ae91ad86f7f138d29bce17620a759c0240fa9f26aa"
+  },
+  "inputs": {
+    "rawSha256": "6ca1ab733d07e587c8eddf4c3997b2ff6ffe878d64d625cfa83b639e8c0b9d9e",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "antananarivo",
+      "country": "mg",
+      "name": "Marché Communale Alakamisy",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/1280878984"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=antananarivo]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 181070,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Exact candidate/name alias match and amenity=marketplace support feature identity/category. Object way/1280878984, version 1, timestamp 2024-05-08T13:32:52Z; response SHA256 580b2c76ddc70dba4d252d04d80a58abd5f72ed1884e329d4d3dff7fc01f79ba. Source path: src/game/cities/antananarivo/places.ts. Empty counters, racks and awnings indicate trade. No goods, original shop plan, actual number of stalls or current operation are inferred. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "swahili-coast"
+      }
+    },
+    "styleSha256": "25ea3f7a02195f54183a5305029384bb7477246b319ad54b540ffac7f712b0c3"
+  }
+}

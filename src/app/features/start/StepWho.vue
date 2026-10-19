@@ -55,5 +55,8 @@ const nativeOf = (look: Look) => nativeRecipeForLook(look, 'preset')
 .cr-preset-outfit{width:28px;height:22px;border-radius:5px 5px 3px 3px}
 .cr-preset-details{max-width:100%;color:#56717a;font-size:10px;line-height:1.2;text-align:left}
 .cr-body-choice{display:grid;gap:6px;flex:1;min-width:180px;font-size:13px;font-weight:650;color:#56717a}
+/* The row sits on the segment's bottom edge, and the button is the segment's height: the two line up, not the label. */
+.cr-row{align-items:flex-end}
+.cr-row>.cr-btn{min-height:54px}
 @container cr (max-width:420px){.cr-preset-details{font-size:11px}}
 </style>

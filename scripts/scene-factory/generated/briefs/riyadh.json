@@ -1,0 +1,2131 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "riyadh",
+    "name": "Riyadh",
+    "state": {
+      "id": "sa-riyadh",
+      "name": "Riyadh"
+    },
+    "country": {
+      "id": "sa",
+      "name": "Saudi Arabia"
+    },
+    "point": {
+      "lon": 46.7160104,
+      "lat": 24.638916
+    }
+  },
+  "style": {
+    "region": "south-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/gcc-states-261011.osm.pbf",
+      "https://ourairports.com/airports/OERK/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/riyadh/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/riyadh/facts.ts",
+        "sha256": "0a8d203850d9875a3c612ff52628f43bc86c4ce1034dd2d7bb57527e147c4f05"
+      },
+      {
+        "path": "src/game/cities/riyadh/index.ts",
+        "sha256": "98b03c5102f5cd85cff6b74801a86440421d4283e3202f2d659da3d2b7cf65ca"
+      },
+      {
+        "path": "src/game/cities/riyadh/places.ts",
+        "sha256": "721385c80dc7317b75d031074a1d888268dcb4fd5e44d424b36917648fc797b1"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.7160104,
+        "lat": 24.638916
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "riyadh-airport-riyadh-airport",
+      "name": "King Khalid International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.698799,
+        "lat": 24.9576
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-airport-riyadh-airport-1",
+        "riyadh-riyadh-airport-riyadh-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "riyadh-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-clinic",
+      "name": "King Fahad Medical City",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.705281,
+        "lat": 24.68764
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-clinic-1",
+        "riyadh-riyadh-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/53193801"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6411562"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-community-notices",
+      "name": "Ministry of Foreign Affairs",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.692367,
+        "lat": 24.649225
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-community-notices-1",
+        "riyadh-riyadh-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/302308518"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6867032"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-community-voting-game",
+      "name": "Deera Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.711857,
+        "lat": 24.630793
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-community-voting-game-1",
+        "riyadh-riyadh-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1385940115"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3704686"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-community-workshop",
+      "name": "King Saud University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.623394,
+        "lat": 24.724414
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-community-workshop-1",
+        "riyadh-riyadh-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/13296000"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1752043"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-market-game",
+      "name": "Sahara Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.682735,
+        "lat": 24.738745
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-market-game-1",
+        "riyadh-riyadh-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/220845002"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7399501"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-meal-stop",
+      "name": "Firdays",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.759759,
+        "lat": 24.76759
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-meal-stop-1",
+        "riyadh-riyadh-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/586570960"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-osm-node-3351034516",
+      "name": "Boeing 707-386C",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.737357,
+        "lat": 24.753476
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-osm-node-3351034516-1",
+        "riyadh-riyadh-osm-node-3351034516-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3351034516"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6394"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-osm-way-1193082860",
+      "name": "Prince Sultan Military Medical City",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.714262,
+        "lat": 24.692203
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-osm-way-1193082860-1",
+        "riyadh-riyadh-osm-way-1193082860-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1193082860"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q16123520"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-osm-way-119616744",
+      "name": "King Fahd International Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.839144,
+        "lat": 24.788553
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-osm-way-119616744-1",
+        "riyadh-riyadh-osm-way-119616744-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/119616744"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q763077"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-osm-way-161100723",
+      "name": "Granada Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.73123,
+        "lat": 24.781805
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-osm-way-161100723-1",
+        "riyadh-riyadh-osm-way-161100723-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/161100723"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5594094"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-osm-way-161612193",
+      "name": "Princess Nora bint Abdulrahman University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.71834,
+        "lat": 24.851741
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-osm-way-161612193-1",
+        "riyadh-riyadh-osm-way-161612193-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/161612193"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4118886"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-osm-way-168522856",
+      "name": "Suwaidi Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.694994,
+        "lat": 24.597027
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-osm-way-168522856-1",
+        "riyadh-riyadh-osm-way-168522856-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/168522856"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q114818630"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-osm-way-221634202",
+      "name": "Al Yamamah University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.592069,
+        "lat": 24.862785
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-osm-way-221634202-1",
+        "riyadh-riyadh-osm-way-221634202-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/221634202"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4703347"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-osm-way-264745917",
+      "name": "Kingdom Centre",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.674356,
+        "lat": 24.711365
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-osm-way-264745917-1",
+        "riyadh-riyadh-osm-way-264745917-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/264745917"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q656743"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-osm-way-328365837",
+      "name": "Riyadh College of Technology",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.703016,
+        "lat": 24.731718
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-osm-way-328365837-1",
+        "riyadh-riyadh-osm-way-328365837-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/328365837"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7339026"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-osm-way-329990284",
+      "name": "Yamamah Palace",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.640586,
+        "lat": 24.665352
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-osm-way-329990284-1",
+        "riyadh-riyadh-osm-way-329990284-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/329990284"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17621052"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-osm-way-331075149",
+      "name": "Medical City",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.861258,
+        "lat": 24.751396
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-osm-way-331075149-1",
+        "riyadh-riyadh-osm-way-331075149-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/331075149"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6411203"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-osm-way-441769548",
+      "name": "King Abdullah Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.736846,
+        "lat": 24.666544
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-osm-way-441769548-1",
+        "riyadh-riyadh-osm-way-441769548-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/441769548"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q106855848"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-osm-way-53157805",
+      "name": "Prince Faisal bin Fahd Sports City Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.739848,
+        "lat": 24.66262
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-osm-way-53157805-1",
+        "riyadh-riyadh-osm-way-53157805-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/53157805"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3273652"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-osm-way-623544763",
+      "name": "Al-Awwal Park",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.623774,
+        "lat": 24.729178
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-osm-way-623544763-1",
+        "riyadh-riyadh-osm-way-623544763-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/623544763"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20421103"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-osm-way-978220391",
+      "name": "At-Turaif District in ad-Dir'iyah",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.572739,
+        "lat": 24.733153
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-osm-way-978220391-1",
+        "riyadh-riyadh-osm-way-978220391-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/978220391"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q22687629"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-quiet-reflection",
+      "name": "مسجد",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.713701,
+        "lat": 24.52757
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-quiet-reflection-1",
+        "riyadh-riyadh-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4193342092"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-recreation",
+      "name": "King Salman Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.71966,
+        "lat": 24.722718
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-recreation-1",
+        "riyadh-riyadh-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/915570666"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q65066729"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "riyadh-transit",
+      "name": "Riyadh Railway Station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 46.740657,
+        "lat": 24.650469
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "riyadh-riyadh-transit-1",
+        "riyadh-riyadh-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/riyadh/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/492520789"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q30594324"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "riyadh-riyadh-airport-riyadh-airport-1",
+      "venueId": "riyadh-airport-riyadh-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-airport-riyadh-airport-2",
+      "venueId": "riyadh-airport-riyadh-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-clinic-1",
+      "venueId": "riyadh-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-clinic-2",
+      "venueId": "riyadh-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-community-notices-1",
+      "venueId": "riyadh-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-community-notices-2",
+      "venueId": "riyadh-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-community-voting-game-1",
+      "venueId": "riyadh-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-community-voting-game-2",
+      "venueId": "riyadh-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-community-workshop-1",
+      "venueId": "riyadh-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-community-workshop-2",
+      "venueId": "riyadh-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-market-game-1",
+      "venueId": "riyadh-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-market-game-2",
+      "venueId": "riyadh-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-meal-stop-1",
+      "venueId": "riyadh-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-meal-stop-2",
+      "venueId": "riyadh-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-node-3351034516-1",
+      "venueId": "riyadh-osm-node-3351034516",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-node-3351034516-2",
+      "venueId": "riyadh-osm-node-3351034516",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-1193082860-1",
+      "venueId": "riyadh-osm-way-1193082860",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-1193082860-2",
+      "venueId": "riyadh-osm-way-1193082860",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-119616744-1",
+      "venueId": "riyadh-osm-way-119616744",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-119616744-2",
+      "venueId": "riyadh-osm-way-119616744",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-161100723-1",
+      "venueId": "riyadh-osm-way-161100723",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-161100723-2",
+      "venueId": "riyadh-osm-way-161100723",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-161612193-1",
+      "venueId": "riyadh-osm-way-161612193",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-161612193-2",
+      "venueId": "riyadh-osm-way-161612193",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-168522856-1",
+      "venueId": "riyadh-osm-way-168522856",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-168522856-2",
+      "venueId": "riyadh-osm-way-168522856",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-221634202-1",
+      "venueId": "riyadh-osm-way-221634202",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-221634202-2",
+      "venueId": "riyadh-osm-way-221634202",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-264745917-1",
+      "venueId": "riyadh-osm-way-264745917",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-264745917-2",
+      "venueId": "riyadh-osm-way-264745917",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-328365837-1",
+      "venueId": "riyadh-osm-way-328365837",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-328365837-2",
+      "venueId": "riyadh-osm-way-328365837",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-329990284-1",
+      "venueId": "riyadh-osm-way-329990284",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-329990284-2",
+      "venueId": "riyadh-osm-way-329990284",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-331075149-1",
+      "venueId": "riyadh-osm-way-331075149",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-331075149-2",
+      "venueId": "riyadh-osm-way-331075149",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-441769548-1",
+      "venueId": "riyadh-osm-way-441769548",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-441769548-2",
+      "venueId": "riyadh-osm-way-441769548",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-53157805-1",
+      "venueId": "riyadh-osm-way-53157805",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-53157805-2",
+      "venueId": "riyadh-osm-way-53157805",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-623544763-1",
+      "venueId": "riyadh-osm-way-623544763",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-623544763-2",
+      "venueId": "riyadh-osm-way-623544763",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-978220391-1",
+      "venueId": "riyadh-osm-way-978220391",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-osm-way-978220391-2",
+      "venueId": "riyadh-osm-way-978220391",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-quiet-reflection-1",
+      "venueId": "riyadh-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-quiet-reflection-2",
+      "venueId": "riyadh-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-recreation-1",
+      "venueId": "riyadh-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-recreation-2",
+      "venueId": "riyadh-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-transit-1",
+      "venueId": "riyadh-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    },
+    {
+      "id": "riyadh-riyadh-transit-2",
+      "venueId": "riyadh-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/riyadh/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "riyadh-airport-riyadh-airport",
+    "riyadh-clinic",
+    "riyadh-community-notices",
+    "riyadh-community-voting-game",
+    "riyadh-community-workshop",
+    "riyadh-market-game",
+    "riyadh-meal-stop",
+    "riyadh-osm-node-3351034516",
+    "riyadh-osm-way-1193082860",
+    "riyadh-osm-way-119616744",
+    "riyadh-osm-way-161100723",
+    "riyadh-osm-way-161612193",
+    "riyadh-osm-way-168522856",
+    "riyadh-osm-way-221634202",
+    "riyadh-osm-way-264745917",
+    "riyadh-osm-way-328365837",
+    "riyadh-osm-way-329990284",
+    "riyadh-osm-way-331075149",
+    "riyadh-osm-way-441769548",
+    "riyadh-osm-way-53157805",
+    "riyadh-osm-way-623544763",
+    "riyadh-osm-way-978220391",
+    "riyadh-quiet-reflection",
+    "riyadh-recreation",
+    "riyadh-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "760a4959fb93742132c01ab0cf8dbf62a856025a7755f4c4cb6e68954e5de9fe",
+    "contentSha256": "2d74170ed02b4abdbc1349818abfaafadb7b22f0d6eaaf3befae45b34b08aebc"
+  }
+}

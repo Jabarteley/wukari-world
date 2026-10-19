@@ -73,6 +73,11 @@ its own policy: no network, no pictures, no frames. It runs in a worker that is 
 endless loop stops only the script. Every move it asks for is checked before it happens: only the space's own models, only within
 60 metres of the plot, only known sounds. It never sees the player's account, money or messages.
 
+## Worlds
+
+A player's own world — open ground of a chosen size and surface, their models, their script, friends by a link, open worlds listed for
+everyone — is the same screen with no house: docs/WORLDS.md.
+
 ## Together (phase 5)
 
 Everyone who opens the same space in 3D is in it together (at most 16). Each sees the others walk about, with their names; the space's

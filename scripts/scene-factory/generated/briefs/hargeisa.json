@@ -1,0 +1,2071 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "hargeisa",
+    "name": "Hargeisa",
+    "state": {
+      "id": "xs-hargeisa",
+      "name": "Hargeisa"
+    },
+    "country": {
+      "id": "xs",
+      "name": "Somaliland"
+    },
+    "point": {
+      "lon": 44.061803,
+      "lat": 9.561733
+    }
+  },
+  "style": {
+    "region": "swahili-coast",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/africa/somalia-261011.osm.pbf",
+      "https://ourairports.com/airports/HCMH/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/hargeisa/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/hargeisa/facts.ts",
+        "sha256": "5e2f1f5f92699afa2736bc43f1f0c21a7517fa3a8cec62acb4281da5557a8893"
+      },
+      {
+        "path": "src/game/cities/hargeisa/index.ts",
+        "sha256": "240179663edf5df13ef103ac44668914db2981fcdd1090cf90efd9e255c272ed"
+      },
+      {
+        "path": "src/game/cities/hargeisa/places.ts",
+        "sha256": "d891170ef615469405b0b839e10b175749beaf0520e8f0e94f2395eb9b3c942e"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "hargeisa-airport-hargeisa-airport",
+      "name": "Egal International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.083469,
+        "lat": 9.514082
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-airport-hargeisa-airport-1",
+        "hargeisa-hargeisa-airport-hargeisa-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "hargeisa-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-clinic",
+      "name": "Edna Adan Maternity Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.066842,
+        "lat": 9.551056
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-clinic-1",
+        "hargeisa-hargeisa-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/791242083"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5340013"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-community-notices",
+      "name": "DANIDA",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.046487,
+        "lat": 9.561828
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-community-notices-1",
+        "hargeisa-hargeisa-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/406928714"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-community-voting-game",
+      "name": "Somaliland Supreme Court",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.054628,
+        "lat": 9.558871
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-community-voting-game-1",
+        "hargeisa-hargeisa-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4463222378"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-community-workshop",
+      "name": "Gollis University",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.038654,
+        "lat": 9.562145
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-community-workshop-1",
+        "hargeisa-hargeisa-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/798770515"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5580839"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-market-game",
+      "name": "Sariibada MMooge",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.090985,
+        "lat": 9.537734
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-market-game-1",
+        "hargeisa-hargeisa-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/359876299"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-meal-stop",
+      "name": "Kaah Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.115817,
+        "lat": 9.560276
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-meal-stop-1",
+        "hargeisa-hargeisa-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/319413613"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-osm-node-10225628867",
+      "name": "Hargeisa Memorial",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.046126,
+        "lat": 9.554491
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-osm-node-10225628867-1",
+        "hargeisa-hargeisa-osm-node-10225628867-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/10225628867"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q70850520"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-osm-node-1138799338",
+      "name": "War Memorial (MIG)",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.06541,
+        "lat": 9.561457
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-osm-node-1138799338-1",
+        "hargeisa-hargeisa-osm-node-1138799338-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1138799338"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q18204845"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-osm-node-3593965256",
+      "name": "Mediterranean Restaurant",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.070457,
+        "lat": 9.518656
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-osm-node-3593965256-1",
+        "hargeisa-hargeisa-osm-node-3593965256-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3593965256"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-osm-node-6554383286",
+      "name": "go ants",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.223285,
+        "lat": 9.440172
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-osm-node-6554383286-1",
+        "hargeisa-hargeisa-osm-node-6554383286-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6554383286"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-osm-node-6589200285",
+      "name": "tls geele Arab",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.204782,
+        "lat": 9.638518
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-osm-node-6589200285-1",
+        "hargeisa-hargeisa-osm-node-6589200285-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6589200285"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-osm-node-7798002349",
+      "name": "Gobonimo market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.062014,
+        "lat": 9.570355
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-osm-node-7798002349-1",
+        "hargeisa-hargeisa-osm-node-7798002349-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/7798002349"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-osm-way-1315022603",
+      "name": "Guri_Samo Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.072062,
+        "lat": 9.556129
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-osm-way-1315022603-1",
+        "hargeisa-hargeisa-osm-way-1315022603-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1315022603"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-osm-way-1376931546",
+      "name": "Hand Memorial ( Taalda Gacanta)",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.074752,
+        "lat": 9.546821
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-osm-way-1376931546-1",
+        "hargeisa-hargeisa-osm-way-1376931546-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1376931546"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-osm-way-1462275345",
+      "name": "Naaso Hablood Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.124816,
+        "lat": 9.576957
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-osm-way-1462275345-1",
+        "hargeisa-hargeisa-osm-way-1462275345-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1462275345"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-osm-way-1544987456",
+      "name": "CIIR Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.064029,
+        "lat": 9.523645
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-osm-way-1544987456-1",
+        "hargeisa-hargeisa-osm-way-1544987456-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1544987456"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-osm-way-238835442",
+      "name": "Hargeisa Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.062524,
+        "lat": 9.549745
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-osm-way-238835442-1",
+        "hargeisa-hargeisa-osm-way-238835442-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/238835442"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q85765748"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-osm-way-353244599",
+      "name": "masaajid",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.135101,
+        "lat": 9.569595
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-osm-way-353244599-1",
+        "hargeisa-hargeisa-osm-way-353244599-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/353244599"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-osm-way-365346749",
+      "name": "Golis",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.090345,
+        "lat": 9.560862
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-osm-way-365346749-1",
+        "hargeisa-hargeisa-osm-way-365346749-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/365346749"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-osm-way-430366600",
+      "name": "Hargeisa International Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.075072,
+        "lat": 9.528823
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-osm-way-430366600-1",
+        "hargeisa-hargeisa-osm-way-430366600-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/430366600"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-osm-way-449354369",
+      "name": "University of Hargeisa",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.046929,
+        "lat": 9.546349
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-osm-way-449354369-1",
+        "hargeisa-hargeisa-osm-way-449354369-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/449354369"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3357563"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-quiet-reflection",
+      "name": "Masjidka Cali Mataan",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.068275,
+        "lat": 9.561806
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-quiet-reflection-1",
+        "hargeisa-hargeisa-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/906825193"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q108619436"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-recreation",
+      "name": "Warshada caanaha",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.054045,
+        "lat": 9.547189
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-recreation-1",
+        "hargeisa-hargeisa-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8930451121"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "hargeisa-transit",
+      "name": "Harageisa Bus Station",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.067371,
+        "lat": 9.562931
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "hargeisa-hargeisa-transit-1",
+        "hargeisa-hargeisa-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/hargeisa/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1138799090"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 44.061803,
+        "lat": 9.561733
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "hargeisa-hargeisa-airport-hargeisa-airport-1",
+      "venueId": "hargeisa-airport-hargeisa-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-airport-hargeisa-airport-2",
+      "venueId": "hargeisa-airport-hargeisa-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-clinic-1",
+      "venueId": "hargeisa-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-clinic-2",
+      "venueId": "hargeisa-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-community-notices-1",
+      "venueId": "hargeisa-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-community-notices-2",
+      "venueId": "hargeisa-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-community-voting-game-1",
+      "venueId": "hargeisa-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-community-voting-game-2",
+      "venueId": "hargeisa-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-community-workshop-1",
+      "venueId": "hargeisa-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-community-workshop-2",
+      "venueId": "hargeisa-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-market-game-1",
+      "venueId": "hargeisa-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-market-game-2",
+      "venueId": "hargeisa-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-meal-stop-1",
+      "venueId": "hargeisa-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-meal-stop-2",
+      "venueId": "hargeisa-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-node-10225628867-1",
+      "venueId": "hargeisa-osm-node-10225628867",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-node-10225628867-2",
+      "venueId": "hargeisa-osm-node-10225628867",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-node-1138799338-1",
+      "venueId": "hargeisa-osm-node-1138799338",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-node-1138799338-2",
+      "venueId": "hargeisa-osm-node-1138799338",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-node-3593965256-1",
+      "venueId": "hargeisa-osm-node-3593965256",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-node-3593965256-2",
+      "venueId": "hargeisa-osm-node-3593965256",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-node-6554383286-1",
+      "venueId": "hargeisa-osm-node-6554383286",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-node-6554383286-2",
+      "venueId": "hargeisa-osm-node-6554383286",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-node-6589200285-1",
+      "venueId": "hargeisa-osm-node-6589200285",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-node-6589200285-2",
+      "venueId": "hargeisa-osm-node-6589200285",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-node-7798002349-1",
+      "venueId": "hargeisa-osm-node-7798002349",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-node-7798002349-2",
+      "venueId": "hargeisa-osm-node-7798002349",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-1315022603-1",
+      "venueId": "hargeisa-osm-way-1315022603",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-1315022603-2",
+      "venueId": "hargeisa-osm-way-1315022603",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-1376931546-1",
+      "venueId": "hargeisa-osm-way-1376931546",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-1376931546-2",
+      "venueId": "hargeisa-osm-way-1376931546",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-1462275345-1",
+      "venueId": "hargeisa-osm-way-1462275345",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-1462275345-2",
+      "venueId": "hargeisa-osm-way-1462275345",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-1544987456-1",
+      "venueId": "hargeisa-osm-way-1544987456",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-1544987456-2",
+      "venueId": "hargeisa-osm-way-1544987456",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-238835442-1",
+      "venueId": "hargeisa-osm-way-238835442",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-238835442-2",
+      "venueId": "hargeisa-osm-way-238835442",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-353244599-1",
+      "venueId": "hargeisa-osm-way-353244599",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-353244599-2",
+      "venueId": "hargeisa-osm-way-353244599",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-365346749-1",
+      "venueId": "hargeisa-osm-way-365346749",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-365346749-2",
+      "venueId": "hargeisa-osm-way-365346749",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-430366600-1",
+      "venueId": "hargeisa-osm-way-430366600",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-430366600-2",
+      "venueId": "hargeisa-osm-way-430366600",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-449354369-1",
+      "venueId": "hargeisa-osm-way-449354369",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-osm-way-449354369-2",
+      "venueId": "hargeisa-osm-way-449354369",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-quiet-reflection-1",
+      "venueId": "hargeisa-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-quiet-reflection-2",
+      "venueId": "hargeisa-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-recreation-1",
+      "venueId": "hargeisa-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-recreation-2",
+      "venueId": "hargeisa-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-transit-1",
+      "venueId": "hargeisa-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    },
+    {
+      "id": "hargeisa-hargeisa-transit-2",
+      "venueId": "hargeisa-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/hargeisa/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "hargeisa-airport-hargeisa-airport",
+    "hargeisa-clinic",
+    "hargeisa-community-notices",
+    "hargeisa-community-voting-game",
+    "hargeisa-community-workshop",
+    "hargeisa-market-game",
+    "hargeisa-meal-stop",
+    "hargeisa-osm-node-10225628867",
+    "hargeisa-osm-node-1138799338",
+    "hargeisa-osm-node-3593965256",
+    "hargeisa-osm-node-6554383286",
+    "hargeisa-osm-node-6589200285",
+    "hargeisa-osm-node-7798002349",
+    "hargeisa-osm-way-1315022603",
+    "hargeisa-osm-way-1376931546",
+    "hargeisa-osm-way-1462275345",
+    "hargeisa-osm-way-1544987456",
+    "hargeisa-osm-way-238835442",
+    "hargeisa-osm-way-353244599",
+    "hargeisa-osm-way-365346749",
+    "hargeisa-osm-way-430366600",
+    "hargeisa-osm-way-449354369",
+    "hargeisa-quiet-reflection",
+    "hargeisa-recreation",
+    "hargeisa-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "bba97c2eaa2b4fe4bfa26bcec88e0959a13504fbe59d61216563666d10cec620",
+    "contentSha256": "69738d40cfa641edff909a38f1516123cf1e88fa73c29d3b4f5ec03e96efb417"
+  }
+}

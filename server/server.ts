@@ -42,6 +42,7 @@ import { appHeaders, pageHeaders, apiHeaders, fileCache, isSandboxPath, sandboxH
 import { siteFile } from './site-files.ts';
 import { ADMIN_HOST_ENV, ADMIN_ROBOTS, ADMIN_SHELL, adminAddress, adminHostName, adminHostRoute, isAdminHost } from './admin/host.ts';
 import { withPathMeta } from './path-meta.ts';
+import { sceneCataloguePage } from './scene-catalogue.ts';
 import { createMemoryLimiter } from './limiter.ts';
 import telemetryRoutes from './telemetry/routes.ts';
 import { openRouteOf } from './agents/oauth-routes.ts';
@@ -486,7 +487,8 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
         return;
       }
       const root = resolve(distDir);
-      let path = adminKind === 'shell' ? resolve(root, ADMIN_SHELL) : resolve(root, `.${decodeURIComponent(url.pathname)}`);
+      const cataloguePage = adminKind === null ? sceneCataloguePage(url.pathname) : null;
+      let path = adminKind === 'shell' ? resolve(root, ADMIN_SHELL) : cataloguePage ? resolve(root, cataloguePage) : resolve(root, `.${decodeURIComponent(url.pathname)}`);
       if (path !== root && !path.startsWith(root + sep)) throw fail(403, 'invalid_path');
       if (extname(path) === '.map') throw fail(404, 'not_found'); // source maps are uploaded to Sentry, never served
       // A hashed build file that is gone (an old tab after a deploy) is a 404, never the app page: a dynamic import of it must fail clearly.
@@ -497,7 +499,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
       let found = true;
       try { if (!(await stat(path)).isFile()) found = false; } catch { found = false; }
       if (!found) {
-        if (inAssets || adminKind) { res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' }); res.end(method === 'HEAD' ? undefined : 'Not found'); return; }
+        if (inAssets || adminKind || cataloguePage) { res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' }); res.end(method === 'HEAD' ? undefined : 'Not found'); return; }
         path = resolve(root, 'index.html');
       }
       // The game's own page: its default link-preview image is made absolute here, from PUBLIC_ORIGIN (or this request's own
@@ -505,9 +507,10 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
       const isShell = adminKind === 'shell';
       const isIndex = path === resolve(root, 'index.html');
       const isReplay = adminKind === null && path === resolve(root, 'replay.html');
+      const isCatalogue = cataloguePage !== null;
       // A short address (/games, /abuja, …) gets its own title, description and link-preview tags; the page's scripts are untouched.
-      const html = isShell || isReplay ? await readFile(path, 'utf8') : isIndex ? (open ? open.page : (page: string) => page)(withPathMeta(await serveIndex(req, path), url.pathname, publicOrigin(req), url.search)) : '';
-      const bytes = isIndex || isShell || isReplay ? Buffer.from(html) : await readFile(path);
+      const html = isShell || isReplay || isCatalogue ? await readFile(path, 'utf8') : isIndex ? (open ? open.page : (page: string) => page)(withPathMeta(await serveIndex(req, path), url.pathname, publicOrigin(req), url.search)) : '';
+      const bytes = isIndex || isShell || isReplay || isCatalogue ? Buffer.from(html) : await readFile(path);
       if (res.headersSent || res.writableEnded) return;
       if (adminKind === null && isSandboxPath(url.pathname) && !isIndex) {
         res.writeHead(200, { 'Content-Type': mime[extname(path)] || 'application/octet-stream', ...sandboxHeaders() });
@@ -515,10 +518,10 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
         return;
       }
       // The game's page carries the full set of security headers; its inline scripts are admitted by hash, from the page as served.
-      const security = isReplay ? appHeaders({ ...factsOf(req), scriptHashes: await inlineScriptHashes(html), accounts: accountsHeaderConfig }) : isShell ? appHeaders({ ...factsOf(req), scriptHashes: await inlineScriptHashes(html), accounts: accountsHeaderConfig, admin: true }) : isIndex ? appHeaders({ ...factsOf(req), scriptHashes: await inlineScriptHashes(html), telemetry: telemetryHosts, avatarAssets: html.includes('name="allworld-3d-assets"'), accounts: accountsHeaderConfig, trustProviders: trustHeaderConfig(envReader(env), accountsHeaderConfig) }) : adminKind ? { 'X-Robots-Tag': 'noindex, nofollow' } : {};
+      const security = isReplay ? appHeaders({ ...factsOf(req), scriptHashes: await inlineScriptHashes(html), accounts: accountsHeaderConfig }) : isShell ? appHeaders({ ...factsOf(req), scriptHashes: await inlineScriptHashes(html), accounts: accountsHeaderConfig, admin: true }) : isIndex || isCatalogue ? appHeaders({ ...factsOf(req), scriptHashes: await inlineScriptHashes(html), telemetry: telemetryHosts, avatarAssets: html.includes('name="allworld-3d-assets"'), accounts: accountsHeaderConfig, trustProviders: trustHeaderConfig(envReader(env), accountsHeaderConfig) }) : adminKind ? { 'X-Robots-Tag': 'noindex, nofollow' } : {};
       // Immutable assets cache for a year; the page and mutable street version pointer revalidate.
       const currentStreetManifest = /^\/assets\/street\/[a-z][a-z0-9-]{0,60}\/manifest\.txt$/.test(decodeURIComponent(url.pathname));
-      const cache = currentStreetManifest ? 'no-cache' : inAssets ? 'public, max-age=31536000, immutable' : path === resolve(root, 'index.html') || isReplay ? 'no-cache' : 'public, max-age=3600';
+      const cache = currentStreetManifest ? 'no-cache' : inAssets ? 'public, max-age=31536000, immutable' : isIndex || isReplay || isCatalogue ? 'no-cache' : 'public, max-age=3600';
       res.writeHead(200, { 'Content-Type': mime[extname(path)] || 'application/octet-stream', 'Cache-Control': cache, 'X-Content-Type-Options': 'nosniff', ...security });
       res.end(method === 'HEAD' ? undefined : bytes);
     } catch (thrown) {

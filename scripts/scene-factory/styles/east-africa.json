@@ -1,0 +1,32 @@
+{
+  "id": "east-africa",
+  "sourceUrls": [
+    "https://www.openstreetmap.org/way/80754219"
+  ],
+  "palette": [
+    "#e1dbbf",
+    "#785b45",
+    "#4f7652",
+    "#ad553e",
+    "#5b8191",
+    "#d2a744",
+    "#7b8382",
+    "#2c3630"
+  ],
+  "roof": "gable",
+  "canopyHeight": 2.3,
+  "provenance": {
+    "referenceCity": "nairobi",
+    "referenceFeature": "City Market",
+    "sourcePath": "src/game/cities/nairobi/places.ts",
+    "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual identity only; no source geometry copied",
+    "sourceScope": "Mapped place identity and activity context only; does not substantiate palette, roof, dimensions or a region-wide architecture claim",
+    "verification": "Read repository source snapshot; live OSM element not independently re-fetched",
+    "artDirectionStatus": "proposal",
+    "artDirectionRationale": "Use Nairobi as an inland pilot; override inventory country heuristic that currently selects swahili-coast.",
+    "unknowns": [
+      "Regional coverage and city overrides need integration review",
+      "Colour and roof selection have no measured reference basis"
+    ]
+  }
+}

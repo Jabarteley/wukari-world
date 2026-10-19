@@ -155,6 +155,9 @@ export const ASSET_PATTERNS: Partial<Record<BudgetName, { pattern: RegExp; by: '
   CLIP_PACK_BROTLI: { pattern: /(^|\/)clip-pack[^/]*\.(glb|gltf|bin|json)$/, by: 'sum' },
   WARDROBE_ITEM_BROTLI: { pattern: /(^|\/)wardrobe\/[^/]+\.(glb|gltf)$/, by: 'each' },
   STREET_TILE_BROTLI: { pattern: /(^|\/)(street-)?tiles?\/[^/]+\.(glb|gltf|bin)$/, by: 'each' },
+  CITY_SCENE_RECIPES_BYTES: { pattern: /^assets\/recipe-city-[a-z0-9]+(?:-[a-z0-9]+)*-[a-f0-9]{7}\.js$/, by: 'each' },
+  SCENE_KIT_BROTLI: { pattern: /^assets\/scene-factory\/kits\/[a-z][a-z0-9-]*-[a-f0-9]{64}\.glb$/, by: 'each' },
+  HERO_BROTLI: { pattern: /^assets\/scene-factory\/heroes\/[a-z][a-z0-9-]*-[a-f0-9]{64}\.glb$/, by: 'each' },
 }
 
 export interface Check { budget: BudgetName; measured: number | null; detail: string; status: 'ok' | 'over' | 'not measured' }
@@ -182,7 +185,8 @@ export function checks(dist: Dist, city = 'lagos'): Check[] {
   add('SCENE_HOST_GZIP', host?.gzip ?? null, 'shared scene chunk (world-adapter)')
   for (const [budget, { pattern, by }] of Object.entries(ASSET_PATTERNS) as [BudgetName, { pattern: RegExp; by: 'sum' | 'each' }][]) {
     const names = [...dist.keys()].filter((name) => pattern.test(name))
-    const sizes = names.map((name) => measure(dist, [name]).brotli)
+    const metric = BUDGETS[budget].unit === 'raw bytes' ? 'raw' : 'brotli'
+    const sizes = names.map((name) => measure(dist, [name])[metric])
     add(budget, names.length ? (by === 'sum' ? sizes.reduce((a, b) => a + b, 0) : Math.max(...sizes)) : null, names.length ? `${names.length} file(s) matching ${pattern}` : `no file matches ${pattern}`)
   }
   return found.map((item) => ({ ...item, status: item.measured === null ? 'not measured' : withinBudget(BUDGETS[item.budget], item.measured) ? 'ok' : 'over' }))

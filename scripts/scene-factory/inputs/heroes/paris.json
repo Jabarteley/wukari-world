@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "paris",
+  "url": "/assets/scene-heroes/paris.glb",
+  "sha256": "8691125da3c0b1b40d8c8e2874bde83960bd7d28919472e0d412db94f40ec508",
+  "rawBytes": 58740,
+  "brotliBytes": 29781,
+  "triangles": 2912,
+  "parts": [
+    {
+      "node": "paris",
+      "triangles": 2912,
+      "bounds": {
+        "min": [
+          -2.375,
+          0,
+          -2.375
+        ],
+        "max": [
+          2.3749816689819996,
+          11.849999951717999,
+          2.3749816689819996
+        ]
+      },
+      "footprint": [
+        -2.375,
+        -2.375,
+        2.3749816689819996,
+        2.3749816689819996
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "9fbb3637a6026c42295598191f368bf185692eb853e19ab7f218c25d4e865535"
+  },
+  "inputs": {
+    "rawSha256": "81c06af712034b160c9217b2c7cb08855956e35bccf379e9a6a6ce3cbe81a1db",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "paris",
+      "country": "fr",
+      "name": "Eiffel Tower",
+      "category": "building",
+      "sourceUrls": [
+        "https://www.toureiffel.paris/en/the-monument/history"
+      ],
+      "sourceRef": "src/game/cities/paris/facts.ts; primary-source enrichment recorded in this pilot file",
+      "sourceLicence": "Publisher reuse licence not established; only factual identity/category/date paraphrased; no prose, images, maps or geometry copied",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "lattice-tower",
+      "parameters": {
+        "width": 4.8,
+        "depth": 4.8,
+        "height": 12,
+        "seed": 20261023,
+        "palette": [
+          "#e0d9c7",
+          "#76614e",
+          "#526c4e",
+          "#775258",
+          "#637d8c",
+          "#bc9650",
+          "#777d82",
+          "#30343b"
+        ]
+      },
+      "evidence": "Official operator records 1889 completion, four converging lattice columns, structural levels and retained base arches. Original segmented arches, tapered columns, lattice subdivisions and slim decks evoke the historic daytime silhouette; no source drawings, photographs, modern lighting or exact dimensions are used.",
+      "builtYear": 1889,
+      "provenance": {
+        "sourcePath": "src/game/cities/paris/facts.ts; primary-source enrichment recorded in this pilot file",
+        "authority": "Official Eiffel Tower operator historical construction account",
+        "restrictionRationale": "France: explicit building completion year 1889 is before 1950; recorded as building so validator enforces the date.",
+        "dimensionBasis": "Original stylized target bounds in metres; not surveyed or sourced dimensions",
+        "sourcedMeasurements": [],
+        "geometryOrigin": "Original boxes, cylinders and procedural low-poly primitives only; no external model or photograph",
+        "sourceGeometryLicence": "Not used; factual-source licences confer no imported geometry rights",
+        "regionProposal": "western-europe",
+        "currentInventoryRegion": "western-europe",
+        "placementStatus": "Decorative city reference; no accurate geographic placement or surveyed entrance claimed",
+        "unknowns": [
+          "Landmark is absent from current Paris PLACES; factual owner must promote this cited enrichment before production use",
+          "Template is a simplified four-leg lattice silhouette; current tip equipment and lighting are excluded",
+          "Target bounds are stylized and do not use the source’s real tower dimensions"
+        ],
+        "artDirection": {
+          "iteration": 4,
+          "composition": "arched-lattice",
+          "dimensions": "Stylized target bounds only; no sourced measurements.",
+          "reviewStatus": "Prototype pending independent visual review; no production acceptance."
+        }
+      },
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "western-europe"
+      }
+    },
+    "styleSha256": "18e3b0f4dbb88519df26d3d51faa4960b3f4646b58f92cf029cf1a50cbcc6d9c"
+  }
+}

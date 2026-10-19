@@ -40,6 +40,12 @@ Venue chapters use one shared slot function. Proof destinations and the welcome 
 
 Story prioritizes authored local daily and weekly missions. On entering Story, or after claiming an older retained reward, an untouched generic slot may be replaced by its local counterpart. Partial and claimed rows, pending rewards and grant receipts are preserved. Free Roam keeps its existing dealing rules.
 
+## Sourced local history
+
+The Kano, Nairobi, Tokyo and Paris city tales show an optional history note after their second chapter receipt. Each note separates the historical fact from the fictional story, links to its source and offers a short question with feedback. Kano's source is a tentative-list submission, not a World Heritage inscription.
+
+Answers stay in the open card. They do not change saved progress, proofs, rewards or the chapter ladder, and they do not establish a measured learning outcome. Other city tales do not yet have these sourced notes.
+
 ## City signature games
 
 The six hand-picked Nigerian signatures remain stable: Lagos race, Ibadan tables, Port Harcourt business, Abuja politics, Kano bargaining and Calabar festival. Other cities receive a stable style and a real venue. The entry first takes the character to that venue, then opens its exact table, selected arena practice game, or existing feature. Nairobi opens the Uhuru Park table.

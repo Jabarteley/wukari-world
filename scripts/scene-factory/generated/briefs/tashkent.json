@@ -1,0 +1,2131 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "tashkent",
+    "name": "Tashkent",
+    "state": {
+      "id": "uz-tashkent",
+      "name": "Tashkent"
+    },
+    "country": {
+      "id": "uz",
+      "name": "Uzbekistan"
+    },
+    "point": {
+      "lon": 69.2787079,
+      "lat": 41.3123363
+    }
+  },
+  "style": {
+    "region": "south-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/uzbekistan-261011.osm.pbf",
+      "https://ourairports.com/airports/UTTT/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/tashkent/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/tashkent/facts.ts",
+        "sha256": "1c4a2376686ef124b1f78f5ad8393446f09da9f859e0289c39f6ddae029d5d24"
+      },
+      {
+        "path": "src/game/cities/tashkent/index.ts",
+        "sha256": "5806708d6bd003acd20c028385859d792d78f44745a3edd564810fd42d5473ca"
+      },
+      {
+        "path": "src/game/cities/tashkent/places.ts",
+        "sha256": "fa6fd8b3135b158a3b76d185ec7ef15ae43fed1fab9bab319e77eefd198c1e13"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.2787079,
+        "lat": 41.3123363
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "tashkent-airport-tashkent-airport",
+      "name": "Tashkent International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.281197,
+        "lat": 41.2579
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-airport-tashkent-airport-1",
+        "tashkent-tashkent-airport-tashkent-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "tashkent-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-clinic",
+      "name": "Отделение хирургии",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.301813,
+        "lat": 41.310594
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-clinic-1",
+        "tashkent-tashkent-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/105820896"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4452983"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-community-notices",
+      "name": "Ministry of Defense of the Republic of Uzbekistan (МО РУз)",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.335193,
+        "lat": 41.333104
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-community-notices-1",
+        "tashkent-tashkent-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/87902526"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20536318"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-community-voting-game",
+      "name": "Independence Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.267438,
+        "lat": 41.31539
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-community-voting-game-1",
+        "tashkent-tashkent-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1857704645"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3390317"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-community-workshop",
+      "name": "Tashkent International University of Education",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.364841,
+        "lat": 41.29033
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-community-workshop-1",
+        "tashkent-tashkent-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/103133045"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q111694614"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-market-game",
+      "name": "Chorsu Bazaar",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.236526,
+        "lat": 41.326172
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-market-game-1",
+        "tashkent-tashkent-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/174498975"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q13409233"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-meal-stop",
+      "name": "Blue domes",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.266957,
+        "lat": 41.306834
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-meal-stop-1",
+        "tashkent-tashkent-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/141676147"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q122676623"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-osm-node-4246680743",
+      "name": "Полина",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.449545,
+        "lat": 41.187737
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-osm-node-4246680743-1",
+        "tashkent-tashkent-osm-node-4246680743-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4246680743"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-osm-node-4792118722",
+      "name": "Курица гриль",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.356563,
+        "lat": 41.469561
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-osm-node-4792118722-1",
+        "tashkent-tashkent-osm-node-4792118722-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4792118722"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-osm-relation-2712835",
+      "name": "The Uzbekistan State University of World Languages",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.192793,
+        "lat": 41.287001
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-osm-relation-2712835-1",
+        "tashkent-tashkent-osm-relation-2712835-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/2712835"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4469711"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-osm-relation-6805138",
+      "name": "Lokomotiv",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.394827,
+        "lat": 41.361186
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-osm-relation-6805138-1",
+        "tashkent-tashkent-osm-relation-6805138-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/6805138"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q770707"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-osm-relation-9423158",
+      "name": "Tashkent Higher Military Technical School of the Ministry of Internal Affairs of the Republic of Uzbekistan",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.166211,
+        "lat": 41.355866
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-osm-relation-9423158-1",
+        "tashkent-tashkent-osm-relation-9423158-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/9423158"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4453002"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-osm-way-107158839",
+      "name": "Kugaittepa",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.221302,
+        "lat": 41.254422
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-osm-way-107158839-1",
+        "tashkent-tashkent-osm-way-107158839-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/107158839"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q122672869"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-osm-way-1213517675",
+      "name": "Khabadtepa",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.271382,
+        "lat": 41.222278
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-osm-way-1213517675-1",
+        "tashkent-tashkent-osm-way-1213517675-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1213517675"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q25524412"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-osm-way-143446111",
+      "name": "Koh Аta",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.258775,
+        "lat": 41.336269
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-osm-way-143446111-1",
+        "tashkent-tashkent-osm-way-143446111-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/143446111"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q122672875"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-osm-way-173258737",
+      "name": "Milliy stadioni",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.212607,
+        "lat": 41.279749
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-osm-way-173258737-1",
+        "tashkent-tashkent-osm-way-173258737-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/173258737"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2817374"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-osm-way-325125766",
+      "name": "Tashkent Tower",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.284787,
+        "lat": 41.345565
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-osm-way-325125766-1",
+        "tashkent-tashkent-osm-way-325125766-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/325125766"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q868874"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-osm-way-394577950",
+      "name": "Kulaktepa",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.267764,
+        "lat": 41.378157
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-osm-way-394577950-1",
+        "tashkent-tashkent-osm-way-394577950-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/394577950"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q122671679"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-osm-way-749136173",
+      "name": "Tashkent City Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.248409,
+        "lat": 41.316542
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-osm-way-749136173-1",
+        "tashkent-tashkent-osm-way-749136173-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/749136173"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q74002463"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-osm-way-89407157",
+      "name": "Tashkent State Transport University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.282803,
+        "lat": 41.277312
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-osm-way-89407157-1",
+        "tashkent-tashkent-osm-way-89407157-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/89407157"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1822284"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-osm-way-908354621",
+      "name": "Memorial complex \"Victory Park\"",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.223098,
+        "lat": 41.353587
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-osm-way-908354621-1",
+        "tashkent-tashkent-osm-way-908354621-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/908354621"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q96413986"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-osm-way-982206779",
+      "name": "Rakat",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.245794,
+        "lat": 41.289993
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-osm-way-982206779-1",
+        "tashkent-tashkent-osm-way-982206779-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/982206779"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q130599794"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-quiet-reflection",
+      "name": "Church of the Holy Equal-to-the-Apostles Grand Duke Vladimir",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.183461,
+        "lat": 41.256204
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-quiet-reflection-1",
+        "tashkent-tashkent-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12423118883"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4501170"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-recreation",
+      "name": "\"Yangi Uzbekistan\" park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.43777,
+        "lat": 41.32867
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-recreation-1",
+        "tashkent-tashkent-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/968053066"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q112710734"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "tashkent-transit",
+      "name": "Novza (Hamza)",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 69.223617,
+        "lat": 41.291872
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "tashkent-tashkent-transit-1",
+        "tashkent-tashkent-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/tashkent/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/563751850"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4495260"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "tashkent-tashkent-airport-tashkent-airport-1",
+      "venueId": "tashkent-airport-tashkent-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-airport-tashkent-airport-2",
+      "venueId": "tashkent-airport-tashkent-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-clinic-1",
+      "venueId": "tashkent-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-clinic-2",
+      "venueId": "tashkent-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-community-notices-1",
+      "venueId": "tashkent-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-community-notices-2",
+      "venueId": "tashkent-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-community-voting-game-1",
+      "venueId": "tashkent-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-community-voting-game-2",
+      "venueId": "tashkent-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-community-workshop-1",
+      "venueId": "tashkent-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-community-workshop-2",
+      "venueId": "tashkent-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-market-game-1",
+      "venueId": "tashkent-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-market-game-2",
+      "venueId": "tashkent-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-meal-stop-1",
+      "venueId": "tashkent-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-meal-stop-2",
+      "venueId": "tashkent-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-node-4246680743-1",
+      "venueId": "tashkent-osm-node-4246680743",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-node-4246680743-2",
+      "venueId": "tashkent-osm-node-4246680743",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-node-4792118722-1",
+      "venueId": "tashkent-osm-node-4792118722",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-node-4792118722-2",
+      "venueId": "tashkent-osm-node-4792118722",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-relation-2712835-1",
+      "venueId": "tashkent-osm-relation-2712835",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-relation-2712835-2",
+      "venueId": "tashkent-osm-relation-2712835",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-relation-6805138-1",
+      "venueId": "tashkent-osm-relation-6805138",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-relation-6805138-2",
+      "venueId": "tashkent-osm-relation-6805138",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-relation-9423158-1",
+      "venueId": "tashkent-osm-relation-9423158",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-relation-9423158-2",
+      "venueId": "tashkent-osm-relation-9423158",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-107158839-1",
+      "venueId": "tashkent-osm-way-107158839",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-107158839-2",
+      "venueId": "tashkent-osm-way-107158839",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-1213517675-1",
+      "venueId": "tashkent-osm-way-1213517675",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-1213517675-2",
+      "venueId": "tashkent-osm-way-1213517675",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-143446111-1",
+      "venueId": "tashkent-osm-way-143446111",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-143446111-2",
+      "venueId": "tashkent-osm-way-143446111",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-173258737-1",
+      "venueId": "tashkent-osm-way-173258737",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-173258737-2",
+      "venueId": "tashkent-osm-way-173258737",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-325125766-1",
+      "venueId": "tashkent-osm-way-325125766",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-325125766-2",
+      "venueId": "tashkent-osm-way-325125766",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-394577950-1",
+      "venueId": "tashkent-osm-way-394577950",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-394577950-2",
+      "venueId": "tashkent-osm-way-394577950",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-749136173-1",
+      "venueId": "tashkent-osm-way-749136173",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-749136173-2",
+      "venueId": "tashkent-osm-way-749136173",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-89407157-1",
+      "venueId": "tashkent-osm-way-89407157",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-89407157-2",
+      "venueId": "tashkent-osm-way-89407157",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-908354621-1",
+      "venueId": "tashkent-osm-way-908354621",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-908354621-2",
+      "venueId": "tashkent-osm-way-908354621",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-982206779-1",
+      "venueId": "tashkent-osm-way-982206779",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-osm-way-982206779-2",
+      "venueId": "tashkent-osm-way-982206779",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-quiet-reflection-1",
+      "venueId": "tashkent-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-quiet-reflection-2",
+      "venueId": "tashkent-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-recreation-1",
+      "venueId": "tashkent-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-recreation-2",
+      "venueId": "tashkent-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-transit-1",
+      "venueId": "tashkent-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    },
+    {
+      "id": "tashkent-tashkent-transit-2",
+      "venueId": "tashkent-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/tashkent/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "tashkent-airport-tashkent-airport",
+    "tashkent-clinic",
+    "tashkent-community-notices",
+    "tashkent-community-voting-game",
+    "tashkent-community-workshop",
+    "tashkent-market-game",
+    "tashkent-meal-stop",
+    "tashkent-osm-node-4246680743",
+    "tashkent-osm-node-4792118722",
+    "tashkent-osm-relation-2712835",
+    "tashkent-osm-relation-6805138",
+    "tashkent-osm-relation-9423158",
+    "tashkent-osm-way-107158839",
+    "tashkent-osm-way-1213517675",
+    "tashkent-osm-way-143446111",
+    "tashkent-osm-way-173258737",
+    "tashkent-osm-way-325125766",
+    "tashkent-osm-way-394577950",
+    "tashkent-osm-way-749136173",
+    "tashkent-osm-way-89407157",
+    "tashkent-osm-way-908354621",
+    "tashkent-osm-way-982206779",
+    "tashkent-quiet-reflection",
+    "tashkent-recreation",
+    "tashkent-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "3f3650428348d78c5b0b354d9f76b3a0cdca4d10e6d64c76d29e54435bfef898",
+    "contentSha256": "1ef57fd6fbed9bb764542e286d984894e73a4cfc14e8621288121b75302594ae"
+  }
+}

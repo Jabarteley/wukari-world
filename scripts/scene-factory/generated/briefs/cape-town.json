@@ -1,0 +1,1977 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "cape-town",
+    "name": "Cape Town",
+    "state": {
+      "id": "za-starter",
+      "name": "Cape Town"
+    },
+    "country": {
+      "id": "za",
+      "name": "South Africa"
+    },
+    "point": {
+      "lon": 18.433042,
+      "lat": -33.918065
+    }
+  },
+  "style": {
+    "region": "southern-africa",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "Natural Earth, OpenStreetMap contributors and cited aeronautical information sources",
+    "sourceUrls": [
+      "https://caasanwebsitestorage.blob.core.windows.net/aeronautical-information-publication/Aerodromes%20%2815_JAN_2026%29.PDF",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; Airport reference points: cited aeronautical information sources",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/cape-town/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/cape-town/facts.ts",
+        "sha256": "e61dc216702b127474808e6ed80ac4cefd52f8c7f198a0951354ff3b5f1d52a9"
+      },
+      {
+        "path": "src/game/cities/cape-town/index.ts",
+        "sha256": "3e13d9fdcece6c20f6fdc9334bb802f19b7c32e64bb45eca1ee91117cafec6cf"
+      },
+      {
+        "path": "src/game/cities/cape-town/places.ts",
+        "sha256": "3eb2107a709924175311d26ec78de7a9edec10e9e1ed2cdde75ae92beaf6672d"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "cape-town-airport-cape-town-airport",
+      "name": "CAPE TOWN INTERNATIONAL",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.604291667,
+        "lat": -33.971369444
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-airport-cape-town-airport-1",
+        "cape-town-cape-town-airport-cape-town-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "cape-town-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-arderne-gardens",
+      "name": "Arderne Gardens",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.464768,
+        "lat": -33.987264
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-arderne-gardens-1",
+        "cape-town-cape-town-arderne-gardens-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/32607875"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20981364"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-artscape-theatre-centre",
+      "name": "Artscape Theatre Centre",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.430397,
+        "lat": -33.919687
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-artscape-theatre-centre-1",
+        "cape-town-cape-town-artscape-theatre-centre-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/423976455"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q557606"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-baxter-theatre-centre",
+      "name": "Baxter Theatre Center",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.470569,
+        "lat": -33.957048
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-baxter-theatre-centre-1",
+        "cape-town-cape-town-baxter-theatre-centre-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/6143877"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q557245"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-canal-walk",
+      "name": "Canal Walk",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.511067,
+        "lat": -33.892871
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-canal-walk-1",
+        "cape-town-cape-town-canal-walk-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/429507655"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4816007"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-castle-military-museum",
+      "name": "Castle Military Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.427965,
+        "lat": -33.925354
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-castle-military-museum-1",
+        "cape-town-cape-town-castle-military-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4242652393"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-cavendish-square",
+      "name": "Cavendish Square",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.463149,
+        "lat": -33.980529
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-cavendish-square-1",
+        "cape-town-cape-town-cavendish-square-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/27248967"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q97174212"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-clinic",
+      "name": "Groote Schuur Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.462585,
+        "lat": -33.94113
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-clinic-1",
+        "cape-town-cape-town-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/23883140"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q368400"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-community-notices",
+      "name": "National Council of Provinces",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.419729,
+        "lat": -33.9258
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-community-notices-1",
+        "cape-town-cape-town-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/141281524"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2119484"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-community-voting-game",
+      "name": "Grand Parade",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.424745,
+        "lat": -33.924833
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-community-voting-game-1",
+        "cape-town-cape-town-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/5216621"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q15222018"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-community-workshop",
+      "name": "University of Cape Town",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.463947,
+        "lat": -33.957686
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-community-workshop-1",
+        "cape-town-cape-town-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/2034106"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q951305"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-cput-district-six-campus",
+      "name": "Cape Peninsula University of Technology (District Six Campus)",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.431128,
+        "lat": -33.931352
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-cput-district-six-campus-1",
+        "cape-town-cape-town-cput-district-six-campus-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/32441912"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q122761962"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-district-six-museum",
+      "name": "District Six Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.423746,
+        "lat": -33.927811
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-district-six-museum-1",
+        "cape-town-cape-town-district-six-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/250299433"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2616757"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-gardens-shul",
+      "name": "Gardens Shul",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.416549,
+        "lat": -33.92977
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-gardens-shul-1",
+        "cape-town-cape-town-gardens-shul-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/203346851"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5522475"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-iziko-slave-lodge",
+      "name": "Iziko Slave Lodge",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.420564,
+        "lat": -33.92515
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-iziko-slave-lodge-1",
+        "cape-town-cape-town-iziko-slave-lodge-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/21445411"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q20981944"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-market-game",
+      "name": "Victoria Wharf Shopping Centre",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.42048,
+        "lat": -33.903485
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-market-game-1",
+        "cape-town-cape-town-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/8035431"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-maynardville-open-air-theatre",
+      "name": "Maynardville Open-Air Theatre",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.464233,
+        "lat": -34.00535
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-maynardville-open-air-theatre-1",
+        "cape-town-cape-town-maynardville-open-air-theatre-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/177592879"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6797448"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-meal-stop",
+      "name": "The Africa Cafe",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.417748,
+        "lat": -33.920535
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-meal-stop-1",
+        "cape-town-cape-town-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1831572236"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q56050281"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-quiet-reflection",
+      "name": "St. George's Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.419412,
+        "lat": -33.924878
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-quiet-reflection-1",
+        "cape-town-cape-town-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/141281671"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2499579"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-recreation",
+      "name": "Green Point Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.402625,
+        "lat": -33.904581
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-recreation-1",
+        "cape-town-cape-town-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/44948367"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q19904137"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-rhodes-memorial",
+      "name": "Rhodes Memorial",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.458922,
+        "lat": -33.952351
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-rhodes-memorial-1",
+        "cape-town-cape-town-rhodes-memorial-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/26191560"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3429602"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-signal-hill-frame",
+      "name": "Signal Hill Frame",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.402331,
+        "lat": -33.918098
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-signal-hill-frame-1",
+        "cape-town-cape-town-signal-hill-frame-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6385294338"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "cape-town-transit",
+      "name": "Cape Town",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.426352,
+        "lat": -33.922422
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "cape-town-cape-town-transit-1",
+        "cape-town-cape-town-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/cape-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/288676470"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1034496"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 18.433042,
+        "lat": -33.918065
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "cape-town-cape-town-airport-cape-town-airport-1",
+      "venueId": "cape-town-airport-cape-town-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-airport-cape-town-airport-2",
+      "venueId": "cape-town-airport-cape-town-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-arderne-gardens-1",
+      "venueId": "cape-town-arderne-gardens",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-arderne-gardens-2",
+      "venueId": "cape-town-arderne-gardens",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-artscape-theatre-centre-1",
+      "venueId": "cape-town-artscape-theatre-centre",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-artscape-theatre-centre-2",
+      "venueId": "cape-town-artscape-theatre-centre",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-baxter-theatre-centre-1",
+      "venueId": "cape-town-baxter-theatre-centre",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-baxter-theatre-centre-2",
+      "venueId": "cape-town-baxter-theatre-centre",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-canal-walk-1",
+      "venueId": "cape-town-canal-walk",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-canal-walk-2",
+      "venueId": "cape-town-canal-walk",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-castle-military-museum-1",
+      "venueId": "cape-town-castle-military-museum",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-castle-military-museum-2",
+      "venueId": "cape-town-castle-military-museum",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-cavendish-square-1",
+      "venueId": "cape-town-cavendish-square",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-cavendish-square-2",
+      "venueId": "cape-town-cavendish-square",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-clinic-1",
+      "venueId": "cape-town-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-clinic-2",
+      "venueId": "cape-town-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-community-notices-1",
+      "venueId": "cape-town-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-community-notices-2",
+      "venueId": "cape-town-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-community-voting-game-1",
+      "venueId": "cape-town-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-community-voting-game-2",
+      "venueId": "cape-town-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-community-workshop-1",
+      "venueId": "cape-town-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-community-workshop-2",
+      "venueId": "cape-town-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-cput-district-six-campus-1",
+      "venueId": "cape-town-cput-district-six-campus",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-cput-district-six-campus-2",
+      "venueId": "cape-town-cput-district-six-campus",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-district-six-museum-1",
+      "venueId": "cape-town-district-six-museum",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-district-six-museum-2",
+      "venueId": "cape-town-district-six-museum",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-gardens-shul-1",
+      "venueId": "cape-town-gardens-shul",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-gardens-shul-2",
+      "venueId": "cape-town-gardens-shul",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-iziko-slave-lodge-1",
+      "venueId": "cape-town-iziko-slave-lodge",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-iziko-slave-lodge-2",
+      "venueId": "cape-town-iziko-slave-lodge",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-market-game-1",
+      "venueId": "cape-town-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-market-game-2",
+      "venueId": "cape-town-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-maynardville-open-air-theatre-1",
+      "venueId": "cape-town-maynardville-open-air-theatre",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-maynardville-open-air-theatre-2",
+      "venueId": "cape-town-maynardville-open-air-theatre",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-meal-stop-1",
+      "venueId": "cape-town-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-meal-stop-2",
+      "venueId": "cape-town-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-quiet-reflection-1",
+      "venueId": "cape-town-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-quiet-reflection-2",
+      "venueId": "cape-town-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-recreation-1",
+      "venueId": "cape-town-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-recreation-2",
+      "venueId": "cape-town-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-rhodes-memorial-1",
+      "venueId": "cape-town-rhodes-memorial",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-rhodes-memorial-2",
+      "venueId": "cape-town-rhodes-memorial",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-signal-hill-frame-1",
+      "venueId": "cape-town-signal-hill-frame",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-signal-hill-frame-2",
+      "venueId": "cape-town-signal-hill-frame",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-transit-1",
+      "venueId": "cape-town-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    },
+    {
+      "id": "cape-town-cape-town-transit-2",
+      "venueId": "cape-town-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/cape-town/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "cape-town-airport-cape-town-airport",
+    "cape-town-arderne-gardens",
+    "cape-town-artscape-theatre-centre",
+    "cape-town-baxter-theatre-centre",
+    "cape-town-canal-walk",
+    "cape-town-castle-military-museum",
+    "cape-town-cavendish-square",
+    "cape-town-clinic",
+    "cape-town-community-notices",
+    "cape-town-community-voting-game",
+    "cape-town-community-workshop",
+    "cape-town-cput-district-six-campus",
+    "cape-town-district-six-museum",
+    "cape-town-gardens-shul",
+    "cape-town-iziko-slave-lodge",
+    "cape-town-market-game",
+    "cape-town-maynardville-open-air-theatre",
+    "cape-town-meal-stop",
+    "cape-town-quiet-reflection",
+    "cape-town-recreation",
+    "cape-town-rhodes-memorial",
+    "cape-town-signal-hill-frame",
+    "cape-town-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "54fcb141983cdf16e275f9cc4ba0d1a726d82f65bcd19e3514d208deefccb81a",
+    "contentSha256": "5b286530dfeee36b3708cacd060626c61f2786ac2d5373e79599d817295b7cfe"
+  }
+}

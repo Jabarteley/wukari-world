@@ -345,6 +345,12 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       const cost = totalRenderCost(entry.shown)
       triangles -= cost.triangles; draws -= cost.drawCalls
     }
+    // Optional street traffic must yield before interactive residents or venue scenery.
+    // Its independent allocator can finish after this layer's room has changed.
+    if (street && (triangles < 0 || draws < 0)) {
+      triangles += street.triangles; draws += street.drawCalls;
+      dropStreet();
+    }
     for (const entry of entries.values()) if (!entry.resident && entry.shown) {
       const cost = totalRenderCost(entry.shown)
       entry.holder.visible = cost.triangles <= triangles && cost.drawCalls <= draws
@@ -439,8 +445,9 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       if (disposed || street || streetDropped) return
       // `walkable` is the final guard for everyone and everything (cut-outs and near bodies alike), and the near bodies' floor too.
       street = module.createStreetLife(kit, { parent: group, seed: `${ident.cityId}|${ident.venueId}`, lanes, roads: [], crowd: streetAsked, vehicles: 0, heightAt, walkable, at: current,
-        context: ident.kind, tier: streetChoice?.tier ?? null, ready: () => options.changed?.() })
+        context: ident.kind, tier: streetChoice?.tier ?? null, ready: () => { admitOptionalPeople(); options.changed?.() } })
       street.step(current, options.avatar())
+      admitOptionalPeople()
       options.changed?.()
     }).catch(() => { streetDropped = true })
   }
@@ -457,6 +464,7 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       sync(at, dt, false)
       // Street life moves with the window; a slow frame drops it for good (the hand-testing switch keeps it on).
       if (street) { if (!streetChoice?.forced && streetGuard?.frame(dt) === 'slow') dropStreet(); else street.step(at, options.avatar(), dt) }
+      admitOptionalPeople()
       if (closing) for (const entry of entries.values()) entry.motion?.settle()
       return windowLeft > 0
     },

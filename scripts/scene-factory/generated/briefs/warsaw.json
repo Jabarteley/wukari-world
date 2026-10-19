@@ -1,0 +1,2139 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "warsaw",
+    "name": "Warsaw",
+    "state": {
+      "id": "pl-warsaw",
+      "name": "Warsaw"
+    },
+    "country": {
+      "id": "pl",
+      "name": "Poland"
+    },
+    "point": {
+      "lon": 21.0067249,
+      "lat": 52.2319581
+    }
+  },
+  "style": {
+    "region": "western-europe",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/europe/poland-261011.osm.pbf",
+      "https://ourairports.com/airports/EPWA/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/warsaw/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/warsaw/facts.ts",
+        "sha256": "e65baa7730d3f0f5971f09f8eb4eaa0a44818cb015784f98b5f8b299b57993ff"
+      },
+      {
+        "path": "src/game/cities/warsaw/index.ts",
+        "sha256": "f0cb2982eb5a30623b9650a330f9223dfb8164570c5f424ab2c4cb78e829f3a8"
+      },
+      {
+        "path": "src/game/cities/warsaw/places.ts",
+        "sha256": "f10ee3023631e73be64f1b1b0f4738daead4ddc2be1e2a0c89509ccb985121f7"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 21.0067249,
+        "lat": 52.2319581
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "warsaw-airport-warsaw-airport",
+      "name": "Warsaw Chopin Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 20.9671,
+        "lat": 52.165699
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-airport-warsaw-airport-1",
+        "warsaw-warsaw-airport-warsaw-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "warsaw-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-clinic",
+      "name": "Centrum Zdrowia Dziecka",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 21.192409,
+        "lat": 52.206008
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-clinic-1",
+        "warsaw-warsaw-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/40370104"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5098163"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-community-notices",
+      "name": "Agencja Restrukturyzacji i Modernizacji Rolnictwa",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 21.278484,
+        "lat": 52.098869
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-community-notices-1",
+        "warsaw-warsaw-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/558576563"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q9142031"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-community-voting-game",
+      "name": "Plac Konfederacji",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 20.946645,
+        "lat": 52.2798
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-community-voting-game-1",
+        "warsaw-warsaw-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1083027481"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11819094"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-community-workshop",
+      "name": "Miejska Biblioteka Publiczna w Legionowie",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 20.940869,
+        "lat": 52.401155
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-community-workshop-1",
+        "warsaw-warsaw-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1945019192"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q56337946"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-market-game",
+      "name": "Nowa Stacja",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 20.79289,
+        "lat": 52.165327
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-market-game-1",
+        "warsaw-warsaw-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/695633081"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q110389942"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-meal-stop",
+      "name": "Jeff's",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 20.989114,
+        "lat": 52.210978
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-meal-stop-1",
+        "warsaw-warsaw-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/226544896"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q108366399"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-osm-way-1025962496",
+      "name": "Stadion GOS-u w Nadarzynie",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 20.792191,
+        "lat": 52.097475
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-osm-way-1025962496-1",
+        "warsaw-warsaw-osm-way-1025962496-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1025962496"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q109652697"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-osm-way-110020158",
+      "name": "Polska Akademia Nauk Centrum Badań Ekologicznych",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 20.857133,
+        "lat": 52.345253
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-osm-way-110020158-1",
+        "warsaw-warsaw-osm-way-110020158-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/110020158"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11822110"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-osm-way-124771239",
+      "name": "Pałac w Falentach",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 20.919778,
+        "lat": 52.139555
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-osm-way-124771239-1",
+        "warsaw-warsaw-osm-way-124771239-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/124771239"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2047404"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-osm-way-173534115",
+      "name": "Dwór Wielopolskich i Potulickich",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 21.144813,
+        "lat": 52.085214
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-osm-way-173534115-1",
+        "warsaw-warsaw-osm-way-173534115-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/173534115"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q598217"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-osm-way-23498828",
+      "name": "Tor Stegny",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 21.043451,
+        "lat": 52.186883
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-osm-way-23498828-1",
+        "warsaw-warsaw-osm-way-23498828-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/23498828"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2694066"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-osm-way-23771865",
+      "name": "Park Kombatantów",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 20.912717,
+        "lat": 52.207239
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-osm-way-23771865-1",
+        "warsaw-warsaw-osm-way-23771865-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/23771865"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11811367"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-osm-way-24279875",
+      "name": "Targowisko na Szembeka",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 21.102179,
+        "lat": 52.240921
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-osm-way-24279875-1",
+        "warsaw-warsaw-osm-way-24279875-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/24279875"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q9167609"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-osm-way-24924674",
+      "name": "G City Targówek",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 21.057986,
+        "lat": 52.303976
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-osm-way-24924674-1",
+        "warsaw-warsaw-osm-way-24924674-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/24924674"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5063057"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-osm-way-256477802",
+      "name": "Ząbki Dozbud Arena",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 21.122034,
+        "lat": 52.292663
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-osm-way-256477802-1",
+        "warsaw-warsaw-osm-way-256477802-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/256477802"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11836158"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-osm-way-271202947",
+      "name": "Kościół pw. św. Rocha",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 20.804691,
+        "lat": 52.280047
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-osm-way-271202947-1",
+        "warsaw-warsaw-osm-way-271202947-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/271202947"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11746207"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-osm-way-326736657",
+      "name": "Park Fosa",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 20.998878,
+        "lat": 52.26473
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-osm-way-326736657-1",
+        "warsaw-warsaw-osm-way-326736657-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/326736657"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24947740"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-osm-way-339846775",
+      "name": "War Studies University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 21.176787,
+        "lat": 52.268698
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-osm-way-339846775-1",
+        "warsaw-warsaw-osm-way-339846775-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/339846775"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q27061984"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-osm-way-401557317",
+      "name": "Kościół pw. Chrystusa Najwyższego Kapłana",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 21.045422,
+        "lat": 52.363359
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-osm-way-401557317-1",
+        "warsaw-warsaw-osm-way-401557317-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/401557317"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11801665"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-osm-way-5111535",
+      "name": "Cmentarz Palmiry",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 20.744574,
+        "lat": 52.333795
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-osm-way-5111535-1",
+        "warsaw-warsaw-osm-way-5111535-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/5111535"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q559257"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-osm-way-693882871",
+      "name": "CEZAMAT",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 21.008075,
+        "lat": 52.15348
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-osm-way-693882871-1",
+        "warsaw-warsaw-osm-way-693882871-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/693882871"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q19366367"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-quiet-reflection",
+      "name": "Kościół pw. Świętej Trójcy",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 21.195518,
+        "lat": 52.339808
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-quiet-reflection-1",
+        "warsaw-warsaw-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/131905205"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11746340"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-recreation",
+      "name": "Park przy Bażantarni",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 21.065656,
+        "lat": 52.137058
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-recreation-1",
+        "warsaw-warsaw-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/22987815"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q111024611"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "warsaw-transit",
+      "name": "Warsaw East",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 21.052368,
+        "lat": 52.251589
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "warsaw-warsaw-transit-1",
+        "warsaw-warsaw-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/warsaw/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/33210583"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3270196"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "warsaw-warsaw-airport-warsaw-airport-1",
+      "venueId": "warsaw-airport-warsaw-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-airport-warsaw-airport-2",
+      "venueId": "warsaw-airport-warsaw-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-clinic-1",
+      "venueId": "warsaw-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-clinic-2",
+      "venueId": "warsaw-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-community-notices-1",
+      "venueId": "warsaw-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-community-notices-2",
+      "venueId": "warsaw-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-community-voting-game-1",
+      "venueId": "warsaw-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-community-voting-game-2",
+      "venueId": "warsaw-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-community-workshop-1",
+      "venueId": "warsaw-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-community-workshop-2",
+      "venueId": "warsaw-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-market-game-1",
+      "venueId": "warsaw-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-market-game-2",
+      "venueId": "warsaw-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-meal-stop-1",
+      "venueId": "warsaw-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-meal-stop-2",
+      "venueId": "warsaw-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-1025962496-1",
+      "venueId": "warsaw-osm-way-1025962496",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-1025962496-2",
+      "venueId": "warsaw-osm-way-1025962496",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-110020158-1",
+      "venueId": "warsaw-osm-way-110020158",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-110020158-2",
+      "venueId": "warsaw-osm-way-110020158",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-124771239-1",
+      "venueId": "warsaw-osm-way-124771239",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-124771239-2",
+      "venueId": "warsaw-osm-way-124771239",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-173534115-1",
+      "venueId": "warsaw-osm-way-173534115",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-173534115-2",
+      "venueId": "warsaw-osm-way-173534115",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-23498828-1",
+      "venueId": "warsaw-osm-way-23498828",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-23498828-2",
+      "venueId": "warsaw-osm-way-23498828",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-23771865-1",
+      "venueId": "warsaw-osm-way-23771865",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-23771865-2",
+      "venueId": "warsaw-osm-way-23771865",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-24279875-1",
+      "venueId": "warsaw-osm-way-24279875",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-24279875-2",
+      "venueId": "warsaw-osm-way-24279875",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-24924674-1",
+      "venueId": "warsaw-osm-way-24924674",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-24924674-2",
+      "venueId": "warsaw-osm-way-24924674",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-256477802-1",
+      "venueId": "warsaw-osm-way-256477802",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-256477802-2",
+      "venueId": "warsaw-osm-way-256477802",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-271202947-1",
+      "venueId": "warsaw-osm-way-271202947",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-271202947-2",
+      "venueId": "warsaw-osm-way-271202947",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-326736657-1",
+      "venueId": "warsaw-osm-way-326736657",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-326736657-2",
+      "venueId": "warsaw-osm-way-326736657",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-339846775-1",
+      "venueId": "warsaw-osm-way-339846775",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-339846775-2",
+      "venueId": "warsaw-osm-way-339846775",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-401557317-1",
+      "venueId": "warsaw-osm-way-401557317",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-401557317-2",
+      "venueId": "warsaw-osm-way-401557317",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-5111535-1",
+      "venueId": "warsaw-osm-way-5111535",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-5111535-2",
+      "venueId": "warsaw-osm-way-5111535",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-693882871-1",
+      "venueId": "warsaw-osm-way-693882871",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-osm-way-693882871-2",
+      "venueId": "warsaw-osm-way-693882871",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-quiet-reflection-1",
+      "venueId": "warsaw-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-quiet-reflection-2",
+      "venueId": "warsaw-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-recreation-1",
+      "venueId": "warsaw-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-recreation-2",
+      "venueId": "warsaw-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-transit-1",
+      "venueId": "warsaw-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    },
+    {
+      "id": "warsaw-warsaw-transit-2",
+      "venueId": "warsaw-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/warsaw/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "warsaw-airport-warsaw-airport",
+    "warsaw-clinic",
+    "warsaw-community-notices",
+    "warsaw-community-voting-game",
+    "warsaw-community-workshop",
+    "warsaw-market-game",
+    "warsaw-meal-stop",
+    "warsaw-osm-way-1025962496",
+    "warsaw-osm-way-110020158",
+    "warsaw-osm-way-124771239",
+    "warsaw-osm-way-173534115",
+    "warsaw-osm-way-23498828",
+    "warsaw-osm-way-23771865",
+    "warsaw-osm-way-24279875",
+    "warsaw-osm-way-24924674",
+    "warsaw-osm-way-256477802",
+    "warsaw-osm-way-271202947",
+    "warsaw-osm-way-326736657",
+    "warsaw-osm-way-339846775",
+    "warsaw-osm-way-401557317",
+    "warsaw-osm-way-5111535",
+    "warsaw-osm-way-693882871",
+    "warsaw-quiet-reflection",
+    "warsaw-recreation",
+    "warsaw-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "f3a2c96b5690bae932931a7b152221da3a0d6194b510bdb2fc761f50914bbd55",
+    "contentSha256": "4b012cef1847174cd1476bb892e22e59fdd9a0a6eb677051e6fb11160025a034"
+  }
+}

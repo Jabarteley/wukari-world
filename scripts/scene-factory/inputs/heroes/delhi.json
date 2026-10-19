@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "delhi",
+  "url": "/assets/scene-heroes/delhi.glb",
+  "sha256": "73862918923acef75f92fcbc53f2457a6d4386542417ddff0201ccb4d67d1b9b",
+  "rawBytes": 41204,
+  "brotliBytes": 24297,
+  "triangles": 2168,
+  "parts": [
+    {
+      "node": "delhi",
+      "triangles": 2168,
+      "bounds": {
+        "min": [
+          -3.78999996,
+          0,
+          -2.72000003
+        ],
+        "max": [
+          3.78999981393,
+          2.80982351383,
+          2.72012921018
+        ]
+      },
+      "footprint": [
+        -3.78999996,
+        -2.72000003,
+        3.78999981393,
+        2.72012921018
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "4ecd94f61a64f4cf5481b966491528b66c62c39dd43c48e7003b72828ff66be9"
+  },
+  "inputs": {
+    "rawSha256": "5f0c340c8e12442cbf789fc7a7052757371c32f2e817926acedb61c2e1fb88d6",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "delhi",
+      "country": "in",
+      "name": "Red Fort",
+      "category": "building",
+      "sourceUrls": [
+        "https://whc.unesco.org/en/list/231/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=delhi]; hero-inputs-r4.md defining-form review",
+      "sourceLicence": "Source text rights unknown unless the publisher states otherwise; factual identity only. No external photo, map, mesh, texture, sculpture surface or plan reused. Original generated geometry is AGPL-3.0-or-later; third-party marks and landmark rights are not cleared by this record.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landmark",
+      "parameters": {
+        "width": 8,
+        "depth": 6,
+        "height": 4,
+        "seed": 6111,
+        "palette": [
+          "#dbcdb6",
+          "#62584a",
+          "#8f8a74",
+          "#af593f",
+          "#c8b68c",
+          "#8caa99",
+          "#d2bd91",
+          "#2e3c43"
+        ],
+        "composition": "red-fort-pavilions"
+      },
+      "evidence": "UNESCO describes Red Fort as the palace fort of Shahjahanabad, with enclosing walls and connected pavilions. UNESCO describes enclosing red sandstone walls and rows of pavilions. Original fort-and-pavilion fragment; exact counts and placement are art direction. All dimensions, colours, simplifications and composition proportions are original art direction, not source measurements. No surveyed-location, current-access, production-quality or legal-rights approval is asserted.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "south-asia"
+      }
+    },
+    "styleSha256": "64cbc90bfc05b51139a91eabe0f981c4f47d02ed2689be22193361f6b66af12d"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "allworld-catalogue-ci-measurement",
+  "version": 1,
+  "source": "a44af5f0c25bf6195c66c4365afcc3bde290c008",
+  "run": "https://github.com/kromate/joinallworld/actions/runs/39107151597",
+  "build": "success",
+  "downloadGate": "failure",
+  "startup": {
+    "raw": 614081,
+    "gzip": 222792,
+    "brotli": 195783,
+    "brotliCap": 195600
+  },
+  "namedHost": {
+    "raw": 78963,
+    "gzip": 29919,
+    "scope": "Only the emitted world-adapter chunk, not its full scene dependency closure. No full-host reduction claimed."
+  },
+  "artifact": {
+    "id": 12128981120,
+    "zipBytes": 43820020
+  },
+  "newWarning": "Circular chunk: glyphs -> shell-kit -> glyphs",
+  "next": "Inspect cohesive glyph subscription dependency and actual graph; no cap increase.",
+  "logSha256": "91fb5d74b281b495105183e9497309dd2d92cd5862e99b66f7a1727b60de574b"
+}

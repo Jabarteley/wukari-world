@@ -1,0 +1,2099 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "vientiane",
+    "name": "Vientiane",
+    "state": {
+      "id": "la-vientiane",
+      "name": "Vientiane"
+    },
+    "country": {
+      "id": "la",
+      "name": "Laos"
+    },
+    "point": {
+      "lon": 102.6133707,
+      "lat": 17.9640988
+    }
+  },
+  "style": {
+    "region": "east-asia",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/asia/laos-261011.osm.pbf",
+      "https://ourairports.com/airports/VLVT/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/vientiane/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/vientiane/facts.ts",
+        "sha256": "448277ea45e06ffe67101a719fc152c099846b401210bd89fc605d7ef41df7f0"
+      },
+      {
+        "path": "src/game/cities/vientiane/index.ts",
+        "sha256": "a2c939b6a5a785ff7a3ac2d46d5ef7aac6acc2faa1b106684a11c318e8ab8fc4"
+      },
+      {
+        "path": "src/game/cities/vientiane/places.ts",
+        "sha256": "4ad90d882750055fcf9a1afd841d9b40b28a8ee9e9e9d69cf5c6beb1be4bba23"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.6133707,
+        "lat": 17.9640988
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "vientiane-airport-vientiane-airport",
+      "name": "Wattay International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.566692,
+        "lat": 17.985052
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-airport-vientiane-airport-1",
+        "vientiane-vientiane-airport-vientiane-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "vientiane-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-clinic",
+      "name": "Mahosot Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.611837,
+        "lat": 17.96021
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-clinic-1",
+        "vientiane-vientiane-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/39528312"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q6734848"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-community-notices",
+      "name": "Institut Pasteur du Laos",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.615103,
+        "lat": 17.962637
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-community-notices-1",
+        "vientiane-vientiane-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8840596415"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q391083"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-community-voting-game",
+      "name": "Ban Phosy Village Office",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.629602,
+        "lat": 17.84394
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-community-voting-game-1",
+        "vientiane-vientiane-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5652012052"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-community-workshop",
+      "name": "National University of Laos",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.635633,
+        "lat": 18.03799
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-community-workshop-1",
+        "vientiane-vientiane-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1009004302"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q536280"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-market-game",
+      "name": "Talat Sao Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.614065,
+        "lat": 17.964722
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-market-game-1",
+        "vientiane-vientiane-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/202129577"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q7678953"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-meal-stop",
+      "name": "Chokdee Cafe & Beer Bar",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.605821,
+        "lat": 17.963088
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-meal-stop-1",
+        "vientiane-vientiane-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/476448255"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q137289252"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-osm-node-11486599694",
+      "name": "Xaithani District Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.625739,
+        "lat": 18.130626
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-osm-node-11486599694-1",
+        "vientiane-vientiane-osm-node-11486599694-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/11486599694"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-osm-node-12114176243",
+      "name": "Houaychiam Health Center (Palai)",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.789125,
+        "lat": 18.125511
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-osm-node-12114176243-1",
+        "vientiane-vientiane-osm-node-12114176243-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12114176243"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-osm-node-2244979473",
+      "name": "Dane Soung Viewpoint",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.43856,
+        "lat": 18.121737
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-osm-node-2244979473-1",
+        "vientiane-vientiane-osm-node-2244979473-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2244979473"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-osm-node-2340078795",
+      "name": "Naxatythong Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.533517,
+        "lat": 18.073566
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-osm-node-2340078795-1",
+        "vientiane-vientiane-osm-node-2340078795-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2340078795"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-osm-node-3645511715",
+      "name": "Vongphone Grilled",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.732434,
+        "lat": 17.887778
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-osm-node-3645511715-1",
+        "vientiane-vientiane-osm-node-3645511715-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3645511715"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-osm-node-4384724640",
+      "name": "Tat Vang-Nong",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.446186,
+        "lat": 18.027406
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-osm-node-4384724640-1",
+        "vientiane-vientiane-osm-node-4384724640-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4384724640"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-osm-node-5036948326",
+      "name": "Kan Ngeun Dông Kam Xang",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.665513,
+        "lat": 17.912043
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-osm-node-5036948326-1",
+        "vientiane-vientiane-osm-node-5036948326-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5036948326"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-osm-node-523575544",
+      "name": "Jamia Masjid",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.608998,
+        "lat": 17.964691
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-osm-node-523575544-1",
+        "vientiane-vientiane-osm-node-523575544-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/523575544"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q17606819"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-osm-node-524296626",
+      "name": "Kualao",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.610616,
+        "lat": 17.964811
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-osm-node-524296626-1",
+        "vientiane-vientiane-osm-node-524296626-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/524296626"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q19892978"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-osm-node-6978079256",
+      "name": "National University of Laos, Faculty of water resource",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.505479,
+        "lat": 17.990091
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-osm-node-6978079256-1",
+        "vientiane-vientiane-osm-node-6978079256-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6978079256"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-osm-way-41566774",
+      "name": "Patuxai",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.618614,
+        "lat": 17.970634
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-osm-way-41566774-1",
+        "vientiane-vientiane-osm-way-41566774-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/41566774"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1442518"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-osm-way-42389632",
+      "name": "Wat Si Muang",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.617109,
+        "lat": 17.957959
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-osm-way-42389632-1",
+        "vientiane-vientiane-osm-way-42389632-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/42389632"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1441659"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-osm-way-549654627",
+      "name": "Lao National Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.64529,
+        "lat": 18.00768
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-osm-way-549654627-1",
+        "vientiane-vientiane-osm-way-549654627-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/549654627"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2572281"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-osm-way-613407768",
+      "name": "Anouvong Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.608221,
+        "lat": 17.968591
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-osm-way-613407768-1",
+        "vientiane-vientiane-osm-way-613407768-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/613407768"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q11257134"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-osm-way-665451513",
+      "name": "New Laos National Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.703974,
+        "lat": 18.062086
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-osm-way-665451513-1",
+        "vientiane-vientiane-osm-way-665451513-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/665451513"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1382956"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-quiet-reflection",
+      "name": "That Luang",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.636496,
+        "lat": 17.976661
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-quiet-reflection-1",
+        "vientiane-vientiane-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/273288"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1059720"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-recreation",
+      "name": "North Lake Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.759111,
+        "lat": 18.02114
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-recreation-1",
+        "vientiane-vientiane-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1315886164"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "vientiane-transit",
+      "name": "Vientiane",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 102.690742,
+        "lat": 18.047051
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "vientiane-vientiane-transit-1",
+        "vientiane-vientiane-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/vientiane/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6892516159"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q108525865"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "vientiane-vientiane-airport-vientiane-airport-1",
+      "venueId": "vientiane-airport-vientiane-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-airport-vientiane-airport-2",
+      "venueId": "vientiane-airport-vientiane-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-clinic-1",
+      "venueId": "vientiane-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-clinic-2",
+      "venueId": "vientiane-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-community-notices-1",
+      "venueId": "vientiane-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-community-notices-2",
+      "venueId": "vientiane-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-community-voting-game-1",
+      "venueId": "vientiane-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-community-voting-game-2",
+      "venueId": "vientiane-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-community-workshop-1",
+      "venueId": "vientiane-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-community-workshop-2",
+      "venueId": "vientiane-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-market-game-1",
+      "venueId": "vientiane-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-market-game-2",
+      "venueId": "vientiane-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-meal-stop-1",
+      "venueId": "vientiane-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-meal-stop-2",
+      "venueId": "vientiane-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-11486599694-1",
+      "venueId": "vientiane-osm-node-11486599694",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-11486599694-2",
+      "venueId": "vientiane-osm-node-11486599694",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-12114176243-1",
+      "venueId": "vientiane-osm-node-12114176243",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-12114176243-2",
+      "venueId": "vientiane-osm-node-12114176243",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-2244979473-1",
+      "venueId": "vientiane-osm-node-2244979473",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-2244979473-2",
+      "venueId": "vientiane-osm-node-2244979473",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-2340078795-1",
+      "venueId": "vientiane-osm-node-2340078795",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-2340078795-2",
+      "venueId": "vientiane-osm-node-2340078795",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-3645511715-1",
+      "venueId": "vientiane-osm-node-3645511715",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-3645511715-2",
+      "venueId": "vientiane-osm-node-3645511715",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-4384724640-1",
+      "venueId": "vientiane-osm-node-4384724640",
+      "name": "Greer",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-4384724640-2",
+      "venueId": "vientiane-osm-node-4384724640",
+      "name": "Hollis",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-5036948326-1",
+      "venueId": "vientiane-osm-node-5036948326",
+      "name": "Ira",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-5036948326-2",
+      "venueId": "vientiane-osm-node-5036948326",
+      "name": "Jules",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-523575544-1",
+      "venueId": "vientiane-osm-node-523575544",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-523575544-2",
+      "venueId": "vientiane-osm-node-523575544",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-524296626-1",
+      "venueId": "vientiane-osm-node-524296626",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-524296626-2",
+      "venueId": "vientiane-osm-node-524296626",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-6978079256-1",
+      "venueId": "vientiane-osm-node-6978079256",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-node-6978079256-2",
+      "venueId": "vientiane-osm-node-6978079256",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-way-41566774-1",
+      "venueId": "vientiane-osm-way-41566774",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-way-41566774-2",
+      "venueId": "vientiane-osm-way-41566774",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-way-42389632-1",
+      "venueId": "vientiane-osm-way-42389632",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-way-42389632-2",
+      "venueId": "vientiane-osm-way-42389632",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-way-549654627-1",
+      "venueId": "vientiane-osm-way-549654627",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-way-549654627-2",
+      "venueId": "vientiane-osm-way-549654627",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-way-613407768-1",
+      "venueId": "vientiane-osm-way-613407768",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-way-613407768-2",
+      "venueId": "vientiane-osm-way-613407768",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-way-665451513-1",
+      "venueId": "vientiane-osm-way-665451513",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-osm-way-665451513-2",
+      "venueId": "vientiane-osm-way-665451513",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-quiet-reflection-1",
+      "venueId": "vientiane-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-quiet-reflection-2",
+      "venueId": "vientiane-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-recreation-1",
+      "venueId": "vientiane-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-recreation-2",
+      "venueId": "vientiane-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-transit-1",
+      "venueId": "vientiane-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    },
+    {
+      "id": "vientiane-vientiane-transit-2",
+      "venueId": "vientiane-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/vientiane/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "vientiane-airport-vientiane-airport",
+    "vientiane-clinic",
+    "vientiane-community-notices",
+    "vientiane-community-voting-game",
+    "vientiane-community-workshop",
+    "vientiane-market-game",
+    "vientiane-meal-stop",
+    "vientiane-osm-node-11486599694",
+    "vientiane-osm-node-12114176243",
+    "vientiane-osm-node-2244979473",
+    "vientiane-osm-node-2340078795",
+    "vientiane-osm-node-3645511715",
+    "vientiane-osm-node-4384724640",
+    "vientiane-osm-node-5036948326",
+    "vientiane-osm-node-523575544",
+    "vientiane-osm-node-524296626",
+    "vientiane-osm-node-6978079256",
+    "vientiane-osm-way-41566774",
+    "vientiane-osm-way-42389632",
+    "vientiane-osm-way-549654627",
+    "vientiane-osm-way-613407768",
+    "vientiane-osm-way-665451513",
+    "vientiane-quiet-reflection",
+    "vientiane-recreation",
+    "vientiane-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "894c03513b1bff3144c49494f659b69ca246575da50f22cd2104524343d94acd",
+    "contentSha256": "3616b8d34ecd9c115a8e8f2fc6ffb151a0980951ded69a15fa4957f8c12ebc48"
+  }
+}

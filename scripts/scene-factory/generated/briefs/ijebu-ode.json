@@ -1,0 +1,1317 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "ijebu-ode",
+    "name": "Ijebu-Ode",
+    "state": {
+      "id": "ogun",
+      "name": "Ogun State"
+    },
+    "country": {
+      "id": "ng",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 3.92,
+      "lat": 6.82
+    }
+  },
+  "style": {
+    "region": "yoruba-southwest",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/ijebu-ode/content.ts",
+        "sha256": "2750088a5ff11be8a3f0506d1fb8e9453e7e989f92efd2e027f74fe6deea1e85"
+      },
+      {
+        "path": "src/game/cities/ijebu-ode/index.ts",
+        "sha256": "44a19fa1578d7afa13ec436e7d73c48b5560a5cd3cfa814050c08792d5e2beea"
+      },
+      {
+        "path": "src/game/cities/ijebu-ode/rules.ts",
+        "sha256": "ac1fe4f12f61dc25e8062c17d03e3cfc9cc6324393f1ffaeb463da2f748390fe"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for ijebu-ode.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "dipo-dina-stadium",
+      "name": "Otunba Dipo Dina International Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9374079,
+        "lat": 6.8171253
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ijebu-ode-dipo-dina-stadium-1",
+        "ijebu-ode-dipo-dina-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": "track-stadium",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ijebu-ode."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9374079,
+        "lat": 6.8171253
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ijebu-ode."
+      }
+    },
+    {
+      "id": "ijebu-central-mosque",
+      "name": "Ijebu-Ode Central Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.91602,
+        "lat": 6.81689
+      },
+      "spots": [
+        {
+          "id": "hall",
+          "name": "Prayer hall"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "hall",
+          "name": "Prayer hall",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ijebu-ode-ijebu-central-mosque-1",
+        "ijebu-ode-ijebu-central-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "mosque",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ijebu-ode."
+      }
+    },
+    {
+      "id": "ijebu-chapel",
+      "name": "Ijebu Community Chapel",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.91819,
+        "lat": 6.82319
+      },
+      "spots": [
+        {
+          "id": "hall",
+          "name": "Chapel hall"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "hall",
+          "name": "Chapel hall",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ijebu-ode-ijebu-chapel-1",
+        "ijebu-ode-ijebu-chapel-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ijebu-ode."
+      }
+    },
+    {
+      "id": "ijebu-clinic",
+      "name": "Ijebu Community Clinic",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.92499,
+        "lat": 6.81329
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ijebu-ode-ijebu-clinic-1",
+        "ijebu-ode-ijebu-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ijebu-ode."
+      }
+    },
+    {
+      "id": "ijebu-creative-studio",
+      "name": "Ijebu Creative Studio",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9099,
+        "lat": 6.8174
+      },
+      "spots": [
+        {
+          "id": "studio",
+          "name": "Creative studio"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "studio",
+          "name": "Creative studio",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ijebu-ode-ijebu-creative-studio-1",
+        "ijebu-ode-ijebu-creative-studio-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": "cloth-studio",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ijebu-ode."
+      }
+    },
+    {
+      "id": "ijebu-evening-garden",
+      "name": "Ijebu Evening Garden",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9205,
+        "lat": 6.8147
+      },
+      "spots": [
+        {
+          "id": "stage",
+          "name": "Garden stage"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stage",
+          "name": "Garden stage",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ijebu-ode-ijebu-evening-garden-1",
+        "ijebu-ode-ijebu-evening-garden-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": "evening-garden",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ijebu-ode."
+      }
+    },
+    {
+      "id": "ijebu-kitchen",
+      "name": "Ijebu Kitchen",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9133,
+        "lat": 6.8118
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ijebu-ode-ijebu-kitchen-1",
+        "ijebu-ode-ijebu-kitchen-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ijebu-ode."
+      }
+    },
+    {
+      "id": "ijebu-market",
+      "name": "Ijebu-Ode Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.92107,
+        "lat": 6.82901
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ijebu-ode-ijebu-market-1",
+        "ijebu-ode-ijebu-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": "market-garri",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ijebu-ode."
+      }
+    },
+    {
+      "id": "ijebu-museum",
+      "name": "Ijebu Heritage Gallery",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9171,
+        "lat": 6.8127
+      },
+      "spots": [
+        {
+          "id": "gallery",
+          "name": "Heritage gallery"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "gallery",
+          "name": "Heritage gallery",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ijebu-ode-ijebu-museum-1",
+        "ijebu-ode-ijebu-museum-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": "heritage-gallery",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ijebu-ode."
+      }
+    },
+    {
+      "id": "ijebu-neighbourhood-park",
+      "name": "Ijebu Neighbourhood Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9122,
+        "lat": 6.816
+      },
+      "spots": [
+        {
+          "id": "trees",
+          "name": "Under the trees"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "trees",
+          "name": "Under the trees",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ijebu-ode-ijebu-neighbourhood-park-1",
+        "ijebu-ode-ijebu-neighbourhood-park-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": "ayo-park",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ijebu-ode."
+      }
+    },
+    {
+      "id": "ijebu-polling",
+      "name": "Ijebu Civic Polling Centre",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9139,
+        "lat": 6.8149
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Election officials"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Election officials",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "ijebu-ode-ijebu-polling-1",
+        "ijebu-ode-ijebu-polling-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ijebu-ode."
+      }
+    },
+    {
+      "id": "ijebu-road-park",
+      "name": "Ijebu-Ode Motor Park",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9105063,
+        "lat": 6.8108372
+      },
+      "spots": [
+        {
+          "id": "platform",
+          "name": "Bus platform"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "platform",
+          "name": "Bus platform",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ijebu-ode-ijebu-road-park-1",
+        "ijebu-ode-ijebu-road-park-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": "park-rank",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ijebu-ode."
+      }
+    },
+    {
+      "id": "ijebu-salon",
+      "name": "Ijebu Cloth and Hair Studio",
+      "kind": "salon",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9172,
+        "lat": 6.8168
+      },
+      "spots": [
+        {
+          "id": "chair",
+          "name": "Styling chair"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "chair",
+          "name": "Styling chair",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ijebu-ode-ijebu-salon-1",
+        "ijebu-ode-ijebu-salon-2"
+      ],
+      "scene": {
+        "kind": "salon",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ijebu-ode."
+      }
+    },
+    {
+      "id": "ojude-oba-forecourt",
+      "name": "Ijebu Heritage Gathering",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.9151668,
+        "lat": 6.8140077
+      },
+      "spots": [
+        {
+          "id": "forecourt",
+          "name": "Heritage gathering"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "forecourt",
+          "name": "Heritage gathering",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ijebu-ode-ojude-oba-forecourt-1",
+        "ijebu-ode-ojude-oba-forecourt-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": "ojude-ground",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ijebu-ode."
+      }
+    },
+    {
+      "id": "tasued",
+      "name": "Tai Solarin Federal University of Education",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.93049,
+        "lat": 6.79281
+      },
+      "spots": [
+        {
+          "id": "class",
+          "name": "Teaching lab"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "class",
+          "name": "Teaching lab",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "ijebu-ode-tasued-1",
+        "ijebu-ode-tasued-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": "campus-flag",
+        "disposition": "preserve-authored"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for ijebu-ode."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "ijebu-ode-dipo-dina-stadium-1",
+      "venueId": "dipo-dina-stadium",
+      "name": "Bimpe Adebajo",
+      "role": "Otunba Dipo Dina International Stadium guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-dipo-dina-stadium-2",
+      "venueId": "dipo-dina-stadium",
+      "name": "Tunde Ogunnaike",
+      "role": "Otunba Dipo Dina International Stadium regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-central-mosque-1",
+      "venueId": "ijebu-central-mosque",
+      "name": "Nike Adekoya",
+      "role": "Ijebu-Ode Central Mosque guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-central-mosque-2",
+      "venueId": "ijebu-central-mosque",
+      "name": "Seyi Bello",
+      "role": "Ijebu-Ode Central Mosque regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-chapel-1",
+      "venueId": "ijebu-chapel",
+      "name": "Peju Akinyemi",
+      "role": "Ijebu Community Chapel guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-chapel-2",
+      "venueId": "ijebu-chapel",
+      "name": "Dayo Olurin",
+      "role": "Ijebu Community Chapel regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-clinic-1",
+      "venueId": "ijebu-clinic",
+      "name": "Rukayat Quadri",
+      "role": "Ijebu Community Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-clinic-2",
+      "venueId": "ijebu-clinic",
+      "name": "Kayode Lawal",
+      "role": "Ijebu Community Clinic regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-creative-studio-1",
+      "venueId": "ijebu-creative-studio",
+      "name": "Temi Bakare",
+      "role": "Ijebu Creative Studio guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-creative-studio-2",
+      "venueId": "ijebu-creative-studio",
+      "name": "Yinka Akinlade",
+      "role": "Ijebu Creative Studio regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-evening-garden-1",
+      "venueId": "ijebu-evening-garden",
+      "name": "Ronke Odukoya",
+      "role": "Ijebu Evening Garden guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-evening-garden-2",
+      "venueId": "ijebu-evening-garden",
+      "name": "Kunle Adebisi",
+      "role": "Ijebu Evening Garden regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-kitchen-1",
+      "venueId": "ijebu-kitchen",
+      "name": "Tola Odunuga",
+      "role": "Ijebu Kitchen guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-kitchen-2",
+      "venueId": "ijebu-kitchen",
+      "name": "Bayo Okunowo",
+      "role": "Ijebu Kitchen regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-market-1",
+      "venueId": "ijebu-market",
+      "name": "Dupe Oresanya",
+      "role": "Ijebu-Ode Market guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-market-2",
+      "venueId": "ijebu-market",
+      "name": "Jide Osibote",
+      "role": "Ijebu-Ode Market regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-museum-1",
+      "venueId": "ijebu-museum",
+      "name": "Kehinde Okuboyejo",
+      "role": "Ijebu Heritage Gallery guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-museum-2",
+      "venueId": "ijebu-museum",
+      "name": "Lekan Sonibare",
+      "role": "Ijebu Heritage Gallery regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-neighbourhood-park-1",
+      "venueId": "ijebu-neighbourhood-park",
+      "name": "Adetoun Adesanya",
+      "role": "Ijebu Neighbourhood Park guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-neighbourhood-park-2",
+      "venueId": "ijebu-neighbourhood-park",
+      "name": "Kola Odutola",
+      "role": "Ijebu Neighbourhood Park regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-polling-1",
+      "venueId": "ijebu-polling",
+      "name": "Morenike Adebanjo",
+      "role": "Ijebu Civic Polling Centre guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-polling-2",
+      "venueId": "ijebu-polling",
+      "name": "Taiwo Ogunfowora",
+      "role": "Ijebu Civic Polling Centre regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-road-park-1",
+      "venueId": "ijebu-road-park",
+      "name": "Sade Adetona",
+      "role": "Ijebu-Ode Motor Park guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-road-park-2",
+      "venueId": "ijebu-road-park",
+      "name": "Femi Onabanjo",
+      "role": "Ijebu-Ode Motor Park regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-salon-1",
+      "venueId": "ijebu-salon",
+      "name": "Funmi Aromolaran",
+      "role": "Ijebu Cloth and Hair Studio guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ijebu-salon-2",
+      "venueId": "ijebu-salon",
+      "name": "Wale Adeola",
+      "role": "Ijebu Cloth and Hair Studio regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ojude-oba-forecourt-1",
+      "venueId": "ojude-oba-forecourt",
+      "name": "Yetunde Okusanya",
+      "role": "Ijebu Heritage Gathering guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-ojude-oba-forecourt-2",
+      "venueId": "ojude-oba-forecourt",
+      "name": "Segun Balogun",
+      "role": "Ijebu Heritage Gathering regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-tasued-1",
+      "venueId": "tasued",
+      "name": "Kemi Oduwole",
+      "role": "Tai Solarin Federal University of Education guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    },
+    {
+      "id": "ijebu-ode-tasued-2",
+      "venueId": "tasued",
+      "name": "Lanre Osinusi",
+      "role": "Tai Solarin Federal University of Education regular",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/ijebu-ode/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "ijebu-central-mosque",
+    "ijebu-chapel",
+    "ijebu-clinic",
+    "ijebu-kitchen",
+    "ijebu-polling",
+    "ijebu-salon"
+  ],
+  "preservedVenueIds": [
+    "dipo-dina-stadium",
+    "ijebu-creative-studio",
+    "ijebu-evening-garden",
+    "ijebu-market",
+    "ijebu-museum",
+    "ijebu-neighbourhood-park",
+    "ijebu-road-park",
+    "ojude-oba-forecourt",
+    "tasued"
+  ],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "41cd64fe796c1983750eae985a0a5152bc69336b2ebb109e75f5fb20ecd9c117",
+    "contentSha256": "1b09b6e270dd7fcaab42ec775384361e5c22bfa1a3c7944c1ec1ca1db33b78d3"
+  }
+}

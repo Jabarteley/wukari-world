@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "ota",
+  "url": "/assets/scene-heroes/ota.glb",
+  "sha256": "fe874952428cd5b6265944c938cf74ece9625f0e276388676fcbebc85cbce28d",
+  "rawBytes": 21120,
+  "brotliBytes": 17366,
+  "triangles": 694,
+  "parts": [
+    {
+      "node": "ota",
+      "triangles": 694,
+      "bounds": {
+        "min": [
+          -3.22226834,
+          0,
+          -2.6193924
+        ],
+        "max": [
+          3.2222683652619994,
+          1.800048828864,
+          2.6194734878519994
+        ]
+      },
+      "footprint": [
+        -3.22226834,
+        -2.6193924,
+        3.2222683652619994,
+        2.6194734878519994
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "6fc43fa5cc7c3140c288e04db270c62da48fbee42a6e3123f4b055512f6b539d"
+  },
+  "inputs": {
+    "rawSha256": "5341cd6c8f8b3e7ff5105fb3131996fae81e8c026aa8a71454c9febc81107616",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "ota",
+      "country": "ng",
+      "name": "Ijamido gully",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://new.ogunstate.gov.ng/archive/OGUN%20State%20FY%202024%20Budget%20Publication%20-FINAL.pdf"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-remaining80-primary-r2.json#records[city_id=ota]",
+      "sourceLicence": "Unknown; factual text used only. No external geometry, photos or maps reused.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 8,
+        "depth": 6,
+        "height": 1.8,
+        "seed": 11570124,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "gully"
+      },
+      "evidence": "Ogun FY2024 budget names the Ijamido gully-control project in Ota. A gully supports an eroded landform fragment; it does not establish a stream, persistent water, exact contours or current condition. Inherits the specific primary budget row and 10-word excerpt in pinned R2; fresh PDF fetch failed, so no new source read is claimed. Evidence artifact SHA256 e8e6ca71e65ebe9c195128ae6e9f5fd53dd85edab5de9ae7ebb12ea1b0f8dadd. Repository source path: none; primary alternative recorded in the pinned research artifact. Original procedural fragment, not a surveyed site, full landmark replica or current-access/operation claim. Dimensions, colours, counts and layout are art direction, not sourced measurements. No external map, photograph, sculpture or mesh copied. Unknown source rights do not confer external geometry rights. Geometry AGPL-3.0-or-later; production and decoded geometry/byte approval remain pending.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "yoruba-southwest"
+      }
+    },
+    "styleSha256": "6bca7f81e5a0566559c88554f069e4e0f246ddca068d86b1efc31b249d7c8ee5"
+  }
+}

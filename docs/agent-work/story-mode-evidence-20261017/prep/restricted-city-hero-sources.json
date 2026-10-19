@@ -1,0 +1,95 @@
+{
+  "scope": {
+    "purpose": "Evidence-only eligibility gap research for two Nigerian city queues. These are input candidates for owner review, not approved heroes or generation authorization.",
+    "access_date": "2026-10-18",
+    "source_policy": "Official Ogun State government sources only in this pass; source text establishes place identity/category. No images, maps, photographs, or geometry reused.",
+    "rights_policy": "No venue asset, geometry, imagery, or commercial-use rights are established by this factual research."
+  },
+  "cities": [
+    {
+      "id": "ijebu-ode",
+      "catalogue_identity": "Ijebu-Ode, Ogun State, Nigeria",
+      "catalogue_coordinates": {
+        "lat": 6.82,
+        "lon": 3.92
+      },
+      "catalogue_region": "yoruba-southwest",
+      "current_queue_pointer": "docs/agent-work/story-mode-evidence-20261017/prep/hero-candidates-ranked.json#cities[id=ijebu-ode]",
+      "prior_gap": "Top existing candidates had no restricted-country market/natural-feature/monument exception and no sourced pre-1950 building year.",
+      "candidate": {
+        "name": "Market at Ita Mapako",
+        "category": "market",
+        "eligibility_basis": "Nigeria market exception; the official source names the market and explicitly locates it in Ijebu-Ode.",
+        "source": {
+          "title": "Ogun residents shower encomiums on Gov Abiodun, as lawmakers embark on projects\u2019 commissioning",
+          "authority": "Ogun State House of Assembly (OGHA), official site; by Lawal Jamiu",
+          "url": "https://ogha.og.gov.ng/blog/2025/10/02/ogun-residents-shower-encomiums-on-gov-abiodun-as-lawmakers-embark-on-projects-commissioning/",
+          "page_locator": "HTML article, paragraph at source lines 63 and caption at lines 80\u201381 in browser extraction; posted 2025-10-02",
+          "source_date": "2025-10-02 (page posting date)",
+          "access_date": "2026-10-18",
+          "license": "unknown"
+        },
+        "factual_paraphrase": "The OGHA article states that a 40-open-stall market was facilitated at Ita Mapako in Ijebu-Ode and repeats that location in the commissioning caption.",
+        "source_path": "src/game/cities/ijebu-ode/content.ts (city catalogue entry); no candidate-specific record found in the inspected entry.",
+        "coordinates": "unknown; catalogue city coordinates are not venue coordinates",
+        "brand_or_noncorporate_status": "unknown; source does not establish ownership or non-corporate status",
+        "source_geometry": "none; no surveyed footprint or architectural design copied",
+        "source_license_for_geometry": "unknown",
+        "proposed_original_primitive_template": "Generic open-stall market fragment using original low-poly posts, simple canopy planes, and modular empty stalls; no branded signage, copied layout, source image, or venue-specific surveyed dimensions.",
+        "confidence": "high for market category and Ijebu-Ode locality; venue coordinates and rights remain unestablished",
+        "status": "input-only candidate; parent/asset-owner review required; not approved for generation",
+        "parent_verification": {
+          "observedAt": "2026-10-18T01:13:57Z",
+          "acceptedScope": "factual city, market identity and category only; no asset approval",
+          "method": "Official HTML article read directly, paragraph63 and caption80.",
+          "status": "identity-and-category-supported"
+        }
+      }
+    },
+    {
+      "id": "sagamu",
+      "catalogue_identity": "Sagamu, Ogun State, Nigeria",
+      "catalogue_coordinates": {
+        "lat": 6.85,
+        "lon": 3.64
+      },
+      "catalogue_region": "yoruba-southwest",
+      "current_queue_pointer": "docs/agent-work/story-mode-evidence-20261017/prep/hero-candidates-ranked.json#cities[id=sagamu]",
+      "prior_gap": "Top existing candidates had no restricted-country market/natural-feature/monument exception and no sourced pre-1950 building year; Ikenne was excluded as a different locality.",
+      "candidate": {
+        "name": "Awolowo Market, Sagamu",
+        "category": "market",
+        "eligibility_basis": "Nigeria market exception; official Sagamu Local Government audit material identifies this market in Sagamu.",
+        "source": {
+          "title": "Sagamu Local Government Audited Account Year 2022",
+          "authority": "Ogun State Government, Nigeria; Sagamu Local Government audit report hosted in the state archive",
+          "url": "https://new.ogunstate.gov.ng/archive/SAGAMU%20LOCAL%20GOVERNMENT%20AUDITED%20ACCOUNT%20YEAR%202022.pdf",
+          "page_locator": "PDF section \u201cLock-Up Shops and Open-Stalls\u201d; table row 1 in the indexed source extraction reads \u201cAwolowo Market, Sagamu\u201d; printed page number not established in this pass",
+          "source_date": "Report year 2022; exact publication date unknown",
+          "access_date": "2026-10-18",
+          "license": "unknown"
+        },
+        "factual_paraphrase": "The official audited account lists Awolowo Market, Sagamu in its lock-up-shops/open-stalls table, identifying a market at Sagamu.",
+        "source_path": "src/game/cities/sagamu/content.ts (city catalogue entry); no candidate-specific record found in the inspected entry.",
+        "coordinates": "unknown; catalogue city coordinates are not venue coordinates",
+        "brand_or_noncorporate_status": "unknown; source does not establish ownership or non-corporate status",
+        "source_geometry": "none; no surveyed footprint or architectural design copied",
+        "source_license_for_geometry": "unknown",
+        "proposed_original_primitive_template": "Generic market-stall fragment using original low-poly posts, simple roof/canopy planes, and empty modular stalls; no copied market plan, imagery, signage, or venue-specific dimensions.",
+        "confidence": "high for market category and Sagamu locality; exact venue coordinates and rights remain unestablished",
+        "status": "input-only candidate; parent/asset-owner review required; not approved for generation",
+        "parent_verification": {
+          "observedAt": "2026-10-18T01:13:57Z",
+          "acceptedScope": "factual city, market identity and category only; no asset approval",
+          "method": "Official PDF indexed text independently read through search; direct PDF returned502 and direct HTTP connection refused. Printed page remains unknown.",
+          "status": "indexed-identity-and-category-supported-pdf-page-unverified"
+        }
+      }
+    }
+  ],
+  "unresolved": [
+    "Both sources establish category and city, but neither establishes venue coordinates or asset/geometry rights.",
+    "Neither source establishes whether an individual market venue has corporate branding or ownership; do not add branded identifiers.",
+    "No assets were created and no candidate queue file was modified."
+  ]
+}

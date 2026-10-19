@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "toronto",
+  "url": "/assets/scene-heroes/toronto.glb",
+  "sha256": "3622fb72366e5b07ce6751c2dd4b9c92b5ac3a28f47e06081a59a74181d17ab8",
+  "rawBytes": 23672,
+  "brotliBytes": 17825,
+  "triangles": 640,
+  "parts": [
+    {
+      "node": "toronto",
+      "triangles": 640,
+      "bounds": {
+        "min": [
+          -2.25,
+          0,
+          -1.75
+        ],
+        "max": [
+          2.2497558270919997,
+          11.749999954614,
+          1.7499694670400001
+        ]
+      },
+      "footprint": [
+        -2.25,
+        -1.75,
+        2.2497558270919997,
+        1.7499694670400001
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "937f70fd188c87582b7f40988539bedd57f2e8bc69172467a6d6dfccb80f6148",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "toronto",
+      "country": "ca",
+      "name": "CN Tower",
+      "category": "building",
+      "sourceUrls": [
+        "https://www.cntower.ca/history",
+        "https://www.cntower.ca/history-and-science/design-science-and-innovation",
+        "https://www.cntower.ca/explore-the-tower"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=toronto]; hero-inputs-r4.md defining-form review",
+      "sourceLicence": "Source text rights unknown unless the publisher states otherwise; factual identity only. No external photo, map, mesh, texture, sculpture surface or plan reused. Original generated geometry is AGPL-3.0-or-later; third-party marks and landmark rights are not cleared by this record.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landmark",
+      "parameters": {
+        "width": 5,
+        "depth": 4,
+        "height": 12,
+        "seed": 6115,
+        "palette": [
+          "#dbcdb6",
+          "#62584a",
+          "#8f8a74",
+          "#af593f",
+          "#c8b68c",
+          "#8caa99",
+          "#d2bd91",
+          "#2e3c43"
+        ],
+        "composition": "observation-tower"
+      },
+      "evidence": "The operator places the Tower in downtown Toronto and reports construction beginning in 1973 and public opening in 1976. Operator describes three tapering legs, main observation pod, upper platform and antenna. Original reduced structural silhouette. Operator explicitly reserves tower designs as trademarks/official marks; this factual-source record is not a rights clearance or production approval. All dimensions, colours, simplifications and composition proportions are original art direction, not source measurements. No surveyed-location, current-access, production-quality or legal-rights approval is asserted.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

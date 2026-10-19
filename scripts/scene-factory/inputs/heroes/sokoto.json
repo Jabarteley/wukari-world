@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "sokoto",
+  "url": "/assets/scene-heroes/sokoto.glb",
+  "sha256": "6cdb4fbdce06aa77ce0764db4c1aabeb25b2818ddf529192d0ae964acc06bb2c",
+  "rawBytes": 35660,
+  "brotliBytes": 18252,
+  "triangles": 1344,
+  "parts": [
+    {
+      "node": "sokoto",
+      "triangles": 1344,
+      "bounds": {
+        "min": [
+          -3.13717532,
+          0,
+          -2.27272749
+        ],
+        "max": [
+          3.137175239986001,
+          2.500089144576,
+          2.2728543201980007
+        ]
+      },
+      "footprint": [
+        -3.13717532,
+        -2.27272749,
+        3.137175239986001,
+        2.2728543201980007
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "b1c07280067fb9bd9cdc7abab3d0df7b8ae93eba6cdf54daa5774c2c98531453"
+  },
+  "inputs": {
+    "rawSha256": "643aa9a41a4a52c641b7ee75e7b0bada3d5bcce3cec14ab657b5923f6d7f8b63",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "sokoto",
+      "country": "ng",
+      "name": "Sokoto Central Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://sokotostate.gov.ng/sokoto-govt-to-terminate-contracts-of-36-companies-for-defaulting/"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-final40-primary-r3.json#records[city_id=sokoto]",
+      "sourceLicence": "Unknown; factual text used only. No external geometry, photos or maps reused.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 14233136,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "State article reports reconstruction work concerning Sokoto Central Market. Market activity only; no architecture or actual goods/layout reproduced. Direct primary text opened in this round: page title/body. Fresh HTTP200 response SHA256 36ec77e8ea157319268bfeca7dbb09f939e9e04763fe7dda89cd8af61c10d23c. Evidence artifact SHA256 6694bdd3e4c9b76c462cf1cf30a1d817fcf931346b3e93d3d651fc95c022e875. Repository source path: src/game/cities/sokoto/spec.ts. Original procedural fragment, not a surveyed site, full landmark replica or current-access/operation claim. Dimensions, colours, counts and layout are art direction, not sourced measurements. No external map, photograph, sculpture or mesh copied. Unknown source rights do not confer external geometry rights. Geometry AGPL-3.0-or-later; production and decoded geometry/byte approval remain pending.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "sahel-north"
+      }
+    },
+    "styleSha256": "841610ddb65f0adc85cdf982569f93afa1e49f617d77f89f3911c0d2de1a83f4"
+  }
+}

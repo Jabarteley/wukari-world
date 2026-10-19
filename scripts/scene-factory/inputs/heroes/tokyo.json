@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "tokyo",
+  "url": "/assets/scene-heroes/tokyo.glb",
+  "sha256": "21f9e311095f010d16cd17fbef76c0e958ee0f06c5d3f7b26433eef7250f3e30",
+  "rawBytes": 58588,
+  "brotliBytes": 37645,
+  "triangles": 3468,
+  "parts": [
+    {
+      "node": "tokyo",
+      "triangles": 3468,
+      "bounds": {
+        "min": [
+          -3.69948578,
+          0,
+          -2.20000005
+        ],
+        "max": [
+          3.699485710318,
+          1.545460565212,
+          2.200181798878
+        ]
+      },
+      "footprint": [
+        -3.69948578,
+        -2.20000005,
+        3.699485710318,
+        2.200181798878
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "bc2a37dfe2703aa7c92864b8e7fe92a44f6fb7b37ce08ed0e211f2f1ceaa543f"
+  },
+  "inputs": {
+    "rawSha256": "ab47456a2411e8eb09079874adc7f0bb5e277022ce20faf85b20b9f92ddff24b",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "tokyo",
+      "country": "jp",
+      "name": "Shakujii Park ponds",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/relation/2658286",
+        "https://www.tokyo-park.or.jp/park/shakujii/assets/files/shakujii_eng.pdf",
+        "https://www.tokyo-park.or.jp/park/shakujii/"
+      ],
+      "sourceRef": "src/game/cities/tokyo/places.ts#PLACES[4]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual identity only; no source geometry copied; Park guide: Publisher reuse licence not established; only factual identity/category/date paraphrased; no prose, images, maps or geometry copied",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "waterfront",
+      "parameters": {
+        "width": 7.4,
+        "depth": 4.8,
+        "height": 2.4,
+        "seed": 20261022,
+        "palette": [
+          "#e8e0ce",
+          "#695044",
+          "#507357",
+          "#a6473e",
+          "#5f929f",
+          "#cda14d",
+          "#747b81",
+          "#292e35"
+        ],
+        "composition": "paired-ponds"
+      },
+      "evidence": "Official park guide confirms two ponds, the wooded/natural Sanpoji setting and its floating-island marsh, and a more open Shakujii setting. Two separate original pond contours, one with denser generic tree masses and a small island, express this contrast. No source map or species geometry is copied and no connecting water channel is claimed.",
+      "provenance": {
+        "sourcePath": "src/game/cities/tokyo/places.ts#PLACES[4]",
+        "authority": "Tokyo Metropolitan Park Association official Shakujii Park English guide and repository OSM place record",
+        "restrictionRationale": "Japan: natural pond reference; no contemporary building selected.",
+        "dimensionBasis": "Original stylized target bounds in metres; not surveyed or sourced dimensions",
+        "sourcedMeasurements": [],
+        "geometryOrigin": "Original boxes, cylinders and procedural low-poly primitives only; no external model or photograph",
+        "sourceGeometryLicence": "Not used; factual-source licences confer no imported geometry rights",
+        "regionProposal": "east-asia",
+        "currentInventoryRegion": "east-asia",
+        "placementStatus": "Decorative city reference; no accurate geographic placement or surveyed entrance claimed",
+        "unknowns": [
+          "Generated outlines, spacing, heights, tree count and positions are original art direction, not a surveyed park plan.",
+          "Generic foliage has no species identity; island growth is illustrative, not a botanical reconstruction."
+        ],
+        "artDirection": {
+          "iteration": 4,
+          "composition": "paired-ponds",
+          "dimensions": "Stylized target bounds only; no sourced measurements.",
+          "reviewStatus": "Prototype pending independent visual review; no production acceptance."
+        }
+      },
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "east-asia"
+      }
+    },
+    "styleSha256": "99276357f2bf43bef2935e7db6b661a64a739e1d451f1d45c662ea3b5bbf6b56"
+  }
+}

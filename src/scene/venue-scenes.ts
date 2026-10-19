@@ -391,13 +391,15 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   const shared = kitResources(kit);
   const materials: SkyMaterials = shared.materials;
   if (!materials.sky) materials.sky = new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.BackSide, depthWrite: false, fog: false });
-  const options: SceneOptions = venue?.scene && typeof venue.scene === 'object' ? venue.scene : {};
+  const recipe = venue?.id ? citySceneDef(drawnAs, `recipe:${venue.id}`, '') : null;
+  const supplied: SceneOptions = venue?.scene && typeof venue.scene === 'object' ? venue.scene : {};
+  const options: SceneOptions = recipe ? { ...supplied, design: undefined } : supplied;
   const parametric = options.design ? parametricSceneAdapter() : null;
   if (options.design && !parametric) throw new Error('Parametric venue scenes have not been loaded');
   // A venue may ask for a variant that is a scene of its own city (venues-ibadan-b.ts); the kind's walkable description then yields to the variant's.
   // A kind neither shared nor this city's is the generic plaza.
   const variantKey = typeof options.variant === 'string' ? options.variant : defaultVariant ?? '';
-  const cityDef = citySceneDef(drawnAs, wanted, variantKey);
+  const cityDef = recipe ?? citySceneDef(drawnAs, wanted, variantKey);
   // A designed venue keeps its own configurable shell, palette, props and layout.
   const own = (cityDef?.runtime && options.design ? null : cityDef) ?? (Object.hasOwn(DEFS, wanted) ? DEFS[wanted] : null);
   const kind = own ? wanted : 'generic', found = own ?? DEFS.generic;
@@ -494,6 +496,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     const exclusions = new Set<THREE.Object3D>([...(group.getObjectByName('ambient') ? [group.getObjectByName('ambient')!] : []), ...(runtime ? fallbackObjects : []), ...(runtimeOwner?.placement?.root ? [runtimeOwner.placement.root] : [])]);
     const { scenery, characters } = measureRenderCost(group, node => exclusions.has(node));
     if (runtime) { scenery.triangles += runtime.reservation.triangles + 17000 - runtimeBudget.triangles; scenery.drawCalls += runtime.reservation.drawCalls; }
+    if (recipe) scenery.drawCalls += 60 - runtimeBudget.drawCalls;
     return { triangles: scenery.triangles + characters.triangles, characterTriangles: characters.triangles, drawCalls: scenery.drawCalls + characters.drawCalls };
   }
 
@@ -873,7 +876,12 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     for (const peer of peers.values()) if (peer.t >= 1 && watch(peer.gaze, peer, peer.ry, avatar.position)) { easing = true; return; }
   }
   function buildActors(runtimeLimit = Infinity) {
-    const placed = placeCrowd(view.crowd).slice(0, runtime ? runtimeLimit : undefined);
+    const positioned = placeCrowd(view.crowd);
+    const resident = (person: CrowdPerson) => person.kind === 'npc' && !person.live && Number.isFinite(person.x) && Number.isFinite(person.z);
+    // Recipe interactions are mandatory; preserve resolved positions and stable guest order.
+    const mandatory = recipe ? positioned.filter(resident) : [];
+    const ordered = recipe ? [...mandatory, ...positioned.filter(person => !resident(person))] : positioned;
+    const placed = ordered.slice(0, runtime ? Math.max(mandatory.length, runtimeLimit) : undefined);
     // The regulars (up to a few) are drawn by the ambient layer when it is on, so that they glance, shift and talk; the rest stay in the merged batch.
     const residents = placed.filter((person) => person.kind === 'npc' && !person.live && Number.isFinite(person.x) && Number.isFinite(person.z));
     const drawnHere = new Set(ambient.setResidents(residents.map((person) => ({ id: String(person.id), seed: String(person.seed ?? person.id), look: person.look, x: person.x!, z: person.z!, ry: person.ry ?? 0 }))));
@@ -893,11 +901,11 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     for (const peer of [...peers.values()]) if (!kept.has(peer.id)) dropPeer(peer);
     refreshCrowdTags();
     if (runtime && placed.length) {
-      const cost = runtimeHostCost(true);
+      const cost = runtimeHostCost(true), characterCalls = recipe ? measureRenderCost(group).characters.drawCalls : 0;
       // Network people are independently supplied by the host, outside the ambient planner.
       // Keep their input list, but admit only the visible figures that fit alongside the
       // module's verified maximum tier. The player's customization is never simplified.
-      if (cost.triangles + runtime.reservation.triangles > runtimeBudget.triangles || cost.drawCalls + runtime.reservation.drawCalls > runtimeBudget.drawCalls) {
+      if (placed.length > mandatory.length && (cost.triangles + runtime.reservation.triangles > runtimeBudget.triangles || cost.drawCalls + runtime.reservation.drawCalls + characterCalls > runtimeBudget.drawCalls)) {
         buildActors(placed.length - 1);
         return;
       }

@@ -1,0 +1,1854 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "maseru",
+    "name": "Maseru",
+    "state": {
+      "id": "ls-maseru",
+      "name": "Maseru"
+    },
+    "country": {
+      "id": "ls",
+      "name": "Lesotho"
+    },
+    "point": {
+      "lon": 27.478222,
+      "lat": -29.310054
+    }
+  },
+  "style": {
+    "region": "southern-africa",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap contributors, Geofabrik Lesotho extract and OurAirports dataset",
+    "sourceUrls": [
+      "https://ourairports.com/airports/FXMM/",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/maseru/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/maseru/facts.ts",
+        "sha256": "51065db4787f8155d1a3bafe479911eca68598d1107639522178938debb7fc04"
+      },
+      {
+        "path": "src/game/cities/maseru/index.ts",
+        "sha256": "546d7ffcd9481e70034aed4a92433a1feeaf1d0f1817db78631cc8e26805d346"
+      },
+      {
+        "path": "src/game/cities/maseru/places.ts",
+        "sha256": "f5b934effc9d5af5e7784128e53b9d3bd3d88e361e14d7ae8e73ea02a0803abb"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.478222,
+        "lat": -29.310054
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    },
+    {
+      "id": "maseru-airport-maseru-airport",
+      "name": "Moshoeshoe I International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.554456,
+        "lat": -29.456277
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-airport-maseru-airport-1",
+        "maseru-maseru-airport-maseru-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "maseru-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-botho-university",
+      "name": "Botho University",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.481796,
+        "lat": -29.335969
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-botho-university-1",
+        "maseru-maseru-botho-university-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/12144442343"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4948645"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-clinic",
+      "name": "Maseru District Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.486954,
+        "lat": -29.315893
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-clinic-1",
+        "maseru-maseru-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/147255489"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-community-notices",
+      "name": "Maseru Magistrate Court",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.485648,
+        "lat": -29.317818
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-community-notices-1",
+        "maseru-maseru-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/365891463"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-community-voting-game",
+      "name": "Sefika sa Moshoeshoe Park",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.481679,
+        "lat": -29.315761
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-community-voting-game-1",
+        "maseru-maseru-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/294344850"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-community-workshop",
+      "name": "Limkokwing University of Creative Technology",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.486784,
+        "lat": -29.308729
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-community-workshop-1",
+        "maseru-maseru-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/396138717"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4119675"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-high-court",
+      "name": "High Court",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.48601,
+        "lat": -29.320788
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-high-court-1",
+        "maseru-maseru-high-court-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/321057537"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-lancers-gap",
+      "name": "Lancer's Gap",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.544778,
+        "lat": -29.315214
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-lancers-gap-1",
+        "maseru-maseru-lancers-gap-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1393990758"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-likatola-horse-riding",
+      "name": "Likatola Horse Riding and Adventure",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.463776,
+        "lat": -29.404082
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-likatola-horse-riding-1",
+        "maseru-maseru-likatola-horse-riding-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4874011422"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-market-game",
+      "name": "Maseru Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.496078,
+        "lat": -29.314801
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-market-game-1",
+        "maseru-maseru-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/365872973"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-maseru-central-park",
+      "name": "Maseru Central Park",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.489846,
+        "lat": -29.313849
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-maseru-central-park-1",
+        "maseru-maseru-maseru-central-park-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/147255688"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-maseru-mall",
+      "name": "Maseru Mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.483682,
+        "lat": -29.33586
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-maseru-mall-1",
+        "maseru-maseru-maseru-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/329492444"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-meal-stop",
+      "name": "Mochachos",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.495307,
+        "lat": -29.315969
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-meal-stop-1",
+        "maseru-maseru-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4686199735"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-palace-of-justice",
+      "name": "Palace of Justice",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.485897,
+        "lat": -29.320314
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-palace-of-justice-1",
+        "maseru-maseru-palace-of-justice-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/365892888"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-queen-mamohato-hospital",
+      "name": "Queen Mamohato Memorial Hospital (QMMH)",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.5288,
+        "lat": -29.343098
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-queen-mamohato-hospital-1",
+        "maseru-maseru-queen-mamohato-hospital-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/314630477"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-quiet-reflection",
+      "name": "Our Lady of Victories Cathedral",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.494931,
+        "lat": -29.317002
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-quiet-reflection-1",
+        "maseru-maseru-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/295032311"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24249528"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-recreation",
+      "name": "Makoanyane Square",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.483065,
+        "lat": -29.313776
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-recreation-1",
+        "maseru-maseru-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/147255491"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q107139662"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-sefika-shopping-centre",
+      "name": "Sefika Shopping Centre",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.493568,
+        "lat": -29.313947
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-sefika-shopping-centre-1",
+        "maseru-maseru-sefika-shopping-centre-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/115836469"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-setsoto-stadium",
+      "name": "Setsoto Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.501366,
+        "lat": -29.311044
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-setsoto-stadium-1",
+        "maseru-maseru-setsoto-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/287674169"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q4118189"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-state-library",
+      "name": "Lesotho State Library",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.485062,
+        "lat": -29.314702
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-state-library-1",
+        "maseru-maseru-state-library-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1312145608"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-transit",
+      "name": "Maseru",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.470448,
+        "lat": -29.297779
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-transit-1",
+        "maseru-maseru-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/632978617"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q125157792"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "maseru-unesco-library",
+      "name": "UNESCO Library",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 27.483736,
+        "lat": -29.313879
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "maseru-maseru-unesco-library-1",
+        "maseru-maseru-unesco-library-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/maseru/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4357094892"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "maseru-maseru-airport-maseru-airport-1",
+      "venueId": "maseru-airport-maseru-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-airport-maseru-airport-2",
+      "venueId": "maseru-airport-maseru-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-botho-university-1",
+      "venueId": "maseru-botho-university",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-botho-university-2",
+      "venueId": "maseru-botho-university",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-clinic-1",
+      "venueId": "maseru-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-clinic-2",
+      "venueId": "maseru-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-community-notices-1",
+      "venueId": "maseru-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-community-notices-2",
+      "venueId": "maseru-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-community-voting-game-1",
+      "venueId": "maseru-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-community-voting-game-2",
+      "venueId": "maseru-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-community-workshop-1",
+      "venueId": "maseru-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-community-workshop-2",
+      "venueId": "maseru-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-high-court-1",
+      "venueId": "maseru-high-court",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-high-court-2",
+      "venueId": "maseru-high-court",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-lancers-gap-1",
+      "venueId": "maseru-lancers-gap",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-lancers-gap-2",
+      "venueId": "maseru-lancers-gap",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-likatola-horse-riding-1",
+      "venueId": "maseru-likatola-horse-riding",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-likatola-horse-riding-2",
+      "venueId": "maseru-likatola-horse-riding",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-market-game-1",
+      "venueId": "maseru-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-market-game-2",
+      "venueId": "maseru-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-maseru-central-park-1",
+      "venueId": "maseru-maseru-central-park",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-maseru-central-park-2",
+      "venueId": "maseru-maseru-central-park",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-maseru-mall-1",
+      "venueId": "maseru-maseru-mall",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-maseru-mall-2",
+      "venueId": "maseru-maseru-mall",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-meal-stop-1",
+      "venueId": "maseru-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-meal-stop-2",
+      "venueId": "maseru-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-palace-of-justice-1",
+      "venueId": "maseru-palace-of-justice",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-palace-of-justice-2",
+      "venueId": "maseru-palace-of-justice",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-queen-mamohato-hospital-1",
+      "venueId": "maseru-queen-mamohato-hospital",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-queen-mamohato-hospital-2",
+      "venueId": "maseru-queen-mamohato-hospital",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-quiet-reflection-1",
+      "venueId": "maseru-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-quiet-reflection-2",
+      "venueId": "maseru-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-recreation-1",
+      "venueId": "maseru-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-recreation-2",
+      "venueId": "maseru-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-sefika-shopping-centre-1",
+      "venueId": "maseru-sefika-shopping-centre",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-sefika-shopping-centre-2",
+      "venueId": "maseru-sefika-shopping-centre",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-setsoto-stadium-1",
+      "venueId": "maseru-setsoto-stadium",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-setsoto-stadium-2",
+      "venueId": "maseru-setsoto-stadium",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-state-library-1",
+      "venueId": "maseru-state-library",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-state-library-2",
+      "venueId": "maseru-state-library",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-transit-1",
+      "venueId": "maseru-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-transit-2",
+      "venueId": "maseru-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-unesco-library-1",
+      "venueId": "maseru-unesco-library",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    },
+    {
+      "id": "maseru-maseru-unesco-library-2",
+      "venueId": "maseru-unesco-library",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/maseru/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "maseru-airport-maseru-airport",
+    "maseru-botho-university",
+    "maseru-clinic",
+    "maseru-community-notices",
+    "maseru-community-voting-game",
+    "maseru-community-workshop",
+    "maseru-high-court",
+    "maseru-lancers-gap",
+    "maseru-likatola-horse-riding",
+    "maseru-market-game",
+    "maseru-maseru-central-park",
+    "maseru-maseru-mall",
+    "maseru-meal-stop",
+    "maseru-palace-of-justice",
+    "maseru-queen-mamohato-hospital",
+    "maseru-quiet-reflection",
+    "maseru-recreation",
+    "maseru-sefika-shopping-centre",
+    "maseru-setsoto-stadium",
+    "maseru-state-library",
+    "maseru-transit",
+    "maseru-unesco-library"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "0f7c061832ca52c85d4fea6212fced20ab248dbb8f3f2bbd42c4a157bb199342",
+    "contentSha256": "6d5b477c7e3428ba1f8741db74cbb35db0490cb3df48fe7cdb5b9369c1d2d088"
+  }
+}

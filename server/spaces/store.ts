@@ -10,6 +10,7 @@
  *   spaces.models[publicId]  ModelEntry[]           a player's 3D models (./models.ts); spaces.modelTrash: hashes whose bytes may go
  *   spaces.layouts[key]      SpaceLayout            where models stand in "home:<publicId>" or "room:<roomId>" (./world.ts)
  *   spaces.scripts[key]      { code, lines, at, by } a space's own script (./world.ts, src/spaces/script.ts)
+ *   spaces.worlds[id]        WorldEntry             a world a player made (./worlds.ts, docs/WORLDS.md); its cover's bytes under `cover` in the model store
  *
  * Erased with the player (eraseSpaces, called from server/admin/erasure-data.ts): their own records, and their visits in other hosts' books.
  */
@@ -17,6 +18,7 @@ import type { Db } from '../types.ts';
 import { forgetLite } from '../../src/arena/lite/rules.ts';
 import type { SpaceLayout } from '../../src/spaces/layout.ts';
 import type { SpaceScript } from '../../src/spaces/script.ts';
+import type { WorldInput } from '../../src/spaces/worlds.ts';
 
 export interface SpaceHome { title: string; at: number }
 export interface SpaceHost { kind: string; persona: string; on: boolean; at: number; guests?: Record<string, { n: number; at: number }> }
@@ -27,7 +29,9 @@ export interface ModelEntry {
   /** Who reported it (at most 10), whether reports hid it, and whether an operator cleared it for good. */
   reports?: string[]; hidden?: true; cleared?: true
 }
-export interface SpacesCollection { homes: Record<string, SpaceHome>; hosts: Record<string, SpaceHost>; models?: Record<string, ModelEntry[]>; modelTrash?: string[]; layouts?: Record<string, SpaceLayout>; scripts?: Record<string, SpaceScript & { at: number; by: string }> }
+/** A world (./worlds.ts): what its maker chose, when, how many visits it had, and the hash of its cover picture (in the model store). */
+export interface WorldEntry extends WorldInput { id: string; by: string; at: number; updated: number; visits: number; cover?: string }
+export interface SpacesCollection { homes: Record<string, SpaceHome>; hosts: Record<string, SpaceHost>; models?: Record<string, ModelEntry[]>; modelTrash?: string[]; layouts?: Record<string, SpaceLayout>; scripts?: Record<string, SpaceScript & { at: number; by: string }>; worlds?: Record<string, WorldEntry> }
 
 const isRecord = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value);
 /** The collection, made on first write. */
@@ -57,7 +61,7 @@ export function forgetPlacements(col: SpacesCollection, by: string, id: string):
 }
 /** Forget players (erasure). Returns how many records went. */
 export function eraseSpaces(db: Db, ids: Iterable<string>): number {
-  const col = (db as Record<string, { homes?: Record<string, SpaceHome>; hosts?: Record<string, SpaceHost>; games?: Record<string, { by: string }>; models?: Record<string, ModelEntry[]>; modelTrash?: string[]; layouts?: Record<string, SpaceLayout>; scripts?: Record<string, { by: string }> } | undefined>)['spaces'];
+  const col = (db as Record<string, { homes?: Record<string, SpaceHome>; hosts?: Record<string, SpaceHost>; games?: Record<string, { by: string }>; models?: Record<string, ModelEntry[]>; modelTrash?: string[]; layouts?: Record<string, SpaceLayout>; scripts?: Record<string, { by: string }>; worlds?: Record<string, WorldEntry> } | undefined>)['spaces'];
   if (!col) return 0;
   let gone = 0;
   const list = [...ids];
@@ -73,6 +77,13 @@ export function eraseSpaces(db: Db, ids: Iterable<string>): number {
       delete col.models[id];
     }
     for (const list of Object.values(col.models ?? {})) for (const m of list) if (m.reports?.includes(id)) m.reports = m.reports.filter((r) => r !== id);
+    // Their worlds, with their layouts, scripts and covers.
+    for (const [worldId, world] of Object.entries(col.worlds ?? {})) if (world.by === id) {
+      delete col.worlds![worldId]; gone++;
+      if (col.layouts && Object.hasOwn(col.layouts, `world:${worldId}`)) delete col.layouts[`world:${worldId}`];
+      if (col.scripts && Object.hasOwn(col.scripts, `world:${worldId}`)) delete col.scripts[`world:${worldId}`];
+      if (world.cover) (col.modelTrash ??= []).push(world.cover);
+    }
     // Their home's script, and any script they wrote for a room.
     for (const [key, script] of Object.entries(col.scripts ?? {})) if (key === `home:${id}` || script.by === id) { delete col.scripts![key]; gone++; }
     if (col.layouts) {

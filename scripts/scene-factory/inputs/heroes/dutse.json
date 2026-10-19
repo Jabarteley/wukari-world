@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "dutse",
+  "url": "/assets/scene-heroes/dutse.glb",
+  "sha256": "22d876856cdc7dbfc262f4e3961211a7152325fe13c065ca48e06528469459ba",
+  "rawBytes": 19788,
+  "brotliBytes": 16882,
+  "triangles": 550,
+  "parts": [
+    {
+      "node": "dutse",
+      "triangles": 550,
+      "bounds": {
+        "min": [
+          -3.95000005,
+          0,
+          -2.70000005
+        ],
+        "max": [
+          3.9499999178120007,
+          2.35558199614,
+          2.7002379796360003
+        ]
+      },
+      "footprint": [
+        -3.95000005,
+        -2.70000005,
+        3.9499999178120007,
+        2.7002379796360003
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "b1c07280067fb9bd9cdc7abab3d0df7b8ae93eba6cdf54daa5774c2c98531453"
+  },
+  "inputs": {
+    "rawSha256": "6ba79ffcd67061bb963cf58db309b607bef77d5ef14a9c6228bdbf37149821e9",
+    "scriptsSha256": "e13cd35bbe5b4948d002b7c270f6be9f96b997f02e72bfa514ea0393709b0d91",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "dutse",
+      "country": "ng",
+      "name": "Rocky hills around Dutse",
+      "category": "natural-feature",
+      "sourceUrls": [
+        "https://mail.jigawastate.gov.ng/thestate2.html"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=dutse]",
+      "sourceLicence": "unknown; factual evidence only, no external geometry/image licence inferred.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landscape",
+      "parameters": {
+        "width": 8,
+        "depth": 6,
+        "height": 2.4,
+        "seed": 16311065,
+        "palette": [
+          "#bba480",
+          "#75654e",
+          "#9d8765",
+          "#987d5a",
+          "#8d8e84",
+          "#b39a75",
+          "#dbcfba",
+          "#514b41"
+        ],
+        "composition": "hill"
+      },
+      "evidence": "State government describes the area around Dutse as rocky with low hills. Inherited direct primary read recorded in R4: Direct official page opened and relevant line located in R4. Source artifact SHA256 ec5e9e5faaa619cc69dcb1856b6160ea45951eaa528958abe2e715f1c46326e5. Repository source: src/game/cities/dutse/spec.ts. Original schematic landscape only: dimensions, palette, counts, slope, vegetation shapes and layout are art direction. A park is not interpreted as forest or a pond. Riverbank uses open water and one simple bare bank with no inferred species or surveyed channel. No exact anchor overlap, water level, current access or ownership claim. The official evidence supports rocky low hills around Dutse, not a separately surveyed named summit; use the explicitly regional description. Geometry original procedural AGPL-3.0-or-later; production approval pending.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "sahel-north"
+      }
+    },
+    "styleSha256": "841610ddb65f0adc85cdf982569f93afa1e49f617d77f89f3911c0d2de1a83f4"
+  }
+}

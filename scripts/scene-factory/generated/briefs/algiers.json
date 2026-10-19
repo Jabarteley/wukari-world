@@ -1,0 +1,1969 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "algiers",
+    "name": "Algiers",
+    "state": {
+      "id": "dz-starter",
+      "name": "Algiers"
+    },
+    "country": {
+      "id": "dz",
+      "name": "Algeria"
+    },
+    "point": {
+      "lon": 3.048607,
+      "lat": 36.765011
+    }
+  },
+  "style": {
+    "region": "maghreb",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "Natural Earth, OpenStreetMap contributors and national aeronautical information sources",
+    "sourceUrls": [
+      "https://di.univ-blida.dz/jspui/bitstream/123456789/10975/1/M%C3%A9moire%20fin%20d%27%C3%A9tude%202020%20copie%20finale%20%20conversion.pdf",
+      "https://www.openstreetmap.org/copyright"
+    ],
+    "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; Airport reference points: national aeronautical information sources",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/algiers/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/algiers/facts.ts",
+        "sha256": "659db530c47dd678c5d7779e9cb308c355ce516ed0293ceafe4ff9ef37f83009"
+      },
+      {
+        "path": "src/game/cities/algiers/index.ts",
+        "sha256": "b00568219834a88a1aaba6393c14b1dc1f5fe862c2f659277a548937989be759"
+      },
+      {
+        "path": "src/game/cities/algiers/places.ts",
+        "sha256": "4618fecc0c5978f2fcf05cb11594977dc2ea4be29c9159342e1247417c0899a3"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "algiers-airport-algiers-airport",
+      "name": "ALGER / Houari Boumediene",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.216944444,
+        "lat": 36.694444444
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-airport-algiers-airport-1",
+        "algiers-algiers-airport-algiers-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "algiers-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-bab-ezzouar-shopping-mall",
+      "name": "Bab Ezzouar Shopping Mall",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.196841,
+        "lat": 36.712249
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-bab-ezzouar-shopping-mall-1",
+        "algiers-algiers-bab-ezzouar-shopping-mall-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/353218687"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2944985"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-central-post-office",
+      "name": "Central Post Office of Algiers",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.059577,
+        "lat": 36.773079
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-central-post-office-1",
+        "algiers-algiers-central-post-office-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/415866"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3115007"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-clinic",
+      "name": "Hôpital Mustapha Pacha",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.053586,
+        "lat": 36.7618
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-clinic-1",
+        "algiers-algiers-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/28919252"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3145181"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-community-notices",
+      "name": "People's National Assembly",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.059908,
+        "lat": 36.776198
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-community-notices-1",
+        "algiers-algiers-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/4572537"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q633590"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-community-voting-game",
+      "name": "Martyrs' Square",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.062388,
+        "lat": 36.784755
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-community-voting-game-1",
+        "algiers-algiers-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/54920525"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q35020466"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-community-workshop",
+      "name": "La Faculté centrale",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.055444,
+        "lat": 36.771086
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-community-workshop-1",
+        "algiers-algiers-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/29082561"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1190852"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-dounya-parc",
+      "name": "Dounya Parc",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 2.970558,
+        "lat": 36.731135
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-dounya-parc-1",
+        "algiers-algiers-dounya-parc-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/399227616"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q54900632"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-hamma-park",
+      "name": "Hamma Park",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.070631,
+        "lat": 36.749184
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-hamma-park-1",
+        "algiers-algiers-hamma-park-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/29300477"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-market-game",
+      "name": "Marché Sidi M'Hamed",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.050567,
+        "lat": 36.764333
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-market-game-1",
+        "algiers-algiers-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/273633418"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-martyrs-memorial",
+      "name": "Martyrs Memorial",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.069732,
+        "lat": 36.745705
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-martyrs-memorial-1",
+        "algiers-algiers-martyrs-memorial-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/370342095"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3056085"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-meal-stop",
+      "name": "Cafeteria Telemly",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.04381,
+        "lat": 36.763237
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-meal-stop-1",
+        "algiers-algiers-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1172848204"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-museum-of-modern-art",
+      "name": "Museum of Modern Art of Algiers",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.0576,
+        "lat": 36.777374
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-museum-of-modern-art-1",
+        "algiers-algiers-museum-of-modern-art-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/271099555"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q663776"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-national-museum-of-antiquities",
+      "name": "National Museum of Antiquities and Islamic Art",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.046032,
+        "lat": 36.761574
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-national-museum-of-antiquities-1",
+        "algiers-algiers-national-museum-of-antiquities-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/346403805"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3330723"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-new-mosque",
+      "name": "The New Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.063048,
+        "lat": 36.784942
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-new-mosque-1",
+        "algiers-algiers-new-mosque-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/16270848"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q12192958"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-notre-dame-d-afrique",
+      "name": "Notre Dame d'Afrique",
+      "kind": "hilltop",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.043277,
+        "lat": 36.800965
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-notre-dame-d-afrique-1",
+        "algiers-algiers-notre-dame-d-afrique-2"
+      ],
+      "scene": {
+        "kind": "hilltop",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/2752445536"
+          }
+        ],
+        "sourceKind": "hilltop",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-quiet-reflection",
+      "name": "Ketchaoua Mosque",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.060752,
+        "lat": 36.785097
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-quiet-reflection-1",
+        "algiers-algiers-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/267210976"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2471799"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-recreation",
+      "name": "Parc de la liberté",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.04614,
+        "lat": 36.762288
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-recreation-1",
+        "algiers-algiers-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/28962727"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q60529660"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-riadh-el-feth",
+      "name": "Centre commercial Riadh El Feth",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.070332,
+        "lat": 36.743335
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-riadh-el-feth-1",
+        "algiers-algiers-riadh-el-feth-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/4516857992"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3430012"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-sacred-heart-cathedral",
+      "name": "Cathedral of the Sacred Heart",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.047446,
+        "lat": 36.764113
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-sacred-heart-cathedral-1",
+        "algiers-algiers-sacred-heart-cathedral-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/263638059"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2942908"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-said-touati-shopping-centre",
+      "name": "Said Touati Shopping Center",
+      "kind": "mall",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.047376,
+        "lat": 36.78643
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-said-touati-shopping-centre-1",
+        "algiers-algiers-said-touati-shopping-centre-2"
+      ],
+      "scene": {
+        "kind": "mall",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1312431098"
+          }
+        ],
+        "sourceKind": "mall",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-transit",
+      "name": "Tafourah - Main post office",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.05809,
+        "lat": 36.772042
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-transit-1",
+        "algiers-algiers-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/532001382"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3513795"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "algiers-usthb",
+      "name": "University of Sciences and Technology Houari Boumediene",
+      "kind": "quad",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.180566,
+        "lat": 36.712245
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "algiers-algiers-usthb-1",
+        "algiers-algiers-usthb-2"
+      ],
+      "scene": {
+        "kind": "quad",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/algiers/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/226879808"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q3181219"
+          }
+        ],
+        "sourceKind": "quad",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 3.0486070000000005,
+        "lat": 36.765011
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "algiers-algiers-airport-algiers-airport-1",
+      "venueId": "algiers-airport-algiers-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-airport-algiers-airport-2",
+      "venueId": "algiers-airport-algiers-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-bab-ezzouar-shopping-mall-1",
+      "venueId": "algiers-bab-ezzouar-shopping-mall",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-bab-ezzouar-shopping-mall-2",
+      "venueId": "algiers-bab-ezzouar-shopping-mall",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-central-post-office-1",
+      "venueId": "algiers-central-post-office",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-central-post-office-2",
+      "venueId": "algiers-central-post-office",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-clinic-1",
+      "venueId": "algiers-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-clinic-2",
+      "venueId": "algiers-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-community-notices-1",
+      "venueId": "algiers-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-community-notices-2",
+      "venueId": "algiers-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-community-voting-game-1",
+      "venueId": "algiers-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-community-voting-game-2",
+      "venueId": "algiers-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-community-workshop-1",
+      "venueId": "algiers-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-community-workshop-2",
+      "venueId": "algiers-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-dounya-parc-1",
+      "venueId": "algiers-dounya-parc",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-dounya-parc-2",
+      "venueId": "algiers-dounya-parc",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-hamma-park-1",
+      "venueId": "algiers-hamma-park",
+      "name": "Emery",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-hamma-park-2",
+      "venueId": "algiers-hamma-park",
+      "name": "Frankie",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-market-game-1",
+      "venueId": "algiers-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-market-game-2",
+      "venueId": "algiers-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-martyrs-memorial-1",
+      "venueId": "algiers-martyrs-memorial",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-martyrs-memorial-2",
+      "venueId": "algiers-martyrs-memorial",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-meal-stop-1",
+      "venueId": "algiers-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-meal-stop-2",
+      "venueId": "algiers-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-museum-of-modern-art-1",
+      "venueId": "algiers-museum-of-modern-art",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-museum-of-modern-art-2",
+      "venueId": "algiers-museum-of-modern-art",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-national-museum-of-antiquities-1",
+      "venueId": "algiers-national-museum-of-antiquities",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-national-museum-of-antiquities-2",
+      "venueId": "algiers-national-museum-of-antiquities",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-new-mosque-1",
+      "venueId": "algiers-new-mosque",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-new-mosque-2",
+      "venueId": "algiers-new-mosque",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-notre-dame-d-afrique-1",
+      "venueId": "algiers-notre-dame-d-afrique",
+      "name": "Corin",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-notre-dame-d-afrique-2",
+      "venueId": "algiers-notre-dame-d-afrique",
+      "name": "Devon",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-quiet-reflection-1",
+      "venueId": "algiers-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-quiet-reflection-2",
+      "venueId": "algiers-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-recreation-1",
+      "venueId": "algiers-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-recreation-2",
+      "venueId": "algiers-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-riadh-el-feth-1",
+      "venueId": "algiers-riadh-el-feth",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-riadh-el-feth-2",
+      "venueId": "algiers-riadh-el-feth",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-sacred-heart-cathedral-1",
+      "venueId": "algiers-sacred-heart-cathedral",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-sacred-heart-cathedral-2",
+      "venueId": "algiers-sacred-heart-cathedral",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-said-touati-shopping-centre-1",
+      "venueId": "algiers-said-touati-shopping-centre",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-said-touati-shopping-centre-2",
+      "venueId": "algiers-said-touati-shopping-centre",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-transit-1",
+      "venueId": "algiers-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-transit-2",
+      "venueId": "algiers-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-usthb-1",
+      "venueId": "algiers-usthb",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    },
+    {
+      "id": "algiers-algiers-usthb-2",
+      "venueId": "algiers-usthb",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/algiers/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "algiers-airport-algiers-airport",
+    "algiers-bab-ezzouar-shopping-mall",
+    "algiers-central-post-office",
+    "algiers-clinic",
+    "algiers-community-notices",
+    "algiers-community-voting-game",
+    "algiers-community-workshop",
+    "algiers-dounya-parc",
+    "algiers-hamma-park",
+    "algiers-market-game",
+    "algiers-martyrs-memorial",
+    "algiers-meal-stop",
+    "algiers-museum-of-modern-art",
+    "algiers-national-museum-of-antiquities",
+    "algiers-new-mosque",
+    "algiers-notre-dame-d-afrique",
+    "algiers-quiet-reflection",
+    "algiers-recreation",
+    "algiers-riadh-el-feth",
+    "algiers-sacred-heart-cathedral",
+    "algiers-said-touati-shopping-centre",
+    "algiers-transit",
+    "algiers-usthb"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "b43f6b35ab8aa665081740b74587725cd1331ea495b6ee810763707241c33aa8",
+    "contentSha256": "53adbd7afccd5f43951fe1954fe657cafd60f688793b9519cc5b5b250cefcdd3"
+  }
+}

@@ -1,0 +1,1747 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "alofi",
+    "name": "Alofi",
+    "state": {
+      "id": "nu-alofi",
+      "name": "Alofi"
+    },
+    "country": {
+      "id": "nu",
+      "name": "Niue"
+    },
+    "point": {
+      "lon": -169.919199,
+      "lat": -19.0534159
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/australia-oceania/niue-261011.osm.pbf",
+      "https://ourairports.com/airports/NIUE/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/alofi/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/alofi/facts.ts",
+        "sha256": "8a48c762dda7123302b39ea0c94893add8a0404fda7fb93800650199973e5c69"
+      },
+      {
+        "path": "src/game/cities/alofi/index.ts",
+        "sha256": "ac670e8b55749770f5b3252920312880aeb63a25cf44015b743ef85107f218ac"
+      },
+      {
+        "path": "src/game/cities/alofi/places.ts",
+        "sha256": "cb5fa4acb65814b26552d3c68cfbd55c3f33a63835a8078d7ac3492f768f09c1"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue alofi-community-notices has no mapped place source record.",
+      "Venue alofi-community-workshop has no mapped place source record.",
+      "Venue alofi-quiet-reflection has no mapped place source record.",
+      "Venue alofi-recreation has no mapped place source record.",
+      "Venue alofi-transit has no mapped place source record.",
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "alofi-airport-alofi-airport",
+      "name": "Niue International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.923493,
+        "lat": -19.080109
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-airport-alofi-airport-1",
+        "alofi-alofi-airport-alofi-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/alofi/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "alofi-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "alofi-clinic",
+      "name": "Niue Foou Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.917351,
+        "lat": -19.073088
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-clinic-1",
+        "alofi-alofi-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/alofi/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "relation/1557077"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "alofi-community-notices",
+      "name": "Community notices (game venue)",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.919199,
+        "lat": -19.05161725927255
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-community-notices-1",
+        "alofi-alofi-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue alofi-community-notices has no mapped place source record."
+      }
+    },
+    {
+      "id": "alofi-community-voting-game",
+      "name": "Niue Assembly",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.921264,
+        "lat": -19.055165
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-community-voting-game-1",
+        "alofi-alofi-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/alofi/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/13458765949"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q1643140"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "alofi-community-workshop",
+      "name": "Community workshop (game venue)",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.919199,
+        "lat": -19.052516579636276
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-community-workshop-1",
+        "alofi-alofi-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue alofi-community-workshop has no mapped place source record."
+      }
+    },
+    {
+      "id": "alofi-market-game",
+      "name": "Market of Niue",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.920914,
+        "lat": -19.0556
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-market-game-1",
+        "alofi-alofi-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/alofi/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/547136282"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "alofi-meal-stop",
+      "name": "Israel Cafe",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.911305,
+        "lat": -19.118394
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-meal-stop-1",
+        "alofi-alofi-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/alofi/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3173841974"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "alofi-osm-node-3173841972",
+      "name": "Anaana Lookout",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.937499,
+        "lat": -19.089795
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-osm-node-3173841972-1",
+        "alofi-alofi-osm-node-3173841972-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/alofi/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3173841972"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "alofi-osm-node-3173841984",
+      "name": "Anapala Chasm",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.83859,
+        "lat": -19.134524
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-osm-node-3173841984-1",
+        "alofi-alofi-osm-node-3173841984-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/alofi/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3173841984"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "alofi-osm-node-3173841987",
+      "name": "Talava Arches",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.87756,
+        "lat": -18.959181
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-osm-node-3173841987-1",
+        "alofi-alofi-osm-node-3173841987-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/alofi/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3173841987"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "alofi-osm-node-3174114636",
+      "name": "Vaiolama Cafe & Mini-golf",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.929051,
+        "lat": -19.060918
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-osm-node-3174114636-1",
+        "alofi-alofi-osm-node-3174114636-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/alofi/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/3174114636"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "alofi-osm-node-5084852122",
+      "name": "Hio Cafe",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.900933,
+        "lat": -18.985735
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-osm-node-5084852122-1",
+        "alofi-alofi-osm-node-5084852122-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/alofi/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5084852122"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "alofi-osm-node-8637114457",
+      "name": "Togo Chasm",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.808525,
+        "lat": -19.106927
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-osm-node-8637114457-1",
+        "alofi-alofi-osm-node-8637114457-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/alofi/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/8637114457"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q132430336"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "alofi-osm-way-111378893",
+      "name": "Niue Cultural Centre",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.90951,
+        "lat": -19.057943
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-osm-way-111378893-1",
+        "alofi-alofi-osm-way-111378893-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/alofi/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/111378893"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "alofi-osm-way-1191533235",
+      "name": "Peniamina’s Grave",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.923314,
+        "lat": -19.014699
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-osm-way-1191533235-1",
+        "alofi-alofi-osm-way-1191533235-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/alofi/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1191533235"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "alofi-osm-way-310211852",
+      "name": "Washaway Cafe",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.912747,
+        "lat": -19.127114
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-osm-way-310211852-1",
+        "alofi-alofi-osm-way-310211852-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/alofi/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/310211852"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "alofi-osm-way-311687085",
+      "name": "Falala Cafe & Bar",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.922889,
+        "lat": -19.057852
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-osm-way-311687085-1",
+        "alofi-alofi-osm-way-311687085-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/alofi/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/311687085"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "alofi-osm-way-693372026",
+      "name": "Swanson Complex",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.927774,
+        "lat": -19.071989
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-osm-way-693372026-1",
+        "alofi-alofi-osm-way-693372026-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/alofi/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/693372026"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "alofi-quiet-reflection",
+      "name": "Quiet reflection space (game venue)",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.92010953050516,
+        "lat": -19.054315220363726
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-quiet-reflection-1",
+        "alofi-alofi-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue alofi-quiet-reflection has no mapped place source record."
+      }
+    },
+    {
+      "id": "alofi-recreation",
+      "name": "Recreation area (game venue)",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.9182884694948,
+        "lat": -19.052516579636276
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-recreation-1",
+        "alofi-alofi-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue alofi-recreation has no mapped place source record."
+      }
+    },
+    {
+      "id": "alofi-transit",
+      "name": "City transit stop (game venue)",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.9182884694948,
+        "lat": -19.0534159
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "alofi-alofi-transit-1",
+        "alofi-alofi-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue alofi-transit has no mapped place source record."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -169.919199,
+        "lat": -19.0534159
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "alofi-alofi-airport-alofi-airport-1",
+      "venueId": "alofi-airport-alofi-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-airport-alofi-airport-2",
+      "venueId": "alofi-airport-alofi-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-clinic-1",
+      "venueId": "alofi-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-clinic-2",
+      "venueId": "alofi-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-community-notices-1",
+      "venueId": "alofi-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-community-notices-2",
+      "venueId": "alofi-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-community-voting-game-1",
+      "venueId": "alofi-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-community-voting-game-2",
+      "venueId": "alofi-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-community-workshop-1",
+      "venueId": "alofi-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-community-workshop-2",
+      "venueId": "alofi-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-market-game-1",
+      "venueId": "alofi-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-market-game-2",
+      "venueId": "alofi-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-meal-stop-1",
+      "venueId": "alofi-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-meal-stop-2",
+      "venueId": "alofi-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-node-3173841972-1",
+      "venueId": "alofi-osm-node-3173841972",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-node-3173841972-2",
+      "venueId": "alofi-osm-node-3173841972",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-node-3173841984-1",
+      "venueId": "alofi-osm-node-3173841984",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-node-3173841984-2",
+      "venueId": "alofi-osm-node-3173841984",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-node-3173841987-1",
+      "venueId": "alofi-osm-node-3173841987",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-node-3173841987-2",
+      "venueId": "alofi-osm-node-3173841987",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-node-3174114636-1",
+      "venueId": "alofi-osm-node-3174114636",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-node-3174114636-2",
+      "venueId": "alofi-osm-node-3174114636",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-node-5084852122-1",
+      "venueId": "alofi-osm-node-5084852122",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-node-5084852122-2",
+      "venueId": "alofi-osm-node-5084852122",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-node-8637114457-1",
+      "venueId": "alofi-osm-node-8637114457",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-node-8637114457-2",
+      "venueId": "alofi-osm-node-8637114457",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-way-111378893-1",
+      "venueId": "alofi-osm-way-111378893",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-way-111378893-2",
+      "venueId": "alofi-osm-way-111378893",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-way-1191533235-1",
+      "venueId": "alofi-osm-way-1191533235",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-way-1191533235-2",
+      "venueId": "alofi-osm-way-1191533235",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-way-310211852-1",
+      "venueId": "alofi-osm-way-310211852",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-way-310211852-2",
+      "venueId": "alofi-osm-way-310211852",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-way-311687085-1",
+      "venueId": "alofi-osm-way-311687085",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-way-311687085-2",
+      "venueId": "alofi-osm-way-311687085",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-way-693372026-1",
+      "venueId": "alofi-osm-way-693372026",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-osm-way-693372026-2",
+      "venueId": "alofi-osm-way-693372026",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-quiet-reflection-1",
+      "venueId": "alofi-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-quiet-reflection-2",
+      "venueId": "alofi-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-recreation-1",
+      "venueId": "alofi-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-recreation-2",
+      "venueId": "alofi-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-transit-1",
+      "venueId": "alofi-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    },
+    {
+      "id": "alofi-alofi-transit-2",
+      "venueId": "alofi-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/alofi/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "alofi-airport-alofi-airport",
+    "alofi-clinic",
+    "alofi-community-notices",
+    "alofi-community-voting-game",
+    "alofi-community-workshop",
+    "alofi-market-game",
+    "alofi-meal-stop",
+    "alofi-osm-node-3173841972",
+    "alofi-osm-node-3173841984",
+    "alofi-osm-node-3173841987",
+    "alofi-osm-node-3174114636",
+    "alofi-osm-node-5084852122",
+    "alofi-osm-node-8637114457",
+    "alofi-osm-way-111378893",
+    "alofi-osm-way-1191533235",
+    "alofi-osm-way-310211852",
+    "alofi-osm-way-311687085",
+    "alofi-osm-way-693372026",
+    "alofi-quiet-reflection",
+    "alofi-recreation",
+    "alofi-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "68ea63818b833c54a2b80e2c43c02d346b166996e1b05f2e970816ae2d087a58",
+    "contentSha256": "d42bc0a9fc0b3891b959a1ced8f39dfffae8572482dcf091f23970892be9a707"
+  }
+}

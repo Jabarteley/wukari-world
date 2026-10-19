@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "bishkek",
+  "url": "/assets/scene-heroes/bishkek.glb",
+  "sha256": "d62ba34dedb1e2a963752a450d10ee77c3d25ca8fd32f7bf91676f2b9fa1ac0e",
+  "rawBytes": 24292,
+  "brotliBytes": 17050,
+  "triangles": 504,
+  "parts": [
+    {
+      "node": "bishkek",
+      "triangles": 504,
+      "bounds": {
+        "min": [
+          -2.57112098,
+          0,
+          -2.52801728
+        ],
+        "max": [
+          2.571120865036,
+          2.50002785178,
+          2.5279084747360003
+        ]
+      },
+      "footprint": [
+        -2.57112098,
+        -2.52801728,
+        2.571120865036,
+        2.5279084747360003
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "4ecd94f61a64f4cf5481b966491528b66c62c39dd43c48e7003b72828ff66be9"
+  },
+  "inputs": {
+    "rawSha256": "d77260c551c6c0e1c4fe308dfd789fcc73e7ee7b24d78c7f07fcd4307a3cdcaf",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "bishkek",
+      "country": "kg",
+      "name": "Dordoi Bazaar",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/25491570"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=bishkek]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 181108,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Exact candidate/name alias match and amenity=marketplace support feature identity/category. Object way/25491570, version 29, timestamp 2023-12-16T18:58:19Z; response SHA256 f40a1109312d76ea007ea6f224d74812f1a67327291127cc280a4ed638b592d2. Source path: src/game/cities/bishkek/places.ts. Empty counters, racks and awnings indicate trade. No goods, original shop plan, actual number of stalls or current operation are inferred. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "south-asia"
+      }
+    },
+    "styleSha256": "64cbc90bfc05b51139a91eabe0f981c4f47d02ed2689be22193361f6b66af12d"
+  }
+}

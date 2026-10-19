@@ -22,14 +22,17 @@ const NEXT: Loader[] = [
   () => import('../features/home/GroceriesApp.vue'),
   () => import('../features/home/BuyMode.vue'),
   () => import('../features/life/BoutiqueApp.vue'),
+  // Only after the existing UI has warmed: linked cities' generated recipe data and immutable GLBs, one city per idle turn.
+  // The prefetch module reads the already-loaded city network. It consumes bytes into the HTTP cache and never prepares scene geometry.
+  () => import('../../scene/recipe/idle.ts').then(({ startRecipeIdlePrefetch }) => { startRecipeIdlePrefetch(whenIdle, holdsBack) }),
 ]
 
 interface Connection { saveData?: boolean; effectiveType?: string }
 const connectionOf = (): Connection => (globalThis.navigator as Navigator & { connection?: Connection } | undefined)?.connection ?? {}
 
 /** True where fetching what nobody asked for yet would cost the player something: light mode (on by default when the browser asks to save data, off when the player turned it off), or a connection slower than 3G. */
-export function holdsBack(connection: Connection = connectionOf()): boolean {
-  return lightOn() || connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g'
+export function holdsBack(connection: Connection = connectionOf(), light = lightOn()): boolean {
+  return light || connection.saveData === true || connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g'
 }
 
 type Idle = (run: () => void) => void
@@ -44,6 +47,7 @@ export function preloadNext(ready: Promise<unknown>, loaders: Loader[] = NEXT, i
     if (hold()) return
     let index = 0
     const step = (): void => {
+      if (hold()) return
       const load = loaders[index++]
       if (!load) return
       void load().then(() => undefined, () => undefined).then(() => idle(step))

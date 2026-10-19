@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "jakarta",
+  "url": "/assets/scene-heroes/jakarta.glb",
+  "sha256": "1bd29b0d78622d7ab19952cc5bc23cd10a70ed1b96867637cd4d5ecf455ed1a9",
+  "rawBytes": 18164,
+  "brotliBytes": 15999,
+  "triangles": 92,
+  "parts": [
+    {
+      "node": "jakarta",
+      "triangles": 92,
+      "bounds": {
+        "min": [
+          -2.20000005,
+          0,
+          -1.70000005
+        ],
+        "max": [
+          2.199835124694,
+          8.749999959579,
+          1.700018245958
+        ]
+      },
+      "footprint": [
+        -2.20000005,
+        -1.70000005,
+        2.199835124694,
+        1.700018245958
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "bc2a37dfe2703aa7c92864b8e7fe92a44f6fb7b37ce08ed0e211f2f1ceaa543f"
+  },
+  "inputs": {
+    "rawSha256": "041c6a33606b843912bdaf9d81585a0259f6bf2c66c49e89b011b7713b443992",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "jakarta",
+      "country": "id",
+      "name": "Monumen Nasional (Monas)",
+      "category": "monument",
+      "sourceUrls": [
+        "https://www.jakarta.go.id/wisata-bersejarah"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap61-primary-r4.json#records[city_id=jakarta]; hero-inputs-r4.md defining-form review",
+      "sourceLicence": "Source text rights unknown unless the publisher states otherwise; factual identity only. No external photo, map, mesh, texture, sculpture surface or plan reused. Original generated geometry is AGPL-3.0-or-later; third-party marks and landmark rights are not cleared by this record.",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "landmark",
+      "parameters": {
+        "width": 5,
+        "depth": 4,
+        "height": 9,
+        "seed": 6116,
+        "palette": [
+          "#dbcdb6",
+          "#62584a",
+          "#8f8a74",
+          "#d2a438",
+          "#c8b68c",
+          "#8caa99",
+          "#d2bd91",
+          "#2e3c43"
+        ],
+        "composition": "flame-obelisk"
+      },
+      "evidence": "Jakarta’s official portal locates Monas at Jalan Tugu Monas in Central Jakarta and calls it a monument. Jakarta government describes Monas as a quadrangular obelisk crowned by a golden flame. Original abstract flame and square obelisk, no copied reliefs. All dimensions, colours, simplifications and composition proportions are original art direction, not source measurements. No surveyed-location, current-access, production-quality or legal-rights approval is asserted.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "east-asia"
+      }
+    },
+    "styleSha256": "99276357f2bf43bef2935e7db6b661a64a739e1d451f1d45c662ea3b5bbf6b56"
+  }
+}

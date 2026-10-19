@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "yangon",
+  "url": "/assets/scene-heroes/yangon.glb",
+  "sha256": "ac2745407562f0514593017b03cd51901642a4897c0c53de86bc7d503b68f44c",
+  "rawBytes": 32556,
+  "brotliBytes": 18959,
+  "triangles": 1176,
+  "parts": [
+    {
+      "node": "yangon",
+      "triangles": 1176,
+      "bounds": {
+        "min": [
+          -3.70000005,
+          0,
+          -2.60441566
+        ],
+        "max": [
+          3.6999999159090002,
+          2.498736483636,
+          2.604447161636
+        ]
+      },
+      "footprint": [
+        -3.70000005,
+        -2.60441566,
+        3.6999999159090002,
+        2.604447161636
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "4ecd94f61a64f4cf5481b966491528b66c62c39dd43c48e7003b72828ff66be9"
+  },
+  "inputs": {
+    "rawSha256": "f9108a575b5cca56c28c525573e0bd358ca964da903baa58b30da3ef5e0ad54a",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "yangon",
+      "country": "mm",
+      "name": "Bogyoke Aung San Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/23395611"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=yangon]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 181182,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Exact candidate/name alias match and amenity=marketplace support feature identity/category. Object way/23395611, version 13, timestamp 2021-02-21T21:26:27Z; response SHA256 208f6a83eaf5b03facb46948aae2ab446e22cea600a5b0b4b60b12c8ab312295. Source path: src/game/cities/yangon/places.ts. Empty counters, racks and awnings indicate trade. No goods, original shop plan, actual number of stalls or current operation are inferred. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "south-asia"
+      }
+    },
+    "styleSha256": "64cbc90bfc05b51139a91eabe0f981c4f47d02ed2689be22193361f6b66af12d"
+  }
+}

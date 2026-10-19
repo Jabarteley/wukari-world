@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "istanbul",
+  "url": "/assets/scene-heroes/istanbul.glb",
+  "sha256": "ff8ed54f86641266405938b169afa31dfc22f8b7ce004b3aa70c462f4a53a485",
+  "rawBytes": 26352,
+  "brotliBytes": 18090,
+  "triangles": 696,
+  "parts": [
+    {
+      "node": "istanbul",
+      "triangles": 696,
+      "bounds": {
+        "min": [
+          -3.96590257,
+          0,
+          -3.04999995
+        ],
+        "max": [
+          3.965902403798,
+          2.995910955128,
+          3.049787077094
+        ]
+      },
+      "footprint": [
+        -3.96590257,
+        -3.04999995,
+        3.965902403798,
+        3.049787077094
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "9fbb3637a6026c42295598191f368bf185692eb853e19ab7f218c25d4e865535"
+  },
+  "inputs": {
+    "rawSha256": "6cfb0beda5985b6587cce1368295d98390912b544ee087c2ef4e08769d924155",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "istanbul",
+      "country": "tr",
+      "name": "Carousel Alışveriş ve Yaşam Merkezi",
+      "category": "building",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/way/162139987"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=istanbul]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "retail-building",
+      "parameters": {
+        "width": 8.6,
+        "depth": 6.1,
+        "height": 3.7,
+        "seed": 181207,
+        "palette": [
+          "#d3cec2",
+          "#646a6b",
+          "#a0a895",
+          "#8c7568",
+          "#6d8f9c",
+          "#b0a489",
+          "#e7e8df",
+          "#344b59"
+        ]
+      },
+      "evidence": "Exact candidate/name alias match and shop=mall support feature identity/category. Object way/162139987, version 11, timestamp 2024-05-14T19:48:51Z; response SHA256 256c1c6e314435d29c5fe6a7941fbae566e53248c0e3a179903be54b3ed132ca. Source path: src/game/cities/istanbul/places.ts. Original simple retail-building massing, entrance and opaque glazing panels. No signature facade, brand, sign, surveyed dimensions, floor count or precise building footprint are claimed. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "western-europe"
+      }
+    },
+    "styleSha256": "18e3b0f4dbb88519df26d3d51faa4960b3f4646b58f92cf029cf1a50cbcc6d9c"
+  }
+}

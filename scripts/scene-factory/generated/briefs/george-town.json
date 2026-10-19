@@ -1,0 +1,1775 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "george-town",
+    "name": "George Town",
+    "state": {
+      "id": "ky-george-town",
+      "name": "George Town"
+    },
+    "country": {
+      "id": "ky",
+      "name": "Cayman Islands"
+    },
+    "point": {
+      "lon": -81.3807776,
+      "lat": 19.2953549
+    }
+  },
+  "style": {
+    "region": "americas-oceania",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "sourced",
+    "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+    "sourceUrls": [
+      "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "https://ourairports.com/airports/MWCR/"
+    ],
+    "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/george-town/content.ts",
+        "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+      },
+      {
+        "path": "src/game/cities/george-town/facts.ts",
+        "sha256": "8719bc460e8ab25b5646b55e60833496f15606dea3397b2e5c11cba8aaa0355f"
+      },
+      {
+        "path": "src/game/cities/george-town/index.ts",
+        "sha256": "7c592fdb168ca78d802ed97c4ccb75336071c9d26543d6c9250d596481852b2b"
+      },
+      {
+        "path": "src/game/cities/george-town/places.ts",
+        "sha256": "f95aa4fd47bc4f8c4dcb92b0fb18b98630cf6ba00be3158c073c595c2154f104"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "Venue home has no mapped place source record."
+    ]
+  },
+  "venues": [
+    {
+      "id": "george-town-airport-george-town-airport",
+      "name": "Owen Roberts International Airport",
+      "kind": "airport",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.357697,
+        "lat": 19.292801
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Visitor information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-airport-george-town-airport-1",
+        "george-town-george-town-airport-george-town-airport-2"
+      ],
+      "scene": {
+        "kind": "airport",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/facts.ts",
+        "sourceIds": [
+          {
+            "kind": "airport",
+            "value": "george-town-airport"
+          }
+        ],
+        "sourceKind": null,
+        "accuracy": "source-point",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-clinic",
+      "name": "Health Services Authority",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.380784,
+        "lat": 19.289627
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-clinic-1",
+        "george-town-george-town-clinic-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/566218708"
+          }
+        ],
+        "sourceKind": "hospital",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-community-notices",
+      "name": "Department of Vehicle and Driver's Licensing",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.348953,
+        "lat": 19.282124
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Community noticeboard",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-community-notices-1",
+        "george-town-george-town-community-notices-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/81123667"
+          }
+        ],
+        "sourceKind": "statehouse",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-community-voting-game",
+      "name": "Heliconia Court",
+      "kind": "polling",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.378424,
+        "lat": 19.320674
+      },
+      "spots": [
+        {
+          "id": "officials",
+          "name": "Game information desk"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "officials",
+          "name": "Game information desk",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-community-voting-game-1",
+        "george-town-george-town-community-voting-game-2"
+      ],
+      "scene": {
+        "kind": "polling",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5312685993"
+          }
+        ],
+        "sourceKind": "polling",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-community-workshop",
+      "name": "Teacher Reedly Powery Memorial Library",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.403973,
+        "lat": 19.379145
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Community room"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Community room",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-community-workshop-1",
+        "george-town-george-town-community-workshop-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/369192329"
+          }
+        ],
+        "sourceKind": "office",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-market-game",
+      "name": "Farmer's Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.377882,
+        "lat": 19.321933
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Game market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-market-game-1",
+        "george-town-george-town-market-game-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5312819266"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-meal-stop",
+      "name": "Rum Point",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.270785,
+        "lat": 19.370876
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Meal counter"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Meal counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-meal-stop-1",
+        "george-town-george-town-meal-stop-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/697199526"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-osm-node-1550931122",
+      "name": "Hell",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.406531,
+        "lat": 19.378686
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-osm-node-1550931122-1",
+        "george-town-george-town-osm-node-1550931122-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1550931122"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-osm-node-5322136279",
+      "name": "Airport Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.365348,
+        "lat": 19.292998
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-osm-node-5322136279-1",
+        "george-town-george-town-osm-node-5322136279-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/5322136279"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-osm-node-6340499785",
+      "name": "starfish point",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.283376,
+        "lat": 19.356323
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-osm-node-6340499785-1",
+        "george-town-george-town-osm-node-6340499785-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/6340499785"
+          }
+        ],
+        "sourceKind": "viewing",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-osm-node-778613443",
+      "name": "National Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.382746,
+        "lat": 19.294081
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-osm-node-778613443-1",
+        "george-town-george-town-osm-node-778613443-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/778613443"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2686650"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-osm-way-217613994",
+      "name": "Dolphin Mall",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.384098,
+        "lat": 19.293245
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-osm-way-217613994-1",
+        "george-town-george-town-osm-way-217613994-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/217613994"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-osm-way-369024905",
+      "name": "Cayman Motor Museum",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.415263,
+        "lat": 19.382393
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-osm-way-369024905-1",
+        "george-town-george-town-osm-way-369024905-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/369024905"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q2689323"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-osm-way-372662553",
+      "name": "The Lighthouse",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.198731,
+        "lat": 19.294557
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-osm-way-372662553-1",
+        "george-town-george-town-osm-way-372662553-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/372662553"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-osm-way-374313515",
+      "name": "Pankin's Jerk Centre",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.262222,
+        "lat": 19.274217
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-osm-way-374313515-1",
+        "george-town-george-town-osm-way-374313515-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/374313515"
+          }
+        ],
+        "sourceKind": "buka",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-osm-way-615434121",
+      "name": "Public Beach",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.382894,
+        "lat": 19.348712
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-osm-way-615434121-1",
+        "george-town-george-town-osm-way-615434121-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/615434121"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-osm-way-62088563",
+      "name": "The Market at the Cricket Grounds",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.37327,
+        "lat": 19.289978
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-osm-way-62088563-1",
+        "george-town-george-town-osm-way-62088563-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/62088563"
+          }
+        ],
+        "sourceKind": "market",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-osm-way-62225884",
+      "name": "Cayman Turtle Centre",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.415584,
+        "lat": 19.380054
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visit"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visit",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-osm-way-62225884-1",
+        "george-town-george-town-osm-way-62225884-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/62225884"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q5055382"
+          }
+        ],
+        "sourceKind": "walk",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-quiet-reflection",
+      "name": "St. Ignatius Catholic Church",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.386533,
+        "lat": 19.276583
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Quiet space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Quiet space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-quiet-reflection-1",
+        "george-town-george-town-quiet-reflection-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/370952623"
+          },
+          {
+            "kind": "wikidata",
+            "value": "Q24514385"
+          }
+        ],
+        "sourceKind": "worship",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-recreation",
+      "name": "Malportas Bird Sanctuary",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.208497,
+        "lat": 19.347221
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Open space"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Open space",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-recreation-1",
+        "george-town-george-town-recreation-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "way/1134311986"
+          }
+        ],
+        "sourceKind": "park",
+        "accuracy": "feature-centroid",
+        "gap": null
+      }
+    },
+    {
+      "id": "george-town-transit",
+      "name": "Royal Watler Cruise Terminal",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.384151,
+        "lat": 19.295343
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Travel information"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Travel information",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        }
+      ],
+      "regularIds": [
+        "george-town-george-town-transit-1",
+        "george-town-george-town-transit-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "sourced",
+        "sourceFile": "src/game/cities/george-town/places.ts",
+        "sourceIds": [
+          {
+            "kind": "osm",
+            "value": "node/1129818287"
+          }
+        ],
+        "sourceKind": "hub",
+        "accuracy": "mapped-feature",
+        "gap": null
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": -81.3807776,
+        "lat": 19.2953549
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "Venue home has no mapped place source record."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "george-town-george-town-airport-george-town-airport-1",
+      "venueId": "george-town-airport-george-town-airport",
+      "name": "Alex",
+      "role": "Visitor guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-airport-george-town-airport-2",
+      "venueId": "george-town-airport-george-town-airport",
+      "name": "Casey",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-clinic-1",
+      "venueId": "george-town-clinic",
+      "name": "Jamie",
+      "role": "Clinic guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-clinic-2",
+      "venueId": "george-town-clinic",
+      "name": "Robin",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-community-notices-1",
+      "venueId": "george-town-community-notices",
+      "name": "Remy",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-community-notices-2",
+      "venueId": "george-town-community-notices",
+      "name": "Noel",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-community-voting-game-1",
+      "venueId": "george-town-community-voting-game",
+      "name": "Ari",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-community-voting-game-2",
+      "venueId": "george-town-community-voting-game",
+      "name": "Lee",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-community-workshop-1",
+      "venueId": "george-town-community-workshop",
+      "name": "Avery",
+      "role": "Community host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-community-workshop-2",
+      "venueId": "george-town-community-workshop",
+      "name": "Quinn",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-market-game-1",
+      "venueId": "george-town-market-game",
+      "name": "Drew",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-market-game-2",
+      "venueId": "george-town-market-game",
+      "name": "Skyler",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-meal-stop-1",
+      "venueId": "george-town-meal-stop",
+      "name": "Riley",
+      "role": "Meal host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-meal-stop-2",
+      "venueId": "george-town-meal-stop",
+      "name": "Taylor",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-node-1550931122-1",
+      "venueId": "george-town-osm-node-1550931122",
+      "name": "Wren",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-node-1550931122-2",
+      "venueId": "george-town-osm-node-1550931122",
+      "name": "Yael",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-node-5322136279-1",
+      "venueId": "george-town-osm-node-5322136279",
+      "name": "Sage",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-node-5322136279-2",
+      "venueId": "george-town-osm-node-5322136279",
+      "name": "Tatum",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-node-6340499785-1",
+      "venueId": "george-town-osm-node-6340499785",
+      "name": "Blake",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-node-6340499785-2",
+      "venueId": "george-town-osm-node-6340499785",
+      "name": "Dana",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-node-778613443-1",
+      "venueId": "george-town-osm-node-778613443",
+      "name": "Eden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-node-778613443-2",
+      "venueId": "george-town-osm-node-778613443",
+      "name": "Finley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-way-217613994-1",
+      "venueId": "george-town-osm-way-217613994",
+      "name": "Arden",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-way-217613994-2",
+      "venueId": "george-town-osm-way-217613994",
+      "name": "Briar",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-way-369024905-1",
+      "venueId": "george-town-osm-way-369024905",
+      "name": "Gray",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-way-369024905-2",
+      "venueId": "george-town-osm-way-369024905",
+      "name": "Harper",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-way-372662553-1",
+      "venueId": "george-town-osm-way-372662553",
+      "name": "Nico",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-way-372662553-2",
+      "venueId": "george-town-osm-way-372662553",
+      "name": "Oakley",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-way-374313515-1",
+      "venueId": "george-town-osm-way-374313515",
+      "name": "Logan",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-way-374313515-2",
+      "venueId": "george-town-osm-way-374313515",
+      "name": "Marlow",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-way-615434121-1",
+      "venueId": "george-town-osm-way-615434121",
+      "name": "Parker",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-way-615434121-2",
+      "venueId": "george-town-osm-way-615434121",
+      "name": "Reese",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-way-62088563-1",
+      "venueId": "george-town-osm-way-62088563",
+      "name": "Uri",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-way-62088563-2",
+      "venueId": "george-town-osm-way-62088563",
+      "name": "Vale",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-way-62225884-1",
+      "venueId": "george-town-osm-way-62225884",
+      "name": "Indigo",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-osm-way-62225884-2",
+      "venueId": "george-town-osm-way-62225884",
+      "name": "Kai",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-quiet-reflection-1",
+      "venueId": "george-town-quiet-reflection",
+      "name": "Sidney",
+      "role": "Visitor host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-quiet-reflection-2",
+      "venueId": "george-town-quiet-reflection",
+      "name": "Sam",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-recreation-1",
+      "venueId": "george-town-recreation",
+      "name": "Jesse",
+      "role": "Recreation host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-recreation-2",
+      "venueId": "george-town-recreation",
+      "name": "Cameron",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-transit-1",
+      "venueId": "george-town-transit",
+      "name": "Jordan",
+      "role": "Transit host",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    },
+    {
+      "id": "george-town-george-town-transit-2",
+      "venueId": "george-town-transit",
+      "name": "Morgan",
+      "role": "Neighbour",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/george-town/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "george-town-airport-george-town-airport",
+    "george-town-clinic",
+    "george-town-community-notices",
+    "george-town-community-voting-game",
+    "george-town-community-workshop",
+    "george-town-market-game",
+    "george-town-meal-stop",
+    "george-town-osm-node-1550931122",
+    "george-town-osm-node-5322136279",
+    "george-town-osm-node-6340499785",
+    "george-town-osm-node-778613443",
+    "george-town-osm-way-217613994",
+    "george-town-osm-way-369024905",
+    "george-town-osm-way-372662553",
+    "george-town-osm-way-374313515",
+    "george-town-osm-way-615434121",
+    "george-town-osm-way-62088563",
+    "george-town-osm-way-62225884",
+    "george-town-quiet-reflection",
+    "george-town-recreation",
+    "george-town-transit"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "f0f8bede9088e6d69dfb7fe1047f0efeb0e696985947cc827a3abae4f7d160a0",
+    "contentSha256": "67cb7773a20b267d700befa8f67526cf7d891e4ec8e0222ba6f957635a6560d7"
+  }
+}

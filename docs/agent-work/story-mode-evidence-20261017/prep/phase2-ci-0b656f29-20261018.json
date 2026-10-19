@@ -1,0 +1,34 @@
+{
+  "schema": "story-phase2-hosted-evidence-v1",
+  "sourceSha": "0b656f29b0b73ab294c1be15f28cd25391579386",
+  "runId": 39158588048,
+  "url": "https://github.com/kromate/joinallworld/actions/runs/39158588048",
+  "conclusion": "success",
+  "jobsPassed": ["release-policy", "host-acceptance", "typecheck-fast", "build-and-smoke-fast", "ui-regressions"],
+  "fullChecksRequested": false,
+  "uiChecksRequested": true,
+  "budgets": {
+    "loadingRaw": 90399,
+    "loadingGzip": 35211,
+    "firstPaintBrotli": 35399,
+    "startupRaw": 611375,
+    "startupGzip": 222083,
+    "startupBrotli": 195606,
+    "sceneHostRaw": 79827,
+    "sceneHostGzip": 30233,
+    "maximumRecipeChunkRaw": 46416,
+    "maximumKitBrotli": 141446,
+    "maximumHeroBrotli": 37645
+  },
+  "artifact": {
+    "id": 12147374807,
+    "name": "story-bundle-0b656f29b0b73ab294c1be15f28cd25391579386",
+    "archiveBytes": 54788977,
+    "githubReportedDigest": "sha256:3e243c5e4e9c25b58baa91dcff220ab64531b143d7e9c1b21040d9dc756e4369",
+    "extractedFiles": 3310,
+    "publicAdded": 5520,
+    "identicalPublicCollisions": 298,
+    "validatedAndSupplementedAssets": 289
+  },
+  "scope": "Exact hosted build and gates. The isolated QA server serves these JavaScript bytes with hash-checked static supplements; browser and release evidence are separate. A later guide-bubble correction requires new exact-source CI."
+}

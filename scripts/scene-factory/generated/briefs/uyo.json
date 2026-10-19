@@ -1,0 +1,1440 @@
+{
+  "schema": "allworld-city-brief",
+  "version": 1,
+  "city": {
+    "id": "uyo",
+    "name": "Uyo",
+    "state": {
+      "id": "akwa-ibom",
+      "name": "Akwa Ibom"
+    },
+    "country": {
+      "id": "nigeria",
+      "name": "Nigeria"
+    },
+    "point": {
+      "lon": 7.924791,
+      "lat": 5.0322447
+    }
+  },
+  "style": {
+    "region": "niger-delta",
+    "selection": "explicit-input"
+  },
+  "provenance": {
+    "status": "unknown",
+    "sourceLabel": null,
+    "sourceUrls": [],
+    "licence": null,
+    "files": [
+      {
+        "path": "src/campus/unilag/content.ts",
+        "sha256": "91998660fdcee0be20f7cc0074b4f7750ca34f54313620f445a14d100966094b"
+      },
+      {
+        "path": "src/campus/unilag/world-adapter.ts",
+        "sha256": "ac0c572bed7a9f28c1237ecf5e1ad5291261e487b2856c20ac14bec4681bf030"
+      },
+      {
+        "path": "src/game/cities/uyo/content.ts",
+        "sha256": "1453da26ad9f1b758f571d0e78a6e5f1a1fee564a07c50acc83bb6c1926bb4be"
+      },
+      {
+        "path": "src/game/cities/uyo/index.ts",
+        "sha256": "9d5ff78ea8a48e3d8d43fc97dd8913cc49df959c614fde30d72965c641a424d1"
+      },
+      {
+        "path": "src/game/cities/uyo/rules.ts",
+        "sha256": "0f1a696140c5ce892bd264b10acfa7464121b3620cfe450d59adcfeef395b50d"
+      },
+      {
+        "path": "src/game/cities/uyo/scenes.ts",
+        "sha256": "5ebc5c90666c48475e1bf92374c0dd17a24af69143dc1daf47b1c1f32ece74e8"
+      },
+      {
+        "path": "src/scene/city-scenes.ts",
+        "sha256": "9877d333978f46263579d1ec828c8af30e82255248ecd8c07cd58b86c6e3d0fa"
+      },
+      {
+        "path": "src/scene/venue-scenes.ts",
+        "sha256": "93677761db4546b3e692b05137f0452ef59b1ad1444c647b23cba43ab14751da"
+      },
+      {
+        "path": "src/scene/venues-campus.ts",
+        "sha256": "1928596f9d9e678901377f5597805c02d28b004c903b6767f657b2210f9425fd"
+      },
+      {
+        "path": "src/scene/venues-civic.ts",
+        "sha256": "df141e17eeb826cb903207db3762177874fe51792057b727bcd317c03dcb39ed"
+      },
+      {
+        "path": "src/scene/venues-outdoor.ts",
+        "sha256": "8722a4d49970a494b90379b2f47117d517663c3aa0088a555b86a43e9a336681"
+      },
+      {
+        "path": "src/scene/venues-social.ts",
+        "sha256": "fa80ecf551a44e817749beb96baff9d2c749e38cd129b6e5ea0e163da8ad1c6c"
+      },
+      {
+        "path": "src/scene/venues-transport.ts",
+        "sha256": "9d38e127fca8762f83e31fd9b0bf04f9a96f43e4add0ac24023dd1ac97ea7397"
+      },
+      {
+        "path": "src/scene/venues-viewpoint.ts",
+        "sha256": "74a6fc1151250639929750041bc1427b61ae3f833576bfb491cfa512cefc86b3"
+      },
+      {
+        "path": "src/scene/venues-work.ts",
+        "sha256": "09ea016ab52930b7ff0fab9b835bb205792e38e96847f381e4086dbb8d1304b4"
+      }
+    ],
+    "registrationFiles": [
+      {
+        "path": "src/game/dilemma-pack.ts",
+        "sha256": "28f4b638dd8ed9f0175f604d84b76fc068b26f0b2310bc412c81a577ae2d1d85"
+      },
+      {
+        "path": "src/game/features.ts",
+        "sha256": "a76b48a796d46e0cae0ffeffe1738ccb5fe28bdc6b1b97baedcbb68a894b9391"
+      },
+      {
+        "path": "src/game/registry.ts",
+        "sha256": "db38338b5f8a7372164d8d638efd7c89cd16d35f386eedf8f6963a5517c15115"
+      },
+      {
+        "path": "src/game/systems/activities.ts",
+        "sha256": "a22bdbba4ba4a936fa6abd14abfda7f2672d7364e22ab898a438ac6957feb98a"
+      },
+      {
+        "path": "src/game/systems/base.ts",
+        "sha256": "6106c8610a42ddb2dcb89f3d725d9b1c1f6af89215dbd5ae813b0e1b46e57556"
+      },
+      {
+        "path": "src/game/systems/career.ts",
+        "sha256": "6985be923e3b1a4d51de17dcf928cd54e7b757051c8178da080f2acd39412473"
+      },
+      {
+        "path": "src/game/systems/goals.ts",
+        "sha256": "0c1b02c70dde62552f4794b61852d96b151f4f1b02f46f2364a2293b3b314720"
+      },
+      {
+        "path": "src/game/systems/home.ts",
+        "sha256": "83ca74c88bd4ba60262d1a255c6062cabb71f5b520ea8ad442b866b8d3b1ba48"
+      },
+      {
+        "path": "src/game/systems/index.ts",
+        "sha256": "3695d5aa4499ecf844185b1367c373b04610ba37788b65dfc440d0cd1a2a5705"
+      },
+      {
+        "path": "src/game/systems/social.ts",
+        "sha256": "e73d86de1c962c02fd5a8169445ea5f48db3220ee17d5210cd043b271172ddd2"
+      },
+      {
+        "path": "src/game/systems/travel.ts",
+        "sha256": "4bf167f98c64a2502ef82063eaf597fe28ed0b8888fa540aaa37b9c7187b0d99"
+      },
+      {
+        "path": "src/life.ts",
+        "sha256": "58e17ca82072f49239092bd5c64015e14c414f6f4e65ae2a594950afddddf13f"
+      }
+    ],
+    "gaps": [
+      "No trusted facts.ts or places.ts provenance for uyo.",
+      "No trusted facts.ts source record is present for this legacy city.",
+      "No trusted places.ts source records are present for this legacy city."
+    ]
+  },
+  "venues": [
+    {
+      "id": "akpan-andem-market",
+      "name": "Akpan Andem Market",
+      "kind": "market",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.924516766847078,
+        "lat": 5.016417458401704
+      },
+      "spots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "aisle",
+          "name": "Market aisle",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "uyo-akpan-andem-market-1",
+        "uyo-akpan-andem-market-2"
+      ],
+      "scene": {
+        "kind": "market",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for uyo."
+      }
+    },
+    {
+      "id": "aktc-park",
+      "name": "AKTC Park",
+      "kind": "hub",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.884274,
+        "lat": 5.0554817
+      },
+      "spots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "arrival",
+          "name": "Arrival forecourt",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "uyo-aktc-park-1",
+        "uyo-aktc-park-2"
+      ],
+      "scene": {
+        "kind": "hub",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for uyo."
+      }
+    },
+    {
+      "id": "akwa-ibom-house-of-assembly",
+      "name": "House of Assembly",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.9309268,
+        "lat": 5.004845
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "uyo-akwa-ibom-house-of-assembly-1",
+        "uyo-akwa-ibom-house-of-assembly-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for uyo."
+      }
+    },
+    {
+      "id": "akwa-ibom-state-secretariat",
+      "name": "Idongesit Nkanga Secretariat (Akwa Ibom State Secretariat)",
+      "kind": "statehouse",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.9037729,
+        "lat": 5.023092
+      },
+      "spots": [
+        {
+          "id": "notices",
+          "name": "Notice board"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "notices",
+          "name": "Notice board",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "uyo-akwa-ibom-state-secretariat-1",
+        "uyo-akwa-ibom-state-secretariat-2"
+      ],
+      "scene": {
+        "kind": "statehouse",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for uyo."
+      }
+    },
+    {
+      "id": "cheeries-fast-food",
+      "name": "Cheeries Fast food",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.9348052,
+        "lat": 5.0094857
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "uyo-cheeries-fast-food-1",
+        "uyo-cheeries-fast-food-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for uyo."
+      }
+    },
+    {
+      "id": "full-life-christian-centre",
+      "name": "Full Life Christian Centre",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.931644,
+        "lat": 5.00862
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "uyo-full-life-christian-centre-1",
+        "uyo-full-life-christian-centre-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for uyo."
+      }
+    },
+    {
+      "id": "godswill-akpabio-stadium",
+      "name": "Godswill Akpabio International Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.8847933,
+        "lat": 5.0067222
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "uyo-godswill-akpabio-stadium-1",
+        "uyo-godswill-akpabio-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for uyo."
+      }
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "kind": "home",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.942422713944772,
+        "lat": 5.016101519256394
+      },
+      "spots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "bathroom",
+          "name": "Bathroom",
+          "source": "content"
+        },
+        {
+          "id": "bedroom",
+          "name": "Bedroom",
+          "source": "content"
+        },
+        {
+          "id": "kitchen",
+          "name": "Kitchen",
+          "source": "content"
+        },
+        {
+          "id": "living",
+          "name": "Sitting area",
+          "source": "system"
+        },
+        {
+          "id": "study",
+          "name": "Skills corner",
+          "source": "system"
+        }
+      ],
+      "regularIds": [],
+      "scene": {
+        "kind": "home",
+        "variant": null,
+        "disposition": "exclude-home"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for uyo."
+      }
+    },
+    {
+      "id": "national-museum-uyo",
+      "name": "National Museum, Uyo",
+      "kind": "walk",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.9282987,
+        "lat": 5.0076695
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Gallery"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Gallery",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "uyo-national-museum-uyo-1",
+        "uyo-national-museum-uyo-2"
+      ],
+      "scene": {
+        "kind": "walk",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for uyo."
+      }
+    },
+    {
+      "id": "night-fast-food",
+      "name": "Night fast food",
+      "kind": "buka",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.9387689,
+        "lat": 5.0226635
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Food counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Food counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "uyo-night-fast-food-1",
+        "uyo-night-fast-food-2"
+      ],
+      "scene": {
+        "kind": "buka",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for uyo."
+      }
+    },
+    {
+      "id": "rccg-zion-mega-parish-uyo",
+      "name": "RCCG Zion Super Mega Parish Uyo",
+      "kind": "worship",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.9347344,
+        "lat": 5.0099063
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "uyo-rccg-zion-mega-parish-uyo-1",
+        "uyo-rccg-zion-mega-parish-uyo-2"
+      ],
+      "scene": {
+        "kind": "worship",
+        "variant": "church",
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for uyo."
+      }
+    },
+    {
+      "id": "union-bank-uyo",
+      "name": "Union Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.9289194,
+        "lat": 5.0035748
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "uyo-union-bank-uyo-1",
+        "uyo-union-bank-uyo-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for uyo."
+      }
+    },
+    {
+      "id": "unity-park-uyo",
+      "name": "Unity Park",
+      "kind": "park",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.9263155,
+        "lat": 5.007413
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Public area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Public area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "uyo-unity-park-uyo-1",
+        "uyo-unity-park-uyo-2"
+      ],
+      "scene": {
+        "kind": "park",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for uyo."
+      }
+    },
+    {
+      "id": "university-of-uyo",
+      "name": "University of Uyo",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.9782683,
+        "lat": 5.0378887
+      },
+      "spots": [
+        {
+          "id": "visit",
+          "name": "Visitor area"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "pitch-room",
+          "name": "Pitch room",
+          "source": "system"
+        },
+        {
+          "id": "visit",
+          "name": "Visitor area",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "uyo-university-of-uyo-1",
+        "uyo-university-of-uyo-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for uyo."
+      }
+    },
+    {
+      "id": "uuth-uyo",
+      "name": "University of Uyo Teaching Hospital",
+      "kind": "hospital",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.859527,
+        "lat": 5.01165
+      },
+      "spots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "clinic",
+          "name": "Outpatient clinic",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "ward",
+          "name": "Free clinic",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "uyo-uuth-uyo-1",
+        "uyo-uuth-uyo-2"
+      ],
+      "scene": {
+        "kind": "hospital",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for uyo."
+      }
+    },
+    {
+      "id": "uyo-township-stadium",
+      "name": "Uyo Township Stadium",
+      "kind": "viewing",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.9256138,
+        "lat": 5.0190093
+      },
+      "spots": [
+        {
+          "id": "stand",
+          "name": "Main stand"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "stand",
+          "name": "Main stand",
+          "source": "content"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "uyo-uyo-township-stadium-1",
+        "uyo-uyo-township-stadium-2"
+      ],
+      "scene": {
+        "kind": "viewing",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for uyo."
+      }
+    },
+    {
+      "id": "zenith-bank-uyo",
+      "name": "Zenith Bank",
+      "kind": "office",
+      "position": {
+        "kind": "lon-lat",
+        "lon": 7.9268535,
+        "lat": 5.0048451
+      },
+      "spots": [
+        {
+          "id": "counter",
+          "name": "Service counter"
+        },
+        {
+          "id": "work",
+          "name": "Staff area"
+        }
+      ],
+      "effectiveSpots": [
+        {
+          "id": "counter",
+          "name": "Service counter",
+          "source": "content"
+        },
+        {
+          "id": "people",
+          "name": "People",
+          "source": "system"
+        },
+        {
+          "id": "work",
+          "name": "Staff area",
+          "source": "content"
+        }
+      ],
+      "regularIds": [
+        "uyo-zenith-bank-uyo-1",
+        "uyo-zenith-bank-uyo-2"
+      ],
+      "scene": {
+        "kind": "office",
+        "variant": null,
+        "disposition": "target-recipe"
+      },
+      "provenance": {
+        "status": "unknown",
+        "sourceFile": null,
+        "sourceIds": [],
+        "sourceKind": null,
+        "accuracy": null,
+        "gap": "No trusted facts.ts or places.ts provenance for uyo."
+      }
+    }
+  ],
+  "regulars": [
+    {
+      "id": "uyo-akpan-andem-market-1",
+      "venueId": "akpan-andem-market",
+      "name": "Ifiok Inyang",
+      "role": "Market trader",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-akpan-andem-market-2",
+      "venueId": "akpan-andem-market",
+      "name": "Ekemini Ukpong",
+      "role": "Shopper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-aktc-park-1",
+      "venueId": "aktc-park",
+      "name": "Akpan Udo",
+      "role": "Ticket seller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-aktc-park-2",
+      "venueId": "aktc-park",
+      "name": "Mfon Idiong",
+      "role": "Traveller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-akwa-ibom-house-of-assembly-1",
+      "venueId": "akwa-ibom-house-of-assembly",
+      "name": "Ifiok Bassey",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-akwa-ibom-house-of-assembly-2",
+      "venueId": "akwa-ibom-house-of-assembly",
+      "name": "Ekemini Usoro",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-akwa-ibom-state-secretariat-1",
+      "venueId": "akwa-ibom-state-secretariat",
+      "name": "Akpan Udoh",
+      "role": "Clerk",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-akwa-ibom-state-secretariat-2",
+      "venueId": "akwa-ibom-state-secretariat",
+      "name": "Mfon Ekong",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-cheeries-fast-food-1",
+      "venueId": "cheeries-fast-food",
+      "name": "Akpan Umoh",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-cheeries-fast-food-2",
+      "venueId": "cheeries-fast-food",
+      "name": "Mfon Udo",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-full-life-christian-centre-1",
+      "venueId": "full-life-christian-centre",
+      "name": "Akpan Essien",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-full-life-christian-centre-2",
+      "venueId": "full-life-christian-centre",
+      "name": "Mfon Ibanga",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-godswill-akpabio-stadium-1",
+      "venueId": "godswill-akpabio-stadium",
+      "name": "Ifiok Ukpong",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-godswill-akpabio-stadium-2",
+      "venueId": "godswill-akpabio-stadium",
+      "name": "Ekemini Effiong",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-national-museum-uyo-1",
+      "venueId": "national-museum-uyo",
+      "name": "Ifiok Effiong",
+      "role": "Museum guide",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-national-museum-uyo-2",
+      "venueId": "national-museum-uyo",
+      "name": "Ekemini Ekpe",
+      "role": "Visitor",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-night-fast-food-1",
+      "venueId": "night-fast-food",
+      "name": "Ifiok Usoro",
+      "role": "Cook",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-night-fast-food-2",
+      "venueId": "night-fast-food",
+      "name": "Ekemini Akpan",
+      "role": "Regular diner",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-rccg-zion-mega-parish-uyo-1",
+      "venueId": "rccg-zion-mega-parish-uyo",
+      "name": "Ifiok Ekpe",
+      "role": "Church volunteer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-rccg-zion-mega-parish-uyo-2",
+      "venueId": "rccg-zion-mega-parish-uyo",
+      "name": "Ekemini Inyang",
+      "role": "Regular worshipper",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-union-bank-uyo-1",
+      "venueId": "union-bank-uyo",
+      "name": "Ifiok Okon",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-union-bank-uyo-2",
+      "venueId": "union-bank-uyo",
+      "name": "Ekemini Bassey",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-unity-park-uyo-1",
+      "venueId": "unity-park-uyo",
+      "name": "Ifiok Akpan",
+      "role": "Park caretaker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-unity-park-uyo-2",
+      "venueId": "unity-park-uyo",
+      "name": "Ekemini Okon",
+      "role": "Morning walker",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-university-of-uyo-1",
+      "venueId": "university-of-uyo",
+      "name": "Akpan Ekong",
+      "role": "Student",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-university-of-uyo-2",
+      "venueId": "university-of-uyo",
+      "name": "Mfon Essien",
+      "role": "Lecturer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-uuth-uyo-1",
+      "venueId": "uuth-uyo",
+      "name": "Akpan Etim",
+      "role": "Nurse",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-uuth-uyo-2",
+      "venueId": "uuth-uyo",
+      "name": "Mfon Umoh",
+      "role": "Patient's relative",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-uyo-township-stadium-1",
+      "venueId": "uyo-township-stadium",
+      "name": "Akpan Idiong",
+      "role": "Groundsman",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-uyo-township-stadium-2",
+      "venueId": "uyo-township-stadium",
+      "name": "Mfon Etim",
+      "role": "Supporter",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-zenith-bank-uyo-1",
+      "venueId": "zenith-bank-uyo",
+      "name": "Akpan Ibanga",
+      "role": "Bank teller",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    },
+    {
+      "id": "uyo-zenith-bank-uyo-2",
+      "venueId": "zenith-bank-uyo",
+      "name": "Mfon Udoh",
+      "role": "Customer",
+      "provenance": {
+        "kind": "game-content",
+        "sourceFile": "src/game/cities/uyo/content.ts"
+      }
+    }
+  ],
+  "targetVenueIds": [
+    "akpan-andem-market",
+    "aktc-park",
+    "akwa-ibom-house-of-assembly",
+    "akwa-ibom-state-secretariat",
+    "cheeries-fast-food",
+    "full-life-christian-centre",
+    "godswill-akpabio-stadium",
+    "national-museum-uyo",
+    "night-fast-food",
+    "rccg-zion-mega-parish-uyo",
+    "union-bank-uyo",
+    "unity-park-uyo",
+    "university-of-uyo",
+    "uuth-uyo",
+    "uyo-township-stadium",
+    "zenith-bank-uyo"
+  ],
+  "preservedVenueIds": [],
+  "excludedVenueIds": [
+    "home"
+  ],
+  "digests": {
+    "inputSha256": "506d7fb5bee28f33e57b051b9b3c00250eb41db51494b859a37f776bc0e781c1",
+    "contentSha256": "70b6654769adc1ab109f55cee81871a43c74126fb75a16763fa1dda0d000402e"
+  }
+}

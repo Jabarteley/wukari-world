@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "kind": "hero",
+  "id": "road-town",
+  "url": "/assets/scene-heroes/road-town.glb",
+  "sha256": "13d18886c77aa4da1f801aec722c41301cc7bc11d615281d9bc09174735d2e60",
+  "rawBytes": 33704,
+  "brotliBytes": 19593,
+  "triangles": 1168,
+  "parts": [
+    {
+      "node": "road-town",
+      "triangles": 1168,
+      "bounds": {
+        "min": [
+          -1.96866488,
+          0,
+          -1.90735722
+        ],
+        "max": [
+          1.9686648848979997,
+          2.499914802812,
+          1.9074041398379997
+        ]
+      },
+      "footprint": [
+        -1.96866488,
+        -1.90735722,
+        1.9686648848979997,
+        1.9074041398379997
+      ]
+    }
+  ],
+  "extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization",
+    "KHR_texture_transform"
+  ],
+  "atlas": {
+    "width": 1024,
+    "height": 1024,
+    "mimeType": "image/webp",
+    "sha256": "23b77bcb8d0598094206c3ef7b0d830f9c0671bde48a36ce58232aa1703254a4"
+  },
+  "inputs": {
+    "rawSha256": "bd8c9776fcc2b0e145218b5eec96cfccf5e8fc407c4dd5d16830fa7bc7fad5b0",
+    "scriptsSha256": "0927354b79e844a6ce14d44a280415fed9ebcc26cfc5333b6f08c878287935a1",
+    "node": "v24.14.1",
+    "packer": "gltfpack@1.3.0",
+    "provenance": {
+      "city": "road-town",
+      "country": "vg",
+      "name": "Harbour Market",
+      "category": "market",
+      "sourceUrls": [
+        "https://www.openstreetmap.org/node/4015267149"
+      ],
+      "sourceRef": "docs/agent-work/story-mode-evidence-20261017/prep/hero-object-audit-20261018.json#records[city_id=road-town]",
+      "sourceLicence": "OpenStreetMap contributors, ODbL 1.0; factual tags only, no external geometry or images reused",
+      "accessed": "2026-10-18",
+      "geometryLicence": "AGPL-3.0-or-later",
+      "generator": "market",
+      "parameters": {
+        "width": 7.4,
+        "depth": 6.3,
+        "height": 2.5,
+        "seed": 181268,
+        "palette": [
+          "#d9c4a2",
+          "#615346",
+          "#8d987c",
+          "#a77559",
+          "#66828e",
+          "#b7a465",
+          "#e6e3d7",
+          "#3d494c"
+        ],
+        "composition": "neutral-trade"
+      },
+      "evidence": "Exact candidate/name alias match and amenity=marketplace support feature identity/category. Object node/4015267149, version 2, timestamp 2016-02-24T18:36:13Z; response SHA256 e94fc075545397b650cdb02992270391345faad6da37b0aba12f84c6bb005353. Source path: src/game/cities/road-town/places.ts. Empty counters, racks and awnings indicate trade. No goods, original shop plan, actual number of stalls or current operation are inferred. All dimensions and colours are original stylized asset choices. Catalogue association is retained; exact anchor overlap, current access, ownership and current operation are not certified. Geometry is original procedural work under AGPL-3.0-or-later; source licensing does not license external geometry.",
+      "surface": {
+        "kind": "regional-atlas",
+        "region": "americas-oceania"
+      }
+    },
+    "styleSha256": "fbd18b5c35c454207ee10aa967ce0a338c5efbcc350d413cc3e615409883b0f2"
+  }
+}

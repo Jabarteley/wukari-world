@@ -1,0 +1,371 @@
+{
+  "schema_version": 1,
+  "purpose": "Primary-source resolution of the final eight hero-source gaps for parent review only; these factual leads are not production-art or asset approvals.",
+  "created_on": "2026-10-18",
+  "selection_policy": "Resolve only the eight rows left after batches 1 and 2. A candidate must be city-local and supported by a primary official, operator, author, or original field-study source. Island or shoreline features qualify only when the evidence identifies the named city's own island or shore. Offshore and region-only substitutes are excluded. France-jurisdiction buildings must predate 1950.",
+  "source_pins_sha256": {
+    "docs/agent-work/story-mode-evidence-20261017/prep/hero-source-readiness-20261018.json": "19e904291c1fc81f981caeade4c2875683574797586685f4f0d7944794683d65",
+    "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch1.json": "1e20dfcf2016f99fd78871deda48df711fe5ecdb77b67103d25736347f670a78",
+    "docs/agent-work/story-mode-evidence-20261017/prep/hero-gap-primary-batch2.json": "2d364035e7f4c48eb1f3ff7cb1fd5f83d64dfecf8baa83853288a01473c51753",
+    "docs/agent-work/story-mode-evidence-20261017/prep/scene-brief-inventory.json": "711719062e3dea27a9920ba82bed654229c03012dfffcb7ebef6c89bdc8a257b"
+  },
+  "coverage": {
+    "requested_city_count": 8,
+    "resolved_source_lead_count": 8,
+    "unresolved_count": 0,
+    "coordinates_copied_from_scene_inventory": true,
+    "candidate_review_only": true,
+    "exact_id_correction": "The requested ile-boddam hint corresponds to the exact readiness/catalogue city_id chagos, whose city_name is Île Boddam."
+  },
+  "rights_boundary": "These sources support factual identity, locality, category, and stated dates only. No permission to reuse source prose, images, maps, plans, meshes, surveyed geometry, or architectural expression is claimed. Source licences are recorded as unknown unless the source itself states otherwise; any artwork must be original and separately reviewed.",
+  "cities": [
+    {
+      "city_id": "koror",
+      "city_name": "Koror",
+      "country_iso": "pw",
+      "coordinates": {
+        "lon": 134.4766767,
+        "lat": 7.343275,
+        "coordinate_scope": "catalogue city anchor copied exactly; not a claimed feature coordinate"
+      },
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "M-Dock Mangrove Shoreline",
+        "category": "natural feature — mangrove shoreline",
+        "fact_paraphrase": "A Republic of Palau-hosted environmental assessment places an existing mangrove-forest area and man-made shoreline at M-Dock in Medalaii Hamlet, Koror State. This is a Koror-local shoreline feature rather than an offshore Rock Islands substitute.",
+        "date_fact": null,
+        "sources": [
+          {
+            "url": "https://www.palaugov.pw/wp-content/uploads/2018/07/PECI-Relocation-Project.pdf",
+            "title": "Environmental Impact Assessment for the Proposed Development, Improvement and Relocation Project for a Site at M-Dock Location in Medalaii Hamlet of Koror State of the Republic of Palau",
+            "publisher": "Republic of Palau Environmental Quality Protection Board",
+            "author": "Marhence Madrangchar",
+            "published_date": "2018-04",
+            "access_date": "2026-10-18",
+            "page_locator": "Project title and site description; M-Dock in Medalaii Hamlet, existing mangrove forest along the causeway and shoreline",
+            "license": "unknown"
+          }
+        ],
+        "rights_status": "unknown; fact-only reference for original art",
+        "geometry_or_photo_reuse": "not permitted or claimed",
+        "provenance_confidence": "direct named locality and natural-feature evidence",
+        "review_note": "The source describes an assessment site, not public access or current conservation condition; those remain unconfirmed."
+      }
+    },
+    {
+      "city_id": "kuwait-city",
+      "city_name": "Kuwait City",
+      "country_iso": "kw",
+      "coordinates": {
+        "lon": 47.9734174,
+        "lat": 29.3796532,
+        "coordinate_scope": "catalogue city anchor copied exactly; not a claimed feature coordinate"
+      },
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Kuwait Towers",
+        "category": "monument / landmark",
+        "fact_paraphrase": "The official operator identifies Kuwait Towers as a national symbol integral to the Kuwait City skyline and located on Arabian Gulf Road. Kuwait Government Online separately identifies the towers as a famous landmark in the Sharq district on Arabian Gulf Road.",
+        "date_fact": null,
+        "sources": [
+          {
+            "url": "https://www.tec.com.kw/Attractions/detail/Kuwait-Tower",
+            "title": "Kuwait Towers",
+            "publisher": "Touristic Enterprises Company",
+            "author": "Touristic Enterprises Company",
+            "published_date": "",
+            "access_date": "2026-10-18",
+            "page_locator": "Official attraction page; Kuwait City skyline and Arabian Gulf Road",
+            "license": "unknown"
+          },
+          {
+            "url": "https://www.e.gov.kw/sites/kgoenglish/Pages/Visitors/TourismInKuwait/ActivitiesInKuwaitAttractiveSpots.aspx",
+            "title": "Tourist Spots in Kuwait",
+            "publisher": "Kuwait Government Online, State of Kuwait",
+            "author": "Kuwait Government Online",
+            "published_date": "",
+            "access_date": "2026-10-18",
+            "page_locator": "Kuwait Towers section; Sharq district and Arabian Gulf Road",
+            "license": "unknown"
+          }
+        ],
+        "rights_status": "unknown; fact-only reference for original art",
+        "geometry_or_photo_reuse": "not permitted or claimed",
+        "provenance_confidence": "official operator plus government location corroboration",
+        "review_note": "The sources establish identity and city locality; they do not grant architectural, image, or model rights."
+      }
+    },
+    {
+      "city_id": "pristina",
+      "city_name": "Pristina",
+      "country_iso": "xk",
+      "coordinates": {
+        "lon": 21.1640849,
+        "lat": 42.6638771,
+        "coordinate_scope": "catalogue city anchor copied exactly; not a claimed feature coordinate"
+      },
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Sahat Kulla (Clock Tower)",
+        "category": "historic monument / pre-1950 building",
+        "fact_paraphrase": "A Municipality of Prishtina publication places Sahat Kulla in Prishtina's historic centre, identifies it as an important utilitarian-architecture monument, and dates its construction to the nineteenth century.",
+        "date_fact": "19th century",
+        "sources": [
+          {
+            "url": "https://prishtina.rks-gov.net/wp-content/uploads/2024/12/narrativa_e_prishtines.pdf",
+            "title": "Narrativa e Prishtinës",
+            "publisher": "Municipality of Prishtina",
+            "author": "Municipality of Prishtina working team",
+            "published_date": "2018-09",
+            "access_date": "2026-10-18",
+            "page_locator": "Sahat Kulla section, page 25; publication introduction describes the municipally appointed working team",
+            "license": "unknown"
+          }
+        ],
+        "rights_status": "unknown; fact-only reference for original art",
+        "geometry_or_photo_reuse": "not permitted or claimed",
+        "provenance_confidence": "direct municipal locality, category, and century evidence",
+        "review_note": "The nineteenth-century date satisfies a pre-1950 check if that constraint is applied; current access and condition remain unconfirmed."
+      }
+    },
+    {
+      "city_id": "mata-utu",
+      "city_name": "Mata Utu",
+      "country_iso": "wf",
+      "coordinates": {
+        "lon": -176.1740224,
+        "lat": -13.2820419,
+        "coordinate_scope": "catalogue city anchor copied exactly; not a claimed feature coordinate"
+      },
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Mata Utu Lagoon Shore",
+        "category": "natural feature — intertidal lagoon shoreline",
+        "fact_paraphrase": "A field-based aquaculture feasibility study identifies the coastal intertidal band around Wallis as especially pronounced from Fakautu to Mata Utu, with sand, mud, seagrass, and locally mangrove habitat. This establishes Mata Utu's own lagoon shore as the candidate natural feature.",
+        "date_fact": null,
+        "sources": [
+          {
+            "url": "https://www.wallis-et-futuna.gouv.fr/contenu/telechargement/11189/72236/file/202108_Etude_de_faisabilite%CC%81_aquaculture_WF.pdf",
+            "title": "Étude de faisabilité de développement d’une filière aquacole durable à Wallis et Futuna. Analyse technique et socio-économique",
+            "publisher": "Communauté du Pacifique (CPS)",
+            "author": "Antoine Teitelbaum and M. Lauffenburger",
+            "published_date": "2021",
+            "access_date": "2026-10-18",
+            "page_locator": "Wallis coastal environment section; intertidal band from Fakautu to Mata Utu",
+            "license": "unknown"
+          },
+          {
+            "url": "https://www.wallis-et-futuna.gouv.fr/index.php/Publications/Autres-dossiers-archives/Communiques-archives/Communiques/2022/Strategie-de-developpement-de-l-aquaculture-a-Wallis/%28theme%29/2",
+            "title": "Stratégie de développement de l’aquaculture à Wallis",
+            "publisher": "Services de l’État et du Territoire à Wallis et Futuna",
+            "author": "Services de l’État et du Territoire à Wallis et Futuna",
+            "published_date": "2022",
+            "access_date": "2026-10-18",
+            "page_locator": "Official notice identifying the 2021 Teitelbaum and Lauffenburger feasibility study",
+            "license": "unknown"
+          }
+        ],
+        "rights_status": "unknown; fact-only reference for original art",
+        "geometry_or_photo_reuse": "not permitted or claimed",
+        "provenance_confidence": "named field study on an official territorial host, corroborated by an official programme notice",
+        "review_note": "No precise feature point or public-access claim is made. The post-1950 cathedral is deliberately excluded."
+      }
+    },
+    {
+      "city_id": "adamstown",
+      "city_name": "Adamstown",
+      "country_iso": "pn",
+      "coordinates": {
+        "lon": -130.100205,
+        "lat": -25.066667,
+        "coordinate_scope": "catalogue city anchor copied exactly; not a claimed feature coordinate"
+      },
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Bounty Bay",
+        "category": "natural feature — bay / island shoreline",
+        "fact_paraphrase": "Pitcairn Islands Tourism identifies Bounty Bay as the island landing and explains that visitors continue from it up the Hill of Difficulty to Adamstown. This makes the bay the settlement's own arrival shoreline rather than a regional substitute.",
+        "date_fact": null,
+        "sources": [
+          {
+            "url": "https://www.visitpitcairn.pn/for-cruise-operators",
+            "title": "For Cruise Operators",
+            "publisher": "Pitcairn Islands Tourism",
+            "author": "Pitcairn Islands Tourism",
+            "published_date": "",
+            "access_date": "2026-10-18",
+            "page_locator": "Bounty Bay landing and Hill of Difficulty route to Adamstown",
+            "license": "unknown"
+          },
+          {
+            "url": "https://www.visitpitcairn.pn/virtual-tour",
+            "title": "Virtual Tour",
+            "publisher": "Pitcairn Islands Tourism",
+            "author": "Pitcairn Islands Tourism",
+            "published_date": "",
+            "access_date": "2026-10-18",
+            "page_locator": "Bounty Bay and Adamstown entries",
+            "license": "unknown"
+          }
+        ],
+        "rights_status": "unknown; fact-only reference for original art",
+        "geometry_or_photo_reuse": "not permitted or claimed",
+        "provenance_confidence": "official destination authority directly connects the bay landing to Adamstown",
+        "review_note": "The source establishes locality and visitor-route relationship, not a precise feature coordinate or guaranteed access."
+      }
+    },
+    {
+      "city_id": "saint-pierre",
+      "city_name": "Saint-Pierre",
+      "country_iso": "pm",
+      "coordinates": {
+        "lon": -56.1768672,
+        "lat": 46.7775497,
+        "coordinate_scope": "catalogue city anchor copied exactly; not a claimed feature coordinate"
+      },
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Pointe-aux-Canons Lighthouse",
+        "category": "pre-1950 building / maritime monument",
+        "fact_paraphrase": "The territorial maritime-history record states that the original light first operated in 1819, the substantially current tower replaced it on 1 October 1862, and a 1949 restoration gave the tower its current appearance. The territorial authority separately calls it an emblematic monument at the entrance to Saint-Pierre's old port.",
+        "date_fact": "1862-10-01; current appearance from 1949 restoration",
+        "sources": [
+          {
+            "url": "https://www.saint-pierre-et-miquelon.developpement-durable.gouv.fr/IMG/pdf/memoire_pointe_aux_canons.pdf",
+            "title": "Historique de la signalisation maritime aux îles Saint-Pierre et Miquelon",
+            "publisher": "Direction des Territoires, de l’Alimentation et de la Mer à Saint-Pierre et Miquelon",
+            "author": "Direction des Territoires, de l’Alimentation et de la Mer à Saint-Pierre et Miquelon",
+            "published_date": "",
+            "access_date": "2026-10-18",
+            "page_locator": "Signalisation maritime / Feu de la Pointe-aux-Canons, pages 1–2; 1819, 1862, and 1949 chronology",
+            "license": "unknown"
+          },
+          {
+            "url": "https://www.saint-pierre-et-miquelon.developpement-durable.gouv.fr/demarrage-de-l-amenagement-des-abords-du-phare-de-a705.html",
+            "title": "Démarrage de l’aménagement des abords du phare de la Pointe-aux-Canons",
+            "publisher": "Direction des Territoires, de l’Alimentation et de la Mer à Saint-Pierre et Miquelon",
+            "author": "Direction des Territoires, de l’Alimentation et de la Mer à Saint-Pierre et Miquelon",
+            "published_date": "2021-07-07",
+            "access_date": "2026-10-18",
+            "page_locator": "Project notice; emblematic monument at the entrance to the old port of Saint-Pierre",
+            "license": "unknown"
+          }
+        ],
+        "rights_status": "unknown; fact-only reference for original art",
+        "geometry_or_photo_reuse": "not permitted or claimed",
+        "provenance_confidence": "official territorial locality and dated building-history evidence",
+        "review_note": "The 1862 tower and 1949 appearance satisfy the France-jurisdiction pre-1950 requirement."
+      }
+    },
+    {
+      "city_id": "west-island",
+      "city_name": "West Island",
+      "country_iso": "cc",
+      "coordinates": {
+        "lon": 96.8304486,
+        "lat": -12.1898479,
+        "coordinate_scope": "catalogue city anchor copied exactly; not a claimed feature coordinate"
+      },
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Trannies Beach",
+        "category": "natural feature — beach",
+        "fact_paraphrase": "The official Cocos Keeling Islands Visitor Centre identifies Trannies Beach on West Island, about six kilometres north of the settlement, and describes its shallow water as protected by the reef.",
+        "date_fact": null,
+        "sources": [
+          {
+            "url": "https://cocoskeelingislands.com.au/travel-tips/the-dreamiest-beaches-on-the-cocos-keeling-islands/",
+            "title": "Best Beaches on the Cocos Islands",
+            "publisher": "Cocos Keeling Islands Visitor Centre",
+            "author": "Cocos Keeling Islands Visitor Centre",
+            "published_date": "",
+            "access_date": "2026-10-18",
+            "page_locator": "Trannies Beach, West Island section",
+            "license": "unknown"
+          },
+          {
+            "url": "https://cocoskeelingislands.com.au/about/the-islands/west-island/",
+            "title": "West Island",
+            "publisher": "Cocos Keeling Islands Visitor Centre",
+            "author": "Cocos Keeling Islands Visitor Centre",
+            "published_date": "",
+            "access_date": "2026-10-18",
+            "page_locator": "West Island page; things to do includes Trannies Beach",
+            "license": "unknown"
+          }
+        ],
+        "rights_status": "unknown; fact-only reference for original art",
+        "geometry_or_photo_reuse": "not permitted or claimed",
+        "provenance_confidence": "official destination authority directly names the feature and island",
+        "review_note": "The exact official feature name is preserved as a factual proper noun; no off-island reef or excursion is substituted."
+      }
+    },
+    {
+      "city_id": "chagos",
+      "city_name": "Île Boddam",
+      "country_iso": "io",
+      "coordinates": {
+        "lon": 72.2049217,
+        "lat": -5.3574343,
+        "coordinate_scope": "catalogue city anchor copied exactly; not a claimed feature coordinate"
+      },
+      "status": "candidate-source-lead-for-parent-review",
+      "candidate": {
+        "name": "Île Boddam Lagoon Shore",
+        "category": "natural feature — lagoon shoreline",
+        "fact_paraphrase": "An original peer-reviewed field survey records three lagoon-side Île Boddam transects with sand/rubble, coral/sand, and sand substrates. The study's raw latitude/longitude table entries are retained without decimal conversion, and a government page corroborates Île Boddam as an island in the Salomon Islands group.",
+        "date_fact": "field survey conducted February–March 2006; paper published 2009",
+        "feature_coordinates": {
+          "coordinate_scope": "raw field-study station text, not converted or substituted for the catalogue city anchor",
+          "coordinate_convention": "Table 3 headings are Lat. and Long.; L means lagoon side. Hemisphere signs are not added here because they are not printed in these table cells.",
+          "stations": [
+            {
+              "station": "31a",
+              "raw_latitude": "5 21.71",
+              "raw_longitude": "72 12.67",
+              "substrate": "sand/rubble"
+            },
+            {
+              "station": "31b",
+              "raw_latitude": "5 21.68",
+              "raw_longitude": "72 12.61",
+              "substrate": "coral/sand"
+            },
+            {
+              "station": "31c",
+              "raw_latitude": "5 21.68",
+              "raw_longitude": "72 12.61",
+              "substrate": "sand"
+            }
+          ]
+        },
+        "sources": [
+          {
+            "url": "https://blueventures.org/wp-content/uploads/2021/03/Price_2009_Chagos_holo.pdf",
+            "title": "Chagos feels the pinch: assessment of holothurian (sea cucumber) abundance, illegal harvesting and conservation prospects in British Indian Ocean Territory",
+            "publisher": "Aquatic Conservation: Marine and Freshwater Ecosystems; John Wiley & Sons",
+            "author": "A. R. G. Price, A. Harris, A. McGowan, A. J. Venkatachalam, and C. R. C. Sheppard",
+            "published_date": "2009",
+            "access_date": "2026-10-18",
+            "page_locator": "Methods, pages 2–3; Table 3, page 6, stations 31a–31c; DOI 10.1002/aqc.1054",
+            "license": "unknown"
+          },
+          {
+            "url": "https://chagosarchipelago.govmu.org/Pages/Location_and_History.aspx",
+            "title": "Location and History",
+            "publisher": "Government of Mauritius — Chagos Archipelago",
+            "author": "Government of Mauritius",
+            "published_date": "",
+            "access_date": "2026-10-18",
+            "page_locator": "Salomon Islands description naming Île Boddam",
+            "license": "unknown"
+          }
+        ],
+        "rights_status": "unknown; fact-only reference for original art",
+        "geometry_or_photo_reuse": "not permitted or claimed; field coordinates are evidence, not reusable surveyed geometry",
+        "provenance_confidence": "original named field stations plus government island-identity corroboration",
+        "review_note": "Catalogue identity is chagos, not ile-boddam. The candidate is Boddam's own lagoon shore. No geopolitical-status conclusion or public-access claim is made."
+      }
+    }
+  ]
+}

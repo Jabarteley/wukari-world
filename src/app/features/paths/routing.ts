@@ -7,6 +7,8 @@
 //   /<city>            in that city: the city map. Elsewhere: the atlas with that city's travel card open ("Go to Abuja")
 //   /<city>/games      in that city: the Games app (its tables are listed there). Elsewhere: the travel card
 //   /<city>/<venue>    in that city, a venue that exists: the map on that venue. Otherwise as /<city>
+//   /street/<city>/<place>, /visit/<city>   in that city: the city map, on that place's local unit (a district is shown on the unit it
+//                      lies in; an unknown place, or a visit, is the whole city). Elsewhere: the travel card, as /<city>
 //   /<state>, /nigeria, /world   the atlas, at that level
 //   /messages, /friends, /invite, /business, /jobs, /help, /sound, /signup, /login   that panel
 import { ENTRY_VARIANTS } from '../../../entry-variants.ts'
@@ -31,6 +33,10 @@ export interface Env {
   hasVenue(city: string, venue: string): boolean
   /** The sign-in sheet, the log-in sheet, or the account sheet for a signed-in player. */
   openAccount(which: 'signup' | 'login'): Promise<void>
+  /** The local unit a street's place is in (the city's rules are loaded, because the life is in it), or null. */
+  unitOf(city: string, place: string): string | null
+  /** The city map, once it is open, goes to that local unit (as "Show on map" of its page does). */
+  focusUnit(unit: string): void
 }
 
 const PANEL_OF: Readonly<Record<Exclude<PanelWord, 'signup' | 'login'>, string>> = { messages: 'messages', friends: 'people', invite: 'invite', business: 'business', jobs: 'jobs', help: 'help', sound: 'settings', politics: 'politics', records: 'politics', shops: 'showcase', services: 'showcase' }
@@ -58,7 +64,19 @@ export async function arrive(env: Env, found: WaitingIntent | null): Promise<voi
     case 'atlas': map(path, () => { env.showMapLayer('world', { level: intent.level === 'world' ? 0 : 2 }) }); return
     case 'state': map(path, () => { env.showMapLayer('world', { level: 2, state: intent.state }) }); return
     case 'city': return arriveCity(env, intent, via)
+    case 'street': return arriveStreet(env, intent)
   }
+}
+
+/** A street or a visit. Unlike /<city>, a life the landing began here is shown the map too: the street is what the address asked for. */
+function arriveStreet(env: Env, intent: Extract<PathIntent, { kind: 'street' }>): void {
+  const { views } = env
+  const path = pathOf(intent)
+  views.hold(path, () => env.mapOpen(), 'replace')
+  if (env.cityId() !== intent.city) { env.showMapLayer('world', { level: 2, city: intent.city }); return }
+  env.showMapLayer('city')
+  const unit = intent.place ? env.unitOf(intent.city, intent.place) : null
+  if (unit) env.focusUnit(unit)
 }
 
 function arriveCity(env: Env, intent: Extract<PathIntent, { kind: 'city' }>, via: WaitingIntent['via']): void {

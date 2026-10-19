@@ -1,5 +1,7 @@
 <script setup lang="ts">
-// The Feed (docs/FEED.md): what your friends, your city and the world are doing, as posts that belong to a person and a place. A post is
+// The Feed (docs/FEED.md): what your neighbours, your friends, your city and the world are doing, as posts that belong to a person and a
+// place. Near you (the first tab, and where it opens for someone with a location badge) puts people confirmed in your local government
+// first, then your city, then the world, under a line of how many people confirmed your area this month. A post is
 // written here or drafted by the world itself (a "moment": something public that happened to you), and it can carry a photo of the scene
 // or a short clip. The same app is the whole product for someone without the 3D world (Lite, src/app/features/lite/).
 import '../../../ui/controls.css'
@@ -17,20 +19,23 @@ import { feedUnseen } from './feedBadge.ts'
 import { encodePhoto, recordScene, snapshotScene, canRecord } from './feedMedia.ts'
 import type { Recording } from './feedMedia.ts'
 import { shareLink } from './feedShare.ts'
-import { agoText, FEED, visibilityWord } from '../../../feed/model.ts'
+import { agoText, confirmedText, FEED, visibilityWord } from '../../../feed/model.ts'
 import { cityName as registryCityName } from '../../../game/cities/registry.ts'
 import { social } from '../social/useSocial.ts'
 import { enterRoom, enterSquare, loadPlaces, places } from '../places/placesStore.ts'
+import { keepBadge } from './badgeMark.ts'
 import type { FeedTab, Visibility } from '../../../feed/model.ts'
-import type { FeedMe, FeedMedia, InboxLine, NewsLine, PostView, Suggestion } from '../../../types/feed.ts'
+import type { FeedMe, FeedMedia, InboxLine, NearLine, NewsLine, PostView, Suggestion } from '../../../types/feed.ts'
 
 const props = defineProps<{ params?: { tab?: string; post?: string } | null }>()
 const { game, shell, scene } = useApp()
 const api = feedApi((path, options) => game.fetchJson(path, options))
 type Tab = FeedTab | 'inbox'
-const tab = ref<Tab>(props.params?.tab === 'city' || props.params?.tab === 'world' || props.params?.tab === 'inbox' ? props.params.tab : 'friends')
+const asked = props.params?.tab === 'near' || props.params?.tab === 'friends' || props.params?.tab === 'city' || props.params?.tab === 'world' || props.params?.tab === 'inbox' ? props.params.tab : null
+// Near you is the default for someone with a location badge (the owner's decision); Friends otherwise. Decided once the profile is in.
+const tab = ref<Tab>(asked ?? 'friends')
 const me = ref<FeedMe | null>(null)
-const posts = ref<PostView[]>([]), news = ref<NewsLine[]>([]), next = ref<string | null>(null), sponsored = ref<ListingView[]>([])
+const posts = ref<PostView[]>([]), news = ref<NewsLine[]>([]), next = ref<string | null>(null), sponsored = ref<ListingView[]>([]), near = ref<NearLine | null>(null)
 const loading = ref(false), failed = ref(''), now = ref(Date.now())
 const open = ref<PostView | null>(null)
 const suggestions = ref<Suggestion[]>([])
@@ -41,7 +46,7 @@ const toast = (text: string, tone?: 'error'): void => game.toast(text, tone === 
 // ---- loading -----------------------------------------------------------------------------------------------------------------------
 async function loadMe(): Promise<void> {
   const r = await api.me()
-  if (r.ok) { me.value = r; feedUnseen.value = r.unseen }
+  if (r.ok) { me.value = r; feedUnseen.value = r.unseen; keepBadge(Boolean(r.profile.located)) }
 }
 async function load(more = false): Promise<void> {
   if (loading.value || tab.value === 'inbox') return
@@ -51,12 +56,13 @@ async function load(more = false): Promise<void> {
   if (!r.ok) { failed.value = r.reason; return }
   posts.value = more ? [...posts.value, ...r.posts.filter((p) => !posts.value.some((q) => q.id === p.id))] : r.posts
   next.value = r.next
-  if (!more) { news.value = r.news ?? []; sponsored.value = r.sponsored ?? [] }
+  if (!more) { news.value = r.news ?? []; sponsored.value = r.sponsored ?? []; near.value = r.near ?? null }
   if (tab.value === 'friends' && !more && r.posts.length < 4) void loadSuggestions()
 }
 async function loadSuggestions(): Promise<void> { const r = await api.suggestions(); if (r.ok) suggestions.value = r.people.slice(0, 8) }
 onMounted(() => {
-  void loadMe(); void load(); void loadPlaces()
+  if (asked) { void loadMe(); void load() } else void loadMe().then(() => { if (me.value?.profile.located) tab.value = 'near'; else void load() })
+  void loadPlaces()
   if (props.params?.post) void openPost(props.params.post)
 })
 // In Lite the Feed is on screen before the game has connected: read again once it has.
@@ -153,6 +159,7 @@ async function addFriend(s: Suggestion): Promise<void> {
 <template>
   <section class="feed" aria-label="Feed" data-feed="app">
     <nav class="feed-tabs" aria-label="Feed tabs">
+      <button type="button" :class="{ 'is-on': tab === 'near' }" @click="tab = 'near'">Near you</button>
       <button type="button" :class="{ 'is-on': tab === 'friends' }" @click="tab = 'friends'">Friends</button>
       <button type="button" :class="{ 'is-on': tab === 'city' }" @click="tab = 'city'">{{ cityName }}</button>
       <button type="button" :class="{ 'is-on': tab === 'world' }" @click="tab = 'world'">World</button>
@@ -176,6 +183,8 @@ async function addFriend(s: Suggestion): Promise<void> {
     </template>
 
     <template v-else>
+      <p v-if="tab === 'near' && near" class="feed-note" data-feed="near" role="status">📍 <template v-if="near.lgaName">{{ confirmedText(near.lgaN ?? 0, near.lgaName) }} · {{ (near.n).toLocaleString('en') }} in {{ near.cityName }}</template><template v-else>{{ confirmedText(near.n, near.cityName) }}</template></p>
+      <p v-else-if="tab === 'near' && me && !me.profile.located" class="feed-note" data-feed="near-badge">Showing {{ cityName }}. Get the location badge in <button type="button" class="feed-pill" @click="shell.open('me')">My profile</button> to see the people near you first.</p>
       <div v-if="me?.drafts.length" class="feed-card" data-feed="drafts">
         <b>Moments waiting to be posted</b>
         <p class="feed-note">Things that really happened to you. One tap posts them.</p>
@@ -187,7 +196,7 @@ async function addFriend(s: Suggestion): Promise<void> {
       </div>
 
       <form class="feed-card feed-compose" data-feed="compose" @submit.prevent="publish">
-        <textarea v-model="text" :maxlength="FEED.body" :placeholder="draftN !== null ? 'Add a few words to your moment (optional)' : tab === 'city' ? `What is happening in ${cityName}?` : 'What are you up to?'" aria-label="Write a post" />
+        <textarea v-model="text" :maxlength="FEED.body" :placeholder="draftN !== null ? 'Add a few words to your moment (optional)' : tab === 'city' ? `What is happening in ${cityName}?` : tab === 'near' ? `What is happening around ${near?.lgaName ?? near?.cityName ?? cityName}?` : 'What are you up to?'" aria-label="Write a post" />
         <img v-if="preview && media && media.type !== 'webm' && media.type !== 'mp4'" class="feed-media" :src="preview" alt="Your photo">
         <video v-else-if="preview" class="feed-media" :src="preview" controls muted playsinline />
         <div class="feed-row">

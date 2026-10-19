@@ -41,9 +41,9 @@ import { buildSocketHandlers } from './ws/index.ts';
 import { createServerTelemetry, useTelemetry } from './telemetry/index.ts';
 import { readTelemetryConfig } from './telemetry/config.ts';
 import { appHeaders, pageHeaders, apiHeaders, fileCache, isSandboxPath, sandboxHeaders, inlineScriptHashes, telemetryOrigins, type RequestFacts } from './security-headers.ts';
-import { siteFile } from './site-files.ts';
+import { PLAY_SIGNING_ENV, siteFile } from './site-files.ts';
 import { ADMIN_HOST_ENV, ADMIN_ROBOTS, ADMIN_SHELL, adminAddress, adminHostName, adminHostRoute, isAdminHost } from './admin/host.ts';
-import { withPathMeta } from './path-meta.ts';
+import { preparePathMeta, withPathMeta } from './path-meta.ts';
 import { sceneCataloguePage } from './scene-catalogue.ts';
 import { createMemoryLimiter } from './limiter.ts';
 import telemetryRoutes from './telemetry/routes.ts';
@@ -476,10 +476,11 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
         if (method === 'POST') throw fail(405, 'method_not_allowed');
         at = null;
       }
-      // The manifest and the sitemap are made by code (site-files.ts), not shipped as files: the release package admits neither extension.
-      const site = siteFile(url.pathname, publicOrigin(req));
+      // The manifest, the sitemap and assetlinks.json are made by code (site-files.ts), not shipped as files: the release package admits none of those names.
+      const playSigning = env?.[PLAY_SIGNING_ENV];
+      const site = siteFile(url.pathname, publicOrigin(req), typeof playSigning === 'string' ? playSigning : undefined);
       if (site) {
-        res.writeHead(200, { 'Content-Type': site.type, 'X-Content-Type-Options': 'nosniff' });
+        res.writeHead(site.status ?? 200, { 'Content-Type': site.type, 'X-Content-Type-Options': 'nosniff' });
         res.end(method === 'HEAD' ? undefined : site.body);
         return;
       }
@@ -511,6 +512,8 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
       const isReplay = adminKind === null && path === resolve(root, 'replay.html');
       const isCatalogue = cataloguePage !== null;
       // A short address (/games, /abuja, …) gets its own title, description and link-preview tags; the page's scripts are untouched.
+      // A street's head names its place from the city's rules, which are read first (at most a moment).
+      if (isIndex) await preparePathMeta(url.pathname);
       const html = isShell || isReplay || isCatalogue ? await readFile(path, 'utf8') : isIndex ? (open ? open.page : (page: string) => page)(withPathMeta(await serveIndex(req, path), url.pathname, publicOrigin(req), url.search)) : '';
       const bytes = isIndex || isShell || isReplay || isCatalogue ? Buffer.from(html) : await readFile(path);
       if (res.headersSent || res.writableEnded) return;

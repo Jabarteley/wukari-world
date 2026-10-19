@@ -22,6 +22,7 @@ test('a visitor inside an open city is offered to start there', async () => {
   const found = await findCity({ geolocation: at(12.0, 8.52), packs: packs('kano', seen) })
   assert.deepEqual([found.kind, found.kind === 'in' ? found.city : null, found.line], ['in', 'kano', 'You are in Kano — start there?'])
   assert.deepEqual(seen[0], ['kano', 12.0, 8.52], 'the position goes to the lookup on this device')
+  assert.deepEqual(found.kind === 'in' ? found.unit : null, { id: 'x', name: 'Somewhere' }, 'and the local unit the lookup found comes back, for "Find my street"')
 })
 
 test('a visitor whose position no city map claims is offered the nearest open city', async () => {
@@ -67,7 +68,8 @@ test('the position never leaves the device: no request, no storage, no beacon, n
       const found = await findCity({ geolocation: at(lat, lon), packs: packs(inside) })
       const text = JSON.stringify(found)
       assert.ok(!text.includes('12.003') && !text.includes('8.521'), 'the answer holds no coordinates')
-      assert.deepEqual(Object.keys(found).sort(), found.kind === 'in' ? ['city', 'kind', 'line', 'name'] : ['city', 'kind', 'line', 'name', 'place'])
+      assert.deepEqual(Object.keys(found).sort(), found.kind === 'in' ? ['city', 'kind', 'line', 'name', 'unit'] : ['city', 'kind', 'line', 'name', 'place'])
+      if (found.kind === 'in') assert.deepEqual(Object.keys(found.unit).sort(), ['id', 'name'], 'the local unit is an id and a name, nothing finer')
     }
     assert.deepEqual(sent, [], 'nothing was fetched, posted or stored')
     assert.deepEqual(events, [], 'no event was sent')
@@ -79,7 +81,8 @@ test('the position never leaves the device: no request, no storage, no beacon, n
 })
 
 test('the sources of the flow have no way to send a position: no network, no storage, no event, no telemetry', () => {
-  for (const file of ['findCity.ts', 'PathIntro.vue', 'pathIntroModel.ts']) {
+  // streetEntry.ts is "Find my street" on the entry page: it hands on findCity's ids and names, and keeps them (paths/intent.ts) only at Play.
+  for (const file of ['findCity.ts', 'PathIntro.vue', 'pathIntroModel.ts', 'streetEntry.ts']) {
     const source = readFileSync(new URL(file, import.meta.url), 'utf8').replace(/\/\/.*$/gm, '').replace(/\/\*[\s\S]*?\*\//g, '')
     for (const word of ['fetch', 'XMLHttpRequest', 'sendBeacon', 'WebSocket', 'localStorage', 'sessionStorage', 'dispatchEvent', 'track(', 'console.']) assert.ok(!source.includes(word), `${file} must not use ${word}`)
   }

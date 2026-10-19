@@ -111,7 +111,7 @@ test('the first screen of a new visitor is the entry page: the world, one card, 
   assert.match(html, /data-entry-creator[^>]*>Make my character first<\/button>/)
   assert.match(html, /data-entry-agent[^>]*>[\s\S]*Connect an AI agent/)
   for (const tile of ['Live in a real city', 'Work and earn', 'Open a shop for your real business', 'Friends, voice and games']) assert.ok(words.includes(tile), tile)
-  assert.ok(words.includes('Find my city') && words.includes('Source code'))
+  assert.ok(words.includes('Find my street') && words.includes('Source code'))
   assert.ok(!html.includes('data-key="sign-up"'), 'no accounts configured: exactly the guest start')
   assert.ok(!html.includes('data-agent-sheet'), 'the agent sheet is closed until asked for')
 })
@@ -135,6 +135,20 @@ test('the entry page of an address: /shops says what a seller needs, /services a
   assert.match(cities, /\d+ real cities in \d+ countries/)
   assert.ok(cities.includes('Find my city'))
   assert.ok(!text(await render('EntryPage', { path: '/' })).includes('Set up now'))
+})
+
+test('the entry page of a street, a visit and politics: their own words, Play, Find my street, and the dive\'s box under the card', async () => {
+  await resetCreator()
+  const street = await render('EntryPage', { path: '/street/lagos/yaba' })
+  assert.match(street, /data-variant="street"/)
+  assert.match(street, /data-entry-play[^>]*>Play now<\/button>/)
+  assert.ok(text(street).includes('Find my street') && text(street).includes('Walk your own street'), 'the place is named once its rules are read, after the first paint')
+  assert.match(street, /class="en-stage" inert/)
+  assert.ok(street.indexOf('data-entry-stage') < street.indexOf('en-card'), 'the dive is drawn behind the card')
+  const visit = text(await render('EntryPage', { path: '/visit/lagos' }))
+  assert.ok(visit.includes('Visit home from London') && visit.includes('call their character') && visit.includes('Find my street'))
+  const politics = text(await render('EntryPage', { path: '/politics' }))
+  assert.ok(politics.includes('Become governor of Lagos this week') && politics.includes('One-week terms. Real elections') && !politics.includes('Find my'))
 })
 
 test('the seller checklist: steps, the real requirements, and the sign-up button only for a guest', async () => {
@@ -326,6 +340,18 @@ test('a life that never had a character starts the creator on the look, with und
     assert.ok(html.includes('look-editor') && !html.includes('data-key="later"'), 'no "Not now" for a life that was not a guest')
   })
   await resetCreator()
+})
+
+test('the look step offers "Start from a photo" with the camera input and the privacy line, never "looks like you"; the Ready step offers the card only when the stage is there', async () => {
+  const look = app.game.state.value.onboarding.look
+  const html = await render('StepLook', { look, owned: {}, canUndo: false, canReset: false })
+  const words = text(html)
+  assert.ok(words.includes('Start from a photo') && words.includes('stays on your phone'), words)
+  assert.match(html, /<input[^>]*type="file"[^>]*accept="image\/\*"[^>]*capture="user"|<input[^>]*capture="user"[^>]*type="file"/)
+  assert.ok(!/looks like you/i.test(words))
+  const ready = { name: 'Ada', look, traits: [], dream: null, area: 'Yaba' }
+  assert.ok(!(await render('StepReady', ready)).includes('Share my character'))
+  assert.ok(text(await render('StepReady', { ...ready, canCard: true })).includes('Share my character'))
 })
 
 test('the home city model makes cold Sagamu rules reactive after switching from Lagos', async () => {

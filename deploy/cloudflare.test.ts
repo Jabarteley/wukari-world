@@ -1179,6 +1179,30 @@ test('short addresses: /games, /abuja and an unknown path get their own head fro
   assert.ok(sitemap.includes('/kaduna<'), 'a capital that opened is listed');
 });
 
+test('a street: the Worker reads the city\'s rules through the asset binding, so the head names the place; a visit names the city', async t => {
+  const dist = await mkdtemp(join(tmpdir(), 'joinallworld-dist-'));
+  t.after(() => rm(dist, { recursive: true, force: true }));
+  const index = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  await writeFile(join(dist, 'index.html'), index);
+  // The Lagos content asset as the build emits it (scripts/city/build-content-assets.ts), at its own hashed path.
+  const { CITY_CONTENT_ASSETS } = await import('../src/game/cities/content-assets.generated.ts');
+  const lagos = CITY_CONTENT_ASSETS.find(row => row.id === 'lagos');
+  assert.ok(lagos);
+  await mkdir(join(dist, 'assets', 'cities'), { recursive: true });
+  await writeFile(join(dist, lagos.path), await readFile(new URL(`../dist${lagos.path}`, import.meta.url)));
+  const f = await fixture(t, { assets: { directory: dist, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } } });
+  const title = (html: string) => /<title>([^<]*)<\/title>/.exec(html)?.[1];
+  const homePolicy = (await f.fetch('/')).headers.get('content-security-policy');
+  for (const [path, expected, canonical] of [['/street/lagos/yaba', 'Walk Yaba, Lagos on Allworld', '/street/lagos/yaba'], ['/visit/lagos', 'Visit Lagos on Allworld', '/visit/lagos'], ['/street/lagos/not-a-place', 'Visit Lagos on Allworld', '/visit/lagos'], ['/politics', 'Become governor of Lagos this week — Allworld', '/politics']] as const) {
+    const response = await f.fetch(path);
+    const body = await response.text();
+    assert.equal(response.status, 200, path);
+    assert.equal(title(body), expected, path);
+    assert.match(body, new RegExp(`<link rel="canonical" href="https?://[^"/]+${canonical}">`), path);
+    assert.equal(response.headers.get('content-security-policy'), homePolicy, `${path}: the script hashes are the home page's`);
+  }
+});
+
 // ---- accounts (server/routes/auth.ts) on the Worker: the same routes over the SQLite tables ----
 const ACCOUNT_PROJECT = 'allworld-edge-project';
 /** The 64 characters of base64url, in value order. */

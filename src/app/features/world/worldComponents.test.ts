@@ -88,6 +88,7 @@ test('the page of a local government: counts first as a skeleton, then residents
   assert.match(html, /<input name="q" type="search" maxlength="24"[^>]*aria-label="Search residents by name"/)
   assert.match(html, /aria-pressed="false"[^>]*>(?:<!--.*?-->)*Online now only/)
   assert.ok(words.includes('Players who hide themselves from the directory are not listed here'))
+  assert.match(html, /data-lga-share[^>]*>[\s\S]*?Share Ikeja/, 'a street card of the unit can be shared from its page')
   assert.equal(requests.length, 1, 'the counts are read once')
 })
 

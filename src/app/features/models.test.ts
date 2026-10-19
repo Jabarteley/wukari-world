@@ -20,7 +20,7 @@ import { billsLine, loanReasons, loanRule, rentStanding } from './bank/bankLines
 import { LINKS, cashDelta, hudNotice, linkWording, moodOf, needFlash, savedPill } from './hud/hudModel.ts'
 import { createNoticeMarks, messagesBadge, notificationLines, publicStoryHelpId, unreadChats, unreadUpdates, updatesCount } from './messages/messagesModel.ts'
 import { lastLine, partnerOf, readOnlyReason, targetOf, threadTitle, updateLines } from './messages/messagesThread.ts'
-import { DOCK, badgeText, battery, dockApps, listedApps, notificationsOf, phonePages } from './phone/phoneHomeModel.ts'
+import { BADGE_DOCK, DOCK, badgeText, battery, dockApps, listedApps, notificationsOf, phonePages } from './phone/phoneHomeModel.ts'
 import { createSupport, sendFailure, statusTone, textProblem } from './support/supportModel.ts'
 import { activityFace, effectTags } from './venue/venueModel.ts'
 
@@ -260,6 +260,9 @@ test('phone: the home screen lists the panels from their static metadata', async
     [['life', ['groceries', 'mystery', 'help']], ['money', ['pending-app', 'career']]],
     [['city', ['governor', 'community']]],
   ], 'docked apps are not repeated; an app without a group lands in the first group; empty groups are left out')
+  // A badge holder's dock (Feed first): Ride goes back to its page; an app the build does not have is left out of the dock.
+  assert.deepEqual(dockApps(panels, BADGE_DOCK).map((app) => app.id), ['messages', 'jobs', 'bank'])
+  assert.deepEqual(phonePages(panels, BADGE_DOCK)[0]?.groups[0]?.apps.map((app) => app.id), ['groceries', 'ride', 'mystery', 'help'])
   const view2 = view as PanelView
   const complaints: unknown[] = []
   const logError = console.error

@@ -5,21 +5,24 @@ How Allworld became social in the way people expect of a social app, inside a 3D
 
 Code: `src/feed/model.ts` (the rules both sides share), `src/types/feed.ts` (wire shapes and routes), `server/feed/` (stored shape, service,
 pages), `server/routes/feed.ts` and `server/routes/feed-mod.ts`, `src/app/features/feed/` (the apps), `src/app/features/lite/` and
-`src/app/state/lite.ts` (Lite). Tests: `server/feed.test.ts`, `src/app/state/lite.test.ts`.
+`src/app/state/lite.ts` (Lite). Tests: `server/feed.test.ts`, `server/feed-located.test.ts` (the badge, Near you, locals only),
+`src/feed/near.test.ts`, `src/app/features/feed/locateCity.test.ts`, `src/app/state/lite.test.ts`.
 
 ## The idea: a post is a place
 
 A post belongs to a person and to the place their character was in when they wrote it: the city and the venue from the stored life (never
-from the client), with an optional label ("Yaba Market"). The feed has three tabs, and none of them is ever empty:
+from the client), with an optional label ("Yaba Market"). The feed has four tabs, and none of them is ever empty:
 
 | Tab | What | Order |
 | --- | --- | --- |
+| Near you | with a location badge: public and city posts of your badge city, then the world's, neighbours first (see "Near you"); without one, as My city | ranked |
 | Friends | your friends, the people you follow, your crews | newest first |
 | My city | public and city posts made in your city, with the city's gist | ranked |
 | World | every public post, with the world's gist | ranked |
 
 Ranking (`score` in `src/feed/model.ts`): freshness with a six-hour half-life, lifted gently by replies and reactions, by a friend's hand
-(x1.6), and a little lower for AI-played posts (x0.7) and moments (x0.9), so people stay on top. Ranked tabs page by position (`r20`,
+(x1.6), in Near you by how near the author is (`NEAR`: x3 the same local government, x1.6 the same city), and a little lower for AI-played
+posts (x0.7) and moments (x0.9), so people stay on top. Ranked tabs page by position (`r20`,
 `r40`), chronological ones by a cursor (`<at>.<id>`), so nothing repeats and nothing is skipped.
 
 ## Who sees what
@@ -123,7 +126,7 @@ has the switch both ways.
 
 A new keyed collection `feed` (`server/keyed.ts`): `authors[id]`, `posts[id]` (with at most 100 replies), `cities[city]` (newest 300 post
 ids, 60 events, 80 gigs), `handles[key]`, `codes[CODE]`, `crews[id]`, `events[id]`, `gigs[id]`; root `seq`, `world` (newest 400 public
-posts), `reports` (newest 500), `trash`. Nothing is written into `social`. Media bytes are in the host's model store (`ctx.models`: files on
+posts), `reports` (newest 500), `trash`, `here` (this month's badge counts, "Near you"). Nothing is written into `social`. Media bytes are in the host's model store (`ctx.models`: files on
 Node, R2 on the Worker), by content hash; a removed post's bytes are deleted after the commit, an erased player's on the next heartbeat.
 
 | Limit | Value |
@@ -156,17 +159,67 @@ eight days old, how many had three real friends within their first week.
 
 Optional, for adults (18+), in My profile → Location badge. "Check where I am" asks the browser for a position **once** (high accuracy
 off, no watching); `src/app/features/feed/locateCity.ts` tests it on the device against the city boundaries of the city packs and, for a
-city without them, its centre (within `LOCATED.km`, 25 km), and refuses a fix worse than 5 km. The position is a local value of that
-function, never stored, logged or sent (the source scan in `src/app/features/locate/locate.test.ts` lists it with the other readers).
-Only when the player then presses "Show it" is `POST /api/feed/located { city }` sent: a city id, nothing else.
+city without them, its centre (within `LOCATED.km`, 25 km), and refuses a fix worse than 5 km. Inside a city pack's boundaries it also
+finds the **local government** the device is in (`resolveLga` of `src/map3d/lga.ts`, the same finder as the game's "Find my local
+government"; only when the position is surely inside one, never a nearest guess). The position is a local value of that function, never
+stored, logged or sent (the source scan in `src/app/features/locate/locate.test.ts` lists it with the other readers). The card then
+says "Ikeja, Lagos — show it?"; only when the player presses "Show it" is `POST /api/feed/located { city, lga? }` sent: a city id and a
+local government id, nothing else ("City only" sends the city alone).
 
-The server keeps `authors[id].located = { city, at, net? }`: the city, the server's time, and `net` when the request's network country
-(Cloudflare's `cf-ipcountry`) is the city's country. It shows as "📍 In Lagos · confirmed by their device (and network)" on the profile,
-on posts and in member lists, to everyone who sees the profile. It lasts 90 days, can be checked at most 5 times a day, and "Remove"
+The server keeps `authors[id].located = { city, at, net?, lga? }`: the city, the server's time, `net` when the request's network country
+(Cloudflare's `cf-ipcountry`) is the city's country, and `lga` when it is one of that city's own local units (the route loads the city's
+rules first; any other id is refused with `unknown_area`, and a client's coordinates, if any were sent, are ignored). It shows as
+"📍 In Ikeja, Lagos · confirmed by their device (and network)" on the profile, in member lists, and as "📍 Ikeja" on posts, to everyone who
+sees the profile. It lasts 90 days, can be checked at most 5 times a day, and "Remove"
 deletes it. Like the local-government badge of the game (docs/LOCATION.md) it can be faked by someone who fakes their phone's
 location; the network word makes that harder from abroad, not impossible.
 
-**Locals only.** A community based on a real place can be kept for people whose badge is in its **city**, its **state** or its
-**country** (`CrewRecord.locals`; chosen when it starts, or by the founder later with `POST /api/feed/crews/locals`, `all` to open it
-again). The founder needs a qualifying badge to set it. Joining without one is refused with how to get it; members who joined before
+**Locals only.** A community based on a real place can be kept for people whose badge is in its **area** (`lga`: a community of a real
+city that named one of the city's local governments when it started, `place.lga`, chosen in the Start form from the city's own list), its
+**city**, its **state** or its **country** (`CrewRecord.locals`; chosen when it starts, or by the founder later with
+`POST /api/feed/crews/locals`, `all` to open it again). An area needs a badge with that same local government: a badge of the city alone
+is not enough. The founder needs a qualifying badge to set it. Joining without one is refused with how to get it; members who joined before
 stay. The badge is checked when someone joins, not afterwards.
+
+## Near you
+
+The feed's first tab, and where it opens for a person with a location badge (the owner's decision: Near you is the default; without a
+badge it opens on Friends). `GET /api/feed/list?tab=near`:
+
+- **With a badge**: the public and city posts of the badge's city and the world's public posts, ranked as My city is, times `NEAR.lga`
+  (x3) when the author's badge has the viewer's local government, or `NEAR.city` (x1.6) when it is in the viewer's city (or the post was
+  made there). So neighbours come first, then the rest of the city, then the world, and a fresh post from far away can still rise.
+- **Without one**: exactly My city, and the app shows one line: "Get the location badge in My profile to see the people near you first."
+- **The line at the top** (`FeedPage.near`, first page only): "214 people confirmed in Ikeja this month · 1,200 in Lagos". Counts only:
+  the feed root keeps `here = { m: '2026-10', n: { lagos: 1200, 'lagos/ikeja': 214 } }`, updated by `POST /api/feed/located` (a person
+  counts once a month, where their badge is now: checking again does not add, moving takes them from the old place, "Remove" and erasure
+  take them off) and started again from nothing when the month changes. No list of who, no map, no distance.
+- **Plans and Work** (`GET /api/feed/events`, `GET /api/feed/gigs`) list near things first in the same reads: events hosted by someone with
+  a badge in the viewer's local government (or at a place whose name has the local government's name), then the viewer's badge city,
+  soonest first within each; gigs the same way, newest first within each. Nothing is filtered out.
+
+The privacy rule is the badge's: the position never leaves the phone; what is stored is a local-government id the player chose to show,
+as the residence badge (docs/LOCATION.md) already does.
+
+## First minute
+
+What a player sees right after Play (`src/app/features/firstminute/`, Phase 6 of `docs/AD-READY-PLAN.md`): one strip at the top of the
+bottom stack, in the 3D world and in Lite, once per session (`allworld-first-minute` in session storage), put away with ×. It shows up to
+three things of Near you (`GET /api/feed/list?tab=near`, an event first), how many other people are in this room, place or street now
+(the room's own count, else the place's or the venue's listing), and **one** next action, the first of these that exists
+(`nextAction` in `firstMinuteModel.ts`, tested in `firstMinuteModel.test.ts`):
+
+1. someone else is here and the room has a chat: **Say hello** opens the room's chat;
+2. a person with a badge in your local government posted: **Say hello** opens that post to reply;
+3. an open community of your area (then of your badge city, or your city) that you are not in and may join: **Join <community>**;
+4. a person of your city posted: **Say hello** on that post;
+5. you can walk now: **Walk to the Square**; otherwise **Say hello** opens Near you to write the first post.
+
+Nothing is counted here: a reply, a post, a join and a walk are already activation on the server. The strip's code and its two reads are a
+chunk of their own, fetched once the scene is up (`startExtras.ts`) and shown when the game is connected, the creator is done and nothing
+is in front; the first download does not grow.
+
+**A new player** (the walkthrough would have started by itself) gets the strip instead of the walkthrough, with "Show me around" for
+the tour on request (`TourDecider.vue` hands its turn over; Phone → Help and ? still start it). The Ready step of the creator says what
+comes next. **On a return visit** a player with a location badge finds Feed first in the Phone's dock (it opens on Near you); the device
+keeps only yes or no for that (`allworld-badge-v1`, `src/app/features/feed/badgeMark.ts`), set by each feed read of the profile.

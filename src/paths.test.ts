@@ -1,9 +1,9 @@
 // The short-address table (src/paths.ts): parsing, aliases, precedence, the collision rule and the nearest-city helper.
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { cityCatalogueEntry, knownCityIds } from './game/cities/registry.ts'
+import { cityCatalogueEntry, knownCityIds, loadCityRules } from './game/cities/registry.ts'
 import {
-  CITY_ALIASES, FIXED_WORDS, GAME_SLUGS, PANEL_WORDS, PHONE_TABLE, RESERVED_PREFIXES, isReservedPath, kmBetween, knownStateIds, nearestCities, nearestCity, openCitiesOf, openCityIds, parsePath, pathCollisions, pathOf,
+  CITY_ALIASES, FIXED_WORDS, GAME_SLUGS, PANEL_WORDS, PHONE_TABLE, PLACE_WORDS, RESERVED_PREFIXES, isReservedPath, kmBetween, knownStateIds, nearestCities, nearestCity, openCitiesOf, openCityIds, parsePath, pathCollisions, pathOf, streetPlace,
 } from './paths.ts'
 
 const city = (id: string, extra: { page?: 'games'; venue?: string } = {}) => ({ kind: 'city', city: id, page: extra.page ?? null, venue: extra.venue ?? null })
@@ -67,6 +67,29 @@ test('a city page and a venue under it', () => {
   assert.equal(parsePath('/games/abuja')?.kind, 'games', 'a fixed word wins over what follows it')
 })
 
+test('a street and a visit: an open city (or its alias), and for a street a place word kept for the city\'s rules to name', () => {
+  assert.deepEqual(parsePath('/street/lagos/yaba'), { kind: 'street', city: 'lagos', place: 'yaba' })
+  assert.deepEqual(parsePath('/Street/Lagos/Ikeja/'), { kind: 'street', city: 'lagos', place: 'ikeja' })
+  assert.deepEqual(parsePath('/street/ph/diobu'), { kind: 'street', city: 'port-harcourt', place: 'diobu' })
+  assert.deepEqual(parsePath('/visit/lagos'), { kind: 'street', city: 'lagos', place: null })
+  assert.deepEqual(parsePath('/visit/lagos/yaba'), { kind: 'street', city: 'lagos', place: null }, 'a visit is the whole city')
+  assert.deepEqual(parsePath('/street/lagos'), { kind: 'street', city: 'lagos', place: null }, 'a street without a place is the visit')
+  for (const path of ['/street', '/visit', '/street/nowhere/yaba', '/visit/nowhere', '/visit/ogun', '/street/lagos/ya ba', '/street/__proto__/x']) assert.equal(parsePath(path), null, path)
+  assert.equal(pathOf({ kind: 'street', city: 'lagos', place: 'yaba' }), '/street/lagos/yaba')
+  assert.equal(pathOf({ kind: 'street', city: 'lagos', place: null }), '/visit/lagos')
+  for (const word of PLACE_WORDS) assert.ok(FIXED_WORDS.includes(word), word)
+  assert.ok(pathCollisions(['lagos', 'port-harcourt', 'ijebu-ode', 'visit'], ['lagos']).includes('visit'), 'a city called "visit" fails the collision check')
+})
+
+test('a street\'s place, from the city\'s rules: a local unit, or a district on the unit it lies in; nothing before the rules are loaded', async () => {
+  await loadCityRules('lagos')
+  assert.deepEqual(streetPlace('lagos', 'ikeja'), { id: 'ikeja', name: 'Ikeja', unit: 'ikeja' })
+  assert.deepEqual(streetPlace('lagos', 'yaba'), { id: 'yaba', name: 'Yaba', unit: 'lagos-mainland' })
+  assert.equal(streetPlace('lagos', 'no-such'), null)
+  assert.equal(streetPlace('lagos', null), null)
+  assert.equal(streetPlace('not-a-city', 'ikeja'), null)
+})
+
 test('unknown paths and reserved prefixes are never places', () => {
   for (const path of ['/', '', '/nowhere', '/a.png', '/abuja.html', '//games', '/games//chess', '/ab uja', '/%61buja', '/constructor', '/__proto__', '/hasOwnProperty']) assert.equal(parsePath(path), null, path)
   for (const prefix of RESERVED_PREFIXES) { assert.equal(parsePath(`/${prefix}/x`), null, prefix); assert.equal(isReservedPath(`/${prefix}/x`), true, prefix) }
@@ -78,7 +101,7 @@ test('unknown paths and reserved prefixes are never places', () => {
 })
 
 test('the canonical address of every intent parses back to itself', () => {
-  const paths = ['/games', ...GAME_SLUGS.map((game) => `/games/${game}`), ...openCityIds().map((id) => `/${id}`), ...openCityIds().map((id) => `/${id}/games`), '/ogun', '/kaduna', '/nigeria', '/world', ...PANEL_WORDS.map((panel) => `/${panel}`), '/abuja/park-1']
+  const paths = ['/games', ...GAME_SLUGS.map((game) => `/games/${game}`), ...openCityIds().map((id) => `/${id}`), ...openCityIds().map((id) => `/${id}/games`), '/ogun', '/kaduna', '/nigeria', '/world', ...PANEL_WORDS.map((panel) => `/${panel}`), '/abuja/park-1', '/street/lagos/yaba', '/visit/abuja']
   for (const path of paths) { const intent = parsePath(path); assert.ok(intent, path); assert.equal(pathOf(intent), path); assert.deepEqual(parsePath(pathOf(intent)), intent) }
   assert.equal(pathOf(parsePath('/ph') ?? { kind: 'atlas', level: 'world' }), '/port-harcourt')
   assert.equal(pathOf(parsePath('/fct') ?? { kind: 'atlas', level: 'world' }), '/abuja')

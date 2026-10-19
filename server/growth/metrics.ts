@@ -19,6 +19,11 @@
  * Two more optional day fields, same shape as `fr`: `cl` (the Lagos day the life first created or joined a clan: noteClan) and `ag` (the
  * Lagos day it first sent a message to an AI character: noteAgent). Like `fr` they live only inside the life record, which the erasure
  * contract already removes by player id (server/admin/erasure-data.ts), and they are split the same way ("within the first two days").
+ * ACTIVATION (added for the Phase 7 adverts, docs/AD-READY-PLAN.md). A life also carries `act`, the Lagos day of its FIRST meaningful action: walked
+ * in the world (its first move on a socket), posted in the feed, joined or made a community, or said it is going to an event (noteActivated,
+ * called from those places; an AI agent's request is never counted). The first time only, it is also counted into `activation[cohortDay]
+ * ["source|medium|campaign"]`, the words the life arrived with; the report sets that against the `landed` visits of the same words
+ * (activationReport). The life record holds one more day number and the aggregate holds no player id. Same erasure as the rest of `lives`.
  * Nothing here is ever sent to a player. It is read only through GET /api/mod/growth/metrics,
  * with the operator token.
  *
@@ -49,11 +54,13 @@
 import { lagosTime } from '../../src/game/clock.ts';
 import { STARTER_GOALS } from '../../src/game/content/goals.ts';
 import type { LifeState } from '../../src/types/life.ts';
-import type { FunnelStep, GrowthMetricsResponse, MetricsCohort, MetricsDay, RetentionCell, ReturnCell, ReturnRow, ReturnSplit, SourceCampaign, SourceRow } from '../../src/types/growth.ts';
+import type { ActivationRow, FunnelStep, GrowthMetricsResponse, MetricsCohort, MetricsDay, RetentionCell, ReturnCell, ReturnRow, ReturnSplit, SourceCampaign, SourceRow } from '../../src/types/growth.ts';
 import type { CityId } from '../../src/types/protocol.ts';
 import { cleanSource, SOURCE_EVENTS } from '../../src/game/attribution.ts';
 import type { SourceEvent } from '../../src/game/attribution.ts';
 import type { GrowthCollection } from '../types.ts';
+import { isAgentOrigin } from '../execution-origin.ts';
+import type { ExecutionOrigin } from '../../src/types/progression.ts';
 
 export const KEEP = Object.freeze({ days: 400, cohorts: 120, window: 31, lives: 50000, sourceDays: 90, sourceKeys: 200 });
 export const RETENTION_DAYS = Object.freeze([1, 3, 7, 14, 30]);
@@ -89,7 +96,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> => value !==
 interface MetricsBook {
   days: Record<string, Record<string, number>>
   cohorts: Record<string, { size: number; r: Record<string, number> }>
-  lives: Record<string, { first: number; last: number | null; steps: number; src?: string; ret?: number; fr?: number; cl?: number; ag?: number; po?: number; f3?: number; done?: number }>
+  lives: Record<string, { first: number; last: number | null; steps: number; src?: string; ret?: number; fr?: number; cl?: number; ag?: number; po?: number; f3?: number; act?: number; done?: number }>
 }
 function book(g: GrowthCollection, cityId: CityId = 'lagos'): MetricsBook {
   const m = g.metrics;
@@ -175,6 +182,30 @@ export function noteAgent(g: GrowthCollection, now: number, publicId: string): v
 /** A life reached three real friends: note the day, once (the north star: three friends within a week). */
 export function noteThreeFriends(g: GrowthCollection, now: number, publicId: string): void { noteDay(g, now, 'f3', [publicId]); }
 export function notePosted(g: GrowthCollection, now: number, publicId: string): void { noteDay(g, now, 'po', [publicId]); }
+const ACTIVATION_OTHER = 'other|other|other';
+/**
+ * A life did something meaningful for the first time (walked, posted, joined a community, or is going to an event). Counted ONCE per
+ * life, under the "source|medium|campaign" it arrived with and the Lagos day it began (so a cohort's activations sit with its landings).
+ * `origin` is the request's: an AI agent (a delegated key or an agent's own character) is never activated. Ignored for a life not followed.
+ * Returns whether this call was the first.
+ */
+export function noteActivated(g: GrowthCollection, now: number, publicId: string, origin: ExecutionOrigin = 'human'): boolean {
+  if (isAgentOrigin(origin)) return false;
+  const day = lagosTime(now).day;
+  let first: MetricsBook['lives'][string] | null = null;
+  for (const [, m] of cityBooks(g)) {
+    const life = Object.hasOwn(m.lives, publicId) ? m.lives[publicId] : undefined;
+    if (!life) continue;
+    if (life.act !== undefined) return false;
+    life.act = day;
+    first ??= life;
+  }
+  if (!first) return false;
+  const cohorts = (g.metrics.activation ||= {}), today = (cohorts[first.first] ||= {}), words = first.src ?? 'unknown|unknown|unknown';
+  const key = !Object.hasOwn(today, words) && Object.keys(today).length >= SPLIT_GROUPS_PER_DAY ? ACTIVATION_OTHER : words;
+  today[key] = Math.min(Number.MAX_SAFE_INTEGER, (today[key] ?? 0) + 1);
+  return true;
+}
 function noteDay(g: GrowthCollection, now: number, field: 'fr' | 'cl' | 'ag' | 'po' | 'f3', publicIds: string[]): void {
   const day = lagosTime(now).day;
   for (const [, m] of cityBooks(g)) for (const id of publicIds) { const life = Object.hasOwn(m.lives, id) ? m.lives[id] : undefined; if (life && life[field] === undefined) life[field] = day; }
@@ -216,6 +247,7 @@ export function countSource(g: GrowthCollection, now: number, words: unknown, ev
 export function prune(g: GrowthCollection, now: number): void {
   const day = lagosTime(now).day;
   for (const key of Object.keys(g.metrics.sources ?? {})) if (day - Number(key) > KEEP.sourceDays) delete g.metrics.sources?.[key];
+  for (const key of Object.keys(g.metrics.activation ?? {})) if (day - Number(key) > KEEP.sourceDays) delete g.metrics.activation?.[key];
   // At most once an hour: it looks at every followed life.
   if (!(now - (g.metrics.splitAt ?? 0) < 3600000)) { g.metrics.splitAt = now; settle(g, day); }
   for (const key of Object.keys(g.metrics.split ?? {})) if (day - Number(key) > KEEP.cohorts) delete g.metrics.split?.[key];
@@ -240,6 +272,22 @@ function sourceReport(g: GrowthCollection, today: number, span: number): { sourc
   }
   const campaigns = [...sums.values()].sort((a, b) => b.landed - a.landed);
   return { sources, campaigns };
+}
+/**
+ * Activated / landed per "source / medium / campaign", over every day kept (KEEP.sourceDays). `landed` is the page opens the browser reported
+ * (any content word), `activated` the lives that began on those days and did a first meaningful action since, so the rate is a floor: a
+ * reload counts as a landing, and a landing that never made a life is a landing that was not activated. A day not yet settled shows its
+ * share as it stands. `rate` is null when nothing landed.
+ */
+export function activationReport(g: GrowthCollection): ActivationRow[] {
+  const rows = new Map<string, { landed: number; activated: number }>();
+  const row = (words: string) => { let found = rows.get(words); if (!found) rows.set(words, found = { landed: 0, activated: 0 }); return found; };
+  for (const keys of Object.values(g.metrics.sources ?? {})) for (const [key, counts] of Object.entries(keys)) row(key.split('|').slice(0, 3).join('|')).landed += counts.landed;
+  for (const keys of Object.values(g.metrics.activation ?? {})) for (const [words, n] of Object.entries(keys)) row(words).activated += n;
+  return [...rows].map(([words, { landed, activated }]): ActivationRow => {
+    const [source = '', medium = '', campaign = ''] = words.split('|');
+    return { source, medium, campaign, landed, activated, rate: landed ? Math.round((activated / landed) * 1000) / 10 : null };
+  }).sort((a, b) => b.landed - a.landed || b.activated - a.activated).slice(0, 40);
 }
 /** The return split, summed over every cohort kept. A day that is not settled yet for anyone shows no rate (null), never 0. */
 export function returnSplit(g: GrowthCollection): ReturnSplit {
@@ -293,6 +341,6 @@ export function report(g: GrowthCollection, now: number, { days = 35 }: { days?:
   // THE NORTH STAR (docs/SOCIAL-PLATFORM-PLAN.md): of the lives at least eight days old that are still followed, how many had three real friends within their first week.
   const old = Object.values(m.lives).filter((life) => today - life.first >= 8), reached = old.filter((life) => life.f3 !== undefined && life.f3 - life.first <= 7).length
   const northStar = { lives: old.length, threeFriendsInAWeek: reached, rate: old.length ? Math.round((reached / old.length) * 1000) / 10 : null }
-  return { generatedAt: now, timezone: 'Africa/Lagos', source: 'first-party', days: daily, cohorts, totals, funnel, ...sourceReport(g, today, span), returns: returnSplit(g), northStar, tracked: Object.keys(m.lives).length,
+  return { generatedAt: now, timezone: 'Africa/Lagos', source: 'first-party', days: daily, cohorts, totals, funnel, ...sourceReport(g, today, span), activation: activationReport(g), returns: returnSplit(g), northStar, tracked: Object.keys(m.lives).length,
     retention: { daily: `${KEEP.days} days`, cohorts: `${KEEP.cohorts} days`, perLife: `${KEEP.window} days, then deleted` } };
 }

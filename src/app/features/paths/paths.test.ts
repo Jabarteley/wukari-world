@@ -28,9 +28,9 @@ function fakeAddress(start = '/', search = ''): Address & { entries: { path: str
   }
 }
 
-interface Calls { opened: [string, unknown][]; layers: [string, unknown][]; accounts: string[] }
-function fakeEnv(address: Address, over: { city?: string; games?: () => boolean; map?: () => boolean; venues?: string[] } = {}): { env: Env; calls: Calls } {
-  const calls: Calls = { opened: [], layers: [], accounts: [] }
+interface Calls { opened: [string, unknown][]; layers: [string, unknown][]; accounts: string[]; focused: string[] }
+function fakeEnv(address: Address, over: { city?: string; games?: () => boolean; map?: () => boolean; venues?: string[]; units?: Record<string, string> } = {}): { env: Env; calls: Calls } {
+  const calls: Calls = { opened: [], layers: [], accounts: [], focused: [] }
   const views = createViews(address, () => 0)
   const env: Env = {
     views, cityId: () => over.city ?? 'lagos',
@@ -39,6 +39,8 @@ function fakeEnv(address: Address, over: { city?: string; games?: () => boolean;
     gamesOpen: over.games ?? (() => true), mapOpen: over.map ?? (() => true),
     hasVenue: (_city, venue) => (over.venues ?? []).includes(venue),
     openAccount: async (which) => { calls.accounts.push(which) },
+    unitOf: (_city, place) => over.units?.[place] ?? null,
+    focusUnit: (unit) => { calls.focused.push(unit) },
   }
   return { env, calls }
 }
@@ -134,6 +136,29 @@ test('a life the landing started in the city is shown the scene, not a map; the 
   assert.deepEqual([calls.opened, calls.layers], [[], []])
   assert.equal(address.path(), '/', 'the address is tidied')
   assert.equal(readIntent(), null, 'carried out: nothing is left waiting')
+})
+
+test('a street: in the city, the city map on its local unit (a district on the unit it lies in); a visit is the whole city', async () => {
+  const units = { yaba: 'lagos-mainland', ikeja: 'ikeja' }
+  const yaba = fakeEnv(fakeAddress('/street/lagos/yaba'), { city: 'lagos', units })
+  await arrive(yaba.env, waitFor('/street/lagos/yaba'))
+  assert.deepEqual([yaba.calls.layers, yaba.calls.focused, yaba.calls.opened], [[['city', undefined]], ['lagos-mainland'], []])
+  assert.equal(yaba.env.views.held(), '/street/lagos/yaba', 'the street keeps its address while the map is open')
+  const visit = fakeEnv(fakeAddress('/visit/lagos'), { city: 'lagos', units })
+  await arrive(visit.env, waitFor('/visit/lagos'))
+  assert.deepEqual([visit.calls.layers, visit.calls.focused], [[['city', undefined]], []])
+  const unknown = fakeEnv(fakeAddress('/street/lagos/no-such'), { city: 'lagos', units })
+  await arrive(unknown.env, waitFor('/street/lagos/no-such'))
+  assert.deepEqual([unknown.calls.layers, unknown.calls.focused], [[['city', undefined]], []], 'a place the city does not have is the whole city')
+})
+
+test('a street in another city is its travel card, and nothing is started; a life the landing began there is shown the street too', async () => {
+  const away = fakeEnv(fakeAddress('/street/lagos/yaba'), { city: 'abuja', units: { yaba: 'lagos-mainland' } })
+  await arrive(away.env, waitFor('/street/lagos/yaba'))
+  assert.deepEqual([away.calls.layers, away.calls.focused, away.calls.opened], [[['world', { level: 2, city: 'lagos' }]], [], []])
+  const landed = fakeEnv(fakeAddress('/street/lagos/yaba'), { city: 'lagos', units: { yaba: 'lagos-mainland' } })
+  await arrive(landed.env, waitFor('/street/lagos/yaba', 'landing'))
+  assert.deepEqual([landed.calls.layers, landed.calls.focused], [[['city', undefined]], ['lagos-mainland']], 'unlike /<city>, the street is what the address asked for')
 })
 
 // ---- the address bar ------------------------------------------------------------------------------------------------
@@ -248,6 +273,9 @@ test('the landing says the right thing for each address, and offers "Find my cit
   assert.equal(introFor(intent('/ogun')), null, 'a state has no one place to start in')
   assert.equal(introFor(intent('/signup'))?.action, 'signup')
   assert.equal(introFor(intent('/login'))?.action, 'login')
+  const street = introFor(intent('/visit/lagos'))
+  assert.deepEqual([street?.strong, street?.button, street?.city], ['Visit Lagos.', 'Start in Lagos', 'lagos'])
+  assert.equal(introFor(intent('/street/lagos/no-such'))?.strong, 'Visit Lagos.', 'a place the rules do not name is never written')
   assert.equal(offersFind(null), true)
   assert.equal(offersFind(intent('/games')), true)
   assert.equal(offersFind(intent('/games/chess')), false)

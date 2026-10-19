@@ -7,11 +7,11 @@
  * hashes the inline scripts of the page as it is served) are the same for every address. Every value is escaped. An address that
  * is not in the table (and an address that is only an action, like /signup) keeps the default head and is marked noindex.
  */
-import { cityCatalogue } from '../src/game/cities/registry.ts';
-import { GAME_SLUGS, knownStateIds, openCitiesOf, openCityIds, parsePath, pathOf, placeFacts } from '../src/paths.ts';
+import { cityCatalogue, loadCityRules } from '../src/game/cities/registry.ts';
+import { GAME_SLUGS, knownStateIds, openCitiesOf, openCityIds, parsePath, pathOf, placeFacts, streetPlace } from '../src/paths.ts';
 import type { GameSlug, PathIntent } from '../src/paths.ts';
 import { SITE_ORIGIN } from './host-context.ts';
-import { ENTRY_VARIANTS, variantOf, withFigures } from '../src/entry-variants.ts';
+import { ENTRY_VARIANTS, variantOf, withFigures, withPlace } from '../src/entry-variants.ts';
 import { worldFigures } from '../src/app/features/start/entryModel.ts';
 import { gameOfRoom } from '../src/arena/code.ts';
 import { arenaGame } from '../src/arena/registry.ts';
@@ -69,12 +69,37 @@ function metaOf(intent: PathIntent): PathMeta | null {
         : { title: `Explore Nigeria — ${BRAND}`, description: clip(`The states and cities of Nigeria on one map: ${open} cities are open to live in. ${TAIL}`), canonical: '/nigeria', index: true };
     }
     case 'panel': return null;
+    case 'street': {
+      // A street (/street/<city>/<place>) or a visit (/visit/<city>): the row's own words with the names from the city's rules. A place the
+      // rules do not have (or not loaded: preparePathMeta) is never written: the page is the city's visit, and its canonical says so.
+      const facts = placeFacts(intent.city), found = streetPlace(intent.city, intent.place);
+      const row = ENTRY_VARIANTS.find((variant) => variant.id === (found ? 'street' : 'visit'));
+      if (!facts || !row?.place) return null;
+      const place = { city: facts.name, name: found?.name ?? null };
+      return { title: withPlace(row.place.title, place), description: clip(withPlace(row.place.description, place)), canonical: found ? `/street/${intent.city}/${found.id}` : `/visit/${intent.city}`, index: true, image: row.og };
+    }
   }
+}
+
+/**
+ * Before the head of a street is written: the city's rules, which name its local units and districts, are read (both hosts load them from
+ * the city's content asset; once read they stay in memory). Never longer than `waitMs`, and never an error: without them the head is the
+ * city's visit. Nothing to do for any other address.
+ */
+export async function preparePathMeta(pathname: string, waitMs = 1500): Promise<void> {
+  const intent = /^\/street\//i.test(pathname) ? parsePath(pathname) : null;
+  if (intent?.kind !== 'street' || !intent.place) return;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  await Promise.race([loadCityRules(intent.city).catch(() => undefined), new Promise<void>((done) => { timer = setTimeout(done, waitMs); })]);
+  if (timer !== undefined) clearTimeout(timer);
 }
 
 /** The head for an address, or null for the home page (`/`), which keeps index.html's own head. An unknown address gets the default head with noindex. */
 export function metaFor(pathname: string): PathMeta | null {
   if (pathname === '/' || pathname === '') return null;
+  // A street or a visit that names an open city: the row's words with the city's own names (metaOf). Fixed text and registry names only.
+  const street = /^\/(street|visit)\//i.test(pathname) ? parsePath(pathname) : null;
+  if (street?.kind === 'street') return metaOf(street);
   // An address of the entry page (src/entry-variants.ts): its own words and its own picture, the same on both hosts. Fixed text: nothing a visitor typed.
   const variant = variantOf(pathname);
   if (variant && variant.id !== 'home') {

@@ -6,6 +6,8 @@ import type { Panel, PanelView, PhoneGroup, PhoneNotification } from '../../type
 
 /** The four apps in the dock, in order. */
 export const DOCK: readonly string[] = ['messages', 'jobs', 'bank', 'ride']
+/** The dock of a player with a location badge (docs/FEED.md, "First minute"): Feed first, which opens on Near you; Ride goes to its page. */
+export const BADGE_DOCK: readonly string[] = ['feed', 'messages', 'jobs', 'bank']
 export const PAGES: readonly { label: string; groups: readonly (readonly [PhoneGroup, string])[] }[] = [
   { label: 'Life and money', groups: [['life', 'Life'], ['money', 'Money']] },
   { label: 'People and city', groups: [['people', 'People'], ['city', 'City']] },
@@ -25,8 +27,8 @@ export const listedApps = (panels: readonly Panel[]): PhoneApp[] => panels.filte
 
 export interface PhonePage { label: string; groups: { id: PhoneGroup; label: string; apps: PhoneApp[] }[] }
 /** The icon pages. An app with no group (or one this build does not know) still gets a place: with the first page's first group. */
-export function phonePages(panels: readonly Panel[]): PhonePage[] {
-  const apps = [...listedApps(panels), ...BUILT_INS].filter((app) => !DOCK.includes(app.id))
+export function phonePages(panels: readonly Panel[], dock: readonly string[] = DOCK): PhonePage[] {
+  const apps = [...listedApps(panels), ...BUILT_INS].filter((app) => !dock.includes(app.id))
   const known = PAGES.flatMap((page) => page.groups.map(([id]) => id))
   return PAGES.map((page, index) => ({
     label: page.label,
@@ -36,9 +38,9 @@ export function phonePages(panels: readonly Panel[]): PhonePage[] {
     })).filter((group) => group.apps.length > 0),
   }))
 }
-export const dockApps = (panels: readonly Panel[]): PhoneApp[] => {
+export const dockApps = (panels: readonly Panel[], dock: readonly string[] = DOCK): PhoneApp[] => {
   const apps = listedApps(panels)
-  return DOCK.map((id) => apps.find((app) => app.id === id) ?? panels.filter((panel) => panel.id === id).map((panel) => ({ id: panel.id, title: panel.title, short: panel.short, group: panel.group, tint: panel.tint, panel }))[0])
+  return dock.map((id) => apps.find((app) => app.id === id) ?? panels.filter((panel) => panel.id === id).map((panel) => ({ id: panel.id, title: panel.title, short: panel.short, group: panel.group, tint: panel.tint, panel }))[0])
     .filter((app): app is PhoneApp => Boolean(app))
 }
 

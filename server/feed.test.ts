@@ -78,6 +78,10 @@ test('profile: a unique handle once a month, a filtered bio and status, /p/@hand
   assert.equal(page.status, 200);
   const html = await page.text();
   assert.match(html, /@ada/); assert.match(html, /Jollof first/);
+  // A shared clip's link (utm_source=clip) keeps its ad-source words on the way into the game, so the landing is counted under "clip".
+  const fromClip = await (await f.request('/p/@ada?utm_source=clip&utm_medium=share&utm_campaign=clip')).text();
+  assert.match(fromClip, /href="[^"]*\/\?utm_source=clip&amp;utm_medium=share&amp;utm_campaign=clip">Open Allworld/);
+  assert.doesNotMatch(html, /utm_source/, 'a plain visit keeps the plain link');
   await f.server.store.transact((db) => { const a = (db as unknown as { feed: FeedCollection }).feed.authors[ada.id]!; a.handleAt = f.now() - FEED.handleEveryMs - 1000; });
   assert.equal((await post('/api/feed/handle', { handle: 'ada.two' }, ada)).ok, true);
   assert.equal((await get('/api/feed/profile?id=%40ada', bola)).code, 'unknown_player', 'the old handle is free again');
@@ -394,4 +398,23 @@ test('communities: a city based on a real place, open to join from Discover, mod
   assert.equal(world.room, group.conv.id); assert.match(world.link, /^\/r\/\d+-[A-Za-z0-9_-]{22}$/);
   assert.match((await get(`/api/feed/crews/one?id=${made.crew.id}`, bola)).crew.world.link, /^\/r\//, 'members get the way in');
   assert.equal((await get(`/api/feed/crews/one?id=${made.crew.id}`, chi)).crew.world.link, undefined, 'a non-member does not');
+});
+
+test('activation: a first post, community or "going" activates a person once, under their landing words, and nothing else does', async (t) => {
+  const { f, get, post, player } = await setup(t);
+  const ada = await player('Ada'), bola = await player('Bola');
+  const growth = () => f.server.store.read((db) => JSON.parse(JSON.stringify((db as Record<string, any>).growth?.metrics?.activation ?? {})) as Record<string, Record<string, number>>);
+  const total = async () => Object.values(await growth()).reduce((sum, keys) => sum + Object.values(keys).reduce((a, b) => a + b, 0), 0);
+  assert.equal(await total(), 0, 'saying hello and reading the feed is not an action');
+  await get('/api/feed/communities?city=lagos', ada);
+  assert.equal(await total(), 0);
+  assert.equal((await post('/api/feed/post', { body: 'Hello Yaba' }, ada)).ok, true);
+  assert.equal(await total(), 1);
+  assert.equal((await post('/api/feed/post', { body: 'Hello again' }, ada)).ok, true);
+  const made = await post('/api/feed/crews', { name: 'Yaba Ballers', colour: 'gold', about: 'Football on Saturdays' }, ada);
+  assert.equal(made.ok, true);
+  assert.equal(await total(), 1, 'a second action is not a second activation');
+  assert.equal((await post('/api/feed/crews/join', { code: made.crew.code }, bola)).ok, true);
+  assert.equal(await total(), 2, 'a different person joining a community is the second');
+  assert.deepEqual(Object.values(await growth()).flatMap((keys) => Object.keys(keys)), ['direct|direct|direct'], 'no utm words came with the hello');
 });

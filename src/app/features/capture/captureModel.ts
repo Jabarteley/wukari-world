@@ -1,4 +1,6 @@
 /** Scene-only media capture. This module never requests a camera, microphone, or network upload. */
+import { baseVideoType, pickVideoType } from './captureShareModel.ts'
+
 export type CaptureFailureCode = 'unsupported' | 'canvas_not_ready' | 'canvas_security' | 'empty_photo' | 'context_lost' | 'recorder_failed' | 'empty_video' | 'visit_ending'
 
 export class CaptureFailure extends Error {
@@ -40,7 +42,7 @@ export function capturePng(canvas: HTMLCanvasElement): Promise<Blob> {
 }
 
 export interface CanvasRecording {
-  /** Stops and keeps a completed WebM when it contains frames. */
+  /** Stops and keeps a completed MP4 or WebM when it contains frames. */
   stop(): void
   /** Stops and discards output. Use when consent, the scene or the connection is lost. */
   cancel(): void
@@ -52,10 +54,9 @@ export interface CanvasRecordingCallbacks {
   limitReached(): void
 }
 
-function webmOptions(): MediaRecorderOptions {
-  const choices = ['video/webm;codecs=vp9', 'video/webm;codecs=vp8', 'video/webm']
-  const mimeType = choices.find((type) => MediaRecorder.isTypeSupported(type))
-  return mimeType ? { mimeType } : {}
+/** MP4 where the browser records it (recent Chrome and Safari), WebM otherwise. */
+function videoChoice(): ReturnType<typeof pickVideoType> {
+  return pickVideoType((type) => MediaRecorder.isTypeSupported(type))
 }
 
 /** Starts a user-initiated, canvas video capture with a hard 30 second cap. */
@@ -65,6 +66,7 @@ export function recordCanvas(canvas: HTMLCanvasElement, callbacks: CanvasRecordi
   const duration = Math.min(30_000, Math.floor(maxDurationMs))
   if (typeof canvas.captureStream !== 'function' || typeof MediaRecorder === 'undefined') throw new CaptureFailure('unsupported')
 
+  const choice = videoChoice()
   let stream: MediaStream | null = null
   let recorder: MediaRecorder
   try {
@@ -72,7 +74,7 @@ export function recordCanvas(canvas: HTMLCanvasElement, callbacks: CanvasRecordi
     // Canvas streams are video-only; remove any unexpected track before recording.
     for (const track of stream.getAudioTracks()) { stream.removeTrack(track); track.stop() }
     if (!stream.getVideoTracks().length) throw new CaptureFailure('unsupported')
-    recorder = new MediaRecorder(stream, webmOptions())
+    recorder = new MediaRecorder(stream, choice ? { mimeType: choice.mimeType } : {})
   } catch (error) {
     stream?.getTracks().forEach((track) => track.stop())
     if (error instanceof CaptureFailure) throw error
@@ -93,7 +95,7 @@ export function recordCanvas(canvas: HTMLCanvasElement, callbacks: CanvasRecordi
     finished = true
     cleanup()
     if (discard) return
-    const blob = new Blob(chunks, { type: recorder.mimeType || 'video/webm' })
+    const blob = new Blob(chunks, { type: baseVideoType(recorder.mimeType, choice?.type) })
     if (!blob.size) callbacks.fail('empty_video')
     else callbacks.complete(blob)
   }

@@ -5,6 +5,7 @@ import { useApp } from '../../state/app.ts'
 import { social, sync } from '../social/useSocial.ts'
 import { CaptureFailure, captureFailureText, capturePng, recordCanvas } from './captureModel.ts'
 import type { CanvasRecording } from './captureModel.ts'
+import { MOMENT_MS, videoLabel } from './captureShareModel.ts'
 
 const MAX_MS = 30_000
 const MIN_VISIT_MS = 1_000
@@ -15,6 +16,11 @@ interface CaptureSessionState {
   secondsLeft: number
   photoUrl: string | null
   videoUrl: string | null
+  /** The clip's file type ('video/mp4' or 'video/webm') and its length, for the labels and the download name. */
+  videoType: string
+  videoMs: number
+  /** A clip made by "Clip this moment" is marked as soon as Capture opens on it. */
+  autoShare: boolean
   error: string
   note: string
 }
@@ -25,6 +31,9 @@ export const captureSession = reactive<CaptureSessionState>({
   secondsLeft: 0,
   photoUrl: null,
   videoUrl: null,
+  videoType: '',
+  videoMs: 0,
+  autoShare: false,
   error: '',
   note: '',
 })
@@ -37,6 +46,16 @@ let ticker: ReturnType<typeof setInterval> | undefined
 let handlers: { offline: () => void; pagehide: () => void; visibility: () => void } | null = null
 let generation = 0
 let startedAt = 0
+/** The captured files themselves (the reactive state holds only their addresses). Sharing marks and sends these. */
+let photoBlob: Blob | null = null
+let videoBlob: Blob | null = null
+const clearHooks = new Set<() => void>()
+
+export function capturedPhoto(): Blob | null { return photoBlob }
+export function capturedVideo(): Blob | null { return videoBlob }
+/** Calls `hook` whenever the captured files are replaced or discarded (the share state belongs to the old files). */
+export function onCaptureClear(hook: () => void): () => void { clearHooks.add(hook); return () => { clearHooks.delete(hook) } }
+export function videoKindLabel(): string { return videoLabel(captureSession.videoType) }
 
 function access(): CaptureAccess {
   const { game } = useApp(), state = game.state.value, me = social.me
@@ -62,6 +81,8 @@ function revoke(url: string | null): void { if (url) URL.revokeObjectURL(url) }
 function clearOutput(): void {
   revoke(captureSession.photoUrl); revoke(captureSession.videoUrl)
   captureSession.photoUrl = null; captureSession.videoUrl = null
+  photoBlob = null; videoBlob = null; captureSession.videoType = ''; captureSession.videoMs = 0; captureSession.autoShare = false
+  for (const hook of clearHooks) hook()
 }
 function stopTicker(): void { if (ticker !== undefined) clearInterval(ticker); ticker = undefined }
 function stopMonitor(): void {
@@ -146,6 +167,7 @@ export async function takeScenePhoto(): Promise<void> {
     clearOutput()
     const blob = await capturePng(canvas)
     if (run !== generation || startKey !== contextKey() || app.scene.venue.value !== venue) return
+    photoBlob = blob
     try { captureSession.photoUrl = URL.createObjectURL(blob) }
     catch { captureSession.error = 'This browser could not prepare the photo download.' }
   } catch (error: unknown) {
@@ -155,7 +177,10 @@ export async function takeScenePhoto(): Promise<void> {
   }
 }
 
-export async function startSceneRecording(): Promise<boolean> {
+/** `durationMs` shorter than 30 s makes a short clip (Clip this moment); `thenShare` opens Capture on it when it is saved. */
+export interface RecordingOptions { durationMs?: number; thenShare?: boolean }
+
+export async function startSceneRecording(options: RecordingOptions = {}): Promise<boolean> {
   if (captureSession.busy || captureSession.recording) return false
   captureSession.error = ''; captureSession.note = ''
   captureSession.busy = true
@@ -166,14 +191,22 @@ export async function startSceneRecording(): Promise<boolean> {
     const app = useApp(), venue = app.scene.venue.value, canvas = venue?.captureCanvas()
     if (!canvas) { captureSession.error = 'The scene is not ready yet. Try again in a moment.'; return false }
     const startKey = contextKey()
-    clearOutput(); activeDuration = permit.maxDurationMs; startedAt = Date.now(); captureSession.secondsLeft = Math.ceil(activeDuration / 1000)
+    const wanted = Math.min(MAX_MS, options.durationMs ?? MAX_MS)
+    // A short clip is visit-bound only when the visit ends before it would.
+    const visitBound = permit.visitBound && permit.maxDurationMs <= wanted
+    clearOutput(); activeDuration = Math.min(wanted, permit.maxDurationMs); startedAt = Date.now(); captureSession.secondsLeft = Math.ceil(activeDuration / 1000)
     recorder = recordCanvas(canvas, {
       complete(blob) {
         if (run !== generation) return
         recorder = null; captureSession.recording = false; stopMonitor()
+        videoBlob = blob; captureSession.videoType = blob.type; captureSession.videoMs = Math.min(activeDuration, Date.now() - startedAt)
         try { captureSession.videoUrl = URL.createObjectURL(blob) }
         catch { captureSession.error = 'This browser could not prepare the video download.' }
-        if (captureSession.videoUrl) { captureSession.note = 'Your clip is ready. Download it or discard it.'; app.game.toast('Your clip is ready in Capture.', 'good') }
+        if (captureSession.videoUrl) {
+          captureSession.note = 'Your clip is ready. Share it, download it or discard it.'
+          app.game.toast('Your clip is ready in Capture.', 'good')
+          if (options.thenShare) { captureSession.autoShare = true; app.shell.open('capture') }
+        }
       },
       fail(code) {
         if (run !== generation) return
@@ -181,8 +214,8 @@ export async function startSceneRecording(): Promise<boolean> {
       },
       limitReached() {
         if (run !== generation) return
-        if (permit.visitBound) cancelActive('The visit ended. Your video was discarded.')
-        else captureSession.note = 'The 30-second limit was reached. Your clip is being saved.'
+        if (visitBound) cancelActive('The visit ended. Your video was discarded.')
+        else captureSession.note = activeDuration < MAX_MS ? 'Your short clip is being saved.' : 'The 30-second limit was reached. Your clip is being saved.'
       },
     }, activeDuration)
     captureSession.recording = true

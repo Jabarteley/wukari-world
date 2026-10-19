@@ -432,3 +432,19 @@ test('turning around and the outfit view are bounded animations; the inset costs
   assert.ok(Math.abs(still.preview.diagnostics().yaw - (before + 1)) < 1e-9);
   still.preview.dispose();
 });
+
+test('a snapshot draws the figure full length and facing front, copies it, and puts the stage back as it was', async () => {
+  const { preview, canvas, host, renderer } = make();
+  await waitForNativePreview(preview, host);
+  Object.assign(canvas, { width: 520, height: 256 });
+  preview.setFocus('head'); preview.rotate(1.1);
+  const before = preview.diagnostics(), rendered = renderer.calls.render;
+  const copy = preview.snapshot();
+  assert.ok(copy, 'a copy of the canvas');
+  assert.equal(copy.width, 520); assert.equal(copy.height, 256);
+  const after = preview.diagnostics();
+  assert.equal(after.focus, before.focus, 'the focus is back'); assert.equal(after.yaw, before.yaw, 'the turn is back');
+  assert.equal(renderer.calls.render, rendered + 2, 'one frame for the card, one to restore the stage');
+  preview.dispose();
+  assert.equal(preview.snapshot(), null, 'nothing to copy once disposed');
+});

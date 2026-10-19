@@ -45,7 +45,24 @@ export interface AgentMemoryCard {
   /** This adult's yes to flirting from this agent (a partner has it already). */
   flirt: boolean
   missions: number
+  /** The continuity rule (docs/AI-RESIDENTS.md): this character is leaving or changing on `until` (server ms); you were told in your inbox. */
+  leaving?: { until: number; what: 'leave' | 'change' }
+  /** This character left the cast on this day (server ms); what it remembers stays downloadable. */
+  left?: number
 }
+/** Spot the AI (server/house/spot.ts, docs/AI-RESIDENTS.md). */
+export interface SpotLineView { n: number; text: string }
+export interface SpotRevealLine { n: number; text: string; ai: boolean; label: string; picked: boolean; right: boolean }
+export interface SpotResultView { s: number; of: number; better: number; players: number; rounds: SpotRevealLine[][] }
+export type SpotView =
+  | { ok: true; week: number; state: 'open'; rounds: SpotLineView[][]; opted: boolean; adult: boolean; played: null }
+  | { ok: true; week: number; state: 'played'; opted: boolean; adult: boolean; played: SpotResultView }
+  | { ok: true; week: number; state: 'not_enough'; opted: boolean; adult: boolean; need: { people: number; ai: number } }
+/** Your landlord, boss and rival in a city (server/house/roles.ts). */
+export interface AiRoleCard { role: 'landlord' | 'boss' | 'rival'; name: string; temper: 'stern' | 'kind' | 'jokey'; line: string; via: 'written' | 'model' }
+export interface AiRolesView { ok: true; city: string; cityName: string; roles: AiRoleCard[]; rent: { house: string; rent: number; arrears: number; promise: boolean; canAskTime: boolean } | null }
+/** What AI characters remember about you, for a JSON file (server/house/life-routes.ts). */
+export interface AiMemoryExport { kind: 'allworld-ai-memory'; v: 1; at: string; note: string; file: string; players: { player: string; remembering: boolean; characters: { agent: string; name: string | null; closeness: number; partner: boolean; facts: string[]; left?: string; leaving?: string }[] }[] }
 export interface AgentMemoryView { remembering: boolean; adult: boolean; partnerAt: number; agents: AgentMemoryCard[] }
 type MemoryError = WriteError | 'invalid_agent' | 'invalid_flag' | 'invalid_fact' | 'adults_only' | 'not_close_enough' | 'has_bae'
 
@@ -96,6 +113,12 @@ export interface AgentsHttpRoutes {
   'POST /api/agents/memory/remember': { body: { agent?: string; on: boolean; csrf: string }; response: Done; errors: MemoryError }
   'POST /api/agents/memory/flirt': { body: { agent: string; on: boolean; csrf: string }; response: Done; errors: MemoryError }
   'POST /api/agents/memory/partner': { body: { agent: string; on: boolean; csrf: string }; response: Done; errors: MemoryError }
+  'GET /api/agents/memory/export': { query: { agent?: string }; response: Ok<AiMemoryExport>; errors: ReadError | 'invalid_agent' }
+  'GET /api/agents/spot': { response: Ok<SpotView>; errors: ReadError }
+  'POST /api/agents/spot/guess': { body: { ai: number[]; csrf: string }; response: Ok<{ ok: true; result: SpotResultView }>; errors: WriteError | 'invalid_picks' | 'not_open' | 'played' | 'full' }
+  'POST /api/agents/spot/opt': { body: { on: boolean; csrf: string }; response: Ok<{ ok: true; opted: boolean; deleted: number }>; errors: WriteError | 'invalid_flag' | 'adults_only' | 'ai_played' }
+  'GET /api/agents/roles': { query: { city: string }; response: Ok<AiRolesView>; errors: ReadError | 'invalid_city' }
+  'POST /api/agents/roles/ask': { body: { city: string; what: 'time' | 'lower'; csrf: string }; response: Ok<{ ok: true; line: string; promise: boolean }>; errors: WriteError | 'invalid_ask' | 'no_house' }
   /** The MCP endpoint, served at /mcp by both hosts: a JSON-RPC 2.0 request with a bearer agent key, answered as bare JSON-RPC (no serverTime). */
   'POST /api/agents/mcp': { body: Record<string, unknown>; response: Ok<Record<string, unknown>>; errors: ReadError | 'origin_rejected' | 'invalid_key' | 'key_suspended' | 'agents_off' | 'account_banned' | 'character_unavailable' | 'character_changed' }
   'GET /api/agents/mcp': { response: Ok<Record<string, unknown>>; errors: ReadError | 'method_not_allowed' }

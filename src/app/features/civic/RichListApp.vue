@@ -17,7 +17,10 @@ import { useCivic, useLoaded, useOffline } from './useCivic.ts'
 const props = defineProps<{ params?: unknown }>()
 // The cities, states and countries board is its own lazily loaded part of this screen.
 const PlacesBoard = defineAsyncComponent(() => import('./PlacesBoard.vue'))
-const tab = ref<'players' | 'places'>(typeof props.params === 'object' && props.params !== null && Reflect.get(props.params, 'tab') === 'places' ? 'places' : 'players')
+// So is the city's economy (docs/NEIGHBOURHOOD.md): the treasury, median prices and game naira in circulation beside the rich list.
+const EconomyApp = defineAsyncComponent(() => import('../neighbourhood/EconomyApp.vue'))
+const tabParam = typeof props.params === 'object' && props.params !== null ? Reflect.get(props.params, 'tab') : null
+const tab = ref<'players' | 'places' | 'economy'>(tabParam === 'places' ? 'places' : tabParam === 'economy' ? 'economy' : 'players')
 const family = ref<BoardFamily>('humans')
 const { game } = useApp()
 const civic = useCivic()
@@ -36,15 +39,17 @@ async function toggle(): Promise<void> {
 
 <template>
   <div class="richlist">
-    <nav class="richlist-tabs" role="group" aria-label="Whose rankings" data-board-family>
+    <nav v-if="tab !== 'economy'" class="richlist-tabs" role="group" aria-label="Whose rankings" data-board-family>
       <button type="button" :class="{ 'is-on': family === 'humans' }" :aria-pressed="family === 'humans'" @click="family = 'humans'">Humans</button>
       <button type="button" :class="{ 'is-on': family === 'agents' }" :aria-pressed="family === 'agents'" @click="family = 'agents'">Agents</button>
     </nav>
     <nav class="richlist-tabs" role="group" aria-label="Rich List">
       <button type="button" :class="{ 'is-on': tab === 'players' }" :aria-pressed="tab === 'players'" @click="tab = 'players'">Players</button>
       <button type="button" :class="{ 'is-on': tab === 'places' }" :aria-pressed="tab === 'places'" @click="tab = 'places'">Places</button>
+      <button type="button" :class="{ 'is-on': tab === 'economy' }" :aria-pressed="tab === 'economy'" @click="tab = 'economy'">Economy</button>
     </nav>
-    <PlacesBoard v-if="tab === 'places'" :family="family" />
+    <EconomyApp v-if="tab === 'economy'" />
+    <PlacesBoard v-else-if="tab === 'places'" :family="family" />
     <template v-else>
     <CivicStatus :item="item" @retry="reload" />
     <template v-if="data">

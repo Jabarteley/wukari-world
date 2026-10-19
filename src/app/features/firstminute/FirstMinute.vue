@@ -3,7 +3,7 @@
 // of Near you (an event first), how many people are here now, and ONE next action chosen by what exists (./firstMinuteModel.ts): Say hello,
 // Join <community> or Walk to the Square. Once per session, put away with ×, gone after its action. A new player also gets "Show me around",
 // the walkthrough on request (it no longer starts by itself for them: the strip is their first minute). Mounted by ./startFirstMinute.ts.
-import { computed, onMounted, ref } from 'vue'
+import { computed, defineAsyncComponent, onMounted, ref } from 'vue'
 import { useApp, tripKey } from '../../state/app.ts'
 import { loadPeople, social } from '../social/useSocial.ts'
 import { placeNow, placePeople } from '../places/placeState.ts'
@@ -16,6 +16,9 @@ import type { Badge, NextAction, StripItem } from './firstMinuteModel.ts'
 import type { CrewView, PostView } from '../../../types/feed.ts'
 
 const props = defineProps<{ fresh: boolean }>()
+// A new life's start card ("What did you get", docs/SHARE-LOOPS.md): fetched only when tapped.
+const StartCard = defineAsyncComponent(() => import('../shareloops/StartCard.vue'))
+const showStart = ref(false)
 const emit = defineEmits<{ close: [] }>()
 const { game, shell, community } = useApp()
 const api = feedApi((path, options) => game.fetchJson(path, options))
@@ -95,7 +98,9 @@ function showAround(): void { emit('close'); window.dispatchEvent(new CustomEven
       <button type="button" class="fm-go" :data-fm-action="action.kind" :disabled="busy" @click="go">{{ action.label }}</button>
       <small>{{ hint }}</small>
       <button v-if="props.fresh" type="button" class="fm-link" data-fm="tour" @click="showAround">Show me around</button>
+      <button v-if="props.fresh" type="button" class="fm-link" data-fm="start-card" @click="showStart = true">What did you get?</button>
     </div>
+    <StartCard v-if="showStart" @close="showStart = false" />
   </section>
 </template>
 

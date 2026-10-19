@@ -14,13 +14,16 @@
  */
 import type { RouteContext, RouteHandler, RouteKey, RouteRequest } from '../types.ts';
 import { agentInfo } from './runner.ts';
+import { castMember } from './cast-ids.ts';
+import { continuityFor } from './continuity.ts';
 import * as memory from './memory.ts';
 
 const NO_STORE = { 'Cache-Control': 'no-store' };
 
 export function memoryRoutes(ctx: RouteContext, guard: (request: RouteRequest, body: Record<string, unknown>) => Promise<void>, limited: (request: RouteRequest, session: string) => void): Record<RouteKey, RouteHandler> {
   const adultOf = (db: Parameters<NonNullable<NonNullable<RouteContext['checks']>['adult']>>[0], id: string): boolean => ctx.checks?.adult?.(db, id) === true;
-  const agentOf = (value: unknown): string | null => { if (value === undefined || value === null) return null; if (typeof value !== 'string' || !agentInfo(value)) throw ctx.fail(400, 'invalid_agent'); return value; };
+  // A character that left the cast after its notice (cast-ids.ts) keeps its card: its facts can still be read, deleted and downloaded.
+  const agentOf = (value: unknown): string | null => { if (value === undefined || value === null) return null; if (typeof value !== 'string' || !(agentInfo(value) ?? castMember(value))) throw ctx.fail(400, 'invalid_agent'); return value; };
   const flag = (value: unknown): boolean => { if (typeof value !== 'boolean') throw ctx.fail(400, 'invalid_flag'); return value; };
   return {
     'GET /api/agents/memory': async (request) => {
@@ -28,8 +31,10 @@ export function memoryRoutes(ctx: RouteContext, guard: (request: RouteRequest, b
         const session = request.requireSession(db), now = ctx.now(), adult = adultOf(db, session.publicId);
         const view = memory.overview(db, session.publicId, now, adult);
         const agents = view.agents.flatMap((card) => {
-          const who = agentInfo(card.agent);
-          return who ? [{ id: card.agent, name: who.name, role: who.role, city: who.city, remembering: card.remembering, facts: card.facts, standing: card.standing, partner: card.partner, canPartner: adult && card.standing.points >= memory.PARTNER_AT, flirt: card.flirt, missions: card.missions }] : [];
+          const who = agentInfo(card.agent) ?? castMember(card.agent), left = castMember(card.agent)?.left, notice = continuityFor(ctx).noticeFor(card.agent);
+          return who ? [{ id: card.agent, name: who.name, role: who.role, city: who.city, remembering: card.remembering, facts: card.facts, standing: card.standing, partner: card.partner, canPartner: adult && left === undefined && card.standing.points >= memory.PARTNER_AT, flirt: card.flirt, missions: card.missions,
+            // The continuity rule (continuity.ts): a character that is leaving or changing says when, and one that has left says so; its facts stay downloadable.
+            ...(notice ? { leaving: { until: notice.until, what: notice.what } } : {}), ...(left !== undefined ? { left } : {}) }] : [];
         });
         return { remembering: view.remembering, adult, partnerAt: memory.PARTNER_AT, agents };
       });

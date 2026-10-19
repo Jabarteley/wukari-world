@@ -119,6 +119,8 @@ export interface SessionRecord {
    * (the device keeps a cache). Optional: absent until the player pins one. Written by server/routes/stages.ts, exported and erased with the character.
    */
   homeCity?: { city: string; name: string; tz: string }
+  /** Passport stamps (docs/SHARE-LOOPS.md): city id → server ms the character first arrived there. Written by server/shareloops/passport.ts stampPassport; erased with the character. */
+  passport?: Record<string, number>
   /**
    * Set only on a character that belongs to an account (server/accounts/service.ts): the account's id. Such a record
    * is filed under a key no browser holds — it is reached only through a device binding (`accountDevices`), and a
@@ -1143,6 +1145,13 @@ export interface ContextChecks {
   /** Rooms: the public ids sharing the caller's group of a venue room (null when the caller is not in it), and the venue's counts. */
   groupPeers?: (publicId: string, room: string) => string[] | null
   venueCounts?: (room: string) => { total: number; groups: number } | null
+  /** Rooms: is this player in that room now (any socket), and the players in a room (all groups, one entry each). */
+  inRoom?: (publicId: string, room: string) => boolean
+  roomMembers?: (room: string) => string[]
+  /** World events (server/world-events/stages.ts): while a stage is open in `room`, may this player unmute (false: a listener)? Absent or true: the ordinary rules. */
+  stageMayTalk?: (room: string, publicId: string) => boolean
+  /** World events: is one of the pair on the open stage of `room` (then signalling ignores the voice radius)? */
+  stagePair?: (room: string, a: string, b: string) => boolean
   /** Moderation. */
   muted?: (publicId: string) => MuteVerdict | null
   /** Admin (server/admin/sanctions.ts): the player, or the account they belong to, is banned. Enforced for every route by buildRoutes. */
@@ -1253,7 +1262,8 @@ export interface ServerEvents {
   /** rooms.js: a connection's first real step in a venue (its position changed). Raised once per connection; the growth module notes the player's first meaningful action (growth/metrics.ts noteActivated). Never raised for an AI character: those hold no socket. */
   'player-walked': { id: string }
   /** social: a house visit ended; rooms.js drops that guest from the host's Home room. */
-  'visit-ended': { hostId: string; guestId: string }
+  /** `cityId`: where the visit was (absent from an older caller); the share loops count it (server/shareloops/fame.ts). */
+  'visit-ended': { hostId: string; guestId: string; cityId?: string }
   /** social: a player who came through `inviter`'s link was introduced to them (comeback mail looks at the inviter soon). */
   'invite-joined': { inviter: string; /** The player who joined (absent on a build that did not say). */ newcomer?: string }
   /** social: a block or unblock was committed. */

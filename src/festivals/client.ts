@@ -13,11 +13,15 @@ import type { Fixture } from './matches.ts';
 export interface Feed { cityId: string; country: string; extras: FestivalExtras; fixtures: Fixture[]; at: number }
 export const FEED_MS = 5 * 60000;
 const feeds = new Map<string, Feed>(), pending = new Map<string, Promise<Feed | null>>();
+// The weekly world event (docs/WORLD-EVENTS.md): a city that reached its goal is dressed in the event's colours for a week, when no festival is.
+let changes: typeof import('../world-events/client.ts') | null = null, changesAsked = false;
 
 /** The feed held for a city, or null before the first answer. */
 export const feedFor = (cityId: string): Feed | null => feeds.get(cityId) ?? null;
 /** Fetch (at most every FEED_MS) the feed of a city. */
 export function loadFeed(cityId: string, fetchJson: (path: string) => Promise<unknown> = (path) => fetch(path).then((answer) => answer.ok ? answer.json() : null)): Promise<Feed | null> {
+  if (!changesAsked) { changesAsked = true; void import('../world-events/client.ts').then(async (lib) => { await lib.loadChanges(); changes = lib; }).catch(() => { /* no change */ }); }
+  else void changes?.loadChanges();
   const held = feeds.get(cityId);
   if (held && Date.now() - held.at < FEED_MS) return Promise.resolve(held);
   const running = pending.get(cityId);
@@ -38,7 +42,7 @@ export function loadFeed(cityId: string, fetchJson: (path: string) => Promise<un
 /** The Square's dressing for a city at server time `now`, or null (no feed yet, or no festival). */
 export function dressingNow(cityId: string, now: number): Dressing | null {
   const feed = feeds.get(cityId);
-  return feed ? dressingFor(now, feed.country, feed.extras) : null;
+  return (feed ? dressingFor(now, feed.country, feed.extras) : null) ?? changes?.changeDressing(cityId, now) ?? null;
 }
 /** The match-night lift for a city at `now` (0 when none or no feed). */
 export function liftNow(cityId: string, now: number): number {

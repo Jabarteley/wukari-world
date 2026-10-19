@@ -255,11 +255,19 @@ import feedMod from './feed-mod.ts';
 import feedAdmin from './feed-admin.ts';
 import promote from './promote.ts';
 import promoteAdmin from './promote-admin.ts';
+import neighbourhood from './neighbourhood.ts';
+import neighbourhoodAdmin from './neighbourhood-admin.ts';
+import economy from './economy.ts';
 import earn from './earn.ts';
 import earnAdmin from './earn-admin.ts';
+import worldEvents from './world-events.ts';
+import worldEventsAdmin from './world-events-admin.ts';
 import { prepareRouteCityContent, warmCityContentFailure } from '../request-city-content.ts';
 
-export const ROUTE_MODULES: RouteModule[] = [core, auth, social, civic, support, moderation, world, land, growth, growthMod, campus, projects, retention, pulse, festivals, worldFeed, gist, prayers, works, stages, ping, visit, places, business, commerce, businessMod, market, marketMod, notice, residence, companion, admin, bonus, storageMod, politics, records, trust, realValue, street, livingWorld, showcase, showcaseMod, agents, agentsMod, legacy, profiles, arena, clans, story, storyTalkRoutes, spaces, spacesMod, feed, feedMod, feedAdmin, promote, promoteAdmin, earn, earnAdmin];
+export const ROUTE_MODULES: RouteModule[] = [core, auth, social, civic, support, moderation, world, land, growth, growthMod, campus, projects, retention, pulse, festivals, worldFeed, gist, prayers, works, stages, ping, visit, places, business, commerce, businessMod, market, marketMod, notice, residence, companion, admin, bonus, storageMod, politics, records, trust, realValue, street, livingWorld, showcase, showcaseMod, agents, agentsMod, legacy, profiles, arena, clans, story, storyTalkRoutes, spaces, spacesMod, feed, feedMod, feedAdmin, promote, promoteAdmin, earn, earnAdmin, worldEvents, worldEventsAdmin, shareLoops, neighbourhood, neighbourhoodAdmin, economy];
+import danfo from './danfo.ts';
+ROUTE_MODULES.push(danfo);
+import shareLoops from '../shareloops/routes.ts';
 const KEY = /^(GET|POST|PUT|PATCH|DELETE) (\/api\/[A-Za-z0-9\-_/:.]+)$/;
 
 /**

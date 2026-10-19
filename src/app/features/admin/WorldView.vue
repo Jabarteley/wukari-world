@@ -5,6 +5,7 @@ import { onMounted, reactive, ref } from 'vue'
 import { admin, useAdmin } from './useAdmin.ts'
 import { naira } from './adminModel.ts'
 import { recordDone } from './adminUi.ts'
+import WorldEventsAdmin from './WorldEventsAdmin.vue'
 
 const api = useAdmin()
 const grant = reactive({ audience: 'online', city: 'lagos', amount: 500, reason: 'launch bonus', unrestricted: false })
@@ -117,5 +118,6 @@ async function notice(m: number): Promise<void> { const r = await api.post('/api
         <tr><td><b>Push sending</b><div class="adm-sub">The operator kill switch for all push.</div></td><td><button class="adm-btn" :class="{ danger: switches.push }" @click="set('pushOff', !switches.push)">{{ switches.push ? 'Off' : 'On' }}</button></td><td /></tr>
       </tbody></table>
     </div>
+    <WorldEventsAdmin />
   </section>
 </template>

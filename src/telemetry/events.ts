@@ -109,6 +109,9 @@ export const EVENTS: Record<string, EventSpec> = {
   house_copy_used: { from: 'world', props: { kind: 'string' }, when: 'A copied house became the player\'s home (kind: spec | model).', why: 'How many real houses reach the game, and how.' },
   world_screen: { from: 'world', props: { action: 'string' }, when: 'The host put something on a space’s screen (action: on).', why: 'Is watching and listening together used?' },
   world_fullscreen: { from: 'world', props: { what: 'string' }, when: 'A world went full screen (what: stage, the whole 3D view | tv, the shared screen).', why: 'Do people want worlds and watching together on the whole screen?' },
+  danfo_run: { from: 'world', props: { action: 'string', route: 'string', earned: 'number' }, when: 'A danfo run started (action: start) or was settled by the server (action: end, earned: game naira) on a line (route).', why: 'Runs per day and per person, and which lines are driven (docs/DANFO.md).' },
+  danfo_clip: { from: 'world', props: { what: 'string' }, when: 'A danfo run\'s clip (what: clip) or card (what: card) was handed to Capture to share.', why: 'Are runs shared?' },
+  danfo_crew: { from: 'world', props: { role: 'string' }, when: 'A player joined someone\'s danfo run (role: passenger | conductor).', why: 'Do friends ride along?' },
   world_liked: { from: 'world', props: { on: 'boolean' }, when: 'A world was liked (on: true) or the like taken back.', why: 'Which worlds people value, beyond visits.' },
 
   // ---- Missions, tables, sharing and outreach (the growth panels: src/ui/panels/*, src/tables/client.ts)

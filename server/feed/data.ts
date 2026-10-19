@@ -27,6 +27,8 @@ export interface PostRecord {
   reports?: string[]; hidden?: 1; gone?: 1; ai?: 1
   /** The still image a clip is reviewed and previewed by (a pending photo of the same author). */
   poster?: string
+  /** A duet (docs/SHARE-LOOPS.md): the id of the clip this clip answers, shown side by side with it. */
+  duet?: string
 }
 export interface DraftRecord { n: number; at: number; city: string; kind: string; text: string }
 export interface PendingMedia extends FeedMedia { at: number; use: 'post' | 'portrait' }

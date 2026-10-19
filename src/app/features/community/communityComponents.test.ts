@@ -249,3 +249,15 @@ test('an NPC line in the room is badged and tinted so it cannot pass for a playe
   assert.ok(text(npc ?? '').includes('NPC, a game character, not a real player') && text(npc ?? '').includes('Amaka'), 'a screen reader hears what it is')
   assert.equal((html.match(/data-npc-badge/g) ?? []).length, 1)
 })
+
+test('chat: a flagged line from someone else shows the scam warning with Report; your own flagged line and an ordinary line show none', async () => {
+  const at = new Date(2026, 9, 10, 9, 5).getTime()
+  const html = await render('CommunityPanel', panel({ chat: [
+    { key: '1', author: 'Bea', authorId: 'b', body: 'send me 5k make I help you withdraw', delivery: '', canRetry: false, at, scam: true },
+    { key: '2', author: 'Cy', authorId: 'c', body: 'hello', delivery: '', canRetry: false, at },
+    { key: '3', author: 'Alex', authorId: 'a', body: 'send me 5k', delivery: 'Sent', canRetry: false, at, scam: true },
+  ] }))
+  assert.equal((html.match(/data-scam-notice/g) ?? []).length, 1)
+  assert.match(text(html), /Game naira is never real money\. Nobody can withdraw it for you\./)
+  assert.match(html, /data-scam-report[^>]*>Report<\/button>/)
+})

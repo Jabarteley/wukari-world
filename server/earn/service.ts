@@ -23,6 +23,7 @@ import { peekFeed } from '../feed/data.ts'
 import { peekPromote } from '../promote/service.ts'
 import { earnOf, peekEarn } from './data.ts'
 import { gigPaid, ticketOf, needsTicket } from './data.ts'
+import { meetupRefusal } from '../neighbourhood/data.ts'
 import type { EarnAccount, SaleRecord } from './data.ts'
 import type { Db, RouteContext, SessionRecord } from '../types.ts'
 
@@ -106,6 +107,7 @@ export function earnService(ctx: RouteContext) {
       const e = f && typeof body.id === 'string' ? f.events[body.id] : undefined, price = e ? c.prices[e.id] : undefined
       if (!e || e.gone || !price || blocked(id, e.by)) return no('unknown_event', 'That event has no tickets.')
       if (e.by === id) return no('own_event', 'This is your own event.')
+      const locked = meetupRefusal(db, e.id, id, now()); if (locked) return no(locked.code, locked.reason)
       if (e.end < now()) return no('event_over', 'That event is over.')
       if (c.tickets[e.id]?.includes(id)) return no('has_ticket', 'You have a ticket already.')
       if (e.going.length >= e.cap) return no('event_full', 'This event is full.')

@@ -36,6 +36,7 @@ purpose without a release. An empty or unreadable list means the default.
 | `agent-talk` | `modelsAgentTalk` | the same two, paid | yes |
 | `resident` | `modelsResident` | four free gateway models, five free OpenRouter models, then gpt-5.6-luna | no |
 | `safety` | `modelsSafety` | `nvidia/nemotron-3.5-content-safety:free` on OpenRouter | no |
+| `newspaper` | `modelsNewspaper` | the paid pair (the city front page from public gist lines, which carry players' shown names; docs/SHARE-LOOPS.md) | yes |
 
 ## The no-training rule
 

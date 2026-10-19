@@ -10,14 +10,18 @@
  *            a player: with the owner's Bachs key, a Bachs checkout page and a server-side verification of the amount; without it, a bank
  *            transfer to the details the admin set, confirmed by an admin. A refused or removed listing ends its boosts. Allworld never
  *            holds a player's money and nothing here pays a player.
+ *   BOARDS    a live listing with a running boost or spotlight also fills a free billboard of its own city's map (GET /boards, name, kind
+ *            and photo only, rotating, nightlife and alcohol words kept off; a tap counts as an open from "board"), and every live
+ *            listing stands in the city's business street (GET /street, shop fronts grouped by kind). No new price, no outside link.
  *   SPONSORED a live boosted listing of the viewer's city is put into the City tab (one card every few posts), a spotlight into every
  *            World tab; each is marked Sponsored and opens the business, never an outside link.
  * Stored (collection `promote`, keyed): listings[id] · orders[id] · owners[publicId] { listings[], orders[] } · cities[city] { listings[] }
  * · root { seq, refs: { [ref]: orderId } (open orders only), revenue }. Portable: no Node imports.
  */
-import { CATEGORIES, PROMOTE, TIERS, categoryLabel, isCategory, priceOf } from '../../src/promote/model.ts'
+import { BILLBOARD, CATEGORIES, PROMOTE, TIERS, boardSafe, categoryLabel, isCategory, priceOf } from '../../src/promote/model.ts'
 import type { Category, ListingStatus, OrderStatus, Tier } from '../../src/promote/model.ts'
 import type { ListingView, OrderView, PromoteMe } from '../../src/types/promote.ts'
+import type { BoardListing, StreetView } from '../../src/types/neighbourhood.ts'
 import { screenText } from '../moderation/text.ts'
 import { cityName } from '../../src/game/cities/registry.ts'
 import { accountOfSession } from '../admin/gate.ts'
@@ -27,7 +31,7 @@ import { peekFeed } from '../feed/data.ts'
 import { bachsClient } from '../payments/bachs.ts'
 import type { Db, RouteContext, SessionRecord } from '../types.ts'
 
-export interface ListingRecord { id: string; owner: string; name: string; category: Category; city: string; area: string; about: string; photo?: string; at: number; status: ListingStatus; reason?: string; tries?: number; contacts?: number }
+export interface ListingRecord { id: string; owner: string; name: string; category: Category; city: string; area: string; about: string; photo?: string; at: number; status: ListingStatus; reason?: string; tries?: number; contacts?: number; /** Opens by where they started: a billboard, or the business street. */ via?: { board?: number; street?: number } }
 export interface OrderRecord { id: string; listing: string; owner: string; tier: Tier; weeks: number; amount: number; city: string; at: number; status: OrderStatus; ref: string; email?: string; arcon?: string; by?: 'bachs' | 'bank' | 'admin'; checkout?: string; paidAt?: number; startsAt?: number; endsAt?: number; shown?: number; note?: string }
 export interface PromoteCollection {
   seq: number; refs: Record<string, string>; revenue: { all: number; months: Record<string, number> }
@@ -189,7 +193,41 @@ export function promoteService(ctx: RouteContext) {
     return [...out.slice(shift), ...out.slice(0, shift)].slice(0, 2)
   }
   function noteShown(db: Db, orders: readonly string[]): void { const c = peekPromote(db); for (const id of orders) { const o = c?.orders[id]; if (o) o.shown = (o.shown ?? 0) + 1 } }
-  function contact(db: Db, listing: unknown): { ok: true } { const l = typeof listing === 'string' ? peekPromote(db)?.listings[listing] : undefined; if (l) l.contacts = (l.contacts ?? 0) + 1; return { ok: true } }
+  function contact(db: Db, listing: unknown, via?: unknown): { ok: true } {
+    const l = typeof listing === 'string' ? peekPromote(db)?.listings[listing] : undefined
+    if (!l) return { ok: true }
+    // A tap on a billboard is counted as a tap; opening the business (a message, its shop) is a contact, and says if it began in the street.
+    if (via === 'board') { l.via ??= {}; l.via.board = (l.via.board ?? 0) + 1; return { ok: true } }
+    l.contacts = (l.contacts ?? 0) + 1
+    if (via === 'street') { l.via ??= {}; l.via.street = (l.via.street ?? 0) + 1 }
+    return { ok: true }
+  }
+  /**
+   * Billboards of a city: its live listings with a running Boost or Spotlight (a Spotlight shows on its own city's boards too, no new
+   * price), that pass the board screen, rotating every ten minutes so each takes a turn when there are more than the map has boards.
+   */
+  function boards(db: Db, viewer: string | null, city: string): BoardListing[] {
+    const c = peekPromote(db)
+    if (!c) return []
+    const t = now(), out: BoardListing[] = [], seen = new Set<string>()
+    for (const id of c.cities[city]?.listings ?? []) {
+      const l = c.listings[id]
+      if (!l || l.status !== 'live' || seen.has(id) || blocked(viewer ?? '', l.owner) || !boardSafe(l)) continue
+      const o = boostOf(c, id, t)
+      if (!o) continue
+      seen.add(id)
+      out.push({ id: l.id, name: l.name, category: l.category, categoryLabel: categoryLabel(l.category), area: l.area, ...(l.photo ? { photo: l.photo } : {}), tier: o.tier, owner: { id: l.owner, name: nameOf(db, l.owner) }, ...(shopOf(db, l.owner) ? { shop: shopOf(db, l.owner)! } : {}) })
+    }
+    const shift = out.length ? Math.floor(t / BILLBOARD.rotateMs) % out.length : 0
+    return [...out.slice(shift), ...out.slice(0, shift)].slice(0, BILLBOARD.max)
+  }
+  /** The business street of a city: every live listing in a shop front, grouped by kind, boosted first and then newest. */
+  function street(db: Db, viewer: string | null, city: string): StreetView {
+    const c = peekPromote(db), t = now()
+    const live = (c?.cities[city]?.listings ?? []).map((l) => c!.listings[l]).filter((l): l is ListingRecord => Boolean(l) && l!.status === 'live' && !blocked(viewer ?? '', l!.owner))
+    const groups = CATEGORIES.map(([category, label]) => ({ category, label, listings: live.filter((l) => l.category === category).map((l) => ({ l, boost: boostOf(c!, l.id, t) ? 1 : 0 })).sort((a, b) => b.boost - a.boost || b.l.at - a.l.at).slice(0, BILLBOARD.street).map(({ l }) => listingView(db, c!, l, viewer)) })).filter((g) => g.listings.length)
+    return { city, cityName: cityName(city) ?? city, groups, total: groups.reduce((n, g) => n + g.listings.length, 0) }
+  }
   /** Heartbeat: listings still waiting for a review (the model had no answer), oldest first, at most a few. */
   const pending = (db: Db): string[] => Object.values(peekPromote(db)?.listings ?? {}).filter((l) => l.status === 'review' && (l.tries ?? 0) < PROMOTE.reviewTries).slice(0, 3).map((l) => l.id)
   function admin(db: Db) {
@@ -198,7 +236,7 @@ export function promoteService(ctx: RouteContext) {
     const month = new Date(now()).toISOString().slice(0, 7)
     return { ok: true as const, revenue: { month: c.revenue.months[month] ?? 0, all: c.revenue.all },
       orders: Object.values(c.orders).sort((a, b) => b.at - a.at).slice(0, 200).map((o) => ({ ...orderView(c, o), owner: o.owner, ownerName: nameOf(db, o.owner), arcon: o.arcon ?? '', shown: o.shown ?? 0, note: o.note ?? '' })),
-      listings: Object.values(c.listings).filter((l) => l.status !== 'removed' || l.reason).sort((a, b) => b.at - a.at).slice(0, 200).map((l) => ({ ...listingView(db, c, l, null), reason: l.reason ?? '', contacts: l.contacts ?? 0, tries: l.tries ?? 0 })) }
+      listings: Object.values(c.listings).filter((l) => l.status !== 'removed' || l.reason).sort((a, b) => b.at - a.at).slice(0, 200).map((l) => ({ ...listingView(db, c, l, null), reason: l.reason ?? '', contacts: l.contacts ?? 0, boardTaps: l.via?.board ?? 0, streetTaps: l.via?.street ?? 0, tries: l.tries ?? 0 })) }
   }
   function act(db: Db, body: Record<string, unknown>): { ok: true } | No {
     const c = peekPromote(db)
@@ -215,7 +253,7 @@ export function promoteService(ctx: RouteContext) {
     if (body.action === 'approve' || body.action === 'restore') { l.status = 'live'; delete l.reason; return { ok: true } }
     return no('invalid_action', 'remove, approve or restore')
   }
-  return { me, directory, save, remove, reviewed, order, markPaid, orderByRef, ownOrder, viewOf, checkout, keepCheckout, verify, awaiting, payment, nameOf, sponsored, noteShown, contact, pending, admin, act, prices, listingView, peek: peekPromote, categories: CATEGORIES }
+  return { me, directory, save, remove, reviewed, order, markPaid, orderByRef, ownOrder, viewOf, checkout, keepCheckout, verify, awaiting, payment, nameOf, sponsored, noteShown, contact, boards, street, pending, admin, act, prices, listingView, peek: peekPromote, categories: CATEGORIES }
 }
 
 /** ERASURE: a person's listings and pending orders go; paid orders stay as the business record of a sale, without the person. */

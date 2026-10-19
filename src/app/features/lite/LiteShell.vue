@@ -31,6 +31,7 @@ const more = (): void => { shell.open('phone') }
     <header class="lite-top">
       <b>Allworld</b>
       <span class="lite-grow" />
+      <button type="button" class="lite-chip" data-feedback @click="shell.open('support', { category: 'idea' })">Feedback</button>
       <button type="button" class="lite-chip" @click="more">All apps</button>
       <button v-if="can3d" type="button" class="lite-chip is-world" @click="stepInto3d">Step into the 3D world</button>
     </header>

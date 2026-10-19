@@ -1,0 +1,7 @@
+.shopfront{margin:10px 0;border-radius:14px;overflow:hidden;background:#fff;border:1px solid #d7d2c5;color:#193126}
+.shopfront.is-opened{border-color:#f2b134;box-shadow:0 0 0 2px #f2b13466}
+.shopfront-awning{height:12px;background:repeating-linear-gradient(90deg,#174c36 0 18px,#f3f0e7 18px 36px)}
+.shopfront-body{padding:10px 12px 12px}
+.shopfront-head{display:flex;gap:10px;align-items:center}
+.shopfront-photo{flex:none;width:64px;height:64px;border-radius:10px;object-fit:cover;background:#e6efe9}
+.street-group{margin:14px 0 4px;font-size:15px}

@@ -16,7 +16,7 @@
 import '../../../ui/panels/fullscreen.css'
 import '../../../ui/panels/quick-start.css'
 import '../../../ui/panels/creator.css'
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
+import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 import { APPEARANCE, TRAITS_REQUIRED } from '../../../game/content/traits.ts'
 import type { PreviewFocus } from '../../../scene/avatar-preview.ts'
 import type { DreamId, Look, TraitId } from '../../../types/life.ts'
@@ -53,6 +53,9 @@ import { firstLanding, joinTarget, keepDraft, nameProblem, pendingRef, presetLoo
 import type { QuickDraft } from './startBoundary.ts'
 
 const props = defineProps<{ mode: CreatorMode; params?: unknown }>()
+// "What did you get" (docs/SHARE-LOOPS.md): the start card of a settled life, fetched only when asked for.
+const StartCard = defineAsyncComponent(() => import('../shareloops/StartCard.vue'))
+const showStart = ref(false)
 const { game, shell, command } = useApp()
 const state = game.state
 const view = game.view
@@ -406,6 +409,8 @@ onBeforeUnmount(() => {
             <h1 id="cr-title" ref="heading" tabindex="-1">{{ view.name }} is ready</h1>
             <p class="cr-lead">{{ o.legacy ? 'This life started before character creation existed, so nothing was changed.' : 'Your character has moved in.' }} You can change your look any time in your Profile.</p>
             <p class="cr-note">{{ lookSummary(draft.look) }}</p>
+            <p v-if="!o.legacy" class="cr-share-card"><button type="button" class="cr-btn is-small" data-key="start-card" @click="showStart = true"><GameIcon name="share" inline /> What did you get? Share it</button></p>
+            <StartCard v-if="showStart" @close="showStart = false" />
           </div>
           <div v-else :key="cr.step" class="cr-body">
             <h1 id="cr-title" ref="heading" tabindex="-1">{{ title }}</h1>

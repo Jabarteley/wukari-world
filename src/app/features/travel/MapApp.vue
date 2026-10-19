@@ -18,12 +18,14 @@
 // on the city map from its own server response (GET /api/civic/ads and /gov, cached by the civic
 // client, never from a timer). The panel only passes the data on; the map draws it.
 import '../../../ui/panels/map.css'
-import { computed, onBeforeUnmount, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, reactive, watch } from 'vue'
 import type { AdsResponse, GovResponse } from '../../../types/civic.ts'
 import { useApp } from '../../state/app.ts'
 import { adsKey, adsPath, govKey, govPath } from '../civic/civicModel.ts'
 import { useCivic } from '../civic/useCivic.ts'
 import { cityName } from '../../../game/cities/registry.ts'
+import { fillBoards } from '../../../promote/boards.ts'
+import type { BoardListing } from '../../../types/neighbourhood.ts'
 import MapLevels from './MapLevels.vue'
 import MapOverview from './MapOverview.vue'
 import TripBar from './TripBar.vue'
@@ -34,7 +36,7 @@ import { mapUi } from './travelState.ts'
 import { isListOpen, layers, seen, tell, trackWide } from './travelMapState.ts'
 
 const props = defineProps<{ params?: unknown }>()
-const { game } = useApp()
+const { game, shell } = useApp()
 const civic = useCivic()
 const view = game.view
 
@@ -55,12 +57,31 @@ const item = computed(() => view.value.travel.destinations.find((entry) => entry
 const trip = computed(() => tripInfo(game.state.value, view.value, (id) => cityName(id) ?? id))
 
 // ---- telling the city map ----------------------------------------------------------------------
+// BILLBOARDS OF RUNNING BOOSTS (docs/PROMOTE.md): with the Billboards layer on, the city's boosted businesses fill its free boards. They come from
+// their own small read (GET /api/promote/boards), kept a minute; a tap on one opens the business (the map's 'jaw:map-business' event).
+const boards = reactive({ city: '', at: 0, loading: false, list: [] as BoardListing[] })
+function loadBoards(): void {
+  const city = game.cityId.value
+  if (boards.loading || (boards.city === city && Date.now() - boards.at < 60000)) return
+  boards.loading = true
+  void game.fetchJson<{ ok: boolean; boards?: BoardListing[] }>(`/api/promote/boards?city=${encodeURIComponent(city)}`)
+    .then((r) => { boards.city = city; boards.list = r.ok ? r.boards ?? [] : []; boards.at = Date.now() }, () => { boards.city = city; boards.list = []; boards.at = Date.now() })
+    .finally(() => { boards.loading = false })
+}
+function openBoard(event: Event): void {
+  const listing = (event as CustomEvent<{ listing?: string }>).detail?.listing
+  if (!listing) return
+  void game.fetchJson('/api/promote/contact', { method: 'POST', body: { listing, via: 'board' } }).catch(() => undefined)
+  shell.open('promote', { listing })
+}
+onMounted(() => { window.addEventListener('jaw:map-business', openBoard) })
+onBeforeUnmount(() => { window.removeEventListener('jaw:map-business', openBoard) })
 const adsEntry = computed(() => civic.entry<AdsResponse>(adsKey(game.cityId.value)))
 const govEntry = computed(() => civic.entry<GovResponse>(govKey(game.cityId.value)))
 /** Changes when the map should be told again: a layer, a place, the layout, a layer's data arriving, the connection. */
 const stamp = computed(() => [
   mapUi.layer, mapUi.destination ?? '', isListOpen(), Boolean(trip.value), game.connected.value, game.cityId.value,
-  LAYERS.map((layer) => `${layer.id}:${layers[layer.id]}`).join(','), adsEntry.value.at, govEntry.value.at,
+  LAYERS.map((layer) => `${layer.id}:${layers[layer.id]}`).join(','), adsEntry.value.at, govEntry.value.at, boards.at,
 ].join('|'))
 
 function syncMap(): void {
@@ -71,6 +92,7 @@ function syncMap(): void {
     if (layer.key === 'gov') { void civic.load<GovResponse>(govKey(cityId), govPath(cityId), { maxAge: 30000 }); detail.gov = govEntry.value.data }
     else { void civic.load<AdsResponse>(adsKey(cityId), adsPath(cityId), { maxAge: 30000 }); detail.ads = adsEntry.value.data }
   }
+  if (layers.billboards && detail.ads) { loadBoards(); if (boards.city === cityId) detail.ads = fillBoards(detail.ads as AdsResponse, boards.list, Date.now()) }
   // Opened for a place (the Home tab, a goal chip, "Go to work", a pin): highlight it on the city map too.
   const wanted = asMapParams(props.params)?.destination
   if (wanted && wanted === mapUi.destination) detail.selected = mapUi.destination

@@ -22,6 +22,32 @@ the owner; all are reversible. Effort is agent days; waves run in parallel where
 - **Ownership.** One phase per folder set; `vite.config.ts`, `src/budgets.ts`, `src/scene/quality.ts`'s tier gate and
   `AccountSettings.vue` belong to the integrator; a phase that needs a change there files a one-line request in its record.
 
+## Worth-it review (19 October, the owner's rule: build only what clearly outweighs its drawbacks)
+
+Each phase judged before any code. "Go" means build as narrowed here; "Wait" means not now, revisit when the trigger is met;
+"No" means dropped.
+
+| Phase | Verdict | Why |
+| --- | --- | --- |
+| 0 Evidence | Go | Cheap (3 days), and without it every later judgement is a guess. The anchor screenshots and the frame table are what let us stop a phase that does not pay. |
+| 0b `fx` chunk | Go | A few lines; needed only because 1–3 go. |
+| 1 Weather | Go, narrowed | Rain is one draw call and uses the (seed, clock) pattern we already trust: high visible gain, low cost. Smoke only with an own ~150-line emitter and at most two draws per scene; no particle library (bundle and upkeep outweigh it); no per-vehicle exhaust or dust (many emitters for little). |
+| 2 Post stack | Go, narrowed | It answers the owner's "flat, no AO" directly on the tier where screenshots are taken. AO is gated: default-off if it costs over 3 ms. The render-target street-light map is dropped (complexity for a modest gain); it returns with the baked street (11). |
+| 3 Feel | Go, narrowed | Sound + pop + burst on the big moments is cheap and makes rewards land. Camera shake only on the large tier; hit-stop only in the arena fight; a reduce-shake setting from day one. |
+| 4 Ticker and memory | Go, narrowed | The ticker reads the gist ledger we already keep: cheap, shareable. "Remembers you" is kept client-side for one day (no new server table), which removes most of its cost. |
+| 5 Homes by the hour | Wait | Nice, but it mostly shows at night in neighbourhoods few people visit yet. Trigger: neighbourhood visits per day rise after wave 1. |
+| 6 Walking regulars, Street Sense, blackout | Mostly no | Yuka adds ~60 kB and pathing bugs through walls for a gain today's glancing regulars already half-give. Street Sense is UI clutter. Only the shared blackout event (cheap, screenshot-worthy) is kept, folded into phase 4. |
+| 7 Governor and warm-up | Go | Two days, no new bytes, fewer stutters for everyone. |
+| 8 BatchedMesh and KTX2 | Wait | Only if phase 0's frame table shows Yaba over the draw-call budget. KTX2 adds a transcoder and a pipeline for textures we keep at one 1024 per model; not worth it yet. |
+| 9 Batched crowds | No (for now) | Eight days for crowds above twelve, which the player counts do not produce yet. Trigger: a venue regularly holds more than twelve people. |
+| 10 Proximity voice | Wait | Voice stages are barely used; RNNoise is 1.9 MB. Trigger: weekly voice minutes above a few hours. A plain PannerNode (half a day) can go in earlier if voice picks up. |
+| 11 Hero street baked | Go, after wave 1 evidence | The owner's stated priority, but ten days: decide once the post stack's before/after shows how far it gets us. |
+| 12 Art direction and manifests | Go (docs) | Provenance for the Meshy models is a licence duty; the style guide is a page. The local image-to-3D runbook is optional. |
+| 13 Growth deltas | Go (small) | A cost model and two checks folded into the WOW plan. |
+
+So of the 36 ideas: 21 go now (narrowed), 9 wait for a trigger, 6 are dropped (particle library, per-vehicle exhaust and dust,
+the render-target light map, Yuka walking, Street Sense, batched crowds).
+
 ## The 36 ideas, where each lands
 
 | # | Idea | Phase |

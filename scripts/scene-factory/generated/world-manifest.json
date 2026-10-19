@@ -17,7 +17,7 @@
     },
     "hostScenery": {
       "path": "scripts/scene-factory/host-scenery.json",
-      "sha256": "c0cb5ae36a511270f18f9cf2ec25bd4bd1be7bb3f208321cef7feb815e547c2b",
+      "sha256": "c41cc14dc5ae97b6843efcd775c10c40e45dc3c403bc2da9ad0639d6794d7c05",
       "sourceFiles": [
         {
           "path": "node_modules/meshoptimizer/package.json",
@@ -41,7 +41,7 @@
         },
         {
           "path": "package-lock.json",
-          "sha256": "0df1a57f859e27b3b00ca7cec515aea5d74795605af18b5e2559e2788bcdeeaa"
+          "sha256": "26b959bb8bd116f8c6776a489ebe3af84c4f94e97388dbddb3e9b56815f57d05"
         },
         {
           "path": "scripts/assets/glb.ts",
@@ -53183,1422 +53183,1422 @@
     },
     {
       "path": "scripts/scene-factory/generated/manifests/abakaliki.json",
-      "sha256": "9980d920a591d104b782fed82fe28dcec6e06244e65770af7e88b8425c88278d",
+      "sha256": "478087b4cc056328cd18b155820b900f9b270049b09143dca1f624b1773a2505",
       "bytes": 212533
     },
     {
       "path": "scripts/scene-factory/generated/manifests/abeokuta.json",
-      "sha256": "25b9e0324eb290bf1a6d0a892c911de3c485866fa7bbbc3c7fd2ffc540bea729",
+      "sha256": "d911fd4e7801a62a1928f60db2bbd495502619ffde9fe0c8acb5812b5772ba63",
       "bytes": 206381
     },
     {
       "path": "scripts/scene-factory/generated/manifests/abidjan.json",
-      "sha256": "874cbd8ee02c8f33d6b61ba88a0ca7a1d8e323f1ae347e9ba13206850c50fddf",
+      "sha256": "018198a6e04878494141f93276a2e49f538678dca468d59fda2f1e4575ebd358",
       "bytes": 216619
     },
     {
       "path": "scripts/scene-factory/generated/manifests/abuja.json",
-      "sha256": "b0984d7388e9e2b34087f238a87ac257f1fb49ad9b41e84543f974427f40210f",
+      "sha256": "3e00e72f4646fefc8a41036283f329e09d984d5bee8a9db1ec54d16c28a1db9f",
       "bytes": 207888
     },
     {
       "path": "scripts/scene-factory/generated/manifests/accra.json",
-      "sha256": "6a47d8cc3fc89f65ce3681db94d8a0a8601449f8656e5d3fa8a4af5dbea6d855",
+      "sha256": "76915e7791b79dac15a7cfa813f2b2ed345586e9d60d2cd25545df4c2ebefbaf",
       "bytes": 216098
     },
     {
       "path": "scripts/scene-factory/generated/manifests/adamstown.json",
-      "sha256": "53bf9dd5267882d6d42f5446eda9baa9f8d537922dcf998b4d9b41872f409da5",
+      "sha256": "82984e817149833fa733c5fe472edcf457c8bc60649ae95a54f251b7f642f6e6",
       "bytes": 212253
     },
     {
       "path": "scripts/scene-factory/generated/manifests/addis-ababa.json",
-      "sha256": "926a1205e7c31f94c4a558af70f0d05a3fe6858ca8083d1bd3dafa5041dbeb82",
+      "sha256": "da47d583d1b0be425d8cc9db1e6cee43fb49cfd473a942681067bed3947491ee",
       "bytes": 217333
     },
     {
       "path": "scripts/scene-factory/generated/manifests/ado-ekiti.json",
-      "sha256": "84c5eff6790f6888574b56e0afce535ca6f00199a4099a5a6b5d153a4c8558aa",
+      "sha256": "cddc3706a3e0475cc43d3021003df01154a42b287b3aab6aeb5a0e327b001ad0",
       "bytes": 211847
     },
     {
       "path": "scripts/scene-factory/generated/manifests/akure.json",
-      "sha256": "0b4a40256f258f874f851ced9364457436af48bc05ed9e808648052ec6bdc87e",
+      "sha256": "ff2a68e03b061cb83f94669b3bce349285ff7cf8f44b4e2441d9c2f43ddd04ea",
       "bytes": 212155
     },
     {
       "path": "scripts/scene-factory/generated/manifests/algiers.json",
-      "sha256": "ca760c86856727bede82448a018cec0f8a6a3cbe880cb814bd958be1f4ccc4f3",
+      "sha256": "91a917dc24dc35427a5e20c94e689635e4fbe6b38e19c3e0eb3982fd4b39d0d7",
       "bytes": 217000
     },
     {
       "path": "scripts/scene-factory/generated/manifests/almaty.json",
-      "sha256": "539ebfdf52fa05c2916d175450f46169470ef0887dd881e0b68f43b383b714d4",
+      "sha256": "807f962d9bf2fda9024fbeb2f026cde1e1231be94c652edb0b8c6bb3a2801bd3",
       "bytes": 217191
     },
     {
       "path": "scripts/scene-factory/generated/manifests/alofi.json",
-      "sha256": "bf61c1fa40197a2b10b13ee73543d83c569ede5e6cb3d493091d235d389ecac5",
+      "sha256": "ef1637a969be02664e27f81c9adbf2e3f0e042b8df221accd64822da2596a0cd",
       "bytes": 215226
     },
     {
       "path": "scripts/scene-factory/generated/manifests/amman.json",
-      "sha256": "b75aec4f2327885e794ad9d21c5f8f9d94b019f8045935d0af08af7d5ffc631e",
+      "sha256": "e056427322cc85ceace167096c8bace9cd354dfcb896af2643b609c191822c35",
       "bytes": 217375
     },
     {
       "path": "scripts/scene-factory/generated/manifests/amsterdam.json",
-      "sha256": "aa751c74cd3b1cc31d6fce78132048f564762c05bfaa5d821ea7c7a5db7afffe",
+      "sha256": "9caaf0c5744dc27bc6c46c022da4959f09ffea3542c1f6f11d0ea6be7b040b6c",
       "bytes": 217569
     },
     {
       "path": "scripts/scene-factory/generated/manifests/andorra-la-vella.json",
-      "sha256": "38e5160bf90da691829466136a0089e02fe5baa04d3ac1e0d57c05273dd90830",
+      "sha256": "825817595c5146650c8e4ba4e19116ad09a5331d6b0feb32b1ffb8438060340a",
       "bytes": 218828
     },
     {
       "path": "scripts/scene-factory/generated/manifests/antananarivo.json",
-      "sha256": "ea2d9a803f5f6f1a75e4216c391b532c6ffc5c07f009633dc1ee8409bca092ba",
+      "sha256": "3a95ac2f722e753907c2869c4fe8a802d6c706cd0d0f2562ad00671bee9e283c",
       "bytes": 218277
     },
     {
       "path": "scripts/scene-factory/generated/manifests/apia.json",
-      "sha256": "cae17e0b33f9c7ea8bc7d507c1b60082f31da6d2c38f496fa2ca3808d2a50eda",
+      "sha256": "7e2cef5a5c0898a90efb56dbf96b89193a860280157fc56366e7043c33175e08",
       "bytes": 217080
     },
     {
       "path": "scripts/scene-factory/generated/manifests/asaba.json",
-      "sha256": "e8d6654321f00a0fcccf3661fd8fb8a2740ae702e33071e98dc98b5dbf430912",
+      "sha256": "4b98ce9592a53afc3717dea063268b50944d068ca60d724947ccb3e7971a96b8",
       "bytes": 211068
     },
     {
       "path": "scripts/scene-factory/generated/manifests/ashgabat.json",
-      "sha256": "1ec15d82f7df346092798d2a9f1e55be51bc6ba103365b38bd285bc432b5ba3b",
+      "sha256": "d3e0870666793954d6a90f645f697da684f6be1306e80ff18e1e595e7cd9e733",
       "bytes": 217735
     },
     {
       "path": "scripts/scene-factory/generated/manifests/ashmore.json",
-      "sha256": "027c2ec2ea16c5f7422875409ceb33b5dd658083f348e793b116b40bdf5e1a5b",
+      "sha256": "93af30591820f7735dc588f121d72eb415b9a4b24f5587eb65f24d7e0d308942",
       "bytes": 209731
     },
     {
       "path": "scripts/scene-factory/generated/manifests/asmara.json",
-      "sha256": "7a39460554555716a4ed1562a2d5c3fa36d43e87f5ff1fe3be219131aec918c5",
+      "sha256": "fb78ecc07dbf9e4dce7717c716fc17ccfb8c4a6ae2270408540a4ebadaa035d9",
       "bytes": 217425
     },
     {
       "path": "scripts/scene-factory/generated/manifests/asuncion.json",
-      "sha256": "a3e5cf2998bfbddfabaf63e92acc504bc7df41b19bb21ef530674f5017a46331",
+      "sha256": "558932983d155ccdde5dae90e023e482697c70b21a4a26be5aadd936f2d34c1b",
       "bytes": 217547
     },
     {
       "path": "scripts/scene-factory/generated/manifests/athens.json",
-      "sha256": "ad85876bc81c767d0695712ed85ad0569399634011d8d0f7e8ffc589d529217c",
+      "sha256": "0966091880b2bd0719a1c9d43f62ec96f52339cc3d8f8a6f9033730f0fe29e61",
       "bytes": 217702
     },
     {
       "path": "scripts/scene-factory/generated/manifests/auckland.json",
-      "sha256": "ee3383a2375c0ced81182c9e1019b483aeff690a534756d019bc3c6b4b461383",
+      "sha256": "63c3459740ffa35f2f462dd0ecf532c9fa76fbfb9c9827dccd0930c40e7951b9",
       "bytes": 217562
     },
     {
       "path": "scripts/scene-factory/generated/manifests/avarua.json",
-      "sha256": "3eb2d54589e9a01418b71310b8336d04b8c7b8ddabbf7d924e0e40823b90df62",
+      "sha256": "18f260be005326c28eea57f64793cc4993e71cfbfe5e31bebd4fd74607a80a67",
       "bytes": 216830
     },
     {
       "path": "scripts/scene-factory/generated/manifests/awka.json",
-      "sha256": "55606fb58a2302873e864075f2e0de8652d5d17f82405ec6b05d68f2b841269c",
+      "sha256": "f4a65f947f2759091734c6f8677bc314cb7858bfe95a8b4736ea5b80d5786812",
       "bytes": 216228
     },
     {
       "path": "scripts/scene-factory/generated/manifests/baghdad.json",
-      "sha256": "4b8ddd6169733df394e541c8ac240c8698bd152c7a2fe95a8d140f3ddb700473",
+      "sha256": "6fa41b382e54eabef9ddb0068cf9b2bb71b16511f0b7e5d3eccbccf6323742b9",
       "bytes": 217876
     },
     {
       "path": "scripts/scene-factory/generated/manifests/baku.json",
-      "sha256": "1f85d70b5b20666b4066d7fa656d0d29ccb81d2b40be4bd386b19134321f6e4c",
+      "sha256": "da6d9e583f3d5ff4b1c8e3b69c5de2cb1d901cc4aef8e394a2127c4f5d4ea5f1",
       "bytes": 217250
     },
     {
       "path": "scripts/scene-factory/generated/manifests/bamako.json",
-      "sha256": "d94c408c5b3cb493d61707e57fe12bc40ba698f02a9d1456d7ee941c064de44e",
+      "sha256": "62f3d32915758073feb2866a739bda53bdf69cfdfa4e19064eafa0a46964d282",
       "bytes": 215497
     },
     {
       "path": "scripts/scene-factory/generated/manifests/bangkok.json",
-      "sha256": "91d5e70c397d43b38607339a08029095590de71f7fbf501256ceaec771bd497f",
+      "sha256": "8d7db54714e669590c0074d1ad0f3b139d6c6f4745d0e0f48988e3355c7cdf31",
       "bytes": 217756
     },
     {
       "path": "scripts/scene-factory/generated/manifests/bangui.json",
-      "sha256": "b1b506e7232d6bcbdc021a496dd143cdf5538aca7a7d899fae0df875772fb155",
+      "sha256": "5797fefeeb9b0955b53ed159cccb223327f375bbbf2b62099d8587a0d63be2e4",
       "bytes": 216489
     },
     {
       "path": "scripts/scene-factory/generated/manifests/basseterre.json",
-      "sha256": "7f9daa181773ea120b774c431d1fe76ce6e3e3e29a55aabd1f294512d86dbb77",
+      "sha256": "fc434a96720b0152c8d0857b0c00f82356a517c68edd2f9094e234b3daa7b4cd",
       "bytes": 217692
     },
     {
       "path": "scripts/scene-factory/generated/manifests/bauchi.json",
-      "sha256": "be421ce4d223f44e72accf5c96e9cb2c5e2d1865b9b9140ef820b9a969b731d2",
+      "sha256": "969e7f3a56a3f06477f5b1cd8588de58d8d1955da19eb40d6f14aa09935c4741",
       "bytes": 217465
     },
     {
       "path": "scripts/scene-factory/generated/manifests/beirut.json",
-      "sha256": "851cd5d0a594b5da996a14dfe366f501c7f8f08437f296cbba3a63a7d0c03a18",
+      "sha256": "3bc4b7b024b96ecb4ab0c56c05b6356802063ccaea865382d87c28bb9c0d7fcd",
       "bytes": 217191
     },
     {
       "path": "scripts/scene-factory/generated/manifests/belgrade.json",
-      "sha256": "f61f4b2496b08778c2bf7762ef0d45db97d6d9445bc945340721c7aa4339ab47",
+      "sha256": "1b12b16cb3babe67f3573b1f12c4ce0181edcc531c017250588b469ef2ab0228",
       "bytes": 217486
     },
     {
       "path": "scripts/scene-factory/generated/manifests/belize-city.json",
-      "sha256": "04844996db27ffdb9cfa840e8949c58ff04cecee1c72a436ee35ebac059ced88",
+      "sha256": "15d037851e33d44ea55cff5928ebefd7e9b7116e2af374f7761a1f3b4532bf94",
       "bytes": 217854
     },
     {
       "path": "scripts/scene-factory/generated/manifests/benin-city.json",
-      "sha256": "cdcc94cee25a834c61be5ebd305e64f5ee54970d196b91c63f3dd016648e22c7",
+      "sha256": "f885702974f8d8d74a0fcf2af8eb4ad424ce1dfb8d5cfd2ba86734240d4eb418",
       "bytes": 214047
     },
     {
       "path": "scripts/scene-factory/generated/manifests/berlin.json",
-      "sha256": "ee71a7daada686ae4d2fc8ca0b60c3a7a7efcb9b3718597dab873792a7c057a9",
+      "sha256": "03a3e9d3e4e3fc3cc119c1ba7825a0f268c07b1535950ad5c6da59943b8eebb7",
       "bytes": 217403
     },
     {
       "path": "scripts/scene-factory/generated/manifests/birnin-kebbi.json",
-      "sha256": "bde1f7275d1df09e9584f8d91c91c62b574786b694a21beed419109cc666b97c",
+      "sha256": "7b6b484afb44de2dbcb60a39dbd8cea96ffe25e7b76e3f52e8a0ed8fe9c5ec4b",
       "bytes": 214477
     },
     {
       "path": "scripts/scene-factory/generated/manifests/bishkek.json",
-      "sha256": "8e5396c7ef1c0a2db700725c5ed39734b5493ccfb4766dd82f1c1f7b3700681b",
+      "sha256": "d6a1adbba8634da6373405ec016e5ca5dedf57036fe5df0b6be4dcfebda08f28",
       "bytes": 217788
     },
     {
       "path": "scripts/scene-factory/generated/manifests/bissau.json",
-      "sha256": "ce2044893fac9c611f89d60c0a26c7267df91547c5ae0334e43e5660a8a32cc3",
+      "sha256": "9efc3b59d5d12ab577d5ecf134542547519e6d48922fe7c78042d832cc0b913b",
       "bytes": 217368
     },
     {
       "path": "scripts/scene-factory/generated/manifests/bogota.json",
-      "sha256": "a66425aa94c9f8b665a431a8944cb5f678c79944a6b17d6e23a9707fc92f627c",
+      "sha256": "86664729cdec3551b82d6d2b1b75b175b33c40dd1034066ffe57d08bf64663a1",
       "bytes": 217444
     },
     {
       "path": "scripts/scene-factory/generated/manifests/brades.json",
-      "sha256": "0bdc5406a6bf4776045dbd7039a757648e504680aad80c2b55d5e9948aff139f",
+      "sha256": "b250bda4aeac70faadfc02c3a9ab3b5c3f60607bc937800c848ece49d6747147",
       "bytes": 215020
     },
     {
       "path": "scripts/scene-factory/generated/manifests/brasilia.json",
-      "sha256": "10c0c98f01c8608daba43341cc178643989f9923041de09351299c8fe195718d",
+      "sha256": "6dfd7a2bd6bb3221bd450899310ba4a638abac67cfe888ad519c0817ae31d5ff",
       "bytes": 217388
     },
     {
       "path": "scripts/scene-factory/generated/manifests/bratislava.json",
-      "sha256": "8a3ba8169933b25808969fb14dc5e696f522fbe60b1916039788f236e957b84c",
+      "sha256": "ca7a8e808bd903ec7384741a75bfb7d00e5a28e6a51491f862b243a2dd3ed417",
       "bytes": 217860
     },
     {
       "path": "scripts/scene-factory/generated/manifests/brazzaville.json",
-      "sha256": "9084581d0fce9aeaaac1f649a1aad6edc9d4f5d61599e83cef74b99c8ddc59af",
+      "sha256": "574aa9ae5bb524173aa1fb3b0c7b6689d3d1430c98b5f784551806af4585a804",
       "bytes": 218934
     },
     {
       "path": "scripts/scene-factory/generated/manifests/bridgetown.json",
-      "sha256": "c863f8b31cf70681604c68021380c27733123ae48f1a478127a1467947b2dbce",
+      "sha256": "0b39603917c12c7b8f62050e95cc429cca625d3bf3676d913aeba6d7ee57c5c8",
       "bytes": 218297
     },
     {
       "path": "scripts/scene-factory/generated/manifests/brussels.json",
-      "sha256": "9ea38b9d2b814c09dd45da9c096f8dd39e04184fe9f8bb2114f94198e3cb2695",
+      "sha256": "c5f18c7468e481e9963d7fc005d43f375aee16f8625dcccebb74ff8afd1f3dcf",
       "bytes": 217825
     },
     {
       "path": "scripts/scene-factory/generated/manifests/bsb.json",
-      "sha256": "72a3012d4d7f7620b31812f2206e544e857124124cdf949f8596823808b39309",
+      "sha256": "d576e2cdedecfa2709259243e4e0b8d26ba1647d10b9fa0b51347d93e3fa1c98",
       "bytes": 217000
     },
     {
       "path": "scripts/scene-factory/generated/manifests/bucharest.json",
-      "sha256": "403c4594177fcd71369e7122fa4812e6f01a60ee4b663af45e528259a81acb7f",
+      "sha256": "15bcb7bcb360227957c3f25d93ef9199b1cac8a5eb79c491368eb7f8a451d683",
       "bytes": 217674
     },
     {
       "path": "scripts/scene-factory/generated/manifests/budapest.json",
-      "sha256": "bbf7531c58bc85a804cd7ae7a44a90cf3ad9b0594afc3d640ad1418bfd7ff163",
+      "sha256": "2dc72427a6e08f098d16aff79bedc0115a2589c7c716b0e2b9d717ee42d23f24",
       "bytes": 217895
     },
     {
       "path": "scripts/scene-factory/generated/manifests/buenos-aires.json",
-      "sha256": "263798b58511bf1a7f161c82d7c8bb2586f0b42d24db6f3d9871bf454cefbf33",
+      "sha256": "4a94118bc634feec2ac8f919a1a5b0d2817b1e30e7686e6e900930e719a31f70",
       "bytes": 218457
     },
     {
       "path": "scripts/scene-factory/generated/manifests/bujumbura.json",
-      "sha256": "5ff80f5de266169f48cdafbb4671f2512b243ddce89cb74c6511a3fb686b4a52",
+      "sha256": "0d8ca0a7a6f60b9973b0dfe54fb64c5274807459c8e11d9944784614d93f10ec",
       "bytes": 217575
     },
     {
       "path": "scripts/scene-factory/generated/manifests/cairo.json",
-      "sha256": "5c923b0870e3792c52424d350d251ac8fdca870c2855885ad1aba91c55b274fc",
+      "sha256": "fe82472d57e49117466c6a5e3bf67ceb3320f0363b2d2c391edc87a9a927d34c",
       "bytes": 217391
     },
     {
       "path": "scripts/scene-factory/generated/manifests/calabar.json",
-      "sha256": "20781e1bbd0fbbfc50ef6aeb6ccb1622f0aeb821a2810a877f310ce9d39ec159",
+      "sha256": "865d32ede20b027f090570a7e1a5cf9cd8cd99402e5c9250fbf02066977fbde1",
       "bytes": 213251
     },
     {
       "path": "scripts/scene-factory/generated/manifests/cape-town.json",
-      "sha256": "53fb7296c24b6141c0bf0a28e88bc47dfac1a9384cae4141657a1e83e10ea1cf",
+      "sha256": "45425b98541c8d59499c7731202b1f4bd6633bdf3c6fae5b42c7af7f9cb2fb1b",
       "bytes": 217043
     },
     {
       "path": "scripts/scene-factory/generated/manifests/caracas.json",
-      "sha256": "416fc2cf4bb426209145db3f941bcc8d9157483505f4ad682b3737a42917ca23",
+      "sha256": "8a3c66a2b8e795fae4e24415bf18044b449f64ab769bf5ee8cbe4c9ae367a0a0",
       "bytes": 217316
     },
     {
       "path": "scripts/scene-factory/generated/manifests/castries.json",
-      "sha256": "ae4449d5a1be84549592148af9f2c681719ff1deea93252724435e894e7062dd",
+      "sha256": "f0ce0ab1ae4370be0ed59b189a7bbcd085db43d4ee884156ee99a112fd484b3a",
       "bytes": 217473
     },
     {
       "path": "scripts/scene-factory/generated/manifests/chagos.json",
-      "sha256": "a9b9e212a432b02764936e35e36dab1212cf9a2899164bbaa3b076cc6f95e74b",
+      "sha256": "49b698cee6360750d9bef59d53da463803fe16a31a974a5718e8b94371d8c3d1",
       "bytes": 210159
     },
     {
       "path": "scripts/scene-factory/generated/manifests/charlotte-amalie.json",
-      "sha256": "f77c1ba7fd5c985355cb568cc1f28ddf863fce2af0b4a740b342830117166eb2",
+      "sha256": "07f9fb54cdd27ce7788e68573c34dd2d5ab781e114ea4d420048cc39ac6795a9",
       "bytes": 219302
     },
     {
       "path": "scripts/scene-factory/generated/manifests/chisinau.json",
-      "sha256": "2c650a799239294cbc3c6890ca946aa3c468eb97abd197f4aa640302de39b328",
+      "sha256": "b7d457fd77a5ef4836a9164fcf46cd1ab7a9dee32810be943a99e69866ce0c23",
       "bytes": 218356
     },
     {
       "path": "scripts/scene-factory/generated/manifests/cockburn-town.json",
-      "sha256": "332f09e9f91933193f860fb461b627f6ccf4148e7dd7778e6428617c98591e6d",
+      "sha256": "3fcc6265ddc39b48ae50c1f3627d32e678215d136db289b6800456e12f619651",
       "bytes": 213279
     },
     {
       "path": "scripts/scene-factory/generated/manifests/colombo.json",
-      "sha256": "f8317cc598f4c3080ebd968c2abd3c7ac98b6ce4dbafd6ddc5dd246eda11db8a",
+      "sha256": "afead5c4f75f93f7340d05892a8d4bdbf6bf8033d050d72714538ea0b7699c67",
       "bytes": 217392
     },
     {
       "path": "scripts/scene-factory/generated/manifests/conakry.json",
-      "sha256": "32cb4071ad36d469b89f39cbfacf5fd0ecf609f161058af5f979df2753ecc200",
+      "sha256": "b8052c1c4f9340c92e12ebd54b358bec74e85607a9dd5935dcb63465545f099b",
       "bytes": 217296
     },
     {
       "path": "scripts/scene-factory/generated/manifests/copenhagen.json",
-      "sha256": "adff7854e0348f051a7c3bbca5bc8e661d3328ee1224b375a843f7a2a8060d26",
+      "sha256": "027ecc5aeff3ef67fef3ce86f51a043665fece0305b798468a858a1e6e22b788",
       "bytes": 218386
     },
     {
       "path": "scripts/scene-factory/generated/manifests/cotonou.json",
-      "sha256": "9620c2ba3a41cccb00e1dee3914b70943138fe7f2295bad894168ef42ddec712",
+      "sha256": "476196c05dcad6645b381c4d5a54388bb0db49fda6fdaf433dfbf85d1789c6e8",
       "bytes": 216793
     },
     {
       "path": "scripts/scene-factory/generated/manifests/cove.json",
-      "sha256": "3db14d3f4f92abb8ffe2cfdba7b7f600e6c90d1681b44a3d57634ed612beeaf2",
+      "sha256": "c792da6aba2f0b0a46f0e31064908f0aea6c22ceaf69368364e43ab0f95c6d42",
       "bytes": 209807
     },
     {
       "path": "scripts/scene-factory/generated/manifests/dakar.json",
-      "sha256": "28d9c2cccabf36fcaeca6ea8a8572085e11bbebe295f73ef6a8227345b2de358",
+      "sha256": "a7bd749e676c47725466e740cc2a35f4c85be4f16d50d2ff8910fd923d280970",
       "bytes": 216446
     },
     {
       "path": "scripts/scene-factory/generated/manifests/damascus.json",
-      "sha256": "f49222e298e5ddc20eefc77e3e9f3f12893a12464ad7bd6a063ad06a1a307257",
+      "sha256": "fd36075ebb6a8207dbe22726c1fae2146a693ab53323a98a92273dd097a7f694",
       "bytes": 217517
     },
     {
       "path": "scripts/scene-factory/generated/manifests/damaturu.json",
-      "sha256": "6e73c70c06d561325ee979cbca58a258f81fa12846546c9533d39fcfae8f16fd",
+      "sha256": "77c08a9562679e3b2cd4bdc4a8681908a3bfcd881d005f6fd0bc39ecfdf2ec1e",
       "bytes": 211830
     },
     {
       "path": "scripts/scene-factory/generated/manifests/dar-es-salaam.json",
-      "sha256": "49d21d74ad7dfb2b982773843a36619f66b325ccc37b886a1190e706f42a7fa1",
+      "sha256": "e08996a0497ff9dcfd92450fe92dc8be54711cf7456cc0fd13450a0057173ca5",
       "bytes": 217574
     },
     {
       "path": "scripts/scene-factory/generated/manifests/delhi.json",
-      "sha256": "42bf727ab2a10cf40fadfbc7d93ad7ba9f5dbdd381aad8fd5ef9bcdc27e2a997",
+      "sha256": "2318fb8a127981da599ca4a888f755f03a45cafd155dc1247c39b00bb549c19d",
       "bytes": 217330
     },
     {
       "path": "scripts/scene-factory/generated/manifests/dhaka.json",
-      "sha256": "b3523e88828ddb4ac04ac1660fa1d0a8cec390f2e4e1d3964e6477c782f2639c",
+      "sha256": "8d1422ab2b6be90d7b119a4d5e72e7f9ee863e540439b7d06e777f7df13d26d7",
       "bytes": 217279
     },
     {
       "path": "scripts/scene-factory/generated/manifests/dili.json",
-      "sha256": "2e9131768ad157345b54de9e74ffdc632ef3e14385ae99d25cc0827b8292552a",
+      "sha256": "e52903696a9478cbab6f836747f0f0c2a5c81bedc4975303989c703ccbc6f82d",
       "bytes": 217350
     },
     {
       "path": "scripts/scene-factory/generated/manifests/djibouti.json",
-      "sha256": "38631254e13ebbecb37a8184e41e9201a6558e519bab5427b2af20c2d1e837d1",
+      "sha256": "55e049407cef660fde43ef3eea21a8afe9ecf3a44d08f8d18ede399727491510",
       "bytes": 217951
     },
     {
       "path": "scripts/scene-factory/generated/manifests/doha.json",
-      "sha256": "0b049cb32c3842c65a1981e97f728d8efab845e413b41a2dcbb22055e717f0fd",
+      "sha256": "1732f623bd0e0bce157afbd0d04c93f9cdf71899ac5b2cc925c66b649008e682",
       "bytes": 217195
     },
     {
       "path": "scripts/scene-factory/generated/manifests/douglas.json",
-      "sha256": "e80060ac186ece766b740b161d434870c89237eeffd1c844ab78f4d3874d0bf6",
+      "sha256": "4cf1afd2aaf96ad241348d580edc7cf156ebe08baf001c00a090ade1bda23346",
       "bytes": 217280
     },
     {
       "path": "scripts/scene-factory/generated/manifests/dubai.json",
-      "sha256": "ae3c163aa67fd415e85647f9a444607409f94164b50cf03e7fa7f16485201651",
+      "sha256": "018e9701394588c1bc6fcc890c793e3aa35e7c4aa17bc521332b5d54fa7bebfd",
       "bytes": 217454
     },
     {
       "path": "scripts/scene-factory/generated/manifests/dublin.json",
-      "sha256": "229fafaf81cdc010e68b6f653585531be35e437f749677cb860f5bd361950813",
+      "sha256": "657eaa79fbbcf20e594f3fe1bf477f0e3414317a65a28a7a757d914793ecaed5",
       "bytes": 217878
     },
     {
       "path": "scripts/scene-factory/generated/manifests/dushanbe.json",
-      "sha256": "dfe24a63bd7ae999597b81b2862a0329ee17ee4653db5645eccadeb5dc49453a",
+      "sha256": "0ffbd62dc7ba4502934ece1d3f14c2aebaf7adade049eb47429341b523cc06c7",
       "bytes": 217857
     },
     {
       "path": "scripts/scene-factory/generated/manifests/dutse.json",
-      "sha256": "2bd27713cb739bb99163b7ac86f6853515c7d237c9cfb82ac6dd671d5911cf4a",
+      "sha256": "f4f2a7c1a5bb421a47625a6127fdab3fee2c7fa4cf36760d48c3f8b384e47c40",
       "bytes": 213778
     },
     {
       "path": "scripts/scene-factory/generated/manifests/enugu.json",
-      "sha256": "e33da1aca62323c8566fbb83e08cae4481658880c2e3554aa9959df4b25f8588",
+      "sha256": "50a620bc6c40bdf4c660d45825591fcd859c71994d92a0e34f27fa9a46522f44",
       "bytes": 215527
     },
     {
       "path": "scripts/scene-factory/generated/manifests/flying-fish-cove.json",
-      "sha256": "683047f4a2b40cc2cb48b16bd1113e8c50ac3db037fd9a5e118d6bc97212c62f",
+      "sha256": "9bb7eb0e0c2b73af30aedfe36931c43aa524b1c14cc0c96a4465238a6edcf447",
       "bytes": 215261
     },
     {
       "path": "scripts/scene-factory/generated/manifests/freetown.json",
-      "sha256": "bb91cfd3f734a8fed05c88a47d8723c963752cfec8b56dcdff0e0e1d53f24bc8",
+      "sha256": "f0e5d3c469107fd9ee39e780a38c066659fe1337fcc338136ee4bdb286590528",
       "bytes": 218075
     },
     {
       "path": "scripts/scene-factory/generated/manifests/funafuti.json",
-      "sha256": "285737e66652c6f3b434146d837abd8b96ad5fff7972b629b5e8134b70adbbe9",
+      "sha256": "6ec883de941ac1afd5b6637b59e801799583feae33c61a9f1af4fbcaa9d0262a",
       "bytes": 213049
     },
     {
       "path": "scripts/scene-factory/generated/manifests/gaborone.json",
-      "sha256": "f0fc402121f9799fb6608da4e89e3a16bd757a75e0da1f53a14e40a5856ba7c5",
+      "sha256": "150c848a7655f3e69f9ea3b4766f4ee5de1c001de8fd575d40f363a2e907ef96",
       "bytes": 216358
     },
     {
       "path": "scripts/scene-factory/generated/manifests/garapan.json",
-      "sha256": "b8577f262b7856179754da4bd4d295a0a2abe6277d0d1720ac615e4406e5deeb",
+      "sha256": "34f773b9bc73d9ee121f5a46337810ebd14c5663a2bf3a8450db17187036f59b",
       "bytes": 216835
     },
     {
       "path": "scripts/scene-factory/generated/manifests/george-town.json",
-      "sha256": "380e6cc60c471f69937be921059b1e4b0ea24d03c24c6eb7c07e1dcb10b38671",
+      "sha256": "b2f96e8a75da4908ca8d525cb0da4ea734f99f7f2cdf459e6c2a4feeaeef4a72",
       "bytes": 216034
     },
     {
       "path": "scripts/scene-factory/generated/manifests/georgetown.json",
-      "sha256": "9c55aaca4330c86ef0c466194474f4863d92dd50a25deec6fdbb26c80c05df3c",
+      "sha256": "7efe3700b1363795d0d195e73c63dd59ba89809ec9f40971320d618eac92b555",
       "bytes": 218299
     },
     {
       "path": "scripts/scene-factory/generated/manifests/gombe.json",
-      "sha256": "1a4806b76175342743a6afcbd5cd51a60ed1abf561552934c97487bf9ecff29a",
+      "sha256": "ae57f22d934c24dd3f537d9e03d79bf9e22890f5e7ed3153ac12d8dd436ff1c5",
       "bytes": 214933
     },
     {
       "path": "scripts/scene-factory/generated/manifests/grytviken.json",
-      "sha256": "3c95512c2a2518ec577a1d09c93dd69fd54beb64c4a79575d4d65c2922ce1734",
+      "sha256": "9e2ff215b0c83533dfe9505bd06d26314cfe1de96f636e7c4e1474df484cf520",
       "bytes": 211400
     },
     {
       "path": "scripts/scene-factory/generated/manifests/guatemala-city.json",
-      "sha256": "034a335631b71899b8c5a95459ab432b0c51b85d9a8c7147f238b6c73dceaba2",
+      "sha256": "721d1126f21c0820e5488fb49aa3f53ec90f8291804ef8623b782beace52c5fc",
       "bytes": 218560
     },
     {
       "path": "scripts/scene-factory/generated/manifests/gusau.json",
-      "sha256": "ec7747b2c85e206ed2a8dc11cf0198b099b2666bc58e3bdf4005ab1f0e20785d",
+      "sha256": "36af6d5f251f0b3321c2adcca110afcb7b7a3c558f799499026808ed701f4d5c",
       "bytes": 212658
     },
     {
       "path": "scripts/scene-factory/generated/manifests/gustavia.json",
-      "sha256": "b83a10d45302f195ecd3a984696a84994b6f6496026d9294d97b2d3ed5468248",
+      "sha256": "b91071b213741e6ecd875c0579b873ff74f526c9323d1c2f3519b1762a7e0a00",
       "bytes": 215617
     },
     {
       "path": "scripts/scene-factory/generated/manifests/hagatna.json",
-      "sha256": "066c7599e2b6dfb55cef1143c556995ef502f13ed8a72a285ffaf58d324e126f",
+      "sha256": "710ebee8bcdabf43522e962ce626383423538807484b955aa5296341bb453c98",
       "bytes": 218331
     },
     {
       "path": "scripts/scene-factory/generated/manifests/hamilton.json",
-      "sha256": "f87b75d7f4efa1f637df5889c402325d1ece0d4144f4e72192f624a1ce97b361",
+      "sha256": "ad0a555f87ac598e6185fb531319a8072fd3268826429d69d28a9d252cd6807b",
       "bytes": 217638
     },
     {
       "path": "scripts/scene-factory/generated/manifests/harare.json",
-      "sha256": "d2b3ee06434afe3d4bb214006ebdee925a9572c13e91338b8dfe41c83a973b5f",
+      "sha256": "6fd7a945d67e1e570f55fe81a454940b584550666945b3d9e4cc847cb1059bb4",
       "bytes": 215836
     },
     {
       "path": "scripts/scene-factory/generated/manifests/hargeisa.json",
-      "sha256": "4c3f9e6fb000c249d025f08ea084b9221fb2ffabf3bd7e44bbd965a5afe9d55a",
+      "sha256": "50255155831ba26db0babde4fe6489d27e555cc97130482d532bbbb35cce57fd",
       "bytes": 217764
     },
     {
       "path": "scripts/scene-factory/generated/manifests/havana.json",
-      "sha256": "56fa93fc24f51930ba3ea0ecab7b724d51f2adfaded3c86c1c9f4bd764ff86c1",
+      "sha256": "c4c77d294b65c7180af65f6d027fd83efd537b5584d142c5793d9dce190198b0",
       "bytes": 217174
     },
     {
       "path": "scripts/scene-factory/generated/manifests/helsinki.json",
-      "sha256": "86a1eda70518105470d9dfa86e4627fd38d2ae54231231ef837e49907d130661",
+      "sha256": "8ecf175afe17382c84b3d3653d3129c280dfb2f3ffed911a4f855e73282d8360",
       "bytes": 217674
     },
     {
       "path": "scripts/scene-factory/generated/manifests/ho-chi-minh-city.json",
-      "sha256": "bac6d03fbb496bc72dee21c11657b9b642a003853c4fa82fe9f3dc5f82b4c233",
+      "sha256": "646065284f24ece88e579f543547a1f75b9eb663a241aa07f30ede365ad6befe",
       "bytes": 218758
     },
     {
       "path": "scripts/scene-factory/generated/manifests/hong-kong.json",
-      "sha256": "d21797244b666451d870586eba45864f9e58d9a12d482768a3990e3abfaa430d",
+      "sha256": "f49d00ad469875e9df42cba36510ac8aaaf68bdcaf4eb5078dad0f692eb2b541",
       "bytes": 217723
     },
     {
       "path": "scripts/scene-factory/generated/manifests/honiara.json",
-      "sha256": "552cfa10a639502b079e6a3c34761e7f2850cdacab14dbef34a316498d11bafb",
+      "sha256": "651277409fabc49e9759247f2e3d0389a9846795f5b06a5b8ce91567da3ecf27",
       "bytes": 217018
     },
     {
       "path": "scripts/scene-factory/generated/manifests/ibadan.json",
-      "sha256": "c1011ac8d614f4ad91aae68ef0ddbb8aba13b2bf4cbee0039fedb35ea940707b",
+      "sha256": "d49a990b886794548bceb4f7b55e344fdf65684125edf7a21c95bef1ef716ee8",
       "bytes": 208172
     },
     {
       "path": "scripts/scene-factory/generated/manifests/ijebu-ode.json",
-      "sha256": "1dfa4a1f3196a051909764779ecc50492f00242fc652152014832fdc37a4676c",
+      "sha256": "c09f9b55d4cbc68f95600adf285c52f4aefbbb5c99f84a00b0e3839867b83181",
       "bytes": 207706
     },
     {
       "path": "scripts/scene-factory/generated/manifests/ilorin.json",
-      "sha256": "62b165b3fd8999bf27df70dc36a80560a7a16dc5743b389ee92bebdfdfc94369",
+      "sha256": "1da1e5412de2f8803f08a2de4cfff6026a1a48b85bff80a97d8750a1806e340f",
       "bytes": 212933
     },
     {
       "path": "scripts/scene-factory/generated/manifests/istanbul.json",
-      "sha256": "58d46549f62e6b65a3795b4980e87e17285e7d8d8c0e3af3efb4c281fa4c1d4f",
+      "sha256": "017fa633fdd658aea6ab3514d4a3774c6bfffd763ebd08107140986df510d7f5",
       "bytes": 217717
     },
     {
       "path": "scripts/scene-factory/generated/manifests/jakarta.json",
-      "sha256": "647e7f5b7aa4e001629ffad1c8bd82ed5bc0449b550d6d797f3a0f66fd9f7261",
+      "sha256": "e0be6a8cdfc62326a08b93b6bdfbff4c3f88042d3e0cc80717dbca0d46b6557e",
       "bytes": 217606
     },
     {
       "path": "scripts/scene-factory/generated/manifests/jalingo.json",
-      "sha256": "736c7a5fb76d17909a60c1a1af08a6850457d6561034c5514a390abf603ec5cb",
+      "sha256": "a1f2725b5e77753602b57f8efd1153965b2ae8bee12f663f5c2371e63d226de9",
       "bytes": 211358
     },
     {
       "path": "scripts/scene-factory/generated/manifests/jamestown.json",
-      "sha256": "20c4236fa6192d0c06fcafaef9653bc680e1aed90e213e8a74e9ff13ddbead4a",
+      "sha256": "8f7568fb9ecc0055320c100a561fc7e695f45ed35c5f2ff23b31cbb091f96317",
       "bytes": 214966
     },
     {
       "path": "scripts/scene-factory/generated/manifests/jos.json",
-      "sha256": "5c16b332a22a8ec16b0942fcee092e48e472d3b16f8e0a4f5dd99256650563ca",
+      "sha256": "f51c0cbc99aa88f82099c3e393cf578d1c11457c35a18c4ded7ebad281c4c353",
       "bytes": 216136
     },
     {
       "path": "scripts/scene-factory/generated/manifests/juba.json",
-      "sha256": "745995fc0c3bdf657c8901aec19052e1fed007a19ebd27acab1baa9f3a98572f",
+      "sha256": "fd4b1bc03f361da89920f24d200b10cecea5386128c846d1dc5f77c47b3559e9",
       "bytes": 217284
     },
     {
       "path": "scripts/scene-factory/generated/manifests/kabul.json",
-      "sha256": "19e6351594f24e8e1b60cf6b404277e889e2b0348d3840cddd295e3524824f60",
+      "sha256": "1d733331bf6536715fce0230d943782bf195646a2e878781133ebc3011ccc88a",
       "bytes": 217304
     },
     {
       "path": "scripts/scene-factory/generated/manifests/kaduna.json",
-      "sha256": "7f7a16470ae86f761dd16bae5eca30db9608198fac9b7634f2a4fba01cfdd449",
+      "sha256": "74e38becbb6f5533bdec58c9184cda2081af4d6ab76b9263c16865c8aa064672",
       "bytes": 213891
     },
     {
       "path": "scripts/scene-factory/generated/manifests/kampala.json",
-      "sha256": "d92184dbab2a9c39635a0f8b357e1d6fe240bc5bf17b8bee86696aea45366bfa",
+      "sha256": "eb9f3633b87b71653d2905d79c036e7b7604f31ae044acd5f95f6077b29c39b3",
       "bytes": 216116
     },
     {
       "path": "scripts/scene-factory/generated/manifests/kano.json",
-      "sha256": "e211825d5be629617bdef13e6dc285a7347e3f1c0dece38e7e01103f20ef8b90",
+      "sha256": "9cf68d8c16952b595847d533094457eea08f64d8acb8521874fde1a7ea2b526f",
       "bytes": 207926
     },
     {
       "path": "scripts/scene-factory/generated/manifests/kathmandu.json",
-      "sha256": "765fa2fc8b0c4b367c803570df7b712594ee4979cb52eb602c95def24fe19522",
+      "sha256": "5e28701f54cf7aeb85c473a4d5a642e8aae8e8cb219f0b5d7833d29339640d2c",
       "bytes": 218187
     },
     {
       "path": "scripts/scene-factory/generated/manifests/katsina.json",
-      "sha256": "25f81ba44ecc4f7e4a12a07c302d7a666a2c62cdbe56093689184ad090a40bf9",
+      "sha256": "f01ca471683b006f4208edd0fee8c3081064c5df3ad38bd29e093b98abd1edb8",
       "bytes": 217554
     },
     {
       "path": "scripts/scene-factory/generated/manifests/khartoum.json",
-      "sha256": "8912b67517795c5b905d5562dc8eb015b190b2f86f3c6e2918c856d576ce72d7",
+      "sha256": "93fcde96c5c4f0613cbc5a8437c2aa6746d82069ebc7fe2ffa41a6a804a98390",
       "bytes": 217428
     },
     {
       "path": "scripts/scene-factory/generated/manifests/kigali.json",
-      "sha256": "f6566905867ba208de0f70a7800f3463e52e5d90aa674f76827780a7b35eeb37",
+      "sha256": "9a83050c6e5b4b7d07e7bc3abdde512d6478f791e38d88bd4bdf4ce4227b09a3",
       "bytes": 217830
     },
     {
       "path": "scripts/scene-factory/generated/manifests/kingston-nf.json",
-      "sha256": "b1b84a5cdc9073f67baf260104fdd66871d91bfd5922441e717d1aa542d88ab5",
+      "sha256": "73561b8591ab2e50ddf0abe77c774b998e872862f7031afd4fa494b9f675858e",
       "bytes": 216210
     },
     {
       "path": "scripts/scene-factory/generated/manifests/kingston.json",
-      "sha256": "727ef673903186b90be561c194b090263f3ba1aeeb93d88731ce21557fd70798",
+      "sha256": "6b58afb96bd09aaa4f0d4df669659d8fced4bb5d4314f681f74e277b3712ab01",
       "bytes": 217733
     },
     {
       "path": "scripts/scene-factory/generated/manifests/kingstown.json",
-      "sha256": "5ecab3240cb0de2205fc452f2550f7b711ec80e411effa6b41b8eebc90e78c1e",
+      "sha256": "a6e07b714a2a1c82460b21b12764e4aa3b390941c4459d4b1c7a2f18b1a411bb",
       "bytes": 217977
     },
     {
       "path": "scripts/scene-factory/generated/manifests/kinshasa.json",
-      "sha256": "999ad470b80b269e77a6e12012816e84ceb8f9b312fe66ec3118394c1696b8f9",
+      "sha256": "0661ffac650dbdee1242df4405e4ce8eb890db71d17d001cbec63be5c73d8df5",
       "bytes": 217433
     },
     {
       "path": "scripts/scene-factory/generated/manifests/koror.json",
-      "sha256": "a0d4fbafedc2ebcc53a6610a5b926c1fa652acdd83b9132fa71b8faeed88fde2",
+      "sha256": "1dafab47aba3bbf346439b7a3508d70c4ffb49726daf95780b8cc035c57fd6d0",
       "bytes": 216782
     },
     {
       "path": "scripts/scene-factory/generated/manifests/kuala-lumpur.json",
-      "sha256": "1d0569f9c848c8e08200261fd767d9b56574f56b6a62b38ead3a929e9f048967",
+      "sha256": "443c367bef37754fc6b686f982bf26e789435f058df0a837eb91e4dfb755b0c8",
       "bytes": 218209
     },
     {
       "path": "scripts/scene-factory/generated/manifests/kuwait-city.json",
-      "sha256": "d80dfcc8cf1c4d3fdd338e70ad008b721a7a0ae0923ce91fdc03ebfd7ba3b16a",
+      "sha256": "fba87ee13ba9831f1ae4f612eceba6965ea3a9fc399de1e0b8a5cca8e0e1adf8",
       "bytes": 218158
     },
     {
       "path": "scripts/scene-factory/generated/manifests/kyiv.json",
-      "sha256": "f164c2aa244bc32608208730d7d7b2406ea89163c7fa6e179c5154e73a16d70c",
+      "sha256": "6bf57b234ffed1da099fee89b61cfd534259391f9e55b69863ab121b0ece1013",
       "bytes": 216874
     },
     {
       "path": "scripts/scene-factory/generated/manifests/kyrenia.json",
-      "sha256": "ed5b754dd54a4f05ce0730a2003b3eb8bd4c4379f213b2d75481db93a632e4a0",
+      "sha256": "37308fef6e829e04011086a6e849fdb4b72184e811551df1de76c19f2dd7e93c",
       "bytes": 217611
     },
     {
       "path": "scripts/scene-factory/generated/manifests/la-paz.json",
-      "sha256": "01807461346a107ca466e9e9befb9e74935fda483c4ce4d9e67e8ede9412dca9",
+      "sha256": "bda0ca5376c1b05d14be7479d43b61d627f0f2bb2db694156b726819f3b8b6df",
       "bytes": 217504
     },
     {
       "path": "scripts/scene-factory/generated/manifests/laayoune.json",
-      "sha256": "7dfecb58efe1d3343b0cba59e1df89803c2e1fcd9c515552c75324f2fd33ef34",
+      "sha256": "3f1099ba43a0e4428cc2eccbd2d1833d61873f59d5c4e5ed05888048b9bcbfb8",
       "bytes": 217606
     },
     {
       "path": "scripts/scene-factory/generated/manifests/lafia.json",
-      "sha256": "0561172e9f5fa05e63143c6955cd6bd53c71a46d12e982ba86474aedc7e2c86c",
+      "sha256": "4e64f00c37affc7693f014b8efe89224e0c17548dbd86be301601cb6c6d422f9",
       "bytes": 210828
     },
     {
       "path": "scripts/scene-factory/generated/manifests/lagos.json",
-      "sha256": "e5ed79ef3cd504053826df7381fae939f7a913a8ac81d16921366c848df75538",
+      "sha256": "30e5ec316204101ce7444733e2346046016ef754a9b832b98c34ff2fb4908d9e",
       "bytes": 205179
     },
     {
       "path": "scripts/scene-factory/generated/manifests/lahore.json",
-      "sha256": "a216640271fb9584853dbe127e5be3408b81026d7334fb43d43a138339d76a74",
+      "sha256": "9a7cf6f03de42a45922af142e8f76588a944e2ceaa2bc031c0619cdeea22bdf8",
       "bytes": 217146
     },
     {
       "path": "scripts/scene-factory/generated/manifests/larnaca.json",
-      "sha256": "5291187df359eadd50a3ffaaadbdd2011b09ffcf5495d7b49e585cb6d5f60eee",
+      "sha256": "91c4b1bfa3f487f26ac4c1fad3a031d7e004610fc99257ac84266271ef93e0a6",
       "bytes": 217315
     },
     {
       "path": "scripts/scene-factory/generated/manifests/libreville.json",
-      "sha256": "ac0a72f72d72371b654de2b37c4bdb7ddda9bf9be02c02b116646f26a8b4452e",
+      "sha256": "3b0f81e68b99077f45afad86116119d604f5a3b374d42056689b49754e8462a9",
       "bytes": 216930
     },
     {
       "path": "scripts/scene-factory/generated/manifests/lilongwe.json",
-      "sha256": "b2b769e7a3211561317ce05c7d9b58a3488e264ca29602b1d7c0b9b5c7649b01",
+      "sha256": "5837b0fbf2a147d61bd6bf3a2db070a8bdb1ec07f476f443f280a9c57e789259",
       "bytes": 217391
     },
     {
       "path": "scripts/scene-factory/generated/manifests/lima.json",
-      "sha256": "132a8fd061be634255bd7131d7f86c78620a3a4754c1cac80d611f4ca6ac15b4",
+      "sha256": "67f9e090a95f9475ea68833820667bf2673b58ed7ade0bd0b2f90b9b9482cfec",
       "bytes": 217195
     },
     {
       "path": "scripts/scene-factory/generated/manifests/lisbon.json",
-      "sha256": "2a7e228a95164f369cab3cc07f230c49e3bee869dbdf0df7c1e44db0db3286ac",
+      "sha256": "406a083074d1b6f0eacd484757dd08466675d65d917f5040a6f4c7536a5b915f",
       "bytes": 217434
     },
     {
       "path": "scripts/scene-factory/generated/manifests/ljubljana.json",
-      "sha256": "49471447ca275f81786f6489f4fb0911034b859190094eef01cade433230f0e6",
+      "sha256": "82ca205237dee2b6f76cb7a1022d108c1c0e6ad904f80699bcf763aa36885628",
       "bytes": 217884
     },
     {
       "path": "scripts/scene-factory/generated/manifests/lokoja.json",
-      "sha256": "086ca48839ac171959e9765c7d09186f3f820854b3b3c37304bd75d1121d9e62",
+      "sha256": "9a0445a1ada7ce99a42ed9cb88005de5ab1a9419136d50a747ef8a35118b1920",
       "bytes": 211129
     },
     {
       "path": "scripts/scene-factory/generated/manifests/lome.json",
-      "sha256": "21285213decfa75865f41a99da2f0867b581f5ea1dceb4b1e1afab671c06f017",
+      "sha256": "b8aee8c7a7a74ccef8e03b5c1852971ce17aad12219fbfc4dde93f52387dc50a",
       "bytes": 216399
     },
     {
       "path": "scripts/scene-factory/generated/manifests/london.json",
-      "sha256": "bce5d2e9e19d5b501029c608f311ab08b148e6ecf0c01620fc1ce8be46e04b47",
+      "sha256": "2676e9053c5dd4a232f51f279303060d3f7cf3d7ad2b7cc40f383405f2a8926c",
       "bytes": 217534
     },
     {
       "path": "scripts/scene-factory/generated/manifests/luanda.json",
-      "sha256": "791b564530670b58c1ee7e2cc757bf11be700919551bc35e9db9a0d8f3f5aadc",
+      "sha256": "974e5a7bf5db97afdd8d09c5f670f584bd357939c7e6d36dca2eab1bf7298d42",
       "bytes": 216039
     },
     {
       "path": "scripts/scene-factory/generated/manifests/lusaka.json",
-      "sha256": "699df399cd71e7f8a7c93cc87a5bfd618790016168559f0d04a70a2c8c77b6f4",
+      "sha256": "3faf528a73369f8a29100b6bca1820c1bb4abd42b7d5880aea1f3c3754112e20",
       "bytes": 217235
     },
     {
       "path": "scripts/scene-factory/generated/manifests/luxembourg.json",
-      "sha256": "bad4266df72eb93859c59c9d2c2ae0430b5b948b49c273671acb2eab7a183a12",
+      "sha256": "acf5b6d0262c5e7eaae3992fc9f779fcaf2f09c2cf4f33db8fe98cebe986675f",
       "bytes": 217825
     },
     {
       "path": "scripts/scene-factory/generated/manifests/macau.json",
-      "sha256": "26eb34e4234028b5b46f46558b530d75031f69d51fd244c9443ea4c604c7e5d4",
+      "sha256": "7bd8eafa64118404239c4bb264370ebf59f79714f5e091b4573a7df3036b75b5",
       "bytes": 217443
     },
     {
       "path": "scripts/scene-factory/generated/manifests/madrid.json",
-      "sha256": "96265df9b3d8b1ed54dc80cb5ca5ca382a6212808e63a5ff2a33ca643d532f72",
+      "sha256": "11d57c612e351139a46ac1727e10172e8832b0ee8b14eb1a006e82aa07865dd8",
       "bytes": 217396
     },
     {
       "path": "scripts/scene-factory/generated/manifests/maiduguri.json",
-      "sha256": "dc4656b68f1a1edca72008021ec5150eccd231559c8409a47b693f4d6faf8de2",
+      "sha256": "8c8b9b1d0a340ddcfaa5b7e9d326d98209afb057c986dfabe38dfbf4883bceb7",
       "bytes": 214877
     },
     {
       "path": "scripts/scene-factory/generated/manifests/majuro.json",
-      "sha256": "f49d30526b78c2176d286ebcedd73ae5e447b21527cac882595a48717a340dbd",
+      "sha256": "58b080ad94142d4813a76cfa57087fdb01f0b3bbfe54aca4c9ec6b848618ba5c",
       "bytes": 215363
     },
     {
       "path": "scripts/scene-factory/generated/manifests/makurdi.json",
-      "sha256": "47191b5409047c07f14349956073f6f48efe9e8065275fcb591f742cdd072cf0",
+      "sha256": "fc93ccc94f7acb7266bf819c8c655446bc5915c923d0976e36a95964470bcf46",
       "bytes": 211796
     },
     {
       "path": "scripts/scene-factory/generated/manifests/malabo.json",
-      "sha256": "f922fb1d22eb1a6f84990a279edac2e72d12b03c6ec376013ce7e6b26e982807",
+      "sha256": "9a058b437888260862e446547e6b161d50e07bcfb3d7a492b0c615fea58ec8a8",
       "bytes": 217497
     },
     {
       "path": "scripts/scene-factory/generated/manifests/male.json",
-      "sha256": "3f85e10494526938b41ce38572fa84c999b6129ce63b417cadabc4f9e70d2ed5",
+      "sha256": "2b6bdcfb47c836f63f7a089c94b3eb04a7d15544dfa3e58f28a3a427e9b679ab",
       "bytes": 217080
     },
     {
       "path": "scripts/scene-factory/generated/manifests/managua.json",
-      "sha256": "f74c51b78ed8c892117b3bcc0e52aa0f4f49e6caf377c27d8c7d97962759bc3b",
+      "sha256": "4ddd746351ff05f9ffd20e59e06e659e06614dd000bfd9e4893de6500d8e7ed8",
       "bytes": 217647
     },
     {
       "path": "scripts/scene-factory/generated/manifests/manama.json",
-      "sha256": "a51aafb5b94884ec4b87ed4ed8e02e03e6893a439ebf19f51c806de14a8232a4",
+      "sha256": "6a4fb2fb09cb3b84a02197ddc645ece0c4cc508fc434db127b5a050417bd768d",
       "bytes": 217601
     },
     {
       "path": "scripts/scene-factory/generated/manifests/manila.json",
-      "sha256": "e5d7bf4ae632d23e0f45168bf4af730bdab8166df6c46f32f6b4fae29a70d0bb",
+      "sha256": "715501877e9e88a2a2cdf9ed95e8d2c410b041331fa9c0f5b5a3810f2993443d",
       "bytes": 217701
     },
     {
       "path": "scripts/scene-factory/generated/manifests/maputo.json",
-      "sha256": "dba48b061bcd6292e95b63b1a87c8c12708a053280b1dfaccb440c620f58175a",
+      "sha256": "2f12c9c1adbe656e332e98c0d1d32fdcd688e4005f8fdeb33d2ced7e543e69d7",
       "bytes": 215675
     },
     {
       "path": "scripts/scene-factory/generated/manifests/mariehamn.json",
-      "sha256": "46220c45fb288de041795b4066e335375a4dd7980236860c4abc3a7c3be7ae96",
+      "sha256": "dda6b7fc509c883bb973377e1d7a689f7421affe359795ddc0d43632f0516a5c",
       "bytes": 217889
     },
     {
       "path": "scripts/scene-factory/generated/manifests/marigot.json",
-      "sha256": "8392654b9824f4bbee7fc069d7f75ab72b97ca32cb2b3ed8d0a4fafcc760377d",
+      "sha256": "c9533526cdc3ea9c6ec4f061dac4a5098b938883446f0c1076a45c98cf6e020a",
       "bytes": 215307
     },
     {
       "path": "scripts/scene-factory/generated/manifests/maseru.json",
-      "sha256": "57b3f2661466d2050e0a8d4542ad266bbf0b68abe57057afbbfe1026d3311469",
+      "sha256": "79453c054fe988724fb47d03aaa5477f1e63c8737530a43efd3bf88a3aa726de",
       "bytes": 215862
     },
     {
       "path": "scripts/scene-factory/generated/manifests/mata-utu.json",
-      "sha256": "38a28bc209dfd16b8ff187456c17764d7d9a918f9dac387126e9df68ae35b6b4",
+      "sha256": "27cd4f4e739fbcb78c329bb8308ae5d64cb149c00148ee3b2977e6d102a5e209",
       "bytes": 215098
     },
     {
       "path": "scripts/scene-factory/generated/manifests/mbabane.json",
-      "sha256": "23fe8b4ec115ca515bb630072a3f19ecbe9b0cefa85dac4658413aa89e3b4e5a",
+      "sha256": "97f67fc4916f282d8b48620e28fe5044c8b888f7da4c70275ae7a1363d7fede3",
       "bytes": 216244
     },
     {
       "path": "scripts/scene-factory/generated/manifests/mexico-city.json",
-      "sha256": "b0e59eac89ec017037be71f11bd8ed6ab6d5eab1a0c1e09ffd9396ed6ef1c39d",
+      "sha256": "121190ea543a0b9d9a452475bd7c1016b14bb5f5ef8ae3b7348264420d3f7fa2",
       "bytes": 217799
     },
     {
       "path": "scripts/scene-factory/generated/manifests/minna.json",
-      "sha256": "3b1cec2d03935b9b80f24a02e330133cbeab4bcde7c47184bbd8e3221336a190",
+      "sha256": "6271323a3493fe203ea4d9d3b7fe8adb23839b4ea66a093bee9e7fbdb4be3b29",
       "bytes": 211532
     },
     {
       "path": "scripts/scene-factory/generated/manifests/minsk.json",
-      "sha256": "2860489bd2a16c59664bc866eeb4d540f9f3fc96d508ce988820c9dfae44f44d",
+      "sha256": "493fe47da99c86ffc3f2675f22288e036852ea417417c02645b12b9fdad61311",
       "bytes": 217198
     },
     {
       "path": "scripts/scene-factory/generated/manifests/mogadishu.json",
-      "sha256": "5b6263bc343afebb336f6411286a2344be09d5113e3163a3b23fe19828fbbaa9",
+      "sha256": "0f57f3f9ff0525f9ced559f0c6c34915aba53bcd94f1197ffc04abf16ce6a648",
       "bytes": 218163
     },
     {
       "path": "scripts/scene-factory/generated/manifests/monaco.json",
-      "sha256": "9dbe014dc9b2cb61c4aae3fd731f15da86c759f72b53526a46ed774789c1bdbb",
+      "sha256": "845198e5f9bc2e91d0e61feb8ff9fde151867ff25e221de703f043edd7ce7f6c",
       "bytes": 217317
     },
     {
       "path": "scripts/scene-factory/generated/manifests/monrovia.json",
-      "sha256": "ade7bde7687be82cc338e059a9d851fb50417b50696ceb2f1d713494ff141183",
+      "sha256": "a8812aee527abd630f4dde114ec6c2aeea33fc1e4c93d4d3ad537561a8461037",
       "bytes": 217790
     },
     {
       "path": "scripts/scene-factory/generated/manifests/montevideo.json",
-      "sha256": "ecfe4a0721fe664215e7326107307b75373009c59b3f4ef456c0913ea92b74a9",
+      "sha256": "22304dc75e1e07f55112b4ceaf2ae4beb3a808d8fef56b30196a05aa7dd76c33",
       "bytes": 218030
     },
     {
       "path": "scripts/scene-factory/generated/manifests/moroni.json",
-      "sha256": "6dd0836fca0fecfcce8513a826684408202ab94b99234a5271145ce0deff2405",
+      "sha256": "a389455d245d72861f24c1d31112dd0e77b13a615f0ee69450f8adf534b6839f",
       "bytes": 217792
     },
     {
       "path": "scripts/scene-factory/generated/manifests/moscow.json",
-      "sha256": "566ee61492df9ab11de937fa65c58a3fd70308504ab6e5f60aa63a66cacef167",
+      "sha256": "7913869bbe60916f4a9d66b4ab9e8d2532c59ffc6efc8d2eeb152ee4d61ab05a",
       "bytes": 217382
     },
     {
       "path": "scripts/scene-factory/generated/manifests/muscat.json",
-      "sha256": "1035ebe05892fa32f376b73024c662576c0c88a59d29f018e087301b77c49bb9",
+      "sha256": "359b33633e51ff227f9709d583b039de4f95be4c5d8b25e362359c5b85548763",
       "bytes": 218043
     },
     {
       "path": "scripts/scene-factory/generated/manifests/nairobi.json",
-      "sha256": "3eda985fe9fd4e410bcc39bfc9a0e55ff36cc5d51fa575e967a47cef77664a82",
+      "sha256": "f147e8adb6c49b20334fe5a7a979e0005a2fc27ca2e7e36853557b24f87aac91",
       "bytes": 216239
     },
     {
       "path": "scripts/scene-factory/generated/manifests/nassau.json",
-      "sha256": "a6e137b179433c4f9d7dadbbdf593b0d26a202a86f47574e0f9914c1eca8e2bf",
+      "sha256": "3e20e3dee117cb1fc6515f79215314eced393655e9a6daa28a9981f368535bc1",
       "bytes": 217321
     },
     {
       "path": "scripts/scene-factory/generated/manifests/ndjamena.json",
-      "sha256": "a973e2819e0325268347400513981dd68c8b0aa0778da873a905bb57fe1e9610",
+      "sha256": "ec12b39105808e9196cf37f5309469e64779652fc0c74b6b85c334122d9ba7cc",
       "bytes": 217521
     },
     {
       "path": "scripts/scene-factory/generated/manifests/new-york.json",
-      "sha256": "03f894be86efac5f314e33bf3f9aa30a48719371d7b9dafdd96b790abe8b9b46",
+      "sha256": "b84ad380cfc4445e63fe79af31318e8d81b3a1e29d1c28a874e84e8259f5877c",
       "bytes": 217628
     },
     {
       "path": "scripts/scene-factory/generated/manifests/niamey.json",
-      "sha256": "21bd1d17d7e3fe842d7a0da4a630d0bacdc1b1d7df304d26af6e5c3bc849c312",
+      "sha256": "8d93b34ded3fb93907d1dda30308ee68ce93b1bab323716bd3db7fecf712602a",
       "bytes": 218121
     },
     {
       "path": "scripts/scene-factory/generated/manifests/nouakchott.json",
-      "sha256": "8f31ecba124401c944acb553e739d0a9b4accfa8a193b611a4dd03b5ff6a6739",
+      "sha256": "e1b1d780ad44657534b865b6c28c762a73a3e258c9899011041cc7b43de872b3",
       "bytes": 218166
     },
     {
       "path": "scripts/scene-factory/generated/manifests/noumea.json",
-      "sha256": "66c76ecd501a27b58aedc6399294bc37680614320d2c983c5eccaf345d185151",
+      "sha256": "8969a804bc322c8a4437fe56a3ae6aad41152d4cb1082d93a74a418066af7185",
       "bytes": 217308
     },
     {
       "path": "scripts/scene-factory/generated/manifests/nukualofa.json",
-      "sha256": "e4323712ef742e709f881ac05942ab8dfadeac7d751bad5b7b9b4d05274231e7",
+      "sha256": "3a3afd621d9bc73dabedc7cb58cf040fda60882abdf5ae132c36f4179e32bd0b",
       "bytes": 217755
     },
     {
       "path": "scripts/scene-factory/generated/manifests/nuuk.json",
-      "sha256": "1e583245f7902c2741bef4c5b14098297f1561130d0e25e4e38c9c735bc1095d",
+      "sha256": "78c78f4eaf10e80c3909bc095db1eda346eda68f25350f21b3d76aa60133cd72",
       "bytes": 216058
     },
     {
       "path": "scripts/scene-factory/generated/manifests/oranjestad.json",
-      "sha256": "699a6c40cda1c9d105e14e2eed57545c56d0a38083bf0e743d90b0531ea55ed2",
+      "sha256": "46eb0b5f8f024d2a458118f0e7b1315f2905cd94853d8b40ec22d1c42a1213db",
       "bytes": 218049
     },
     {
       "path": "scripts/scene-factory/generated/manifests/oslo.json",
-      "sha256": "82d14f005b82cd9e8df02d8d580401816b056f81785796ec06781e381be25691",
+      "sha256": "caf74bc1e90349df38bd58e6eb98a3420cef2d5bd02eeba30336288e42267bad",
       "bytes": 217165
     },
     {
       "path": "scripts/scene-factory/generated/manifests/osogbo.json",
-      "sha256": "f4f8c0b3842566845dedb6397366c07e63e12107429005dd115b28a8ee26b720",
+      "sha256": "4cdb71b80c20e25829c346df4e14f2b9b9d3afc0ee1be129e34daa9ea4ebd795",
       "bytes": 213338
     },
     {
       "path": "scripts/scene-factory/generated/manifests/ota.json",
-      "sha256": "85a3e05f9e99ede3f50f0fa6b608af0f1688c7509ad241a91bf28e7fb4c1c12b",
+      "sha256": "259b74ee6fa6948e57d2125b3550713175660cd13620ae9ac153773dd97d44c1",
       "bytes": 207713
     },
     {
       "path": "scripts/scene-factory/generated/manifests/ouagadougou.json",
-      "sha256": "b1f4b1269a0a83c14a7bbac1fa3f4ef66e0b310adfd29509f0f08a49ed850dee",
+      "sha256": "e32bc6ab96dc254db12d20ceded73a9cae51dba945372f14d37c2c629c77f9fb",
       "bytes": 219164
     },
     {
       "path": "scripts/scene-factory/generated/manifests/owerri.json",
-      "sha256": "f2abdbc6e4fbd48c192863fbf95113a1f1df695624da9bee2feff6a1036beb42",
+      "sha256": "88101147c65414b267a8d1a5f24ef792b22882d5ffdd55edebd668ecee3c0446",
       "bytes": 217572
     },
     {
       "path": "scripts/scene-factory/generated/manifests/pago-pago.json",
-      "sha256": "b36d0836224b19280550f6853e177507b3e911c6716c7f7930e68ec0b711d2c5",
+      "sha256": "fbfdb506bc822602856e566768e3fe686a2d7be84a5ca3a756144aa96ad226fe",
       "bytes": 214287
     },
     {
       "path": "scripts/scene-factory/generated/manifests/palikir.json",
-      "sha256": "6107789278ba0af68d359aee94bf93319825ed26e36acf675fdd5b0a1e75d125",
+      "sha256": "6505f2eda4a66908a094852cd1c21ba5f537beee493c7ff9248b66e30aeeb47d",
       "bytes": 215491
     },
     {
       "path": "scripts/scene-factory/generated/manifests/panama-city.json",
-      "sha256": "5d2926158ac55a689f8d5f8a6252633dea94d9cebcefb9affbd6858ebbd233e5",
+      "sha256": "9f8ceb3fa1e8901e785ccd0cdfc1c872b4292c7f802449dfd48014e415185530",
       "bytes": 218079
     },
     {
       "path": "scripts/scene-factory/generated/manifests/papeete.json",
-      "sha256": "49e7e900f77eedd867deb6e702014e6aac004b2aff35d82a3239bfcd961e3858",
+      "sha256": "a46cbc70305f216f474c229c99d95a63a8c7e71a3fccb9baa8258375609543d2",
       "bytes": 217522
     },
     {
       "path": "scripts/scene-factory/generated/manifests/paramaribo.json",
-      "sha256": "db264174959bfc1baf4044ac6d5ec195856a8da22f56a2c6024cc606d3da5dfc",
+      "sha256": "0c51c4e9347bb992d2c63bf3c39bbcf3b9e255cf43ee61efd4b607d7cc6f3c49",
       "bytes": 218022
     },
     {
       "path": "scripts/scene-factory/generated/manifests/paris.json",
-      "sha256": "8cf0b4e65b2c2031e9eb6218a4cd360c394deecdfc4d5f16be0c8629abe9598c",
+      "sha256": "5c5b6ae91b8627ddd0fb028fcf406caa00c3ff64f0ad7aadf327e359d79011b4",
       "bytes": 217336
     },
     {
       "path": "scripts/scene-factory/generated/manifests/philipsburg.json",
-      "sha256": "b567408ea88ef6787292ee067a2ec809fd1fd7706fe49be030c2090022f3f516",
+      "sha256": "50703afc287885dfbcd992b7288d24d9845566d49bab27ce1eee69c0d6472b31",
       "bytes": 218192
     },
     {
       "path": "scripts/scene-factory/generated/manifests/phnom-penh.json",
-      "sha256": "dede26f51664e57cbd610ed14c9c3dc1ce9cde9678ecc6fcd6dfc49ae2720a66",
+      "sha256": "6163dfd50b7cc83787c92065249fd0d08df4286ce4b909c1fc25cf11f18d6d05",
       "bytes": 217979
     },
     {
       "path": "scripts/scene-factory/generated/manifests/podgorica.json",
-      "sha256": "5edd8a91be4964516e3365f4f53e284dc787a70d76cea0563d4d138430c594d8",
+      "sha256": "d63a01580926e45c8339e6e3bc80c868ecceae0f446ac3bd2c069ed76efa1e4d",
       "bytes": 217770
     },
     {
       "path": "scripts/scene-factory/generated/manifests/port-au-prince.json",
-      "sha256": "73a3c5b584bf45d2cd5ddd94ef9159edecc59a20f687c9e7d48e67491917ef0d",
+      "sha256": "61d0e8d3bee6d6a707634d052c23dfe95cc70848afa675fe267dbfd06878a5eb",
       "bytes": 218290
     },
     {
       "path": "scripts/scene-factory/generated/manifests/port-aux-francais.json",
-      "sha256": "a18ec518f7b2cc7287dec9a6e09f0f6e1ba414afe6ef0b61b286e5aa3fba54cd",
+      "sha256": "02f9fd909cf7a3daf3eb6032b3d314e74223aa7af8dd576a9f983377ded270fb",
       "bytes": 212188
     },
     {
       "path": "scripts/scene-factory/generated/manifests/port-harcourt.json",
-      "sha256": "1c9f36c4e732105f1f7ea07f093296075ded28e18f3113e048cbdf3f1990d051",
+      "sha256": "d2a705b6f4ba17c38ef5938e641c260c7cdbf9ef6ad565eaf0069e2d59be81f4",
       "bytes": 208362
     },
     {
       "path": "scripts/scene-factory/generated/manifests/port-louis.json",
-      "sha256": "e79f1dec009fada26ce1d48bbe66ac1d4193f347297dcbed07bf524babc0bd40",
+      "sha256": "aec37e2d1fce3fb676bbadadc6a002b15bf77599612abb03ee7e90373de5d37b",
       "bytes": 217712
     },
     {
       "path": "scripts/scene-factory/generated/manifests/port-moresby.json",
-      "sha256": "fc20311389d136286cb12752068d7c05324838419d3bfc9b48967859cbc93920",
+      "sha256": "b5a3b420be141e3ba6f1d304b5be581b969c443745cb19c4676b7d90864b22a5",
       "bytes": 217971
     },
     {
       "path": "scripts/scene-factory/generated/manifests/port-of-spain.json",
-      "sha256": "265b787f018c9dae5163d948a58cfd61386b69960e8554e8b626621bd38863fa",
+      "sha256": "684bf5baa3ee7eca613e1a67d69cc9bde89e7c2c5bf78804139b7e1525cdc0cd",
       "bytes": 218316
     },
     {
       "path": "scripts/scene-factory/generated/manifests/port-vila.json",
-      "sha256": "7bca57b2833ce2db8eb478c86584da1c57d64a3f46a8f93834e5026eaf9c891e",
+      "sha256": "9b28a141c70b7af9c2ded79fca0f83cf016f97622fe7c5b50ab6aadd32c4232d",
       "bytes": 217893
     },
     {
       "path": "scripts/scene-factory/generated/manifests/prague.json",
-      "sha256": "2e348ed24f211a6ee1b7fb789ebfd4aab34471f441e102c55c6dea3987f54ba3",
+      "sha256": "03db452c8d9c7a1a660bcdf24442c3fa24816ee34e2369ab812fa49433f9eb07",
       "bytes": 217614
     },
     {
       "path": "scripts/scene-factory/generated/manifests/praia.json",
-      "sha256": "6a07b699331182a72592ffa80a3f8cf3c312cce9257b754e7645d439c0fac1a0",
+      "sha256": "3c94ec78f20d5e2c314052801e717d044b300669d6a9d36c0062fee0d28e299a",
       "bytes": 217342
     },
     {
       "path": "scripts/scene-factory/generated/manifests/pristina.json",
-      "sha256": "4a25848fc497fd14fa7bbd6b534acc0565a5b1faf9552eba73d9cc8ce6d128a9",
+      "sha256": "16fb33d1d132ce71bb9c19b9c5c0d57ebddf1e34014c77728cd14dc0c985d56d",
       "bytes": 217983
     },
     {
       "path": "scripts/scene-factory/generated/manifests/pyongyang.json",
-      "sha256": "b75e46708a111167fbfc483831edca299308870ede4a4b5600247bca69a5127b",
+      "sha256": "d096b32c147b8e49adefb5c3a6fc31b1f3f2c4c39eaed9e0548667214fb440d4",
       "bytes": 217683
     },
     {
       "path": "scripts/scene-factory/generated/manifests/quito.json",
-      "sha256": "3dadc935593a67ac628a78e76ade1136b671ecaf72b80497830c5c9e7c999e2b",
+      "sha256": "8a5dc753d27d9668a070b7249ed40efac8c6e1112611ffebc2e6f3cb36b1b295",
       "bytes": 217302
     },
     {
       "path": "scripts/scene-factory/generated/manifests/rabat.json",
-      "sha256": "d2eb65e94ef1c252d7316515f2e54a5011f6eab15c876704c0065cc49519d7b6",
+      "sha256": "b8c3ef9559d23c2f08f5b7d195b1eb44a38e60d447334e2f559e25ddea30dc59",
       "bytes": 217480
     },
     {
       "path": "scripts/scene-factory/generated/manifests/ramallah.json",
-      "sha256": "a212ab3bb35608f84ab8d65e5067b34d0ee2fdddf126cb271cd2090185744330",
+      "sha256": "f4d3f5259a5d552b5e3d42ad2fe70f9f34b6c4c4f7a4391c3ea5f40c27269a1e",
       "bytes": 217430
     },
     {
       "path": "scripts/scene-factory/generated/manifests/reykjavik.json",
-      "sha256": "0e80c8fbe4b7f2133664b1e93767f75e7a01d8251c4b2a549d7a54f5c414cbda",
+      "sha256": "4b70c2a4dedf01f515c6a4996116b65848e9cdbeea5a9c473e8a30b6f42f0844",
       "bytes": 217995
     },
     {
       "path": "scripts/scene-factory/generated/manifests/riga.json",
-      "sha256": "c98e1fda37da4caa24bb63ef509642e13444e50622ed5b3a30125e167e13bf57",
+      "sha256": "b7bb8815458aceccdce1b1f6e13dc7e8ca228a7811549383cc8cdd647bd6b84f",
       "bytes": 217129
     },
     {
       "path": "scripts/scene-factory/generated/manifests/riyadh.json",
-      "sha256": "21fe892caaada4c026c0c7cd97d26dd73adcbb1f81b5398f6cb0fae9680ceb2f",
+      "sha256": "edaff45c822884ad565eaf2b0363e941f28707037ad94b684819b5a162af9507",
       "bytes": 217466
     },
     {
       "path": "scripts/scene-factory/generated/manifests/road-town.json",
-      "sha256": "5ea397c1890f7218bb08449c1c9df422a0e5783df07abc9b70b61bfd500cc14f",
+      "sha256": "1f512fbc70ca611a231a7b079299f2ce74bb97d7286987d2fe57d8c9ed9295f0",
       "bytes": 216221
     },
     {
       "path": "scripts/scene-factory/generated/manifests/rome.json",
-      "sha256": "5e567eb19a5992d4928427b6611e8719cdb9003da5465690afbdadad7150effa",
+      "sha256": "58d91c5a4dd58b408095fb2a0eaf745a8f0d28cadce2db8926ef3a3c06d20310",
       "bytes": 217995
     },
     {
       "path": "scripts/scene-factory/generated/manifests/roseau.json",
-      "sha256": "fa776266620f643aa1310525d9c4f4f461ff2dc53f9eb53b542bd7818fb332b9",
+      "sha256": "d1f8fa58d67665f52c6d4372630276a551ea78eef030b0edbdab10668bc6c62f",
       "bytes": 217357
     },
     {
       "path": "scripts/scene-factory/generated/manifests/sagamu.json",
-      "sha256": "7346d154b996afdd75107c5525650ccfe7ce518ff21fdf8d5c76d4a7cb21ef3b",
+      "sha256": "6dc72f1bd9b4531939019e7be9ca68baf1c1a580697be0ae4003446231998e6a",
       "bytes": 207989
     },
     {
       "path": "scripts/scene-factory/generated/manifests/saint-pierre.json",
-      "sha256": "47defa6ae0be3bd87c1785aadf3e3df32d467118a8a10c1cbc302500afbd76fd",
+      "sha256": "91333963e4de3b173de1fb620cffe7582f7226fe970c9b59a2e418f0ef11c1bc",
       "bytes": 216697
     },
     {
       "path": "scripts/scene-factory/generated/manifests/san-jose.json",
-      "sha256": "0ea59e4dd690a413635003b0894b4a19638571bb103cfaec113c933c6f899953",
+      "sha256": "40636364c00ac4ee1b79ced18686bc5bc67723f8bee5c20b69d34782ac89cd78",
       "bytes": 217597
     },
     {
       "path": "scripts/scene-factory/generated/manifests/san-juan.json",
-      "sha256": "071ed6c246b38dc46a1fc30885b8ad07e4d40a72d65b63804fec7b463042d7c7",
+      "sha256": "fbc3f291bd2fa0913d6bde6a42c2b6fbfd7cc43f316ed310a549a1bbdff71af4",
       "bytes": 217709
     },
     {
       "path": "scripts/scene-factory/generated/manifests/san-marino.json",
-      "sha256": "bd90245dbbff11c6edafe0b72dbc714a3f58050082d2c65980b26b9741d24bad",
+      "sha256": "4813dabf8143f813f1b70f9f4304b23299c647ec56296b4ef4db0a9e2478016e",
       "bytes": 217846
     },
     {
       "path": "scripts/scene-factory/generated/manifests/san-salvador.json",
-      "sha256": "5296ffd8801da6391bbc67c3c4796cc0b624fabad97e65a72459a70948801a6a",
+      "sha256": "2ff7b15bef7bf13ae4f671f289079b9862d2cff104e740cdfe55565073d945b3",
       "bytes": 218336
     },
     {
       "path": "scripts/scene-factory/generated/manifests/sanaa.json",
-      "sha256": "e4e6200956b2775001bff350445e643e20ae59eca4c561a0464e53f7f8cb5995",
+      "sha256": "f1b2ccb3b6e588d87c556f8495ea02aff036fa2019c54dbb35823bd9a59628ef",
       "bytes": 217099
     },
     {
       "path": "scripts/scene-factory/generated/manifests/santiago.json",
-      "sha256": "633e85d0deb28242cf934e561a953adcc3f3f440034e7c0548d9a219fc5cfb00",
+      "sha256": "cd62167cedb2c0f9121c8137a379b7268ef64d7c7dcfe75f56d01b703b7ab4a7",
       "bytes": 217813
     },
     {
       "path": "scripts/scene-factory/generated/manifests/santo-domingo.json",
-      "sha256": "afd08227ce87df617c36348748101e273504672fd3538df9b3b507a0c815c3b5",
+      "sha256": "2e272eef2373691a1347da87d1aa7dafbc08affd7062f2d900a9f570cda417d6",
       "bytes": 218063
     },
     {
       "path": "scripts/scene-factory/generated/manifests/sao-paulo.json",
-      "sha256": "b097b6a9d491d0d51b7b142e2d586e60388ccd96e009b00f4d78bba78892c438",
+      "sha256": "bc43ccc6864d1c2039d808a07cbc309251ffdb7eb4141381204aa4279a09df2e",
       "bytes": 218039
     },
     {
       "path": "scripts/scene-factory/generated/manifests/sao-tome.json",
-      "sha256": "938b3283b26db1890db532116ec8f6bd1b7febbdbbe193e975585517e9aec561",
+      "sha256": "e45cfd3f32fc57e25923f320cb5332c38d7d3430189eea43421124f2f70c8f10",
       "bytes": 217116
     },
     {
       "path": "scripts/scene-factory/generated/manifests/sarajevo.json",
-      "sha256": "ffcb15e6cf58fe4889cddfcef2402903f40ff8b89be583858373d33c9e9627a7",
+      "sha256": "d9061c608f15c2e6466a01c456f17d682de46461754e7206092c938f89eacddd",
       "bytes": 217687
     },
     {
       "path": "scripts/scene-factory/generated/manifests/seoul.json",
-      "sha256": "58359c9c682950c54baa593506b29842a82665efe70c536397209f79360e0997",
+      "sha256": "aa75ff8e0726b6503980640bd4fa25a4960532607f917269f0948ac24a580d28",
       "bytes": 217438
     },
     {
       "path": "scripts/scene-factory/generated/manifests/serekunda.json",
-      "sha256": "535806fb0069cff399fe0f45e560d65f943659d7ab2a75c143cb856374edae12",
+      "sha256": "784dd96b1efc354bb5e5fc79be0daae0cfd26a111ff7cffbc43a7bb6d7b0568d",
       "bytes": 217752
     },
     {
       "path": "scripts/scene-factory/generated/manifests/shanghai.json",
-      "sha256": "caa078415ded4b6d874d782ad948f89d4d6c41d2d194bed91d1ee0e6a11439ff",
+      "sha256": "3e418b0519349c791bad28d638784b56ee89b41bfcab7711955df94c4c20ae9f",
       "bytes": 217726
     },
     {
       "path": "scripts/scene-factory/generated/manifests/siachen.json",
-      "sha256": "26843a6578df8c2cf626b0f85c4b153c90b9c2f360ec4c9ede157674d3b39be0",
+      "sha256": "ce2cce2d799cd28f505fabf6c97570804e0f77e3b1854fe94c60df34af720962",
       "bytes": 209832
     },
     {
       "path": "scripts/scene-factory/generated/manifests/singapore.json",
-      "sha256": "9355c1d553da44c4db23b506c1c36bf9d8acccd3d88e3fc3b7442a780da3e8e1",
+      "sha256": "6a91f5e3b9a2089e04186d8577179f2ab00dde9a6126a90b5021f158ea2fdee0",
       "bytes": 217514
     },
     {
       "path": "scripts/scene-factory/generated/manifests/skopje.json",
-      "sha256": "7f8c82b417786d3214b44c0a7ad8211128d10241a9261387e51bacbd40eed709",
+      "sha256": "67f5fa4d61efcd84c77fa9b9e7f66c85b2d400495fad77a5df6943f82eae9c7b",
       "bytes": 217443
     },
     {
       "path": "scripts/scene-factory/generated/manifests/sofia.json",
-      "sha256": "938f40900c428ae6f6cc929915b6712d4af7ac42a3f7b9314046ae6e1d28239f",
+      "sha256": "16cd8280e7986505427da032719345c41d0c40cca7f817d15984e7adee4ab9e3",
       "bytes": 217362
     },
     {
       "path": "scripts/scene-factory/generated/manifests/sokoto.json",
-      "sha256": "59603db67aa51b49f7fa770daa64f54468ea4984ad3f9847110d8fac4e935a2b",
+      "sha256": "eb30b3d0f9ca9f819e34435bdd48bcf8691d8ae5cead5f21c4d5d250e197dd5d",
       "bytes": 215097
     },
     {
       "path": "scripts/scene-factory/generated/manifests/st-georges.json",
-      "sha256": "f3f4c7cb98c6b6156d2bb844f766d0afd96580db2a5fad76d2f330b50534599a",
+      "sha256": "b62b76ed269e263adafc6fc78652dbebe5e57b54683ee8448fa3ba58bf30f998",
       "bytes": 218173
     },
     {
       "path": "scripts/scene-factory/generated/manifests/st-helier.json",
-      "sha256": "422095527e982ba7d1b1cb9f09cfb2ab4ee7fd7dec9b9e4612f3e2dce9ead358",
+      "sha256": "fa59c3e6d50d662cee949d9f0af6dc43975f8dbd1f69942398247ef3bb039b84",
       "bytes": 218157
     },
     {
       "path": "scripts/scene-factory/generated/manifests/st-johns.json",
-      "sha256": "1396f1412bdad5d8c5e5afa411e481fb60bfe75c5e1ba75552ba527f82d5b85f",
+      "sha256": "12f8011b418745807454e340dc20d223bf3739497b35d73f0c889c93308b2de0",
       "bytes": 217771
     },
     {
       "path": "scripts/scene-factory/generated/manifests/st-peter-port.json",
-      "sha256": "65d7d23a5be4466aa66cbaf205885b1efb3afc919debbe877dc6fa9923c73b47",
+      "sha256": "ba8e60f51d8bdaa2aa694cb4b15a29a9f05c09cced48fcadc16c8973f75d14ad",
       "bytes": 218578
     },
     {
       "path": "scripts/scene-factory/generated/manifests/stanley.json",
-      "sha256": "14971055576e90ceb28d357c13b68c54b6e6b08421b71d9ad9e1db9e1a8ecc3e",
+      "sha256": "66cb9b078e2760028f692c036d4ff45548c5af1764109f50fac07f8ec0e7997e",
       "bytes": 213929
     },
     {
       "path": "scripts/scene-factory/generated/manifests/stockholm.json",
-      "sha256": "df539f641af155ad1b10116e51cb84bf7ebb1188dada5f0f0f6acabda725504e",
+      "sha256": "5087328e2f1b70ba80e8abc521c5c288ec4b983c0d6c6c95e9781f4ca141df00",
       "bytes": 217844
     },
     {
       "path": "scripts/scene-factory/generated/manifests/suva.json",
-      "sha256": "8f88cc55e04084e255d6685a689838d7ff3adcbfaaeecd553f8127289040d48a",
+      "sha256": "e7c6d8e4749e123776c4552ef8b2e354363790c09b97dd54e0b50ab6cdf4c050",
       "bytes": 217326
     },
     {
       "path": "scripts/scene-factory/generated/manifests/sydney.json",
-      "sha256": "9f068d84e1b7e376cba966839cee231a7761bb9be05573129930df51626ac2af",
+      "sha256": "078b5bbbfb1956a4d13a30f7485e18e755667648211b792782bf39986a244b9a",
       "bytes": 217913
     },
     {
       "path": "scripts/scene-factory/generated/manifests/taipei.json",
-      "sha256": "2f8e60b241d564a14a9827865794353db220d7740e833008bf27a0972aea8037",
+      "sha256": "edf1b1f245a723ed3251227f61ede9702886ebe6395130af26be72465563dd4a",
       "bytes": 217158
     },
     {
       "path": "scripts/scene-factory/generated/manifests/tallinn.json",
-      "sha256": "1fb23ec67b554195d892a51e399f5db077920f3cfc3e3c5b6deb12f014460896",
+      "sha256": "8b0b976dd67947b5c713d2f376613ded2be0a5fd8e8483b5962b0b22ef6d0b97",
       "bytes": 217429
     },
     {
       "path": "scripts/scene-factory/generated/manifests/tarawa.json",
-      "sha256": "b17ebc6f69a2e77edc61079a148316dcc5faf9b44eb0e1f1ddcc45edbb4fd38d",
+      "sha256": "bd4c614498d4114d915e1003ac637a4430c0d02a40cca122e61e282dab76179b",
       "bytes": 217631
     },
     {
       "path": "scripts/scene-factory/generated/manifests/tashkent.json",
-      "sha256": "07287cfe33a621977b8c7a9019fc42437b53bab688124c552befbe78cdcc7b7c",
+      "sha256": "6a013604619787d75505039f9885f712160a96037c856d16e87b71050b4a92e2",
       "bytes": 218027
     },
     {
       "path": "scripts/scene-factory/generated/manifests/tbilisi.json",
-      "sha256": "7bad0589464998be4fed6b5db5a1dd3320dbfc16d860cf02fe7ab5765866b5f3",
+      "sha256": "1f7978f22d188961a42e6f47d4f482ab36513e73497c372cd82e32c7bb2654dc",
       "bytes": 217400
     },
     {
       "path": "scripts/scene-factory/generated/manifests/tegucigalpa.json",
-      "sha256": "4ba7e8b86072bf54b7ed04467648dfb0c81e010ebc2d76dfaf57604b2fa8af8a",
+      "sha256": "dbafb1963c8ef9b9b93a110be58ef7bf97aa46a0a346ff5d84b830a5b8516d95",
       "bytes": 218024
     },
     {
       "path": "scripts/scene-factory/generated/manifests/tehran.json",
-      "sha256": "b12802849de9d4ce685a5298d1eac6ac81d849417670252d842b2df9541edf40",
+      "sha256": "39d02a2fc47065cc6fd355f4e223923c7fbc58d3ab8ab5be39698bcbc6b9b082",
       "bytes": 217325
     },
     {
       "path": "scripts/scene-factory/generated/manifests/tel-aviv-yafo.json",
-      "sha256": "032697db895347d389f19899e197e2c4529b2a50bb058cca7ff49d1e0ccfc09d",
+      "sha256": "21e900876944b71645fc27bc44a6b317a20643636eb47a4ab21258c535428f81",
       "bytes": 218244
     },
     {
       "path": "scripts/scene-factory/generated/manifests/the-valley.json",
-      "sha256": "dae5c538712387205e45aa54334968159f869514073e9a2163529de509330866",
+      "sha256": "8ce2aaf86a783e0d435f984eb71fc9581664f2df6d55993f3c8d963724bfcc35",
       "bytes": 214573
     },
     {
       "path": "scripts/scene-factory/generated/manifests/thimphu.json",
-      "sha256": "442c728af5530087369df7d33491f0a4041d3cff271ac95e2363b68345c409e3",
+      "sha256": "19fddd7305f21cf791da616bd10c61d6f8f701617f213bcc78d3ea283ba102ca",
       "bytes": 217636
     },
     {
       "path": "scripts/scene-factory/generated/manifests/tirana.json",
-      "sha256": "de1d966c10242402cd1f45e5e7ee2f279fb08bf8824c95a03e3def351633d4d1",
+      "sha256": "41ff7d687ab1e2dd56142f96f2d62d68e3efaba8b1872edd519ddf4a1af3db69",
       "bytes": 217322
     },
     {
       "path": "scripts/scene-factory/generated/manifests/tokyo.json",
-      "sha256": "a8cfa5ac444dc28d97d7752370b44d573236db464053a3689d81fd49e26903e5",
+      "sha256": "0c50f7db3e62a64bd7f607c857233e37e0d3a18b32c6f9ac3471d99912a0966e",
       "bytes": 217396
     },
     {
       "path": "scripts/scene-factory/generated/manifests/toronto.json",
-      "sha256": "56eca0c0df09c1544344bf12bfd2f44e25a1a87c6b6363be6412c0e4de5a5bd8",
+      "sha256": "d0cd7e4ab30ca6ab182c7cd1c8d28bb81535eb8d25a5d2a9eef94b8fa3613388",
       "bytes": 217591
     },
     {
       "path": "scripts/scene-factory/generated/manifests/torshavn.json",
-      "sha256": "f085b082c62977060787d7edda2ce73c6118cc3d505509987ae2cda3f87b65c3",
+      "sha256": "bacad990ae535cb1bc80ea08942093cfe5e7d1a8755cfa3ee126cc664aac380f",
       "bytes": 217210
     },
     {
       "path": "scripts/scene-factory/generated/manifests/tripoli.json",
-      "sha256": "915389dc15ef79d835f445eebcebd176cfed285c83bbcc050fb685476d0f00f1",
+      "sha256": "67a13ed096635b88e1f4e31086987c76f2102ad768285852bdf8c12af6e17c33",
       "bytes": 216144
     },
     {
       "path": "scripts/scene-factory/generated/manifests/tunis.json",
-      "sha256": "568e9e9e385b7db3389bde786579db4b7108e4afb691c6cffbbb1d2448d94f4d",
+      "sha256": "b6316fbe9606e57fe09a9d4cde50903eb12d2eb8c3b525cd2199f1d2c84cbcd7",
       "bytes": 217154
     },
     {
       "path": "scripts/scene-factory/generated/manifests/ulaanbaatar.json",
-      "sha256": "733ec528bc0a499a0373431e04de151d13b0554a6e4fcf8b85cd1c7f4d8e9804",
+      "sha256": "2af39bf39b0863b46ffbf617531a4c238836da556129585712c10d31ddc3cc5d",
       "bytes": 218173
     },
     {
       "path": "scripts/scene-factory/generated/manifests/umuahia.json",
-      "sha256": "f1763590494e31dc13fcafea53cda1c9cd1058246c661e5076da817c40a62b2b",
+      "sha256": "67fa0f894ec551646ee8ab9992c58477a5b44034bf6092488fbbc7316bb51966",
       "bytes": 216884
     },
     {
       "path": "scripts/scene-factory/generated/manifests/uyo.json",
-      "sha256": "7398a9418c93281a35b8eada199cf119fa2c3a6c3b98d87e56a32b3bedcbf2cb",
+      "sha256": "20bf5f0a06ea9c489fd6cb7da6f1477636ab5f48d219d4ca0a1d4daeed6272a7",
       "bytes": 212305
     },
     {
       "path": "scripts/scene-factory/generated/manifests/vaduz.json",
-      "sha256": "c8245551bbcec01c95d4ee377d2f76f79546017f74a9ba992dcb1571864c0233",
+      "sha256": "a2ab72805e57437426284b6f267ff03f9527cb8215ffa0b1e8ff2d3670a6f6e6",
       "bytes": 217016
     },
     {
       "path": "scripts/scene-factory/generated/manifests/valletta.json",
-      "sha256": "5414eaee833bfb05e1e97a96f6654ce16fa70eeae9ce97c9257d4ad81cab790c",
+      "sha256": "51f9c32e4d46cf0e0b1f55be22ef3da6d66bfa183cce5ea51632eaa61822d8b4",
       "bytes": 217819
     },
     {
       "path": "scripts/scene-factory/generated/manifests/vatican-city.json",
-      "sha256": "e9b439f70efe91792bbb59081403120550c10d421f4d614685929f9f8b9f59a3",
+      "sha256": "5b07f9cca3e1d2e7935b70f93ea5009dc4f0b1ee5f748635141d111806d0b195",
       "bytes": 214769
     },
     {
       "path": "scripts/scene-factory/generated/manifests/victoria.json",
-      "sha256": "da429593e5b2e62ad100e8b93cac3ff34810e45c4a8f5fe3955785b0e4a8f5fa",
+      "sha256": "4184e59cb30e4edc0dfb1077c0b1bc8f8e8e84515dd5b53bcaadb68bdda8bbb5",
       "bytes": 217844
     },
     {
       "path": "scripts/scene-factory/generated/manifests/vienna.json",
-      "sha256": "61d5ac58f698eb974566834171b11c5927a235c31b69c3022734bc5ca0364eeb",
+      "sha256": "21a69909d64cc263eabd8dd0d07f04f99ddbc4e74d55d5d6e0e011661f1c6763",
       "bytes": 217158
     },
     {
       "path": "scripts/scene-factory/generated/manifests/vientiane.json",
-      "sha256": "6392aa791a892399394ad973b4dd1dc74b80d0a8f5629ae20ed11b018844813c",
+      "sha256": "c7269a641d5f03dafd76938faa5da79d1ba323b986088cae3fe8cc3f10dd2421",
       "bytes": 218226
     },
     {
       "path": "scripts/scene-factory/generated/manifests/villa-las-estrellas.json",
-      "sha256": "9f8b51c31cebab030c33829a5c9cdc55b4ce30a4c303b8515274fa8545d2c82f",
+      "sha256": "e46252c72f643587cfa6c522403fbb99106f0cee6ee279d8f0d04d6606e7bb9d",
       "bytes": 213078
     },
     {
       "path": "scripts/scene-factory/generated/manifests/vilnius.json",
-      "sha256": "d6af17a40699f3bc59b0a80de2ad9eeea3b1b47de5bb7fbc7bf4cd9fdf52de5a",
+      "sha256": "3e628c0164e7dc1cb05a5fcd87f1cfcfa98940b26649ae7d0fa19c9def92b056",
       "bytes": 217479
     },
     {
       "path": "scripts/scene-factory/generated/manifests/warsaw.json",
-      "sha256": "e22199dab74bbf93b92a2bedbbbe6204ddb15a1fd932511d0f01abdd96b90d7d",
+      "sha256": "8d2e0c1347f91b181f4bafbfc31a747e510ca8fff00ccdde1094dc2ac21223c5",
       "bytes": 217537
     },
     {
       "path": "scripts/scene-factory/generated/manifests/wellington.json",
-      "sha256": "363cc0dbe462b6f37f1b93562e099008a9cde360cb8775bdcb93e7a859fda97c",
+      "sha256": "9c7b666263f00193af340340c9e3bf69315cada9ba61f1328b688d04a297732f",
       "bytes": 217741
     },
     {
       "path": "scripts/scene-factory/generated/manifests/west-island.json",
-      "sha256": "d7f4409bb42cc9edaa413e5eb4c33f28ef29627d1ed29a2d0bc0276583a5e371",
+      "sha256": "0bc37e5df896f20910da9f61c120438cc7ca30fcf2138356ab0b88c46ba2d47e",
       "bytes": 212781
     },
     {
       "path": "scripts/scene-factory/generated/manifests/willemstad.json",
-      "sha256": "8e9fa1684c3193b6337ac3808ae8af508be68be088b9da045368ad3bc86ec674",
+      "sha256": "f045e7c52e8a64bbf959870b22755a6bc64247e2aae90d888a5a578f5a137268",
       "bytes": 217772
     },
     {
       "path": "scripts/scene-factory/generated/manifests/windhoek.json",
-      "sha256": "ce47483e63088f405b9b5ccb4e8802a989055f82b73261fcb73283cdada9317c",
+      "sha256": "acc34e6332eeb6214be728f150e5fc15b9ba0feaab92cddccc47ecc997a01fe1",
       "bytes": 217679
     },
     {
       "path": "scripts/scene-factory/generated/manifests/yangon.json",
-      "sha256": "ac34e35653b6b4decacc4b7d6a1acd87f7c7315829515376f8eddbe8c4aebdae",
+      "sha256": "2af2ce1d0ab5381d67953fbbb9c3307b30513afb7be6ecf7bddddfd2449e4f83",
       "bytes": 217888
     },
     {
       "path": "scripts/scene-factory/generated/manifests/yaounde.json",
-      "sha256": "21d6f8026e4b2c8fa3246a5abdd37bff814f2cb94a1b51d0efe3c858ed3bddaa",
+      "sha256": "1928439af21238b490c6c34782263afa06ca147c128bc27fd89f17f59492527b",
       "bytes": 216367
     },
     {
       "path": "scripts/scene-factory/generated/manifests/yaren.json",
-      "sha256": "39cb7a6cb9bd32eee253d11a2b17114554ec09e62e680579d86f049c4c906c8a",
+      "sha256": "a2b1bb2c9b198020e5b24ba3839c0aa7a04a3c7ff8d58a3e97707b23adf4958e",
       "bytes": 214267
     },
     {
       "path": "scripts/scene-factory/generated/manifests/yenagoa.json",
-      "sha256": "02477f5d694ca379fac04b4ab973ce6b80d6b41d7166f0151d6ebbcb63e44b9a",
+      "sha256": "66b1901f877713c13c27b25e26c10ecedf28877692645d95d08ef9c5e6fd980a",
       "bytes": 218937
     },
     {
       "path": "scripts/scene-factory/generated/manifests/yerevan.json",
-      "sha256": "00662a7e83783f0ba6ec748daa04d6736cff4bab3211592b61d16bc6c06b27d0",
+      "sha256": "d6ff78c051add2974d515f70d2a96e9cfef14dd1eb178160a04a1fcf47cccf62",
       "bytes": 217526
     },
     {
       "path": "scripts/scene-factory/generated/manifests/yola.json",
-      "sha256": "a25f0cfd91d371e33abe56effa601246172066ae9ecc1c7cae2eb5a3cf5640c1",
+      "sha256": "924d3d79c0ff29b56ff2bcbe1ef20cbd4e348369f09abdd979e5ec6c26e92911",
       "bytes": 213816
     },
     {
       "path": "scripts/scene-factory/generated/manifests/zagreb.json",
-      "sha256": "38f3eb9eef3b103c9209104e7196ba3efeb7e5b09e95e85ab30819cbabd0a1dd",
+      "sha256": "573e9d447f71e5fb75befc3887227e7610ec9759caec5a5c20ccaba9e27988a7",
       "bytes": 217128
     },
     {
       "path": "scripts/scene-factory/generated/manifests/zurich.json",
-      "sha256": "6a08eecd9609188eeaeb31876f8b53e3b59733a900540b7aa887a6b12ccc0962",
+      "sha256": "8cb24331f7bcee29d77e6a25a6eabaa82e47e82dc3a7dcbea011097d10e6e6da",
       "bytes": 217561
     },
     {

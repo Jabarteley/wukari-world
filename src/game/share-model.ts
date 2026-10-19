@@ -141,11 +141,11 @@ export function cardImage(kind: unknown): { path: string; type: 'image/png' | 'i
 }
 
 /** The ad-source words every shared link carries (the same `utm_` words the owner's ads use, src/game/attribution.ts): the source is the share itself, the medium its channel, the campaign its kind. */
-export function sourceWords(kind: unknown, channel = 'card'): string {
-  return `utm_source=share&utm_medium=${cleanSourceWord(channel, 'card')}&utm_campaign=${cleanSourceWord(kind, 'invite')}`;
+export function sourceWords(kind: unknown, channel = 'card', source = 'share'): string {
+  return `utm_source=${cleanSourceWord(source, 'share')}&utm_medium=${cleanSourceWord(channel, 'card')}&utm_campaign=${cleanSourceWord(kind, 'invite')}`;
 }
-/** A share page's link with the ad-source words added; `link` is the absolute address of `/s/<code>`. */
-export const shareUrl = (link: string, kind: unknown, channel = 'card'): string => `${link}${link.includes('?') ? '&' : '?'}${sourceWords(kind, channel)}`;
+/** A share page's link with the ad-source words added; `link` is the absolute address of `/s/<code>`. A clip from Capture says `source` 'clip' (the link is the player's profile, not a share page). */
+export const shareUrl = (link: string, kind: unknown, channel = 'card', source = 'share'): string => `${link}${link.includes('?') ? '&' : '?'}${sourceWords(kind, channel, source)}`;
 /** The ad-source words of a share page's own address (`?utm_…`), cleaned, as a query string without its `?` ('' when there are none). */
 export function sourceQuery(query: { get(name: string): string | null } | null | undefined): string {
   const source = query?.get('utm_source'), medium = query?.get('utm_medium'), campaign = query?.get('utm_campaign');

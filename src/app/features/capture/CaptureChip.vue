@@ -1,13 +1,35 @@
 <script setup lang="ts">
 import '../../../ui/controls.css'
-import { computed } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useApp } from '../../state/app.ts'
-import { captureSession, discardCapture, stopSceneRecording } from './captureSession.ts'
+import { social } from '../social/useSocial.ts'
+import { useGrowth } from '../growth/useGrowth.ts'
+import { captureAccess, captureSession, discardCapture, startSceneRecording, stopSceneRecording } from './captureSession.ts'
+import { MOMENT_MS, liveMoment } from './captureShareModel.ts'
 
 const { game } = useApp()
+const growth = useGrowth()
 const visible = computed(() => captureSession.recording && game.mode.value === 'venue')
 
+// "Clip this moment": while a party or an event is on and Capture is allowed (only at your own home), a one-tap clip of 6 seconds is offered.
+const tick = ref(0)
+const dismissed = ref('')
+let timer: ReturnType<typeof setInterval> | undefined
+onMounted(() => { timer = setInterval(() => { tick.value++ }, 15_000) })
+onBeforeUnmount(() => { if (timer !== undefined) clearInterval(timer) })
+const moment = computed(() => {
+  void tick.value
+  if (captureSession.recording || captureSession.busy || captureSession.photoUrl || captureSession.videoUrl || game.mode.value !== 'venue') return null
+  const found = liveMoment({ party: social.me?.house?.party ?? null, events: growth.state.hello?.events ?? [], now: game.serverNow() })
+  return found && found.key !== dismissed.value && captureAccess().allowed ? found : null
+})
+const seconds = MOMENT_MS / 1000
+
 function stop(): void { stopSceneRecording() }
+async function clip(): Promise<void> {
+  if (!(await startSceneRecording({ durationMs: MOMENT_MS, thenShare: true })) && captureSession.error) game.toast(captureSession.error, 'error')
+}
+function later(): void { if (moment.value) dismissed.value = moment.value.key }
 </script>
 
 <template>
@@ -16,6 +38,11 @@ function stop(): void { stopSceneRecording() }
     <span class="capture-chip-status" role="status" aria-live="polite">Recording · {{ captureSession.secondsLeft }}s</span>
     <button class="ui-button capture-chip-stop" type="button" aria-label="Stop scene recording" @click="stop">Stop</button>
     <button class="capture-chip-discard" type="button" aria-label="Discard scene recording" @click="discardCapture">Discard</button>
+  </section>
+  <section v-else-if="moment" class="capture-chip" aria-label="Clip this moment" data-capture-moment>
+    <span class="capture-chip-status">{{ moment.label }} is on</span>
+    <button class="ui-button capture-chip-stop" type="button" :aria-label="`Clip ${seconds} seconds of this moment and share it`" @click="clip">Clip {{ seconds }} s</button>
+    <button class="capture-chip-discard" type="button" aria-label="Not now" @click="later">Not now</button>
   </section>
 </template>
 

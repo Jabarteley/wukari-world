@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import '../../../ui/controls.css'
-import { computed } from 'vue'
+import { computed, onMounted, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import GameIcon from '../../ui/GameIcon.vue'
 import { captureAccess, captureSession, discardCapture, startSceneRecording, stopSceneRecording, takeScenePhoto } from './captureSession.ts'
+import { cancelPrepare, captureShare, prepareShare, shapeChanged, shareCapture, videoMarkable, warmIdentity } from './captureShare.ts'
+import { UNMARKED_CLIP_NOTE, videoExtension, videoLabel } from './captureShareModel.ts'
 
 const { game, scene, api } = useApp()
 const access = computed(() => captureAccess())
@@ -17,6 +19,24 @@ async function startVideo(): Promise<void> {
   if (await startSceneRecording()) api.close()
 }
 function stopVideo(): void { stopSceneRecording() }
+
+const markable = computed(() => videoMarkable())
+const videoName = computed(() => `allworld-scene.${videoExtension(session.videoType)}`)
+const videoKind = computed(() => videoLabel(session.videoType))
+const videoSeconds = computed(() => session.videoMs ? ` · ${Math.max(1, Math.round(session.videoMs / 1000))} s` : ' · up to 30 seconds')
+const preparing = (kind: 'photo' | 'video'): boolean => captureShare.phase === 'preparing' && captureShare.kind === kind
+const isReady = (kind: 'photo' | 'video'): boolean => captureShare.phase === 'ready' && captureShare.kind === kind
+function shareLabel(kind: 'photo' | 'video'): string {
+  if (preparing(kind)) return kind === 'video' && captureShare.secondsLeft ? `Adding the mark… ${captureShare.secondsLeft}s` : 'Adding the mark…'
+  const noun = kind === 'photo' ? 'photo' : 'clip'
+  return isReady(kind) ? `Share ${noun} now` : `Share ${noun}`
+}
+function share(kind: 'photo' | 'video'): void { void shareCapture(kind) }
+function toggleStory(): void { captureShare.story = !captureShare.story; shapeChanged() }
+// A clip made with "Clip 6 s" opens here already marked, ready for one tap on Share.
+function autoShare(): void { if (session.autoShare && session.videoUrl) { session.autoShare = false; void prepareShare('video') } }
+watch(() => session.autoShare && session.videoUrl, autoShare)
+onMounted(() => { warmIdentity(); autoShare() })
 </script>
 
 <template>
@@ -29,7 +49,7 @@ function stopVideo(): void { stopSceneRecording() }
       <GameIcon name="camera" :size="24" />
     </header>
 
-    <p class="capture-truth">Capture the 3D scene without menus or HUD. Files stay local. Download a photo or clip to keep it.</p>
+    <p class="capture-truth">Capture the 3D scene without menus or HUD. Files stay on this device until you tap Share and pick where they go. Download a photo or clip to keep it.</p>
 
     <p v-if="!access.allowed" class="capture-gate" role="status">{{ access.reason }}</p>
     <p v-else-if="!scene.venue.value" class="capture-gate" role="status">The scene is loading. Capture will be ready when it appears.</p>
@@ -51,12 +71,33 @@ function stopVideo(): void { stopSceneRecording() }
 
     <figure v-if="session.photoUrl" class="capture-preview">
       <img :src="session.photoUrl" alt="Captured image of the current 3D scene">
-      <figcaption><span>PNG photo</span><a class="ui-button capture-download" :href="session.photoUrl" download="allworld-scene.png">Download photo</a></figcaption>
+      <figcaption>
+        <span>PNG photo</span>
+        <span class="capture-buttons">
+          <a class="ui-button capture-download" :href="session.photoUrl" download="allworld-scene.png">Download photo</a>
+          <button class="ui-button is-primary capture-download" type="button" :disabled="preparing('photo') || preparing('video')" data-capture-share="photo" @click="share('photo')">{{ shareLabel('photo') }}</button>
+        </span>
+      </figcaption>
     </figure>
     <figure v-if="session.videoUrl" class="capture-preview">
       <video :src="session.videoUrl" controls playsinline preload="metadata" aria-label="Preview of your scene recording"></video>
-      <figcaption><span>WebM video · up to 30 seconds</span><a class="ui-button capture-download" :href="session.videoUrl" download="allworld-scene.webm">Download video</a></figcaption>
+      <figcaption>
+        <span>{{ videoKind }} video{{ videoSeconds }}</span>
+        <span class="capture-buttons">
+          <a class="ui-button capture-download" :href="session.videoUrl" :download="videoName">Download video</a>
+          <button class="ui-button is-primary capture-download" type="button" :disabled="preparing('photo') || preparing('video')" data-capture-share="video" @click="share('video')">{{ shareLabel('video') }}</button>
+        </span>
+      </figcaption>
     </figure>
+    <section v-if="session.photoUrl || session.videoUrl" class="capture-share" aria-label="Share settings">
+      <label class="capture-story"><input type="checkbox" :checked="captureShare.story" :disabled="captureShare.phase === 'preparing'" @change="toggleStory"> Crop to 9:16 for phone stories</label>
+      <p class="capture-mark">Shared files carry the corner mark <b>{{ captureShare.mark }}</b>, drawn on this device. Nothing is uploaded; you choose where it goes.</p>
+      <p v-if="session.videoUrl && !markable" class="capture-note" role="status">{{ UNMARKED_CLIP_NOTE }}</p>
+      <p v-if="session.videoUrl" class="capture-note">Adding the mark to a clip takes about as long as the clip. Keep Allworld open until it is ready.</p>
+      <button v-if="captureShare.phase === 'preparing'" class="capture-cancel" type="button" @click="cancelPrepare">Cancel</button>
+      <p v-if="captureShare.note" class="capture-note" role="status" aria-live="polite">{{ captureShare.note }}</p>
+      <p v-if="captureShare.error" class="capture-error" role="alert">{{ captureShare.error }}</p>
+    </section>
     <button v-if="session.photoUrl || session.videoUrl" class="ui-button capture-discard" type="button" @click="discardCapture">Discard capture</button>
   </section>
 </template>
@@ -81,6 +122,13 @@ function stopVideo(): void { stopSceneRecording() }
 .capture-preview img, .capture-preview video { display: block; width: 100%; max-height: min(36vh, 360px); border-radius: var(--r-sm); background: #202823; object-fit: contain; }
 .capture-preview figcaption { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12px; color: var(--c-ink-2); }
 .capture-download { display: inline-flex; align-items: center; justify-content: center; min-height: 36px; padding: 6px 10px; text-decoration: none; white-space: nowrap; }
+.capture-buttons { display: inline-flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+.capture-download:disabled { opacity: .55; cursor: not-allowed; }
+.capture-share { display: grid; gap: 8px; }
+.capture-share p { margin: 0; font-size: 13px; line-height: 1.45; }
+.capture-mark { color: var(--c-ink-2); }
+.capture-story { display: flex; align-items: center; gap: 8px; min-height: var(--tap); font-size: 13px; }
+.capture-cancel { justify-self: start; min-height: 36px; padding: 5px 7px; border: 0; background: none; color: var(--c-red-dark); font: inherit; font-size: 12px; cursor: pointer; }
 .capture-discard { justify-self: start; min-height: var(--tap); }
 .capture-app button:focus-visible, .capture-download:focus-visible { outline: var(--focus); outline-offset: 2px; }
 @media (max-width: 380px) {

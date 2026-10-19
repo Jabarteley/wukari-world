@@ -16,6 +16,8 @@ export interface PreparedShare {
   url: string | null
   whatsapp: string
   x: string
+  /** A photo or clip made on this device (Capture's Share): the sheet shows it and saves it under this name. Revoked by Capture, not by the store. */
+  clip?: { url: string; name: string; type: string }
 }
 export type SystemShareOutcome = 'shared' | 'cancelled' | 'unavailable'
 export interface ShareModule {

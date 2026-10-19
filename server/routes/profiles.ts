@@ -2,6 +2,7 @@ import { readPublicProfile } from '../public-profile.ts'
 import { publicProfilePageHtml, unavailableProfilePageHtml } from '../public-profile-page.ts'
 import { feedService } from '../feed/service.ts'
 import { profileSocialHtml } from '../feed/pages.ts'
+import { sourceQuery } from '../../src/game/share-model.ts'
 import type { Db, RouteContext, RouteHandler, RouteKey } from '../types.ts'
 
 const headers = { 'Cache-Control': 'no-store' }
@@ -20,7 +21,7 @@ export default function profileRoutes(ctx: RouteContext): Record<RouteKey, Route
     const result = await readPublicProfile(ctx, { id, after: query.has('after') ? query.get('after') : null })
     if (!result.ok) return { status: result.code === 'invalid_profile_cursor' ? 400 : 404, cache: false, html: unavailableProfilePageHtml(origin) }
     const social = await ctx.store.read((db) => socialOf(db, id, origin))
-    return { status: 200, cache: false, html: publicProfilePageHtml(result.profile, origin, social) }
+    return { status: 200, cache: false, html: publicProfilePageHtml(result.profile, origin, social, sourceQuery(query)) }
   })
 
   return {

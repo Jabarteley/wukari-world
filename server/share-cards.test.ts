@@ -148,6 +148,7 @@ test('the share link and text carry the ad-source words in the owner’s utm con
   const link = shareUrl('https://play.example/s/abcdefghij', 'election');
   assert.equal(link, 'https://play.example/s/abcdefghij?utm_source=share&utm_medium=card&utm_campaign=election');
   assert.equal(shareUrl('https://x.example/s/abcdefghij', 'table', 'whatsapp'), 'https://x.example/s/abcdefghij?utm_source=share&utm_medium=whatsapp&utm_campaign=table');
+  assert.equal(shareUrl('https://x.example/p/@ada', 'clip', 'share', 'clip'), 'https://x.example/p/@ada?utm_source=clip&utm_medium=share&utm_campaign=clip', 'a clip names itself as the source');
   const text = shareText({ kind: 'election', name: 'Ada', headline: 'Ada Obi is the new Chairman of Lagos.', city: 'Lagos' }, link);
   assert.equal(text.split('\n').at(-1), link, 'the link is the last line');
   assert.match(text, /Chairman of Lagos/);

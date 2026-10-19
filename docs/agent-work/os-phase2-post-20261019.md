@@ -6,7 +6,7 @@
 - **Owner:** Claude (open-source plan, Phase 2)
 - **Model / effort:** Sonnet 5.5 / default
 - **Thread:** local
-- **UTC updated:** 2026-10-19T22:00:00Z
+- **UTC updated:** 2026-10-20T00:00:00Z
 - **Status:** `ready-for-review`
 - **Work state:** `implementation`
 
@@ -46,7 +46,10 @@
   - Both gates pass (AO under 3 ms, stack under 5 ms), so AO is default on; `?ao=0` turns it off. Caveats: this street is light (plain 2 ms) and AO redraws the scene for depth, so it grows with the scene; an M4 Pro is a fast GPU; integrated GPUs on the high tier (any desktop) can be several times slower. The governor (phase 7) should be able to drop it.
 - Wired: `venue-world.ts` (the one place venues, the street and homes are drawn) starts `loadFx` after the first frame on the high tier only, draws through `fx.post` when present, resizes it in `frame()`, re-grades in `applyLook()` and disposes with the host. `loadFx(tier, context)` in `fx/index.ts` builds the stack behind `fxUsesPost`. `look.ts` and the scene builders (`venue-scenes.ts`, `street-scene.ts`, `home-scene.ts`) needed no change: they never call a renderer, and `lazyEnvironment` is only used by the avatar preview.
 - Before/after at dusk, 1280x800: `docs/evidence/out/os-phase2-before.png`, `-after-ao.png`, `-after.png` (stack without AO; git-ignored); 800 px copies for the critic: `docs/agent-work/os-phase2-post-before.png`, `-after.png`. The picture changes subtly: deeper violet sky, a soft vignette, slightly cooler shadows, faint contact darkening where fences meet the ground.
-- STARTUP_BROTLI (196,356 vs 196,300): hash noise. STARTUP_RAW is 613,913 in main's run, in run 39328266128 and in 39330014232, gzip within 6 bytes, and nearly every chunk filename (even untouched ones such as AccountSettings) differs between main's build and mine, so brotli sees different random hash strings (main 196,250, mine 196,322 and 196,356). Startup code did not change.
+- Final CI run 39338244351 (success): STARTUP_RAW 613,913, STARTUP_GZIP 223,137, STARTUP_BROTLI 196,222, SCENE_HOST_RAW 81,672 / GZIP 30,863, FX_RAW 247,367 / FX_GZIP 105,832, LOADING ok. fx chunk includes n8ao because origin/main did not yet have the `fx-ao` rule.
+- One real startup regression found and fixed on the way: the first wired build had engine +2.81 kB (STARTUP_RAW 616,723, smoke test over its 616,000). Cause: `import('../../game/cities/registry.ts')` inside `fx/index.ts` made Rollup keep every export of the registry in the engine chunk. Replaced by a static `import { cityRules }` (commit 7b68d4485); engine is back to 250.00 kB. Found by diffing the engine chunk of two throwaway `story/` builds (deleted).
+- venue-world.ts is pinned by scripts/scene-factory/host-scenery.json: its new SHA is in commit 24fa3e68f (mechanical, `npm run scenes:build`, 1,151 scenes unchanged; droppable and redoable at integration).
+- An earlier STARTUP_BROTLI over (196,356 vs 196,300): hash noise. STARTUP_RAW is 613,913 in main's run, in run 39328266128 and in 39330014232, gzip within 6 bytes, and nearly every chunk filename (even untouched ones such as AccountSettings) differs between main's build and mine, so brotli sees different random hash strings (main 196,250, mine 196,322 and 196,356). Startup code did not change.
 - CI run 39330014232 (with MSAA, no SMAA): fx chunk 246,265 raw / 105,369 gzip, FX_RAW and FX_GZIP ok. STARTUP_BROTLI over by 56 bytes (196,356 vs 196,300) although STARTUP_RAW is identical to main (613,913) and gzip is lower: brotli noise from chunk hashes, main sat at 196,250. Not caused by a size change in startup code.
 
 ### Immediate resume steps
